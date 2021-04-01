@@ -79,8 +79,8 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 		}
 
 		protected void initEntityAI() {
-			//tasks.addTask(0, new HibbertopterusWander(this, ANIMATION_WANDER));
-			//tasks.addTask(1, new EntityAILookIdle(this));
+			tasks.addTask(0, new HibbertopterusWander(this, ANIMATION_WANDER));
+			tasks.addTask(1, new EntityAILookIdle(this));
 		}
 
 		@Override
@@ -136,7 +136,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 			int distH = (int) LepidodendronConfig.waterHibbertopterus;
 			if (distH < 1) distH = 1;
 			if (distH > 16) distH = 16;
-			int distV = 1;
+			int distV = 8;
 			if (distV < 1) distV = 1;
 			if (distV > 6) distV = 6;
 			boolean waterCriteria = false;

@@ -92,7 +92,7 @@ public class LepidodendronMod {
 	public static final int ENTITY_AMMONITE_CERATITES = 35;
 	public static final int ENTITY_HIBBERTOPTERUS = 36;
 	public static final int ENTITY_TERATASPIS = 37;
-	public static final int ENTITY_POLEUMITA = 38;
+	public static final int ENTITY_FURCACAUDA = 38;
 	public static final int ENTITY_CYCLONEMA = 39;
 	public static final int ENTITY_PULMONOSCORPIUS = 40;
 	public static final int ENTITY_XENACANTHUS = 41;
@@ -100,7 +100,7 @@ public class LepidodendronMod {
 	public static final int ENTITY_SCHINDERHANNES = 43;
 	public static final int ENTITY_MACLURINA = 44;
 	public static final int ENTITY_TULLIMONSTRUM = 45;
-	public static final int ENTITY_FURCACAUDA = 46;
+	public static final int ENTITY_POLEUMITA = 46;
 
 
 	@Mod.EventHandler

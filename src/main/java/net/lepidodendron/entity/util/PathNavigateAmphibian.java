@@ -16,15 +16,10 @@ import net.minecraft.world.World;
 public class PathNavigateAmphibian extends PathNavigate
 {
     private boolean shouldAvoidSun;
-    private int EntityWaterDist;
 
     public PathNavigateAmphibian(EntityLiving entitylivingIn, World worldIn)
     {
         super(entitylivingIn, worldIn);
-        EntityWaterDist = 0;
-        if (entitylivingIn instanceof EntityPrehistoricFloraHibbertopterus) {
-            EntityWaterDist = LepidodendronConfig.waterHibbertopterus;
-        }
     }
 
     protected PathFinder getPathFinder()
@@ -232,10 +227,7 @@ public class PathNavigateAmphibian extends PathNavigate
         int i = x - sizeX / 2;
         int j = z - sizeZ / 2;
 
-        if (!isNearWater(new BlockPos(x, y, z))) {
-            return false;
-        }
-        else if (!this.isPositionClear(i, y, j, sizeX, sizeY, sizeZ, vec31, p_179683_8_, p_179683_10_))
+        if (!this.isPositionClear(i, y, j, sizeX, sizeY, sizeZ, vec31, p_179683_8_, p_179683_10_))
         {
             return false;
         }
@@ -338,34 +330,4 @@ public class PathNavigateAmphibian extends PathNavigate
         this.shouldAvoidSun = avoidSun;
     }
 
-    public boolean isNearWater(BlockPos pos) {
-        int distH = EntityWaterDist;
-        if (distH < 1) distH = 1;
-        if (distH > 16) distH = 16;
-        int distV = 1;
-        if (distV < 1) distV = 1;
-        if (distV > 6) distV = 6;
-        boolean waterCriteria = false;
-        int xct = -distH;
-        int yct;
-        int zct;
-        while ((xct <= distH) && (!waterCriteria)) {
-            yct = -distV;
-            while ((yct <= 1) && (!waterCriteria)) {
-                zct = -distH;
-                while ((zct <= distH) && (!waterCriteria)) {
-                    if ((Math.pow((int) Math.abs(xct),2) + Math.pow((int) Math.abs(zct),2) <= Math.pow((int) distH,2)) && ((this.world.getBlockState(new BlockPos(pos.getX() + xct, pos.getY() + yct, pos.getZ() + zct))).getMaterial() == Material.WATER)) {
-                        waterCriteria = true;
-                    }
-                    zct = zct + 1;
-                }
-                yct = yct + 1;
-            }
-            xct = xct + 1;
-        }
-
-        if (waterCriteria || EntityWaterDist==0) return true;
-
-        return false;
-    }
 }

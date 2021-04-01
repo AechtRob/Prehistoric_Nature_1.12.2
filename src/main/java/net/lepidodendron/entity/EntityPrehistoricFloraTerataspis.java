@@ -8,12 +8,14 @@ import net.lepidodendron.entity.ai.TrilobiteWanderBottom;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteBottomBase;
 import net.lepidodendron.entity.model.ModelAsaphus;
 import net.lepidodendron.entity.model.ModelTerataspis;
+import net.lepidodendron.item.entities.ItemTerataspisRaw;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -135,8 +137,8 @@ public class EntityPrehistoricFloraTerataspis extends EntityPrehistoricFloraTril
 
 	@Override
 	protected Item getDropItem() {
-		return null;
-		//return new ItemStack(ItemAcanthodesMeat.block, (int) (1)).getItem();
+		//return null;
+		return new ItemStack(ItemTerataspisRaw.block, (int) (1)).getItem();
 	}
 
 }

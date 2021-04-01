@@ -11,7 +11,7 @@ public class RenderHibbertopterus extends RenderLiving<EntityPrehistoricFloraHib
     private static final ResourceLocation TEXTURE = new ResourceLocation(LepidodendronMod.MODID + ":textures/entities/hibbertopterus.png");
 
     public RenderHibbertopterus(RenderManager mgr) {
-        super(mgr, new ModelHibbertopterus(), 0.75f);
+        super(mgr, new ModelHibbertopterus(), 0.5f);
     }
 
     @Override

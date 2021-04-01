@@ -3,30 +3,21 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.entity.ai.TrilobiteWanderSwim;
-import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteSwimBase;
-import net.lepidodendron.entity.model.ModelCheirurus;
-import net.lepidodendron.entity.model.ModelIsotelus;
-import net.lepidodendron.item.entities.ItemIsotelusRaw;
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.entity.Entity;
+import net.lepidodendron.entity.ai.FishWander;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
+import net.lepidodendron.item.entities.ItemFurcacaudaRaw;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class EntityPrehistoricFloraIsotelus extends EntityPrehistoricFloraTrilobiteSwimBase {
+public class EntityPrehistoricFloraFurcacauda extends EntityPrehistoricFloraFishBase {
 
 	public BlockPos currentTarget;
 	@SideOnly(Side.CLIENT)
@@ -34,7 +25,7 @@ public class EntityPrehistoricFloraIsotelus extends EntityPrehistoricFloraTrilob
 	private int animationTick;
 	private Animation animation = NO_ANIMATION;
 
-	public EntityPrehistoricFloraIsotelus(World world) {
+	public EntityPrehistoricFloraFurcacauda(World world) {
 		super(world);
 		setSize(0.5F, 0.3F);
 		experienceValue = 0;
@@ -44,13 +35,18 @@ public class EntityPrehistoricFloraIsotelus extends EntityPrehistoricFloraTrilob
 	}
 
 	@Override
-	public int getAnimationTick() {
-		return getAnimationTick();
+	protected float getAISpeedFish() {
+		return 0.4f;
 	}
 
 	@Override
-	protected float getAISpeedTrilobite() {
-		return 0.1f;
+	protected boolean isBase() {
+		return false;
+	}
+
+	@Override
+	public int getAnimationTick() {
+		return getAnimationTick();
 	}
 
 	@Override
@@ -74,8 +70,7 @@ public class EntityPrehistoricFloraIsotelus extends EntityPrehistoricFloraTrilob
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new TrilobiteWanderSwim(this, ANIMATION_WANDER));
-		tasks.addTask(1, new EntityAILookIdle(this));
+		tasks.addTask(0, new FishWander(this, ANIMATION_FISH_WANDER));
 	}
 
 	@Override
@@ -101,8 +96,8 @@ public class EntityPrehistoricFloraIsotelus extends EntityPrehistoricFloraTrilob
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(3.0D);
-		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.3D);
+		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(4.0D);
+		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 	}
 
 	@Override
@@ -137,8 +132,8 @@ public class EntityPrehistoricFloraIsotelus extends EntityPrehistoricFloraTrilob
 
 	@Override
 	protected Item getDropItem() {
-		//return null;
-		return new ItemStack(ItemIsotelusRaw.block, (int) (1)).getItem();
+		return new ItemStack(ItemFurcacaudaRaw.block, (int) (1)).getItem();
 	}
 
 }
+

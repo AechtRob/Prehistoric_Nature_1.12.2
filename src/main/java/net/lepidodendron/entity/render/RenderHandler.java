@@ -232,6 +232,12 @@ public class RenderHandler {
                 return new RenderTerataspis(manager);
             }
         });
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrehistoricFloraFurcacauda.class, new IRenderFactory<EntityPrehistoricFloraFurcacauda>() {
+        @Override
+        public Render<? super EntityPrehistoricFloraFurcacauda> createRenderFor(RenderManager manager) {
+            return new RenderFurcacauda(manager);
+        }
+        });
 
     }
 }

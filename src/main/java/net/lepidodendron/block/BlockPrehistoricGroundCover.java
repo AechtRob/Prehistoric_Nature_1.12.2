@@ -68,7 +68,7 @@ public class BlockPrehistoricGroundCover extends ElementsLepidodendronMod.ModEle
         	setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
         	setTickRandomly(true);
 			setCreativeTab(TabLepidodendron.tab);
-			setHarvestLevel("shovel", 1);
+			setHarvestLevel("shovel", 0);
 			setHardness(0.5F);
 			setResistance(0.5F);
         	//useNeighborBrightness = true;

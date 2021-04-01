@@ -49,6 +49,8 @@ public class EntityRegistries {
         registerEntity("prehistoric_flora_ammonite_ceratites", EntityPrehistoricFloraAmmonite_Ceratites.class, LepidodendronMod.ENTITY_AMMONITE_CERATITES, 32,-7186664,-5947328);
         registerEntity("prehistoric_flora_hibbertopterus", EntityPrehistoricFloraHibbertopterus.class, LepidodendronMod.ENTITY_HIBBERTOPTERUS, 32,-2524036,-8171236);
         registerEntity("prehistoric_flora_terataspis", EntityPrehistoricFloraTerataspis.class, LepidodendronMod.ENTITY_TERATASPIS, 32,-1000314,-4546685);
+        registerEntity("prehistoric_flora_furcacauda", EntityPrehistoricFloraFurcacauda.class, LepidodendronMod.ENTITY_FURCACAUDA, 32,-855513,-14342909);
+
     }
 
 }
