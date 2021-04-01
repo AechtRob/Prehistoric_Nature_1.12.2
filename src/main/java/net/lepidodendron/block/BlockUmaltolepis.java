@@ -104,7 +104,7 @@ public class BlockUmaltolepis extends ElementsLepidodendronMod.ModElement {
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
@@ -154,6 +154,49 @@ public class BlockUmaltolepis extends ElementsLepidodendronMod.ModElement {
 			}
 		}
 
+		@Override
+		public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
+		{
+			int i = 1;
+			int j = 2;
+			int k = pos.getX();
+			int l = pos.getY();
+			int i1 = pos.getZ();
+
+			if (worldIn.isAreaLoaded(new BlockPos(k - 2, l - 2, i1 - 2), new BlockPos(k + 2, l + 2, i1 + 2)))
+			{
+				for (int j1 = -1; j1 <= 1; ++j1)
+				{
+					for (int k1 = -1; k1 <= 1; ++k1)
+					{
+						for (int l1 = -1; l1 <= 1; ++l1)
+						{
+							BlockPos blockpos = pos.add(j1, k1, l1);
+							IBlockState iblockstate = worldIn.getBlockState(blockpos);
+
+							if (iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos))
+							{
+								iblockstate.getBlock().beginLeavesDecay(iblockstate, worldIn, blockpos);
+							}
+						}
+					}
+				}
+			}
+			if (Math.random() > 0.66) {
+				if (!worldIn.isRemote) {
+					EntityItem entityToSpawn;
+					if (!LepidodendronConfig.doFruits) {
+						entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockUmaltolepis.block, (int) (1)));
+					}
+					else {
+						entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemUmaltolepisFruit.block, (int) (1)));
+					}
+					entityToSpawn.setPickupDelay(10);
+					worldIn.spawnEntity(entityToSpawn);
+				}
+			}
+		}
+
 		public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
         	return false;
     	}
@@ -170,7 +213,7 @@ public class BlockUmaltolepis extends ElementsLepidodendronMod.ModElement {
 			super.neighborChanged(state, world, pos, neighborBlock, fromPos);
 			
 			if (world.isAirBlock(pos.down())) {
-				world.destroyBlock(pos, false);
+				world.destroyBlock(pos, true);
 				if (Math.random() > 0.66) {
 					if (!world.isRemote) {
 						EntityItem entityToSpawn;

@@ -106,8 +106,16 @@ public class BlockGreenLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 			biomeCriteria = true;
 		if (!biomeCriteria)
 			return;
-		
-		for (int i = 0; i < (int) 10; i++) {
+
+		int multiplier = 1;
+		if ((dimID == LepidodendronConfig.dimDevonian)
+				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
+				|| (dimID == LepidodendronConfig.dimCarboniferous)
+		) {
+			multiplier = 2;
+		}
+
+		for (int i = 0; i < (int) 10 * multiplier; i++) {
 			int l6 = chunkX + random.nextInt(16) + 8;
 			int i11 = random.nextInt(128);
 			int l14 = chunkZ + random.nextInt(16) + 8;
@@ -405,7 +413,7 @@ public class BlockGreenLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 			}
 
 			
-			return (blockface && canPlaceBlockAt(worldIn, pos));
+			return (blockface && (side == EnumFacing.UP) && canPlaceBlockAt(worldIn, pos));
 			
 	    }
 		

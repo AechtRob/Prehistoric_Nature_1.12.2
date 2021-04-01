@@ -42,7 +42,7 @@ public class BlockAdobeBricks extends ElementsLepidodendronMod.ModElement {
 			super(Material.ROCK);
 			setTranslationKey("adobe_bricks");
 			setSoundType(SoundType.GROUND);
-			setHarvestLevel("pickaxe", 1);
+			setHarvestLevel("pickaxe", 0);
 			setHardness(0.5F);
 			setResistance(2F);
 			setLightLevel(0F);

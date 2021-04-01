@@ -106,8 +106,16 @@ public class BlockRedLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 			biomeCriteria = true;
 		if (!biomeCriteria)
 			return;
-		
-		for (int i = 0; i < (int) 10; i++) {
+
+		int multiplier = 1;
+		if ((dimID == LepidodendronConfig.dimDevonian)
+				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
+				|| (dimID == LepidodendronConfig.dimCarboniferous)
+		) {
+			multiplier = 2;
+		}
+
+		for (int i = 0; i < (int) 10 * multiplier; i++) {
 			int l6 = chunkX + random.nextInt(16) + 8;
 			int i11 = random.nextInt(128);
 			int l14 = chunkZ + random.nextInt(16) + 8;
@@ -173,7 +181,7 @@ public class BlockRedLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
@@ -181,6 +189,25 @@ public class BlockRedLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 		@Override
 		public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
 			return layer == BlockRenderLayer.CUTOUT_MIPPED;
+		}
+
+		@Override
+		public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+			switch ((EnumFacing) state.getValue(BlockDirectional.FACING)) {
+				case SOUTH :
+				default :
+					return new AxisAlignedBB(0.3D, 0D, 0D, 0.7D, 1.0D, 1.0D);
+				case NORTH :
+					return new AxisAlignedBB(0.3D, 0D, 0D, 0.7D, 1D, 01.0D);
+				case WEST :
+					return new AxisAlignedBB(0D, 0D, 0.3D, 1D, 1D, 0.7D);
+				case EAST :
+					return new AxisAlignedBB(0D, 0D, 0.3D, 1D, 1D, 0.7D);
+				case UP :
+					return new AxisAlignedBB(0.0D, 0D, 0D, 1.0D, 1.0D, 1.0D);
+				case DOWN :
+					return new AxisAlignedBB(0.0D, 0D, 0D, 1.0D, 1.0D, 1.0D);
+			}
 		}
 
 		@Override

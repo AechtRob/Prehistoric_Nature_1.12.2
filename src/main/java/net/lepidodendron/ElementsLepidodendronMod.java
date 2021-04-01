@@ -56,12 +56,18 @@ public class ElementsLepidodendronMod implements IFuelHandler, IWorldGenerator {
 	public final List<Supplier<Potion>> potions = new ArrayList<>();
 	public static Map<ResourceLocation, net.minecraft.util.SoundEvent> sounds = new HashMap<>();
 	public ElementsLepidodendronMod() {
-		sounds.put(new ResourceLocation("lepidodendron", "eurypterus_idle"),
-			new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "eurypterus_idle")));
-		sounds.put(new ResourceLocation("lepidodendron", "eurypterus_hurt"),
-			new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "eurypterus_hurt")));
-		sounds.put(new ResourceLocation("lepidodendron", "eurypterus_death"),
-			new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "eurypterus_death")));
+		sounds.put(new ResourceLocation("lepidodendron", "eoarthropleura_idle"),
+			new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "eoarthropleura_idle")));
+		sounds.put(new ResourceLocation("lepidodendron", "eoarthropleura_hurt"),
+			new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "eoarthropleura_hurt")));
+		sounds.put(new ResourceLocation("lepidodendron", "eoarthropleura_death"),
+			new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "eoarthropleura_death")));
+		sounds.put(new ResourceLocation("lepidodendron", "pneudodesmus_idle"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "pneudodesmus_idle")));
+		sounds.put(new ResourceLocation("lepidodendron", "pneudodesmus_hurt"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "pneudodesmus_hurt")));
+		sounds.put(new ResourceLocation("lepidodendron", "pneudodesmus_death"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "pneudodesmus_death")));
 	}
 
 	public void preInit(FMLPreInitializationEvent event) {

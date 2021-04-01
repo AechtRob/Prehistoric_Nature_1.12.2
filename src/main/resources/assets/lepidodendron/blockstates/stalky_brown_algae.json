@@ -4,17 +4,17 @@
       	{"model": "lepidodendron:brown_algae_2"}
     ],
     "facing=north": [
-      	{"model": "lepidodendron:brown_algae_2", "x": 90}
+      	{"model": "lepidodendron:brown_algae_2_side"}
     ],
     "facing=east": [
-      	{"model": "lepidodendron:brown_algae_2", "x": 90, "y": 90}
+      	{"model": "lepidodendron:brown_algae_2_side", "y": 90}
     ],
     "facing=south": [
-      	{"model": "lepidodendron:brown_algae_2", "x": 90, "y": 180}
+      	{"model": "lepidodendron:brown_algae_2_side", "y": 180}
     ],
     
     "facing=west": [
-      	{"model": "lepidodendron:brown_algae_2", "x": 90, "y": 270}
+      	{"model": "lepidodendron:brown_algae_2_side", "y": 270}
     ],
 
     "facing=up": [

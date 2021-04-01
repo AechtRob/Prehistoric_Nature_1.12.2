@@ -14,8 +14,8 @@
       "item": "lepidodendron:bothrodendron_spores"
     },
     "2": {
-      "item": "minecraft:dirt",
-      "data": 32767
+      "type": "forge:ore_dict",
+      "ore": "dirt"
     }
   },
   "result": {

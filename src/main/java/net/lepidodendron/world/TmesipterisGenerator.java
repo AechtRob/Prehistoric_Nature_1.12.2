@@ -34,7 +34,6 @@ public class TmesipterisGenerator extends WorldGenerator
         this.state = TmesipterisIn.getDefaultState();
     }
 
-    //marine int: -1  = non-marine, 0 = bothk 1 = marine only
     public boolean generate(World worldIn, Random rand, BlockPos position)
     {
 		int dimID = worldIn.provider.getDimension();

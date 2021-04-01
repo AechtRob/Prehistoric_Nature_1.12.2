@@ -16,8 +16,17 @@ public class RecipeCookedMeats extends ElementsLepidodendronMod.ModElement {
 	@Override
 	public void init(FMLInitializationEvent event) {
 
-		GameRegistry.addSmelting(new ItemStack(ItemAcanthodesMeat.block, (int) (1)), new ItemStack(ItemCookedAcanthodes.block, (int) (1)), 0.35F);
-		GameRegistry.addSmelting(new ItemStack(ItemBothriolepisMeat.block, (int) (1)), new ItemStack(ItemCookedBothriolepis.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemAcanthodesRaw.block, (int) (1)), new ItemStack(ItemAcanthodesCooked.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemBothriolepisRaw.block, (int) (1)), new ItemStack(ItemBothriolepisCooked.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemArandaspisRaw.block, (int) (1)), new ItemStack(ItemArandaspisCooked.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemPteraspisRaw.block, (int) (1)), new ItemStack(ItemPteraspisCooked.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemEurypterusRaw.block, (int) (1)), new ItemStack(ItemEurypteridCooked.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemCyrtocerasRaw.block, (int) (1)), new ItemStack(ItemPalaeoCalamari.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemPromissumRaw.block, (int) (1)), new ItemStack(ItemPromissumCooked.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemSacabambaspisRaw.block, (int) (1)), new ItemStack(ItemSacabambaspisCooked.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemHibernaspisRaw.block, (int) (1)), new ItemStack(ItemHibernaspisCooked.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemAmmoniteRaw.block, (int) (1)), new ItemStack(ItemPalaeoCalamari.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemHibbertopterusRaw.block, (int) (1)), new ItemStack(ItemEurypteridCooked.block, (int) (1)), 0.35F);
 
 	}
 }

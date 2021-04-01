@@ -1,6 +1,7 @@
 
 package net.lepidodendron.block;
 
+import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -15,7 +16,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 
-import net.minecraft.block.BlockSand;
 import net.minecraft.block.IGrowable;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.IPlantable;
@@ -68,7 +68,7 @@ public class BlockPrehistoricGroundCoverSand extends ElementsLepidodendronMod.Mo
 
 	public static final PropertyBool SNOWY = PropertyBool.create("snowy");
 	
-	public static class BlockCustom extends BlockFalling implements IGrowable {
+	public static class BlockCustom extends BlockFalling implements IGrowable, ISustainsPlantType {
 		public BlockCustom() {
 			super(Material.SAND);
 			setTranslationKey("sandy_prehistoric_ground_cover");
@@ -89,11 +89,38 @@ public class BlockPrehistoricGroundCoverSand extends ElementsLepidodendronMod.Mo
 	        return state.withProperty(SNOWY, Boolean.valueOf(block == Blocks.SNOW || block == Blocks.SNOW_LAYER));
 	    }
 
-		//@Override
-	    //public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	    //{
-	    //    return Item.getItemFromBlock(Blocks.SAND.getDefaultState().getBlock());
-	    //}
+		@Override
+		public boolean canSustainPlantType(IBlockAccess world, BlockPos pos, EnumPlantType plantType)
+		{
+
+			// Note: EnumPlantType will be changed at runtime by other mods using a Forge functionality.
+			//       switch() does NOT work with enums in that case, but will crash when encountering
+			//       a value not known beforehand.
+
+			// support desert, plains and cave plants
+			if (plantType == EnumPlantType.Desert)
+			{
+				return true;
+			}
+			// support beach plants if there's water alongside
+			if (plantType == EnumPlantType.Beach)
+			{
+				return (
+						world.getBlockState(pos.east()).getMaterial() == Material.WATER ||
+						world.getBlockState(pos.west()).getMaterial() == Material.WATER ||
+						world.getBlockState(pos.north()).getMaterial() == Material.WATER ||
+						world.getBlockState(pos.south()).getMaterial() == Material.WATER
+				);
+			}
+			// don't support nether plants, water plants, or crops (require farmland), or anything else by default
+			return false;
+		}
+
+		@Override
+		public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
+		{
+			return this.canSustainPlantType(world, pos, plantable.getPlantType(world, pos.offset(direction)));
+		}
 
 	    @Override
 	    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
@@ -106,7 +133,7 @@ public class BlockPrehistoricGroundCoverSand extends ElementsLepidodendronMod.Mo
 	            if (((worldIn.getLightFromNeighbors(pos.up()) < 4 && worldIn.getBlockState(pos.up()).getLightOpacity(worldIn, pos.up()) > 2))
 	            	)
 	            {
-	                worldIn.setBlockState(pos, Blocks.SAND.getDefaultState());
+	                worldIn.setBlockState(pos, Blocks.SAND.getStateFromMeta(0));
 	            }
 	            else
 	            {
@@ -138,7 +165,7 @@ public class BlockPrehistoricGroundCoverSand extends ElementsLepidodendronMod.Mo
 						xct = xct + 1;
 					}
 					if (!waterCriteria){
-	                	worldIn.setBlockState(pos, Blocks.SAND.getDefaultState());
+	                	worldIn.setBlockState(pos, Blocks.SAND.getStateFromMeta(0));
 	            	}
 					else
 					{
@@ -156,8 +183,13 @@ public class BlockPrehistoricGroundCoverSand extends ElementsLepidodendronMod.Mo
 		
 		                        IBlockState iblockstate = worldIn.getBlockState(blockpos.up());
 		                        IBlockState iblockstate1 = worldIn.getBlockState(blockpos);
-		
-		                        if (iblockstate1.getBlock() == Blocks.SAND && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2)
+
+								if (
+									(
+										(iblockstate1.getBlock() == Blocks.SAND.getStateFromMeta(0).getBlock())
+
+										&& worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2)
+								)
 		                        {
 
 
@@ -231,11 +263,6 @@ public class BlockPrehistoricGroundCoverSand extends ElementsLepidodendronMod.Mo
 		public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
 			return layer == BlockRenderLayer.CUTOUT_MIPPED;
 		}
-	    
-	    @Override
-	    public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
-			return true;
-	    }
 
 		@Override
 		public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {

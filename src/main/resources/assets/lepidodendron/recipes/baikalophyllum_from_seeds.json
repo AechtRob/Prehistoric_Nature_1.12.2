@@ -15,8 +15,8 @@
       "item": "lepidodendron:baikalophyllum_seeds"
     },
     "2": {
-      "item": "minecraft:dirt",
-      "data": 32767
+      "type": "forge:ore_dict",
+      "ore": "dirt"
     }
   },
   "result": {

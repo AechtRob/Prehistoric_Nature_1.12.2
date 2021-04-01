@@ -327,6 +327,7 @@ public class BlockPseudobornia extends ElementsLepidodendronMod.ModElement {
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        tooltip.add("Type: Horsetail shrub");
 	        tooltip.add("Periods: late Devonian");
+			tooltip.add("Note: plant near water");
 	        tooltip.add("Propagation: spores");
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }

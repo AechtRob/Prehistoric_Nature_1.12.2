@@ -15,8 +15,8 @@
       "item": "lepidodendron:ephedra_seed"
     },
     "2": {
-      "item": "minecraft:sand",
-      "data": 32767
+      "type": "forge:ore_dict",
+      "ore": "sand"
     }
   },
   "result": {

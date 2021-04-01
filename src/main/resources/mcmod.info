@@ -3,7 +3,7 @@
     "modid": "lepidodendron",
     "name": "Prehistoric Flora",
     "description": "",
-    "version": "42.0",
+    "version": "44.0",
     "credits": "Created using mod maker MCreator - https://mcreator.net/about",
     "logoFile": "assets/lepidodendron/textures/packlogo.png",
     "mcversion": "1.12.2",
@@ -14,7 +14,7 @@
     ],
     "dependencies": ["llibrary@[1.7.19,)"],
     "dependants": [],
-    "requiredMods": [llibrary@[1.7.19,)],
+    "requiredMods": [llibrary@[1.7.19,)]],
     "useDependencyInformation": "true"
   }
 ]

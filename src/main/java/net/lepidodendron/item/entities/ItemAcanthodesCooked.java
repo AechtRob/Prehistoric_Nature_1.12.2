@@ -15,10 +15,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @ElementsLepidodendronMod.ModElement.Tag
-public class ItemCookedAcanthodes extends ElementsLepidodendronMod.ModElement {
-	@GameRegistry.ObjectHolder("lepidodendron:cooked_acanthodes")
+public class ItemAcanthodesCooked extends ElementsLepidodendronMod.ModElement {
+	@GameRegistry.ObjectHolder("lepidodendron:acanthodes_cooked")
 	public static final Item block = null;
-	public ItemCookedAcanthodes(ElementsLepidodendronMod instance) {
+	public ItemAcanthodesCooked(ElementsLepidodendronMod instance) {
 		super(instance, 1296);
 	}
 
@@ -30,13 +30,13 @@ public class ItemCookedAcanthodes extends ElementsLepidodendronMod.ModElement {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModels(ModelRegistryEvent event) {
-		ModelLoader.setCustomModelResourceLocation(block, 0, new ModelResourceLocation("lepidodendron:entities/cooked_acanthodes", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(block, 0, new ModelResourceLocation("lepidodendron:entities/acanthodes_cooked", "inventory"));
 	}
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(5, 0.7f, false);
-			setTranslationKey("cooked_acanthodes");
-			setRegistryName("cooked_acanthodes");
+			setTranslationKey("acanthodes_cooked");
+			setRegistryName("acanthodes_cooked");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);
 		}

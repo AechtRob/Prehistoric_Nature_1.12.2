@@ -504,32 +504,34 @@ public class BlockCalamitesBranch extends ElementsLepidodendronMod.ModElement {
 	            }
 	        }
 
-	        //Propagate the destruction
-			Block block = worldIn.getBlockState(pos.down()).getBlock();
-	        Block block1 = worldIn.getBlockState(pos.up()).getBlock();
-	        Block block2 = worldIn.getBlockState(pos.north()).getBlock();
-	        Block block3 = worldIn.getBlockState(pos.east()).getBlock();
-	        Block block4 = worldIn.getBlockState(pos.south()).getBlock();
-	        Block block5 = worldIn.getBlockState(pos.west()).getBlock();
+			//Propagate the destruction if we have actually broken it (rather than a world-gen type replace event):
+			if (worldIn.isAirBlock(pos)) {
+				Block block = worldIn.getBlockState(pos.down()).getBlock();
+				Block block1 = worldIn.getBlockState(pos.up()).getBlock();
+				Block block2 = worldIn.getBlockState(pos.north()).getBlock();
+				Block block3 = worldIn.getBlockState(pos.east()).getBlock();
+				Block block4 = worldIn.getBlockState(pos.south()).getBlock();
+				Block block5 = worldIn.getBlockState(pos.west()).getBlock();
 
-	        if (block == this) {
-	        	worldIn.destroyBlock(pos.down(), true);
-	        }
-	        if (block1 == this) {
-	        	worldIn.destroyBlock(pos.up(), true);
-	        }
-	        if (block2 == this) {
-	        	worldIn.destroyBlock(pos.north(), true);
-	        }
-	        if (block3 == this) {
-	        	worldIn.destroyBlock(pos.east(), true);
-	        }
-	        if (block4 == this) {
-	        	worldIn.destroyBlock(pos.south(), true);
-	        }
-	        if (block5 == this) {
-	        	worldIn.destroyBlock(pos.west(), true);
-	        }
+				if (block == this) {
+					worldIn.destroyBlock(pos.down(), true);
+				}
+				if (block1 == this) {
+					worldIn.destroyBlock(pos.up(), true);
+				}
+				if (block2 == this) {
+					worldIn.destroyBlock(pos.north(), true);
+				}
+				if (block3 == this) {
+					worldIn.destroyBlock(pos.east(), true);
+				}
+				if (block4 == this) {
+					worldIn.destroyBlock(pos.south(), true);
+				}
+				if (block5 == this) {
+					worldIn.destroyBlock(pos.west(), true);
+				}
+			}
 
 	    }
 	    

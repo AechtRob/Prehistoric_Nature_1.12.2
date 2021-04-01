@@ -1,33 +1,24 @@
-package net.lepidodendron.entity;
+package net.lepidodendron.entity.base;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
-import net.lepidodendron.entity.ai.FishWander;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
-import net.minecraft.pathfinding.PathNavigateFlying;
-import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.pathfinding.PathNavigateSwimmer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
-import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import javax.annotation.Nullable;
 
 public abstract class EntityPrehistoricFloraFishBase extends EntityWaterMob implements IAnimatedEntity {
     public BlockPos currentTarget;
@@ -217,7 +208,7 @@ public abstract class EntityPrehistoricFloraFishBase extends EntityWaterMob impl
                 this.EntityBase.setAIMoveSpeed(speed);
 
                 if (this.EntityBase.isAtBottom()) {
-                    this.EntityBase.setAIMoveSpeed(0.1F);
+                    this.EntityBase.setAIMoveSpeed(speed * 0.25F);
                 }
 
                 this.EntityBase.motionY += (double) this.EntityBase.getAIMoveSpeed() * distanceY * 0.1D;

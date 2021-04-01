@@ -1,6 +1,8 @@
 package net.lepidodendron.world;
 
 import java.util.Random;
+
+import net.lepidodendron.block.BlockPrototaxitesStem;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -23,6 +25,17 @@ public class WorldGenPrototaxites extends WorldGenerator
             if (worldIn.isAirBlock(blockpos) && (!worldIn.provider.isNether() || blockpos.getY() < 254) && BlockPrototaxites.block.canPlaceBlockAt(worldIn, blockpos))
             {
                	worldIn.setBlockState(blockpos, BlockPrototaxites.block.getDefaultState(), 2);
+
+               	//Perhaps a fruiting one....
+                if (Math.random() > 0.7) {
+                    worldIn.setBlockState(blockpos, BlockPrototaxitesStem.block.getDefaultState(), 2);
+                    int p = rand.nextInt(4) + 1;
+                    int pp = 1;
+                    while (pp < p) {
+                        worldIn.setBlockState(blockpos.up(pp), BlockPrototaxitesStem.block.getDefaultState(), 2);
+                        pp = pp + 1;
+                    }
+                }
 
                 flag = true;
             }

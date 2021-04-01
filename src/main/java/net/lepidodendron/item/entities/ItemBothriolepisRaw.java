@@ -13,10 +13,10 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 @ElementsLepidodendronMod.ModElement.Tag
-public class ItemBothriolepisMeat extends ElementsLepidodendronMod.ModElement {
-	@GameRegistry.ObjectHolder("lepidodendron:bothriolepis_meat")
+public class ItemBothriolepisRaw extends ElementsLepidodendronMod.ModElement {
+	@GameRegistry.ObjectHolder("lepidodendron:bothriolepis_raw")
 	public static final Item block = null;
-	public ItemBothriolepisMeat(ElementsLepidodendronMod instance) {
+	public ItemBothriolepisRaw(ElementsLepidodendronMod instance) {
 		super(instance, 1658);
 	}
 
@@ -28,13 +28,13 @@ public class ItemBothriolepisMeat extends ElementsLepidodendronMod.ModElement {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModels(ModelRegistryEvent event) {
-		ModelLoader.setCustomModelResourceLocation(block, 0, new ModelResourceLocation("lepidodendron:entities/bothriolepis_meat", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(block, 0, new ModelResourceLocation("lepidodendron:entities/bothriolepis_raw", "inventory"));
 	}
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(2, 0.1f, false);
-			setTranslationKey("bothriolepis_meat");
-			setRegistryName("bothriolepis_meat");
+			setTranslationKey("bothriolepis_raw");
+			setRegistryName("bothriolepis_raw");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);
 		}

@@ -1,6 +1,7 @@
 
 package net.lepidodendron.world.biome;
 
+import net.lepidodendron.world.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.common.BiomeDictionary;
@@ -26,20 +27,6 @@ import net.minecraft.util.math.BlockPos;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockArchaeopterisLog;
 import net.lepidodendron.block.BlockPrehistoricGroundCoverBasic;
-import net.lepidodendron.world.WorldGenArchaeopterisTree;
-import net.lepidodendron.world.WorldGenTreeLog;
-import net.lepidodendron.world.WorldGenRhacophyton;
-import net.lepidodendron.world.WorldGenStauropteris;
-import net.lepidodendron.world.WorldGenSphenopteris;
-import net.lepidodendron.world.WorldGenElkinsia;
-import net.lepidodendron.world.WorldGenTetraxylopteris;
-import net.lepidodendron.world.WorldGenAdoketophyton;
-import net.lepidodendron.world.WorldGenAncientMoss;
-import net.lepidodendron.world.WorldGenSelaginella;
-import net.lepidodendron.world.WorldGenIsoetes;
-import net.lepidodendron.world.WorldGenBaragwanathia;
-import net.lepidodendron.world.WorldGenPrehistoricGroundCover;
-import net.lepidodendron.world.WorldGenTopSoil;
 
 import java.util.Random;
 import net.minecraft.world.gen.feature.WorldGenReed;
@@ -97,7 +84,8 @@ public class BiomeDevonianForest extends ElementsLepidodendronMod.ModElement {
 		protected static final WorldGenBaragwanathia BARAGWANATHIA_GENERATOR = new WorldGenBaragwanathia();
 		protected static final WorldGenTopSoil TOPSOIL_GENERATOR = new WorldGenTopSoil();
 		protected static final WorldGenPrehistoricGroundCover GROUNDCOVER_GENERATOR = new WorldGenPrehistoricGroundCover();
-		
+		protected static final WorldGenPuddles PUDDLES_GENERATOR = new WorldGenPuddles();
+
 		
 public WorldGenAbstractTree getRandomTreeFeature(Random rand)
 	    {
@@ -452,6 +440,16 @@ public WorldGenAbstractTree getRandomTreeFeature(Random rand)
 	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
 	            TOPSOIL_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
+
+	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+			for (int i = 0; i < 20; ++i)
+			{
+				int j = rand.nextInt(16) + 8;
+				int k = rand.nextInt(16) + 8;
+				int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+				PUDDLES_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+			}
+
 	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
 	        for (int i = 0; i < 9; ++i)
 	        {

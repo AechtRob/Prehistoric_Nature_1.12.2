@@ -1,4 +1,4 @@
-package net.mcreator.lepidodendron;
+package net.lepidodendron;
 
 import com.google.common.collect.Lists;
 import java.util.List;
@@ -17,6 +17,8 @@ public class LepidodendronConfig {
     public static String[] genPlantPrehistoric = new String[]{"fossil:bennettitales_large", "fossil:bennettitales_small", "fossil:calamites_leaves", "fossil:calamites_sapling", "fossil:cordaites_leaves", "fossil:cordaites_sapling", "fossil:crataegus", "fossil:cyathea", "fossil:dictyophyllum", "fossil:dillhoffia_flower", "fossil:dipteris", "fossil:duisbergia", "fossil:ependra", "fossil:fern_block", "fossil:florissantia", "fossil:foozia", "fossil:fossil_sapling_calamites", "fossil:fossil_sapling_cordaites", "fossil:fossil_sapling_palae", "fossil:fossil_sapling_sigillaria", "fossil:horsetail_small", "fossil:licopodiophyta", "fossil:osmunda", "fossil:palm_leaves", "fossil:palm_sapling", "fossil:sagenopteris", "fossil:sarracenia", "fossil:sigillaria_leaves", "fossil:sigillaria_sapling", "fossil:tempskya", "fossil:vaccinium", "fossil:welwitschia", "fossil:zamites", "jurassicraft:ajuginucula_smithii", "jurassicraft:ajuginucula_smithii_leaves", "jurassicraft:araucaria_leaves", "jurassicraft:araucaria_sapling", "jurassicraft:bennettitalean_cycadeoidea", "jurassicraft:bristle_fern", "jurassicraft:calamites_leaves", "jurassicraft:calamites_sapling", "jurassicraft:cinnamon_fern", "jurassicraft:cry_pansy", "jurassicraft:cycad_zamites", "jurassicraft:dicksonia", "jurassicraft:dicroidium_zuberi", "jurassicraft:dictyophyllum", "jurassicraft:encephalartos", "jurassicraft:ginkgo_leaves", "jurassicraft:ginkgo_sapling", "jurassicraft:gracilaria_seaweed", "jurassicraft:graminidites_bambusoides", "jurassicraft:heliconia", "jurassicraft:ladinia_simplex", "jurassicraft:moss", "jurassicraft:orontium_mackii", "jurassicraft:paleo_bale_cycad", "jurassicraft:paleo_bale_cycadeoidea", "jurassicraft:paleo_bale_fern", "jurassicraft:paleo_bale_leaves", "jurassicraft:paleo_bale_other", "jurassicraft:phoenix_leaves", "jurassicraft:phoenix_sapling", "jurassicraft:psaronius_leaves", "jurassicraft:psaronius_sapling", "jurassicraft:raphaelia", "jurassicraft:rhacophyton", "jurassicraft:rhamnus_salicifolius", "jurassicraft:scaly_tree_fern", "jurassicraft:serenna_veriformans", "jurassicraft:small_chain_fern", "jurassicraft:small_cycad", "jurassicraft:small_royal_fern", "jurassicraft:tempskya", "jurassicraft:umaltolepis", "jurassicraft:west_indian_lilac", "jurassicraft:woolly_stalked_begonia", "rebornmod:ajuginucula_smithii", "rebornmod:ajuginucula_smithii_leaves", "rebornmod:araucaria_leaves", "rebornmod:araucaria_sapling", "rebornmod:bennettitalean_cycadeoidea", "rebornmod:bristle_fern", "rebornmod:calamites_leaves", "rebornmod:calamites_sapling", "rebornmod:cinnamon_fern", "rebornmod:cry_pansy", "rebornmod:cycad_zamites", "rebornmod:dicksonia", "rebornmod:dicroidium_zuberi", "rebornmod:dictyophyllum", "rebornmod:encephalartos", "rebornmod:ginkgo_leaves", "rebornmod:ginkgo_sapling", "rebornmod:gracilaria_seaweed", "rebornmod:graminidites_bambusoides", "rebornmod:heliconia", "rebornmod:ladinia_simplex", "rebornmod:moss", "rebornmod:orontium_mackii", "rebornmod:paleo_bale_cycad", "rebornmod:paleo_bale_cycadeoidea", "rebornmod:paleo_bale_fern", "rebornmod:paleo_bale_leaves", "rebornmod:paleo_bale_other", "rebornmod:phoenix_leaves", "rebornmod:phoenix_sapling", "rebornmod:psaronius_leaves", "rebornmod:psaronius_sapling", "rebornmod:raphaelia", "rebornmod:rhacophyton", "rebornmod:rhamnus_salicifolius", "rebornmod:scaly_tree_fern", "rebornmod:serenna_veriformans", "rebornmod:small_chain_fern", "rebornmod:small_cycad", "rebornmod:small_royal_fern", "rebornmod:tempskya", "rebornmod:umaltolepis", "rebornmod:west_indian_lilac", "rebornmod:woolly_stalked_begonia"};
    	public static int waterSandHorizontal = 6;
     public static int waterSandVertical = 0;
+    public static int waterPangaeanHorizontal = 3;
+    public static int waterPangaeanVertical = 0;
 	public static int waterMossHorizontal = 4;
     public static int waterMossVertical = 1;
 
@@ -24,8 +26,8 @@ public class LepidodendronConfig {
 	public static int dimDevonian = -81;
 	public static int dimCarboniferous = -82;
 	public static String[] dimCarboniferousMobs = new String[]{"lepidodendron:prehistoric_flora_acanthodes:8:20:3","lepidodendron:prehistoric_flora_acanthodes:8:20:3","lepidodendron:prehistoric_flora_jellyfish1:1:4:2","lepidodendron:prehistoric_flora_jellyfish2:1:4:2","lepidodendron:prehistoric_flora_jellyfish3:1:4:2","lepidodendron:prehistoric_flora_jellyfish4:1:4:2","lepidodendron:prehistoric_flora_jellyfish5:1:4:2","lepidodendron:prehistoric_flora_jellyfish6:1:4:2"};
-	public static String[] dimDevonianMobs = new String[]{"lepidodendron:prehistoric_flora_acanthodes:4:30:2","lepidodendron:prehistoric_flora_acanthodes:4:30:2","lepidodendron:prehistoric_flora_bothriolepis:3:15:2","lepidodendron:prehistoric_flora_bothriolepis:3:10:3","lepidodendron:prehistoric_flora_jellyfish1:1:3:2","lepidodendron:prehistoric_flora_jellyfish2:1:3:2","lepidodendron:prehistoric_flora_jellyfish3:1:3:2","lepidodendron:prehistoric_flora_jellyfish4:1:3:2","lepidodendron:prehistoric_flora_jellyfish5:1:3:2","lepidodendron:prehistoric_flora_jellyfish6:1:3:2"};
-	public static String[] dimOrdovicianSilurianMobs = new String[]{"lepidodendron:prehistoric_flora_eurypterus:4:15:3","lepidodendron:prehistoric_flora_jellyfish1:1:5:2","lepidodendron:prehistoric_flora_jellyfish1:1:5:2","lepidodendron:prehistoric_flora_jellyfish2:1:5:2","lepidodendron:prehistoric_flora_jellyfish3:1:5:2","lepidodendron:prehistoric_flora_jellyfish4:1:5:2","lepidodendron:prehistoric_flora_jellyfish5:1:5:2","lepidodendron:prehistoric_flora_jellyfish6:1:5:2","lepidodendron:prehistoric_flora_jellyfish7:1:5:2","lepidodendron:prehistoric_flora_jellyfish1:1:3:3","lepidodendron:prehistoric_flora_jellyfish2:1:3:3","lepidodendron:prehistoric_flora_jellyfish3:1:3:3","lepidodendron:prehistoric_flora_jellyfish4:1:3:3","lepidodendron:prehistoric_flora_jellyfish5:1:3:3","lepidodendron:prehistoric_flora_jellyfish6:1:3:3"};
+	public static String[] dimDevonianMobs = new String[]{"lepidodendron:prehistoric_flora_acanthodes:4:30:2","lepidodendron:prehistoric_flora_bothriolepis:3:15:2","lepidodendron:prehistoric_flora_bothriolepis:3:10:3","lepidodendron:prehistoric_flora_cyrtoceras:1:18:2","lepidodendron:prehistoric_flora_pteraspis:2:12:3","lepidodendron:prehistoric_flora_jellyfish1:1:3:2","lepidodendron:prehistoric_flora_jellyfish2:1:3:2","lepidodendron:prehistoric_flora_jellyfish3:1:3:2","lepidodendron:prehistoric_flora_jellyfish4:1:3:2","lepidodendron:prehistoric_flora_jellyfish5:1:3:2","lepidodendron:prehistoric_flora_jellyfish6:1:3:2","lepidodendron:prehistoric_flora_jellyfish7:1:3:2"};
+	public static String[] dimOrdovicianSilurianMobs = new String[]{"lepidodendron:prehistoric_flora_arandaspis:2:12:3","lepidodendron:prehistoric_flora_arandaspis:2:10:2","lepidodendron:prehistoric_flora_cyrtoceras:1:18:2","lepidodendron:prehistoric_flora_eurypterus:4:25:3","lepidodendron:prehistoric_flora_jellyfish1:1:5:2","lepidodendron:prehistoric_flora_jellyfish1:1:5:2","lepidodendron:prehistoric_flora_jellyfish2:1:5:2","lepidodendron:prehistoric_flora_jellyfish3:1:5:2","lepidodendron:prehistoric_flora_jellyfish4:1:5:2","lepidodendron:prehistoric_flora_jellyfish5:1:5:2","lepidodendron:prehistoric_flora_jellyfish6:1:5:2","lepidodendron:prehistoric_flora_jellyfish7:1:5:2","lepidodendron:prehistoric_flora_jellyfish1:1:3:3","lepidodendron:prehistoric_flora_jellyfish2:1:3:3","lepidodendron:prehistoric_flora_jellyfish3:1:3:3","lepidodendron:prehistoric_flora_jellyfish4:1:3:3","lepidodendron:prehistoric_flora_jellyfish5:1:3:3","lepidodendron:prehistoric_flora_jellyfish6:1:3:3"};
     
     public static int spreadPlants = 70;
     public static boolean doSpores = true;
@@ -403,6 +405,13 @@ public class LepidodendronConfig {
     public static int minheightProtea = 85;
     public static int maxheightProtea = 120;
     public static double multiplierProtea = 1;
+    public static boolean genBanksia = false;
+    public static String[] genBanksiaBlacklistBiomes = new String[0];
+    public static String[] genBanksiaOverrideBiomes = new String[0];
+    public static int[] dimBanksia = new int[]{0};
+    public static int minheightBanksia = 1;
+    public static int maxheightBanksia = 100;
+    public static double multiplierBanksia = 1;
     public static boolean genWalchia = false;
     public static String[] genWalchiaBlacklistBiomes = new String[0];
     public static String[] genWalchiaOverrideBiomes = new String[0];
@@ -848,6 +857,14 @@ public class LepidodendronConfig {
     public static String[] genWhiteSpongeBlacklistBiomes = new String[0];
     public static String[] genWhiteSpongeOverrideBiomes = new String[0];
     public static int weightWhiteSponge = 10;
+    public static String[] genFireSpongeBlacklistBiomes = new String[0];
+    public static String[] genFireSpongeOverrideBiomes = new String[0];
+    public static int weightFireSponge = 10;
+
+    public static int[] dimRugosa = new int[0];
+    public static String[] genRugosaBlacklistBiomes = new String[0];
+    public static String[] genRugosaOverrideBiomes = new String[0];
+    public static int weightRugosa = 10;
     
     public static boolean genNathorstiana = false;
     public static String[] genNathorstianaBlacklistBiomes = new String[0];
@@ -985,6 +1002,9 @@ public class LepidodendronConfig {
     public static int maxheightPrimaevalGrass = 0;
     public static double multiplierPrimaevalGrass = 1;
     public static boolean spreadPrimaevalGrass = true;
+
+
+    public static int waterHibbertopterus = 2;
     
     public LepidodendronConfig() {
     }
@@ -1079,6 +1099,13 @@ public class LepidodendronConfig {
         prop = cfg.get("Prehistoric Ground Cover", "waterSandVertical", waterSandVertical);
         prop.setComment("Distance above water required for sandy prehistoric ground to exist (0 to 6) [default: 0]");
         waterSandVertical = prop.getInt();
+        propOrder.add(prop.getName());prop = cfg.get("Prehistoric Ground Cover", "waterPangaeanHorizontal", waterPangaeanHorizontal);
+        prop.setComment("Distance NSEW from water that Pangaean sandy prehistoric ground can exist and spread onto neighbouring sand (1 to 16) [default: 3]");
+        waterPangaeanHorizontal = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Prehistoric Ground Cover", "waterPangaeanVertical", waterPangaeanVertical);
+        prop.setComment("Distance above water required for Pangaean sandy prehistoric ground to exist (0 to 6) [default: 0]");
+        waterPangaeanVertical = prop.getInt();
         propOrder.add(prop.getName());
         prop = cfg.get("Prehistoric Ground Cover", "waterMossHorizontal", waterMossHorizontal);
         prop.setComment("Distance NSEW from water that mossy prehistoric stone can exist and spread onto neighbouring stone (1 to 16) [default: 4]");
@@ -1330,6 +1357,36 @@ public class LepidodendronConfig {
         prop = cfg.get("WorldGen Algae-Sponges", "weightWhiteSponge", weightWhiteSponge);
         prop.setComment("Percentage chance that White Sponges generates in a suitable chunk (0 to 100) [default: 10]");
         weightWhiteSponge = prop.getInt();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("WorldGen Algae-Sponges", "genFireSpongeBlacklistBiomes", genFireSpongeBlacklistBiomes);
+        prop.setComment("List of biomes Fire Sponges are blacklisted from, in the format: modid:biomeid [default: empty]");
+        genFireSpongeBlacklistBiomes = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Algae-Sponges", "genFireSpongeOverrideBiomes", genFireSpongeOverrideBiomes);
+        prop.setComment("List of biomes Fire Sponges are forced to generate in (provided the dimension is also valid), in the format: modid:biomeid [default: empty]");
+        genFireSpongeOverrideBiomes = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Algae-Sponges", "weightFireSponge", weightFireSponge);
+        prop.setComment("Percentage chance that Fire Sponges generates in a suitable chunk (0 to 100) [default: 10]");
+        weightFireSponge = prop.getInt();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("WorldGen Rugosa Corals", "dimRugosa", dimRugosa);
+        prop.setComment("List of dimension IDs Rugosa Corals can generate in [default: 0]");
+        dimRugosa = prop.getIntList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Corals", "genRugosaBlacklistBiomes", genRugosaBlacklistBiomes);
+        prop.setComment("List of biomes Rugosa Corals are blacklisted from, in the format: modid:biomeid [default: empty]");
+        genRugosaBlacklistBiomes = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Corals", "genRugosaOverrideBiomes", genRugosaOverrideBiomes);
+        prop.setComment("List of biomes Rugosa Corals are forced to generate in (provided the dimension is also valid), in the format: modid:biomeid [default: empty]");
+        genRugosaOverrideBiomes = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Corals", "weightRugosa", weightRugosa);
+        prop.setComment("Percentage chance that Rugosa Corals generates in a suitable chunk (0 to 100) [default: 10]");
+        weightRugosa = prop.getInt();
         propOrder.add(prop.getName());
         
         
@@ -2705,6 +2762,34 @@ public class LepidodendronConfig {
         prop = cfg.get("WorldGen Protea", "multiplierProtea", multiplierProtea);
         prop.setComment("Number to multiply the spawn chance by (eg. 0.5 will halve the chance, and 2 will double it, etc., up to some fixed internal values) [default: 1]");
         multiplierProtea = prop.getDouble();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("WorldGen Banksia", "genBanksia", genBanksia);
+        prop.setComment("Set to true to generate Archaeo-banksia naturally [default: false]");
+        genBanksia = prop.getBoolean();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Banksia", "genBanksiaBlacklistBiomes", genBanksiaBlacklistBiomes);
+        prop.setComment("List of biomes Archaeo-banksia are blacklisted from, in the format: modid:biomeid [default: empty]");
+        genBanksiaBlacklistBiomes = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Banksia", "genBanksiaOverrideBiomes", genBanksiaOverrideBiomes);
+        prop.setComment("List of biomes Archaeo-banksia are forced to generate in provided the dimension is also valid (this will override the global blacklist setting), in the format: modid:biomeid [default: empty]");
+        genBanksiaOverrideBiomes = prop.getStringList();
+        prop = cfg.get("WorldGen Banksia", "dimBanksia", dimBanksia);
+        prop.setComment("List of dimension IDs Archaeo-banksia can generate in [default: 0]");
+        dimBanksia = prop.getIntList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Banksia", "minheightBanksia", minheightBanksia);
+        prop.setComment("Minimum height that Archaeo-banksia can generate (1 to 250) [default: 1]");
+        minheightBanksia = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Banksia", "maxheightBanksia", maxheightBanksia);
+        prop.setComment("Maximum height that Archaeo-banksia can generate (1 to 250, or set to 0 for unlimited) [default: 100]");
+        maxheightBanksia = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Banksia", "multiplierBanksia", multiplierBanksia);
+        prop.setComment("Number to multiply the spawn chance by (eg. 0.5 will halve the chance, and 2 will double it, etc., up to some fixed internal values) [default: 1]");
+        multiplierBanksia = prop.getDouble();
         propOrder.add(prop.getName());
 
         prop = cfg.get("WorldGen Walchia", "genWalchia", genWalchia);
@@ -4845,6 +4930,11 @@ public class LepidodendronConfig {
         prop = cfg.get("WorldGen PrimaevalGrass", "spreadPrimaevalGrass", spreadPrimaevalGrass);
         prop.setComment("Set to true for PrimaevalGrass to spread naturally, and to false to require bonemeal to spread [default: true]");
         spreadPrimaevalGrass = prop.getBoolean();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Mob Hibbertopterus", "waterHibbertopterus", waterHibbertopterus);
+        prop.setComment("Distance NSEW from water that Hibbertopterus can go to without taking suffocation damage (1 to 16) [default: 2]");
+        waterHibbertopterus = prop.getInt();
         propOrder.add(prop.getName());
     
     

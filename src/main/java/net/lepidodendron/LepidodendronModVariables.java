@@ -1,4 +1,4 @@
-package net.mcreator.lepidodendron;
+package net.lepidodendron;
 
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;

@@ -305,50 +305,49 @@ public class BlockArchaeopterisBranch extends ElementsLepidodendronMod.ModElemen
 			}
 
 		@Override
-		public void breakBlock(World worldIn, BlockPos pos, IBlockState state)
-	    {
-	        int i = 4;
-	        int j = 5;
-	
-	        if (worldIn.isAreaLoaded(pos.add(-5, -5, -5), pos.add(5, 5, 5)))
-	        {
-	            for (BlockPos blockpos : BlockPos.getAllInBox(pos.add(-4, -4, -4), pos.add(4, 4, 4)))
-	            {
-	                IBlockState iblockstate = worldIn.getBlockState(blockpos);
-	
-	                if (iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos))
-	                {
-	                    iblockstate.getBlock().beginLeavesDecay(iblockstate, worldIn, blockpos);
-	                }
-	            }
-	        }
+		public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+			int i = 4;
+			int j = 5;
 
-	        //Propagate the destruction
-			Block block = worldIn.getBlockState(pos.down()).getBlock();
-	        Block block1 = worldIn.getBlockState(pos.up()).getBlock();
-	        Block block2 = worldIn.getBlockState(pos.north()).getBlock();
-	        Block block3 = worldIn.getBlockState(pos.east()).getBlock();
-	        Block block4 = worldIn.getBlockState(pos.south()).getBlock();
-	        Block block5 = worldIn.getBlockState(pos.west()).getBlock();
+			if (worldIn.isAreaLoaded(pos.add(-5, -5, -5), pos.add(5, 5, 5))) {
+				for (BlockPos blockpos : BlockPos.getAllInBox(pos.add(-4, -4, -4), pos.add(4, 4, 4))) {
+					IBlockState iblockstate = worldIn.getBlockState(blockpos);
 
-	        if (block == this) {
-	        	worldIn.destroyBlock(pos.down(), true);
-	        }
-	        if (block1 == this) {
-	        	worldIn.destroyBlock(pos.up(), true);
-	        }
-	        if (block2 == this) {
-	        	worldIn.destroyBlock(pos.north(), true);
-	        }
-	        if (block3 == this) {
-	        	worldIn.destroyBlock(pos.east(), true);
-	        }
-	        if (block4 == this) {
-	        	worldIn.destroyBlock(pos.south(), true);
-	        }
-	        if (block5 == this) {
-	        	worldIn.destroyBlock(pos.west(), true);
-	        }
+					if (iblockstate.getBlock().isLeaves(iblockstate, worldIn, blockpos)) {
+						iblockstate.getBlock().beginLeavesDecay(iblockstate, worldIn, blockpos);
+					}
+				}
+			}
+
+			//Propagate the destruction if we have actually broken it (rather than a world-gen type replace event):
+			if (worldIn.isAirBlock(pos))
+			{
+				Block block = worldIn.getBlockState(pos.down()).getBlock();
+				Block block1 = worldIn.getBlockState(pos.up()).getBlock();
+				Block block2 = worldIn.getBlockState(pos.north()).getBlock();
+				Block block3 = worldIn.getBlockState(pos.east()).getBlock();
+				Block block4 = worldIn.getBlockState(pos.south()).getBlock();
+				Block block5 = worldIn.getBlockState(pos.west()).getBlock();
+
+				if (block == this) {
+					worldIn.destroyBlock(pos.down(), true);
+				}
+				if (block1 == this) {
+					worldIn.destroyBlock(pos.up(), true);
+				}
+				if (block2 == this) {
+					worldIn.destroyBlock(pos.north(), true);
+				}
+				if (block3 == this) {
+					worldIn.destroyBlock(pos.east(), true);
+				}
+				if (block4 == this) {
+					worldIn.destroyBlock(pos.south(), true);
+				}
+				if (block5 == this) {
+					worldIn.destroyBlock(pos.west(), true);
+				}
+			}
 
 	    }
 	    
@@ -356,9 +355,9 @@ public class BlockArchaeopterisBranch extends ElementsLepidodendronMod.ModElemen
 		public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock, BlockPos fromPos) {
 			super.neighborChanged(state, world, pos, neighborBlock, fromPos);
 			
-			if (world.isAirBlock(pos.down()) && fromPos.getY() == pos.getY()-1) {
-				world.destroyBlock(pos, true);
-			}
+			//if (world.isAirBlock(pos.down()) && fromPos.getY() == pos.getY()-1) {
+			//	world.destroyBlock(pos, true);
+			//}
 				
 		}
 		

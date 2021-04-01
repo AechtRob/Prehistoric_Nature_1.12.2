@@ -240,6 +240,8 @@ public class BlockGuangdedendron extends ElementsLepidodendronMod.ModElement {
 		public boolean canPlaceBlockAt(World world, BlockPos pos) {
 			IBlockState state = world.getBlockState(pos.down());
 	        Block block = state.getBlock();
+
+			if (block.canSustainPlant(state, world, pos.down(), EnumFacing.UP, this)) return true;
 	        
 			if (block == this)
 	        {
@@ -317,6 +319,7 @@ public class BlockGuangdedendron extends ElementsLepidodendronMod.ModElement {
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        tooltip.add("Type: Lycophyte shrub");
 	        tooltip.add("Periods: late Devonian");
+			tooltip.add("Periods: plant next to water");
 	        tooltip.add("Propagation: spores");
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }

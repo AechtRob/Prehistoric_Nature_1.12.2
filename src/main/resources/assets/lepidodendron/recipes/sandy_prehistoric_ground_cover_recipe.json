@@ -8,40 +8,40 @@
   ],
   "key": {
   	"0": {
-      "type": "forge:ore_dict",
-      "ore": "sand"
+      "item": "minecraft:sand",
+      "data": 0
     },
     "1": {
-      "type": "forge:ore_dict",
-      "ore": "sand"
+      "item": "minecraft:sand",
+      "data": 0
     },
     "2": {
-      "type": "forge:ore_dict",
-      "ore": "sand"
+      "item": "minecraft:sand",
+      "data": 0
     },
     "3": {
-      "type": "forge:ore_dict",
-      "ore": "sand"
+      "item": "minecraft:sand",
+      "data": 0
     },
     "4": {
       "type": "forge:ore_dict",
       "ore": "plantPrehistoric"
     },
     "5": {
-      "type": "forge:ore_dict",
-      "ore": "sand"
+      "item": "minecraft:sand",
+      "data": 0
     },
     "6": {
-      "type": "forge:ore_dict",
-      "ore": "sand"
+      "item": "minecraft:sand",
+      "data": 0
     },
     "7": {
-      "type": "forge:ore_dict",
-      "ore": "sand"
+      "item": "minecraft:sand",
+      "data": 0
     },
     "8": {
-      "type": "forge:ore_dict",
-      "ore": "sand"
+      "item": "minecraft:sand",
+      "data": 0
     }
   },
   "result": {

@@ -476,88 +476,90 @@ public class BlockPsaroniusBranch extends ElementsLepidodendronMod.ModElement {
 	            }
 	        }
 
-	        //Propagate the destruction
-			Block block = worldIn.getBlockState(pos.down()).getBlock();
-	        Block block1 = worldIn.getBlockState(pos.up()).getBlock();
-	        Block block2 = worldIn.getBlockState(pos.north()).getBlock();
-	        Block block3 = worldIn.getBlockState(pos.east()).getBlock();
-	        Block block4 = worldIn.getBlockState(pos.south()).getBlock();
-	        Block block5 = worldIn.getBlockState(pos.west()).getBlock();
+			//Propagate the destruction if we have actually broken it (rather than a world-gen type replace event):
+			if (worldIn.isAirBlock(pos)) {
+				Block block = worldIn.getBlockState(pos.down()).getBlock();
+				Block block1 = worldIn.getBlockState(pos.up()).getBlock();
+				Block block2 = worldIn.getBlockState(pos.north()).getBlock();
+				Block block3 = worldIn.getBlockState(pos.east()).getBlock();
+				Block block4 = worldIn.getBlockState(pos.south()).getBlock();
+				Block block5 = worldIn.getBlockState(pos.west()).getBlock();
 
-	        if (block == this) {
-	        	worldIn.destroyBlock(pos.down(), true);
-	        }
-	        if (block1 == this) {
-	        	worldIn.destroyBlock(pos.up(), true);
-	        }
-	        if (block2 == this) {
-	        	worldIn.destroyBlock(pos.north(), true);
-	        }
-	        if (block3 == this) {
-	        	worldIn.destroyBlock(pos.east(), true);
-	        }
-	        if (block4 == this) {
-	        	worldIn.destroyBlock(pos.south(), true);
-	        }
-	        if (block5 == this) {
-	        	worldIn.destroyBlock(pos.west(), true);
-	        }
-	        
-	        if (block1 == BlockPsaroniusLeaves.block || block1 == BlockPsaroniusLeavesSmall.block) {
-	        	worldIn.destroyBlock(pos.up(), false);
-	        	if ((Math.random() >= 0.9) && (!LepidodendronConfig.doSpores)) {
-					//Spawn another sapling:
-					if (!worldIn.isRemote) {
-						EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockPsaroniusSapling.block, (int) (1)));
-						entityToSpawn.setPickupDelay(10);
-						worldIn.spawnEntity(entityToSpawn);
+				if (block == this) {
+					worldIn.destroyBlock(pos.down(), true);
+				}
+				if (block1 == this) {
+					worldIn.destroyBlock(pos.up(), true);
+				}
+				if (block2 == this) {
+					worldIn.destroyBlock(pos.north(), true);
+				}
+				if (block3 == this) {
+					worldIn.destroyBlock(pos.east(), true);
+				}
+				if (block4 == this) {
+					worldIn.destroyBlock(pos.south(), true);
+				}
+				if (block5 == this) {
+					worldIn.destroyBlock(pos.west(), true);
+				}
+
+				if (block1 == BlockPsaroniusLeaves.block || block1 == BlockPsaroniusLeavesSmall.block) {
+					worldIn.destroyBlock(pos.up(), false);
+					if ((Math.random() >= 0.9) && (!LepidodendronConfig.doSpores)) {
+						//Spawn another sapling:
+						if (!worldIn.isRemote) {
+							EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockPsaroniusSapling.block, (int) (1)));
+							entityToSpawn.setPickupDelay(10);
+							worldIn.spawnEntity(entityToSpawn);
+						}
 					}
 				}
-	        }
-	        if (block2 == BlockPsaroniusLeaves.block || block2 == BlockPsaroniusLeavesSmall.block) {
-	        	worldIn.destroyBlock(pos.north(), false);
-	        	if ((Math.random() >= 0.9) && (!LepidodendronConfig.doSpores)) {
-					//Spawn another sapling:
-					if (!worldIn.isRemote) {
-						EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockPsaroniusSapling.block, (int) (1)));
-						entityToSpawn.setPickupDelay(10);
-						worldIn.spawnEntity(entityToSpawn);
+				if (block2 == BlockPsaroniusLeaves.block || block2 == BlockPsaroniusLeavesSmall.block) {
+					worldIn.destroyBlock(pos.north(), false);
+					if ((Math.random() >= 0.9) && (!LepidodendronConfig.doSpores)) {
+						//Spawn another sapling:
+						if (!worldIn.isRemote) {
+							EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockPsaroniusSapling.block, (int) (1)));
+							entityToSpawn.setPickupDelay(10);
+							worldIn.spawnEntity(entityToSpawn);
+						}
 					}
 				}
-	        }
-	        if (block3 == BlockPsaroniusLeaves.block || block3 == BlockPsaroniusLeavesSmall.block) {
-	        	worldIn.destroyBlock(pos.east(), false);
-	        	if ((Math.random() >= 0.9) && (!LepidodendronConfig.doSpores)) {
-					//Spawn another sapling:
-					if (!worldIn.isRemote) {
-						EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockPsaroniusSapling.block, (int) (1)));
-						entityToSpawn.setPickupDelay(10);
-						worldIn.spawnEntity(entityToSpawn);
+				if (block3 == BlockPsaroniusLeaves.block || block3 == BlockPsaroniusLeavesSmall.block) {
+					worldIn.destroyBlock(pos.east(), false);
+					if ((Math.random() >= 0.9) && (!LepidodendronConfig.doSpores)) {
+						//Spawn another sapling:
+						if (!worldIn.isRemote) {
+							EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockPsaroniusSapling.block, (int) (1)));
+							entityToSpawn.setPickupDelay(10);
+							worldIn.spawnEntity(entityToSpawn);
+						}
 					}
 				}
-	        }
-	        if (block4 == BlockPsaroniusLeaves.block || block4 == BlockPsaroniusLeavesSmall.block) {
-	        	worldIn.destroyBlock(pos.south(), false);
-	        	if ((Math.random() >= 0.9) && (!LepidodendronConfig.doSpores)) {
-					//Spawn another sapling:
-					if (!worldIn.isRemote) {
-						EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockPsaroniusSapling.block, (int) (1)));
-						entityToSpawn.setPickupDelay(10);
-						worldIn.spawnEntity(entityToSpawn);
+				if (block4 == BlockPsaroniusLeaves.block || block4 == BlockPsaroniusLeavesSmall.block) {
+					worldIn.destroyBlock(pos.south(), false);
+					if ((Math.random() >= 0.9) && (!LepidodendronConfig.doSpores)) {
+						//Spawn another sapling:
+						if (!worldIn.isRemote) {
+							EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockPsaroniusSapling.block, (int) (1)));
+							entityToSpawn.setPickupDelay(10);
+							worldIn.spawnEntity(entityToSpawn);
+						}
 					}
 				}
-	        }
-	        if (block5 == BlockPsaroniusLeaves.block || block5 == BlockPsaroniusLeavesSmall.block) {
-	        	worldIn.destroyBlock(pos.west(), false);
-	        	if ((Math.random() >= 0.9) && (!LepidodendronConfig.doSpores)) {
-					//Spawn another sapling:
-					if (!worldIn.isRemote) {
-						EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockPsaroniusSapling.block, (int) (1)));
-						entityToSpawn.setPickupDelay(10);
-						worldIn.spawnEntity(entityToSpawn);
+				if (block5 == BlockPsaroniusLeaves.block || block5 == BlockPsaroniusLeavesSmall.block) {
+					worldIn.destroyBlock(pos.west(), false);
+					if ((Math.random() >= 0.9) && (!LepidodendronConfig.doSpores)) {
+						//Spawn another sapling:
+						if (!worldIn.isRemote) {
+							EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockPsaroniusSapling.block, (int) (1)));
+							entityToSpawn.setPickupDelay(10);
+							worldIn.spawnEntity(entityToSpawn);
+						}
 					}
 				}
-	        }
+			}
 
 	    }
 	    

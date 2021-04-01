@@ -2,10 +2,9 @@ package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
-import net.lepidodendron.entity.EntityPrehistoricFloraFishBase;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -41,7 +40,6 @@ public class FishWander extends AnimationAI<EntityPrehistoricFloraFishBase> {
     @Override
     public void startExecuting() {
         super.startExecuting();
-        PrehistoricFloraFishBase.currentAnim = this;
     }
 
     @Override

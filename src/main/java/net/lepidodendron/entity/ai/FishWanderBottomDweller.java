@@ -2,10 +2,10 @@ package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
-import net.lepidodendron.entity.EntityPrehistoricFloraFishBase;
-import net.lepidodendron.entity.EntityPrehistoricFloraFishBottomDwellerBase;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.MoverType;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -14,16 +14,16 @@ import net.minecraft.util.math.Vec3d;
 import java.util.Random;
 
 //public class FishWander extends EntityAIBase {
-public class FishWanderBottomDweller extends AnimationAI<EntityPrehistoricFloraFishBottomDwellerBase> {
+public class FishWanderBottomDweller extends AnimationAI<EntityPrehistoricFloraFishBase> {
 
     protected Animation animation;
-    protected EntityPrehistoricFloraFishBottomDwellerBase PrehistoricFloraFishBottomDwellerBase;
+    protected EntityPrehistoricFloraFishBase PrehistoricFloraFishBase;
 
-    public FishWanderBottomDweller(EntityPrehistoricFloraFishBottomDwellerBase PrehistoricFloraFishBottomDwellerBase, Animation animation)
+    public FishWanderBottomDweller(EntityPrehistoricFloraFishBase PrehistoricFloraFishBase, Animation animation)
     {
-        super(PrehistoricFloraFishBottomDwellerBase);
+        super(PrehistoricFloraFishBase);
         setMutexBits(4);
-        this.PrehistoricFloraFishBottomDwellerBase = PrehistoricFloraFishBottomDwellerBase;
+        this.PrehistoricFloraFishBase = PrehistoricFloraFishBase;
         this.animation = animation;
     }
 
@@ -41,7 +41,6 @@ public class FishWanderBottomDweller extends AnimationAI<EntityPrehistoricFloraF
     @Override
     public void startExecuting() {
         super.startExecuting();
-        PrehistoricFloraFishBottomDwellerBase.currentAnim = this;
     }
 
     @Override
@@ -52,19 +51,20 @@ public class FishWanderBottomDweller extends AnimationAI<EntityPrehistoricFloraF
 
     @Override
     public boolean shouldExecute() {
-        if (!this.PrehistoricFloraFishBottomDwellerBase.isInWater()) {
+        if (!this.PrehistoricFloraFishBase.isInWater()) {
             //System.err.println("Not in water");
             return false;
         }
-        if (this.PrehistoricFloraFishBottomDwellerBase.getRNG().nextFloat() < 0.5F) {
-            Path path = this.PrehistoricFloraFishBottomDwellerBase.getNavigator().getPath();
-            if (!this.PrehistoricFloraFishBottomDwellerBase.getNavigator().noPath() && !isDirectPathBetweenPoints(this.PrehistoricFloraFishBottomDwellerBase, this.PrehistoricFloraFishBottomDwellerBase.getPositionVector(), new Vec3d(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z))) {
-                this.PrehistoricFloraFishBottomDwellerBase.getNavigator().clearPath();
+        if (this.PrehistoricFloraFishBase.getRNG().nextFloat() < 0.5F) {
+            Path path = this.PrehistoricFloraFishBase.getNavigator().getPath();
+            if (!this.PrehistoricFloraFishBase.getNavigator().noPath() && !isDirectPathBetweenPoints(this.PrehistoricFloraFishBase, this.PrehistoricFloraFishBase.getPositionVector(), new Vec3d(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z))) {
+                this.PrehistoricFloraFishBase.getNavigator().clearPath();
             }
-            if (this.PrehistoricFloraFishBottomDwellerBase.getNavigator().noPath()) {
+            if (this.PrehistoricFloraFishBase.getNavigator().noPath()) {
+
                 BlockPos vec3 = this.findWaterTarget();
                 if (vec3 != null) {
-                    this.PrehistoricFloraFishBottomDwellerBase.getNavigator().tryMoveToXYZ(vec3.getX() + 0.5D, vec3.getY() - 0.99D  , vec3.getZ() + 0.5D, 1.0);
+                    this.PrehistoricFloraFishBase.getNavigator().tryMoveToXYZ(vec3.getX() + 0.5D, Math.floor(vec3.getY())-1D  , vec3.getZ() + 0.5D, 1.0);
 
                     return true;
                 }
@@ -88,22 +88,22 @@ public class FishWanderBottomDweller extends AnimationAI<EntityPrehistoricFloraF
         //System.err.println("Testing position");
         if (blockpos.getY() - 1 > 1) {
             BlockPos pos = blockpos.down();
-            return (((this.PrehistoricFloraFishBottomDwellerBase.world.getBlockState(blockpos)).getMaterial() == Material.WATER || (this.PrehistoricFloraFishBottomDwellerBase.world.getBlockState(blockpos)).getMaterial() == Material.CORAL)
-                && ((this.PrehistoricFloraFishBottomDwellerBase.world.getBlockState(pos)).getMaterial() != Material.WATER));
+            return (((this.PrehistoricFloraFishBase.world.getBlockState(blockpos)).getMaterial() == Material.WATER || (this.PrehistoricFloraFishBase.world.getBlockState(blockpos)).getMaterial() == Material.CORAL)
+                && ((this.PrehistoricFloraFishBase.world.getBlockState(pos)).getMaterial() != Material.WATER));
         }
         return true;
     }
 
     public BlockPos findWaterTarget() {
-        Random rand = this.PrehistoricFloraFishBottomDwellerBase.getRNG();
-        if (this.PrehistoricFloraFishBottomDwellerBase.getAttackTarget() == null) {
+        Random rand = this.PrehistoricFloraFishBase.getRNG();
+        if (this.PrehistoricFloraFishBase.getAttackTarget() == null) {
             for (int i = 0; i < 10; i++) {
-                BlockPos randPos = this.PrehistoricFloraFishBottomDwellerBase.getPosition().add(rand.nextInt(16) - 8, rand.nextInt(16) - 8, rand.nextInt(16) - 8);
+                BlockPos randPos = this.PrehistoricFloraFishBase.getPosition().add(rand.nextInt(16) - 8, rand.nextInt(16) - 8, rand.nextInt(16) - 8);
                 //Prefer targets which are at the bottom:
                 BlockPos randPosVar = randPos;
-                if (this.PrehistoricFloraFishBottomDwellerBase.world.getBlockState(randPos).getMaterial() == Material.WATER && !isAtBottom(randPos) && Math.random() < 0.90) {
+                if (this.PrehistoricFloraFishBase.world.getBlockState(randPos).getMaterial() == Material.WATER && !isAtBottom(randPos) && Math.random() < 0.90) {
                     int ii = 0;
-                    while ((randPos.down(ii).getY() > 1) && this.PrehistoricFloraFishBottomDwellerBase.world.getBlockState(randPos.down(ii)).getMaterial() == Material.WATER) {
+                    while ((randPos.down(ii).getY() > 1) && this.PrehistoricFloraFishBase.world.getBlockState(randPos.down(ii)).getMaterial() == Material.WATER) {
                         randPosVar = randPos.down(ii);
                         ii = ii + 1;
                     }
@@ -115,14 +115,14 @@ public class FishWanderBottomDweller extends AnimationAI<EntityPrehistoricFloraF
                 }
 
                 //System.err.println("Target " + randPos.getX() + " " + randPos.getY() + " " + randPos.getZ());
-                if (this.PrehistoricFloraFishBottomDwellerBase.world.getBlockState(randPos).getMaterial() == Material.WATER && this.PrehistoricFloraFishBottomDwellerBase.isDirectPathBetweenPoints(this.PrehistoricFloraFishBottomDwellerBase.getPositionVector(), new Vec3d(randPos.getX() + 0.5, randPos.getY() + 0.5, randPos.getZ() + 0.5))) {
+                if (this.PrehistoricFloraFishBase.world.getBlockState(randPos).getMaterial() == Material.WATER && this.PrehistoricFloraFishBase.isDirectPathBetweenPoints(this.PrehistoricFloraFishBase.getPositionVector(), new Vec3d(randPos.getX() + 0.5, randPos.getY() + 0.5, randPos.getZ() + 0.5))) {
                     return randPos;
                 }
             }
         } else {
             BlockPos blockpos1;
-            blockpos1 = new BlockPos(this.PrehistoricFloraFishBottomDwellerBase.getAttackTarget());
-            if (this.PrehistoricFloraFishBottomDwellerBase.world.getBlockState(blockpos1).getMaterial() == Material.WATER) {
+            blockpos1 = new BlockPos(this.PrehistoricFloraFishBase.getAttackTarget());
+            if (this.PrehistoricFloraFishBase.world.getBlockState(blockpos1).getMaterial() == Material.WATER) {
                 return blockpos1;
             }
         }

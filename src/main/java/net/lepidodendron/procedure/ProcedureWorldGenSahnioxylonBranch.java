@@ -58,7 +58,7 @@ public class ProcedureWorldGenSahnioxylonBranch extends ElementsLepidodendronMod
 			)
 		{
 
-			if ((Math.random() * (counter/TreeHeight)) < 0.3) {
+			if ((Math.random() * (counter/TreeHeight)) < 0.2) {
 				//Just trunk up:
 				Block block = world.getBlockState(new BlockPos((int) x, (int) y + counter, (int) z)).getBlock();
 				if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) y + counter , (int) z)), world, new BlockPos((int) x, (int) y + counter, (int) z))) {

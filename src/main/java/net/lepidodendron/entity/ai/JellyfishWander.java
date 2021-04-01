@@ -2,7 +2,7 @@ package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
-import net.lepidodendron.entity.EntityPrehistoricFloraJellyfishBase;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraJellyfishBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.pathfinding.Path;
@@ -40,7 +40,6 @@ public class JellyfishWander extends AnimationAI<EntityPrehistoricFloraJellyfish
     @Override
     public void startExecuting() {
         super.startExecuting();
-        PrehistoricFloraJellyfishBase.currentAnim = this;
     }
 
     @Override

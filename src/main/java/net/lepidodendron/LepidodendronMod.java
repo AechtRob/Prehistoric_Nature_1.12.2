@@ -15,8 +15,9 @@
  *    will be REGENERATED on each build.
  *
  */
-package net.mcreator.lepidodendron;
+package net.lepidodendron;
 
+import net.lepidodendron.entity.render.RenderHandler;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -46,13 +47,62 @@ import java.util.function.Supplier;
 public class LepidodendronMod {
 	public static final String MODID = "lepidodendron";
 	public static final String NAME = "Prehistoric Flora";
-	public static final String VERSION = "44.0";
+	public static final String VERSION = "45.0";
 	public static final SimpleNetworkWrapper PACKET_HANDLER = NetworkRegistry.INSTANCE.newSimpleChannel("lepidodendron:a");
 	@SidedProxy(clientSide = "net.lepidodendron.ClientProxyLepidodendronMod", serverSide = "net.lepidodendron.ServerProxyLepidodendronMod")
 	public static IProxyLepidodendronMod proxy;
 	@Mod.Instance(MODID)
 	public static LepidodendronMod instance;
 	public ElementsLepidodendronMod elements = new ElementsLepidodendronMod();
+
+	public static final int ENTITY_WALLISEROPS = 1;
+	public static final int ENTITY_PNEUMODESMUS = 2;
+	public static final int ENTITY_CHEIRURUS = 3;
+	public static final int ENTITY_ISOTELUS = 4;
+	public static final int ENTITY_ASAPHUS = 5;
+	public static final int ENTITY_PROMISSUM = 6;
+	public static final int ENTITY_ACANTHODES = 7;
+	public static final int ENTITY_JELLYFISH1 = 8;
+	public static final int ENTITY_JELLYFISH2 = 9;
+	public static final int ENTITY_JELLYFISH3 = 10;
+	public static final int ENTITY_JELLYFISH4 = 11;
+	public static final int ENTITY_JELLYFISH5 = 12;
+	public static final int ENTITY_JELLYFISH6 = 13;
+	public static final int ENTITY_JELLYFISH7 = 14;
+	public static final int ENTITY_BOTHRIOLEPIS = 15;
+	public static final int ENTITY_EURYPTERUS = 16;
+	public static final int ENTITY_PTERASPIS = 17;
+	public static final int ENTITY_CYRTOCERAS = 18;
+	public static final int ENTITY_ARANDASPIS = 19;
+	public static final int ENTITY_ANTHRACOMEDUSA = 20;
+	public static final int ENTITY_LIMNOSCELIS = 21;
+	public static final int ENTITY_SACABAMBASPIS = 22;
+	public static final int ENTITY_HIBERNASPIS = 23;
+	public static final int ENTITY_EOARTHROPLEURA = 24;
+	public static final int ENTITY_AMMONITE_MANTICOCERAS = 25;
+	public static final int ENTITY_AMMONITE_GONIATITES = 26;
+	public static final int ENTITY_AMMONITE_CYLOLOBUS = 27;
+	public static final int ENTITY_AMMONITE_PARAPUZOSIA = 28;
+	public static final int ENTITY_AMMONITE_DACTYLIOCERAS = 29;
+	public static final int ENTITY_AMMONITE_TITANITES = 30;
+	public static final int ENTITY_AMMONITE_ASTEROCERAS  = 31;
+	public static final int ENTITY_AMMONITE_PACHYDESMOCERAS  = 32;
+	public static final int ENTITY_AMMONITE_PACHYDISCUS  = 33;
+	public static final int ENTITY_AMMONITE_CORONICERAS = 34;
+	public static final int ENTITY_AMMONITE_CERATITES = 35;
+	public static final int ENTITY_HIBBERTOPTERUS = 36;
+	public static final int ENTITY_TERATASPIS = 37;
+	public static final int ENTITY_POLEUMITA = 38;
+	public static final int ENTITY_CYCLONEMA = 39;
+	public static final int ENTITY_PULMONOSCORPIUS = 40;
+	public static final int ENTITY_XENACANTHUS = 41;
+	public static final int ENTITY_CLADOSELACHE = 42;
+	public static final int ENTITY_SCHINDERHANNES = 43;
+	public static final int ENTITY_MACLURINA = 44;
+	public static final int ENTITY_TULLIMONSTRUM = 45;
+	public static final int ENTITY_FURCACAUDA = 46;
+
+
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		LepidodendronConfig.load(event);
@@ -63,6 +113,8 @@ public class LepidodendronMod {
 		elements.preInit(event);
 		MinecraftForge.EVENT_BUS.register(elements);
 		elements.getElements().forEach(element -> element.preInit(event));
+		EntityRegistries.registerEntities();
+		RenderHandler.RegisterEntityRenders();
 		proxy.preInit(event);
 	}
 

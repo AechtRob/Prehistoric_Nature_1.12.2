@@ -1,1 +1,88 @@
-{}
+{
+  "pneudodesmus_idle": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:pneudodesmus_idle01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:pneudodesmus_idle02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:pneudodesmus_idle03",
+        "stream": false
+      }
+    ]
+  },
+  "pneudodesmus_hurt": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:eoarthropleura_hurt01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:eoarthropleura_hurt02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:eoarthropleura_hurt03",
+        "stream": false
+      }
+    ]
+  },
+  "pneudodesmus_death": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:eoarthropleura_death",
+        "stream": false
+      }
+    ]
+  },
+  "eoarthropleura_idle": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:eoarthropleura_idle01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:eoarthropleura_idle02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:eoarthropleura_idle03",
+        "stream": false
+      }
+    ]
+  },
+  "eoarthropleura_hurt": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:eoarthropleura_hurt01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:eoarthropleura_hurt02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:eoarthropleura_hurt03",
+        "stream": false
+      }
+    ]
+  },
+  "eoarthropleura_death": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:eoarthropleura_death",
+        "stream": false
+      }
+    ]
+  }
+}
