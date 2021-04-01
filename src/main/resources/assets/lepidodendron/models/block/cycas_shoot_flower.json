@@ -1,0 +1,10 @@
+{
+"parent":"lepidodendron:block/4x4_8pointedplant_hanging_flower",
+"textures":{
+"e":"lepidodendron:blocks/cycas_b",
+"w":"lepidodendron:blocks/cycas_b",
+"ee":"lepidodendron:blocks/cycas_b_e",
+"ww":"lepidodendron:blocks/cycas_b_w",
+"flower":"lepidodendron:blocks/cycas_flower"
+}
+}

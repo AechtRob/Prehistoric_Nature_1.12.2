@@ -1,0 +1,51 @@
+{
+  "group": "lepidodendron",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+  	"0": {
+      "type": "forge:ore_dict",
+      "ore": "stone"
+    },
+    "1": {
+      "type": "forge:ore_dict",
+      "ore": "stone"
+    },
+    "2": {
+      "type": "forge:ore_dict",
+      "ore": "stone"
+    },
+    "3": {
+      "type": "forge:ore_dict",
+      "ore": "stone"
+    },
+    "4": {
+      "type": "forge:ore_dict",
+      "ore": "plantPrehistoric"
+    },
+    "5": {
+      "type": "forge:ore_dict",
+      "ore": "stone"
+    },
+    "6": {
+      "type": "forge:ore_dict",
+      "ore": "stone"
+    },
+    "7": {
+      "type": "forge:ore_dict",
+      "ore": "stone"
+    },
+    "8": {
+      "type": "forge:ore_dict",
+      "ore": "stone"
+    }
+  },
+  "result": {
+    "item": "lepidodendron:mossy_prehistoric_ground_cover",
+    "count": 8
+  }
+}

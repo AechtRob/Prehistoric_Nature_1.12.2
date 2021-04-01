@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "normal": [
+      {"model": "lepidodendron:caytoniales_2"}
+    ],
+    
+    "inventory": {
+      "model": "lepidodendron:caytoniales_inventory_2"
+    }
+  }
+}

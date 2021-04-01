@@ -1,0 +1,48 @@
+{
+  "variants": {
+    "normal": [
+      	{"model": "lepidodendron:red_sponge"},
+      	{"model": "lepidodendron:red_sponge_small"},
+      	{"model": "lepidodendron:red_sponge_rot"},
+      	{"model": "lepidodendron:red_sponge_small_rot"}
+    ],
+    "facing=north": [
+      	{"model": "lepidodendron:red_sponge", "x": 90},
+      	{"model": "lepidodendron:red_sponge_small", "x": 90},
+      	{"model": "lepidodendron:red_sponge_rot", "x": 90},
+      	{"model": "lepidodendron:red_sponge_small_rot", "x": 90}
+    ],
+    "facing=east": [
+      	{"model": "lepidodendron:red_sponge", "x": 90, "y": 90},
+      	{"model": "lepidodendron:red_sponge_small", "x": 90, "y": 90},
+      	{"model": "lepidodendron:red_sponge_rot", "x": 90, "y": 90},
+      	{"model": "lepidodendron:red_sponge_small_rot", "x": 90, "y": 90}
+    ],
+    "facing=south": [
+      	{"model": "lepidodendron:red_sponge", "x": 90, "y": 180},
+      	{"model": "lepidodendron:red_sponge_small", "x": 90, "y": 180},
+      	{"model": "lepidodendron:red_sponge_rot", "x": 90, "y": 180},
+      	{"model": "lepidodendron:red_sponge_small_rot", "x": 90, "y": 180}
+    ],
+    
+    "facing=west": [
+      	{"model": "lepidodendron:red_sponge", "x": 90, "y": 270},
+      	{"model": "lepidodendron:red_sponge_small", "x": 90, "y": 270},
+      	{"model": "lepidodendron:red_sponge_rot", "x": 90, "y": 270},
+      	{"model": "lepidodendron:red_sponge_small_rot", "x": 90, "y": 270}
+    ],
+
+    "facing=up": [
+      	{"model": "lepidodendron:red_sponge"},
+      	{"model": "lepidodendron:red_sponge_small"},
+      	{"model": "lepidodendron:red_sponge_rot"},
+      	{"model": "lepidodendron:red_sponge_small_rot"}
+    ],
+    "facing=down": [
+      	{"model": "lepidodendron:red_sponge", "x": 180},
+      	{"model": "lepidodendron:red_sponge_small", "x": 180},
+      	{"model": "lepidodendron:red_sponge_rot", "x": 180},
+      	{"model": "lepidodendron:red_sponge_small_rot", "x": 180}
+    ]
+  }
+}

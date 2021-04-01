@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "down": "lepidodendron:blocks/nilssoniocladus_stem",
+    "up": "lepidodendron:blocks/nilssoniocladus_stem",
+    "north": "lepidodendron:blocks/nilssoniocladus_stem",
+    "east": "lepidodendron:blocks/nilssoniocladus_stem",
+    "south": "lepidodendron:blocks/nilssoniocladus_stem",
+    "west": "lepidodendron:blocks/nilssoniocladus_stem",
+    "particle": "lepidodendron:blocks/nilssoniocladus_stem"
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "group": "lepidodendron",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+  	"0": {
+      "type": "forge:ore_dict",
+      "ore": "sand"
+    },
+    "1": {
+      "type": "forge:ore_dict",
+      "ore": "sand"
+    },
+    "2": {
+      "type": "forge:ore_dict",
+      "ore": "sand"
+    },
+    "3": {
+      "type": "forge:ore_dict",
+      "ore": "sand"
+    },
+    "4": {
+      "type": "forge:ore_dict",
+      "ore": "plantPrehistoric"
+    },
+    "5": {
+      "type": "forge:ore_dict",
+      "ore": "sand"
+    },
+    "6": {
+      "type": "forge:ore_dict",
+      "ore": "sand"
+    },
+    "7": {
+      "type": "forge:ore_dict",
+      "ore": "sand"
+    },
+    "8": {
+      "type": "forge:ore_dict",
+      "ore": "sand"
+    }
+  },
+  "result": {
+    "item": "lepidodendron:sandy_prehistoric_ground_cover",
+    "count": 8
+  }
+}

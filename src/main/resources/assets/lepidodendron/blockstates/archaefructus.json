@@ -1,0 +1,10 @@
+{
+  "variants": {
+  	"inventory": [
+      {"model": "lepidodendron:archaefructus_inventory"}
+  		],
+    "normal": [
+      {"model": "lepidodendron:archaefructus"}
+    ]
+  }
+}

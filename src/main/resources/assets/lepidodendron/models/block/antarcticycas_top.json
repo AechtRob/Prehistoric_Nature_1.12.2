@@ -1,0 +1,9 @@
+{
+"parent":"lepidodendron:block/4x4_4pointedplant",
+"textures":{
+"e":"lepidodendron:blocks/antarcticycas_t",
+"w":"lepidodendron:blocks/antarcticycas_t",
+"ee":"lepidodendron:blocks/antarcticycas_t_e",
+"ww":"lepidodendron:blocks/antarcticycas_t_w"
+}
+}

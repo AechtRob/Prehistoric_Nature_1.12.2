@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "axis=z": {
+      "model": "lepidodendron:ordovician_silurian_portal_ew"
+    },
+    "axis=x": {
+      "model": "lepidodendron:ordovician_silurian_portal_ns"
+    },
+    "inventory": {
+      "model": "lepidodendron:ordovician_silurian_portal_ns"
+    }
+  }
+}

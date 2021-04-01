@@ -1,0 +1,10 @@
+{
+"parent":"lepidodendron:block/4x4_8pointedplant_hanging_flower",
+"textures":{
+"e":"lepidodendron:blocks/dioon_shoot_b",
+"w":"lepidodendron:blocks/dioon_shoot_b",
+"ee":"lepidodendron:blocks/dioon_shoot_b_e",
+"ww":"lepidodendron:blocks/dioon_shoot_b_w",
+"flower": "lepidodendron:blocks/dioon_fruit"
+}
+}

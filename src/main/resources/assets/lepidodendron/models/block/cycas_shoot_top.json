@@ -1,0 +1,9 @@
+{
+"parent":"lepidodendron:block/4x4_8pointedplant",
+"textures":{
+"e":"lepidodendron:blocks/cycas_t",
+"w":"lepidodendron:blocks/cycas_t",
+"ee":"lepidodendron:blocks/cycas_t_e",
+"ww":"lepidodendron:blocks/cycas_t_w"
+}
+}

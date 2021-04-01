@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "inventory": {
+      "model": "lepidodendron:baikalophyllum_inventory"
+    },
+    "normal": {
+      "model": "lepidodendron:baikalophyllum"
+    }
+  }
+}

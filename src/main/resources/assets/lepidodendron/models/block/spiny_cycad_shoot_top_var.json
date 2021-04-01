@@ -1,0 +1,9 @@
+{
+"parent":"lepidodendron:block/4x4_8pointedplant",
+"textures":{
+"e":"lepidodendron:blocks/spikey_t_var",
+"w":"lepidodendron:blocks/spikey_t_var",
+"ee":"lepidodendron:blocks/spikey_t_e_var",
+"ww":"lepidodendron:blocks/spikey_t_w"
+}
+}

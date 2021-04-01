@@ -1,0 +1,48 @@
+{
+  "variants": {
+    "normal": [
+      	{"model": "lepidodendron:white_sponge"},
+      	{"model": "lepidodendron:white_sponge_small"},
+      	{"model": "lepidodendron:white_sponge_rot"},
+      	{"model": "lepidodendron:white_sponge_small_rot"}
+    ],
+    "facing=north": [
+      	{"model": "lepidodendron:white_sponge", "x": 90},
+      	{"model": "lepidodendron:white_sponge_small", "x": 90},
+      	{"model": "lepidodendron:white_sponge_rot", "x": 90},
+      	{"model": "lepidodendron:white_sponge_small_rot", "x": 90}
+    ],
+    "facing=east": [
+      	{"model": "lepidodendron:white_sponge", "x": 90, "y": 90},
+      	{"model": "lepidodendron:white_sponge_small", "x": 90, "y": 90},
+      	{"model": "lepidodendron:white_sponge_rot", "x": 90, "y": 90},
+      	{"model": "lepidodendron:white_sponge_small_rot", "x": 90, "y": 90}
+    ],
+    "facing=south": [
+      	{"model": "lepidodendron:white_sponge", "x": 90, "y": 180},
+      	{"model": "lepidodendron:white_sponge_small", "x": 90, "y": 180},
+      	{"model": "lepidodendron:white_sponge_rot", "x": 90, "y": 180},
+      	{"model": "lepidodendron:white_sponge_small_rot", "x": 90, "y": 180}
+    ],
+    
+    "facing=west": [
+      	{"model": "lepidodendron:white_sponge", "x": 90, "y": 270},
+      	{"model": "lepidodendron:white_sponge_small", "x": 90, "y": 270},
+      	{"model": "lepidodendron:white_sponge_rot", "x": 90, "y": 270},
+      	{"model": "lepidodendron:white_sponge_small_rot", "x": 90, "y": 270}
+    ],
+
+    "facing=up": [
+      	{"model": "lepidodendron:white_sponge"},
+      	{"model": "lepidodendron:white_sponge_small"},
+      	{"model": "lepidodendron:white_sponge_rot"},
+      	{"model": "lepidodendron:white_sponge_small_rot"}
+    ],
+    "facing=down": [
+      	{"model": "lepidodendron:white_sponge", "x": 180},
+      	{"model": "lepidodendron:white_sponge_small", "x": 180},
+      	{"model": "lepidodendron:white_sponge_rot", "x": 180},
+      	{"model": "lepidodendron:white_sponge_small_rot", "x": 180}
+    ]
+  }
+}

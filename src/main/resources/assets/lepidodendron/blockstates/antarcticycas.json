@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "normal": [
+      {"model": "lepidodendron:antarcticycas"}
+    ],
+    
+    "inventory": {
+      "model": "lepidodendron:antarcticycas_inventory"
+    }
+  }
+}

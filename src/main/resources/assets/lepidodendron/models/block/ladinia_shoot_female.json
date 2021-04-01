@@ -1,0 +1,9 @@
+{
+"parent":"lepidodendron:block/4x4_8pointedplant",
+"textures":{
+"e":"lepidodendron:blocks/ladinia_female_b_c",
+"w":"lepidodendron:blocks/ladinia_female_b_c",
+"ee":"lepidodendron:blocks/ladinia_b_e",
+"ww":"lepidodendron:blocks/ladinia_b_w"
+}
+}

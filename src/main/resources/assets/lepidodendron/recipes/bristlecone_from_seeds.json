@@ -1,0 +1,25 @@
+{
+  "group": "lepidodendron",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "0",
+    "1",
+    "2"
+  ],
+  "key": {
+    "0": {
+      "item": "minecraft:snowball"
+    },
+    "1": {
+      "item": "lepidodendron:bristlecone_seed"
+    },
+    "2": {
+      "item": "minecraft:dirt",
+      "data": 32767
+    }
+  },
+  "result": {
+    "item": "lepidodendron:bristlecone_sapling",
+    "count": 1
+  }
+}
