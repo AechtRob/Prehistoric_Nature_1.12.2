@@ -114,9 +114,10 @@ public class BlockSphenopteris extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Seed-Plant");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Seed-Plant");
 	        tooltip.add("Periods: late Devonian - Carboniferous - Permian - Triassic - Jurassic - Cretaceous");
-	        tooltip.add("Propagation: seeds");
+	        tooltip.add("Propagation: seeds");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

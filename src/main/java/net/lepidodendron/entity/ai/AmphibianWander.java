@@ -41,7 +41,7 @@ public class AmphibianWander extends AnimationAI<EntityPrehistoricFloraAmphibian
     @Override
     public void startExecuting() {
         super.startExecuting();
-        PrehistoricFloraAmphibianBase.currentAnim = this;
+        //PrehistoricFloraAmphibianBase.currentAnim = this;
     }
 
     @Override

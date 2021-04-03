@@ -279,10 +279,11 @@ public class BlockSphenophyllales extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Horsetail/sphenophyte vine");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Horsetail/sphenophyte vine");
 	        tooltip.add("Periods: Carboniferous");
 	        tooltip.add("Note: Coal swamps. Climbing.");
-	        tooltip.add("Propagation: spores");
+	        tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

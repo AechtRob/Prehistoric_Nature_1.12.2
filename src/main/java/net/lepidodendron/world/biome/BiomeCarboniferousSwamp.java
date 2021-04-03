@@ -3,7 +3,6 @@ package net.lepidodendron.world.biome;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeDictionary;
 
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -15,9 +14,7 @@ import net.minecraft.block.properties.PropertyEnum;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -25,9 +22,7 @@ import net.lepidodendron.LepidodendronConfig;
 import net.minecraft.block.material.Material;
 
 
-import net.lepidodendron.LepidodendronConfig;
-
-import net.lepidodendron.block.BlockPrehistoricGroundCover;
+import net.lepidodendron.block.BlockPrehistoricGroundLush;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockSigillariaLog;
 import net.lepidodendron.block.BlockCalamitesLog;
@@ -42,7 +37,6 @@ import net.lepidodendron.world.WorldGenBothrodendronTree;
 import net.lepidodendron.world.WorldGenDiaphorodendronTree;
 import net.lepidodendron.world.WorldGenValmeyerodendronTree;
 import net.lepidodendron.world.WorldGenCalamites;
-import net.lepidodendron.world.WorldGenTreeLog;
 
 import net.lepidodendron.world.WorldGenStauropteris;
 import net.lepidodendron.world.WorldGenSphenopteris;
@@ -84,7 +78,7 @@ public class BiomeCarboniferousSwamp extends ElementsLepidodendronMod.ModElement
 		public BiomeGenCustom() {
 			super(new Biome.BiomeProperties("The Carboniferous Period").setRainfall(0.5F).setBaseHeight(-0.2F).setHeightVariation(0.15F).setTemperature(0.95F).setRainfall(0.9F).setWaterColor(8186044));
 			setRegistryName("carboniferous_swamp");
-			topBlock = BlockPrehistoricGroundCover.block.getDefaultState();
+			topBlock = BlockPrehistoricGroundLush.block.getDefaultState();
 			fillerBlock = Blocks.DIRT.getStateFromMeta(1);
 			decorator.treesPerChunk = 30;
 			decorator.flowersPerChunk = 0;

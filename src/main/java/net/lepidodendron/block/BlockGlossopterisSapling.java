@@ -1,6 +1,7 @@
 
 package net.lepidodendron.block;
 
+import net.lepidodendron.LepidodendronConfig;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -111,6 +112,7 @@ public class BlockGlossopterisSapling extends ElementsLepidodendronMod.ModElemen
 					$_dependencies.put("y", y);
 					$_dependencies.put("z", z);
 					$_dependencies.put("world", world);
+					$_dependencies.put("SaplingSpawn", true);
 					ProcedureWorldGenGlossopteris.executeProcedure($_dependencies);
 				}
 	        }
@@ -163,10 +165,11 @@ public class BlockGlossopterisSapling extends ElementsLepidodendronMod.ModElemen
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Seed-Plant tree");
-	        tooltip.add("Periods: Permian (perhaps early Triassic)");
-	        tooltip.add("Note: wet ground, high latitudes");
-	        tooltip.add("Propagation: seeds");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Seed-Plant tree");
+				tooltip.add("Periods: Permian (perhaps early Triassic)");
+				tooltip.add("Note: wet ground, high latitudes");
+				tooltip.add("Propagation: seeds");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

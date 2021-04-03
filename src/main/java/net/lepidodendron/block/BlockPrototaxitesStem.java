@@ -63,13 +63,13 @@ public class BlockPrototaxitesStem extends ElementsLepidodendronMod.ModElement {
 	@Override
 	public void initElements() {
 		elements.blocks.add(() -> new BlockCustom().setRegistryName("prototaxites_stem"));
-		elements.items.add(() -> new ItemBlock(block).setRegistryName(block.getRegistryName()));
+		//elements.items.add(() -> new ItemBlock(block).setRegistryName(block.getRegistryName()));
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModels(ModelRegistryEvent event) {
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("lepidodendron:encblue_log", "inventory"));
+		//ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("lepidodendron:encblue_log", "inventory"));
 		ModelLoader.setCustomStateMapper(block, (new StateMap.Builder()).ignore(BlockCustom.SPORES).build());
 
 	}

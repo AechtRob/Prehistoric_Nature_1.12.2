@@ -317,10 +317,11 @@ public class BlockGuangdedendron extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Lycophyte shrub");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Lycophyte shrub");
 	        tooltip.add("Periods: late Devonian");
 			tooltip.add("Periods: plant next to water");
-	        tooltip.add("Propagation: spores");
+	        tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

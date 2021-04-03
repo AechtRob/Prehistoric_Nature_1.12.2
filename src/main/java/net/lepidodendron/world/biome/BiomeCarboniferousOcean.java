@@ -3,14 +3,11 @@ package net.lepidodendron.world.biome;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeDictionary;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -25,9 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.block.properties.PropertyEnum;
 
 
-import net.lepidodendron.LepidodendronConfig;
-
-import net.lepidodendron.block.BlockPrehistoricGroundCover;
+import net.lepidodendron.block.BlockPrehistoricGroundLush;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockSigillariaLog;
 import net.lepidodendron.block.BlockCalamitesLog;
@@ -37,7 +32,6 @@ import net.lepidodendron.block.BlockBothrodendronLog;
 import net.lepidodendron.world.WorldGenTreeLog;
 
 import net.lepidodendron.world.WorldGenCordaites;
-import net.lepidodendron.world.WorldGenTreeLog;
 
 import net.lepidodendron.world.WorldGenStauropteris;
 import net.lepidodendron.world.WorldGenSphenopteris;
@@ -60,7 +54,6 @@ import net.lepidodendron.world.WorldGenBothrodendronTree;
 import net.lepidodendron.world.WorldGenDiaphorodendronTree;
 import net.lepidodendron.world.WorldGenValmeyerodendronTree;
 import net.lepidodendron.world.WorldGenCalamites;
-import net.lepidodendron.world.WorldGenMud;
 
 
 import java.util.Random;
@@ -89,7 +82,7 @@ public class BiomeCarboniferousOcean extends ElementsLepidodendronMod.ModElement
 		public BiomeGenCustom() {
 			super(new Biome.BiomeProperties("The Carboniferous Period").setRainfall(0.5F).setBaseHeight(-1.0F).setHeightVariation(0.01F).setWaterColor(14745518));
 			setRegistryName("carboniferous_ocean");
-			topBlock = BlockPrehistoricGroundCover.block.getDefaultState();
+			topBlock = BlockPrehistoricGroundLush.block.getDefaultState();
 			fillerBlock = Blocks.SAND.getStateFromMeta(0);
 			decorator.treesPerChunk = 30;
 			decorator.flowersPerChunk = 0;

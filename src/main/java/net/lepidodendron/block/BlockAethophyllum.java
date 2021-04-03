@@ -256,10 +256,12 @@ public class BlockAethophyllum extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Coniferous shrub");
-	        tooltip.add("Periods: Triassic");
-	        tooltip.add("Note: An unusual herbaceous conifer");
-	        tooltip.add("Propagation: fruit/cone");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Coniferous shrub");
+				tooltip.add("Periods: Triassic");
+				tooltip.add("Note: An unusual herbaceous conifer");
+				tooltip.add("Propagation: fruit/cone");
+			}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

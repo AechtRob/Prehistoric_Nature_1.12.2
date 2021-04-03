@@ -1,6 +1,7 @@
 
 package net.lepidodendron.block;
 
+import net.lepidodendron.LepidodendronConfig;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -167,10 +168,11 @@ public class BlockCalamitesSapling extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Horsetail tree");
-	        tooltip.add("Periods: Carboniferous");
-	        tooltip.add("Note: Coal swamps. Capable of spreading from underground rhizomes.");
-	        tooltip.add("Propagation: spores");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Horsetail tree");
+				tooltip.add("Periods: Carboniferous");
+				tooltip.add("Note: Coal swamps. Capable of spreading from underground rhizomes.");
+				tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 	}

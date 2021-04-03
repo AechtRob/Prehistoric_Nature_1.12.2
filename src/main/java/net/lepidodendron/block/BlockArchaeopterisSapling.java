@@ -1,6 +1,7 @@
 
 package net.lepidodendron.block;
 
+import net.lepidodendron.LepidodendronConfig;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -161,9 +162,11 @@ public class BlockArchaeopterisSapling extends ElementsLepidodendronMod.ModEleme
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Proto-tree");
-	        tooltip.add("Periods: late Devonian - early Carboniferous");
-	        tooltip.add("Propagation: spores");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Proto-tree");
+				tooltip.add("Periods: late Devonian - early Carboniferous");
+				tooltip.add("Propagation: spores");
+			}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 	}

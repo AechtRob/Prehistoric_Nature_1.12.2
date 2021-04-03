@@ -1,0 +1,42 @@
+{
+  "group": "lepidodendron",
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "012",
+    "345",
+    "678"
+  ],
+  "key": {
+    "0": {
+      "item": "lepidodendron:glossopteristreeleaves"
+    },
+    "1": {
+      "item": "lepidodendron:glossopteristreeleaves"
+    },
+    "2": {
+      "item": "lepidodendron:glossopteristreeleaves"
+    },
+    "3": {
+      "item": "lepidodendron:glossopteristreeleaves"
+    },
+    "4": {
+      "item": "lepidodendron:glossopteristreeleaves"
+    },
+    "5": {
+      "item": "lepidodendron:glossopteristreeleaves"
+    },
+    "6": {
+      "item": "lepidodendron:glossopteristreeleaves"
+    },
+    "7": {
+      "item": "lepidodendron:glossopteristreeleaves"
+    },
+    "8": {
+      "item": "lepidodendron:glossopteristreeleaves"
+    }
+  },
+  "result": {
+    "item": "lepidodendron:glossopteris_leaf_litter",
+    "count": 2
+  }
+}

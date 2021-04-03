@@ -25,11 +25,12 @@ public class LepidodendronConfig {
 	public static int dimOrdovicianSilurian = -80;
 	public static int dimDevonian = -81;
 	public static int dimCarboniferous = -82;
-	public static String[] dimCarboniferousMobs = new String[]{"lepidodendron:prehistoric_flora_acanthodes:8:20:3","lepidodendron:prehistoric_flora_acanthodes:8:20:3","lepidodendron:prehistoric_flora_jellyfish1:1:4:2","lepidodendron:prehistoric_flora_jellyfish2:1:4:2","lepidodendron:prehistoric_flora_jellyfish3:1:4:2","lepidodendron:prehistoric_flora_jellyfish4:1:4:2","lepidodendron:prehistoric_flora_jellyfish5:1:4:2","lepidodendron:prehistoric_flora_jellyfish6:1:4:2"};
-	public static String[] dimDevonianMobs = new String[]{"lepidodendron:prehistoric_flora_acanthodes:4:30:2","lepidodendron:prehistoric_flora_bothriolepis:3:15:2","lepidodendron:prehistoric_flora_bothriolepis:3:10:3","lepidodendron:prehistoric_flora_cyrtoceras:1:18:2","lepidodendron:prehistoric_flora_pteraspis:2:12:3","lepidodendron:prehistoric_flora_jellyfish1:1:3:2","lepidodendron:prehistoric_flora_jellyfish2:1:3:2","lepidodendron:prehistoric_flora_jellyfish3:1:3:2","lepidodendron:prehistoric_flora_jellyfish4:1:3:2","lepidodendron:prehistoric_flora_jellyfish5:1:3:2","lepidodendron:prehistoric_flora_jellyfish6:1:3:2","lepidodendron:prehistoric_flora_jellyfish7:1:3:2"};
-	public static String[] dimOrdovicianSilurianMobs = new String[]{"lepidodendron:prehistoric_flora_arandaspis:2:12:3","lepidodendron:prehistoric_flora_arandaspis:2:10:2","lepidodendron:prehistoric_flora_cyrtoceras:1:18:2","lepidodendron:prehistoric_flora_eurypterus:4:25:3","lepidodendron:prehistoric_flora_jellyfish1:1:5:2","lepidodendron:prehistoric_flora_jellyfish1:1:5:2","lepidodendron:prehistoric_flora_jellyfish2:1:5:2","lepidodendron:prehistoric_flora_jellyfish3:1:5:2","lepidodendron:prehistoric_flora_jellyfish4:1:5:2","lepidodendron:prehistoric_flora_jellyfish5:1:5:2","lepidodendron:prehistoric_flora_jellyfish6:1:5:2","lepidodendron:prehistoric_flora_jellyfish7:1:5:2","lepidodendron:prehistoric_flora_jellyfish1:1:3:3","lepidodendron:prehistoric_flora_jellyfish2:1:3:3","lepidodendron:prehistoric_flora_jellyfish3:1:3:3","lepidodendron:prehistoric_flora_jellyfish4:1:3:3","lepidodendron:prehistoric_flora_jellyfish5:1:3:3","lepidodendron:prehistoric_flora_jellyfish6:1:3:3"};
+	public static String[] dimCarboniferousMobs = new String[]{"lepidodendron:prehistoric_flora_acanthodes:8:20:3","lepidodendron:prehistoric_flora_ammonite_goniatites:2:15:2","lepidodendron:prehistoric_flora_ammonite_goniatites:2:15:3","lepidodendron:prehistoric_flora_anthracomedusa:1:10:3","lepidodendron:prehistoric_flora_hibbertopterus:1:7:3","lepidodendron:prehistoric_flora_jellyfish1:1:4:2","lepidodendron:prehistoric_flora_jellyfish2:1:4:2","lepidodendron:prehistoric_flora_jellyfish3:1:4:2","lepidodendron:prehistoric_flora_jellyfish4:1:4:2","lepidodendron:prehistoric_flora_jellyfish5:1:4:2","lepidodendron:prehistoric_flora_jellyfish6:1:4:2","lepidodendron:prehistoric_flora_jellyfish7:1:4:2","lepidodendron:prehistoric_flora_squatinactis:2:9:3"};
+	public static String[] dimDevonianMobs = new String[]{"lepidodendron:prehistoric_flora_acanthodes:4:30:2","lepidodendron:prehistoric_flora_cheirurus:2:17:3","lepidodendron:prehistoric_flora_ammonite_manticoceras:2:12:2","lepidodendron:prehistoric_flora_ammonite_manticoceras:2:12:3","lepidodendron:prehistoric_flora_ammonite_goniatites:2:12:2","lepidodendron:prehistoric_flora_ammonite_goniatites:2:12:3","lepidodendron:prehistoric_flora_bothriolepis:3:15:2","lepidodendron:prehistoric_flora_bothriolepis:3:10:3","lepidodendron:prehistoric_flora_cyrtoceras:1:18:2","lepidodendron:prehistoric_flora_eoarthropleura:2:20:1","lepidodendron:prehistoric_flora_furcacauda:10:7:2","lepidodendron:prehistoric_flora_hibernaspis:3:14:3","lepidodendron:prehistoric_flora_hibernaspis:2:16:2","lepidodendron:prehistoric_flora_pneumodesmus:2:20:1","lepidodendron:prehistoric_flora_pteraspis:4:12:3","lepidodendron:prehistoric_flora_pteraspis:4:12:2","lepidodendron:prehistoric_flora_terataspis:2:15:3","lepidodendron:prehistoric_flora_jellyfish1:1:3:2","lepidodendron:prehistoric_flora_jellyfish2:1:3:2","lepidodendron:prehistoric_flora_jellyfish3:1:3:2","lepidodendron:prehistoric_flora_jellyfish4:1:3:2","lepidodendron:prehistoric_flora_jellyfish5:1:3:2","lepidodendron:prehistoric_flora_jellyfish6:1:3:2","lepidodendron:prehistoric_flora_jellyfish7:1:3:2","lepidodendron:prehistoric_flora_walliserops:2:18:3"};
+	public static String[] dimOrdovicianSilurianMobs = new String[]{"lepidodendron:prehistoric_flora_arandaspis:6:12:3","lepidodendron:prehistoric_flora_arandaspis:6:10:2","lepidodendron:prehistoric_flora_asaphus:3:22:3","lepidodendron:prehistoric_flora_cheirurus:2:22:3","lepidodendron:prehistoric_flora_cyrtoceras:1:18:2","lepidodendron:prehistoric_flora_eoarthropleura:2:30:1","lepidodendron:prehistoric_flora_eurypterus:4:25:3","lepidodendron:prehistoric_flora_isotelus:1:20:2","lepidodendron:prehistoric_flora_jellyfish1:1:5:2","lepidodendron:prehistoric_flora_jellyfish2:1:5:2","lepidodendron:prehistoric_flora_jellyfish3:1:5:2","lepidodendron:prehistoric_flora_jellyfish4:1:5:2","lepidodendron:prehistoric_flora_jellyfish5:1:5:2","lepidodendron:prehistoric_flora_jellyfish6:1:5:2","lepidodendron:prehistoric_flora_jellyfish7:1:5:2","lepidodendron:prehistoric_flora_jellyfish1:1:3:3","lepidodendron:prehistoric_flora_jellyfish2:1:3:3","lepidodendron:prehistoric_flora_jellyfish3:1:3:3","lepidodendron:prehistoric_flora_jellyfish4:1:3:3","lepidodendron:prehistoric_flora_jellyfish5:1:3:3","lepidodendron:prehistoric_flora_jellyfish6:1:3:3","lepidodendron:prehistoric_flora_jellyfish7:1:3:3","lepidodendron:prehistoric_flora_promissum:1:5:3","lepidodendron:prehistoric_flora_promissum:2:18:2","lepidodendron:prehistoric_flora_sacabambaspis:6:12:3","lepidodendron:prehistoric_flora_sacabambaspis:6:10:2"};
     
     public static int spreadPlants = 70;
+    public static boolean showTooltips = true;
     public static boolean doSpores = true;
     public static boolean doFruits = true;
     public static boolean doSeeds = true;
@@ -483,6 +484,13 @@ public class LepidodendronConfig {
     public static int minheightAethophyllum = 1;
     public static int maxheightAethophyllum = 90;
     public static double multiplierAethophyllum = 1;
+    public static boolean genProtolepidodendropsis = false;
+    public static String[] genProtolepidodendropsisBlacklistBiomes = new String[0];
+    public static String[] genProtolepidodendropsisOverrideBiomes = new String[0];
+    public static int[] dimProtolepidodendropsis = new int[]{0};
+    public static int minheightProtolepidodendropsis = 1;
+    public static int maxheightProtolepidodendropsis = 90;
+    public static double multiplierProtolepidodendropsis = 1;
     public static boolean genHymenaea = false;
     public static String[] genHymenaeaBlacklistBiomes = new String[0];
     public static String[] genHymenaeaOverrideBiomes = new String[0];
@@ -624,7 +632,11 @@ public class LepidodendronConfig {
     public static boolean genNilssoniocladusMirabilis = false;
     public static String[] genNilssoniocladusBlacklistBiomes = new String[0];
     public static String[] genNilssoniocladusOverrideBiomes = new String[0];
-    public static int[] dimNilssoniocladus = new int[]{0};    
+    public static int[] dimNilssoniocladus = new int[]{0};
+    public static boolean genPalaeognetaleanaGlossopteris = false;
+    public static String[] genPalaeognetaleanaBlacklistBiomes = new String[0];
+    public static String[] genPalaeognetaleanaOverrideBiomes = new String[0];
+    public static int[] dimPalaeognetaleana = new int[]{0};
     public static boolean genOdontopterisLepidodendron = false;
     public static boolean genOdontopterisDiaphorodendron = false;
     public static boolean genOdontopterisCordaites = false;
@@ -1029,7 +1041,12 @@ public class LepidodendronConfig {
         prop.setComment("List of biomes all plants are blacklisted from, in the format: modid:biomeid [default: empty]");
         genGlobalBlacklist = prop.getStringList();
         propOrder.add(prop.getName());
-        
+
+        prop = cfg.get("Global World-Gen", "showTooltips", showTooltips);
+        prop.setComment("Shows useful, searchable tooltips on relevant items [default: true]");
+        showTooltips = prop.getBoolean();
+        propOrder.add(prop.getName());
+
         prop = cfg.get("Global World-Gen", "doSpores", doSpores);
         prop.setComment("Use spore propagation method instead of sapling-drops for appropriate plants [default: true]");
         doSpores = prop.getBoolean();
@@ -3076,6 +3093,34 @@ public class LepidodendronConfig {
         multiplierAethophyllum = prop.getDouble();
         propOrder.add(prop.getName());
 
+        prop = cfg.get("WorldGen Protolepidodendropsis", "genProtolepidodendropsis", genProtolepidodendropsis);
+        prop.setComment("Set to true to generate Protolepidodendropsis naturally [default: false]");
+        genProtolepidodendropsis = prop.getBoolean();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Protolepidodendropsis", "genProtolepidodendropsisBlacklistBiomes", genProtolepidodendropsisBlacklistBiomes);
+        prop.setComment("List of biomes Protolepidodendropsis are blacklisted from, in the format: modid:biomeid [default: empty]");
+        genProtolepidodendropsisBlacklistBiomes = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Protolepidodendropsis", "genProtolepidodendropsisOverrideBiomes", genProtolepidodendropsisOverrideBiomes);
+        prop.setComment("List of biomes Protolepidodendropsis are forced to generate in provided the dimension is also valid (this will override the global blacklist setting), in the format: modid:biomeid [default: empty]");
+        genProtolepidodendropsisOverrideBiomes = prop.getStringList();
+        prop = cfg.get("WorldGen Protolepidodendropsis", "dimProtolepidodendropsis", dimProtolepidodendropsis);
+        prop.setComment("List of dimension IDs Protolepidodendropsis can generate in [default: 0]");
+        dimProtolepidodendropsis = prop.getIntList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Protolepidodendropsis", "minheightProtolepidodendropsis", minheightProtolepidodendropsis);
+        prop.setComment("Minimum height that Protolepidodendropsis can generate (1 to 250) [default: 1]");
+        minheightProtolepidodendropsis = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Protolepidodendropsis", "maxheightProtolepidodendropsis", maxheightProtolepidodendropsis);
+        prop.setComment("Maximum height that Protolepidodendropsis can generate (1 to 250, or set to 0 for unlimited) [default: 90]");
+        maxheightProtolepidodendropsis = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Protolepidodendropsis", "multiplierProtolepidodendropsis", multiplierProtolepidodendropsis);
+        prop.setComment("Number to multiply the spawn chance by (eg. 0.5 will halve the chance, and 2 will double it, etc., up to some fixed internal values) [default: 1]");
+        multiplierProtolepidodendropsis = prop.getDouble();
+        propOrder.add(prop.getName());
+
         prop = cfg.get("WorldGen Hymenaea", "genHymenaea", genHymenaea);
         prop.setComment("Set to true to generate Hymenaea trees naturally [default: false]");
         genHymenaea = prop.getBoolean();
@@ -3569,6 +3614,22 @@ public class LepidodendronConfig {
         prop = cfg.get("WorldGen Nilssoniocladus", "dimNilssoniocladus", dimNilssoniocladus);
         prop.setComment("List of dimension IDs Nilssoniocladus can generate in [default: 0]");
         dimNilssoniocladus = prop.getIntList();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("WorldGen Palaeognetaleana", "genPalaeognetaleanaGlossopteris", genPalaeognetaleanaGlossopteris);
+        prop.setComment("Set to true to generate Palaeognetaleana naturally on Glossopteris trees [default: false]");
+        genPalaeognetaleanaGlossopteris = prop.getBoolean();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Palaeognetaleana", "genPalaeognetaleanaBlacklistBiomes", genPalaeognetaleanaBlacklistBiomes);
+        prop.setComment("List of biomes Palaeognetaleana are blacklisted from, in the format: modid:biomeid [default: empty]");
+        genPalaeognetaleanaBlacklistBiomes = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Palaeognetaleana", "genPalaeognetaleanaOverrideBiomes", genPalaeognetaleanaOverrideBiomes);
+        prop.setComment("List of biomes Palaeognetaleana are forced to generate in provided the dimension is also valid (this will override the global blacklist setting), in the format: modid:biomeid [default: empty]");
+        genPalaeognetaleanaOverrideBiomes = prop.getStringList();
+        prop = cfg.get("WorldGen Palaeognetaleana", "dimPalaeognetaleana", dimPalaeognetaleana);
+        prop.setComment("List of dimension IDs Palaeognetaleana can generate in [default: 0]");
+        dimPalaeognetaleana = prop.getIntList();
         propOrder.add(prop.getName());
 
         prop = cfg.get("WorldGen Cinnamon Fern", "genCinnamonFern", genCinnamonFern);

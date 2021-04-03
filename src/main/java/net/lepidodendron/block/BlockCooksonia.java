@@ -304,10 +304,11 @@ public class BlockCooksonia extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Proto-plant");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Proto-plant");
 	        tooltip.add("Periods: mid Silurian - early Devonian");
 	        tooltip.add("Note: requires water proximity and spreads to surrounding gravel, grass and dirt");
-	        tooltip.add("Propagation: spores");
+	        tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

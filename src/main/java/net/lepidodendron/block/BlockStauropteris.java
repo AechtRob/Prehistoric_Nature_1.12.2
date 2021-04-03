@@ -117,9 +117,10 @@ public class BlockStauropteris extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Fern plant");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Fern plant");
 	        tooltip.add("Periods: late Devonian - late Carboniferous");
-	        tooltip.add("Propagation: spores");
+	        tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

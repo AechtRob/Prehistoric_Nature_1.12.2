@@ -238,9 +238,10 @@ public class BlockUmaltolepis extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Ginkgo shrub");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Ginkgo shrub");
 	        tooltip.add("Periods: Jurassic - mid Cretaceous");
-	        tooltip.add("Propagation: fruit/cone");
+	        tooltip.add("Propagation: fruit/cone");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

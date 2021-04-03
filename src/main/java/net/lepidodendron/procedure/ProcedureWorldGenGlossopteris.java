@@ -1,5 +1,10 @@
 package net.lepidodendron.procedure;
 
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.block.BlockPalaeognetaleana;
+import net.minecraft.block.BlockVine;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumFacing;
@@ -14,12 +19,22 @@ import net.lepidodendron.block.BlockGlossopterisTreeLeaves;
 import net.lepidodendron.block.BlockGlossopterisLog;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockGlossopterisStrobilus;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
+
+import java.util.Random;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureWorldGenGlossopteris extends ElementsLepidodendronMod.ModElement {
 	public ProcedureWorldGenGlossopteris(ElementsLepidodendronMod instance) {
 		super(instance, 42);
 	}
+
+	public static final PropertyBool UP = PropertyBool.create("up");
+	public static final PropertyBool NORTH = PropertyBool.create("north");
+	public static final PropertyBool EAST = PropertyBool.create("east");
+	public static final PropertyBool SOUTH = PropertyBool.create("south");
+	public static final PropertyBool WEST = PropertyBool.create("west");
 
 	public static void executeProcedure(java.util.HashMap<String, Object> dependencies) {
 		if (dependencies.get("x") == null) {
@@ -38,9 +53,14 @@ public class ProcedureWorldGenGlossopteris extends ElementsLepidodendronMod.ModE
 			System.err.println("Failed to load dependency world for procedure WorldGenGlossopteris!");
 			return;
 		}
+		if (dependencies.get("SaplingSpawn") == null) {
+			System.err.println("Failed to load dependency SaplingSpawn for procedure WorldGenGlossopteris!");
+			return;
+		}
 		int x = (int) dependencies.get("x");
 		int y = (int) dependencies.get("y");
 		int z = (int) dependencies.get("z");
+		boolean SaplingSpawn = (boolean) dependencies.get("SaplingSpawn");
 		int xx = x;
 		int yy = y;
 		int zz = z;
@@ -1027,28 +1047,28 @@ public class ProcedureWorldGenGlossopteris extends ElementsLepidodendronMod.ModE
 				world.setBlockState(new BlockPos((int) (x + 5), (int) ((height) + (y + 2)), (int) z),
 						BlockGlossopterisTreeLeaves.block.getDefaultState(), 3);
 			}
-			
+
 			block = world.getBlockState(new BlockPos((int) (x - 5), (int) ((height) + (y + 2)), (int) z)).getBlock();
 			if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) (x - 5), (int) ((height) + (y + 2)), (int) z)), world,
 					new BlockPos((int) (x - 5), (int) ((height) + (y + 2)), (int) z))) {
 				world.setBlockState(new BlockPos((int) (x - 5), (int) ((height) + (y + 2)), (int) z),
 						BlockGlossopterisTreeLeaves.block.getDefaultState(), 3);
 			}
-			
+
 			block = world.getBlockState(new BlockPos((int) x, (int) ((height) + (y + 2)), (int) (z + 5))).getBlock();
 			if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) ((height) + (y + 2)), (int) (z + 5))), world,
 					new BlockPos((int) x, (int) ((height) + (y + 2)), (int) (z + 5)))) {
 				world.setBlockState(new BlockPos((int) x, (int) ((height) + (y + 2)), (int) (z + 5)),
 						BlockGlossopterisTreeLeaves.block.getDefaultState(), 3);
 			}
-				
+
 			block = world.getBlockState(new BlockPos((int) x, (int) ((height) + (y + 2)), (int) (z - 5))).getBlock();
 			if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) ((height) + (y + 2)), (int) (z - 5))), world,
 					new BlockPos((int) x, (int) ((height) + (y + 2)), (int) (z - 5)))) {
 				world.setBlockState(new BlockPos((int) x, (int) ((height) + (y + 2)), (int) (z - 5)),
 						BlockGlossopterisTreeLeaves.block.getDefaultState(), 3);
 			}
-			
+
 			block = world.getBlockState(new BlockPos((int) (x + 1), (int) ((height) + (y + 2)), (int) (z + 1))).getBlock();
 			if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) (x + 1), (int) ((height) + (y + 2)), (int) (z + 1))), world,
 					new BlockPos((int) (x + 1), (int) ((height) + (y + 2)), (int) (z + 1)))) {
@@ -2422,38 +2442,150 @@ public class ProcedureWorldGenGlossopteris extends ElementsLepidodendronMod.ModE
 			}
 
 
-			//Random placemenet of strobili:
+			//Random placement of strobili and palaeognetaleana:
+			boolean SpawnPalaeognetaleana = true;
+
+			boolean dimensionCriteria = false;
+			if (shouldGenerateInDimension(world.provider.getDimension(), LepidodendronConfig.dimPalaeognetaleana))
+				dimensionCriteria = true;
+			if (!LepidodendronConfig.genPalaeognetaleanaGlossopteris && !LepidodendronConfig.genAllPlants)
+				dimensionCriteria = false;
+			if (!dimensionCriteria)
+				SpawnPalaeognetaleana = false;
+
+			boolean biomeCriteria = false;
+			Biome biome = world.getBiome(new BlockPos(x, y, z));
+			if ((!matchBiome(biome, LepidodendronConfig.genGlobalBlacklist)) && (!matchBiome(biome, LepidodendronConfig.genPalaeognetaleanaBlacklistBiomes))) {
+				biomeCriteria = true;
+				if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.DEAD))
+					biomeCriteria = false;
+				if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.MUSHROOM))
+					biomeCriteria = false;
+			}
+			if (matchBiome(biome, LepidodendronConfig.genPalaeognetaleanaOverrideBiomes))
+				biomeCriteria = true;
+			if (!biomeCriteria)
+				SpawnPalaeognetaleana = false;
+
+			BlockPos posVine;
+			Random rand = new Random();
+			int vineLength;
+			int vineCount;
 			counter = y;
 			int xct = -5;
 			int zct = -5;
-			
 			while (counter <= (y + 17)) {
 				xct = -6;
 				while (xct <= 6) {
 					zct = -6;
-						while (zct <= 6) {
+					while (zct <= 6) {
 
-							if ((world.getBlockState(new BlockPos((int) x + xct, (int) height + counter, (int) z + zct))).getBlock() == BlockGlossopterisTreeLeaves.block)
-								{
-			
-								if ((Math.random() > 0.7) && (world.isAirBlock(new BlockPos(x + xct, (int) height + counter + 1, (int) z + zct)))) {
-									world.setBlockState(new BlockPos((int) x + xct, (int) height + counter + 1, (int) z + zct), BlockGlossopterisStrobilus.block.getDefaultState(), 3);
-									if (!world.isRemote) {
-										BlockPos _bp = new BlockPos((int) x + xct, (int) height + counter + 1, (int) z + zct);
-										TileEntity _tileEntity = world.getTileEntity(_bp);
-										IBlockState _bs = world.getBlockState(_bp);
-										if (_tileEntity != null)
-											_tileEntity.getTileData().setBoolean("decayable", (true));
-										world.notifyBlockUpdate(_bp, _bs, _bs, 3);
-										}
+						if ((world.getBlockState(new BlockPos((int) x + xct, (int) height + counter, (int) z + zct))).getBlock() == BlockGlossopterisTreeLeaves.block) {
+							//strobili:
+							if ((Math.random() > 0.7) && (world.isAirBlock(new BlockPos(x + xct, (int) height + counter + 1, (int) z + zct)))) {
+								world.setBlockState(new BlockPos((int) x + xct, (int) height + counter + 1, (int) z + zct), BlockGlossopterisStrobilus.block.getDefaultState(), 3);
+								if (!world.isRemote) {
+									BlockPos _bp = new BlockPos((int) x + xct, (int) height + counter + 1, (int) z + zct);
+									TileEntity _tileEntity = world.getTileEntity(_bp);
+									IBlockState _bs = world.getBlockState(_bp);
+									if (_tileEntity != null)
+										_tileEntity.getTileData().setBoolean("decayable", (true));
+									world.notifyBlockUpdate(_bp, _bs, _bs, 3);
+								}
+							}
+							//palaeognetaleana:
+							if ((!SaplingSpawn) & (SpawnPalaeognetaleana)) {
+								//North
+								if ((Math.random() > 0.98) && (world.isAirBlock(new BlockPos(x + xct, (int) height + counter, (int) z + zct + 1)))) {
+									posVine = new BlockPos(x + xct, (int) height + counter, (int) z + zct + 1);
+									world.setBlockState(posVine, BlockPalaeognetaleana.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, true).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false));
+									vineLength = rand.nextInt(8) + 1;
+									vineCount = 1;
+									while (world.isAirBlock(posVine.down(vineCount)) && vineCount <= vineLength) {
+										world.setBlockState(posVine.down(vineCount), BlockPalaeognetaleana.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, true).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false));
+										vineCount += 1;
 									}
 								}
-							zct = zct + 1;
+								//South
+								if ((Math.random() > 0.98) && (world.isAirBlock(new BlockPos(x + xct, (int) height + counter, (int) z + zct - 1)))) {
+									posVine = new BlockPos(x + xct, (int) height + counter, (int) z + zct - 1);
+									world.setBlockState(posVine, BlockPalaeognetaleana.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, true).withProperty(WEST, false));
+									vineLength = rand.nextInt(8) + 1;
+									vineCount = 1;
+									while (world.isAirBlock(posVine.down(vineCount)) && vineCount <= vineLength) {
+										world.setBlockState(posVine.down(vineCount), BlockPalaeognetaleana.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, true).withProperty(WEST, false));
+										vineCount += 1;
+									}
+								}
+								//East
+								if ((Math.random() > 0.98) && (world.isAirBlock(new BlockPos(x + xct - 1, (int) height + counter, (int) z + zct)))) {
+									posVine = new BlockPos(x + xct - 1, (int) height + counter, (int) z + zct);
+									world.setBlockState(posVine, BlockPalaeognetaleana.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, true).withProperty(SOUTH, false).withProperty(WEST, false));
+									vineLength = rand.nextInt(8) + 1;
+									vineCount = 1;
+									while (world.isAirBlock(posVine.down(vineCount)) && vineCount <= vineLength) {
+										world.setBlockState(posVine.down(vineCount), BlockPalaeognetaleana.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, true).withProperty(SOUTH, false).withProperty(WEST, false));
+										vineCount += 1;
+									}
+								}
+								//West
+								if ((Math.random() > 0.98) && (world.isAirBlock(new BlockPos(x + xct + 1, (int) height + counter, (int) z + zct)))) {
+									posVine = new BlockPos(x + xct + 1, (int) height + counter, (int) z + zct);
+									world.setBlockState(posVine, BlockPalaeognetaleana.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, true));
+									vineLength = rand.nextInt(8) + 1;
+									vineCount = 1;
+									while (world.isAirBlock(posVine.down(vineCount)) && vineCount <= vineLength) {
+										world.setBlockState(posVine.down(vineCount), BlockPalaeognetaleana.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, true));
+										vineCount += 1;
+									}
+								}
+							}
 						}
+
+						zct = zct + 1;
+					}
 					xct = xct + 1;
 				}
 				counter = counter + 1;
 			}
 		}
+	}
+
+
+	public static boolean shouldGenerateInDimension(int id, int[] dims) {
+		int[] var2 = dims;
+		int var3 = dims.length;
+		for (int var4 = 0; var4 < var3; ++var4) {
+			int dim = var2[var4];
+			if (dim == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static boolean matchBiome(Biome biome, String[] biomesList) {
+
+		//String regName = biome.getRegistryName().toString();
+
+		String[] var2 = biomesList;
+		int var3 = biomesList.length;
+
+		for (int var4 = 0; var4 < var3; ++var4) {
+			String checkBiome = var2[var4];
+			if (!checkBiome.contains(":")) {
+				//System.err.println("modid test: " + biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":") - 1));
+				if (checkBiome.equalsIgnoreCase(
+						biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":"))
+				)) {
+					return true;
+				}
+			}
+			if (checkBiome.equalsIgnoreCase(biome.getRegistryName().toString())) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

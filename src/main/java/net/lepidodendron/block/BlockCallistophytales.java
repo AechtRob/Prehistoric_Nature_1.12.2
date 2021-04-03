@@ -283,10 +283,11 @@ public class BlockCallistophytales extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Seed-Plant vine");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Seed-Plant vine");
 	        tooltip.add("Periods: Carboniferous");
 	        tooltip.add("Note: Coal swamps. Climbing.");
-	        tooltip.add("Propagation: seeds");
+	        tooltip.add("Propagation: seeds");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

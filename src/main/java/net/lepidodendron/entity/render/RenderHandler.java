@@ -238,6 +238,13 @@ public class RenderHandler {
             return new RenderFurcacauda(manager);
         }
         });
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrehistoricFloraSquatinactis.class, new IRenderFactory<EntityPrehistoricFloraSquatinactis>() {
+        @Override
+        public Render<? super EntityPrehistoricFloraSquatinactis> createRenderFor(RenderManager manager) {
+            return new RenderSquatinactis(manager);
+        }
+        });
 
-    }
+
+}
 }

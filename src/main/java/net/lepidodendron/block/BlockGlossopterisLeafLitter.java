@@ -9,12 +9,15 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
@@ -46,9 +49,9 @@ public class BlockGlossopterisLeafLitter extends ElementsLepidodendronMod.ModEle
 		public BlockCustom() {
 			super(Material.GROUND);
 			setTranslationKey("glossopteris_leaf_litter");
-			setSoundType(SoundType.GROUND);
+			setSoundType(SoundType.PLANT);
 			setHarvestLevel("shovel", 0);
-			setHardness(0.5F);
+			setHardness(0.2F);
 			setResistance(0.5F);
 			setLightLevel(0F);
 			setLightOpacity(255);
@@ -91,6 +94,28 @@ public class BlockGlossopterisLeafLitter extends ElementsLepidodendronMod.ModEle
 			}
 
 			return this.canSustainPlantType(world, pos, plantable.getPlantType(world, pos.offset(direction)));
+		}
+
+		public void onFallenUpon(World worldIn, BlockPos pos, Entity entityIn, float fallDistance)
+		{
+			entityIn.fall(fallDistance, 0.2F);
+		}
+
+		public void onLanded(World worldIn, Entity entityIn)
+		{
+			if (entityIn.isSneaking())
+			{
+				super.onLanded(worldIn, entityIn);
+			}
+			else if (entityIn.motionY < 0.0D)
+			{
+				entityIn.motionY = (-entityIn.motionY * 0.4D);
+
+				if (!(entityIn instanceof EntityLivingBase))
+				{
+					entityIn.motionY *= 0.4D;
+				}
+			}
 		}
 	}
 }

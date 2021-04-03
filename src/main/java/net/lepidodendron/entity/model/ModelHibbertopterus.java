@@ -278,7 +278,7 @@ public class ModelHibbertopterus extends AdvancedModelBase {
 
     @Override
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
-        super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
+        //super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
         this.resetToDefaultPose();
         this.carapace.offsetY = 0.0F;
         AdvancedModelRenderer[] Tail = {this.opisthosoma4, this.opisthosoma5, this.opisthosoma6};
@@ -290,8 +290,7 @@ public class ModelHibbertopterus extends AdvancedModelBase {
         this.swing(l1R, 0.4F, -0.2F, false, 0, 0.1F, f2, 0.8F);
 
         //EntityPrehistoricFloraHibbertopterus.EntityCustom ee = (EntityPrehistoricFloraHibbertopterus.EntityCustom) e;
-
-        //System.err.println("moving: " + ee.moving);
+        if (f3 == 0.0F) {return;}
 
         if (!e.isInWater()) {
             this.swing(l3L_r1, 0.12F, -0.12F, false, 0, -0.1F, f2, 1F);

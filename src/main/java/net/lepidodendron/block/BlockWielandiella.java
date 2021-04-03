@@ -225,9 +225,10 @@ public class BlockWielandiella extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Bennettitiales shrub");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Bennettitiales shrub");
 	        tooltip.add("Periods: Cretaceous");
-	        tooltip.add("Propagation: seeds");
+	        tooltip.add("Propagation: seeds");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

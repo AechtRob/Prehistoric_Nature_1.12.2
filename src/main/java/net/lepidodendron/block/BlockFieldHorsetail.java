@@ -268,10 +268,11 @@ public class BlockFieldHorsetail extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Horsetail plant");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Horsetail plant");
 	        tooltip.add("Periods: Carboniferous - Permian - Triassic - Jurassic - Cretaceous - Paleogene - Neogene - Quaternary");
 	       	tooltip.add("Note: spreads to surrounding grass and dirt");
-	        tooltip.add("Propagation: spores");
+	        tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

@@ -215,6 +215,8 @@ public class ModelLimnoscelis extends AdvancedModelBase {
         this.resetToDefaultPose();
         this.Hips.offsetY = 0.73F; //72
 
+        if (f3 == 0.0F) {return;}
+
         float speed = 0.2F;
         AdvancedModelRenderer[] Tail = {this.Tail1, this.Tail2, this.Tail3};
         AdvancedModelRenderer[] Torso = {this.Head, this.Neck, this.Bodyfront, this.Belly, this.Hips};

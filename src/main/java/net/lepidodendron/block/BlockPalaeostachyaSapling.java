@@ -1,6 +1,7 @@
 
 package net.lepidodendron.block;
 
+import net.lepidodendron.LepidodendronConfig;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -165,9 +166,10 @@ public class BlockPalaeostachyaSapling extends ElementsLepidodendronMod.ModEleme
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Horsetail shrub");
-	        tooltip.add("Periods: Permian");
-	        tooltip.add("Propagation: spores");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Horsetail shrub");
+				tooltip.add("Periods: Permian");
+				tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 	}

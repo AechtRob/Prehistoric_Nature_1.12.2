@@ -4,15 +4,11 @@ package net.lepidodendron.world.biome;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.common.BiomeDictionary;
-import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.block.BlockDirt;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -26,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockArchaeopterisLog;
-import net.lepidodendron.block.BlockPrehistoricGroundCoverBasic;
+import net.lepidodendron.block.BlockPrehistoricGroundBasic;
 import net.lepidodendron.world.WorldGenArchaeopterisTree;
 import net.minecraft.world.gen.feature.WorldGenBlockBlob;
 import net.lepidodendron.world.WorldGenTreeLog;
@@ -44,7 +40,6 @@ import net.lepidodendron.world.WorldGenPrehistoricGroundCover;
 import net.lepidodendron.world.WorldGenTopSoil;
 
 import java.util.Random;
-import net.minecraft.world.gen.feature.WorldGenReed;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class BiomeDevonianHills extends ElementsLepidodendronMod.ModElement {
@@ -68,7 +63,7 @@ public class BiomeDevonianHills extends ElementsLepidodendronMod.ModElement {
 		public BiomeGenCustom() {
 			super(new Biome.BiomeProperties("The Devonian Period").setRainfall(0.5F).setBaseHeight(0.2F).setHeightVariation(0.6F).setTemperature(0.5F).setWaterColor(14745518));
 			setRegistryName("devonian_hills");
-			topBlock = BlockPrehistoricGroundCoverBasic.block.getDefaultState();
+			topBlock = BlockPrehistoricGroundBasic.block.getDefaultState();
 			fillerBlock = Blocks.STONE.getStateFromMeta(1);
 			decorator.treesPerChunk = 10;
 			decorator.flowersPerChunk = 0;

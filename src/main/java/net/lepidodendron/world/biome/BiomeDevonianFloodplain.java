@@ -3,14 +3,11 @@ package net.lepidodendron.world.biome;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeDictionary;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -23,7 +20,6 @@ import net.minecraft.world.World;
 import net.minecraft.util.math.BlockPos;
 
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.block.BlockPrehistoricGroundCoverSand;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockArchaeopterisLog;
 import net.lepidodendron.world.WorldGenTreeLog;

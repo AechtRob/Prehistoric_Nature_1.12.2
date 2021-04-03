@@ -4,8 +4,12 @@ import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.entity.util.PathNavigateAmphibian;
+import net.lepidodendron.entity.util.PathNavigateAmphibianFindWater;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -33,8 +37,14 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityCreature
             this.navigator = new PathNavigateSwimmer(this, world);
         }
         else {
-            this.moveHelper = new EntityPrehistoricFloraAmphibianBase.WanderMoveHelper();
-            this.navigator = new PathNavigateGround(this, world);
+            if (isNearWater(this, this.getPosition())) {
+                this.moveHelper = new EntityPrehistoricFloraAmphibianBase.WanderMoveHelper();
+                this.navigator = new PathNavigateAmphibian(this, world);
+            }
+            else {//Find water!
+                this.moveHelper = new EntityPrehistoricFloraAmphibianBase.WanderMoveHelper();
+                this.navigator = new PathNavigateAmphibianFindWater(this, world);
+            }
         }
         if (FMLCommonHandler.instance().getSide().isClient()) {
             this.chainBuffer = new ChainBuffer();
@@ -43,18 +53,14 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityCreature
 
     private Animation animation = NO_ANIMATION;
     private int animationTick;
+    //public static final Animation ANIMATION_WANDER = Animation.create(20);
+    public abstract int WaterDist();
 
-    public static final Animation ANIMATION_AMPHIBIAN_WANDER = Animation.create(20);
-    public static final Animation ANIMATION_AMPHIBIAN_YAWN = Animation.create(20);
-    public static final Animation ANIMATION_AMPHIBIAN_DRINK = Animation.create(20);
-
-    private static final Animation[] ANIMATIONS = {ANIMATION_AMPHIBIAN_WANDER,ANIMATION_AMPHIBIAN_YAWN,ANIMATION_AMPHIBIAN_DRINK};
-
-    public AnimationAI currentAnim;
+    protected void onAnimationFinish(Animation animation) {}
 
     @Override
     public int getAnimationTick() {
-        return animationTick;
+        return this.animationTick;
     }
 
     @Override
@@ -70,23 +76,18 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityCreature
     }
 
     @Override
-    public void setAnimation(Animation animation)
-    {
-        if (animation == NO_ANIMATION){
-            onAnimationFinish(this.animation);
-            setAnimationTick(0);
-        }
-        this.animation = animation;
+    public Animation[] getAnimations() {
+        return new Animation[]{};
     }
 
     @Override
-    public Animation[] getAnimations()
-    {
-        return ANIMATIONS;
+    public void setAnimation(Animation animation) {
+        if (animation == NO_ANIMATION) {
+            onAnimationFinish(this.animation);
+        }
+        this.animation = animation;
+        setAnimationTick(0);
     }
-
-    protected void onAnimationFinish(Animation animation)
-    {}
 
     protected void initEntityAI() {
         //tasks.addTask(0, new FishWander(this, ANIMATION_FISH_WANDER));
@@ -100,7 +101,7 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityCreature
         return false;
     }
 
-    public abstract String getTexture();
+    //public abstract String getTexture();
 
     @Override
     protected void applyEntityAttributes() {
@@ -134,7 +135,7 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityCreature
      //   }
     //}
 
-    protected abstract double getSwimSpeed();
+    //protected abstract double getSwimSpeed();
 
     public float getMaxTurnDistancePerTick() {
         return 20;
@@ -188,14 +189,14 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityCreature
         super.onLivingUpdate();
         this.renderYawOffset = this.rotationYaw;
 
-        if (getAnimation() != NO_ANIMATION)
-        {
-            animationTick++;
-        }
-        if (world.isRemote && animationTick >= animation.getDuration())
-        {
-            setAnimation(NO_ANIMATION);
-        }
+        //if (getAnimation() != NO_ANIMATION)
+        //{
+       //    animationTick++;
+       // }
+        //if (world.isRemote && animationTick >= animation.getDuration())
+        //{
+        //    setAnimation(NO_ANIMATION);
+        //}
     }
 
     public void onEntityUpdate()
@@ -365,4 +366,34 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityCreature
             }
         }
     }
+
+    public boolean isNearWater(Entity e, BlockPos pos) {
+        int distH = (int) this.WaterDist();
+        if (distH < 1) distH = 1;
+        if (distH > 32) distH = 32;
+        int distV = 4;
+        boolean waterCriteria = false;
+        int xct = -distH;
+        int yct;
+        int zct;
+        while ((xct <= distH) && (!waterCriteria)) {
+            yct = -distV;
+            while ((yct <= distV) && (!waterCriteria)) {
+                zct = -distH;
+                while ((zct <= distH) && (!waterCriteria)) {
+                    if ((Math.pow((int) Math.abs(xct),2) + Math.pow((int) Math.abs(zct),2) <= Math.pow((int) distH,2)) && ((e.world.getBlockState(new BlockPos(pos.getX() + xct, pos.getY() + yct, pos.getZ() + zct))).getMaterial() == Material.WATER)) {
+                        waterCriteria = true;
+                    }
+                    zct = zct + 1;
+                }
+                yct = yct + 1;
+            }
+            xct = xct + 1;
+        }
+
+        if (waterCriteria || (this.WaterDist() == 0)) return true;
+
+        return super.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
+    }
+
 }

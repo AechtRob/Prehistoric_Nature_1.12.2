@@ -289,10 +289,11 @@ public class BlockAsteroxylon extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Lycophyte plant");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Lycophyte plant");
 	        tooltip.add("Periods: early Devonian");
 	        tooltip.add("Note: requires water proximity and spreads to surrounding sand and dirt");
-	        tooltip.add("Propagation: spores");
+	        tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

@@ -46,6 +46,10 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmp
 		enablePersistence();
 	}
 
+	protected float getAISpeedAmphibian() {
+		return 0.25f;
+	}
+
 	private Animation animation = NO_ANIMATION;
 	private int animationTick;
 
@@ -55,6 +59,9 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmp
 	private static final Animation[] ANIMATIONS = {ANIMATION_AMPHIBIAN_WANDER,ANIMATION_AMPHIBIAN_YAWN};
 
 	public AnimationAI currentAnim;
+
+	@Override
+	public int WaterDist() {return 10;}
 
 	@Override
 	public int getAnimationTick() {
@@ -102,11 +109,6 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmp
 	}
 
 	@Override
-	public String getTexture() {
-		return this.getTexture();
-	}
-
-	@Override
 	public EnumCreatureAttribute getCreatureAttribute() {
 		return EnumCreatureAttribute.UNDEFINED;
 	}
@@ -126,11 +128,6 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmp
 	@Override
 	protected boolean canTriggerWalking() {
 		return false;
-	}
-
-	@Override
-	protected double getSwimSpeed() {
-		return this.getSwimSpeed();
 	}
 
 	@Override

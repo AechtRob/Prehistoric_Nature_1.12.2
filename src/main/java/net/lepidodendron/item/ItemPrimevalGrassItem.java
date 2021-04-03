@@ -1,6 +1,7 @@
 
 package net.lepidodendron.item;
 
+import net.lepidodendron.LepidodendronConfig;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -134,10 +135,11 @@ public class ItemPrimevalGrassItem extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: flowering water/land plant");
-	        tooltip.add("Periods: early-Cretaceous");
-	        tooltip.add("Note: placed either next to water or at water surface of one-block deep water, over grass, dirt, clay or sand; spreads if there is light.");
-	        tooltip.add("Propagation: flowers");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: flowering water/land plant");
+				tooltip.add("Periods: early-Cretaceous");
+				tooltip.add("Note: placed either next to water or at water surface of one-block deep water, over grass, dirt, clay or sand; spreads if there is light.");
+				tooltip.add("Propagation: flowers");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 	}

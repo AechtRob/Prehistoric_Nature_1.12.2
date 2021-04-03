@@ -271,10 +271,11 @@ public class BlockPrototaxites extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Proto-plant / fungus");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Proto-plant / fungus");
 	        tooltip.add("Periods: mid Ordovician - Silurian - late Devonian");
 	        tooltip.add("Note: requires water proximity and spreads to surrounding mycelium, sand and dirt, eventually putting up fruiting bodies.");
-	        tooltip.add("Propagation: spores");
+	        tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

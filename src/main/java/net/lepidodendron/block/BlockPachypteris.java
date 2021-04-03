@@ -316,10 +316,11 @@ public class BlockPachypteris extends ElementsLepidodendronMod.ModElement {
 		@SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Water Seed-Plant");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Water Seed-Plant");
 	        tooltip.add("Periods: late Triassic - early Cretaceous");
 	        tooltip.add("Note: planted under water");
-	        tooltip.add("Propagation: seed");
+	        tooltip.add("Propagation: seeds");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

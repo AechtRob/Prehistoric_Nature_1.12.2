@@ -7,9 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.EnumSkyBlock;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.lepidodendron.block.BlockPrehistoricGroundCoverBasic;
-import net.lepidodendron.block.BlockPrehistoricGroundCoverSand;
+import net.lepidodendron.block.BlockPrehistoricGroundSand;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
 public class WorldGenPrehistoricLakes extends WorldGenerator
@@ -125,7 +123,7 @@ public class WorldGenPrehistoricLakes extends WorldGenerator
 								//	worldIn.setBlockState(blockpos, BlockPrehistoricGroundCoverBasic.block.getDefaultState(), 2);
                                 //}
                                 //else {
-                                	worldIn.setBlockState(blockpos, BlockPrehistoricGroundCoverSand.block.getDefaultState(), 2);
+                                	worldIn.setBlockState(blockpos, BlockPrehistoricGroundSand.block.getDefaultState(), 2);
                                 //}
                             }
                         }

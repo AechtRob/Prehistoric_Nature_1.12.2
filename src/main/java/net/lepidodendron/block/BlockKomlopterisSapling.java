@@ -1,6 +1,7 @@
 
 package net.lepidodendron.block;
 
+import net.lepidodendron.LepidodendronConfig;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -161,9 +162,10 @@ public class BlockKomlopterisSapling extends ElementsLepidodendronMod.ModElement
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Seed-Plant tree");
-	        tooltip.add("Periods: Jurassic - Cretaceous - Paleocene - Eocene");
-	        tooltip.add("Propagation: seed");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Seed-Plant tree");
+	        	tooltip.add("Periods: Jurassic - Cretaceous - Paleocene - Eocene");
+	        	tooltip.add("Propagation: seeds");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 	}

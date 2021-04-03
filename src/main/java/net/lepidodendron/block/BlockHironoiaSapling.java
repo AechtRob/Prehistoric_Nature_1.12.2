@@ -1,6 +1,7 @@
 
 package net.lepidodendron.block;
 
+import net.lepidodendron.LepidodendronConfig;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -161,9 +162,10 @@ public class BlockHironoiaSapling extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Flowering shrub");
-	        tooltip.add("Periods: late Cretaceous [but similar to Paleogene - Neogene - Quaternary]");
-	        tooltip.add("Propagation: flowers");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Flowering shrub");
+				tooltip.add("Periods: late Cretaceous [but similar to Paleogene - Neogene - Quaternary]");
+				tooltip.add("Propagation: flowers");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 	}

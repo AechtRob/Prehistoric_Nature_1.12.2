@@ -440,9 +440,9 @@ public class BlockRugosa1 extends ElementsLepidodendronMod.ModElement {
 		@SideOnly(Side.CLIENT)
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-			tooltip.add("Type: Marine Coral");
-			tooltip.add("Periods: Ordovician - Silurian - Devonian - Carboniferous - Permian");
-			//tooltip.add("Propagation: water");
+			if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Marine Coral");
+				tooltip.add("Periods: Ordovician - Silurian - Devonian - Carboniferous - Permian");}
 			super.addInformation(stack, player, tooltip, advanced);
 		}
 

@@ -3,14 +3,11 @@ package net.lepidodendron.world.biome;
 
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.BiomeDictionary;
 
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.command.ICommandSender;
-import net.minecraft.util.math.Vec3d;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -24,9 +21,7 @@ import net.minecraft.world.World;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.block.properties.PropertyEnum;
 
-import net.lepidodendron.LepidodendronConfig;
-
-import net.lepidodendron.block.BlockPrehistoricGroundCover;
+import net.lepidodendron.block.BlockPrehistoricGroundLush;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockSigillariaLog;
 import net.lepidodendron.block.BlockWoodenLog;
@@ -84,7 +79,7 @@ public class BiomeCarboniferousSwampHills extends ElementsLepidodendronMod.ModEl
 		public BiomeGenCustom() {
 			super(new Biome.BiomeProperties("The Carboniferous Period").setRainfall(0.5F).setBaseBiome("lepidodendron:carboniferous_swamp").setBaseHeight(-0.1F).setHeightVariation(0.35F).setTemperature(0.8F).setRainfall(0.9F).setWaterColor(8186044));
 			setRegistryName("carboniferous_swamp_hills");
-			topBlock = BlockPrehistoricGroundCover.block.getDefaultState();
+			topBlock = BlockPrehistoricGroundLush.block.getDefaultState();
 			fillerBlock = Blocks.DIRT.getStateFromMeta(1);
 			decorator.treesPerChunk = 30;
 			decorator.flowersPerChunk = 0;

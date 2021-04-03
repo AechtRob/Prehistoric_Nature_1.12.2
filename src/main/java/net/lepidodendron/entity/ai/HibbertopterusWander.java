@@ -2,9 +2,11 @@ package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraAmphibianBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraHibbertopterusBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteBottomBase;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.pathfinding.PathNodeType;
@@ -57,11 +59,22 @@ public class HibbertopterusWander extends AnimationAI<EntityPrehistoricFloraHibb
             if (this.PrehistoricFloraHibbertopterusBase.getNavigator().noPath()) {
                 //Prefer water targets:
                 BlockPos vec3;
-                if (Math.random() > 0.9) {
-                    vec3 = this.findLandTarget();
+                if (!(this.PrehistoricFloraHibbertopterusBase.isNearWater(this.entity, this.entity.getPosition()))) {
+                    //System.err.println("I'm not in a safe place!");
+                    vec3 = this.findWaterTarget(32);
+                    if (vec3 == null) {
+                        vec3 = this.findLandTarget();
+                        if (vec3 == null) {
+                            vec3 = this.findAnyTarget();
+                        }
+                    }
                 }
                 else {
-                    vec3 = this.findWaterTarget();
+                    if (Math.random() > 0.9) {
+                        vec3 = this.findLandTarget();
+                    } else {
+                        vec3 = this.findWaterTarget(16);
+                    }
                 }
                 if (vec3 != null) {
                     this.PrehistoricFloraHibbertopterusBase.getNavigator().tryMoveToXYZ(vec3.getX() + 0.5D, Math.floor(vec3.getY())  , vec3.getZ() + 0.5D, 1.0);
@@ -91,11 +104,12 @@ public class HibbertopterusWander extends AnimationAI<EntityPrehistoricFloraHibb
         return true;
     }
 
-    public BlockPos findWaterTarget() {
+    public BlockPos findWaterTarget(int dist) {
+        //System.err.println("Find Water Target");
         Random rand = this.PrehistoricFloraHibbertopterusBase.getRNG();
         if (this.PrehistoricFloraHibbertopterusBase.getAttackTarget() == null) {
-            for (int i = 0; i < 10; i++) {
-                BlockPos randPos = this.PrehistoricFloraHibbertopterusBase.getPosition().add(rand.nextInt(16) - 8, rand.nextInt(16) - 8, rand.nextInt(16) - 8);
+            for (int i = 0; i < dist; i++) {
+                BlockPos randPos = this.PrehistoricFloraHibbertopterusBase.getPosition().add(rand.nextInt(dist) - (int) (dist/2), rand.nextInt(dist) - (int) (dist/2), rand.nextInt(dist) - (int) (dist/2));
                 //Use targets which are at the bottom:
                 BlockPos randPosVar = randPos;
                 if (this.PrehistoricFloraHibbertopterusBase.world.getBlockState(randPos).getMaterial() == Material.WATER && !isAtBottom(randPos)) {
@@ -109,6 +123,7 @@ public class HibbertopterusWander extends AnimationAI<EntityPrehistoricFloraHibb
 
                 //System.err.println("Target " + randPos.getX() + " " + randPos.getY() + " " + randPos.getZ());
                 if (this.PrehistoricFloraHibbertopterusBase.world.getBlockState(randPos).getMaterial() == Material.WATER) {
+                    //System.err.println("Target :" + randPos.getX() + " " + randPos.getY() + " " + randPos.getZ());
                     return randPos;
                 }
             }
@@ -123,6 +138,7 @@ public class HibbertopterusWander extends AnimationAI<EntityPrehistoricFloraHibb
     }
 
     public BlockPos findLandTarget() {
+        //System.err.println("Find Land Target");
         BlockPos blockpos1;
         if (this.PrehistoricFloraHibbertopterusBase.getAttackTarget() == null) {
             for (int i = 0; i < 10; i++) {
@@ -130,9 +146,11 @@ public class HibbertopterusWander extends AnimationAI<EntityPrehistoricFloraHibb
                 if (vec3d != null) {
                     blockpos1 = new BlockPos(vec3d.x, vec3d.y, vec3d.z);
                     if ((this.PrehistoricFloraHibbertopterusBase.world.getBlockState(blockpos1).getMaterial() == Material.WATER)
-                            || (this.PrehistoricFloraHibbertopterusBase.isNearWater(blockpos1))
-                    )
+                            || (isNearWater(this.entity, blockpos1, this.PrehistoricFloraHibbertopterusBase.WaterDist()))
+                    ) {
+                        //System.err.println("Target :" + vec3d.x + " " + vec3d.y + " " + vec3d.z);
                         return blockpos1;
+                    }
                 }
             }
         }
@@ -144,4 +162,59 @@ public class HibbertopterusWander extends AnimationAI<EntityPrehistoricFloraHibb
         }
         return null;
     }
+
+    public BlockPos findAnyTarget() {
+        //System.err.println("Find Any Target");
+        BlockPos blockpos1;
+        if (this.PrehistoricFloraHibbertopterusBase.getAttackTarget() == null) {
+            for (int i = 0; i < 10; i++) {
+                Vec3d vec3d = this.entity.getRNG().nextFloat() >= this.probability ? RandomPositionGenerator.getLandPos(this.entity, 10, 7) : RandomPositionGenerator.findRandomTarget(this.entity, 10, 7);
+                if (vec3d != null) {
+                    blockpos1 = new BlockPos(vec3d.x, vec3d.y, vec3d.z);
+                    //System.err.println("Target :" + vec3d.x + " " + vec3d.y + " " + vec3d.z);
+                    return blockpos1;
+                }
+            }
+        }
+        else { //allow attacks only under water:
+            blockpos1 = new BlockPos(this.PrehistoricFloraHibbertopterusBase.getAttackTarget());
+            if (this.PrehistoricFloraHibbertopterusBase.world.getBlockState(blockpos1).getMaterial() == Material.WATER) {
+                return blockpos1;
+            }
+        }
+        return null;
+    }
+
+    public boolean isNearWater(Entity e, BlockPos pos, int WaterDist) {
+        int distH = WaterDist;
+        if (distH < 1) distH = 1;
+        if (distH > 32) distH = 32;
+        int distV = 4;
+        boolean waterCriteria = false;
+        int xct = -distH;
+        int yct;
+        int zct;
+        while ((xct <= distH) && (!waterCriteria)) {
+            yct = -distV;
+            while ((yct <= distV) && (!waterCriteria)) {
+                zct = -distH;
+                while ((zct <= distH) && (!waterCriteria)) {
+                    if ((Math.pow((int) Math.abs(xct),2) + Math.pow((int) Math.abs(zct),2) <= Math.pow((int) distH,2)) && ((e.world.getBlockState(new BlockPos(pos.getX() + xct, pos.getY() + yct, pos.getZ() + zct))).getMaterial() == Material.WATER)) {
+                        waterCriteria = true;
+                        //System.err.println("start target: " + (pos.getX()) + " " +  (pos.getY()) + " " + (pos.getZ()));
+                        //System.err.println("water at: " + (pos.getX() + xct) + " " +  (pos.getY() + yct) + " " + (pos.getZ() + zct));
+                    }
+                    zct = zct + 1;
+                }
+                yct = yct + 1;
+            }
+            xct = xct + 1;
+        }
+
+        if (waterCriteria || (WaterDist == 0)) return true;
+
+        return false;
+
+    }
+
 }

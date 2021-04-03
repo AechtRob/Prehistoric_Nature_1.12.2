@@ -1,6 +1,7 @@
 
 package net.lepidodendron.block;
 
+import net.lepidodendron.LepidodendronConfig;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -211,9 +212,11 @@ public class BlockAntarcticycas extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Cycad");
-	        tooltip.add("Periods: mid Triassic");
-	        tooltip.add("Propagation: fruit/cone");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Cycad");
+				tooltip.add("Periods: mid Triassic");
+				tooltip.add("Propagation: fruit/cone");
+			}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

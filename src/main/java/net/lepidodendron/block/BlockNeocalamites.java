@@ -375,10 +375,11 @@ public class BlockNeocalamites extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Horsetail shrub");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Horsetail shrub");
 	        tooltip.add("Periods: late Carboniferous - Permian - early Triassic");
 	        tooltip.add("Note: Can be planted in water or on land");
-	        tooltip.add("Propagation: spores");
+	        tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 	}

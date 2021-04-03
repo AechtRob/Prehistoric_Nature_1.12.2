@@ -1,6 +1,7 @@
 
 package net.lepidodendron.block;
 
+import net.lepidodendron.LepidodendronConfig;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -161,10 +162,11 @@ public class BlockOdontopterisSapling extends ElementsLepidodendronMod.ModElemen
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Climbing Seed-Plant");
-	        tooltip.add("Periods: late Carboniferous - early Permian");
-	        tooltip.add("Note: Must be planted against a climbable surface");
-	        tooltip.add("Propagation: seeds");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Climbing Seed-Plant");
+				tooltip.add("Periods: late Carboniferous - early Permian");
+				tooltip.add("Note: Must be planted against a climbable surface");
+				tooltip.add("Propagation: seeds");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 	}

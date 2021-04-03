@@ -1009,6 +1009,24 @@ public class ProcedureCollectSpores extends ElementsLepidodendronMod.ModElement 
 				}
 			}
 
+			if ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockProtolepidodendropsisShoot.block)
+			{
+				if (!(world.isRemote)) {
+					if (entity instanceof EntityLivingBase) {
+						((EntityLivingBase) entity).swingArm(EnumHand.MAIN_HAND);
+					}
+					if (entity instanceof EntityPlayer) {
+						if ((((entity instanceof EntityLivingBase) ? ((EntityLivingBase) entity).getHeldItemMainhand() : ItemStack.EMPTY)
+								.getItem() == new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem())) {
+							((EntityPlayer) entity).inventory.clearMatchingItems(new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem(), -1, (int) 1, null);
+							ItemStack _setstack = new ItemStack(ItemProtolepidodendropsisSpores.block, (int) (1));
+							_setstack.setCount(1);
+							ItemHandlerHelper.giveItemToPlayer(((EntityPlayer) entity), _setstack);
+						}
+					}
+				}
+			}
+
 
 			
 		}

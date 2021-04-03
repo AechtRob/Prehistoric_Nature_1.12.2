@@ -752,9 +752,10 @@ public class BlockGreenAlgaeMat extends ElementsLepidodendronMod.ModElement {
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Freshwater or Marine Algae");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Freshwater or Marine Algae");
 	        tooltip.add("Periods: Tonian - Cryogenian - Ediacaran - Cambrian - Ordovician - Silurian - Devonian - Carboniferous - Permian - Triassic - Jurassic - Cretaceous - Paleogene - Neogene - Quaternary");
-	        tooltip.add("Propagation: water");
+	        tooltip.add("Propagation: water");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

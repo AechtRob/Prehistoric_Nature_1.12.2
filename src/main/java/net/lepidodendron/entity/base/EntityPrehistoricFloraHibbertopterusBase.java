@@ -30,7 +30,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class EntityPrehistoricFloraHibbertopterusBase extends EntityCreature implements IAnimatedEntity {
+public abstract class EntityPrehistoricFloraHibbertopterusBase extends EntityPrehistoricFloraAmphibianBase implements IAnimatedEntity {
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;
@@ -48,20 +48,12 @@ public abstract class EntityPrehistoricFloraHibbertopterusBase extends EntityCre
 
     protected abstract float getAISpeedHibbertopterus();
 
-    public abstract boolean isNearWater(BlockPos pos);
-
-    private Animation animation = NO_ANIMATION;
-
-    public static final Animation ANIMATION_WANDER = Animation.create(0);
-
     protected void initEntityAI() {}
 
     @Override
     public boolean isAIDisabled() {
         return false;
     }
-
-    //public abstract String getTexture();
 
     @Override
     protected void applyEntityAttributes() {
@@ -115,7 +107,7 @@ public abstract class EntityPrehistoricFloraHibbertopterusBase extends EntityCre
 
     @Override
     protected int getExperiencePoints(EntityPlayer player) {
-        return 1 + this.world.rand.nextInt(3);
+        return 2 + this.world.rand.nextInt(3);
     }
 
     @Override

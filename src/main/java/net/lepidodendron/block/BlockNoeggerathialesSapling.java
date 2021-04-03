@@ -2,6 +2,7 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.creativetab.TabLepidodendron;
 import net.lepidodendron.procedure.ProcedureWorldGenNoeggerathiales;
 import net.minecraft.block.Block;
@@ -157,9 +158,10 @@ public class BlockNoeggerathialesSapling extends ElementsLepidodendronMod.ModEle
 	    @SideOnly(Side.CLIENT)
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        tooltip.add("Type: Proto-tree");
-	        tooltip.add("Periods: Permian");
-	        tooltip.add("Propagation: spores");
+	        if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Proto-tree");
+				tooltip.add("Periods: Permian");
+				tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 	}

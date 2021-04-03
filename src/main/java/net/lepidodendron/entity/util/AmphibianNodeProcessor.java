@@ -3,6 +3,7 @@ package net.lepidodendron.entity.util;
 import com.google.common.collect.Sets;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.entity.EntityPrehistoricFloraHibbertopterus;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraAmphibianBase;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -26,16 +27,11 @@ public class AmphibianNodeProcessor extends NodeProcessor
 {
     protected float avoidsWater;
     protected EntityLiving currentEntity;
-    private int EntityWaterDist;
 
     public void init(IBlockAccess sourceIn, EntityLiving mob)
     {
         super.init(sourceIn, mob);
         this.avoidsWater = mob.getPathPriority(PathNodeType.WATER);
-        EntityWaterDist = 0;
-        if (mob instanceof EntityPrehistoricFloraHibbertopterus) {
-            EntityWaterDist = LepidodendronConfig.waterHibbertopterus;
-        }
     }
 
     public void postProcess()
@@ -300,7 +296,7 @@ public class AmphibianNodeProcessor extends NodeProcessor
     public PathNodeType getPathNodeType(IBlockAccess blockaccessIn, int x, int y, int z, EntityLiving entitylivingIn, int xSize, int ySize, int zSize, boolean canBreakDoorsIn, boolean canEnterDoorsIn)
     {
         //Amphibian:
-        if (!isNearWater(entitylivingIn, new BlockPos(x, y, z)))
+        if (!((EntityPrehistoricFloraAmphibianBase) entitylivingIn).isNearWater(entitylivingIn, new BlockPos(x, y, z)))
         {
             return PathNodeType.BLOCKED;
         }
@@ -521,37 +517,5 @@ public class AmphibianNodeProcessor extends NodeProcessor
         {
             return PathNodeType.TRAPDOOR;
         }
-    }
-
-    public boolean isNearWater(EntityLiving e, BlockPos pos) {
-        //System.err.println("Water dist: " + EntityWaterDist);
-        int distH = EntityWaterDist;
-        if (distH < 1) distH = 1;
-        if (distH > 16) distH = 16;
-        int distV = 8;
-        if (distV < 1) distV = 1;
-        if (distV > 6) distV = 6;
-        boolean waterCriteria = false;
-        int xct = -distH;
-        int yct;
-        int zct;
-        while ((xct <= distH) && (!waterCriteria)) {
-            yct = -distV;
-            while ((yct <= 1) && (!waterCriteria)) {
-                zct = -distH;
-                while ((zct <= distH) && (!waterCriteria)) {
-                    if ((Math.pow((int) Math.abs(xct),2) + Math.pow((int) Math.abs(zct),2) <= Math.pow((int) distH,2)) && ((e.world.getBlockState(new BlockPos(pos.getX() + xct, pos.getY() + yct, pos.getZ() + zct))).getMaterial() == Material.WATER)) {
-                        waterCriteria = true;
-                    }
-                    zct = zct + 1;
-                }
-                yct = yct + 1;
-            }
-            xct = xct + 1;
-        }
-
-        if (waterCriteria || EntityWaterDist == 0) return true;
-
-        return false;
     }
 }
