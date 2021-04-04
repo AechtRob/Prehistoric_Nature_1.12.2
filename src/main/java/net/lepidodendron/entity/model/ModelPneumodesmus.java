@@ -338,7 +338,7 @@ public class ModelPneumodesmus extends AdvancedModelBase {
             this.chainWave(legsL, 0.2F, 0.2F, -3, f2, 1);
             this.chainWave(legsR, 0.6F, 0.2F, -3, f2, 1);
             this.chainSwing(BodyHead, 0.2F, 0.3F, -3, f2, 1);
-            this.walk(head, 0.2F, 0.3F, false,0.3F, 0.5F, f2, 1);
+            //this.walk(head, 0.2F, 0.3F, false,0.3F, 0.5F, f2, 1);
 
             this.chainSwing(Body1, 0.3F, -0.04F, -3, f2, 0.5F);
             this.chainSwing(Body2, 0.3F, 0.04F, -3, f2, 0.5F);

@@ -4,6 +4,7 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.FishWanderBottomDweller;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.entity.model.ModelBothriolepis;
@@ -22,6 +23,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class EntityPrehistoricFloraBothriolepis extends EntityPrehistoricFloraFishBase {
 
@@ -155,9 +158,8 @@ public class EntityPrehistoricFloraBothriolepis extends EntityPrehistoricFloraFi
 
 	}
 
-	@Override
-	protected Item getDropItem() {
-		return new ItemStack(ItemBothriolepisRaw.block, (int) (1)).getItem();
+	@Nullable
+	protected ResourceLocation getLootTable() {
+		return LepidodendronMod.BOTHRIOLEPIS_LOOT;
 	}
-
 }

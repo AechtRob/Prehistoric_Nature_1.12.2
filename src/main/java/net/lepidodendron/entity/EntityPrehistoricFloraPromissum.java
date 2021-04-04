@@ -4,6 +4,7 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.FishWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.entity.model.ModelPromissum;
@@ -23,6 +24,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class EntityPrehistoricFloraPromissum extends EntityPrehistoricFloraFishBase {
 
@@ -137,10 +140,9 @@ public class EntityPrehistoricFloraPromissum extends EntityPrehistoricFloraFishB
 		super.onEntityUpdate();
 	}
 
-	@Override
-	protected Item getDropItem() {
-		//return null;
-		return new ItemStack(ItemPromissumRaw.block, (int) (1)).getItem();
+	@Nullable
+	protected ResourceLocation getLootTable() {
+		return LepidodendronMod.PROMISSUM_LOOT;
 	}
 
 }

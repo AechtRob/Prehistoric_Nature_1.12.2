@@ -3,6 +3,7 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.NautiloidWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraNautiloidBase;
 import net.lepidodendron.entity.model.ModelCyrtoceras;
@@ -27,6 +28,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class EntityPrehistoricFloraCyrtoceras extends EntityPrehistoricFloraNautiloidBase {
 
@@ -176,10 +179,9 @@ public class EntityPrehistoricFloraCyrtoceras extends EntityPrehistoricFloraNaut
 		return movingobjectposition == null || movingobjectposition.typeOfHit != RayTraceResult.Type.BLOCK;
 	}
 
-	@Override
-	protected Item getDropItem() {
-		//return null;
-		return new ItemStack(ItemCyrtocerasRaw.block, (int) (1)).getItem();
+	@Nullable
+	protected ResourceLocation getLootTable() {
+		return LepidodendronMod.CYRTOCERAS_LOOT;
 	}
 
 	@Override

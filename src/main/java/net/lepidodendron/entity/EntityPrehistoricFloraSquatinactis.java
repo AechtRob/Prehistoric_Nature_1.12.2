@@ -3,6 +3,7 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
+import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.FishWanderBottomDweller;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.item.entities.ItemBothriolepisRaw;
@@ -17,6 +18,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class EntityPrehistoricFloraSquatinactis extends EntityPrehistoricFloraFishBase {
 
@@ -147,10 +150,9 @@ public class EntityPrehistoricFloraSquatinactis extends EntityPrehistoricFloraFi
 
 	}
 
-	@Override
-	protected Item getDropItem() {
-		return null;
-		//return new ItemStack(ItemBothriolepisRaw.block, (int) (1)).getItem();
+	@Nullable
+	protected ResourceLocation getLootTable() {
+		return LepidodendronMod.SQUATINACTIS_LOOT;
 	}
 
 }

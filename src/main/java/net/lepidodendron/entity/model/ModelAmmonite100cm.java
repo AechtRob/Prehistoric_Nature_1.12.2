@@ -277,7 +277,7 @@ public class ModelAmmonite100cm extends AdvancedModelBase {
         this.chainWave(tentacle10, speed, 0.3F, -2, f2, 1F);
 
         if (e.isInWater()) {
-            this.bob(Shell1, 0.1F, 1.0F, false, f2, 2);
+            this.bob(Shell1, 0.1F, 0.9F, false, f2, 2);
             //this.body.offsetX = this.moveBox(speed, 1.5F, true, 2, 1.5F);
         }
         else {

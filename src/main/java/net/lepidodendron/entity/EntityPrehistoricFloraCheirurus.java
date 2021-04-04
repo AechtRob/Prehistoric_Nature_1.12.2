@@ -4,6 +4,7 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.TrilobiteWanderBottom;
 import net.lepidodendron.entity.ai.TrilobiteWanderSwim;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraEurypteridBase;
@@ -27,6 +28,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class EntityPrehistoricFloraCheirurus extends EntityPrehistoricFloraTrilobiteSwimBase {
 
@@ -137,10 +140,9 @@ public class EntityPrehistoricFloraCheirurus extends EntityPrehistoricFloraTrilo
 		super.onEntityUpdate();
 	}
 
-	@Override
-	protected Item getDropItem() {
-		return null;
-		//return new ItemStack(ItemAcanthodesMeat.block, (int) (1)).getItem();
+	@Nullable
+	protected ResourceLocation getLootTable() {
+		return LepidodendronMod.CHEIRURUS_LOOT;
 	}
 
 }

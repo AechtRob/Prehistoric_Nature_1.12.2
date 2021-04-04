@@ -3,6 +3,7 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.NautiloidWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraNautiloidBase;
 import net.lepidodendron.entity.model.ModelAmmonite15cm;
@@ -31,6 +32,8 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 
 public class EntityPrehistoricFloraAmmonite_Manticoceras extends EntityPrehistoricFloraNautiloidBase {
@@ -181,10 +184,9 @@ public class EntityPrehistoricFloraAmmonite_Manticoceras extends EntityPrehistor
 		return movingobjectposition == null || movingobjectposition.typeOfHit != RayTraceResult.Type.BLOCK;
 	}
 
-	@Override
-	protected Item getDropItem() {
-		//return null;
-		return new ItemStack(ItemAmmoniteRaw.block, (int) (1)).getItem();
+	@Nullable
+	protected ResourceLocation getLootTable() {
+		return LepidodendronMod.AMMONITE_LOOT;
 	}
 
 	@Override

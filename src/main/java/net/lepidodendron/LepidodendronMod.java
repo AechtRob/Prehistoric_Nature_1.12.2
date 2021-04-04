@@ -18,6 +18,8 @@
 package net.lepidodendron;
 
 import net.lepidodendron.entity.render.RenderHandler;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -47,7 +49,7 @@ import java.util.function.Supplier;
 public class LepidodendronMod {
 	public static final String MODID = "lepidodendron";
 	public static final String NAME = "Prehistoric Flora";
-	public static final String VERSION = "45.0";
+	public static final String VERSION = "45.1";
 	public static final SimpleNetworkWrapper PACKET_HANDLER = NetworkRegistry.INSTANCE.newSimpleChannel("lepidodendron:a");
 	@SidedProxy(clientSide = "net.lepidodendron.ClientProxyLepidodendronMod", serverSide = "net.lepidodendron.ServerProxyLepidodendronMod")
 	public static IProxyLepidodendronMod proxy;
@@ -56,12 +58,18 @@ public class LepidodendronMod {
 	public ElementsLepidodendronMod elements = new ElementsLepidodendronMod();
 
 	public static final int ENTITY_WALLISEROPS = 1;
+	public static final ResourceLocation WALLISEROPS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/walliserops"));
 	public static final int ENTITY_PNEUMODESMUS = 2;
 	public static final int ENTITY_CHEIRURUS = 3;
+	public static final ResourceLocation CHEIRURUS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/cheirurus"));
 	public static final int ENTITY_ISOTELUS = 4;
+	public static final ResourceLocation ISOTELUS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/isotelus"));
 	public static final int ENTITY_ASAPHUS = 5;
+	public static final ResourceLocation ASAPHUS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/asaphus"));
 	public static final int ENTITY_PROMISSUM = 6;
+	public static final ResourceLocation PROMISSUM_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/promissum"));
 	public static final int ENTITY_ACANTHODES = 7;
+	public static final ResourceLocation ACANTHODES_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/acanthodes"));
 	public static final int ENTITY_JELLYFISH1 = 8;
 	public static final int ENTITY_JELLYFISH2 = 9;
 	public static final int ENTITY_JELLYFISH3 = 10;
@@ -70,14 +78,21 @@ public class LepidodendronMod {
 	public static final int ENTITY_JELLYFISH6 = 13;
 	public static final int ENTITY_JELLYFISH7 = 14;
 	public static final int ENTITY_BOTHRIOLEPIS = 15;
+	public static final ResourceLocation BOTHRIOLEPIS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/bothriolepis"));
 	public static final int ENTITY_EURYPTERUS = 16;
+	public static final ResourceLocation EURYPTERUS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/eurypterus"));
 	public static final int ENTITY_PTERASPIS = 17;
+	public static final ResourceLocation PTERASPIS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/pteraspis"));
 	public static final int ENTITY_CYRTOCERAS = 18;
+	public static final ResourceLocation CYRTOCERAS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/cyrtoceras"));
 	public static final int ENTITY_ARANDASPIS = 19;
+	public static final ResourceLocation ARANDASPIS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/arandaspis"));
 	public static final int ENTITY_ANTHRACOMEDUSA = 20;
 	public static final int ENTITY_LIMNOSCELIS = 21;
 	public static final int ENTITY_SACABAMBASPIS = 22;
+	public static final ResourceLocation SACABAMBASPIS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/sacabambaspis"));
 	public static final int ENTITY_HIBERNASPIS = 23;
+	public static final ResourceLocation HIBERNASPIS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/hibernaspis"));
 	public static final int ENTITY_EOARTHROPLEURA = 24;
 	public static final int ENTITY_AMMONITE_MANTICOCERAS = 25;
 	public static final int ENTITY_AMMONITE_GONIATITES = 26;
@@ -90,10 +105,15 @@ public class LepidodendronMod {
 	public static final int ENTITY_AMMONITE_PACHYDISCUS  = 33;
 	public static final int ENTITY_AMMONITE_CORONICERAS = 34;
 	public static final int ENTITY_AMMONITE_CERATITES = 35;
+	public static final ResourceLocation AMMONITE_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/ammonite"));
 	public static final int ENTITY_HIBBERTOPTERUS = 36;
+	public static final ResourceLocation HIBBERTOPTERUS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/hibbertopterus"));
 	public static final int ENTITY_TERATASPIS = 37;
+	public static final ResourceLocation TERATASPIS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/terataspis"));
 	public static final int ENTITY_FURCACAUDA = 38;
+	public static final ResourceLocation FURCACAUDA_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/furcacauda"));
 	public static final int ENTITY_SQUATINACTIS = 39;
+	public static final ResourceLocation SQUATINACTIS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/squatinactis"));
 
 
 

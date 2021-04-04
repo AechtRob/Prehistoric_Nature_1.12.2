@@ -2,6 +2,7 @@
 package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.EurypteridWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraEurypteridBase;
 import net.lepidodendron.item.entities.ItemEurypterusRaw;
@@ -21,6 +22,8 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class EntityPrehistoricFloraEurypterus extends EntityPrehistoricFloraEurypteridBase {
 
@@ -199,10 +202,9 @@ public class EntityPrehistoricFloraEurypterus extends EntityPrehistoricFloraEury
 		return movingobjectposition == null || movingobjectposition.typeOfHit != RayTraceResult.Type.BLOCK;
 	}
 
-	@Override
-	protected Item getDropItem() {
-		//return null;
-		return new ItemStack(ItemEurypterusRaw.block, (int) (1)).getItem();
+	@Nullable
+	protected ResourceLocation getLootTable() {
+		return LepidodendronMod.EURYPTERUS_LOOT;
 	}
 
 	@Override

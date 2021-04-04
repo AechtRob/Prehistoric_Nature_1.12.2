@@ -3,6 +3,7 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
+import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.FishWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.item.entities.ItemFurcacaudaRaw;
@@ -16,6 +17,8 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class EntityPrehistoricFloraFurcacauda extends EntityPrehistoricFloraFishBase {
 
@@ -130,10 +133,9 @@ public class EntityPrehistoricFloraFurcacauda extends EntityPrehistoricFloraFish
 		super.onEntityUpdate();
 	}
 
-	@Override
-	protected Item getDropItem() {
-		return new ItemStack(ItemFurcacaudaRaw.block, (int) (1)).getItem();
+	@Nullable
+	protected ResourceLocation getLootTable() {
+		return LepidodendronMod.FURCACAUDA_LOOT;
 	}
-
 }
 

@@ -165,7 +165,7 @@ public class ModelSacabambaspis extends AdvancedModelBase {
             this.swing(head, speed, 0.3F, true, 0, 0, f2, 1);
             if (!e.isInWater()) {
                 this.head.rotateAngleZ = (float) Math.toRadians(90);
-                this.head.offsetY = 1.4F;
+                this.head.offsetY = 1.0F;
                 this.bob(head, -speed, 5F, false, f2, 1);
             }
         }

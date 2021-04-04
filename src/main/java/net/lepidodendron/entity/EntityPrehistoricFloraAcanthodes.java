@@ -3,6 +3,7 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
+import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.FishWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.entity.model.ModelAcanthodes;
@@ -25,6 +26,8 @@ import net.minecraft.entity.Entity;
 import net.minecraft.client.renderer.entity.RenderLiving;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+
+import javax.annotation.Nullable;
 
 public class EntityPrehistoricFloraAcanthodes extends EntityPrehistoricFloraFishBase {
 
@@ -139,10 +142,9 @@ public class EntityPrehistoricFloraAcanthodes extends EntityPrehistoricFloraFish
 		super.onEntityUpdate();
 	}
 
-	@Override
-	protected Item getDropItem() {
-		return new ItemStack(ItemAcanthodesRaw.block, (int) (1)).getItem();
+	@Nullable
+	protected ResourceLocation getLootTable() {
+		return LepidodendronMod.ACANTHODES_LOOT;
 	}
-
 }
 

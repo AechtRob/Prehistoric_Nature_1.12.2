@@ -5,6 +5,7 @@ import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.HibbertopterusWander;
 import net.lepidodendron.entity.ai.TrilobiteWanderBottom;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAmphibianBase;
@@ -37,7 +38,9 @@ import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-	public class EntityPrehistoricFloraHibbertopterus extends EntityPrehistoricFloraHibbertopterusBase {
+import javax.annotation.Nullable;
+
+public class EntityPrehistoricFloraHibbertopterus extends EntityPrehistoricFloraHibbertopterusBase {
 
 		public BlockPos currentTarget;
 		@SideOnly(Side.CLIENT)
@@ -153,11 +156,10 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 			}
 		}
 
-		@Override
-		protected Item getDropItem() {
-			//return null;
-			return new ItemStack(ItemHibbertopterusRaw.block, (int) (1)).getItem();
-		}
+	@Nullable
+	protected ResourceLocation getLootTable() {
+		return LepidodendronMod.HIBBERTOPTERUS_LOOT;
+	}
 
 	}
 
