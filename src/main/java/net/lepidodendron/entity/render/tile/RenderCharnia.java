@@ -22,10 +22,10 @@ public class RenderCharnia extends TileEntitySpecialRenderer<BlockCharnia.TileEn
         //GlStateManager.pushMatrix();
         this.bindTexture(TEXTURE);
         ModelCharnia modelCharnia = this.modelCharnia;
-        //GlStateManager.pushMatrix();
+        GlStateManager.pushMatrix();
         GlStateManager.translate(x + 0.5, y + 2.5, z + 0.5);
         GlStateManager.rotate(180, 0F, 0F, 1F);
         modelCharnia.renderAll();
-        //GlStateManager.popMatrix();
+        GlStateManager.popMatrix();
     }
 }

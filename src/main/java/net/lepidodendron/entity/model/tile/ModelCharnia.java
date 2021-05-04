@@ -48,7 +48,7 @@ public class ModelCharnia extends AdvancedModelBase {
         this.bone.render(0.1f);
         //If I leave the next line in, the animation doesn't run. If I comment it out, the animation runs to infinity and never changes direction:
         //this.resetToDefaultPose();
-        AdvancedModelRenderer[] bodyFull = {this.frond1, this.frond2, this.frond3, this.frond4};
+        AdvancedModelRenderer[] bodyFull = {this.frond4};
         float speed = 0.1F;
         this.chainWave(bodyFull, speed, 0.5F, 2, 0.1F, 0.1F);
     }
