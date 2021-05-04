@@ -79,7 +79,7 @@ public class BlockArchaeopterisBranch extends ElementsLepidodendronMod.ModElemen
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("archaeopteris_branch");
+			setTranslationKey("pf_archaeopteris_branch");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

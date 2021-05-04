@@ -70,7 +70,7 @@ public class BlockCalamitesSapling extends ElementsLepidodendronMod.ModElement {
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("calamites_sapling");
+			setTranslationKey("pf_calamites_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

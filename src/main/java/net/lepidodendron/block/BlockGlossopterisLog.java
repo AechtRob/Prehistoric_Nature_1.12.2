@@ -52,7 +52,7 @@ public class BlockGlossopterisLog extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("glossopterislog");
+			setTranslationKey("pf_glossopterislog");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

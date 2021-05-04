@@ -34,7 +34,7 @@ public class ItemNoeggerathialesSpores extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("noeggerathiales_spores");
+			setTranslationKey("pf_noeggerathiales_spores");
 			setRegistryName("noeggerathiales_spores");
 			setCreativeTab(null);
 		}

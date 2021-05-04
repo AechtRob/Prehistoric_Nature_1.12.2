@@ -60,7 +60,7 @@ public class BlockPrehistoricGroundSandPangaean extends ElementsLepidodendronMod
 	public static class BlockCustom extends BlockFalling implements IGrowable, ISustainsPlantType {
 		public BlockCustom() {
 			super(Material.SAND);
-			setTranslationKey("sandy_prehistoric_ground_cover_pangaean");
+			setTranslationKey("pf_sandy_prehistoric_ground_cover_pangaean");
 			setSoundType(SoundType.SAND);
         	setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
         	setTickRandomly(true);

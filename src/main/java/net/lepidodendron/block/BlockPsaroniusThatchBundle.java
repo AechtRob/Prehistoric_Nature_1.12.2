@@ -44,7 +44,7 @@ public class BlockPsaroniusThatchBundle extends ElementsLepidodendronMod.ModElem
 	public static class BlockCustom extends BlockRotatedPillar {
 		public BlockCustom() {
 			super(Material.LEAVES);
-			setTranslationKey("psaronius_thatch_bundle");
+			setTranslationKey("pf_psaronius_thatch_bundle");
 			setCreativeTab(TabLepidodendron.tab);
         	this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.Y));
 		}

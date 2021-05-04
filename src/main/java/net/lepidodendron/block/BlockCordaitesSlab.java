@@ -58,7 +58,7 @@ public class BlockCordaitesSlab extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockSlab {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("cordaites_slab");
+			setTranslationKey("pf_cordaites_slab");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

@@ -68,7 +68,7 @@ public class BlockPerticaSpore extends ElementsLepidodendronMod.ModElement {
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("pertica_spore");
+			setTranslationKey("pf_pertica_spore");
 			setRegistryName("pertica_spore");
 		}
 

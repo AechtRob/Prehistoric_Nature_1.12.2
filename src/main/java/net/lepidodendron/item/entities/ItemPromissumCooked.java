@@ -33,7 +33,7 @@ public class ItemPromissumCooked extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(5, 0.7f, false);
-			setTranslationKey("promissum_cooked");
+			setTranslationKey("pf_promissum_cooked");
 			setRegistryName("promissum_cooked");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

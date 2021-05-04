@@ -48,7 +48,7 @@ public class BlockGlossopterisFenceGate extends ElementsLepidodendronMod.ModElem
 	public static class BlockCustom extends BlockFenceGate {
 		public BlockCustom() {
 			super(EnumType.OAK);
-			setTranslationKey("glossopteris_fence_gate");
+			setTranslationKey("pf_glossopteris_fence_gate");
 			setHarvestLevel("axe", 1);
 			setSoundType(SoundType.WOOD);
 			setHardness(2F);

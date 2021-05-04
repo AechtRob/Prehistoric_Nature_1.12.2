@@ -67,7 +67,7 @@ public class BlockMedullosalesShootPlaceable extends ElementsLepidodendronMod.Mo
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("medullosales_shoot");
+			setTranslationKey("pf_medullosales_shoot");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

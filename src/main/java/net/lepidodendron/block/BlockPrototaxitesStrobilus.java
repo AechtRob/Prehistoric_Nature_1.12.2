@@ -84,7 +84,7 @@ public class BlockPrototaxitesStrobilus extends ElementsLepidodendronMod.ModElem
 		public static final PropertyBool ATTACHED = PropertyBool.create("attached");
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("prototaxites_strobilus");
+			setTranslationKey("pf_prototaxites_strobilus");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

@@ -47,7 +47,7 @@ public class BlockAlpiaStairs extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockStairs {
 		public BlockCustom() {
 			super(new Block(Material.WOOD).getDefaultState());
-			setTranslationKey("alpia_stairs");
+			setTranslationKey("pf_alpia_stairs");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

@@ -58,7 +58,7 @@ public class BlockEncblueShootTop extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("encblue_shoot_top");
+			setTranslationKey("pf_encblue_shoot_top");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

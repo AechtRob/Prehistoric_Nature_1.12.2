@@ -74,7 +74,7 @@ public class BlockAsteroxylon extends ElementsLepidodendronMod.ModElement {
 			else {
 				setTickRandomly(false);
 			}
-			setTranslationKey("asteroxylon");
+			setTranslationKey("pf_asteroxylon");
 			setRegistryName("asteroxylon");
 		}
 

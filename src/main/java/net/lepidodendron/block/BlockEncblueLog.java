@@ -72,7 +72,7 @@ public class BlockEncblueLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("encblue_log");
+			setTranslationKey("pf_encblue_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

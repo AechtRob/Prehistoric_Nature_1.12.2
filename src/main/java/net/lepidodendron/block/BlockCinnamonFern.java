@@ -67,7 +67,7 @@ public class BlockCinnamonFern extends ElementsLepidodendronMod.ModElement {
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("cinnamon_fern");
+			setTranslationKey("pf_cinnamon_fern");
 			setRegistryName("cinnamon_fern");
 		}
 

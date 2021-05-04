@@ -57,7 +57,7 @@ public class BlockAethophyllum2 extends ElementsLepidodendronMod.ModElement {
 			setHardness(0.2F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("aethophyllum_2");
+			setTranslationKey("pf_aethophyllum_2");
 			setRegistryName("aethophyllum_2");
 		}
 

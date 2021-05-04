@@ -37,7 +37,7 @@ public class ItemProtea1Seeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("protea_1_seeds");
+			setTranslationKey("pf_protea_1_seeds");
 			setRegistryName("protea_1_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

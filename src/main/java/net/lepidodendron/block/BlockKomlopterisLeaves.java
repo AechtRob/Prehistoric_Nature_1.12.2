@@ -58,7 +58,7 @@ public class BlockKomlopterisLeaves extends ElementsLepidodendronMod.ModElement 
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("komlopteris_leaves");
+			setTranslationKey("pf_komlopteris_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

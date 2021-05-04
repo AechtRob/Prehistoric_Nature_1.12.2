@@ -60,7 +60,7 @@ public class BlockSigillariaShoot extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("sigillaria_shoot_worldgen");
+			setTranslationKey("pf_sigillaria_shoot_worldgen");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

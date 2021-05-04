@@ -456,7 +456,10 @@ public class WaterBottomNodeProcessor extends NodeProcessor
 
         PathNodeType type = block.getAiPathNodeType(iblockstate, p_189553_1_, blockpos, this.currentEntity);
         if (type != null) return type;
-
+        if (material != Material.WATER)
+        {
+            return PathNodeType.BLOCKED;
+        }
         if (material == Material.AIR)
         {
             return PathNodeType.OPEN;

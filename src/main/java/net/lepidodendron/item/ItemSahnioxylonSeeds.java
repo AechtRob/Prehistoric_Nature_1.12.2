@@ -37,7 +37,7 @@ public class ItemSahnioxylonSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("sahnioxylon_seeds");
+			setTranslationKey("pf_sahnioxylon_seeds");
 			setRegistryName("sahnioxylon_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

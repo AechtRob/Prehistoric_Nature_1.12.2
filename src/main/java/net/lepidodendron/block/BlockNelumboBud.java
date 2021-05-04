@@ -77,7 +77,7 @@ public class BlockNelumboBud extends ElementsLepidodendronMod.ModElement {
 			setLightOpacity(0);
 			setCreativeTab(null);
 			setTickRandomly(true);
-			setTranslationKey("nelumbo_bud");
+			setTranslationKey("pf_nelumbo_bud");
 			setRegistryName("nelumbo_bud");
 			this.setDefaultState(this.blockState.getBaseState());
 		}

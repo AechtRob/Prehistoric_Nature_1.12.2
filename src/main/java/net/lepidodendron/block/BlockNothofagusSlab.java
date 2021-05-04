@@ -58,7 +58,7 @@ public class BlockNothofagusSlab extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockSlab {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("nothofagus_slab");
+			setTranslationKey("pf_nothofagus_slab");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

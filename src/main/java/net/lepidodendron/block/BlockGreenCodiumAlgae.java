@@ -104,6 +104,9 @@ public class BlockGreenCodiumAlgae extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genGreenBranchedAlgaeOverrideBiomes))
 			biomeCriteria = true;
+		if (dimID == LepidodendronConfig.dimCambrian) {
+			biomeCriteria = false;
+		}
 		if (!biomeCriteria)
 			return;
 
@@ -154,7 +157,7 @@ public class BlockGreenCodiumAlgae extends ElementsLepidodendronMod.ModElement {
     
 		public BlockCustom() {
 			super(Material.WATER);
-			setTranslationKey("green_codium_algae");
+			setTranslationKey("pf_green_codium_algae");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.0F);
 			setResistance(0.0F);

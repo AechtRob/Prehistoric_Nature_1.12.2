@@ -45,7 +45,7 @@ public class BlockAraucarioxylonFence extends ElementsLepidodendronMod.ModElemen
 	public static class BlockCustom extends BlockFence {
 		public BlockCustom() {
 			super(Material.WOOD, Material.WOOD.getMaterialMapColor());
-			setTranslationKey("araucarioxylon_fence");
+			setTranslationKey("pf_araucarioxylon_fence");
 			setSoundType(SoundType.WOOD);
 			setHardness(2F);
 			setResistance(3F);

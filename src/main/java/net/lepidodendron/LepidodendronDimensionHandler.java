@@ -22,9 +22,11 @@ private int tickIndex = 0;
             for (int dimension : DimensionManager.getIDs()) {
 
 				if (
-					(dimension == LepidodendronConfig.dimOrdovicianSilurian)
+					(dimension == LepidodendronConfig.dimCambrian)
+					|| (dimension == LepidodendronConfig.dimOrdovicianSilurian)
 					|| (dimension == LepidodendronConfig.dimDevonian)
 					|| (dimension == LepidodendronConfig.dimCarboniferous)
+					|| (dimension == LepidodendronConfig.dimPermian)
 					) {
 				
 	                WorldServer worldServer = DimensionManager.getWorld(dimension);
@@ -36,28 +38,22 @@ private int tickIndex = 0;
 	                if (providerType != null) {
 	                    dimensionName = providerType.getName();
 	                }
-	
-                   // if (!worldServer.provider.getDimensionType().shouldLoadSpawn()
-                    //        && ForgeChunkManager.getPersistentChunksFor(worldServer).isEmpty()
-                     //       && provider.getLoadedChunkCount() == 0
-                      //      && worldServer.playerEntities.isEmpty()
-                       //     && worldServer.loadedEntityList.isEmpty()
-                        //    && worldServer.loadedTileEntityList.isEmpty()) {
-                    if (ForgeChunkManager.getPersistentChunksFor(worldServer).isEmpty()
-                            && provider.getLoadedChunkCount() == 0
-                            && worldServer.playerEntities.isEmpty()
-                            && worldServer.loadedEntityList.isEmpty()
-                            && worldServer.loadedTileEntityList.isEmpty()) {
-                        try {
-                            worldServer.saveAllChunks(true, null);
-                        } catch (MinecraftException e) {
-                            System.err.println("Caught an exception while saving all chunks in dim: " + dimensionName);
-                        } finally {
-                            MinecraftForge.EVENT_BUS.post(new WorldEvent.Unload(worldServer));
-                            worldServer.flush();
-                            DimensionManager.setWorld(dimension, null, worldServer.getMinecraftServer());
-                        }
-                    }
+
+                    //if (ForgeChunkManager.getPersistentChunksFor(worldServer).isEmpty()
+                    //        && provider.getLoadedChunkCount() == 0
+                    //        && worldServer.playerEntities.isEmpty()
+                    //        && worldServer.loadedEntityList.isEmpty()
+                    //        && worldServer.loadedTileEntityList.isEmpty()) {
+                        //try {
+                            //worldServer.saveAllChunks(true, null);
+                        //} catch (MinecraftException e) {
+                            //System.err.println("Caught an exception while saving all chunks in dim: " + dimensionName);
+                        //} finally {
+                            //MinecraftForge.EVENT_BUS.post(new WorldEvent.Unload(worldServer));
+                            //worldServer.flush();
+                            //DimensionManager.setWorld(dimension, null, worldServer.getMinecraftServer());
+                        //}
+                   // }
 				}
             }
         }

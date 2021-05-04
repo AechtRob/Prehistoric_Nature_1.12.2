@@ -43,7 +43,7 @@ public class ItemEphedraSeed extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(1, 0.2f, false);
-			setTranslationKey("ephedra_seed");
+			setTranslationKey("pf_ephedra_seed");
 			setRegistryName("ephedra_seed");
 			setAlwaysEdible();
 			setCreativeTab(TabLepidodendron.tab);

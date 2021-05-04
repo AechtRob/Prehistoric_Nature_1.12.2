@@ -37,7 +37,7 @@ public class ItemPetrifiedSahnioxylonSapling extends ElementsLepidodendronMod.Mo
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_sahnioxylon_sapling");
+			setTranslationKey("pf_petrified_sahnioxylon_sapling");
 			setRegistryName("petrified_sahnioxylon_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

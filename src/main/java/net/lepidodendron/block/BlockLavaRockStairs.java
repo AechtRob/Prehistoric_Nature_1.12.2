@@ -43,7 +43,7 @@ public class BlockLavaRockStairs extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockStairs {
 		public BlockCustom() {
 			super(new Block(Material.ROCK).getDefaultState());
-			setTranslationKey("lava_rock_stairs");
+			setTranslationKey("pf_lava_rock_stairs");
 			this.setSoundType(SoundType.STONE);
 			setHardness(1.25F);
 			setResistance(4.2F);

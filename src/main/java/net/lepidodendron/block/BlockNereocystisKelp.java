@@ -148,7 +148,7 @@ public class BlockNereocystisKelp extends ElementsLepidodendronMod.ModElement {
 			setLightLevel(0F);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(TOPSHOOT, false).withProperty(AGE, Integer.valueOf(0)));
         	this.setTickRandomly(true);
-			setTranslationKey("nereocystis_kelp");
+			setTranslationKey("pf_nereocystis_kelp");
 			setRegistryName("nereocystis_kelp");
 		}
 

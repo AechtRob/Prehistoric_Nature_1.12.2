@@ -84,5 +84,36 @@
         "stream": false
       }
     ]
+  },
+
+  "palaeodictyoptera_idle": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:palaeodictyoptera_idle01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:palaeodictyoptera_idle02",
+        "stream": false
+      }
+    ]
+  },
+  "palaeodictyoptera_flight": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:palaeodictyoptera_flight01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:palaeodictyoptera_flight02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:palaeodictyoptera_flight03",
+        "stream": false
+      }
+    ]
   }
 }

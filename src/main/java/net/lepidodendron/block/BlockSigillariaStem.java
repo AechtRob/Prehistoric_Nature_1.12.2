@@ -74,7 +74,7 @@ public class BlockSigillariaStem extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("sigillaria_stem");
+			setTranslationKey("pf_sigillaria_stem");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

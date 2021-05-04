@@ -37,7 +37,7 @@ public class ItemPetrifiedWaterHorsetail extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_water_horsetail");
+			setTranslationKey("pf_petrified_water_horsetail");
 			setRegistryName("petrified_water_horsetail");
 			setCreativeTab(TabLepidodendron.tab);
 		}

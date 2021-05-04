@@ -37,7 +37,7 @@ public class ItemPetrifiedBaikalophyllum extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_baikalophyllum");
+			setTranslationKey("pf_petrified_baikalophyllum");
 			setRegistryName("petrified_baikalophyllum");
 			setCreativeTab(TabLepidodendron.tab);
 		}

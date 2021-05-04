@@ -36,7 +36,7 @@ public class ItemNeuropteridiumSpores extends ElementsLepidodendronMod.ModElemen
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("neuropteridium_spores");
+			setTranslationKey("pf_neuropteridium_spores");
 			setRegistryName("neuropteridium_spores");
 			setCreativeTab(null);
 		}

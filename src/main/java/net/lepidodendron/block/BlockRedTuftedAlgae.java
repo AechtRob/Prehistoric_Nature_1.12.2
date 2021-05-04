@@ -103,6 +103,9 @@ public class BlockRedTuftedAlgae extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genRedTuftedAlgaeOverrideBiomes))
 			biomeCriteria = true;
+		if (dimID == LepidodendronConfig.dimCambrian) {
+			biomeCriteria = true;
+		}
 		if (!biomeCriteria)
 			return;
 
@@ -112,6 +115,10 @@ public class BlockRedTuftedAlgae extends ElementsLepidodendronMod.ModElement {
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
 		) {
 			multiplier = 2;
+		}
+		if (dimID == LepidodendronConfig.dimCambrian)
+		{
+			multiplier = 1;
 		}
 
 		for (int i = 0; i < (int) 10 * multiplier; i++) {
@@ -153,7 +160,7 @@ public class BlockRedTuftedAlgae extends ElementsLepidodendronMod.ModElement {
     
 		public BlockCustom() {
 			super(Material.WATER);
-			setTranslationKey("red_tufted_algae");
+			setTranslationKey("pf_red_tufted_algae");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.0F);
 			setResistance(0.0F);

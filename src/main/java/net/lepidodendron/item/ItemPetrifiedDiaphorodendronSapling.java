@@ -38,7 +38,7 @@ public class ItemPetrifiedDiaphorodendronSapling extends ElementsLepidodendronMo
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_diaphorodendron_sapling");
+			setTranslationKey("pf_petrified_diaphorodendron_sapling");
 			setRegistryName("petrified_diaphorodendron_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

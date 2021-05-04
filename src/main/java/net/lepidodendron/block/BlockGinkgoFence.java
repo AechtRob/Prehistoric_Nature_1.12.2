@@ -45,7 +45,7 @@ public class BlockGinkgoFence extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockFence {
 		public BlockCustom() {
 			super(Material.WOOD, Material.WOOD.getMaterialMapColor());
-			setTranslationKey("ginkgo_fence");
+			setTranslationKey("pf_ginkgo_fence");
 			setSoundType(SoundType.WOOD);
 			setHardness(2F);
 			setResistance(3F);

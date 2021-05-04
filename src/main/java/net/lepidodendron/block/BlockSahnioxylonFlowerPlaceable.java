@@ -72,7 +72,7 @@ public class BlockSahnioxylonFlowerPlaceable extends ElementsLepidodendronMod.Mo
 		
 		public BlockCustom() {
 			super();
-			setTranslationKey("sahnioxylon_leaves");
+			setTranslationKey("pf_sahnioxylon_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

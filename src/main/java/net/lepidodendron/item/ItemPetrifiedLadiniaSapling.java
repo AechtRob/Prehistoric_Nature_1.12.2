@@ -37,7 +37,7 @@ public class ItemPetrifiedLadiniaSapling extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_ladinia_sapling");
+			setTranslationKey("pf_petrified_ladinia_sapling");
 			setRegistryName("petrified_ladinia_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

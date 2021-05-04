@@ -37,7 +37,7 @@ public class ItemPetrifiedGuangdedendron extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_guangdedendron");
+			setTranslationKey("pf_petrified_guangdedendron");
 			setRegistryName("petrified_guangdedendron");
 			setCreativeTab(TabLepidodendron.tab);
 		}

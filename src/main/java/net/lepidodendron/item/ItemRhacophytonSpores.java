@@ -36,7 +36,7 @@ public class ItemRhacophytonSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("rhacophyton_spores");
+			setTranslationKey("pf_rhacophyton_spores");
 			setRegistryName("rhacophyton_spores");
 			setCreativeTab(null);
 		}

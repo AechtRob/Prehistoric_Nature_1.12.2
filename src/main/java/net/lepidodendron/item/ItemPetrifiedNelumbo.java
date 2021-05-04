@@ -37,7 +37,7 @@ public class ItemPetrifiedNelumbo extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_nelumbo");
+			setTranslationKey("pf_petrified_nelumbo");
 			setRegistryName("petrified_nelumbo");
 			setCreativeTab(TabLepidodendron.tab);
 		}

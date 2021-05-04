@@ -58,7 +58,7 @@ public class BlockGuangdedendronTopNospore extends ElementsLepidodendronMod.ModE
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("guangdedendron_shoot_nospore");
+			setTranslationKey("pf_guangdedendron_shoot_nospore");
 			setRegistryName("guangdedendron_shoot_nospore");
 		}
 

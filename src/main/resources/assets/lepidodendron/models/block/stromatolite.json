@@ -10,7 +10,7 @@
             "to": [ 16, 13, 16 ],
             "faces": {
                 "down":  {"uv": [ 0, 10, 16, 13 ], "texture": "#texture" },
-                
+
                 "north": {"uv": [ 0, 10, 16, 13 ], "texture": "#texture" },
                 "south": {"uv": [ 0, 10, 16, 13 ], "texture": "#texture" },
                 "west":  {"uv": [ 0, 10, 16, 13 ], "texture": "#texture" },

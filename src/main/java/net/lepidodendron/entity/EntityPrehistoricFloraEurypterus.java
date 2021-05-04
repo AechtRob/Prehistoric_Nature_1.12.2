@@ -38,6 +38,14 @@ public class EntityPrehistoricFloraEurypterus extends EntityPrehistoricFloraEury
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
+		minSize = 0.2F;
+		maxSize = 1.0F;
+		maxHealthAgeable = 5.0D;
+	}
+
+	@Override
+	public int getAdultAge() {
+		return 24000;
 	}
 
 	protected void initEntityAI() {
@@ -67,7 +75,7 @@ public class EntityPrehistoricFloraEurypterus extends EntityPrehistoricFloraEury
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(5.0D);
+		//this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(5.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 	}
 

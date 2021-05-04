@@ -37,7 +37,7 @@ public class ItemPetrifiedWachtleria extends ElementsLepidodendronMod.ModElement
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_wachtleria");
+			setTranslationKey("pf_petrified_wachtleria");
 			setRegistryName("petrified_wachtleria");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -2,7 +2,7 @@
     "ambientocclusion": false,
     "textures": {
         "texture": "lepidodendron:blocks/alethopteris_log",
-        "inside": "lepidodendron:blocksalethopteris_log",
+        "inside": "lepidodendron:blocks/alethopteris_log",
         "particle": "lepidodendron:blocks/alethopteris_log"
     },
     "elements": [

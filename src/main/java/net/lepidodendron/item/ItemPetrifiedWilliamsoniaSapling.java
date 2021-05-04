@@ -37,7 +37,7 @@ public class ItemPetrifiedWilliamsoniaSapling extends ElementsLepidodendronMod.M
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_williamsonia_sapling");
+			setTranslationKey("pf_petrified_williamsonia_sapling");
 			setRegistryName("petrified_williamsonia_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -52,7 +52,7 @@ public class BlockWalchiaLog extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("walchia_log");
+			setTranslationKey("pf_walchia_log");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

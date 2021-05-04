@@ -48,7 +48,7 @@ public class BlockSigillariaFenceGate extends ElementsLepidodendronMod.ModElemen
 	public static class BlockCustom extends BlockFenceGate {
 		public BlockCustom() {
 			super(EnumType.OAK);
-			setTranslationKey("sigillaria_fence_gate");
+			setTranslationKey("pf_sigillaria_fence_gate");
 			setHarvestLevel("axe", 1);
 			setSoundType(SoundType.WOOD);
 			setHardness(2F);

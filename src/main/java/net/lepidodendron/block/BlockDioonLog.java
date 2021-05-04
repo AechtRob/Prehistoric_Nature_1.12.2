@@ -57,7 +57,7 @@ public class BlockDioonLog extends ElementsLepidodendronMod.ModElement {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModels(ModelRegistryEvent event) {
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("lepidodendron:encblue_log", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("lepidodendron:dioon_log", "inventory"));
 
 	}
 	public static class BlockCustom extends Block {
@@ -72,7 +72,7 @@ public class BlockDioonLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("dioon_log");
+			setTranslationKey("pf_dioon_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

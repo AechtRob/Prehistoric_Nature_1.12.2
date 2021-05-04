@@ -37,7 +37,7 @@ public class ItemPetrifiedRedwoodSapling extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_redwood_sapling");
+			setTranslationKey("pf_petrified_redwood_sapling");
 			setRegistryName("petrified_redwood_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

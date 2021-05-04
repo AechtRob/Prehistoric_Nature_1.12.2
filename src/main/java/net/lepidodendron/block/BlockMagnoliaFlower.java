@@ -90,7 +90,7 @@ public class BlockMagnoliaFlower extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("magnolia_flower");
+			setTranslationKey("pf_magnolia_flower");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

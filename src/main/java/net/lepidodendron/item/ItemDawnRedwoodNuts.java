@@ -37,7 +37,7 @@ public class ItemDawnRedwoodNuts extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(1, 0.2f, false);
-			setTranslationKey("dawn_redwood_nuts");
+			setTranslationKey("pf_dawn_redwood_nuts");
 			setRegistryName("dawn_redwood_nuts");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

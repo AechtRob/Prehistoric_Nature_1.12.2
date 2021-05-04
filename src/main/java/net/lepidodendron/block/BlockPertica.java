@@ -68,7 +68,7 @@ public class BlockPertica extends ElementsLepidodendronMod.ModElement {
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("pertica");
+			setTranslationKey("pf_pertica");
 			setRegistryName("pertica");
 		}
 

@@ -37,7 +37,7 @@ public class ItemArtocarpusSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("artocarpus_seeds");
+			setTranslationKey("pf_artocarpus_seeds");
 			setRegistryName("artocarpus_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

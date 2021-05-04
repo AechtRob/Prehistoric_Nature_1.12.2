@@ -60,7 +60,7 @@ public class BlockYewLeavesBerries extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("yew_leaves_berries");
+			setTranslationKey("pf_yew_leaves_berries");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

@@ -73,7 +73,7 @@ public class BlockAdoketophytonSpore extends ElementsLepidodendronMod.ModElement
 			else {
 				setTickRandomly(false);
 			}
-			setTranslationKey("adoketophyton_spore");
+			setTranslationKey("pf_adoketophyton_spore");
 			setRegistryName("adoketophyton_spore");
 		}
 

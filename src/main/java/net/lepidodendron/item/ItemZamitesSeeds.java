@@ -37,7 +37,7 @@ public class ItemZamitesSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("zamites_seeds");
+			setTranslationKey("pf_zamites_seeds");
 			setRegistryName("zamites_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

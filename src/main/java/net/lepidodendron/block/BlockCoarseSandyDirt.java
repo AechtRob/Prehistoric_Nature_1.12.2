@@ -47,7 +47,7 @@ public class BlockCoarseSandyDirt extends ElementsLepidodendronMod.ModElement {
 			this.setHardness(0.5F);
 			this.setHarvestLevel("shovel", 0);
 			this.setSoundType(SoundType.GROUND);
-			setTranslationKey("coarse_sandy_dirt");
+			setTranslationKey("pf_coarse_sandy_dirt");
 			setCreativeTab(TabLepidodendron.tab);
 		}
 

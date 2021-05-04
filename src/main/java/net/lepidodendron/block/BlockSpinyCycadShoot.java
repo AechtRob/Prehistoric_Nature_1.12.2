@@ -65,7 +65,7 @@ public class BlockSpinyCycadShoot extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("spiny_cycad_shoot_worldgen");
+			setTranslationKey("pf_spiny_cycad_shoot_worldgen");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

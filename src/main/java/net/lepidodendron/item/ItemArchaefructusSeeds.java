@@ -37,7 +37,7 @@ public class ItemArchaefructusSeeds extends ElementsLepidodendronMod.ModElement 
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("archaefructus_seeds");
+			setTranslationKey("pf_archaefructus_seeds");
 			setRegistryName("archaefructus_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

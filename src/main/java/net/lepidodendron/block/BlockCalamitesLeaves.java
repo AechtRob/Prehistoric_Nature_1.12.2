@@ -67,7 +67,7 @@ public class BlockCalamitesLeaves extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			//super(Material.PLANTS);
-			setTranslationKey("calamites_leaves_worldgen");
+			setTranslationKey("pf_calamites_leaves_worldgen");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

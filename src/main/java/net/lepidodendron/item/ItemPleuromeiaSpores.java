@@ -36,7 +36,7 @@ public class ItemPleuromeiaSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("pleuromeia_spores");
+			setTranslationKey("pf_pleuromeia_spores");
 			setRegistryName("pleuromeia_spores");
 			setCreativeTab(null);
 		}

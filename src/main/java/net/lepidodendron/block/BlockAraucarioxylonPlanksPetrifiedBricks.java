@@ -46,7 +46,7 @@ public class BlockAraucarioxylonPlanksPetrifiedBricks extends ElementsLepidodend
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.ROCK);
-			setTranslationKey("araucarioxylon_planks_petrified_bricks");
+			setTranslationKey("pf_araucarioxylon_planks_petrified_bricks");
 			setSoundType(SoundType.STONE);
 			setHarvestLevel("pickaxe", 1);
 			setHardness(5F);

@@ -37,7 +37,7 @@ public class ItemPetrifiedYewSapling extends ElementsLepidodendronMod.ModElement
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_yew_sapling");
+			setTranslationKey("pf_petrified_yew_sapling");
 			setRegistryName("petrified_yew_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

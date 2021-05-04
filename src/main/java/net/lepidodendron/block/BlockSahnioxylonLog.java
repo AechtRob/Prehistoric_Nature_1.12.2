@@ -73,7 +73,7 @@ public class BlockSahnioxylonLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("sahnioxylon_log");
+			setTranslationKey("pf_sahnioxylon_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

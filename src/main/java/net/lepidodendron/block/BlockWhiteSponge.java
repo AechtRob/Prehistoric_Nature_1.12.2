@@ -92,7 +92,7 @@ public class BlockWhiteSponge extends ElementsLepidodendronMod.ModElement {
 		
 		boolean biomeCriteria = false;
 		Biome biome = world.getBiome(new BlockPos(chunkX, world.getSeaLevel(), chunkZ));
-		if (!matchBiome(biome, LepidodendronConfig.genOrangeSpongeBlacklistBiomes)) {
+		if (!matchBiome(biome, LepidodendronConfig.genWhiteSpongeBlacklistBiomes)) {
 			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.OCEAN))
 				biomeCriteria = true;
 			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.BEACH))
@@ -102,6 +102,11 @@ public class BlockWhiteSponge extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genWhiteSpongeOverrideBiomes))
 			biomeCriteria = true;
+		if ((dimID == LepidodendronConfig.dimOrdovicianSilurian)
+				|| (dimID == LepidodendronConfig.dimCambrian)
+		) {
+			biomeCriteria = true;
+		}
 		if (!biomeCriteria)
 			return;
 
@@ -111,6 +116,10 @@ public class BlockWhiteSponge extends ElementsLepidodendronMod.ModElement {
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
 		) {
 			multiplier = 2;
+		}
+		if (dimID == LepidodendronConfig.dimCambrian)
+		{
+			multiplier = 4;
 		}
 
 		for (int i = 0; i < (int) 10 * multiplier; i++) {
@@ -152,7 +161,7 @@ public class BlockWhiteSponge extends ElementsLepidodendronMod.ModElement {
     
 		public BlockCustom() {
 			super(Material.WATER);
-			setTranslationKey("white_sponge");
+			setTranslationKey("pf_white_sponge");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.0F);
 			setResistance(0.0F);

@@ -21,7 +21,7 @@ public class WorldGenTetraxylopteris extends WorldGenerator
         {
             BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (worldIn.isAirBlock(blockpos) && worldIn.isAirBlock(blockpos.up()) && (!worldIn.provider.isNether() || blockpos.getY() < 254) && BlockTetraxylopteris.block.canPlaceBlockAt(worldIn, blockpos))
+            if (blockpos.getY() >= worldIn.getSeaLevel()-4 && worldIn.isAirBlock(blockpos) && worldIn.isAirBlock(blockpos.up()) && (!worldIn.provider.isNether() || blockpos.getY() < 254) && BlockTetraxylopteris.block.canPlaceBlockAt(worldIn, blockpos))
             {
             	worldIn.setBlockState(blockpos, BlockTetraxylopteris.block.getDefaultState(), 2);
 				worldIn.setBlockState(blockpos.up(), BlockTetraxylopterisTop.block.getDefaultState(), 2);

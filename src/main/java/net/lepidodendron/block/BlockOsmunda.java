@@ -67,7 +67,7 @@ public class BlockOsmunda extends ElementsLepidodendronMod.ModElement {
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("osmunda");
+			setTranslationKey("pf_osmunda");
 			setRegistryName("osmunda");
 		}
 

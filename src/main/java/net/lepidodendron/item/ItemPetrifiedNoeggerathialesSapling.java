@@ -35,7 +35,7 @@ public class ItemPetrifiedNoeggerathialesSapling extends ElementsLepidodendronMo
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_noeggerathiales_sapling");
+			setTranslationKey("pf_petrified_noeggerathiales_sapling");
 			setRegistryName("petrified_noeggerathiales_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

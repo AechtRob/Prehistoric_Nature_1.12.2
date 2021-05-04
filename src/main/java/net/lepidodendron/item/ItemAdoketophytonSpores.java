@@ -36,7 +36,7 @@ public class ItemAdoketophytonSpores extends ElementsLepidodendronMod.ModElement
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("adoketophyton_spores");
+			setTranslationKey("pf_adoketophyton_spores");
 			setRegistryName("adoketophyton_spores");
 			setCreativeTab(null);
 		}

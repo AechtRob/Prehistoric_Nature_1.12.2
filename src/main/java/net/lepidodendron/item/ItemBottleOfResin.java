@@ -37,7 +37,7 @@ public class ItemBottleOfResin extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("bottle_of_resin");
+			setTranslationKey("pf_bottle_of_resin");
 			setRegistryName("bottle_of_resin");
 			setCreativeTab(TabLepidodendron.tab);
 			setContainerItem(net.minecraft.init.Items.GLASS_BOTTLE);

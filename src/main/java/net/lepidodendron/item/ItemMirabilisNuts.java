@@ -37,7 +37,7 @@ public class ItemMirabilisNuts extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(2, 0.2f, false);
-			setTranslationKey("mirabilis_nuts");
+			setTranslationKey("pf_mirabilis_nuts");
 			setRegistryName("mirabilis_nuts");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

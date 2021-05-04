@@ -37,7 +37,7 @@ public class ItemPetrifiedPodozamitesSapling extends ElementsLepidodendronMod.Mo
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_podozamites_sapling");
+			setTranslationKey("pf_petrified_podozamites_sapling");
 			setRegistryName("petrified_podozamites_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

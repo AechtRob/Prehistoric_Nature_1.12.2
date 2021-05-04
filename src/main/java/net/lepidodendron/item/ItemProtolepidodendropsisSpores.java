@@ -34,7 +34,7 @@ public class ItemProtolepidodendropsisSpores extends ElementsLepidodendronMod.Mo
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("protolepidodendropsis_spores");
+			setTranslationKey("pf_protolepidodendropsis_spores");
 			setRegistryName("protolepidodendropsis_spores");
 			setCreativeTab(null);
 		}

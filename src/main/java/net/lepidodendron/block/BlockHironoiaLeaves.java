@@ -58,7 +58,7 @@ public class BlockHironoiaLeaves extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("hironoia_leaves");
+			setTranslationKey("pf_hironoia_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

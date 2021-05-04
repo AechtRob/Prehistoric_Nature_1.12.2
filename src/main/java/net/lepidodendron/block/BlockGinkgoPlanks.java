@@ -46,7 +46,7 @@ public class BlockGinkgoPlanks extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("ginkgo_planks");
+			setTranslationKey("pf_ginkgo_planks");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

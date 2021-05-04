@@ -46,7 +46,7 @@ public class BlockGlossopterisPlanks extends ElementsLepidodendronMod.ModElement
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("glossopterisplanks");
+			setTranslationKey("pf_glossopterisplanks");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

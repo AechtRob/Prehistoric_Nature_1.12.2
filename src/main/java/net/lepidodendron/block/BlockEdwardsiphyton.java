@@ -1,6 +1,7 @@
 
 package net.lepidodendron.block;
 
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -85,7 +86,7 @@ public class BlockEdwardsiphyton extends ElementsLepidodendronMod.ModElement {
     
 		public BlockCustom() {
 			super(Material.VINE);
-			setTranslationKey("edwardsiphyton");
+			setTranslationKey("pf_edwardsiphyton");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

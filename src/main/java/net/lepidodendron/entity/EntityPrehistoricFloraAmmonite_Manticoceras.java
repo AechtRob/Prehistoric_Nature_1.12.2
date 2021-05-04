@@ -2,23 +2,16 @@
 package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
-import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.NautiloidWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraNautiloidBase;
-import net.lepidodendron.entity.model.ModelAmmonite15cm;
-import net.lepidodendron.entity.model.ModelAmmonite50cm;
-import net.lepidodendron.item.entities.ItemAmmoniteRaw;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -27,9 +20,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -58,6 +48,7 @@ public class EntityPrehistoricFloraAmmonite_Manticoceras extends EntityPrehistor
 
 	protected void initEntityAI() {
 		tasks.addTask(0, new NautiloidWander(this, ANIMATION_NAUTILOID_WANDER));
+		tasks.addTask(1, new EntityAILookIdle(this));
 	}
 
 	@Override

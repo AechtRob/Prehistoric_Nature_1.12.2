@@ -37,7 +37,7 @@ public class ItemPetrifiedCallistophytales extends ElementsLepidodendronMod.ModE
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_callistophytales");
+			setTranslationKey("pf_petrified_callistophytales");
 			setRegistryName("petrified_callistophytales");
 			setCreativeTab(TabLepidodendron.tab);
 		}

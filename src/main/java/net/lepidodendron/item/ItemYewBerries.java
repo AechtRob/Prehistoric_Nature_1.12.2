@@ -43,7 +43,7 @@ public class ItemYewBerries extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(0, 0.2f, false);
-			setTranslationKey("yew_berries");
+			setTranslationKey("pf_yew_berries");
 			setRegistryName("yew_berries");
 			setAlwaysEdible();
 			setCreativeTab(TabLepidodendron.tab);

@@ -37,7 +37,7 @@ public class ItemGinkgoSeed extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(1, 0.2f, false);
-			setTranslationKey("ginkgo_seed");
+			setTranslationKey("pf_ginkgo_seed");
 			setRegistryName("ginkgo_seed");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

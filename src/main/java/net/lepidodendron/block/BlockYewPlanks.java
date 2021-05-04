@@ -47,7 +47,7 @@ public class BlockYewPlanks extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("yew_planks");
+			setTranslationKey("pf_yew_planks");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

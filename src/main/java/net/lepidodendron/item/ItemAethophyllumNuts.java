@@ -37,7 +37,7 @@ public class ItemAethophyllumNuts extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(1, 0.2f, false);
-			setTranslationKey("aethophyllum_nuts");
+			setTranslationKey("pf_aethophyllum_nuts");
 			setRegistryName("aethophyllum_nuts");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

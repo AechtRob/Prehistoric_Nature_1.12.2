@@ -70,7 +70,7 @@ public class BlockNelumboFlowerPlaceable extends ElementsLepidodendronMod.ModEle
 			setLightOpacity(0);
 			setCreativeTab(TabLepidodendron.tab);
 			setTickRandomly(true);
-			setTranslationKey("nelumbo_flower");
+			setTranslationKey("pf_nelumbo_flower");
 			setRegistryName("nelumbo_flower");
 			this.setDefaultState(this.blockState.getBaseState());
 		}

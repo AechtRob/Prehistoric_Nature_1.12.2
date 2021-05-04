@@ -60,7 +60,7 @@ public class BlockProtolepidodendropsisShoot extends ElementsLepidodendronMod.Mo
 
     	public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("protolepidodendropsis_shoot");
+			setTranslationKey("pf_protolepidodendropsis_shoot");
 			setSoundType(SoundType.PLANT);
 			setHardness(1F);
 			setResistance(1);

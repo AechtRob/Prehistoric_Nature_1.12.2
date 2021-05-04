@@ -201,6 +201,28 @@ public class ProcedureCollectSpores extends ElementsLepidodendronMod.ModElement 
 				}
 			}
 
+			if (((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockTieteaLeaves.block)
+					|| ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockTieteaLeavesPlaceable.block)
+					|| ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockTieteaLeavesSmall.block)
+					|| ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockTieteaLeavesSmallPlaceable.block)
+					|| ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockTieteaLeavesTop.block))
+			{
+				if (!(world.isRemote)) {
+					if (entity instanceof EntityLivingBase) {
+						((EntityLivingBase) entity).swingArm(EnumHand.MAIN_HAND);
+					}
+					if (entity instanceof EntityPlayer) {
+						if ((((entity instanceof EntityLivingBase) ? ((EntityLivingBase) entity).getHeldItemMainhand() : ItemStack.EMPTY)
+								.getItem() == new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem())) {
+							((EntityPlayer) entity).inventory.clearMatchingItems(new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem(), -1, (int) 1, null);
+							ItemStack _setstack = new ItemStack(ItemTieteaSpores.block, (int) (1));
+							_setstack.setCount(1);
+							ItemHandlerHelper.giveItemToPlayer(((EntityPlayer) entity), _setstack);
+						}
+					}
+				}
+			}
+
 			if (((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockDicksoniaLeaves.block) 
 				|| ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockDicksoniaLeavesPlaceable.block) 
 				|| ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockDicksoniaLeaves2.block) 
@@ -926,6 +948,24 @@ public class ProcedureCollectSpores extends ElementsLepidodendronMod.ModElement 
 				}
 			}
 
+			if (((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockFernEpiphyte.block))
+			{
+				if (!(world.isRemote)) {
+					if (entity instanceof EntityLivingBase) {
+						((EntityLivingBase) entity).swingArm(EnumHand.MAIN_HAND);
+					}
+					if (entity instanceof EntityPlayer) {
+						if ((((entity instanceof EntityLivingBase) ? ((EntityLivingBase) entity).getHeldItemMainhand() : ItemStack.EMPTY)
+								.getItem() == new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem())) {
+							((EntityPlayer) entity).inventory.clearMatchingItems(new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem(), -1, (int) 1, null);
+							ItemStack _setstack = new ItemStack(ItemFernEpiphyteSpores.block, (int) (1));
+							_setstack.setCount(1);
+							ItemHandlerHelper.giveItemToPlayer(((EntityPlayer) entity), _setstack);
+						}
+					}
+				}
+			}
+
 			if (
 				((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockAnkyropterisStem.block)
 				|| ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockAnkyropterisStemNE.block)
@@ -1020,6 +1060,64 @@ public class ProcedureCollectSpores extends ElementsLepidodendronMod.ModElement 
 								.getItem() == new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem())) {
 							((EntityPlayer) entity).inventory.clearMatchingItems(new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem(), -1, (int) 1, null);
 							ItemStack _setstack = new ItemStack(ItemProtolepidodendropsisSpores.block, (int) (1));
+							_setstack.setCount(1);
+							ItemHandlerHelper.giveItemToPlayer(((EntityPlayer) entity), _setstack);
+						}
+					}
+				}
+			}
+
+			if ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockNematophyta.block)
+			{
+				if (!(world.isRemote)) {
+					if (entity instanceof EntityLivingBase) {
+						((EntityLivingBase) entity).swingArm(EnumHand.MAIN_HAND);
+					}
+					if (entity instanceof EntityPlayer) {
+						if ((((entity instanceof EntityLivingBase) ? ((EntityLivingBase) entity).getHeldItemMainhand() : ItemStack.EMPTY)
+								.getItem() == new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem())) {
+							((EntityPlayer) entity).inventory.clearMatchingItems(new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem(), -1, (int) 1, null);
+							ItemStack _setstack = new ItemStack(ItemNematophytaSpores.block, (int) (1));
+							_setstack.setCount(1);
+							ItemHandlerHelper.giveItemToPlayer(((EntityPlayer) entity), _setstack);
+						}
+					}
+				}
+			}
+
+			if ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockBolbitis.block)
+			{
+				if (!(world.isRemote)) {
+					if (entity instanceof EntityLivingBase) {
+						((EntityLivingBase) entity).swingArm(EnumHand.MAIN_HAND);
+					}
+					if (entity instanceof EntityPlayer) {
+						if ((((entity instanceof EntityLivingBase) ? ((EntityLivingBase) entity).getHeldItemMainhand() : ItemStack.EMPTY)
+								.getItem() == new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem())) {
+							((EntityPlayer) entity).inventory.clearMatchingItems(new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem(), -1, (int) 1, null);
+							ItemStack _setstack = new ItemStack(ItemBolbitisSpores.block, (int) (1));
+							_setstack.setCount(1);
+							ItemHandlerHelper.giveItemToPlayer(((EntityPlayer) entity), _setstack);
+						}
+					}
+				}
+			}
+
+			if (((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockZygopteridaceaeLeaves.block)
+					|| ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockZygopteridaceaeLeavesPlaceable.block)
+					|| ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockZygopteridaceaeLeaves2.block)
+					|| ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockZygopteridaceaeLeaves3.block)
+					|| ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockZygopteridaceaeLeaves4.block))
+			{
+				if (!(world.isRemote)) {
+					if (entity instanceof EntityLivingBase) {
+						((EntityLivingBase) entity).swingArm(EnumHand.MAIN_HAND);
+					}
+					if (entity instanceof EntityPlayer) {
+						if ((((entity instanceof EntityLivingBase) ? ((EntityLivingBase) entity).getHeldItemMainhand() : ItemStack.EMPTY)
+								.getItem() == new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem())) {
+							((EntityPlayer) entity).inventory.clearMatchingItems(new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem(), -1, (int) 1, null);
+							ItemStack _setstack = new ItemStack(ItemDicksoniaSpores.block, (int) (1));
 							_setstack.setCount(1);
 							ItemHandlerHelper.giveItemToPlayer(((EntityPlayer) entity), _setstack);
 						}

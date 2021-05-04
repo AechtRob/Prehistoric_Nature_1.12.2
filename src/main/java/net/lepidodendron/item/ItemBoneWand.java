@@ -1,6 +1,7 @@
 
 package net.lepidodendron.item;
 
+import net.lepidodendron.world.dimension.*;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -16,13 +17,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumActionResult;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item;
 import net.minecraft.entity.player.EntityPlayer;
-
-import net.lepidodendron.world.WorldOrdovicianSilurian;
-import net.lepidodendron.world.WorldDevonian;
-import net.lepidodendron.world.WorldCarboniferous;
 
 import net.lepidodendron.creativetab.TabLepidodendron;
 import net.lepidodendron.ElementsLepidodendronMod;
@@ -49,7 +44,7 @@ public class ItemBoneWand extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 1;
-			setTranslationKey("bone_wand");
+			setTranslationKey("pf_bone_wand");
 			setRegistryName("bone_wand");
 			setCreativeTab(TabLepidodendron.tab);
 		}
@@ -84,11 +79,15 @@ public class ItemBoneWand extends ElementsLepidodendronMod.ModElement {
 				return EnumActionResult.FAIL;
 			} else {
 				if (world.isAirBlock(pos))
-					WorldOrdovicianSilurian.portal.portalSpawn(world, pos);		
-					WorldDevonian.portal.portalSpawn(world, pos);			
+					//WorldProterozoicWater.portal.portalSpawn(world, pos);
+					WorldPrecambrian.portal.portalSpawn(world, pos);
+					WorldCambrian.portal.portalSpawn(world, pos);
+					WorldOrdovicianSilurian.portal.portalSpawn(world, pos);
+					WorldDevonian.portal.portalSpawn(world, pos);
 					WorldCarboniferous.portal.portalSpawn(world, pos);
-				itemstack.damageItem(1, entity);
-				return EnumActionResult.SUCCESS;
+					//WorldPermian.portal.portalSpawn(world, pos);
+					itemstack.damageItem(1, entity);
+					return EnumActionResult.SUCCESS;
 			}
 		}
 

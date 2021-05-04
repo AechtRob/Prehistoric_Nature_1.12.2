@@ -1,9 +1,9 @@
 {   "parent": "block/block",
     "ambientocclusion": false,
     "textures": {
-        "texture": "lepidodendron:blocks/cycas_log",
-        "inside": "lepidodendron:blocks/cycas_log",
-        "particle": "lepidodendron:blocks/cycas_log"
+        "texture": "lepidodendron:blocks/spikey_log",
+        "inside": "lepidodendron:blocks/spikey_log",
+        "particle": "lepidodendron:blocks/spikey_log"
     },
     "elements": [
         {   "from": [ 2, 14, 2 ],

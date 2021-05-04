@@ -37,7 +37,7 @@ public class ItemAlpiaSeed extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(1, 0.2f, false);
-			setTranslationKey("alpia_seed");
+			setTranslationKey("pf_alpia_seed");
 			setRegistryName("alpia_seed");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

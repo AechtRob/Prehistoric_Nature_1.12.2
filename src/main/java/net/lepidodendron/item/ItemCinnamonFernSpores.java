@@ -36,7 +36,7 @@ public class ItemCinnamonFernSpores extends ElementsLepidodendronMod.ModElement 
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("cinnamon_fern_spores");
+			setTranslationKey("pf_cinnamon_fern_spores");
 			setRegistryName("cinnamon_fern_spores");
 			setCreativeTab(null);
 		}

@@ -37,7 +37,7 @@ public class ItemPetrifiedCobbania extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_cobbania");
+			setTranslationKey("pf_petrified_cobbania");
 			setRegistryName("petrified_cobbania");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -1,6 +1,9 @@
 
 package net.lepidodendron.world.biome;
 
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.ColorizerGrass;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.common.BiomeDictionary;
@@ -54,6 +57,8 @@ import net.lepidodendron.world.WorldGenBothrodendronTree;
 import net.lepidodendron.world.WorldGenDiaphorodendronTree;
 import net.lepidodendron.world.WorldGenValmeyerodendronTree;
 import net.lepidodendron.world.WorldGenCalamites;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 
 import java.util.Random;
@@ -98,7 +103,32 @@ public class BiomeCarboniferousOcean extends ElementsLepidodendronMod.ModElement
 			this.spawnableWaterCreatureList.clear();
 			this.spawnableCaveCreatureList.clear();
 		}
-		
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public int getFoliageColorAtPos(BlockPos pos)
+		{
+			return -15424749;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public int getGrassColorAtPos(BlockPos pos)
+		{
+			return -15424749;
+		}
+
+		@Override
+		public int getModdedBiomeGrassColor(int original)
+		{
+			return -15424749;
+		}
+
+		@Override
+		public int getModdedBiomeFoliageColor(int original)
+		{
+			return -15424749;
+		}
 
 		protected static final WorldGenTopSoil TOPSOIL_GENERATOR = new WorldGenTopSoil();
 		protected static final WorldGenCordaites CORDAITES = new WorldGenCordaites(false);
@@ -183,6 +213,7 @@ public class BiomeCarboniferousOcean extends ElementsLepidodendronMod.ModElement
 					strPos3 = 0;
 					strPos4 = 0;
 					strPos5 = 0;
+					nbtStr = "";
 
 					strPos1 = checkEntity.indexOf(":");
 					if (!(strPos1 > 0)) {

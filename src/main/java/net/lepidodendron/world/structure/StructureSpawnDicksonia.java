@@ -1,21 +1,11 @@
 
 package net.lepidodendron.world.structure;
 
-import net.minecraft.world.gen.structure.template.Template;
-import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.WorldServer;
 import net.minecraft.world.World;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Mirror;
-import net.minecraft.init.Blocks;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.Block;
 import net.minecraft.util.EnumFacing;
 
 import net.lepidodendron.procedure.ProcedureWorldGenDicksonia;
@@ -25,13 +15,11 @@ import net.lepidodendron.block.BlockDicksoniaLog;
 import net.lepidodendron.block.BlockDicksoniaLeaves;
 
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.LepidodendronTreeHandler;
+import net.lepidodendron.LepidodendronDecorationHandler;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraft.block.material.Material;
 
 import java.util.Random;
-import java.util.Map;
-import java.util.HashMap;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class StructureSpawnDicksonia extends ElementsLepidodendronMod.ModElement {
@@ -80,7 +68,7 @@ public class StructureSpawnDicksonia extends ElementsLepidodendronMod.ModElement
 		if (GenMultiplier < 0) {GenMultiplier = 0;}
 		GenChance = Math.min(300000, (int) Math.round((double) GenChance * GenMultiplier));
 		//Is this a transformed biome?
-		if (LepidodendronTreeHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
+		if (LepidodendronDecorationHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
 			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
 				GenChance = Math.min(GenChance * 8, 300000);
 		}

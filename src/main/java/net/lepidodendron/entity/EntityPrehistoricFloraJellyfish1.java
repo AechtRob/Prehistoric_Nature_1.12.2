@@ -5,26 +5,25 @@ import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.entity.ai.JellyfishWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraJellyfishBase;
-import net.lepidodendron.entity.model.ModelJellyfish;
+import net.lepidodendron.item.ItemBucketJellyfish1;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.*;
 
 import net.minecraft.entity.monster.EntityMob;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 import net.minecraft.world.World;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.DamageSource;
 import net.minecraft.item.Item;
 import net.minecraft.entity.Entity;
-import net.minecraft.client.renderer.entity.RenderLiving;
 
-import net.lepidodendron.ElementsLepidodendronMod;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 public class EntityPrehistoricFloraJellyfish1 extends EntityPrehistoricFloraJellyfishBase {
 
@@ -160,6 +159,29 @@ public class EntityPrehistoricFloraJellyfish1 extends EntityPrehistoricFloraJell
     protected Item getDropItem() {
         //return new ItemStack(ItemJellyfishMeat.block, (int) (1)).getItem();
         return null;
+    }
+
+    @Override
+    public boolean processInteract(EntityPlayer player, EnumHand hand)
+    {
+        ItemStack itemstack = player.getHeldItem(hand);
+
+        if (!itemstack.isEmpty())
+        {
+            if (itemstack.getItem() == Items.WATER_BUCKET)
+            {
+                player.inventory.clearMatchingItems(new ItemStack(Items.WATER_BUCKET, (int) (1)).getItem(), -1, (int) 1, null);
+                SoundEvent soundevent = SoundEvents.ITEM_BUCKET_FILL;
+                player.getEntityWorld().playSound(player, player.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                ItemStack itemstack1 = new ItemStack(ItemBucketJellyfish1.block, (int) (1));
+                itemstack1.setCount(1);
+                ItemHandlerHelper.giveItemToPlayer(player, itemstack1);
+                this.setDead();
+                return true;
+            }
+        }
+
+        return super.processInteract(player, hand);
     }
 
 }

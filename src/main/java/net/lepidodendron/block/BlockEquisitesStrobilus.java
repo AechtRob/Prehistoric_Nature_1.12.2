@@ -81,7 +81,7 @@ public class BlockEquisitesStrobilus extends ElementsLepidodendronMod.ModElement
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("equisetites_strobilus");
+			setTranslationKey("pf_equisetites_strobilus");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

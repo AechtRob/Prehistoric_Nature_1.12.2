@@ -36,7 +36,7 @@ public class ItemCooksoniaSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("cooksonia_spores");
+			setTranslationKey("pf_cooksonia_spores");
 			setRegistryName("cooksonia_spores");
 			setCreativeTab(null);
 		}

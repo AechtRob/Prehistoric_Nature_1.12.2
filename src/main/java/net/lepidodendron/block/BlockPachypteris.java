@@ -70,7 +70,7 @@ public class BlockPachypteris extends ElementsLepidodendronMod.ModElement {
 	    
 		public BlockCustom() {
 			super(Material.WATER);
-			setTranslationKey("pachypteris");
+			setTranslationKey("pf_pachypteris");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.5F);
 			setResistance(0F);

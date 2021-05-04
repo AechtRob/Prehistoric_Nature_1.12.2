@@ -1,6 +1,7 @@
 
 package net.lepidodendron.world.biome;
 
+import net.lepidodendron.world.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.common.BiomeDictionary;
@@ -25,28 +26,10 @@ import net.lepidodendron.block.BlockPrehistoricGroundLush;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockWalchiaLog;
 import net.lepidodendron.block.BlockCordaitesLog;
-import net.lepidodendron.world.WorldGenTreeLog;
 
-import net.lepidodendron.world.WorldGenLepidodendronTree;
-import net.lepidodendron.world.WorldGenWalchiaTree;
-import net.lepidodendron.world.WorldGenCordaites;
-import net.lepidodendron.world.WorldGenAlethopterisTree;
-import net.lepidodendron.world.WorldGenPsaronius;
-
-import net.lepidodendron.world.WorldGenStauropteris;
-import net.lepidodendron.world.WorldGenSphenopteris;
-import net.lepidodendron.world.WorldGenAncientMoss;
-import net.lepidodendron.world.WorldGenSelaginella;
-import net.lepidodendron.world.WorldGenIsoetes;
-import net.lepidodendron.world.WorldGenWaterHorsetail;
-import net.lepidodendron.world.WorldGenMedullosales;
-import net.lepidodendron.world.WorldGenMarattia;
-import net.lepidodendron.world.WorldGenDicksoniaShoot;
-import net.lepidodendron.world.WorldGenPrehistoricGroundCoverLush;
-import net.lepidodendron.world.WorldGenPuddles;
-import net.lepidodendron.world.WorldGenTopSoil;
-import net.lepidodendron.world.WorldGenFern;
 import net.minecraft.block.BlockDoublePlant;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
@@ -89,7 +72,32 @@ public class BiomeCarboniferousHills extends ElementsLepidodendronMod.ModElement
 			this.spawnableWaterCreatureList.clear();
 			this.spawnableCaveCreatureList.clear();
 		}
-		
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public int getFoliageColorAtPos(BlockPos pos)
+		{
+			return -15424749;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public int getGrassColorAtPos(BlockPos pos)
+		{
+			return -15424749;
+		}
+
+		@Override
+		public int getModdedBiomeGrassColor(int original)
+		{
+			return -15424749;
+		}
+
+		@Override
+		public int getModdedBiomeFoliageColor(int original)
+		{
+			return -15424749;
+		}
 
 		protected static final WorldGenLepidodendronTree LEPIDODENDRON_TREE = new WorldGenLepidodendronTree(false);
 		protected static final WorldGenWalchiaTree WALCHIA_TREE = new WorldGenWalchiaTree(false);
@@ -104,7 +112,7 @@ public class BiomeCarboniferousHills extends ElementsLepidodendronMod.ModElement
 		protected static final WorldGenAncientMoss ANCIENT_MOSS_GENERATOR = new WorldGenAncientMoss();
 		protected static final WorldGenSelaginella SELAGINELLA_GENERATOR = new WorldGenSelaginella();
 		protected static final WorldGenMarattia MARATTIA_GENERATOR = new WorldGenMarattia();
-		protected static final WorldGenDicksoniaShoot DICKSONIA_SHOOT_GENERATOR = new WorldGenDicksoniaShoot();
+		protected static final WorldGenZygopteridaceaeShoot ZYGOPTERIDACEAE_SHOOT_GENERATOR = new WorldGenZygopteridaceaeShoot();
 		protected static final WorldGenIsoetes ISOETES_GENERATOR = new WorldGenIsoetes();
 		protected static final WorldGenWaterHorsetail WATER_HORSETAIL_GENERATOR = new WorldGenWaterHorsetail();
 		protected static final WorldGenPrehistoricGroundCoverLush GROUNDCOVER_GENERATOR = new WorldGenPrehistoricGroundCoverLush();
@@ -172,6 +180,7 @@ public class BiomeCarboniferousHills extends ElementsLepidodendronMod.ModElement
 					strPos3 = 0;
 					strPos4 = 0;
 					strPos5 = 0;
+					nbtStr = "";
 
 					strPos1 = checkEntity.indexOf(":");
 					if (!(strPos1 > 0)) {
@@ -577,7 +586,7 @@ public class BiomeCarboniferousHills extends ElementsLepidodendronMod.ModElement
 	            int j = rand.nextInt(16) + 8;
 	            int k = rand.nextInt(16) + 8;
 	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
-	            DICKSONIA_SHOOT_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+	            ZYGOPTERIDACEAE_SHOOT_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
 	        
 	        

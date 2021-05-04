@@ -36,7 +36,7 @@ public class ItemEquisetitesSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("equisetites_spores");
+			setTranslationKey("pf_equisetites_spores");
 			setRegistryName("equisetites_spores");
 			setCreativeTab(null);
 		}

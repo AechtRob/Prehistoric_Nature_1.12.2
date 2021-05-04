@@ -66,7 +66,7 @@ public class BlockPterophyllumShootPlaceable extends ElementsLepidodendronMod.Mo
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("pterophyllum_shoot");
+			setTranslationKey("pf_pterophyllum_shoot");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

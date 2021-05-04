@@ -72,7 +72,7 @@ public class BlockAraucarioxylonWall extends ElementsLepidodendronMod.ModElement
 
 		public BlockCustom() {
 			super(Material.ROCK, Material.ROCK.getMaterialMapColor());
-			setTranslationKey("araucarioxylon_wall");
+			setTranslationKey("pf_araucarioxylon_wall");
 			setSoundType(SoundType.STONE);
 			setHardness(5F);
 			setResistance(3F);

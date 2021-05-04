@@ -33,7 +33,7 @@ public class ItemHibbertopterusRaw extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(2, 0.1f, false);
-			setTranslationKey("hibbertopterus_raw");
+			setTranslationKey("pf_hibbertopterus_raw");
 			setRegistryName("hibbertopterus_raw");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

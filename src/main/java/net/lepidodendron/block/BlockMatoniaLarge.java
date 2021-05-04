@@ -76,7 +76,7 @@ public class BlockMatoniaLarge extends ElementsLepidodendronMod.ModElement {
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("matonia_large");
+			setTranslationKey("pf_matonia_large");
 			setRegistryName("matonia_large");
 			this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 		}

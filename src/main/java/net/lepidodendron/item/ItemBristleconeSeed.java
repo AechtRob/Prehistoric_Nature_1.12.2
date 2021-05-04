@@ -37,7 +37,7 @@ public class ItemBristleconeSeed extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(1, 0.2f, false);
-			setTranslationKey("bristlecone_seed");
+			setTranslationKey("pf_bristlecone_seed");
 			setRegistryName("bristlecone_seed");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

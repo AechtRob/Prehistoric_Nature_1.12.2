@@ -52,7 +52,7 @@ public class BlockTempskyaLog extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("tempskya_log");
+			setTranslationKey("pf_tempskya_log");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

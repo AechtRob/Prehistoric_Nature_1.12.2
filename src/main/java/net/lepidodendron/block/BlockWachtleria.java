@@ -67,7 +67,7 @@ public class BlockWachtleria extends ElementsLepidodendronMod.ModElement {
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("wachtleria");
+			setTranslationKey("pf_wachtleria");
 			setRegistryName("wachtleria");
 		}
 

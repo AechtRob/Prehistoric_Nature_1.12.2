@@ -36,7 +36,7 @@ public class ItemSmallMatoniaSpores extends ElementsLepidodendronMod.ModElement 
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("small_matonia_spores");
+			setTranslationKey("pf_small_matonia_spores");
 			setRegistryName("small_matonia_spores");
 			setCreativeTab(null);
 		}

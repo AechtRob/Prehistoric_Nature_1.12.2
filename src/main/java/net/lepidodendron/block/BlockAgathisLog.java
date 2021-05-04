@@ -52,7 +52,7 @@ public class BlockAgathisLog extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("agathis_log");
+			setTranslationKey("pf_agathis_log");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

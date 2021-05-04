@@ -37,7 +37,7 @@ public class ItemPetrifiedAdoketophyton extends ElementsLepidodendronMod.ModElem
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_adoketophyton");
+			setTranslationKey("pf_petrified_adoketophyton");
 			setRegistryName("petrified_adoketophyton");
 			setCreativeTab(TabLepidodendron.tab);
 		}

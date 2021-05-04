@@ -37,7 +37,7 @@ public class ItemQuasistrobusSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("quasistrobus_seeds");
+			setTranslationKey("pf_quasistrobus_seeds");
 			setRegistryName("quasistrobus_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

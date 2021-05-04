@@ -46,7 +46,7 @@ public class BlockMonkeyPuzzlePlanks extends ElementsLepidodendronMod.ModElement
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("monkey_puzzle_planks");
+			setTranslationKey("pf_monkey_puzzle_planks");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

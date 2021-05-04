@@ -73,7 +73,7 @@ public class BlockWattiezaLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("wattieza_log");
+			setTranslationKey("pf_wattieza_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

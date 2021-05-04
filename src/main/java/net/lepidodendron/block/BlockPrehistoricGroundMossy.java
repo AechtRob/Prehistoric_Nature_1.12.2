@@ -61,7 +61,7 @@ public class BlockPrehistoricGroundMossy extends ElementsLepidodendronMod.ModEle
 	public static class BlockCustom extends Block implements IGrowable {
 		public BlockCustom() {
 			super(Material.ROCK);
-			setTranslationKey("mossy_prehistoric_ground_cover");
+			setTranslationKey("pf_mossy_prehistoric_ground_cover");
 			setSoundType(SoundType.STONE);
         	setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
         	setTickRandomly(true);

@@ -37,7 +37,7 @@ public class ItemPetrifiedBunyaSapling extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_bunya_sapling");
+			setTranslationKey("pf_petrified_bunya_sapling");
 			setRegistryName("petrified_bunya_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

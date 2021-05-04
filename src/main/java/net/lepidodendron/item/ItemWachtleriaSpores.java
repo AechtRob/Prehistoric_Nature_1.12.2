@@ -36,7 +36,7 @@ public class ItemWachtleriaSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("wachtleria_spores");
+			setTranslationKey("pf_wachtleria_spores");
 			setRegistryName("wachtleria_spores");
 			setCreativeTab(null);
 		}

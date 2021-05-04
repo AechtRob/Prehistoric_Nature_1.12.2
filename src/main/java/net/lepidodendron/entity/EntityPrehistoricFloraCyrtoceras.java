@@ -2,19 +2,13 @@
 package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
-import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.NautiloidWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraNautiloidBase;
-import net.lepidodendron.entity.model.ModelCyrtoceras;
-import net.lepidodendron.item.entities.ItemCyrtocerasRaw;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -23,9 +17,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

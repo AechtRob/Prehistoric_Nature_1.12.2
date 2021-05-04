@@ -36,7 +36,7 @@ public class ItemZosterophyllumSpores extends ElementsLepidodendronMod.ModElemen
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("zosterophyllum_spores");
+			setTranslationKey("pf_zosterophyllum_spores");
 			setRegistryName("zosterophyllum_spores");
 			setCreativeTab(null);
 		}

@@ -37,7 +37,7 @@ public class ItemCobbaniaSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("cobbania_seeds");
+			setTranslationKey("pf_cobbania_seeds");
 			setRegistryName("cobbania_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

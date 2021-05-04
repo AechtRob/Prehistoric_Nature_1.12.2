@@ -37,7 +37,7 @@ public class ItemPetrifiedHironoiaSapling extends ElementsLepidodendronMod.ModEl
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_hironoia_sapling");
+			setTranslationKey("pf_petrified_hironoia_sapling");
 			setRegistryName("petrified_hironoia_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

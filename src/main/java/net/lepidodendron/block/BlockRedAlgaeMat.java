@@ -103,6 +103,9 @@ public class BlockRedAlgaeMat extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genRedAlgaeMatOverrideBiomes))
 			biomeCriteria = true;
+		if (dimID == LepidodendronConfig.dimCambrian) {
+			biomeCriteria = true;
+		}
 		if (!biomeCriteria)
 			return;
 
@@ -112,6 +115,10 @@ public class BlockRedAlgaeMat extends ElementsLepidodendronMod.ModElement {
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
 		) {
 			multiplier = 2;
+		}
+		if (dimID == LepidodendronConfig.dimCambrian)
+		{
+			multiplier = 3;
 		}
 
 		for (int i = 0; i < (int) 10 * multiplier; i++) {
@@ -160,7 +167,7 @@ public class BlockRedAlgaeMat extends ElementsLepidodendronMod.ModElement {
     
 		public BlockCustom() {
 			super(Material.WATER);
-			setTranslationKey("red_algae_mat");
+			setTranslationKey("pf_red_algae_mat");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.0F);
 			setResistance(0.0F);

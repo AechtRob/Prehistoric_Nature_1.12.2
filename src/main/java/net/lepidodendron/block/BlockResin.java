@@ -56,7 +56,7 @@ public class BlockResin extends ElementsLepidodendronMod.ModElement {
 					entity.setInWeb();
 				}
 			}
-		}.setTranslationKey("resin").setRegistryName("resin"));
+		}.setTranslationKey("pf_resin").setRegistryName("resin"));
 		elements.items.add(() -> new ItemBlock(block).setRegistryName("resin"));
 	}
 

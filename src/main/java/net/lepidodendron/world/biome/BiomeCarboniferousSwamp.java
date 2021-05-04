@@ -52,6 +52,8 @@ import net.lepidodendron.world.WorldGenPuddles;
 import net.lepidodendron.world.WorldGenFern;
 import net.minecraft.block.BlockDoublePlant;
 import net.lepidodendron.world.WorldGenMud;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.Random;
 
@@ -94,7 +96,32 @@ public class BiomeCarboniferousSwamp extends ElementsLepidodendronMod.ModElement
 			this.spawnableWaterCreatureList.clear();
 			this.spawnableCaveCreatureList.clear();
 		}
-		
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public int getFoliageColorAtPos(BlockPos pos)
+		{
+			return -15424749;
+		}
+
+		@Override
+		@SideOnly(Side.CLIENT)
+		public int getGrassColorAtPos(BlockPos pos)
+		{
+			return -15424749;
+		}
+
+		@Override
+		public int getModdedBiomeGrassColor(int original)
+		{
+			return -15424749;
+		}
+
+		@Override
+		public int getModdedBiomeFoliageColor(int original)
+		{
+			return -15424749;
+		}
 
 		protected static final WorldGenLepidodendronTree LEPIDODENDRON_TREE = new WorldGenLepidodendronTree(false);
 		protected static final WorldGenSigillaria SIGILLARIA_TREE = new WorldGenSigillaria(false);
@@ -174,6 +201,7 @@ public class BiomeCarboniferousSwamp extends ElementsLepidodendronMod.ModElement
 					strPos3 = 0;
 					strPos4 = 0;
 					strPos5 = 0;
+					nbtStr = "";
 
 					strPos1 = checkEntity.indexOf(":");
 					if (!(strPos1 > 0)) {

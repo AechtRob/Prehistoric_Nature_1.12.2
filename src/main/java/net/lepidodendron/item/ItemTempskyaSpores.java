@@ -36,7 +36,7 @@ public class ItemTempskyaSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("tempskya_spores");
+			setTranslationKey("pf_tempskya_spores");
 			setRegistryName("tempskya_spores");
 			setCreativeTab(null);
 		}

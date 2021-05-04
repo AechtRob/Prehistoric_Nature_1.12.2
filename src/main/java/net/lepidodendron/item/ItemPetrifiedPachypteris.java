@@ -37,7 +37,7 @@ public class ItemPetrifiedPachypteris extends ElementsLepidodendronMod.ModElemen
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_pachypteris");
+			setTranslationKey("pf_petrified_pachypteris");
 			setRegistryName("petrified_pachypteris");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -61,7 +61,7 @@ public class BlockMonkeyPuzzleFruitBlock extends ElementsLepidodendronMod.ModEle
 	public static class BlockCustom extends BlockFalling {
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("monkeypuzzle_fruit_block");
+			setTranslationKey("pf_monkeypuzzle_fruit_block");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(0F);

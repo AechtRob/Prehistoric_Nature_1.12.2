@@ -75,7 +75,7 @@ public class BlockPsilophytonSpore extends ElementsLepidodendronMod.ModElement {
 			else {
 				setTickRandomly(false);
 			}
-			setTranslationKey("psilophyton_spore");
+			setTranslationKey("pf_psilophyton_spore");
 			setRegistryName("psilophyton_spore");
 		}
 

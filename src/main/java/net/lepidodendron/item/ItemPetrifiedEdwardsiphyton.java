@@ -37,7 +37,7 @@ public class ItemPetrifiedEdwardsiphyton extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_edwardsiphyton");
+			setTranslationKey("pf_petrified_edwardsiphyton");
 			setRegistryName("petrified_edwardsiphyton");
 			setCreativeTab(TabLepidodendron.tab);
 		}

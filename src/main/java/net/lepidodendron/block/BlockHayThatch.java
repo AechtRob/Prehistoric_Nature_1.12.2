@@ -69,7 +69,7 @@ public class BlockHayThatch extends ElementsLepidodendronMod.ModElement {
 
 		public BlockCustom() {
 			super(Material.LEAVES);
-			setTranslationKey("hay_thatch");
+			setTranslationKey("pf_hay_thatch");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.5F);
 			setResistance(0.5F);

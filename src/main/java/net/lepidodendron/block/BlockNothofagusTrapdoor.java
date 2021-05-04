@@ -46,7 +46,7 @@ public class BlockNothofagusTrapdoor extends ElementsLepidodendronMod.ModElement
 	public static class BlockCustom extends BlockTrapDoor {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("nothofagus_trapdoor");
+			setTranslationKey("pf_nothofagus_trapdoor");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(3F);

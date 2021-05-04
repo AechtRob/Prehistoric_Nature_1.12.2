@@ -37,7 +37,7 @@ public class ItemPetrifiedColumnarisSapling extends ElementsLepidodendronMod.Mod
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_columnaris_sapling");
+			setTranslationKey("pf_petrified_columnaris_sapling");
 			setRegistryName("petrified_columnaris_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

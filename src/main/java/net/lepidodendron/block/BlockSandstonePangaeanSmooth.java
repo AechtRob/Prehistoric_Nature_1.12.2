@@ -42,7 +42,7 @@ public class BlockSandstonePangaeanSmooth extends ElementsLepidodendronMod.ModEl
 			setHardness(2F);
 			setResistance(6F);
 			setHarvestLevel("pickaxe", 0);
-			setTranslationKey("sandstone_pangaean_smooth");
+			setTranslationKey("pf_sandstone_pangaean_smooth");
 			setCreativeTab(TabLepidodendron.tab);
 		}
 	}

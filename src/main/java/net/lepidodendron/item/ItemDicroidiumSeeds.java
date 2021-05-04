@@ -37,7 +37,7 @@ public class ItemDicroidiumSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("dicroidium_seeds");
+			setTranslationKey("pf_dicroidium_seeds");
 			setRegistryName("dicroidium_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

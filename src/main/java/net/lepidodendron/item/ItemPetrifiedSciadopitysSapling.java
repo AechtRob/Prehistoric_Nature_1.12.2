@@ -37,7 +37,7 @@ public class ItemPetrifiedSciadopitysSapling extends ElementsLepidodendronMod.Mo
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_sciadopitys_sapling");
+			setTranslationKey("pf_petrified_sciadopitys_sapling");
 			setRegistryName("petrified_sciadopitys_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

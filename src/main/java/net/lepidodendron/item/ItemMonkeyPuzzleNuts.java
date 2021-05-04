@@ -37,7 +37,7 @@ public class ItemMonkeyPuzzleNuts extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(2, 0.2f, false);
-			setTranslationKey("monkey_puzzle_nuts");
+			setTranslationKey("pf_monkey_puzzle_nuts");
 			setRegistryName("monkey_puzzle_nuts");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

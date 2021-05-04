@@ -78,7 +78,7 @@ public class BlockGigantopteridLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("gigantopterid_log");
+			setTranslationKey("pf_gigantopterid_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

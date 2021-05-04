@@ -36,7 +36,7 @@ public class ItemAsteroxylonSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("asteroxylon_spores");
+			setTranslationKey("pf_asteroxylon_spores");
 			setRegistryName("asteroxylon_spores");
 			setCreativeTab(null);
 		}

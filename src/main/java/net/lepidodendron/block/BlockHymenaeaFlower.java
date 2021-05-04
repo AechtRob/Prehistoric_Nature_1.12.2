@@ -91,7 +91,7 @@ public class BlockHymenaeaFlower extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("hymenaea_flower");
+			setTranslationKey("pf_hymenaea_flower");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

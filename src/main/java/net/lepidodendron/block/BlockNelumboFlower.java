@@ -75,7 +75,7 @@ public class BlockNelumboFlower extends ElementsLepidodendronMod.ModElement {
 			setLightOpacity(0);
 			setCreativeTab(null);
 			setTickRandomly(true);
-			setTranslationKey("nelumbo_flower_worldgen");
+			setTranslationKey("pf_nelumbo_flower_worldgen");
 			setRegistryName("nelumbo_flower_worldgen");
 			this.setDefaultState(this.blockState.getBaseState());
 		}

@@ -65,7 +65,7 @@ public class BlockTetraxylopteris extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves implements net.minecraftforge.common.IPlantable {
 		public BlockCustom() {
 			super();
-			setTranslationKey("tetraxylopteris");
+			setTranslationKey("pf_tetraxylopteris");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

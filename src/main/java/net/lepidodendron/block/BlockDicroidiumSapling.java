@@ -70,7 +70,7 @@ public class BlockDicroidiumSapling extends ElementsLepidodendronMod.ModElement 
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("dicroidium_sapling");
+			setTranslationKey("pf_dicroidium_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

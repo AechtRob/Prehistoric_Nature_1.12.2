@@ -36,7 +36,7 @@ public class ItemNathorstianaSpores extends ElementsLepidodendronMod.ModElement 
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("nathorstiana_spores");
+			setTranslationKey("pf_nathorstiana_spores");
 			setRegistryName("nathorstiana_spores");
 			setCreativeTab(null);
 		}

@@ -47,7 +47,7 @@ public class BlockCalamitesStairs extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockStairs {
 		public BlockCustom() {
 			super(new Block(Material.PLANTS).getDefaultState());
-			setTranslationKey("calamites_stairs");
+			setTranslationKey("pf_calamites_stairs");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.5F);
 			setResistance(2.5F);

@@ -60,7 +60,7 @@ public class BlockTetraxylopterisSpore extends ElementsLepidodendronMod.ModEleme
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			//super();
-			setTranslationKey("tetraxylopteris_spore");
+			setTranslationKey("pf_tetraxylopteris_spore");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

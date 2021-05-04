@@ -37,7 +37,7 @@ public class ItemUmaltolepisFruit extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("umaltolepis_fruit");
+			setTranslationKey("pf_umaltolepis_fruit");
 			setRegistryName("umaltolepis_fruit");
 			setCreativeTab(TabLepidodendron.tab);
 		}

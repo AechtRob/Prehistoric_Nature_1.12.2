@@ -6,6 +6,8 @@
  */
 package net.lepidodendron;
 
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.util.EnumHelper;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
@@ -68,6 +70,10 @@ public class ElementsLepidodendronMod implements IFuelHandler, IWorldGenerator {
 				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "pneudodesmus_hurt")));
 		sounds.put(new ResourceLocation("lepidodendron", "pneudodesmus_death"),
 				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "pneudodesmus_death")));
+		sounds.put(new ResourceLocation("lepidodendron", "palaeodictyoptera_idle"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "palaeodictyoptera_idle")));
+		sounds.put(new ResourceLocation("lepidodendron", "palaeodictyoptera_flight"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "palaeodictyoptera_flight")));
 	}
 
 	public void preInit(FMLPreInitializationEvent event) {

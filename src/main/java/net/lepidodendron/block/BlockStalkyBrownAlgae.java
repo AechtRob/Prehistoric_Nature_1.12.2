@@ -104,16 +104,23 @@ public class BlockStalkyBrownAlgae extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genBrownStalkyAlgaeOverrideBiomes))
 			biomeCriteria = true;
+		if ((dimID == LepidodendronConfig.dimDevonian)
+				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
+				|| (dimID == LepidodendronConfig.dimCarboniferous)
+				|| (dimID == LepidodendronConfig.dimCambrian)
+		) {
+			biomeCriteria = false;
+		}
 		if (!biomeCriteria)
 			return;
 
 		int multiplier = 1;
-		if ((dimID == LepidodendronConfig.dimDevonian)
-				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
-				|| (dimID == LepidodendronConfig.dimCarboniferous)
-		) {
-			multiplier = 2;
-		}
+		//if ((dimID == LepidodendronConfig.dimDevonian)
+				//|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
+				//|| (dimID == LepidodendronConfig.dimCarboniferous)
+		//) {
+		//	multiplier = 2;
+		//}
 
 		for (int i = 0; i < (int) 10 * multiplier; i++) {
 			int l6 = chunkX + random.nextInt(16) + 8;
@@ -154,7 +161,7 @@ public class BlockStalkyBrownAlgae extends ElementsLepidodendronMod.ModElement {
     
 		public BlockCustom() {
 			super(Material.WATER);
-			setTranslationKey("stalky_brown_algae");
+			setTranslationKey("pf_stalky_brown_algae");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.0F);
 			setResistance(0.0F);
@@ -187,7 +194,7 @@ public class BlockStalkyBrownAlgae extends ElementsLepidodendronMod.ModElement {
 		
 		@Override
 		public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
-			return layer == BlockRenderLayer.CUTOUT_MIPPED;
+			return layer == BlockRenderLayer.TRANSLUCENT;
 		}
 
 		@Override

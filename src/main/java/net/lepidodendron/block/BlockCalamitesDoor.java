@@ -53,7 +53,7 @@ public class BlockCalamitesDoor extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockDoor {
 		public BlockCustom() {
 			super(Material.PLANTS);
-			//setTranslationKey("calamites_door");
+			setTranslationKey("pf_calamites_door");
 			setSoundType(SoundType.PLANT);
 			setHarvestLevel("axe", 1);
 			setHardness(3F);

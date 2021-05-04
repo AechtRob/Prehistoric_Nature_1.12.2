@@ -53,7 +53,7 @@ public class BlockKomlopterisDoor extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockDoor {
 		public BlockCustom() {
 			super(Material.WOOD);
-			//setTranslationKey("komlopteris_door");
+			setTranslationKey("pf_komlopteris_door");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(3F);

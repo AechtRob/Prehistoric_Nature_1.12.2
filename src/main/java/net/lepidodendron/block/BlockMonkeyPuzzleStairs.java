@@ -47,7 +47,7 @@ public class BlockMonkeyPuzzleStairs extends ElementsLepidodendronMod.ModElement
 	public static class BlockCustom extends BlockStairs {
 		public BlockCustom() {
 			super(new Block(Material.WOOD).getDefaultState());
-			setTranslationKey("monkey_puzzle_stairs");
+			setTranslationKey("pf_monkey_puzzle_stairs");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

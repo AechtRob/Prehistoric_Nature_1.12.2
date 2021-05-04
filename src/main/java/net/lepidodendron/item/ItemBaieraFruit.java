@@ -37,7 +37,7 @@ public class ItemBaieraFruit extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("baiera_fruit");
+			setTranslationKey("pf_baiera_fruit");
 			setRegistryName("baiera_fruit");
 			setCreativeTab(TabLepidodendron.tab);
 		}

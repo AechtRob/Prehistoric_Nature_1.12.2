@@ -58,7 +58,7 @@ public class ItemArchaefructusItem extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("archaefructus_item");
+			setTranslationKey("pf_archaefructus_item");
 			setRegistryName("archaefructus_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

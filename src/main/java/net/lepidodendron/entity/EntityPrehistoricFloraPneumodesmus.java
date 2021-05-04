@@ -3,16 +3,12 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockAncientMoss;
 import net.lepidodendron.block.BlockDollyphyton;
 import net.lepidodendron.block.BlockEdwardsiphyton;
 import net.lepidodendron.block.BlockSelaginella;
 import net.lepidodendron.entity.ai.LandWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraLandBase;
-import net.lepidodendron.entity.model.ModelEoarthropleura;
-import net.minecraft.client.renderer.entity.RenderLiving;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -21,9 +17,6 @@ import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

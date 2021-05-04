@@ -59,7 +59,7 @@ public class BlockCycasShootTop extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("cycas_shoot_top");
+			setTranslationKey("pf_cycas_shoot_top");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

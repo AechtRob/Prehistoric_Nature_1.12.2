@@ -71,7 +71,7 @@ public class BlockWilliamsoniaLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("williamsonia_log");
+			setTranslationKey("pf_williamsonia_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

@@ -66,7 +66,7 @@ public class BlockPsaroniusLeavesTop extends ElementsLepidodendronMod.ModElement
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			//super(Material.PLANTS);
-			setTranslationKey("psaronius_leaves_top");
+			setTranslationKey("pf_psaronius_leaves_top");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

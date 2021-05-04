@@ -36,7 +36,7 @@ public class ItemWattiezaSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("wattieza_spores");
+			setTranslationKey("pf_wattieza_spores");
 			setRegistryName("wattieza_spores");
 			setCreativeTab(null);
 		}

@@ -35,7 +35,7 @@ public class ItemPetrifiedProtolepidodendropsisSapling extends ElementsLepidoden
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_protolepidodendropsis_sapling");
+			setTranslationKey("pf_petrified_protolepidodendropsis_sapling");
 			setRegistryName("petrified_protolepidodendropsis_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -46,7 +46,7 @@ public class BlockPodozamitesPlanks extends ElementsLepidodendronMod.ModElement 
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("podozamites_planks");
+			setTranslationKey("pf_podozamites_planks");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

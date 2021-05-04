@@ -70,7 +70,7 @@ public class BlockProteaSapling1 extends ElementsLepidodendronMod.ModElement {
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("protea_sapling_1");
+			setTranslationKey("pf_protea_sapling_1");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

@@ -37,7 +37,7 @@ public class ItemMedullosalesSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("medullosales_seeds");
+			setTranslationKey("pf_medullosales_seeds");
 			setRegistryName("medullosales_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

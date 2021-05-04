@@ -61,7 +61,7 @@ public class BlockAlpiaLeaves1 extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("alpia_leaves_1");
+			setTranslationKey("pf_alpia_leaves_1");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

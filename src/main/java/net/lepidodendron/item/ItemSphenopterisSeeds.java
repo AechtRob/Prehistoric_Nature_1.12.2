@@ -37,7 +37,7 @@ public class ItemSphenopterisSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("sphenopteris_seeds");
+			setTranslationKey("pf_sphenopteris_seeds");
 			setRegistryName("sphenopteris_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

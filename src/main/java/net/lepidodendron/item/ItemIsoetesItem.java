@@ -58,7 +58,7 @@ public class ItemIsoetesItem extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("isoetes_item");
+			setTranslationKey("pf_isoetes_item");
 			setRegistryName("isoetes_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

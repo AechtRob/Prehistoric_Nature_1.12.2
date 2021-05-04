@@ -58,7 +58,7 @@ public class ItemNathorstianaItem extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("nathorstiana_item");
+			setTranslationKey("pf_nathorstiana_item");
 			setRegistryName("nathorstiana_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -37,7 +37,7 @@ public class ItemPetrifiedBristleconeSapling extends ElementsLepidodendronMod.Mo
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_bristlecone_sapling");
+			setTranslationKey("pf_petrified_bristlecone_sapling");
 			setRegistryName("petrified_bristlecone_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

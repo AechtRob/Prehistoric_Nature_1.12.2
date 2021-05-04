@@ -37,7 +37,7 @@ public class ItemLiriodendronSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("liriodendron_seeds");
+			setTranslationKey("pf_liriodendron_seeds");
 			setRegistryName("liriodendron_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

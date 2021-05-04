@@ -44,7 +44,7 @@ public class BlockVolcanicAshLight extends ElementsLepidodendronMod.ModElement {
 			setHardness(0.2F);
 			setResistance(0.2F);
 			setHarvestLevel("shovel", 0);
-			setTranslationKey("volcanic_ash_light");
+			setTranslationKey("pf_volcanic_ash_light");
 			setCreativeTab(TabLepidodendron.tab);
 		}
 	    

@@ -33,7 +33,7 @@ public class ItemAsaphusRaw extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(2, 0.1f, false);
-			setTranslationKey("asaphus_raw");
+			setTranslationKey("pf_asaphus_raw");
 			setRegistryName("asaphus_raw");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

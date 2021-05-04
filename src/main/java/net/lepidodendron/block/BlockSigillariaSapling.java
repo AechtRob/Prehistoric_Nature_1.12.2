@@ -70,7 +70,7 @@ public class BlockSigillariaSapling extends ElementsLepidodendronMod.ModElement 
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("sigillaria_sapling");
+			setTranslationKey("pf_sigillaria_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

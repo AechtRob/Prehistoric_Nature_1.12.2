@@ -63,7 +63,7 @@ public class BlockWattiezaShoot extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("wattieza_shoot_worldgen");
+			setTranslationKey("pf_wattieza_shoot_worldgen");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

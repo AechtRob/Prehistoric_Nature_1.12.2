@@ -64,7 +64,7 @@ public class BlockBaieraTop extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("baiera_top");
+			setTranslationKey("pf_baiera_top");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

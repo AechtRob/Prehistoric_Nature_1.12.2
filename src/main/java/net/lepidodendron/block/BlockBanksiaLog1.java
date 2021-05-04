@@ -67,7 +67,7 @@ public class BlockBanksiaLog1 extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("banksia_1_log");
+			setTranslationKey("pf_banksia_1_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

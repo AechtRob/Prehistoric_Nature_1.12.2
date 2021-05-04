@@ -25,7 +25,7 @@ public class WorldGenDollyphyton extends WorldGenerator
         {
             BlockPos blockpos = position.add(rand.nextInt(3) - rand.nextInt(3), rand.nextInt(3) - rand.nextInt(3), rand.nextInt(3) - rand.nextInt(3));
 
-            if (worldIn.isAirBlock(blockpos) && ((worldIn.getLight(blockpos) > 3) || (worldIn.canSeeSky(blockpos)))
+            if (blockpos.getY() >= worldIn.getSeaLevel()-4 && (blockpos.getY() < worldIn.getSeaLevel()+10) && worldIn.isAirBlock(blockpos) && ((worldIn.getLight(blockpos) > 3) || (worldIn.canSeeSky(blockpos)))
             && (!worldIn.provider.isNether() || blockpos.getY() < 254) && BlockDollyphyton.block.canPlaceBlockAt(worldIn, blockpos))
             {
             	int orientation = rand.nextInt(6);

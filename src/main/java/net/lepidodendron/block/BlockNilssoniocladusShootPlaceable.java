@@ -76,7 +76,7 @@ public class BlockNilssoniocladusShootPlaceable extends ElementsLepidodendronMod
 		
 		public BlockCustom() {
 			super();
-			setTranslationKey("nilssoniocladus_shoot");
+			setTranslationKey("pf_nilssoniocladus_shoot");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

@@ -61,7 +61,7 @@ public class BlockAgathisFruitBlock extends ElementsLepidodendronMod.ModElement 
 	public static class BlockCustom extends BlockFalling {
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("agathis_fruit_block");
+			setTranslationKey("pf_agathis_fruit_block");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(0F);
@@ -164,6 +164,11 @@ public class BlockAgathisFruitBlock extends ElementsLepidodendronMod.ModElement 
 					}
 				}
 			}
+		}
+
+		public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
+		{
+			super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
 		}
 
 		@Override

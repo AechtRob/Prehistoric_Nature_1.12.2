@@ -35,7 +35,7 @@ public class ItemAcanthodesCooked extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(5, 0.7f, false);
-			setTranslationKey("acanthodes_cooked");
+			setTranslationKey("pf_acanthodes_cooked");
 			setRegistryName("acanthodes_cooked");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

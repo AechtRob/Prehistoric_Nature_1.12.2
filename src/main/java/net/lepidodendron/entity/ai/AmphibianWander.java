@@ -1,10 +1,9 @@
 package net.lepidodendron.entity.ai;
 
-import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAmphibianBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.pathfinding.Path;
 import net.minecraft.util.math.BlockPos;
@@ -13,35 +12,28 @@ import net.minecraft.util.math.Vec3d;
 
 import java.util.Random;
 
-//public class FishWander extends EntityAIBase {
-public class AmphibianWander extends AnimationAI<EntityPrehistoricFloraAmphibianBase> {
+public class AmphibianWander extends EntityAIBase {
 
-    protected Animation animation;
     protected EntityPrehistoricFloraAmphibianBase PrehistoricFloraAmphibianBase;
+    protected boolean mustUpdate;
+    protected int executionChance;
 
-    public AmphibianWander(EntityPrehistoricFloraAmphibianBase PrehistoricFloraAmphibianBase, Animation animation)
+    public AmphibianWander(EntityPrehistoricFloraAmphibianBase PrehistoricFloraAmphibianBase)
     {
-        super(PrehistoricFloraAmphibianBase);
-        setMutexBits(4);
+        this(PrehistoricFloraAmphibianBase, 120);
+    }
+
+    public AmphibianWander(EntityPrehistoricFloraAmphibianBase PrehistoricFloraAmphibianBase, int chance)
+    {
+        //super(PrehistoricFloraAmphibianBase);
+        this.executionChance = chance;
+        setMutexBits(1);
         this.PrehistoricFloraAmphibianBase = PrehistoricFloraAmphibianBase;
-        this.animation = animation;
-    }
-
-    @Override
-    public Animation getAnimation()
-    {
-        return animation;
-    }
-
-    @Override
-    public boolean isAutomatic() {
-        return true;
     }
 
     @Override
     public void startExecuting() {
         super.startExecuting();
-        //PrehistoricFloraAmphibianBase.currentAnim = this;
     }
 
     @Override
@@ -52,6 +44,20 @@ public class AmphibianWander extends AnimationAI<EntityPrehistoricFloraAmphibian
 
     @Override
     public boolean shouldExecute() {
+
+        if (!this.mustUpdate)
+        {
+            if (this.PrehistoricFloraAmphibianBase.getIdleTime() >= 100)
+            {
+                return false;
+            }
+
+            if (this.PrehistoricFloraAmphibianBase.getRNG().nextInt(this.executionChance) != 0)
+            {
+                return false;
+            }
+        }
+
         if (!this.PrehistoricFloraAmphibianBase.isInWater()) {
             Path path = this.PrehistoricFloraAmphibianBase.getNavigator().getPath();
             //System.err.println("Not in water");

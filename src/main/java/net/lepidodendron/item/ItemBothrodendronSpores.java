@@ -36,7 +36,7 @@ public class ItemBothrodendronSpores extends ElementsLepidodendronMod.ModElement
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("bothrodendron_spores");
+			setTranslationKey("pf_bothrodendron_spores");
 			setRegistryName("bothrodendron_spores");
 			setCreativeTab(null);
 		}

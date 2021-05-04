@@ -36,7 +36,7 @@ public class ItemPalaeostachyaSpores extends ElementsLepidodendronMod.ModElement
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("palaeostachya_spores");
+			setTranslationKey("pf_palaeostachya_spores");
 			setRegistryName("palaeostachya_spores");
 			setCreativeTab(null);
 		}

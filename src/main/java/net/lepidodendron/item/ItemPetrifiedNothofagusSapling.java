@@ -37,7 +37,7 @@ public class ItemPetrifiedNothofagusSapling extends ElementsLepidodendronMod.Mod
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_nothofagus_sapling");
+			setTranslationKey("pf_petrified_nothofagus_sapling");
 			setRegistryName("petrified_nothofagus_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -37,7 +37,7 @@ public class ItemPetrifiedAnkyropteris extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_ankyropteris");
+			setTranslationKey("pf_petrified_ankyropteris");
 			setRegistryName("petrified_ankyropteris");
 			setCreativeTab(TabLepidodendron.tab);
 		}

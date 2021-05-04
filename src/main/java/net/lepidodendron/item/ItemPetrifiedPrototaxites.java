@@ -37,7 +37,7 @@ public class ItemPetrifiedPrototaxites extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_prototaxites");
+			setTranslationKey("pf_petrified_prototaxites");
 			setRegistryName("petrified_prototaxites");
 			setCreativeTab(TabLepidodendron.tab);
 		}

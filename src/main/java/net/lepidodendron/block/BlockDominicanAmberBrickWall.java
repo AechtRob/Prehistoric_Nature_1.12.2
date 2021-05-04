@@ -72,7 +72,7 @@ public class BlockDominicanAmberBrickWall extends ElementsLepidodendronMod.ModEl
 
 		public BlockCustom() {
 			super(Material.ROCK, Material.ROCK.getMaterialMapColor());
-			setTranslationKey("dominican_amber_brick_wall");
+			setTranslationKey("pf_dominican_amber_brick_wall");
 			setSoundType(SoundType.STONE);
 			setHardness(5F);
 			setResistance(3F);

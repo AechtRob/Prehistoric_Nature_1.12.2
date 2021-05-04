@@ -45,7 +45,7 @@ public class ItemDawnRedwoodDoorItem extends ElementsLepidodendronMod.ModElement
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("dawn_redwood_door_item");
+			setTranslationKey("pf_dawn_redwood_door_item");
 			setRegistryName("dawn_redwood_door_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

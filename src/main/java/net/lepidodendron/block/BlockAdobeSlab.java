@@ -57,7 +57,7 @@ public class BlockAdobeSlab extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockSlab {
 		public BlockCustom() {
 			super(Material.ROCK);
-			setTranslationKey("adobe_slab");
+			setTranslationKey("pf_adobe_slab");
 			setSoundType(SoundType.STONE);
 			setHarvestLevel("pickaxe", 1);
 			setHardness(0.5F);

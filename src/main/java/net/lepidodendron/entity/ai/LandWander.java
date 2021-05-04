@@ -26,7 +26,7 @@ public class LandWander extends AnimationAI<EntityPrehistoricFloraLandBase> {
     public LandWander(EntityPrehistoricFloraLandBase PrehistoricFloraLandBase, Animation animation)
     {
         super(PrehistoricFloraLandBase);
-        setMutexBits(4);
+        setMutexBits(1);
         this.PrehistoricFloraLandBase = PrehistoricFloraLandBase;
         this.animation = animation;
     }

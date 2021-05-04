@@ -37,7 +37,7 @@ public class ItemPetrifiedGlossopterisSapling extends ElementsLepidodendronMod.M
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrifiedglossopterissapling");
+			setTranslationKey("pf_petrifiedglossopterissapling");
 			setRegistryName("petrifiedglossopterissapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

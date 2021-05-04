@@ -86,7 +86,7 @@ public class BlockEquisitesStem extends ElementsLepidodendronMod.ModElement {
 		
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("equisetites_stem");
+			setTranslationKey("pf_equisetites_stem");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

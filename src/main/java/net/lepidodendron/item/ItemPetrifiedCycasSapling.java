@@ -37,7 +37,7 @@ public class ItemPetrifiedCycasSapling extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_cycas_sapling");
+			setTranslationKey("pf_petrified_cycas_sapling");
 			setRegistryName("petrified_cycas_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -37,7 +37,7 @@ public class ItemPetrifiedBjuviaSapling extends ElementsLepidodendronMod.ModElem
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_bjuvia_sapling");
+			setTranslationKey("pf_petrified_bjuvia_sapling");
 			setRegistryName("petrified_bjuvia_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

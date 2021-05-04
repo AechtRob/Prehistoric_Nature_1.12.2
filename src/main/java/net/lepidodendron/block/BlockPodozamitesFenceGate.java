@@ -48,7 +48,7 @@ public class BlockPodozamitesFenceGate extends ElementsLepidodendronMod.ModEleme
 	public static class BlockCustom extends BlockFenceGate {
 		public BlockCustom() {
 			super(EnumType.OAK);
-			setTranslationKey("podozamites_fence_gate");
+			setTranslationKey("pf_podozamites_fence_gate");
 			setHarvestLevel("axe", 1);
 			setSoundType(SoundType.WOOD);
 			setHardness(2F);

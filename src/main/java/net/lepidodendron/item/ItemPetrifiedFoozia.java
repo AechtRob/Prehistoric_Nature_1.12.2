@@ -37,7 +37,7 @@ public class ItemPetrifiedFoozia extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_foozia");
+			setTranslationKey("pf_petrified_foozia");
 			setRegistryName("petrified_foozia");
 			setCreativeTab(TabLepidodendron.tab);
 		}

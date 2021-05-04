@@ -91,7 +91,7 @@ public class BlockHironoiaFlower extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("hironoia_flower");
+			setTranslationKey("pf_hironoia_flower");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

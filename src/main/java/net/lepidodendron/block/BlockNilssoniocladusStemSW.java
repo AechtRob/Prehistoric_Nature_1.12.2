@@ -65,7 +65,7 @@ public class BlockNilssoniocladusStemSW extends ElementsLepidodendronMod.ModElem
 
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("nilssoniocladus_stem_sw");
+			setTranslationKey("pf_nilssoniocladus_stem_sw");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

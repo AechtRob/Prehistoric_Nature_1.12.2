@@ -37,7 +37,7 @@ public class ItemGigantopteridSeeds extends ElementsLepidodendronMod.ModElement 
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("gigantopterid_seeds");
+			setTranslationKey("pf_gigantopterid_seeds");
 			setRegistryName("gigantopterid_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

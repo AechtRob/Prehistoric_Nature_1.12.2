@@ -45,7 +45,7 @@ public class ItemWollemiDoorItem extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("wollemi_door_item");
+			setTranslationKey("pf_wollemi_door_item");
 			setRegistryName("wollemi_door_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

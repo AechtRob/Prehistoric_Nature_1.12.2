@@ -62,7 +62,7 @@ public class BlockPalaeostachyaTop extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("palaeostachya_top");
+			setTranslationKey("pf_palaeostachya_top");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

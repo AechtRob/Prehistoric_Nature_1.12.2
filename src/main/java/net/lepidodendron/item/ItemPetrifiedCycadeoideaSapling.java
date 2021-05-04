@@ -37,7 +37,7 @@ public class ItemPetrifiedCycadeoideaSapling extends ElementsLepidodendronMod.Mo
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_cycadeoidea_sapling");
+			setTranslationKey("pf_petrified_cycadeoidea_sapling");
 			setRegistryName("petrified_cycadeoidea_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

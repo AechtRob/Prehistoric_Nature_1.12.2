@@ -44,7 +44,7 @@ public class ItemHironoiaDoorItem extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("hironoia_door_item");
+			setTranslationKey("pf_hironoia_door_item");
 			setRegistryName("hironoia_door_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

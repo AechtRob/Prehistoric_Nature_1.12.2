@@ -64,7 +64,7 @@ public class BlockTempskyaLeavesPlaceable extends ElementsLepidodendronMod.ModEl
 
 		public BlockCustom() {
 			super();
-			setTranslationKey("tempskya_leaves");
+			setTranslationKey("pf_tempskya_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

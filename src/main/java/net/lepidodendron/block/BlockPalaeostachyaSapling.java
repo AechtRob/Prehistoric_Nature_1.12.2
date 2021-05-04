@@ -72,7 +72,7 @@ public class BlockPalaeostachyaSapling extends ElementsLepidodendronMod.ModEleme
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("palaeostachya_sapling");
+			setTranslationKey("pf_palaeostachya_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

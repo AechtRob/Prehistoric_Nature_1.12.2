@@ -37,7 +37,7 @@ public class ItemBaieraSeed extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(1, 0.2f, false);
-			setTranslationKey("baiera_seed");
+			setTranslationKey("pf_baiera_seed");
 			setRegistryName("baiera_seed");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

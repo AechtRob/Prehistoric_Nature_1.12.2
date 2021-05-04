@@ -61,7 +61,7 @@ public class BlockCordaitesFruitBlock extends ElementsLepidodendronMod.ModElemen
 	public static class BlockCustom extends BlockFalling {
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("cordaites_fruit_block");
+			setTranslationKey("pf_cordaites_fruit_block");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(0F);

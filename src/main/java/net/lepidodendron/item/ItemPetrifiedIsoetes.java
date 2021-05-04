@@ -37,7 +37,7 @@ public class ItemPetrifiedIsoetes extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_isoetes");
+			setTranslationKey("pf_petrified_isoetes");
 			setRegistryName("petrified_isoetes");
 			setCreativeTab(TabLepidodendron.tab);
 		}

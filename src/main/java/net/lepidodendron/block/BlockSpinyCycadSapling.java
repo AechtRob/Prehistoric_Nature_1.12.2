@@ -70,7 +70,7 @@ public class BlockSpinyCycadSapling extends ElementsLepidodendronMod.ModElement 
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("spiny_cycad_sapling");
+			setTranslationKey("pf_spiny_cycad_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

@@ -67,7 +67,7 @@ public class BlockDicksoniaLeaves2 extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			//super(Material.PLANTS);
-			setTranslationKey("dicksonia_leaves_2");
+			setTranslationKey("pf_dicksonia_leaves_2");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

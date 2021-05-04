@@ -88,7 +88,7 @@ public class BlockUtrechtiaStem extends ElementsLepidodendronMod.ModElement {
 		
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("utrechtia_stem");
+			setTranslationKey("pf_utrechtia_stem");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

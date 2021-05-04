@@ -40,7 +40,7 @@ public class BlockCarboniferousMud extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.GROUND);
-			setTranslationKey("carboniferous_mud");
+			setTranslationKey("pf_carboniferous_mud");
 			setSoundType(SoundType.SLIME);
 			setHarvestLevel("shovel", 1);
 			setHardness(0.5F);

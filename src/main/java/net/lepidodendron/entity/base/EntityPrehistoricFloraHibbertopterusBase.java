@@ -58,7 +58,7 @@ public abstract class EntityPrehistoricFloraHibbertopterusBase extends EntityPre
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
+        //this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
     }
 
@@ -94,10 +94,6 @@ public abstract class EntityPrehistoricFloraHibbertopterusBase extends EntityPre
     @Override
     public boolean getCanSpawnHere() {
         return this.posY < (double) this.world.getSeaLevel() && isInWater();
-    }
-
-    public boolean isNotColliding() {
-        return this.world.checkNoEntityCollision(this.getEntityBoundingBox(), this);
     }
 
     @Override

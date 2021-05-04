@@ -37,7 +37,7 @@ public class ItemPetrifiedCalamitesSapling extends ElementsLepidodendronMod.ModE
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_calamites_sapling");
+			setTranslationKey("pf_petrified_calamites_sapling");
 			setRegistryName("petrified_calamites_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

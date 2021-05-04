@@ -68,7 +68,7 @@ public class BlockBanksiaFlower2 extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("banksia_2_flower");
+			setTranslationKey("pf_banksia_2_flower");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

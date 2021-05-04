@@ -37,7 +37,7 @@ public class ItemPetrifiedDicroidiumSapling extends ElementsLepidodendronMod.Mod
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_dicroidium_sapling");
+			setTranslationKey("pf_petrified_dicroidium_sapling");
 			setRegistryName("petrified_dicroidium_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

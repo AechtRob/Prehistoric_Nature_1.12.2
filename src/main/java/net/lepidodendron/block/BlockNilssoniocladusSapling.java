@@ -70,7 +70,7 @@ public class BlockNilssoniocladusSapling extends ElementsLepidodendronMod.ModEle
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("nilssoniocladus_sapling");
+			setTranslationKey("pf_nilssoniocladus_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

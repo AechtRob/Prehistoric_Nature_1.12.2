@@ -37,7 +37,7 @@ public class ItemPetrifiedOsmunda extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_osmunda");
+			setTranslationKey("pf_petrified_osmunda");
 			setRegistryName("petrified_osmunda");
 			setCreativeTab(TabLepidodendron.tab);
 		}

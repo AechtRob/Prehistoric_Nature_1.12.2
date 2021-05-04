@@ -37,7 +37,7 @@ public class ItemColumnarisNuts extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(1, 0.2f, false);
-			setTranslationKey("columnaris_nuts");
+			setTranslationKey("pf_columnaris_nuts");
 			setRegistryName("columnaris_nuts");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

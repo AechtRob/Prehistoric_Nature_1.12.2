@@ -45,7 +45,7 @@ public class ItemSigillariaDoorItem extends ElementsLepidodendronMod.ModElement 
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("sigillaria_door_item");
+			setTranslationKey("pf_sigillaria_door_item");
 			setRegistryName("sigillaria_door_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

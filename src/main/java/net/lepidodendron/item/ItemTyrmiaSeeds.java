@@ -37,7 +37,7 @@ public class ItemTyrmiaSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("tyrmia_seeds");
+			setTranslationKey("pf_tyrmia_seeds");
 			setRegistryName("tyrmia_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

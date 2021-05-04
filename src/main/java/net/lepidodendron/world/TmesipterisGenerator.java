@@ -53,7 +53,7 @@ public class TmesipterisGenerator extends WorldGenerator
             int k = position.getY() + rand.nextInt(4) - rand.nextInt(4);
             int l = position.getZ() + rand.nextInt(8) - rand.nextInt(8);
 
-            if (this.Tmesipteris.canPlaceBlockAt(worldIn, new BlockPos(j, k, l))
+            if (k >= worldIn.getSeaLevel() && this.Tmesipteris.canPlaceBlockAt(worldIn, new BlockPos(j, k, l))
             	&& (worldIn.getBlockState(new BlockPos(j, k, l)).getMaterial().isReplaceable())
 					&& (worldIn.getBlockState(new BlockPos(j, k, l)).getMaterial() != Material.WATER)
 					&& (worldIn.getBlockState(new BlockPos(j, k, l)).getMaterial() != Material.LAVA) ){

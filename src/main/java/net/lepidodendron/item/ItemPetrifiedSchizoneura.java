@@ -35,7 +35,7 @@ public class ItemPetrifiedSchizoneura extends ElementsLepidodendronMod.ModElemen
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_schizoneura");
+			setTranslationKey("pf_petrified_schizoneura");
 			setRegistryName("petrified_schizoneura");
 			setCreativeTab(TabLepidodendron.tab);
 		}

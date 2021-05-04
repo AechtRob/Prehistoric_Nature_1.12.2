@@ -1,6 +1,7 @@
 
 package net.lepidodendron.block;
 
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -85,7 +86,7 @@ public class BlockDollyphyton extends ElementsLepidodendronMod.ModElement {
     
 		public BlockCustom() {
 			super(Material.VINE);
-			setTranslationKey("dollyphyton");
+			setTranslationKey("pf_dollyphyton");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);
@@ -246,7 +247,7 @@ public class BlockDollyphyton extends ElementsLepidodendronMod.ModElement {
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
@@ -503,7 +504,7 @@ public class BlockDollyphyton extends ElementsLepidodendronMod.ModElement {
 		public Item getItemDropped(IBlockState state, java.util.Random rand, int fortune) {
 			return new ItemStack(Blocks.AIR, (int) (1)).getItem();
 		}
-		
+
 		@Override
 		protected boolean canSilkHarvest()
 	    {

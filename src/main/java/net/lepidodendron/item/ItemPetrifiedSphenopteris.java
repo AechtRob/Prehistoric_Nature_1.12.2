@@ -37,7 +37,7 @@ public class ItemPetrifiedSphenopteris extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_sphenopteris");
+			setTranslationKey("pf_petrified_sphenopteris");
 			setRegistryName("petrified_sphenopteris");
 			setCreativeTab(TabLepidodendron.tab);
 		}

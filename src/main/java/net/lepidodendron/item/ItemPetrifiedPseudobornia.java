@@ -37,7 +37,7 @@ public class ItemPetrifiedPseudobornia extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_pseudobornia");
+			setTranslationKey("pf_petrified_pseudobornia");
 			setRegistryName("petrified_pseudobornia");
 			setCreativeTab(TabLepidodendron.tab);
 		}

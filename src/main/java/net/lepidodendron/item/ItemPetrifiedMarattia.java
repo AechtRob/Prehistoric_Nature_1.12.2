@@ -37,7 +37,7 @@ public class ItemPetrifiedMarattia extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_marattia");
+			setTranslationKey("pf_petrified_marattia");
 			setRegistryName("petrified_marattia");
 			setCreativeTab(TabLepidodendron.tab);
 		}

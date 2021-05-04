@@ -62,7 +62,7 @@ public class BlockOmphalophloiosCentre extends ElementsLepidodendronMod.ModEleme
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("omphalophloios_centre");
+			setTranslationKey("pf_omphalophloios_centre");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

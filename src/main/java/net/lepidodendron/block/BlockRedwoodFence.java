@@ -45,7 +45,7 @@ public class BlockRedwoodFence extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockFence {
 		public BlockCustom() {
 			super(Material.WOOD, Material.WOOD.getMaterialMapColor());
-			setTranslationKey("redwood_fence");
+			setTranslationKey("pf_redwood_fence");
 			setSoundType(SoundType.WOOD);
 			setHardness(2F);
 			setResistance(3F);

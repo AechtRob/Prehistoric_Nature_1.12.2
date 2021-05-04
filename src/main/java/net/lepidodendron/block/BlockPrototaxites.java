@@ -1,10 +1,15 @@
 
 package net.lepidodendron.block;
 
+import net.lepidodendron.LepidodendronDecorationHandler;
+import net.lepidodendron.world.WorldGenPrototaxites;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 
@@ -18,7 +23,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.Item;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.SoundType;
@@ -58,6 +62,68 @@ public class BlockPrototaxites extends ElementsLepidodendronMod.ModElement {
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0,
 				new ModelResourceLocation("lepidodendron:prototaxites", "inventory"));
 	}
+
+	@Override
+	public void generateWorld(Random random, int chunkX, int chunkZ, World world, int dimID, IChunkGenerator cg, IChunkProvider cp) {
+
+		boolean biomeCriteria = false;
+		//Just an *additional* spawner for mushroom biomes:
+		Biome biome = world.getBiome(new BlockPos(chunkX, world.getSeaLevel(), chunkZ));
+		if (!matchBiome(biome, LepidodendronConfig.genPrototaxitesBlacklistBiomes)) {
+			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.MUSHROOM))
+				biomeCriteria = true;
+			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.DEAD))
+				biomeCriteria = false;
+		}
+		if ((!LepidodendronConfig.genPrototaxites && !LepidodendronConfig.genAllPlants)
+			|| dimID == LepidodendronConfig.dimOrdovicianSilurian) //Exclude this dim as it has its own generator already
+			biomeCriteria = false;
+		if (!biomeCriteria)
+			return;
+
+		int GenChance = 7;
+		double GenMultiplier = LepidodendronConfig.multiplierPrototaxites;
+		if (GenMultiplier < 0) {GenMultiplier = 0;}
+		GenChance = Math.min(100, (int) Math.round((double) GenChance * GenMultiplier));
+		//Is this a transformed biome?
+		if (LepidodendronDecorationHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
+			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
+			GenChance = Math.min(GenChance * 10, 100);
+		}
+
+		for (int i = 0; i < (int) GenChance; i++) {
+			int l6 = chunkX + random.nextInt(16) + 8;
+			int i11 = random.nextInt(128);
+			int l14 = chunkZ + random.nextInt(16) + 8;
+			boolean a = new WorldGenPrototaxites().generate(world, random, new BlockPos(l6, i11, l14));
+		}
+	}
+
+	public static boolean matchBiome(Biome biome, String[] biomesList) {
+
+		//String regName = biome.getRegistryName().toString();
+
+		String[] var2 = biomesList;
+		int var3 = biomesList.length;
+
+		for(int var4 = 0; var4 < var3; ++var4) {
+			String checkBiome = var2[var4];
+			if (!checkBiome.contains(":")) {
+				//System.err.println("modid test: " + biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":") - 1));
+				if (checkBiome.equalsIgnoreCase(
+						biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":"))
+				)) {
+					return true;
+				}
+			}
+			if (checkBiome.equalsIgnoreCase(biome.getRegistryName().toString())) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public static class BlockCustom extends Block implements IGrowable {
 		public BlockCustom() {
 			super(Material.PLANTS);
@@ -68,7 +134,7 @@ public class BlockPrototaxites extends ElementsLepidodendronMod.ModElement {
 			setLightOpacity(0);
 			setCreativeTab(TabLepidodendron.tab);
 			setTickRandomly(true);
-			setTranslationKey("prototaxites");
+			setTranslationKey("pf_prototaxites");
 			setRegistryName("prototaxites");
 		}
 

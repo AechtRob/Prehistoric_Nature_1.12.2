@@ -93,7 +93,7 @@ public class BlockAraucarioxylonLogPetrified extends ElementsLepidodendronMod.Mo
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.ROCK);
-			setTranslationKey("araucarioxylon_log_petrified");
+			setTranslationKey("pf_araucarioxylon_log_petrified");
 			setSoundType(SoundType.STONE);
 			setHarvestLevel("pickaxe", 1);
 			setHardness(5F);

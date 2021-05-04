@@ -36,7 +36,7 @@ public class ItemBaragwanathiaSpores extends ElementsLepidodendronMod.ModElement
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("baragwanathia_spores");
+			setTranslationKey("pf_baragwanathia_spores");
 			setRegistryName("baragwanathia_spores");
 			setCreativeTab(null);
 		}

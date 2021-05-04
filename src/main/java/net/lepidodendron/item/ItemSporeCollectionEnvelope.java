@@ -37,7 +37,7 @@ public class ItemSporeCollectionEnvelope extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("spore_collection_envelope");
+			setTranslationKey("pf_spore_collection_envelope");
 			setRegistryName("spore_collection_envelope");
 			setCreativeTab(TabLepidodendron.tab);
 		}

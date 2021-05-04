@@ -36,7 +36,7 @@ public class ItemDicksoniaSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("dicksonia_spores");
+			setTranslationKey("pf_dicksonia_spores");
 			setRegistryName("dicksonia_spores");
 			setCreativeTab(null);
 		}

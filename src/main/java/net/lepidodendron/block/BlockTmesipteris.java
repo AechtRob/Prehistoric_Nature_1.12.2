@@ -4,7 +4,6 @@ package net.lepidodendron.block;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 
@@ -16,14 +15,10 @@ import net.minecraft.util.Rotation;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.Mirror;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.Item;
-import net.minecraft.init.Blocks;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.block.state.IBlockState;
@@ -45,13 +40,12 @@ import java.util.Random;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.lepidodendron.world.TmesipterisGenerator;
-import net.lepidodendron.LepidodendronTreeHandler;
+import net.lepidodendron.LepidodendronDecorationHandler;
 
 import java.util.List;
 import net.minecraft.client.util.ITooltipFlag;
 
-import java.util.Map;
-import java.util.HashMap;
+import javax.annotation.Nullable;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class BlockTmesipteris extends ElementsLepidodendronMod.ModElement {
@@ -89,6 +83,8 @@ public class BlockTmesipteris extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genTmesipterisOverrideBiomes))
 			biomeCriteria = true;
+		if (!LepidodendronConfig.genTmesipteris && !LepidodendronConfig.genAllPlants)
+			biomeCriteria = false;
 		if (dimID == LepidodendronConfig.dimCarboniferous)
 			{
 				biomeCriteria = true;
@@ -101,7 +97,7 @@ public class BlockTmesipteris extends ElementsLepidodendronMod.ModElement {
 		if (GenMultiplier < 0) {GenMultiplier = 0;}
 		GenChance = Math.min(100, (int) Math.round((double) GenChance * GenMultiplier));
 		//Is this a transformed biome?
-		if (LepidodendronTreeHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
+		if (LepidodendronDecorationHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
 			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
 				GenChance = Math.min(GenChance * 10, 100);
 		}
@@ -143,7 +139,7 @@ public class BlockTmesipteris extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("tmesipteris");
+			setTranslationKey("pf_tmesipteris");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);
@@ -237,6 +233,12 @@ public class BlockTmesipteris extends ElementsLepidodendronMod.ModElement {
 				case DOWN :
 					return new AxisAlignedBB(0.4D, 0.25D, 1D, 0.6D, 1D, 0D);
 			}
+		}
+
+		@Nullable
+		public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+		{
+			return NULL_AABB;
 		}
 
 		@Override

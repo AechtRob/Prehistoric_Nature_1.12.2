@@ -67,7 +67,7 @@ public class BlockArchaeopterisLeavesSmall extends ElementsLepidodendronMod.ModE
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			//super(Material.PLANTS);
-			setTranslationKey("archaeopteris_leaves_small_worldgen");
+			setTranslationKey("pf_archaeopteris_leaves_small_worldgen");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);
@@ -91,7 +91,7 @@ public class BlockArchaeopterisLeavesSmall extends ElementsLepidodendronMod.ModE
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

@@ -45,7 +45,7 @@ public class BlockHymenaeaFence extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockFence {
 		public BlockCustom() {
 			super(Material.WOOD, Material.WOOD.getMaterialMapColor());
-			setTranslationKey("hymenaea_fence");
+			setTranslationKey("pf_hymenaea_fence");
 			setSoundType(SoundType.WOOD);
 			setHardness(2F);
 			setResistance(3F);

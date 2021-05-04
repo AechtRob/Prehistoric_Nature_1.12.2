@@ -73,7 +73,7 @@ public class BlockFooziaSpore extends ElementsLepidodendronMod.ModElement {
 			else {
 				setTickRandomly(false);
 			}
-			setTranslationKey("foozia_spore");
+			setTranslationKey("pf_foozia_spore");
 			setRegistryName("foozia_spore");
 		}
 

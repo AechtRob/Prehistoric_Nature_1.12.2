@@ -1,6 +1,7 @@
 
 package net.lepidodendron.world.biome;
 
+import net.lepidodendron.world.*;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.common.BiomeDictionary;
@@ -21,15 +22,6 @@ import net.minecraft.world.World;
 import net.minecraft.util.math.BlockPos;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.world.WorldGenRockPiles;
-import net.lepidodendron.world.WorldGenArchaeopterisTree;
-import net.lepidodendron.world.WorldGenDollyphyton;
-import net.lepidodendron.world.WorldGenEdwardsiphyton;
-import net.lepidodendron.world.WorldGenPrototaxites;
-import net.lepidodendron.world.WorldGenCooksonia;
-import net.lepidodendron.world.WorldGenZosterophyllum;
-import net.lepidodendron.world.WorldGenAncientMoss;
-import net.lepidodendron.world.WorldGenBaragwanathia;
 
 import java.util.Random;
 
@@ -78,6 +70,7 @@ public class BiomeOrdovicianSilurianSea extends ElementsLepidodendronMod.ModElem
 		protected static final WorldGenZosterophyllum ZOSTEROPHYLLUM_GENERATOR = new WorldGenZosterophyllum();
 		protected static final WorldGenDollyphyton DOLLYPHYTON_GENERATOR = new WorldGenDollyphyton();
 		protected static final WorldGenEdwardsiphyton EDWARDSIPHYTON_GENERATOR = new WorldGenEdwardsiphyton();
+		protected static final WorldGenNematophyta NEMATOPHYTA_GENERATOR = new WorldGenNematophyta();
 		protected static final WorldGenAncientMoss ANCIENT_MOSS_GENERATOR = new WorldGenAncientMoss();
 		protected static final WorldGenBaragwanathia BARAGWANATHIA_GENERATOR = new WorldGenBaragwanathia();
 		
@@ -117,6 +110,7 @@ public class BiomeOrdovicianSilurianSea extends ElementsLepidodendronMod.ModElem
 					strPos3 = 0;
 					strPos4 = 0;
 					strPos5 = 0;
+					nbtStr = "";
 
 					strPos1 = checkEntity.indexOf(":");
 					if (!(strPos1 > 0)) {
@@ -443,6 +437,15 @@ public class BiomeOrdovicianSilurianSea extends ElementsLepidodendronMod.ModElem
 	            EDWARDSIPHYTON_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
 
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int i = 0; i < 20; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					NEMATOPHYTA_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+				}
+
 	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
 	        for (int i = 0; i < 20; ++i)
 	        {
@@ -476,7 +479,7 @@ public class BiomeOrdovicianSilurianSea extends ElementsLepidodendronMod.ModElem
 	            int j = rand.nextInt(16) + 8;
 	            int k = rand.nextInt(16) + 8;
 	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
-	            ANCIENT_MOSS_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+	            ANCIENT_MOSS_GENERATOR.generate(worldIn, rand, pos.add(j, l, k), 15);
 	        }
 	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
 	        for (int i = 0; i < 10; ++i)

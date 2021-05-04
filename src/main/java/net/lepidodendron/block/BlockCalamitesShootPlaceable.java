@@ -61,7 +61,7 @@ public class BlockCalamitesShootPlaceable extends ElementsLepidodendronMod.ModEl
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("calamites_shoot");
+			setTranslationKey("pf_calamites_shoot");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

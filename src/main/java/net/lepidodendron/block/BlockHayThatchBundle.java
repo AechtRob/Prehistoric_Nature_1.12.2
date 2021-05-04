@@ -44,7 +44,7 @@ public class BlockHayThatchBundle extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockRotatedPillar {
 		public BlockCustom() {
 			super(Material.LEAVES);
-			setTranslationKey("hay_thatch_bundle");
+			setTranslationKey("pf_hay_thatch_bundle");
 			setCreativeTab(TabLepidodendron.tab);
         	this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.Y));
 		}

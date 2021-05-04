@@ -60,7 +60,7 @@ public class BlockCalamitesShoot extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("calamites_shoot_worldgen");
+			setTranslationKey("pf_calamites_shoot_worldgen");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);
@@ -100,7 +100,7 @@ public class BlockCalamitesShoot extends ElementsLepidodendronMod.ModElement {
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

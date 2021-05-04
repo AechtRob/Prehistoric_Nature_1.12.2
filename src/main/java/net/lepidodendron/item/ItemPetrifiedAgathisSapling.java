@@ -37,7 +37,7 @@ public class ItemPetrifiedAgathisSapling extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_agathis_sapling");
+			setTranslationKey("pf_petrified_agathis_sapling");
 			setRegistryName("petrified_agathis_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

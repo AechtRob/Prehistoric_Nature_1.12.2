@@ -47,7 +47,7 @@ public class BlockDiaphorodendronStairs extends ElementsLepidodendronMod.ModElem
 	public static class BlockCustom extends BlockStairs {
 		public BlockCustom() {
 			super(new Block(Material.WOOD).getDefaultState());
-			setTranslationKey("diaphorodendron_stairs");
+			setTranslationKey("pf_diaphorodendron_stairs");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

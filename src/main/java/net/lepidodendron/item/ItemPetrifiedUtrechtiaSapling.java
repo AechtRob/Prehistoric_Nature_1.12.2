@@ -37,7 +37,7 @@ public class ItemPetrifiedUtrechtiaSapling extends ElementsLepidodendronMod.ModE
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_utrechtia_sapling");
+			setTranslationKey("pf_petrified_utrechtia_sapling");
 			setRegistryName("petrified_utrechtia_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

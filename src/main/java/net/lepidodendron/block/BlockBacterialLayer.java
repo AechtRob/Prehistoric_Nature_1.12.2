@@ -44,8 +44,8 @@ public class BlockBacterialLayer extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
-			super(Material.PLANTS);
-			setTranslationKey("bacterial_layer");
+			super(Material.GROUND);
+			setTranslationKey("pf_bacterial_layer");
 			setSoundType(SoundType.SLIME);
 			setHarvestLevel("shovel", 0);
 			setHardness(0.1F);

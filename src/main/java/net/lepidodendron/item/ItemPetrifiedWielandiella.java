@@ -37,7 +37,7 @@ public class ItemPetrifiedWielandiella extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_wielandiella");
+			setTranslationKey("pf_petrified_wielandiella");
 			setRegistryName("petrified_wielandiella");
 			setCreativeTab(TabLepidodendron.tab);
 		}

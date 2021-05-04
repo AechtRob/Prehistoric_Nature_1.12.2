@@ -72,7 +72,7 @@ public class BlockAdobeWall extends ElementsLepidodendronMod.ModElement {
 
 		public BlockCustom() {
 			super(Material.ROCK, Material.ROCK.getMaterialMapColor());
-			setTranslationKey("adobe_wall");
+			setTranslationKey("pf_adobe_wall");
 			setSoundType(SoundType.STONE);
 			setHardness(0.5F);
 			setResistance(2F);

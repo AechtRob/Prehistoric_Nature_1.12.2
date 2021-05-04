@@ -37,7 +37,7 @@ public class ItemPetrifiedClaytosmunda extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_claytosmunda");
+			setTranslationKey("pf_petrified_claytosmunda");
 			setRegistryName("petrified_claytosmunda");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -54,7 +54,7 @@ public class BlockSandstonePangaeanSlab extends ElementsLepidodendronMod.ModElem
 	public static class BlockCustom extends BlockSlab {
 		public BlockCustom() {
 			super(Material.ROCK);
-			setTranslationKey("sandstone_slab_pangaean");
+			setTranslationKey("pf_sandstone_slab_pangaean");
 			setSoundType(SoundType.STONE);
 			setHarvestLevel("pickaxe", 1);
 			setHardness(0.8F);

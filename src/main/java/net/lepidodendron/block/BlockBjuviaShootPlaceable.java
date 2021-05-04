@@ -61,7 +61,7 @@ public class BlockBjuviaShootPlaceable extends ElementsLepidodendronMod.ModEleme
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("bjuvia_shoot");
+			setTranslationKey("pf_bjuvia_shoot");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

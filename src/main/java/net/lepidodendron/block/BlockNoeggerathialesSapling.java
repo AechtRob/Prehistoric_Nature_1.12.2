@@ -66,7 +66,7 @@ public class BlockNoeggerathialesSapling extends ElementsLepidodendronMod.ModEle
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("noeggerathiales_sapling");
+			setTranslationKey("pf_noeggerathiales_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

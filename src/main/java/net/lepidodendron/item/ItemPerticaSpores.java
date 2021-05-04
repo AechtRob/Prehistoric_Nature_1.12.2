@@ -36,7 +36,7 @@ public class ItemPerticaSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("pertica_spores");
+			setTranslationKey("pf_pertica_spores");
 			setRegistryName("pertica_spores");
 			setCreativeTab(null);
 		}

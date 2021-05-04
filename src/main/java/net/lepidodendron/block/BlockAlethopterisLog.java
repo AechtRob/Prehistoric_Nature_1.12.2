@@ -64,7 +64,7 @@ public class BlockAlethopterisLog extends ElementsLepidodendronMod.ModElement {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModels(ModelRegistryEvent event) {
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("lepidodendron:cycadeoidea_log", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("lepidodendron:alethopteris_log", "inventory"));
 
 	}
 	public static class BlockCustom extends Block {
@@ -78,7 +78,7 @@ public class BlockAlethopterisLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("alethopteris_log");
+			setTranslationKey("pf_alethopteris_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

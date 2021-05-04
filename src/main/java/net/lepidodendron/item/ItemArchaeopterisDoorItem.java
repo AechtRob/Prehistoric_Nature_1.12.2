@@ -44,7 +44,7 @@ public class ItemArchaeopterisDoorItem extends ElementsLepidodendronMod.ModEleme
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("archaeopteris_door_item");
+			setTranslationKey("pf_archaeopteris_door_item");
 			setRegistryName("archaeopteris_door_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

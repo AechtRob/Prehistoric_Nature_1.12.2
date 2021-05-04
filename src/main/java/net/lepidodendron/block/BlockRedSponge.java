@@ -102,6 +102,11 @@ public class BlockRedSponge extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genRedSpongeOverrideBiomes))
 			biomeCriteria = true;
+		if ((dimID == LepidodendronConfig.dimOrdovicianSilurian)
+				|| (dimID == LepidodendronConfig.dimCambrian)
+		) {
+			biomeCriteria = true;
+		}
 		if (!biomeCriteria)
 			return;
 
@@ -111,6 +116,10 @@ public class BlockRedSponge extends ElementsLepidodendronMod.ModElement {
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
 		) {
 			multiplier = 2;
+		}
+		if (dimID == LepidodendronConfig.dimCambrian)
+		{
+			multiplier = 4;
 		}
 
 		for (int i = 0; i < (int) 10 * multiplier; i++) {
@@ -152,7 +161,7 @@ public class BlockRedSponge extends ElementsLepidodendronMod.ModElement {
     
 		public BlockCustom() {
 			super(Material.WATER);
-			setTranslationKey("red_sponge");
+			setTranslationKey("pf_red_sponge");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.0F);
 			setResistance(0.0F);

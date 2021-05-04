@@ -73,7 +73,7 @@ public class BlockDicroidiumLeaves extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			//super(Material.PLANTS);
-			setTranslationKey("dicroidium_leaves_worldgen");
+			setTranslationKey("pf_dicroidium_leaves_worldgen");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

@@ -25,7 +25,7 @@ public class HibbertopterusWander extends AnimationAI<EntityPrehistoricFloraHibb
     public HibbertopterusWander(EntityPrehistoricFloraHibbertopterusBase PrehistoricFloraHibbertopterusBase, Animation animation)
     {
         super(PrehistoricFloraHibbertopterusBase);
-        setMutexBits(4);
+        setMutexBits(1);
         this.PrehistoricFloraHibbertopterusBase = PrehistoricFloraHibbertopterusBase;
         this.animation = animation;
     }

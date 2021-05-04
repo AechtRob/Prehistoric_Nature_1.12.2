@@ -68,7 +68,7 @@ public class BlockTyrmia extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("tyrmia");
+			setTranslationKey("pf_tyrmia");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

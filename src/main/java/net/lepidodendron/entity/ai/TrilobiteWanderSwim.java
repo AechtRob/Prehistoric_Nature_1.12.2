@@ -22,7 +22,7 @@ public class TrilobiteWanderSwim extends AnimationAI<EntityPrehistoricFloraTrilo
     public TrilobiteWanderSwim(EntityPrehistoricFloraTrilobiteSwimBase PrehistoricFloraTrilobiteSwimBase, Animation animation)
     {
         super(PrehistoricFloraTrilobiteSwimBase);
-        setMutexBits(4);
+        setMutexBits(1);
         this.PrehistoricFloraTrilobiteSwimBase = PrehistoricFloraTrilobiteSwimBase;
         this.animation = animation;
     }

@@ -37,7 +37,7 @@ public class ItemPetrifiedUmaltolepis extends ElementsLepidodendronMod.ModElemen
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_umaltolepis");
+			setTranslationKey("pf_petrified_umaltolepis");
 			setRegistryName("petrified_umaltolepis");
 			setCreativeTab(TabLepidodendron.tab);
 		}

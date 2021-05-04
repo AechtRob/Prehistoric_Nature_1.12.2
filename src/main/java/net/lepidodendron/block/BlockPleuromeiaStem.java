@@ -74,7 +74,7 @@ public class BlockPleuromeiaStem extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("pleuromeia_stem");
+			setTranslationKey("pf_pleuromeia_stem");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

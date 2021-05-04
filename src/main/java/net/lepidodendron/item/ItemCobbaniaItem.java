@@ -58,7 +58,7 @@ public class ItemCobbaniaItem extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("cobbania_item");
+			setTranslationKey("pf_cobbania_item");
 			setRegistryName("cobbania_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}
@@ -86,32 +86,30 @@ public class ItemCobbaniaItem extends ElementsLepidodendronMod.ModElement {
 	                BlockPos blockpos1 = blockpos.up();
 	                IBlockState iblockstate = worldIn.getBlockState(blockpos);
 	
-	                if (iblockstate.getMaterial() == Material.WATER && ((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0 && worldIn.isAirBlock(blockpos1))
-	                {
-	                    // special case for handling block placement with water lilies
-	                    net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(worldIn, blockpos1);
-	                    worldIn.setBlockState(blockpos1, BlockCobbania.block.getDefaultState());
-	                    if (net.minecraftforge.event.ForgeEventFactory.onPlayerBlockPlace(playerIn, blocksnapshot, net.minecraft.util.EnumFacing.UP, handIn).isCanceled())
-	                    {
-	                        blocksnapshot.restore(true, false);
-	                        return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
-	                    }
-	
-	                    worldIn.setBlockState(blockpos1, BlockCobbania.block.getDefaultState(), 11);
-	
-	                    if (playerIn instanceof EntityPlayerMP)
-	                    {
-	                        CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP)playerIn, blockpos1, itemstack);
-	                    }
-	
-	                    if (!playerIn.capabilities.isCreativeMode)
-	                    {
-	                        itemstack.shrink(1);
-	                    }
-	
-	                    playerIn.addStat(StatList.getObjectUseStats(this));
-	                    worldIn.playSound(playerIn, blockpos, SoundEvents.BLOCK_WATERLILY_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
-	                    return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+	                if (iblockstate.getMaterial() == Material.WATER && ((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0 && worldIn.isAirBlock(blockpos1)) {
+						// special case for handling block placement with water lilies
+						net.minecraftforge.common.util.BlockSnapshot blocksnapshot = net.minecraftforge.common.util.BlockSnapshot.getBlockSnapshot(worldIn, blockpos1);
+						if (canSurviveAt(worldIn, blockpos1)) {
+							worldIn.setBlockState(blockpos1, BlockCobbania.block.getDefaultState());
+							if (net.minecraftforge.event.ForgeEventFactory.onPlayerBlockPlace(playerIn, blocksnapshot, net.minecraft.util.EnumFacing.UP, handIn).isCanceled()) {
+								blocksnapshot.restore(true, false);
+								return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
+							}
+
+							worldIn.setBlockState(blockpos1, BlockCobbania.block.getDefaultState(), 11);
+
+							if (playerIn instanceof EntityPlayerMP) {
+								CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) playerIn, blockpos1, itemstack);
+							}
+
+							if (!playerIn.capabilities.isCreativeMode) {
+								itemstack.shrink(1);
+							}
+
+							playerIn.addStat(StatList.getObjectUseStats(this));
+							worldIn.playSound(playerIn, blockpos, SoundEvents.BLOCK_WATERLILY_PLACE, SoundCategory.BLOCKS, 1.0F, 1.0F);
+							return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+						}
 	                }
 	            }
 	
@@ -125,7 +123,7 @@ public class ItemCobbaniaItem extends ElementsLepidodendronMod.ModElement {
 	        if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Flowering water plant");
 				tooltip.add("Periods: mid-Cretaceous - Paleogene");
-				tooltip.add("Note: placed at water surface; spreads if there is light.");
+				tooltip.add("Note: placed at water surface of water up to 5 blocks deep; spreads if there is light.");
 				tooltip.add("Propagation: flowers");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
@@ -136,12 +134,10 @@ public class ItemCobbaniaItem extends ElementsLepidodendronMod.ModElement {
     	{
     		return false;
     	}
-    	if ((worldIn.getBlockState(pos.down(2)).getMaterial() != Material.GROUND) 
-    		&& (worldIn.getBlockState(pos.down(2)).getMaterial() != Material.CLAY)
-    		&& (worldIn.getBlockState(pos.down(2)).getMaterial() != Material.SAND))
-    	{
-    		return false;
-    	}
+		if (worldIn.getBlockState(pos.down(5)).getMaterial() == Material.WATER)
+		{
+			return false;
+		}
 
     	if (!worldIn.canSeeSky(pos) && (worldIn.getBlockState(pos).getLightValue() < 7))
     	{

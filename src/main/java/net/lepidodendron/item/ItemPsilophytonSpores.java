@@ -36,7 +36,7 @@ public class ItemPsilophytonSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("psilophyton_spores");
+			setTranslationKey("pf_psilophyton_spores");
 			setRegistryName("psilophyton_spores");
 			setCreativeTab(null);
 		}

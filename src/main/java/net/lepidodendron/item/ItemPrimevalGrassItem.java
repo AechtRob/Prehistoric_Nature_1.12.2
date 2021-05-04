@@ -59,7 +59,7 @@ public class ItemPrimevalGrassItem extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("primaeval_grass_item");
+			setTranslationKey("pf_primaeval_grass_item");
 			setRegistryName("primaeval_grass_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -48,7 +48,7 @@ public class BlockYewStairs extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockStairs {
 		public BlockCustom() {
 			super(new Block(Material.WOOD).getDefaultState());
-			setTranslationKey("yew_stairs");
+			setTranslationKey("pf_yew_stairs");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

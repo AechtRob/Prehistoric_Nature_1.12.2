@@ -36,7 +36,7 @@ public class ItemPsaroniusSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("psaronius_spores");
+			setTranslationKey("pf_psaronius_spores");
 			setRegistryName("psaronius_spores");
 			setCreativeTab(null);
 		}

@@ -69,7 +69,7 @@ public class BlockArchaeopterisThatch extends ElementsLepidodendronMod.ModElemen
 
 		public BlockCustom() {
 			super(Material.LEAVES);
-			setTranslationKey("archaeopteris_thatch");
+			setTranslationKey("pf_archaeopteris_thatch");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.5F);
 			setResistance(0.5F);

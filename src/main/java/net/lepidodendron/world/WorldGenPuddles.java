@@ -27,7 +27,7 @@ public class WorldGenPuddles extends WorldGenerator
             	&& BlockStauropteris.block.canPlaceBlockAt(worldIn, blockpos)
             )
             {
-                worldIn.setBlockState(blockpos.down(), Blocks.WATER.getDefaultState(), 2);
+                worldIn.setBlockState(blockpos.down(), Blocks.FLOWING_WATER.getDefaultState(), 2);
                 flag = true;
             }
         }

@@ -4,17 +4,16 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
-import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.entity.ai.AmphibianWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAmphibianBase;
-import net.lepidodendron.entity.model.ModelLimnoscelis;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.minecraft.block.material.Material;
-import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
@@ -25,9 +24,6 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -44,6 +40,9 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmp
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
+		minSize = 0.2F;
+		maxSize = 1.0F;
+		maxHealthAgeable = 36.0D;
 	}
 
 	protected float getAISpeedAmphibian() {
@@ -59,6 +58,11 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmp
 	private static final Animation[] ANIMATIONS = {ANIMATION_AMPHIBIAN_WANDER,ANIMATION_AMPHIBIAN_YAWN};
 
 	public AnimationAI currentAnim;
+
+	@Override
+	public int getAdultAge() {
+		return 72000;
+	}
 
 	@Override
 	public int WaterDist() {return 10;}
@@ -100,7 +104,11 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmp
 	{}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new AmphibianWander(this, ANIMATION_AMPHIBIAN_WANDER));
+		tasks.addTask(0, new AmphibianWander(this, 80));
+		tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
+		tasks.addTask(1, new EntityAIWatchClosest(this, EntityPrehistoricFloraFishBase.class, 8.0F));
+		tasks.addTask(1, new EntityAIWatchClosest(this, EntityPrehistoricFloraAmphibianBase.class, 8.0F));
+		tasks.addTask(2, new EntityAILookIdle(this));
 	}
 
 	@Override
@@ -121,7 +129,7 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmp
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(35.0D);
+		//this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(35.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 	}
 
@@ -211,6 +219,8 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmp
 	public void onEntityUpdate()
 	{
 		super.onEntityUpdate();
+
+
 	}
 
 	public boolean isDirectPathBetweenPoints(Vec3d vec1, Vec3d vec2) {

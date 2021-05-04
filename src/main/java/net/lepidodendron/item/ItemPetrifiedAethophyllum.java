@@ -37,7 +37,7 @@ public class ItemPetrifiedAethophyllum extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_aethophyllum");
+			setTranslationKey("pf_petrified_aethophyllum");
 			setRegistryName("petrified_aethophyllum");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -52,7 +52,7 @@ public class BlockArchaeopterisLog extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("archaeopteris_log");
+			setTranslationKey("pf_archaeopteris_log");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

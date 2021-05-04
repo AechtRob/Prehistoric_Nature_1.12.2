@@ -36,7 +36,7 @@ public class ItemFooziaSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("foozia_spores");
+			setTranslationKey("pf_foozia_spores");
 			setRegistryName("foozia_spores");
 			setCreativeTab(null);
 		}

@@ -37,7 +37,7 @@ public class ItemPetrifiedTmesipteris extends ElementsLepidodendronMod.ModElemen
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_tmesipteris");
+			setTranslationKey("pf_petrified_tmesipteris");
 			setRegistryName("petrified_tmesipteris");
 			setCreativeTab(TabLepidodendron.tab);
 		}

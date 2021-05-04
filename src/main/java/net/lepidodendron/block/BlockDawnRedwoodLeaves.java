@@ -58,7 +58,7 @@ public class BlockDawnRedwoodLeaves extends ElementsLepidodendronMod.ModElement 
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("dawn_redwood_leaves");
+			setTranslationKey("pf_dawn_redwood_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

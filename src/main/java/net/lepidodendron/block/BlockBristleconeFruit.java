@@ -61,7 +61,7 @@ public class BlockBristleconeFruit extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockFalling {
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("bristlecone_fruit");
+			setTranslationKey("pf_bristlecone_fruit");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(0F);

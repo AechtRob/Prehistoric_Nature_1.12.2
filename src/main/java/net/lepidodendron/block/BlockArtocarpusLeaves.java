@@ -54,7 +54,7 @@ public class BlockArtocarpusLeaves extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("artocarpus_leaves");
+			setTranslationKey("pf_artocarpus_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

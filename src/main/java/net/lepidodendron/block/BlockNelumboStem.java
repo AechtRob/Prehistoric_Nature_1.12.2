@@ -64,7 +64,7 @@ public class BlockNelumboStem extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.WATER);
-			setTranslationKey("nelumbo_stem");
+			setTranslationKey("pf_nelumbo_stem");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.0F);
 			setResistance(0F);

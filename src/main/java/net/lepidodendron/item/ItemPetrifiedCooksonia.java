@@ -37,7 +37,7 @@ public class ItemPetrifiedCooksonia extends ElementsLepidodendronMod.ModElement 
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_cooksonia");
+			setTranslationKey("pf_petrified_cooksonia");
 			setRegistryName("petrified_cooksonia");
 			setCreativeTab(TabLepidodendron.tab);
 		}

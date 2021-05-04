@@ -37,7 +37,7 @@ public class ItemPetrifiedDollyphyton extends ElementsLepidodendronMod.ModElemen
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_dollyphyton");
+			setTranslationKey("pf_petrified_dollyphyton");
 			setRegistryName("petrified_dollyphyton");
 			setCreativeTab(TabLepidodendron.tab);
 		}

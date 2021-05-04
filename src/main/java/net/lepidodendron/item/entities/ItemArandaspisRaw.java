@@ -33,7 +33,7 @@ public class ItemArandaspisRaw extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(2, 0.1f, false);
-			setTranslationKey("arandaspis_raw");
+			setTranslationKey("pf_arandaspis_raw");
 			setRegistryName("arandaspis_raw");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

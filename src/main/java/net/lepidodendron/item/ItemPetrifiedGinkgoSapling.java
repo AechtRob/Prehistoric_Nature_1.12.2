@@ -37,7 +37,7 @@ public class ItemPetrifiedGinkgoSapling extends ElementsLepidodendronMod.ModElem
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_ginkgo_sapling");
+			setTranslationKey("pf_petrified_ginkgo_sapling");
 			setRegistryName("petrified_ginkgo_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

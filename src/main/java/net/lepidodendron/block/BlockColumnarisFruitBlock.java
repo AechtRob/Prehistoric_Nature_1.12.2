@@ -61,7 +61,7 @@ public class BlockColumnarisFruitBlock extends ElementsLepidodendronMod.ModEleme
 	public static class BlockCustom extends BlockFalling {
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("columnaris_fruit_block");
+			setTranslationKey("pf_columnaris_fruit_block");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(0F);

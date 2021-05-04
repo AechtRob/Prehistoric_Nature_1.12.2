@@ -81,7 +81,7 @@ public class WorldGenAlethopterisTree extends WorldGenAbstractTree
                 IBlockState state = worldIn.getBlockState(down);
                 boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling)Blocks.SAPLING);
 
-                if (isSoil && position.getY() < worldIn.getHeight() - i - 1)
+                if (position.getY() >= worldIn.getSeaLevel()-4 && isSoil && position.getY() < worldIn.getHeight() - i - 1)
                 {
                     java.util.HashMap<String, Object> $_dependencies = new java.util.HashMap<>();
 					$_dependencies.put("x", position.getX());

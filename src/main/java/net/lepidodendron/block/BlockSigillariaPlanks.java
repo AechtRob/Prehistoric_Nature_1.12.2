@@ -46,7 +46,7 @@ public class BlockSigillariaPlanks extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("sigillaria_planks");
+			setTranslationKey("pf_sigillaria_planks");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

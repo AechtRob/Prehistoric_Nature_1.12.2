@@ -37,7 +37,7 @@ public class ItemPetrifiedLargeMatonia extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_large_matonia");
+			setTranslationKey("pf_petrified_large_matonia");
 			setRegistryName("petrified_large_matonia");
 			setCreativeTab(TabLepidodendron.tab);
 		}

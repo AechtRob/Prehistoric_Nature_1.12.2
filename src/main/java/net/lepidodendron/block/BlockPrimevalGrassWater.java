@@ -82,7 +82,7 @@ public class BlockPrimevalGrassWater extends ElementsLepidodendronMod.ModElement
 			else {
 				setTickRandomly(false);
 			}
-			setTranslationKey("primaeval_grass_water");
+			setTranslationKey("pf_primaeval_grass_water");
 			setRegistryName("primaeval_grass_water");
 		}
 		
@@ -202,7 +202,7 @@ public class BlockPrimevalGrassWater extends ElementsLepidodendronMod.ModElement
 					if (spread > 100) {
 						spread = 100;
 					}
-					
+					if (Math.random() > 0.5) {spread = 1;} //lower the chance
 					if (canSurviveAt(world, targetBlock)) {
 						if (Math.random() > (1-(spread/100)) && (targetBlock != pos) && (world.isAirBlock(targetBlock))) {
 							world.setBlockState(targetBlock, BlockPrimevalGrassWater.block.getDefaultState(), 3);

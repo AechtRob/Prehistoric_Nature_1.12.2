@@ -57,7 +57,7 @@ public class BlockNoeggerathialesShoot extends ElementsLepidodendronMod.ModEleme
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("noeggerathiales_shoot_worldgen");
+			setTranslationKey("pf_noeggerathiales_shoot_worldgen");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

@@ -35,7 +35,7 @@ public class ItemPetrifiedBanksia1Sapling extends ElementsLepidodendronMod.ModEl
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_banksia_1_sapling");
+			setTranslationKey("pf_petrified_banksia_1_sapling");
 			setRegistryName("petrified_banksia_1_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

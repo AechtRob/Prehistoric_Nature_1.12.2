@@ -1,0 +1,13 @@
+{
+  "group": "lepidodendron",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lepidodendron:phial_eggs_hibbertopterus"
+    }
+  ],
+  "result": {
+    "item": "lepidodendron:eurypterid_eggs_hibbertopterus",
+    "count": 1
+  }
+}

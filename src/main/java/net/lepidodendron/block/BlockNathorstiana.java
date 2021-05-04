@@ -78,7 +78,7 @@ public class BlockNathorstiana extends ElementsLepidodendronMod.ModElement {
 			else {
 				setTickRandomly(false);
 			}
-			setTranslationKey("nathorstiana");
+			setTranslationKey("pf_nathorstiana");
 			setRegistryName("nathorstiana");
 		}
 
@@ -181,6 +181,7 @@ public class BlockNathorstiana extends ElementsLepidodendronMod.ModElement {
 					if (spread > 100) {
 						spread = 100;
 					}
+					if (Math.random() > 0.5) {spread = 1;} //lower the chance
 					//System.err.println("TEST: " + spread + " = " + (1-(spread/100)));
 					if (Math.random() > (1-(spread/100)) && (targetBlock != pos) && (world.isAirBlock(targetBlock)) && (canSurviveAt(world, targetBlock))) {
 						world.setBlockState(targetBlock, BlockNathorstiana.block.getDefaultState(), 3);	

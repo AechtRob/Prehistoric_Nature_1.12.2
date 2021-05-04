@@ -33,7 +33,7 @@ public class ItemSquatinactisRaw extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(2, 0.1f, false);
-			setTranslationKey("squatinactis_raw");
+			setTranslationKey("pf_squatinactis_raw");
 			setRegistryName("squatinactis_raw");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

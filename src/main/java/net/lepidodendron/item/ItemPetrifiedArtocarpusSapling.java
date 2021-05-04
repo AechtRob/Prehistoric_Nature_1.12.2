@@ -37,7 +37,7 @@ public class ItemPetrifiedArtocarpusSapling extends ElementsLepidodendronMod.Mod
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_artocarpus_sapling");
+			setTranslationKey("pf_petrified_artocarpus_sapling");
 			setRegistryName("petrified_artocarpus_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

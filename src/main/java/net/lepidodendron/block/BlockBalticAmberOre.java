@@ -101,7 +101,7 @@ public class BlockBalticAmberOre extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockFalling {
 		public BlockCustom() {
 			super(Material.SAND);
-			setTranslationKey("baltic_amber_ore");
+			setTranslationKey("pf_baltic_amber_ore");
 			setSoundType(SoundType.SAND);
 			setHarvestLevel("shovel", 1);
 			setHardness(0.5F);

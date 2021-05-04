@@ -36,7 +36,7 @@ public class ItemEdwardsiphytonSpores extends ElementsLepidodendronMod.ModElemen
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("edwardsiphyton_spores");
+			setTranslationKey("pf_edwardsiphyton_spores");
 			setRegistryName("edwardsiphyton_spores");
 			setCreativeTab(null);
 		}

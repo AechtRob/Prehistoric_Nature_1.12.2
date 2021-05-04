@@ -61,7 +61,7 @@ public class BlockSandPangaean extends ElementsLepidodendronMod.ModElement {
 			this.setSoundType(SoundType.SAND);
 			setHardness(0.5F);
 			setResistance(0.5F);
-			setTranslationKey("sand_pangaean");
+			setTranslationKey("pf_sand_pangaean");
 			setHarvestLevel("shovel", 0);
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -36,7 +36,7 @@ public class ItemMarattiaSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("marattia_spores");
+			setTranslationKey("pf_marattia_spores");
 			setRegistryName("marattia_spores");
 			setCreativeTab(null);
 		}

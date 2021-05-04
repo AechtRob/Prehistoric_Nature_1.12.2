@@ -58,7 +58,7 @@ public class BlockNeocalamites2 extends ElementsLepidodendronMod.ModElement {
 			setHardness(0.2F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("neocalamites_2");
+			setTranslationKey("pf_neocalamites_2");
 			setRegistryName("neocalamites_2");
 		}
 

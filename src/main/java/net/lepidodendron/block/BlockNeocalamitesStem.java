@@ -73,7 +73,7 @@ public class BlockNeocalamitesStem extends ElementsLepidodendronMod.ModElement {
 	    
 		public BlockCustom() {
 			super(Material.WATER);
-			setTranslationKey("neocalamites_stem");
+			setTranslationKey("pf_neocalamites_stem");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.5F);
 			setResistance(0F);

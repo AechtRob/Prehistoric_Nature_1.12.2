@@ -74,7 +74,7 @@ public class BlockPachypterisStem extends ElementsLepidodendronMod.ModElement {
 			setLightLevel(0F);
 			setLightOpacity(0);
 			setCreativeTab(null);
-			setTranslationKey("pachypteris_stem");
+			setTranslationKey("pf_pachypteris_stem");
 			setRegistryName("pachypteris_stem");
 		}
 

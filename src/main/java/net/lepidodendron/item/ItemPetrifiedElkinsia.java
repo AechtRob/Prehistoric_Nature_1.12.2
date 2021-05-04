@@ -37,7 +37,7 @@ public class ItemPetrifiedElkinsia extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_elkinsia");
+			setTranslationKey("pf_petrified_elkinsia");
 			setRegistryName("petrified_elkinsia");
 			setCreativeTab(TabLepidodendron.tab);
 		}

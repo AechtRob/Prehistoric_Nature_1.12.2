@@ -79,7 +79,7 @@ public class BlockPachypterisTop extends ElementsLepidodendronMod.ModElement {
 			setLightLevel(0F);
 			setLightOpacity(0);
 			setCreativeTab(null);
-			setTranslationKey("pachypteris_top");
+			setTranslationKey("pf_pachypteris_top");
 			setRegistryName("pachypteris_top");
 		}
 

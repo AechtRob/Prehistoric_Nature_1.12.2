@@ -43,7 +43,7 @@ public class ItemPalaeognetaleanaSeed extends ElementsLepidodendronMod.ModElemen
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(1, 0.2f, false);
-			setTranslationKey("palaeognetaleana_seed");
+			setTranslationKey("pf_palaeognetaleana_seed");
 			setRegistryName("palaeognetaleana_seed");
 			setAlwaysEdible();
 			setCreativeTab(TabLepidodendron.tab);

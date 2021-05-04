@@ -42,7 +42,7 @@ public class BlockLavaRockPolished extends ElementsLepidodendronMod.ModElement {
 			setResistance(8F);
 			this.setSoundType(SoundType.STONE);
 			setHarvestLevel("pickaxe", 0);
-			setTranslationKey("lava_rock_polished");
+			setTranslationKey("pf_lava_rock_polished");
 			setCreativeTab(TabLepidodendron.tab);
 		}
 	}

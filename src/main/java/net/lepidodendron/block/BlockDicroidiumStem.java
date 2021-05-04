@@ -87,11 +87,11 @@ public class BlockDicroidiumStem extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		
 		public BlockCustom() {
-			super(Material.PLANTS);
-			setTranslationKey("dicroidium_stem");
-			setSoundType(SoundType.PLANT);
-			setHardness(0F);
-			setResistance(0F);
+			super(Material.WOOD);
+			setTranslationKey("pf_dicroidium_stem");
+			setSoundType(SoundType.WOOD);
+			setHardness(1F);
+			setResistance(10F);
 			setLightLevel(0F);
 			setLightOpacity(0);
 			setCreativeTab(TabLepidodendron.tab);

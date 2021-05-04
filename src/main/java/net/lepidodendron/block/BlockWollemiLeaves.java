@@ -54,7 +54,7 @@ public class BlockWollemiLeaves extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("wollemi_leaves");
+			setTranslationKey("pf_wollemi_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

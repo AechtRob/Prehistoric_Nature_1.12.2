@@ -36,7 +36,7 @@ public class ItemOsmundaSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("osmunda_spores");
+			setTranslationKey("pf_osmunda_spores");
 			setRegistryName("osmunda_spores");
 			setCreativeTab(null);
 		}

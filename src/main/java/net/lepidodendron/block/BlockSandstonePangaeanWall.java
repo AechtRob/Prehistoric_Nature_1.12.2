@@ -64,7 +64,7 @@ public class BlockSandstonePangaeanWall extends ElementsLepidodendronMod.ModElem
 
 		public BlockCustom() {
 			super(Material.ROCK, Material.ROCK.getMaterialMapColor());
-			setTranslationKey("sandstone_wall_pangaean");
+			setTranslationKey("pf_sandstone_wall_pangaean");
 			this.setSoundType(SoundType.STONE);
 			setHardness(0.8F);
 			setResistance(0.8F);

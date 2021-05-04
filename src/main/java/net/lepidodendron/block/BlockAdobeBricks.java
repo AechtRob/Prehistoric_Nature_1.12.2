@@ -40,7 +40,7 @@ public class BlockAdobeBricks extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.ROCK);
-			setTranslationKey("adobe_bricks");
+			setTranslationKey("pf_adobe_bricks");
 			setSoundType(SoundType.GROUND);
 			setHarvestLevel("pickaxe", 0);
 			setHardness(0.5F);

@@ -37,7 +37,7 @@ public class ItemPetrifiedCaytoniales extends ElementsLepidodendronMod.ModElemen
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_caytoniales");
+			setTranslationKey("pf_petrified_caytoniales");
 			setRegistryName("petrified_caytoniales");
 			setCreativeTab(TabLepidodendron.tab);
 		}

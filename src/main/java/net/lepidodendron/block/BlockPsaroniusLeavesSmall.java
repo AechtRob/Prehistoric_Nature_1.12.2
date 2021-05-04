@@ -67,7 +67,7 @@ public class BlockPsaroniusLeavesSmall extends ElementsLepidodendronMod.ModEleme
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			//super(Material.PLANTS);
-			setTranslationKey("psaronius_leaves_small_worldgen");
+			setTranslationKey("pf_psaronius_leaves_small_worldgen");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

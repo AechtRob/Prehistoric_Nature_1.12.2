@@ -57,7 +57,7 @@ public class BlockCordaitesLeaves extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("cordaites_leaves");
+			setTranslationKey("pf_cordaites_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

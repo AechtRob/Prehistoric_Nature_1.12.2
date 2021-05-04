@@ -46,7 +46,7 @@ public class BlockBristleconeTrapdoor extends ElementsLepidodendronMod.ModElemen
 	public static class BlockCustom extends BlockTrapDoor {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("bristlecone_trapdoor");
+			setTranslationKey("pf_bristlecone_trapdoor");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(3F);

@@ -70,7 +70,7 @@ public class BlockGigantopteridSapling extends ElementsLepidodendronMod.ModEleme
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("gigantopterid_sapling");
+			setTranslationKey("pf_gigantopterid_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

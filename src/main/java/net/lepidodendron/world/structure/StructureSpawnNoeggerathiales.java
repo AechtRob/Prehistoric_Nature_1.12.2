@@ -3,7 +3,7 @@ package net.lepidodendron.world.structure;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.LepidodendronTreeHandler;
+import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.block.BlockNoeggerathialesLog;
 import net.lepidodendron.procedure.ProcedureWorldGenNoeggerathiales;
 import net.minecraft.block.material.Material;
@@ -62,7 +62,7 @@ public class StructureSpawnNoeggerathiales extends ElementsLepidodendronMod.ModE
 		if (GenMultiplier < 0) {GenMultiplier = 0;}
 		GenChance = Math.min(300000, (int) Math.round((double) GenChance * GenMultiplier));
 		//Is this a transformed biome?
-		if (LepidodendronTreeHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
+		if (LepidodendronDecorationHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
 			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
 			GenChance = Math.min(GenChance * 5, 300000);
 		}

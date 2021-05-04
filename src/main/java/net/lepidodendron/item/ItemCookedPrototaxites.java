@@ -37,7 +37,7 @@ public class ItemCookedPrototaxites extends ElementsLepidodendronMod.ModElement 
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(3, 0.2f, false);
-			setTranslationKey("cooked_prototaxites");
+			setTranslationKey("pf_cooked_prototaxites");
 			setRegistryName("cooked_prototaxites");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

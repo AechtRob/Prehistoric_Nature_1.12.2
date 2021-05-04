@@ -57,7 +57,7 @@ public class BlockAraucarioxylonSlabPetrified extends ElementsLepidodendronMod.M
 	public static class BlockCustom extends BlockSlab {
 		public BlockCustom() {
 			super(Material.ROCK);
-			setTranslationKey("araucarioxylon_slab_petrified");
+			setTranslationKey("pf_araucarioxylon_slab_petrified");
 			setSoundType(SoundType.STONE);
 			setHarvestLevel("pickaxe", 1);
 			setHardness(5F);

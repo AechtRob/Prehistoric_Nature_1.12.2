@@ -48,7 +48,7 @@ public class BlockHymenaeaFenceGate extends ElementsLepidodendronMod.ModElement 
 	public static class BlockCustom extends BlockFenceGate {
 		public BlockCustom() {
 			super(EnumType.OAK);
-			setTranslationKey("hymenaea_fence_gate");
+			setTranslationKey("pf_hymenaea_fence_gate");
 			setHarvestLevel("axe", 1);
 			setSoundType(SoundType.WOOD);
 			setHardness(2F);

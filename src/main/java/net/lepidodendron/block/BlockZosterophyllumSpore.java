@@ -73,7 +73,7 @@ public class BlockZosterophyllumSpore extends ElementsLepidodendronMod.ModElemen
 			else {
 				setTickRandomly(false);
 			}
-			setTranslationKey("zosterophyllum_spore");
+			setTranslationKey("pf_zosterophyllum_spore");
 			setRegistryName("zosterophyllum_spore");
 		}
 

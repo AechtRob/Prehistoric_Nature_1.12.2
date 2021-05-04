@@ -37,7 +37,7 @@ public class ItemWollemiFruit extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("wollemi_fruit");
+			setTranslationKey("pf_wollemi_fruit");
 			setRegistryName("wollemi_fruit");
 			setCreativeTab(TabLepidodendron.tab);
 		}

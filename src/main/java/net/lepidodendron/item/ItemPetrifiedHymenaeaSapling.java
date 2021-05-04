@@ -37,7 +37,7 @@ public class ItemPetrifiedHymenaeaSapling extends ElementsLepidodendronMod.ModEl
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_hymenaea_sapling");
+			setTranslationKey("pf_petrified_hymenaea_sapling");
 			setRegistryName("petrified_hymenaea_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

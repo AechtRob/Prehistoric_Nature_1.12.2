@@ -37,7 +37,7 @@ public class ItemPetrifiedAraucarioxylonSaping extends ElementsLepidodendronMod.
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_araucarioxylon_saping");
+			setTranslationKey("pf_petrified_araucarioxylon_saping");
 			setRegistryName("petrified_araucarioxylon_saping");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -47,7 +47,7 @@ public class BlockSigillariaStairs extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockStairs {
 		public BlockCustom() {
 			super(new Block(Material.WOOD).getDefaultState());
-			setTranslationKey("sigillaria_stairs");
+			setTranslationKey("pf_sigillaria_stairs");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

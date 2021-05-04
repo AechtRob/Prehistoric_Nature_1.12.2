@@ -47,7 +47,7 @@ public class BlockCoarseSandyDirtPangaean extends ElementsLepidodendronMod.ModEl
 			this.setHardness(0.5F);
 			this.setHarvestLevel("shovel", 0);
 			this.setSoundType(SoundType.GROUND);
-			setTranslationKey("coarse_sandy_dirt_pangaean");
+			setTranslationKey("pf_coarse_sandy_dirt_pangaean");
 			setCreativeTab(TabLepidodendron.tab);
 		}
 

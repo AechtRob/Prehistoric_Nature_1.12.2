@@ -74,7 +74,7 @@ public class BlockAdoketophyton extends ElementsLepidodendronMod.ModElement {
 			else {
 				setTickRandomly(false);
 			}
-			setTranslationKey("adoketophyton");
+			setTranslationKey("pf_adoketophyton");
 			setRegistryName("adoketophyton");
 		}
 

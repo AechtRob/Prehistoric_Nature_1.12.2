@@ -43,7 +43,7 @@ public class BlockSandstonePangaeanStairs extends ElementsLepidodendronMod.ModEl
 	public static class BlockCustom extends BlockStairs {
 		public BlockCustom() {
 			super(new Block(Material.ROCK).getDefaultState());
-			setTranslationKey("sandstone_stairs_pangaean");
+			setTranslationKey("pf_sandstone_stairs_pangaean");
 			this.setSoundType(SoundType.STONE);
 			setHardness(0.8F);
 			setResistance(0.8F);

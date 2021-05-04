@@ -61,7 +61,7 @@ public class BlockPrehistoricGroundBasic extends ElementsLepidodendronMod.ModEle
 	public static class BlockCustom extends Block implements IGrowable, ISustainsPlantType {
 		public BlockCustom() {
 			super(Material.GROUND);
-			setTranslationKey("prehistoric_ground_cover");
+			setTranslationKey("pf_prehistoric_ground_cover");
 			setSoundType(SoundType.PLANT);
         	setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
         	setTickRandomly(true);

@@ -36,7 +36,7 @@ public class ItemCalamitesSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("calamites_spores");
+			setTranslationKey("pf_calamites_spores");
 			setRegistryName("calamites_spores");
 			setCreativeTab(null);
 		}

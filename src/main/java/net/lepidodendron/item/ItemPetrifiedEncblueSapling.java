@@ -37,7 +37,7 @@ public class ItemPetrifiedEncblueSapling extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_encblue_sapling");
+			setTranslationKey("pf_petrified_encblue_sapling");
 			setRegistryName("petrified_encblue_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

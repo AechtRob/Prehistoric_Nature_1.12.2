@@ -60,7 +60,7 @@ public class BlockBrachyphyllumLeaves extends ElementsLepidodendronMod.ModElemen
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("brachyphyllum_leaves");
+			setTranslationKey("pf_brachyphyllum_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

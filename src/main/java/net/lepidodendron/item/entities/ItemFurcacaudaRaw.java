@@ -33,7 +33,7 @@ public class ItemFurcacaudaRaw extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(2, 0.1f, false);
-			setTranslationKey("furcacauda_raw");
+			setTranslationKey("pf_furcacauda_raw");
 			setRegistryName("furcacauda_raw");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

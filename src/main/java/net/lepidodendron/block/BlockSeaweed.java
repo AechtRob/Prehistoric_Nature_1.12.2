@@ -148,7 +148,7 @@ public class BlockSeaweed extends ElementsLepidodendronMod.ModElement {
 			setLightLevel(0F);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(AGE, Integer.valueOf(0)));
         	this.setTickRandomly(true);
-			setTranslationKey("seaweed");
+			setTranslationKey("pf_seaweed");
 			setRegistryName("seaweed");
 		}
 	

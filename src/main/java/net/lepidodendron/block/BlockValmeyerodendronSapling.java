@@ -70,7 +70,7 @@ public class BlockValmeyerodendronSapling extends ElementsLepidodendronMod.ModEl
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("valmeyerodendron_sapling");
+			setTranslationKey("pf_valmeyerodendron_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

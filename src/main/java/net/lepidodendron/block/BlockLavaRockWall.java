@@ -64,7 +64,7 @@ public class BlockLavaRockWall extends ElementsLepidodendronMod.ModElement {
 
 		public BlockCustom() {
 			super(Material.ROCK, Material.ROCK.getMaterialMapColor());
-			setTranslationKey("lava_rock_wall");
+			setTranslationKey("pf_lava_rock_wall");
 			this.setSoundType(SoundType.STONE);
 			setHardness(1.25F);
 			setResistance(4.2F);

@@ -7,9 +7,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.Item;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.material.Material;
@@ -53,7 +51,7 @@ public class BlockAgathisDoor extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockDoor {
 		public BlockCustom() {
 			super(Material.WOOD);
-			//setTranslationKey("agathis_door");
+			setTranslationKey("pf_agathis_door");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(3F);

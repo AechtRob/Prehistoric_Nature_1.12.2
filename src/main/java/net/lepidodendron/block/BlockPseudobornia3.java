@@ -59,7 +59,7 @@ public class BlockPseudobornia3 extends ElementsLepidodendronMod.ModElement {
 			setHardness(0.2F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("pseudobornia_3");
+			setTranslationKey("pf_pseudobornia_3");
 			setRegistryName("pseudobornia_3");
 		}
 

@@ -70,7 +70,7 @@ public class BlockMonkeypuzzleSapling extends ElementsLepidodendronMod.ModElemen
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("monkeypuzzle_sapling");
+			setTranslationKey("pf_monkeypuzzle_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

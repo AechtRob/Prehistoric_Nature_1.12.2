@@ -62,7 +62,7 @@ public class BlockPleuromeiaShootPlaceable extends ElementsLepidodendronMod.ModE
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("pleuromeia_shoot");
+			setTranslationKey("pf_pleuromeia_shoot");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

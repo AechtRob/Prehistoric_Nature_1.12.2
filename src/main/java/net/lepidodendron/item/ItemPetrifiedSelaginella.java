@@ -37,7 +37,7 @@ public class ItemPetrifiedSelaginella extends ElementsLepidodendronMod.ModElemen
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_selaginella");
+			setTranslationKey("pf_petrified_selaginella");
 			setRegistryName("petrified_selaginella");
 			setCreativeTab(TabLepidodendron.tab);
 		}

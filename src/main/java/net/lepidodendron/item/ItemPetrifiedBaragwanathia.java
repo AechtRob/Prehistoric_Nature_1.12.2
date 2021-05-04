@@ -37,7 +37,7 @@ public class ItemPetrifiedBaragwanathia extends ElementsLepidodendronMod.ModElem
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_baragwanathia");
+			setTranslationKey("pf_petrified_baragwanathia");
 			setRegistryName("petrified_baragwanathia");
 			setCreativeTab(TabLepidodendron.tab);
 		}

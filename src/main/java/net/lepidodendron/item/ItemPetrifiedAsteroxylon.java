@@ -37,7 +37,7 @@ public class ItemPetrifiedAsteroxylon extends ElementsLepidodendronMod.ModElemen
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_asteroxylon");
+			setTranslationKey("pf_petrified_asteroxylon");
 			setRegistryName("petrified_asteroxylon");
 			setCreativeTab(TabLepidodendron.tab);
 		}

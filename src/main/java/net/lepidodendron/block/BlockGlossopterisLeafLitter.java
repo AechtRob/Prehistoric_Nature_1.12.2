@@ -48,7 +48,7 @@ public class BlockGlossopterisLeafLitter extends ElementsLepidodendronMod.ModEle
 	public static class BlockCustom extends Block implements ISustainsPlantType {
 		public BlockCustom() {
 			super(Material.GROUND);
-			setTranslationKey("glossopteris_leaf_litter");
+			setTranslationKey("pf_glossopterid_leaf_litter_dirt");
 			setSoundType(SoundType.PLANT);
 			setHarvestLevel("shovel", 0);
 			setHardness(0.2F);

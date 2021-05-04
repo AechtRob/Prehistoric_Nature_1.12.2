@@ -81,7 +81,7 @@ public class BlockPrototaxitesStem extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("prototaxites_stem");
+			setTranslationKey("pf_prototaxites_stem");
 			setSoundType(SoundType.PLANT);
 			setHardness(1F);
 			setResistance(10F);
@@ -160,7 +160,7 @@ public class BlockPrototaxitesStem extends ElementsLepidodendronMod.ModElement {
 	
 	    @SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

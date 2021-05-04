@@ -74,7 +74,7 @@ public class BlockZosterophyllum extends ElementsLepidodendronMod.ModElement {
 			else {
 				setTickRandomly(false);
 			}
-			setTranslationKey("zosterophyllum");
+			setTranslationKey("pf_zosterophyllum");
 			setRegistryName("zosterophyllum");
 		}
 

@@ -55,7 +55,7 @@ public class BlockSchizoneura2 extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("schizoneura_2");
+			setTranslationKey("pf_schizoneura_2");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

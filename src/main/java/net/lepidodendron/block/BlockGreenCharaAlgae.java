@@ -105,6 +105,9 @@ public class BlockGreenCharaAlgae extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genGreenCharaAlgaeOverrideBiomes))
 			biomeCriteria = true;
+		if (dimID == LepidodendronConfig.dimCambrian) {
+			biomeCriteria = false;
+		}
 		if (!biomeCriteria)
 			return;
 
@@ -155,7 +158,7 @@ public class BlockGreenCharaAlgae extends ElementsLepidodendronMod.ModElement {
     
 		public BlockCustom() {
 			super(Material.WATER);
-			setTranslationKey("green_chara_algae");
+			setTranslationKey("pf_green_chara_algae");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.0F);
 			setResistance(0.0F);

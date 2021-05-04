@@ -37,7 +37,7 @@ public class ItemMagnoliaSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("magnolia_seeds");
+			setTranslationKey("pf_magnolia_seeds");
 			setRegistryName("magnolia_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

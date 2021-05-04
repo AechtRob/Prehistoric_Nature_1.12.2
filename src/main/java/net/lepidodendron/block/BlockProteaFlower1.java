@@ -91,7 +91,7 @@ public class BlockProteaFlower1 extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("protea_flower_1");
+			setTranslationKey("pf_protea_flower_1");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

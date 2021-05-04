@@ -75,7 +75,7 @@ public class BlockOdontopterisShoot extends ElementsLepidodendronMod.ModElement 
 		
 		public BlockCustom() {
 			super();
-			setTranslationKey("odontopteris_shoot_worldgen");
+			setTranslationKey("pf_odontopteris_shoot_worldgen");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

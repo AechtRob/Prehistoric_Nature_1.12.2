@@ -57,7 +57,7 @@ public class BlockAraucarioxylonLeaves extends ElementsLepidodendronMod.ModEleme
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("araucarioxylon_leaves");
+			setTranslationKey("pf_araucarioxylon_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

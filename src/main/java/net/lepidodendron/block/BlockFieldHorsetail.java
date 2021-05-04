@@ -74,7 +74,7 @@ public class BlockFieldHorsetail extends ElementsLepidodendronMod.ModElement {
 			else {
 				setTickRandomly(false);
 			}
-			setTranslationKey("field_horsetail");
+			setTranslationKey("pf_field_horsetail");
 			setRegistryName("field_horsetail");
 		}
 
@@ -192,6 +192,7 @@ public class BlockFieldHorsetail extends ElementsLepidodendronMod.ModElement {
 					if (spread > 100) {
 						spread = 100;
 					}
+					if (Math.random() > 0.5) {spread = 1;} //lower the chance
 					if (Math.random() > (1-(spread/100)) && (targetBlock != pos) && (world.isAirBlock(targetBlock)) && (canSurviveAt(world, targetBlock))) {
 						world.setBlockState(targetBlock, BlockFieldHorsetail.block.getDefaultState(), 3);	
 					}

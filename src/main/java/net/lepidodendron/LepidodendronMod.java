@@ -17,7 +17,6 @@
  */
 package net.lepidodendron;
 
-import net.lepidodendron.entity.render.RenderHandler;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -49,7 +48,7 @@ import java.util.function.Supplier;
 public class LepidodendronMod {
 	public static final String MODID = "lepidodendron";
 	public static final String NAME = "Prehistoric Flora";
-	public static final String VERSION = "45.1";
+	public static final String VERSION = "47.0";
 	public static final SimpleNetworkWrapper PACKET_HANDLER = NetworkRegistry.INSTANCE.newSimpleChannel("lepidodendron:a");
 	@SidedProxy(clientSide = "net.lepidodendron.ClientProxyLepidodendronMod", serverSide = "net.lepidodendron.ServerProxyLepidodendronMod")
 	public static IProxyLepidodendronMod proxy;
@@ -114,6 +113,29 @@ public class LepidodendronMod {
 	public static final ResourceLocation FURCACAUDA_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/furcacauda"));
 	public static final int ENTITY_SQUATINACTIS = 39;
 	public static final ResourceLocation SQUATINACTIS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/squatinactis"));
+	public static final int ENTITY_PALAEODICTYOPTERA_NYMPH = 40;
+	public static final int ENTITY_QILINYU = 41;
+	public static final ResourceLocation QILINYU_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/qilinyu"));
+	public static final int ENTITY_PORASPIS = 42;
+	public static final ResourceLocation PORASPIS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/poraspis"));
+	public static final int ENTITY_APHETOCERAS  = 43;
+	public static final ResourceLocation APHETOCERAS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/aphetoceras"));
+	public static final int ENTITY_ENDOCERAS = 44;
+	public static final ResourceLocation ENDOCERAS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/endoceras"));
+	public static final int ENTITY_CAMEROCERAS = 45;
+	public static final ResourceLocation CAMEROCERAS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/cameroceras"));
+	public static final int ENTITY_ORTHOCERAS = 46;
+	public static final ResourceLocation ORTHOCERAS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/orthoceras"));
+	public static final int ENTITY_PALAEODICTYOPTERA_DELITZSCHALA = 47;
+	public static final int ENTITY_PALAEODICTYOPTERA_DUNBARIA = 48;
+	public static final int ENTITY_PALAEODICTYOPTERA_HOMALONEURA = 49;
+	public static final int ENTITY_PALAEODICTYOPTERA_HOMOIOPTERA = 50;
+	public static final int ENTITY_PALAEODICTYOPTERA_LITHOMANTIS = 51;
+	public static final int ENTITY_PALAEODICTYOPTERA_LYCOCERCUS = 52;
+	public static final int ENTITY_PALAEODICTYOPTERA_SINODUNBARIA = 53;
+	public static final int ENTITY_PALAEODICTYOPTERA_STENODICTYA = 54;
+	public static final ResourceLocation PALAEODICTYOPTERA_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/palaeodictyoptera"));
+	public static final int ENTITY_JELLYFISH_PRECAMBRIAN = 55;
 
 
 
@@ -128,7 +150,6 @@ public class LepidodendronMod {
 		MinecraftForge.EVENT_BUS.register(elements);
 		elements.getElements().forEach(element -> element.preInit(event));
 		EntityRegistries.registerEntities();
-		RenderHandler.RegisterEntityRenders();
 		proxy.preInit(event);
 	}
 
@@ -136,7 +157,8 @@ public class LepidodendronMod {
 	public void init(FMLInitializationEvent event) {
 		elements.getElements().forEach(element -> element.init(event));
 		proxy.init(event);
-		MinecraftForge.TERRAIN_GEN_BUS.register(new LepidodendronTreeHandler());
+		MinecraftForge.TERRAIN_GEN_BUS.register(new LepidodendronDecorationHandler());
+		//MinecraftForge.EVENT_BUS.register(new LepidodendronDecorationHandler());
 		MinecraftForge.ORE_GEN_BUS.register(new LepidodendronOreHandler());
 		MinecraftForge.EVENT_BUS.register(new LepidodendronDimensionHandler());
 	}

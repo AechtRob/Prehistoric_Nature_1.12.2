@@ -81,7 +81,7 @@ public class BlockSigillariaStrobilus extends ElementsLepidodendronMod.ModElemen
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("sigillaria_strobilus");
+			setTranslationKey("pf_sigillaria_strobilus");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

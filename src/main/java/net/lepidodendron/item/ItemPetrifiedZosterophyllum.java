@@ -37,7 +37,7 @@ public class ItemPetrifiedZosterophyllum extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_zosterophyllum");
+			setTranslationKey("pf_petrified_zosterophyllum");
 			setRegistryName("petrified_zosterophyllum");
 			setCreativeTab(TabLepidodendron.tab);
 		}

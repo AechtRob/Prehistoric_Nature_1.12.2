@@ -81,7 +81,7 @@ public class BlockCobbania extends ElementsLepidodendronMod.ModElement {
 			else {
 				setTickRandomly(false);
 			}
-			setTranslationKey("cobbania");
+			setTranslationKey("pf_cobbania");
 			setRegistryName("cobbania");
 		}
 
@@ -94,7 +94,7 @@ public class BlockCobbania extends ElementsLepidodendronMod.ModElement {
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
@@ -191,11 +191,12 @@ public class BlockCobbania extends ElementsLepidodendronMod.ModElement {
 					if (spread > 100) {
 						spread = 100;
 					}
+					if (Math.random() > 0.3) {spread = 1;} //lower the chance
 					//System.err.println("TEST: " + spread + " = " + (1-(spread/100)));
 					if (Math.random() > (1-(spread/100)) && (targetBlock != pos) && (world.isAirBlock(targetBlock)) && (canSurviveAt(world, targetBlock))) {
 						world.setBlockState(targetBlock, BlockCobbania.block.getDefaultState(), 3);	
 					}
-					//Perhaps the original plant also dies back now, but only if there another plant within 2 blocks (else TODO:he colony dies!):
+					//Perhaps the original plant also dies back now, but only if there another plant within 2 blocks (else the colony dies!):
 					boolean YouAreNotAloneNooneIsAlone = false;
 					int xct = -2;
 					int zct;
@@ -209,7 +210,7 @@ public class BlockCobbania extends ElementsLepidodendronMod.ModElement {
 						}
 						xct = xct + 1;
 					}
-					if (YouAreNotAloneNooneIsAlone && Math.random() > 0.9) {
+					if (YouAreNotAloneNooneIsAlone && Math.random() > 0.8) {
 						if (Math.random() > 0.7) {world.destroyBlock(pos, false);}
 					}
 				}
@@ -268,6 +269,11 @@ public class BlockCobbania extends ElementsLepidodendronMod.ModElement {
 	    	{
 	    		return false;
 	    	}
+
+			if (worldIn.getBlockState(pos.down(5)).getMaterial() == Material.WATER)
+			{
+				return false;
+			}
 
 	    	return true;
 	    	 

@@ -48,7 +48,7 @@ public class BlockBristleconeFenceGate extends ElementsLepidodendronMod.ModEleme
 	public static class BlockCustom extends BlockFenceGate {
 		public BlockCustom() {
 			super(EnumType.OAK);
-			setTranslationKey("bristlecone_fence_gate");
+			setTranslationKey("pf_bristlecone_fence_gate");
 			setHarvestLevel("axe", 1);
 			setSoundType(SoundType.WOOD);
 			setHardness(2F);

@@ -77,7 +77,7 @@ public class BlockOdontopterisShootPlaceable extends ElementsLepidodendronMod.Mo
 		
 		public BlockCustom() {
 			super();
-			setTranslationKey("odontopteris_shoot");
+			setTranslationKey("pf_odontopteris_shoot");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

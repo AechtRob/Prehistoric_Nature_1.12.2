@@ -37,7 +37,7 @@ public class ItemWalchiaFruit extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("walchia_fruit");
+			setTranslationKey("pf_walchia_fruit");
 			setRegistryName("walchia_fruit");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -37,7 +37,7 @@ public class ItemCallistophytalesSeeds extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("callistophytales_seeds");
+			setTranslationKey("pf_callistophytales_seeds");
 			setRegistryName("callistophytales_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

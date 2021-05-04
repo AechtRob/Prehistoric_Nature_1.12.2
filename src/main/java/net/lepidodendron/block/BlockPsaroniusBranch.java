@@ -88,7 +88,7 @@ public class BlockPsaroniusBranch extends ElementsLepidodendronMod.ModElement {
 		
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("psaronius_branch");
+			setTranslationKey("pf_psaronius_branch");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

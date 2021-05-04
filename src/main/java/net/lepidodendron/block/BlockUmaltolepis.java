@@ -64,7 +64,7 @@ public class BlockUmaltolepis extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("umaltolepis");
+			setTranslationKey("pf_umaltolepis");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

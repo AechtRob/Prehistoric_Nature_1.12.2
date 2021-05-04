@@ -69,7 +69,7 @@ public class BlockCalamitesThatch extends ElementsLepidodendronMod.ModElement {
 
 		public BlockCustom() {
 			super(Material.LEAVES);
-			setTranslationKey("calamites_thatch");
+			setTranslationKey("pf_calamites_thatch");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.5F);
 			setResistance(0.5F);

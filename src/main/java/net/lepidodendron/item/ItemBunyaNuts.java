@@ -37,7 +37,7 @@ public class ItemBunyaNuts extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(2, 0.2f, false);
-			setTranslationKey("bunya_nuts");
+			setTranslationKey("pf_bunya_nuts");
 			setRegistryName("bunya_nuts");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

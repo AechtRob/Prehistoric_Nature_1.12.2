@@ -37,7 +37,7 @@ public class ItemPetrifiedSphenophyllales1 extends ElementsLepidodendronMod.ModE
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_sphenophyllales_1");
+			setTranslationKey("pf_petrified_sphenophyllales_1");
 			setRegistryName("petrified_sphenophyllales_1");
 			setCreativeTab(TabLepidodendron.tab);
 		}

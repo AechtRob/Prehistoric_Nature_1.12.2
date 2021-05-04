@@ -81,7 +81,7 @@ public class BlockCalamitesStrobilus extends ElementsLepidodendronMod.ModElement
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("calamites_strobilus");
+			setTranslationKey("pf_calamites_strobilus");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

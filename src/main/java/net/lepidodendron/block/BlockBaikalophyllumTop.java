@@ -63,7 +63,7 @@ public class BlockBaikalophyllumTop extends ElementsLepidodendronMod.ModElement 
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("baikalophyllum_top");
+			setTranslationKey("pf_baikalophyllum_top");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

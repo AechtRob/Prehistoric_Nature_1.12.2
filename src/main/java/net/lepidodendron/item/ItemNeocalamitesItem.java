@@ -62,7 +62,7 @@ public class ItemNeocalamitesItem extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("neocalamites_item");
+			setTranslationKey("pf_neocalamites_item");
 			setRegistryName("neocalamites_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

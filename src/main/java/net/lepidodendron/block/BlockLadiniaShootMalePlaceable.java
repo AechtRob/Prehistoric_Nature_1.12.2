@@ -66,7 +66,7 @@ public class BlockLadiniaShootMalePlaceable extends ElementsLepidodendronMod.Mod
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("ladinia_shoot_male");
+			setTranslationKey("pf_ladinia_shoot_male");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

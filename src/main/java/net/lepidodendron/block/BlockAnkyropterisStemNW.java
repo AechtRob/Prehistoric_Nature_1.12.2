@@ -66,7 +66,7 @@ public class BlockAnkyropterisStemNW extends ElementsLepidodendronMod.ModElement
 		
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("ankyropteris_stem_nw");
+			setTranslationKey("pf_ankyropteris_stem_nw");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

@@ -46,7 +46,7 @@ public class BlockArtocarpusPlanks extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("artocarpus_planks");
+			setTranslationKey("pf_artocarpus_planks");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

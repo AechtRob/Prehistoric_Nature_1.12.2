@@ -37,7 +37,7 @@ public class ItemNothofagusSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("nothofagus_seeds");
+			setTranslationKey("pf_nothofagus_seeds");
 			setRegistryName("nothofagus_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

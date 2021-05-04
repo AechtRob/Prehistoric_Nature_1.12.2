@@ -67,7 +67,7 @@ public class BlockSphenophyllales1 extends ElementsLepidodendronMod.ModElement {
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("sphenophyllales_1");
+			setTranslationKey("pf_sphenophyllales_1");
 			setRegistryName("sphenophyllales_1");
 		}
 

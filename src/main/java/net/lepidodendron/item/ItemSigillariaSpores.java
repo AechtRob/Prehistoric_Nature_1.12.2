@@ -36,7 +36,7 @@ public class ItemSigillariaSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("sigillaria_spores");
+			setTranslationKey("pf_sigillaria_spores");
 			setRegistryName("sigillaria_spores");
 			setCreativeTab(null);
 		}

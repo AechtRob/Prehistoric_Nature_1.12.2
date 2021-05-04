@@ -81,7 +81,7 @@ public class BlockWaterHorsetail extends ElementsLepidodendronMod.ModElement {
 			else {
 				setTickRandomly(false);
 			}
-			setTranslationKey("water_horsetail");
+			setTranslationKey("pf_water_horsetail");
 			setRegistryName("water_horsetail");
 		}
 

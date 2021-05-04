@@ -37,7 +37,7 @@ public class ItemPetrifiedPalaeostachya extends ElementsLepidodendronMod.ModElem
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_palaeostachya");
+			setTranslationKey("pf_petrified_palaeostachya");
 			setRegistryName("petrified_palaeostachya");
 			setCreativeTab(TabLepidodendron.tab);
 		}

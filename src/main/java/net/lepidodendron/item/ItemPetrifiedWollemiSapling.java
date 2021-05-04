@@ -37,7 +37,7 @@ public class ItemPetrifiedWollemiSapling extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_wollemi_sapling");
+			setTranslationKey("pf_petrified_wollemi_sapling");
 			setRegistryName("petrified_wollemi_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -37,7 +37,7 @@ public class ItemPetrifiedNeuropteridium extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_neuropteridium");
+			setTranslationKey("pf_petrified_neuropteridium");
 			setRegistryName("petrified_neuropteridium");
 			setCreativeTab(TabLepidodendron.tab);
 		}

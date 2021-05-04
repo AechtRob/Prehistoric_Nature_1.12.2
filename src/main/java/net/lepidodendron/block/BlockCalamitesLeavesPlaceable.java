@@ -64,7 +64,7 @@ public class BlockCalamitesLeavesPlaceable extends ElementsLepidodendronMod.ModE
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			//super(Material.PLANTS);
-			setTranslationKey("calamites_leaves");
+			setTranslationKey("pf_calamites_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

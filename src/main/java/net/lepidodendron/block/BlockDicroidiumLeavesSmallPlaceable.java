@@ -71,7 +71,7 @@ public class BlockDicroidiumLeavesSmallPlaceable extends ElementsLepidodendronMo
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			//super(Material.PLANTS);
-			setTranslationKey("dicroidium_leaves_small");
+			setTranslationKey("pf_dicroidium_leaves_small");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

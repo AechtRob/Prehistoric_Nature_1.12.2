@@ -69,7 +69,7 @@ public class BlockPsaroniusThatch extends ElementsLepidodendronMod.ModElement {
 
 		public BlockCustom() {
 			super(Material.LEAVES);
-			setTranslationKey("psaronius_thatch");
+			setTranslationKey("pf_psaronius_thatch");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.5F);
 			setResistance(0.5F);

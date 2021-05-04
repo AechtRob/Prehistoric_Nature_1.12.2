@@ -70,7 +70,7 @@ public class BlockEquisitesSapling extends ElementsLepidodendronMod.ModElement {
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("equisetites_sapling");
+			setTranslationKey("pf_equisetites_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

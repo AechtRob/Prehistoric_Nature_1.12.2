@@ -57,7 +57,7 @@ public class BlockOmphalophloiosBase extends ElementsLepidodendronMod.ModElement
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("omphalophloios_base");
+			setTranslationKey("pf_omphalophloios_base");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

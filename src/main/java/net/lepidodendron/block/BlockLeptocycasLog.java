@@ -77,7 +77,7 @@ public class BlockLeptocycasLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("leptocycas_log");
+			setTranslationKey("pf_leptocycas_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

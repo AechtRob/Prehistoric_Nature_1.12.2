@@ -74,7 +74,7 @@ public class BlockCooksonia extends ElementsLepidodendronMod.ModElement {
 			else {
 				setTickRandomly(false);
 			}
-			setTranslationKey("cooksonia");
+			setTranslationKey("pf_cooksonia");
 			setRegistryName("cooksonia");
 		}
 

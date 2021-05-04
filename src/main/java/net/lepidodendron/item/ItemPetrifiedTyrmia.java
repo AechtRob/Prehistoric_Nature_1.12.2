@@ -37,7 +37,7 @@ public class ItemPetrifiedTyrmia extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_tyrmia");
+			setTranslationKey("pf_petrified_tyrmia");
 			setRegistryName("petrified_tyrmia");
 			setCreativeTab(TabLepidodendron.tab);
 		}

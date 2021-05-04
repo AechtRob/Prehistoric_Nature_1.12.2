@@ -37,7 +37,7 @@ public class ItemPetrifiedPertica extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_pertica");
+			setTranslationKey("pf_petrified_pertica");
 			setRegistryName("petrified_pertica");
 			setCreativeTab(TabLepidodendron.tab);
 		}

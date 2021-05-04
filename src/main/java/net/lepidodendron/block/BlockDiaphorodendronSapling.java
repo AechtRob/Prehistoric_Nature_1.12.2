@@ -71,7 +71,7 @@ public class BlockDiaphorodendronSapling extends ElementsLepidodendronMod.ModEle
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("diaphorodendron_sapling");
+			setTranslationKey("pf_diaphorodendron_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

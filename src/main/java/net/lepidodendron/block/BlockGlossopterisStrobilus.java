@@ -89,7 +89,7 @@ public class BlockGlossopterisStrobilus extends ElementsLepidodendronMod.ModElem
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("glossopteris_strobilus");
+			setTranslationKey("pf_glossopteris_strobilus");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);
@@ -102,7 +102,7 @@ public class BlockGlossopterisStrobilus extends ElementsLepidodendronMod.ModElem
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

@@ -37,7 +37,7 @@ public class ItemCaytoniales2Seeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("caytoniales_2_seeds");
+			setTranslationKey("pf_caytoniales_2_seeds");
 			setRegistryName("caytoniales_2_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

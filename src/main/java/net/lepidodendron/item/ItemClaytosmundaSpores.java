@@ -36,7 +36,7 @@ public class ItemClaytosmundaSpores extends ElementsLepidodendronMod.ModElement 
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("claytosmunda_spores");
+			setTranslationKey("pf_claytosmunda_spores");
 			setRegistryName("claytosmunda_spores");
 			setCreativeTab(null);
 		}

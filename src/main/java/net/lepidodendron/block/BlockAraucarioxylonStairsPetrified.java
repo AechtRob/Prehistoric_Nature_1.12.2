@@ -47,7 +47,7 @@ public class BlockAraucarioxylonStairsPetrified extends ElementsLepidodendronMod
 	public static class BlockCustom extends BlockStairs {
 		public BlockCustom() {
 			super(new Block(Material.ROCK).getDefaultState());
-			setTranslationKey("araucarioxylon_stairs_petrified");
+			setTranslationKey("pf_araucarioxylon_stairs_petrified");
 			setSoundType(SoundType.STONE);
 			setHarvestLevel("pickaxe", 1);
 			setHardness(5F);

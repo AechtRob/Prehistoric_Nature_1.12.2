@@ -57,7 +57,7 @@ public class BlockAraucarioxylonSlabPetrifiedBricks extends ElementsLepidodendro
 	public static class BlockCustom extends BlockSlab {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("araucarioxylon_slab_petrified_bricks");
+			setTranslationKey("pf_araucarioxylon_slab_petrified_bricks");
 			setSoundType(SoundType.STONE);
 			setHarvestLevel("pickaxe", 1);
 			setHardness(5F);

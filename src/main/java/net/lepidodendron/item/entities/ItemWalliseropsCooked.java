@@ -33,7 +33,7 @@ public class ItemWalliseropsCooked extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(5, 0.7f, false);
-			setTranslationKey("walliserops_cooked");
+			setTranslationKey("pf_walliserops_cooked");
 			setRegistryName("walliserops_cooked");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

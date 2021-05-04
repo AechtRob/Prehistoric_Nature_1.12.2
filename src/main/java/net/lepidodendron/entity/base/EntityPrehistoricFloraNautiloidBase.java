@@ -147,6 +147,20 @@ public abstract class EntityPrehistoricFloraNautiloidBase extends EntityWaterMob
         return true;
     }
 
+    public boolean isAtBottom() {
+        //System.err.println("Testing position");
+        if (this.getPosition().getY() - 2 > 1) {
+            BlockPos pos = new BlockPos(this.getPosition().getX(),this.getPosition().getY() - 1.2, this.getPosition().getZ());
+            return ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
+                    && ((this.world.getBlockState(pos)).getMaterial() != Material.WATER)
+                    && ((this.world.getBlockState(pos.north())).getMaterial() != Material.WATER)
+                    && ((this.world.getBlockState(pos.south())).getMaterial() != Material.WATER)
+                    && ((this.world.getBlockState(pos.east())).getMaterial() != Material.WATER)
+                    && ((this.world.getBlockState(pos.west())).getMaterial() != Material.WATER));
+        }
+        return true;
+    }
+
     @Override
     public boolean getCanSpawnHere() {
         return this.posY < (double) this.world.getSeaLevel() && isInWater();
@@ -275,7 +289,7 @@ public abstract class EntityPrehistoricFloraNautiloidBase extends EntityWaterMob
                 //this.PrehistoricFloraFishBase.rotationYaw = this.limitAngle(this.PrehistoricFloraFishBase.rotationYaw, angle, 30.0F);
                 //this.PrehistoricFloraFishBase.setAIMoveSpeed(0.65F);
 
-                this.EntityBase.rotationYaw = this.limitAngle(this.EntityBase.rotationYaw, angle, 5.0F);
+                this.EntityBase.rotationYaw = this.limitAngle(this.EntityBase.rotationYaw, angle, 2.0F);
                 this.EntityBase.setAIMoveSpeed(getAISpeedNautiloid());
                 //System.err.println("Setting speed!");
 

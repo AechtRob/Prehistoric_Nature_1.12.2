@@ -3,7 +3,7 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.LepidodendronTreeHandler;
+import net.lepidodendron.LepidodendronDecorationHandler;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -109,7 +109,7 @@ public class BlockProtolepidodendropsis extends ElementsLepidodendronMod.ModElem
 		if (GenMultiplier < 0) {GenMultiplier = 0;}
 		GenChance = Math.min(15, (int) Math.round((double) GenChance * GenMultiplier));
 		//Is this a transformed biome?
-		if (LepidodendronTreeHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
+		if (LepidodendronDecorationHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
 			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
 			GenChance = 15;
 		}
@@ -177,7 +177,7 @@ public class BlockProtolepidodendropsis extends ElementsLepidodendronMod.ModElem
 
     	public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("protolepidodendropsis");
+			setTranslationKey("pf_protolepidodendropsis");
 			setSoundType(SoundType.PLANT);
 			setHardness(1F);
 			setResistance(1F);

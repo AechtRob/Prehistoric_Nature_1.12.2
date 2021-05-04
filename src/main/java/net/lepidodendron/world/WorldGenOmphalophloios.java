@@ -26,7 +26,7 @@ public class WorldGenOmphalophloios extends WorldGenerator
 	        {
 	            BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 	
-	            if (worldIn.isAirBlock(blockpos) && (!worldIn.provider.isNether() || blockpos.getY() < 254) && BlockOmphalophloiosSapling.block.canPlaceBlockAt(worldIn, blockpos))
+	            if (blockpos.getY() >= worldIn.getSeaLevel()-4 && worldIn.isAirBlock(blockpos) && (!worldIn.provider.isNether() || blockpos.getY() < 254) && BlockOmphalophloiosSapling.block.canPlaceBlockAt(worldIn, blockpos))
 	            {
 	                worldIn.setBlockState(blockpos, BlockOmphalophloiosBase.block.getDefaultState(), 2);
 					worldIn.setBlockState(blockpos.up(), BlockOmphalophloiosPlaceable.block.getDefaultState(), 2);

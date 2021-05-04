@@ -50,7 +50,7 @@ public class BlockHironoiaDoor extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockDoor {
 		public BlockCustom() {
 			super(Material.WOOD);
-			//setTranslationKey("alpia_door");
+			setTranslationKey("pf_alpia_door");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(3F);

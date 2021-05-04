@@ -78,7 +78,7 @@ public class BlockMedullosalesLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("medullosales_log");
+			setTranslationKey("pf_medullosales_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

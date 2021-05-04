@@ -79,7 +79,7 @@ public class BlockBaragwanathia extends ElementsLepidodendronMod.ModElement {
 			else {
 				setTickRandomly(false);
 			}
-			setTranslationKey("baragwanathia");
+			setTranslationKey("pf_baragwanathia");
 			setRegistryName("baragwanathia");
 		}
 
@@ -182,6 +182,7 @@ public class BlockBaragwanathia extends ElementsLepidodendronMod.ModElement {
 					if (spread > 100) {
 						spread = 100;
 					}
+					if (Math.random() > 0.5) {spread = 1;} //lower the chance
 					if (Math.random() > (1-(spread/100)) && (targetBlock != pos) && (world.isAirBlock(targetBlock)) && (canSurviveAt(world, targetBlock))) {
 						world.setBlockState(targetBlock, BlockBaragwanathia.block.getDefaultState(), 3);
 					}

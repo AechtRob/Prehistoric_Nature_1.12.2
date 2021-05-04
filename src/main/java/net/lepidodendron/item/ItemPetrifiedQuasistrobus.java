@@ -37,7 +37,7 @@ public class ItemPetrifiedQuasistrobus extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_quasistrobus");
+			setTranslationKey("pf_petrified_quasistrobus");
 			setRegistryName("petrified_quasistrobus");
 			setCreativeTab(TabLepidodendron.tab);
 		}

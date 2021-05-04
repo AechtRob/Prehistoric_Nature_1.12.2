@@ -66,7 +66,7 @@ public class BlockArchaeopterisLeavesPlaceable extends ElementsLepidodendronMod.
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			//super(Material.PLANTS);
-			setTranslationKey("archaeopteris_leaves");
+			setTranslationKey("pf_archaeopteris_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

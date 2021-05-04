@@ -36,7 +36,7 @@ public class ItemSphenophyllales1Spores extends ElementsLepidodendronMod.ModElem
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("sphenophyllales_1_spores");
+			setTranslationKey("pf_sphenophyllales_1_spores");
 			setRegistryName("sphenophyllales_1_spores");
 			setCreativeTab(null);
 		}

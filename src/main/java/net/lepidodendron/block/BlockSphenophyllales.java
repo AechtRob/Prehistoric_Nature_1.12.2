@@ -71,7 +71,7 @@ public class BlockSphenophyllales extends ElementsLepidodendronMod.ModElement {
 		public BlockCustom() {
 			//super(Material.VINE);
 			setSoundType(SoundType.PLANT);
-			setTranslationKey("sphenophyllales");
+			setTranslationKey("pf_sphenophyllales");
 			setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
         	setTickRandomly(true);
 			setCreativeTab(TabLepidodendron.tab);

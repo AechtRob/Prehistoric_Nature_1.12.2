@@ -46,7 +46,7 @@ public class BlockDominicanAmberBlock extends ElementsLepidodendronMod.ModElemen
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.ROCK);
-			setTranslationKey("dominican_amber_block");
+			setTranslationKey("pf_dominican_amber_block");
 			setSoundType(SoundType.STONE);
 			setHarvestLevel("pickaxe", 1);
 			setHardness(8F);

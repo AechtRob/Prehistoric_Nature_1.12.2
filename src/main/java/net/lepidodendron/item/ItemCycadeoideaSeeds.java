@@ -37,7 +37,7 @@ public class ItemCycadeoideaSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("cycadeoidea_seeds");
+			setTranslationKey("pf_cycadeoidea_seeds");
 			setRegistryName("cycadeoidea_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

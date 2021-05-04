@@ -37,7 +37,7 @@ public class ItemUtrechtiaSeed extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(1, 0.2f, false);
-			setTranslationKey("utrechtia_seed");
+			setTranslationKey("pf_utrechtia_seed");
 			setRegistryName("utrechtia_seed");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

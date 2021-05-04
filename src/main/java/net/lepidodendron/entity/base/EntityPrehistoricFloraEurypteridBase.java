@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class EntityPrehistoricFloraEurypteridBase extends EntityWaterMob implements IAnimatedEntity {
+public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehistoricFloraAgeableBase implements IAnimatedEntity {
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;

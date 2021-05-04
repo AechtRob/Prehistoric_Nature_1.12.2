@@ -81,7 +81,7 @@ public class BlockDiaphorodendronStrobilus extends ElementsLepidodendronMod.ModE
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("diaphorodendron_strobilus");
+			setTranslationKey("pf_diaphorodendron_strobilus");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

@@ -45,7 +45,7 @@ public class BlockArchaeopterisFence extends ElementsLepidodendronMod.ModElement
 	public static class BlockCustom extends BlockFence {
 		public BlockCustom() {
 			super(Material.WOOD, Material.WOOD.getMaterialMapColor());
-			setTranslationKey("archaeopteris_fence");
+			setTranslationKey("pf_archaeopteris_fence");
 			setSoundType(SoundType.WOOD);
 			setHardness(2F);
 			setResistance(3F);

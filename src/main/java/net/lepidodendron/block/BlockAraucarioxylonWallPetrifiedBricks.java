@@ -72,7 +72,7 @@ public class BlockAraucarioxylonWallPetrifiedBricks extends ElementsLepidodendro
 
 		public BlockCustom() {
 			super(Material.ROCK, Material.ROCK.getMaterialMapColor());
-			setTranslationKey("araucarioxylon_wall_petrified_bricks");
+			setTranslationKey("pf_araucarioxylon_wall_petrified_bricks");
 			setSoundType(SoundType.STONE);
 			setHardness(5F);
 			setResistance(3F);

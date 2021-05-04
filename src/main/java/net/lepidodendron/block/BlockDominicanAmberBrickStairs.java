@@ -47,7 +47,7 @@ public class BlockDominicanAmberBrickStairs extends ElementsLepidodendronMod.Mod
 	public static class BlockCustom extends BlockStairs {
 		public BlockCustom() {
 			super(new Block(Material.ROCK).getDefaultState());
-			setTranslationKey("dominican_amber_brick_stairs");
+			setTranslationKey("pf_dominican_amber_brick_stairs");
 			setSoundType(SoundType.STONE);
 			setHarvestLevel("pickaxe", 1);
 			setHardness(5F);

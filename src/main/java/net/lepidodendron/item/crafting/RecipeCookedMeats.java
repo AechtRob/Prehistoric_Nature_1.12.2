@@ -34,6 +34,20 @@ public class RecipeCookedMeats extends ElementsLepidodendronMod.ModElement {
 		GameRegistry.addSmelting(new ItemStack(ItemCheirurusRaw.block, (int) (1)), new ItemStack(ItemCheirurusCooked.block, (int) (1)), 0.35F);
 		GameRegistry.addSmelting(new ItemStack(ItemAsaphusRaw.block, (int) (1)), new ItemStack(ItemAsaphusCooked.block, (int) (1)), 0.35F);
 		GameRegistry.addSmelting(new ItemStack(ItemWalliseropsRaw.block, (int) (1)), new ItemStack(ItemWalliseropsCooked.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemQilinyuRaw.block, (int) (1)), new ItemStack(ItemQilinyuCooked.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemAphetocerasRaw.block, (int) (1)), new ItemStack(ItemPalaeoCalamari.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemEndocerasRaw.block, (int) (1)), new ItemStack(ItemPalaeoCalamari.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemCamerocerasRaw.block, (int) (1)), new ItemStack(ItemPalaeoCalamari.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemOrthocerasRaw.block, (int) (1)), new ItemStack(ItemPalaeoCalamari.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemPoraspisRaw.block, (int) (1)), new ItemStack(ItemPoraspisCooked.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemPalaeodictyopteraRaw.block, (int) (1)), new ItemStack(ItemPalaeodictyopteraCooked.block, (int) (1)), 0.35F);
 		//GameRegistry.addSmelting(new ItemStack(ItemIsotelusRaw.block, (int) (1)), new ItemStack(ItemIsotelusCooked.block, (int) (1)), 0.35F);
+		//GameRegistry.addSmelting(new ItemStack(ItemIsotelusRaw.block, (int) (1)), new ItemStack(ItemIsotelusCooked.block, (int) (1)), 0.35F);
+		//GameRegistry.addSmelting(new ItemStack(ItemIsotelusRaw.block, (int) (1)), new ItemStack(ItemIsotelusCooked.block, (int) (1)), 0.35F);
+		//GameRegistry.addSmelting(new ItemStack(ItemIsotelusRaw.block, (int) (1)), new ItemStack(ItemIsotelusCooked.block, (int) (1)), 0.35F);
+		//GameRegistry.addSmelting(new ItemStack(ItemIsotelusRaw.block, (int) (1)), new ItemStack(ItemIsotelusCooked.block, (int) (1)), 0.35F);
+		//GameRegistry.addSmelting(new ItemStack(ItemIsotelusRaw.block, (int) (1)), new ItemStack(ItemIsotelusCooked.block, (int) (1)), 0.35F);
+		//GameRegistry.addSmelting(new ItemStack(ItemIsotelusRaw.block, (int) (1)), new ItemStack(ItemIsotelusCooked.block, (int) (1)), 0.35F);
+
 	}
 }

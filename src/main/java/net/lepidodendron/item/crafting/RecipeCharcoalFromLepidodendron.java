@@ -2,6 +2,7 @@
 package net.lepidodendron.item.crafting;
 
 import net.lepidodendron.block.*;
+import net.minecraft.init.Blocks;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
@@ -27,13 +28,23 @@ public class RecipeCharcoalFromLepidodendron extends ElementsLepidodendronMod.Mo
 
 		GameRegistry.addSmelting(new ItemStack(BlockArtocarpusFruitBlock.block, (int) (1)), new ItemStack(ItemCookedBreadfruit.block, (int) (1)), 0.5F);
 		GameRegistry.addSmelting(new ItemStack(ItemPrototaxitesChunk.block, (int) (1)), new ItemStack(ItemCookedPrototaxites.block, (int) (1)), 0.5F);
-		//GameRegistry.addSmelting(new ItemStack(BlockCarboniferousMud.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 0), 0.1F);
+
+		GameRegistry.addSmelting(new ItemStack(BlockOrangeSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockRedSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockWhiteSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockDarkOrangeSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockBrownSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockPinkSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockDarkPinkSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockYellowSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockBlueSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
 
 		GameRegistry.addSmelting(new ItemStack(BlockWoodenLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockPodozamitesLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockWalchiaLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockCordaitesLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockGlossopterisLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockGangamopterisLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockMagnoliaLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockLiriodendronLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockCalamitesLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
@@ -57,8 +68,10 @@ public class RecipeCharcoalFromLepidodendron extends ElementsLepidodendronMod.Mo
 
 		GameRegistry.addSmelting(new ItemStack(BlockDioonLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockDicksoniaLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockZygopteridaceaeLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockCycasLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockPsaroniusLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockTieteaLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockEncblueLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockSpinyCycadLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockValmeyerodendronLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
@@ -72,9 +85,11 @@ public class RecipeCharcoalFromLepidodendron extends ElementsLepidodendronMod.Mo
 		GameRegistry.addSmelting(new ItemStack(BlockLeptocycasLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockSigillariaStem.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockGigantopteridLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockEmplectopterisLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockArchaeopterisBranch.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockCalamitesBranch.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockPsaroniusBranch.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockTieteaBranch.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		;
 		GameRegistry.addSmelting(new ItemStack(BlockNilssoniocladusStem.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockNilssoniocladusStemNE.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);

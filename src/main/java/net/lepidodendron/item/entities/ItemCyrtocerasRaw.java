@@ -33,7 +33,7 @@ public class ItemCyrtocerasRaw extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(2, 0.1f, false);
-			setTranslationKey("cyrtoceras_raw");
+			setTranslationKey("pf_cyrtoceras_raw");
 			setRegistryName("cyrtoceras_raw");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

@@ -70,7 +70,7 @@ public class BlockCaytoniales2 extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("caytoniales_2");
+			setTranslationKey("pf_caytoniales_2");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

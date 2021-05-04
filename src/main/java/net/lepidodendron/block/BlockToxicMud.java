@@ -12,6 +12,8 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -47,7 +49,7 @@ public class BlockToxicMud extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.CLAY);
-			setTranslationKey("toxic_mud");
+			setTranslationKey("pf_toxic_mud");
 			setSoundType(SoundType.SLIME);
 			setHarvestLevel("shovel", 1);
 			setHardness(0.5F);
@@ -58,20 +60,22 @@ public class BlockToxicMud extends ElementsLepidodendronMod.ModElement {
 			setDefaultSlipperiness(0.98f);
 		}
 
-		@Override
+		//@Override
 		public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
 		{
+			//System.err.println(((EntityLivingBase) entityIn).getItemStackFromSlot(EntityEquipmentSlot.FEET));
+
 			if (entityIn instanceof EntityPlayer)
 			{
-				if ((((EntityLivingBase) entityIn).getItemStackFromSlot(EntityEquipmentSlot.FEET) == null)
+				if ((((EntityLivingBase) entityIn).getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() == Items.AIR)
 					&& (!((EntityPlayer) entityIn).capabilities.isCreativeMode)) {
-					entityIn.attackEntityFrom(DamageSource.CACTUS, (float) 2);
+					entityIn.attackEntityFrom(DamageSource.HOT_FLOOR, (float) 0.5F);
 				}
 			}
 			else if (entityIn instanceof EntityLivingBase)
 			{
-				if (((EntityLivingBase) entityIn).getItemStackFromSlot(EntityEquipmentSlot.FEET) == null)
-					entityIn.attackEntityFrom(DamageSource.CACTUS, (float) 2);
+				if (((EntityLivingBase) entityIn).getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() == Items.AIR)
+					entityIn.attackEntityFrom(DamageSource.HOT_FLOOR, (float) 0.5F);
 			}
 		}
 	}

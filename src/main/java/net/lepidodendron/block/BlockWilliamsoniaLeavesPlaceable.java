@@ -70,7 +70,7 @@ public class BlockWilliamsoniaLeavesPlaceable extends ElementsLepidodendronMod.M
 		
 		public BlockCustom() {
 			//super();
-			setTranslationKey("williamsonia_leaves");
+			setTranslationKey("pf_williamsonia_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

@@ -73,7 +73,7 @@ public class BlockWattiezaShootSide02 extends ElementsLepidodendronMod.ModElemen
 
 		public BlockCustom() {
 			super(Material.LEAVES);
-			setTranslationKey("wattieza_shoot_side_02");
+			setTranslationKey("pf_wattieza_shoot_side_02");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

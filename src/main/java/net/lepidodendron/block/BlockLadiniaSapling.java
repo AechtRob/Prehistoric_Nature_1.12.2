@@ -70,7 +70,7 @@ public class BlockLadiniaSapling extends ElementsLepidodendronMod.ModElement {
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("ladinia_sapling");
+			setTranslationKey("pf_ladinia_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

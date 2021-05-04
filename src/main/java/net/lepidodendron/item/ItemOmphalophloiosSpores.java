@@ -36,7 +36,7 @@ public class ItemOmphalophloiosSpores extends ElementsLepidodendronMod.ModElemen
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("omphalophloios_spores");
+			setTranslationKey("pf_omphalophloios_spores");
 			setRegistryName("omphalophloios_spores");
 			setCreativeTab(null);
 		}

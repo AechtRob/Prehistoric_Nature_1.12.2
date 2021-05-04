@@ -37,7 +37,7 @@ public class ItemBrachyphyllumSeed extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(1, 0.2f, false);
-			setTranslationKey("brachyphyllum_seed");
+			setTranslationKey("pf_brachyphyllum_seed");
 			setRegistryName("brachyphyllum_seed");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

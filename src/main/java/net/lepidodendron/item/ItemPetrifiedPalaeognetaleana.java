@@ -35,7 +35,7 @@ public class ItemPetrifiedPalaeognetaleana extends ElementsLepidodendronMod.ModE
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_palaeognetaleana");
+			setTranslationKey("pf_petrified_palaeognetaleana");
 			setRegistryName("petrified_palaeognetaleana");
 			setCreativeTab(TabLepidodendron.tab);
 		}

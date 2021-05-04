@@ -34,7 +34,7 @@ public class ItemSchizoneuraSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("schizoneura_spores");
+			setTranslationKey("pf_schizoneura_spores");
 			setRegistryName("schizoneura_spores");
 			setCreativeTab(null);
 		}

@@ -89,7 +89,7 @@ public class BlockAlethopterisStrobilus extends ElementsLepidodendronMod.ModElem
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("alethopteris_strobilus");
+			setTranslationKey("pf_alethopteris_strobilus");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

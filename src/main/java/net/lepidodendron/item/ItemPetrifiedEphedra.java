@@ -37,7 +37,7 @@ public class ItemPetrifiedEphedra extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_ephedra");
+			setTranslationKey("pf_petrified_ephedra");
 			setRegistryName("petrified_ephedra");
 			setCreativeTab(TabLepidodendron.tab);
 		}

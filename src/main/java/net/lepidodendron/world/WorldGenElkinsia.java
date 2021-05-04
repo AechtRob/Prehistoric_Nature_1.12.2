@@ -19,7 +19,7 @@ public class WorldGenElkinsia extends WorldGenerator
         {
             BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
-            if (worldIn.isAirBlock(blockpos) && (!worldIn.provider.isNether() || blockpos.getY() < 254) && BlockElkinsia.block.canPlaceBlockAt(worldIn, blockpos))
+            if (blockpos.getY() >= worldIn.getSeaLevel()-4 && worldIn.isAirBlock(blockpos) && (!worldIn.provider.isNether() || blockpos.getY() < 254) && BlockElkinsia.block.canPlaceBlockAt(worldIn, blockpos))
             {
                 worldIn.setBlockState(blockpos, BlockElkinsia.block.getDefaultState(), 2);
                 flag = true;

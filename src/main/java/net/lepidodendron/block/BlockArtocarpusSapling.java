@@ -70,7 +70,7 @@ public class BlockArtocarpusSapling extends ElementsLepidodendronMod.ModElement 
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("artocarpus_sapling");
+			setTranslationKey("pf_artocarpus_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

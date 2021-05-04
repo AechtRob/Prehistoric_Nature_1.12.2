@@ -72,7 +72,7 @@ public class BlockGigantopteridShootPlaceable extends ElementsLepidodendronMod.M
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("gigantopterid_shoot");
+			setTranslationKey("pf_gigantopterid_shoot");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

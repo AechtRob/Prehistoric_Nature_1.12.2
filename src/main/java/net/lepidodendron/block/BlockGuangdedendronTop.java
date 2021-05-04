@@ -57,7 +57,7 @@ public class BlockGuangdedendronTop extends ElementsLepidodendronMod.ModElement 
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("guangdedendron_shoot");
+			setTranslationKey("pf_guangdedendron_shoot");
 			setRegistryName("guangdedendron_shoot");
 		}
 

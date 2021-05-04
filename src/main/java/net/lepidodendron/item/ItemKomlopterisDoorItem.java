@@ -45,7 +45,7 @@ public class ItemKomlopterisDoorItem extends ElementsLepidodendronMod.ModElement
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("komlopteris_door_item");
+			setTranslationKey("pf_komlopteris_door_item");
 			setRegistryName("komlopteris_door_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

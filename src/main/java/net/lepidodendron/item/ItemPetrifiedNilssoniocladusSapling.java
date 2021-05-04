@@ -38,7 +38,7 @@ public class ItemPetrifiedNilssoniocladusSapling extends ElementsLepidodendronMo
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_nilssoniocladus_sapling");
+			setTranslationKey("pf_petrified_nilssoniocladus_sapling");
 			setRegistryName("petrified_nilssoniocladus_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

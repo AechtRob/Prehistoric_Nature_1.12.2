@@ -1,6 +1,8 @@
 package net.lepidodendron.world;
 
 import java.util.Random;
+
+import net.lepidodendron.LepidodendronConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockOldLog;
@@ -82,7 +84,7 @@ public class WorldGenWalchiaTree extends WorldGenAbstractTree
                 IBlockState state = worldIn.getBlockState(down);
                 boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, net.minecraft.util.EnumFacing.UP, (net.minecraft.block.BlockSapling)Blocks.SAPLING);
 
-                if (isSoil && position.getY() < worldIn.getHeight() - i - 1)
+                if (position.getY() >= worldIn.getSeaLevel()-4 && isSoil && position.getY() < worldIn.getHeight() - i - 1)
                 {
                     java.util.HashMap<String, Object> $_dependencies = new java.util.HashMap<>();
 					$_dependencies.put("x", position.getX());
@@ -90,11 +92,21 @@ public class WorldGenWalchiaTree extends WorldGenAbstractTree
 					$_dependencies.put("z", position.getZ());
 					$_dependencies.put("world", worldIn);
 					$_dependencies.put("SaplingSpawn", false);
+                    if ((worldIn.provider.getDimension() == LepidodendronConfig.dimPermian)
+                    ){
+                        $_dependencies.put("SaplingSpawn", true); // disables Ankyropteris
+                    }
 					if (position.getY() > (worldIn.getSeaLevel()+17)) {
 						ProcedureWorldGenWalchia.executeProcedure($_dependencies);
 					}
 					else {
-						ProcedureWorldGenAlethopteris.executeProcedure($_dependencies);
+                        if ((worldIn.provider.getDimension() == LepidodendronConfig.dimPermian)
+                        ){
+                            ProcedureWorldGenWalchia.executeProcedure($_dependencies);
+                        }
+					    else {
+                            ProcedureWorldGenAlethopteris.executeProcedure($_dependencies);
+                        }
 					}
                     return true;
                 }

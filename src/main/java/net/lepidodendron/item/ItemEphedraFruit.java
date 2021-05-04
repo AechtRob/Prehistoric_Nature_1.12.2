@@ -37,7 +37,7 @@ public class ItemEphedraFruit extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("ephedra_fruit");
+			setTranslationKey("pf_ephedra_fruit");
 			setRegistryName("ephedra_fruit");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -37,7 +37,7 @@ public class ItemHymenaeaSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("hymenaea_seeds");
+			setTranslationKey("pf_hymenaea_seeds");
 			setRegistryName("hymenaea_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

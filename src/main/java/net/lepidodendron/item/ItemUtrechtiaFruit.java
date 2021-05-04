@@ -37,7 +37,7 @@ public class ItemUtrechtiaFruit extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("utrechtia_fruit");
+			setTranslationKey("pf_utrechtia_fruit");
 			setRegistryName("utrechtia_fruit");
 			setCreativeTab(TabLepidodendron.tab);
 		}

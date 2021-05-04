@@ -67,7 +67,7 @@ public class BlockNeuropteridium extends ElementsLepidodendronMod.ModElement {
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("neuropteridium");
+			setTranslationKey("pf_neuropteridium");
 			setRegistryName("neuropteridium");
 		}
 

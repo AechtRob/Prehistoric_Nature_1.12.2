@@ -70,7 +70,7 @@ public class BlockZamitesLeaves extends ElementsLepidodendronMod.ModElement {
 		
 		public BlockCustom() {
 			super();
-			setTranslationKey("zamites_leaves_worldgen");
+			setTranslationKey("pf_zamites_leaves_worldgen");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

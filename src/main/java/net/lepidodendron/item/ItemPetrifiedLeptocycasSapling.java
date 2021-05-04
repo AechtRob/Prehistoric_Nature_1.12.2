@@ -37,7 +37,7 @@ public class ItemPetrifiedLeptocycasSapling extends ElementsLepidodendronMod.Mod
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_leptocycas_sapling");
+			setTranslationKey("pf_petrified_leptocycas_sapling");
 			setRegistryName("petrified_leptocycas_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -57,7 +57,7 @@ public class BlockGiantHorsetailFlower extends ElementsLepidodendronMod.ModEleme
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("giant_horsetail_flower");
+			setTranslationKey("pf_giant_horsetail_flower");
 			setRegistryName("giant_horsetail_flower");
 		}
 

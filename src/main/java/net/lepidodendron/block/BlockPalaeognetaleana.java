@@ -72,7 +72,7 @@ public class BlockPalaeognetaleana extends ElementsLepidodendronMod.ModElement {
 		public BlockCustom() {
 			//super(Material.VINE);
 			setSoundType(SoundType.PLANT);
-			setTranslationKey("palaeognetaleana");
+			setTranslationKey("pf_palaeognetaleana");
 			setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
         	setTickRandomly(true);
 			setCreativeTab(TabLepidodendron.tab);

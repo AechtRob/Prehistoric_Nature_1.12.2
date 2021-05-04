@@ -35,7 +35,7 @@ public class ItemPalaeognetaleanaFruit extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("palaeognetaleana_fruit");
+			setTranslationKey("pf_palaeognetaleana_fruit");
 			setRegistryName("palaeognetaleana_fruit");
 			setCreativeTab(TabLepidodendron.tab);
 		}

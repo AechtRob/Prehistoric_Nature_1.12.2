@@ -37,7 +37,7 @@ public class ItemAlpiaFruit extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("alpia_fruit");
+			setTranslationKey("pf_alpia_fruit");
 			setRegistryName("alpia_fruit");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -70,7 +70,7 @@ public class BlockAraucarioxylonSapling extends ElementsLepidodendronMod.ModElem
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("araucarioxylon_sapling");
+			setTranslationKey("pf_araucarioxylon_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

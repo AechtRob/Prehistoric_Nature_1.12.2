@@ -37,7 +37,7 @@ public class ItemPetrifiedRhacophyton extends ElementsLepidodendronMod.ModElemen
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_rhacophyton");
+			setTranslationKey("pf_petrified_rhacophyton");
 			setRegistryName("petrified_rhacophyton");
 			setCreativeTab(TabLepidodendron.tab);
 		}

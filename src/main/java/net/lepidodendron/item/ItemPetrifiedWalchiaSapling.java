@@ -37,7 +37,7 @@ public class ItemPetrifiedWalchiaSapling extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_walchia_sapling");
+			setTranslationKey("pf_petrified_walchia_sapling");
 			setRegistryName("petrified_walchia_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

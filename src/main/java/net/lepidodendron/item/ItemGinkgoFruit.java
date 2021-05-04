@@ -37,7 +37,7 @@ public class ItemGinkgoFruit extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("ginkgo_fruit");
+			setTranslationKey("pf_ginkgo_fruit");
 			setRegistryName("ginkgo_fruit");
 			setCreativeTab(TabLepidodendron.tab);
 		}

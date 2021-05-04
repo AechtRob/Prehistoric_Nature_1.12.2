@@ -89,7 +89,7 @@ public class BlockCalamitesBranch extends ElementsLepidodendronMod.ModElement {
 		
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("calamites_branch");
+			setTranslationKey("pf_calamites_branch");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

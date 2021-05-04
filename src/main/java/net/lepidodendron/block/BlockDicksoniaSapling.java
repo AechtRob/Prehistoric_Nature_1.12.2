@@ -70,7 +70,7 @@ public class BlockDicksoniaSapling extends ElementsLepidodendronMod.ModElement {
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("dicksonia_sapling");
+			setTranslationKey("pf_dicksonia_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

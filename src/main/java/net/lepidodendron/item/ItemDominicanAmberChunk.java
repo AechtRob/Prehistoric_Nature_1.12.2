@@ -40,7 +40,7 @@ public class ItemDominicanAmberChunk extends ElementsLepidodendronMod.ModElement
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("dominican_amber_chunk");
+			setTranslationKey("pf_dominican_amber_chunk");
 			setRegistryName("dominican_amber_chunk");
 			setCreativeTab(TabLepidodendron.tab);
 		}

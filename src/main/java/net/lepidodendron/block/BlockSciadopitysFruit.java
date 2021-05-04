@@ -61,7 +61,7 @@ public class BlockSciadopitysFruit extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockFalling {
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("sciadopitys_fruit");
+			setTranslationKey("pf_sciadopitys_fruit");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(0F);

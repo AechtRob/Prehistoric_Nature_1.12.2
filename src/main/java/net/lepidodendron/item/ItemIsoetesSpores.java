@@ -36,7 +36,7 @@ public class ItemIsoetesSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("isoetes_spores");
+			setTranslationKey("pf_isoetes_spores");
 			setRegistryName("isoetes_spores");
 			setCreativeTab(null);
 		}

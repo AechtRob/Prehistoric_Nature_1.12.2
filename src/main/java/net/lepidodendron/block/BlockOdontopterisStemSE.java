@@ -63,7 +63,7 @@ public class BlockOdontopterisStemSE extends ElementsLepidodendronMod.ModElement
 
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("odontopteris_stem_se");
+			setTranslationKey("pf_odontopteris_stem_se");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

@@ -46,7 +46,7 @@ public class BlockCalamitesPlanks extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("calamites_planks");
+			setTranslationKey("pf_calamites_planks");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.5F);
 			setResistance(2.5F);

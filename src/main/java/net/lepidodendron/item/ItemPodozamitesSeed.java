@@ -37,7 +37,7 @@ public class ItemPodozamitesSeed extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(1, 0.2f, false);
-			setTranslationKey("podozamites_seed");
+			setTranslationKey("pf_podozamites_seed");
 			setRegistryName("podozamites_seed");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

@@ -37,7 +37,7 @@ public class ItemPterophyllumSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("pterophyllum_seeds");
+			setTranslationKey("pf_pterophyllum_seeds");
 			setRegistryName("pterophyllum_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

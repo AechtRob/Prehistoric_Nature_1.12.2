@@ -67,7 +67,7 @@ public class BlockStauropteris extends ElementsLepidodendronMod.ModElement {
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("stauropteris");
+			setTranslationKey("pf_stauropteris");
 			setRegistryName("stauropteris");
 		}
 

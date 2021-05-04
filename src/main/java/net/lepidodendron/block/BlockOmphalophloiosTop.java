@@ -60,7 +60,7 @@ public class BlockOmphalophloiosTop extends ElementsLepidodendronMod.ModElement 
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("omphalophloios_top");
+			setTranslationKey("pf_omphalophloios_top");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

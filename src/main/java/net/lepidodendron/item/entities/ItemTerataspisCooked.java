@@ -33,7 +33,7 @@ public class ItemTerataspisCooked extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(5, 0.7f, false);
-			setTranslationKey("terataspis_cooked");
+			setTranslationKey("pf_terataspis_cooked");
 			setRegistryName("terataspis_cooked");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

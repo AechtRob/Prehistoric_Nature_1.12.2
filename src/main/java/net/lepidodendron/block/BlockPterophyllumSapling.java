@@ -70,7 +70,7 @@ public class BlockPterophyllumSapling extends ElementsLepidodendronMod.ModElemen
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("pterophyllum_sapling");
+			setTranslationKey("pf_pterophyllum_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

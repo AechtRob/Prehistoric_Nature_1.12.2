@@ -37,7 +37,7 @@ public class ItemNelumboSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("nelumbo_seeds");
+			setTranslationKey("pf_nelumbo_seeds");
 			setRegistryName("nelumbo_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

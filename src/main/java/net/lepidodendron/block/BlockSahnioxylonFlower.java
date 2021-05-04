@@ -70,7 +70,7 @@ public class BlockSahnioxylonFlower extends ElementsLepidodendronMod.ModElement 
 		
 		public BlockCustom() {
 			super();
-			setTranslationKey("sahnioxylon_leaves_worldgen");
+			setTranslationKey("pf_sahnioxylon_leaves_worldgen");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

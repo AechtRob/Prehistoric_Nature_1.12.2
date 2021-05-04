@@ -51,7 +51,7 @@ public class BlockPrehistoricGroundCoverPlantsPangaean extends ElementsLepidoden
 	public static class BlockCustom extends BlockBush implements net.minecraftforge.common.IShearable {
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("prehistoric_ground_cover_plants_pangaean");
+			setTranslationKey("pf_prehistoric_ground_cover_plants_pangaean");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

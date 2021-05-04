@@ -37,7 +37,7 @@ public class ItemPetrifiedPrimaevalGrass extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_primaeval_grass");
+			setTranslationKey("pf_petrified_primaeval_grass");
 			setRegistryName("petrified_primaeval_grass");
 			setCreativeTab(TabLepidodendron.tab);
 		}

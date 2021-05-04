@@ -61,7 +61,7 @@ public class BlockAraucarioxylonFruitBlock extends ElementsLepidodendronMod.ModE
 	public static class BlockCustom extends BlockFalling {
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("araucarioxylon_fruit_block");
+			setTranslationKey("pf_araucarioxylon_fruit_block");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(0F);

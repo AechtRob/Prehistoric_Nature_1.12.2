@@ -37,7 +37,7 @@ public class ItemPetrifiedNeocalamites extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_neocalamites");
+			setTranslationKey("pf_petrified_neocalamites");
 			setRegistryName("petrified_neocalamites");
 			setCreativeTab(TabLepidodendron.tab);
 		}

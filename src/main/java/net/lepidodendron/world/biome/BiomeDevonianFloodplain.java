@@ -132,6 +132,7 @@ public class BiomeDevonianFloodplain extends ElementsLepidodendronMod.ModElement
 					strPos3 = 0;
 					strPos4 = 0;
 					strPos5 = 0;
+					nbtStr = "";
 
 					strPos1 = checkEntity.indexOf(":");
 					if (!(strPos1 > 0)) {

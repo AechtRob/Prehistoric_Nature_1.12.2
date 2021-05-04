@@ -70,7 +70,7 @@ public class BlockAnkyropterisSapling extends ElementsLepidodendronMod.ModElemen
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("ankyropteris_sapling");
+			setTranslationKey("pf_ankyropteris_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

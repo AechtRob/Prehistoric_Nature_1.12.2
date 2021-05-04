@@ -70,7 +70,7 @@ public class BlockUtrechtiaSapling extends ElementsLepidodendronMod.ModElement {
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("utrechtia_sapling");
+			setTranslationKey("pf_utrechtia_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

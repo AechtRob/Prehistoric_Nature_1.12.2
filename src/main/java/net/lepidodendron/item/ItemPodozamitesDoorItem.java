@@ -45,7 +45,7 @@ public class ItemPodozamitesDoorItem extends ElementsLepidodendronMod.ModElement
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("podozamites_door_item");
+			setTranslationKey("pf_podozamites_door_item");
 			setRegistryName("podozamites_door_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

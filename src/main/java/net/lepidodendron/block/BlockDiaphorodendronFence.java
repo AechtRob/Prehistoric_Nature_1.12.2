@@ -45,7 +45,7 @@ public class BlockDiaphorodendronFence extends ElementsLepidodendronMod.ModEleme
 	public static class BlockCustom extends BlockFence {
 		public BlockCustom() {
 			super(Material.WOOD, Material.WOOD.getMaterialMapColor());
-			setTranslationKey("diaphorodendron_fence");
+			setTranslationKey("pf_diaphorodendron_fence");
 			setSoundType(SoundType.WOOD);
 			setHardness(2F);
 			setResistance(3F);

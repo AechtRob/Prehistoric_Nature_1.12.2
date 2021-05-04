@@ -37,7 +37,7 @@ public class ItemElkinsiaSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("elkinsia_seeds");
+			setTranslationKey("pf_elkinsia_seeds");
 			setRegistryName("elkinsia_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

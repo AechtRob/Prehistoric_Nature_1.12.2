@@ -53,7 +53,7 @@ public class BlockPrehistoricGroundCoverPlantsSandy extends ElementsLepidodendro
 	public static class BlockCustom extends BlockBush implements net.minecraftforge.common.IShearable {
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("prehistoric_ground_cover_plants_sandy");
+			setTranslationKey("pf_prehistoric_ground_cover_plants_sandy");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

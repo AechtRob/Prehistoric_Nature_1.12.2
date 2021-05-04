@@ -4,17 +4,17 @@
       	{"model": "lepidodendron:green_codium_algae"}
     ],
     "facing=north": [
-      	{"model": "lepidodendron:green_codium_algae", "x": 90}
+      	{"model": "lepidodendron:green_codium_algae_side", "x": 90}
     ],
     "facing=east": [
-      	{"model": "lepidodendron:green_codium_algae", "x": 90, "y": 90}
+      	{"model": "lepidodendron:green_codium_algae_side", "x": 90, "y": 90}
     ],
     "facing=south": [
-      	{"model": "lepidodendron:green_codium_algae", "x": 90, "y": 180}
+      	{"model": "lepidodendron:green_codium_algae_side", "x": 90, "y": 180}
     ],
     
     "facing=west": [
-      	{"model": "lepidodendron:green_codium_algae", "x": 90, "y": 270}
+      	{"model": "lepidodendron:green_codium_algae_side", "x": 90, "y": 270}
     ],
 
     "facing=up": [

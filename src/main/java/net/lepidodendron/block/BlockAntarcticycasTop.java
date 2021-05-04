@@ -58,7 +58,7 @@ public class BlockAntarcticycasTop extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("antarcticycas_top");
+			setTranslationKey("pf_antarcticycas_top");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

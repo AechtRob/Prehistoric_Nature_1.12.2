@@ -14,7 +14,7 @@
     ],
     "dependencies": ["llibrary@[1.7.19,)"],
     "dependants": [],
-    "requiredMods": [llibrary@[1.7.19,)]],
+    "requiredMods": "llibrary@[1.7.19,)",
     "useDependencyInformation": "true"
   }
 ]

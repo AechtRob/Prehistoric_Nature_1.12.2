@@ -71,7 +71,7 @@ public class BlockUtrechtiaLeavesSmallPlaceable extends ElementsLepidodendronMod
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			//super(Material.PLANTS);
-			setTranslationKey("utrechtia_leaves_small");
+			setTranslationKey("pf_utrechtia_leaves_small");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

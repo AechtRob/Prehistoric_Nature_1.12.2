@@ -37,7 +37,7 @@ public class ItemWilliamsoniaSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("williamsonia_seeds");
+			setTranslationKey("pf_williamsonia_seeds");
 			setRegistryName("williamsonia_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

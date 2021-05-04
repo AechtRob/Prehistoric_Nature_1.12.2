@@ -70,7 +70,7 @@ public class BlockTempskyaLeaves extends ElementsLepidodendronMod.ModElement {
 
 		public BlockCustom() {
 			//super();
-			setTranslationKey("tempskya_leaves_worldgen");
+			setTranslationKey("pf_tempskya_leaves_worldgen");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

@@ -61,7 +61,7 @@ public class BlockWilliamsoniaShootPlaceable extends ElementsLepidodendronMod.Mo
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("williamsonia_shoot");
+			setTranslationKey("pf_williamsonia_shoot");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

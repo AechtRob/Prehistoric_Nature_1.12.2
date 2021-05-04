@@ -5,8 +5,6 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.event.ModelRegistryEvent;
 
 import net.minecraft.world.gen.feature.WorldGenReed;
 import net.minecraft.world.gen.IChunkGenerator;
@@ -16,14 +14,10 @@ import net.minecraft.world.World;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.Item;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.BlockReed;
@@ -41,17 +35,13 @@ import net.minecraft.util.math.AxisAlignedBB;
 
 import net.lepidodendron.creativetab.TabLepidodendron;
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.block.BlockNeocalamites2;
-import net.lepidodendron.block.BlockNeocalamites3;
-import net.lepidodendron.block.BlockNeocalamitesStem;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.LepidodendronTreeHandler;
+import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.item.ItemNeocalamitesItem;
 
 import java.util.Random;
 import java.util.List;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.ItemNameTag;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class BlockNeocalamites extends ElementsLepidodendronMod.ModElement {
@@ -85,6 +75,11 @@ public class BlockNeocalamites extends ElementsLepidodendronMod.ModElement {
 			dimensionCriteria = true;
 		if (!LepidodendronConfig.genNeocalamites && !LepidodendronConfig.genAllPlants)
 			dimensionCriteria = false;
+		if (
+			(dimID == LepidodendronConfig.dimPermian)
+			){
+			dimensionCriteria = true;
+		}
 		if (!dimensionCriteria)
 			return;
 
@@ -111,9 +106,13 @@ public class BlockNeocalamites extends ElementsLepidodendronMod.ModElement {
 		if (GenMultiplier < 0) {GenMultiplier = 0;}
 		GenChance = Math.min(15, (int) Math.round((double) GenChance * GenMultiplier));
 		//Is this a transformed biome?
-		if (LepidodendronTreeHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
+		if (LepidodendronDecorationHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
 			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
 				GenChance = 15;
+		}
+		if ((dimID == LepidodendronConfig.dimPermian)
+		){
+			GenChance = 15;
 		}
 
 		int maxheight = LepidodendronConfig.maxheightNeocalamites;
@@ -191,7 +190,7 @@ public class BlockNeocalamites extends ElementsLepidodendronMod.ModElement {
 			setHardness(0.2F);
 			setResistance(0.2F);
 			setLightLevel(0F);
-			setTranslationKey("neocalamites");
+			setTranslationKey("pf_neocalamites");
 			setRegistryName("neocalamites");
 		}
 

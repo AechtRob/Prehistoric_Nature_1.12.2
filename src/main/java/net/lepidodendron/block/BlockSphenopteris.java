@@ -72,7 +72,7 @@ public class BlockSphenopteris extends ElementsLepidodendronMod.ModElement {
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("sphenopteris");
+			setTranslationKey("pf_sphenopteris");
 			setRegistryName("sphenopteris");
 		}
 

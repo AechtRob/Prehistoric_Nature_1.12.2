@@ -59,8 +59,7 @@ public class BlockSpinyCycadLog extends ElementsLepidodendronMod.ModElement {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModels(ModelRegistryEvent event) {
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("lepidodendron:cycas_log", "inventory"));
-
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("lepidodendron:spiny_cycad_log", "inventory"));
 	}
 	public static class BlockCustom extends Block {
 
@@ -74,7 +73,7 @@ public class BlockSpinyCycadLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("spiny_cycad_log");
+			setTranslationKey("pf_spiny_cycad_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

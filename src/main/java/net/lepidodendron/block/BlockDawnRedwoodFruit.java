@@ -61,7 +61,7 @@ public class BlockDawnRedwoodFruit extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockFalling {
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("dawn_redwood_fruit");
+			setTranslationKey("pf_dawn_redwood_fruit");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(0F);

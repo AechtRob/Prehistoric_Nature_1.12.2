@@ -71,7 +71,7 @@ public class BlockLepidopteris extends ElementsLepidodendronMod.ModElement {
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("lepidopteris");
+			setTranslationKey("pf_lepidopteris");
 			setRegistryName("lepidopteris");
 		}
 

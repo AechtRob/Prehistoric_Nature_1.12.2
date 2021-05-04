@@ -1,6 +1,8 @@
 
 package net.lepidodendron.block;
 
+import net.lepidodendron.item.ItemBaieraFruit;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -81,7 +83,7 @@ public class BlockAncientMoss extends ElementsLepidodendronMod.ModElement {
     
 		public BlockCustom() {
 			super(Material.VINE);
-			setTranslationKey("ancient_moss");
+			setTranslationKey("pf_ancient_moss");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);
@@ -242,7 +244,7 @@ public class BlockAncientMoss extends ElementsLepidodendronMod.ModElement {
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
@@ -489,7 +491,7 @@ public class BlockAncientMoss extends ElementsLepidodendronMod.ModElement {
 		public Item getItemDropped(IBlockState state, java.util.Random rand, int fortune) {
 			return new ItemStack(Blocks.AIR, (int) (1)).getItem();
 		}
-		
+
 		@Override
 		protected boolean canSilkHarvest()
 	    {

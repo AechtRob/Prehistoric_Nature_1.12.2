@@ -37,7 +37,7 @@ public class ItemPetrifiedNathorstiana extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_nathorstiana");
+			setTranslationKey("pf_petrified_nathorstiana");
 			setRegistryName("petrified_nathorstiana");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -58,7 +58,7 @@ public class BlockDawnRedwoodSlab extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockSlab {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("dawn_redwood_slab");
+			setTranslationKey("pf_dawn_redwood_slab");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

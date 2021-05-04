@@ -72,7 +72,7 @@ public class BlockCycasLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("cycas_log");
+			setTranslationKey("pf_cycas_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

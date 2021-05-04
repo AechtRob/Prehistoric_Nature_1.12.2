@@ -58,7 +58,7 @@ public class ItemBaragwanathiaItem extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("baragwanathia_item");
+			setTranslationKey("pf_baragwanathia_item");
 			setRegistryName("baragwanathia_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

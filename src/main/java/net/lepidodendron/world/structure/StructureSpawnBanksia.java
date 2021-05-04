@@ -3,11 +3,9 @@ package net.lepidodendron.world.structure;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.LepidodendronTreeHandler;
+import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.procedure.ProcedureWorldGenBanksia1;
 import net.lepidodendron.procedure.ProcedureWorldGenBanksia2;
-import net.lepidodendron.procedure.ProcedureWorldGenProtea;
-import net.lepidodendron.procedure.ProcedureWorldGenProtea1;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -62,7 +60,7 @@ public class StructureSpawnBanksia extends ElementsLepidodendronMod.ModElement {
 		if (GenMultiplier < 0) {GenMultiplier = 0;}
 		GenChance = Math.min(300000, (int) Math.round((double) GenChance * GenMultiplier));
 		//Is this a transformed biome?
-		if (LepidodendronTreeHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
+		if (LepidodendronDecorationHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
 			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
 			GenChance = Math.min(GenChance * 10, 300000);
 		}

@@ -36,7 +36,7 @@ public class ItemSelaginellaSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("selaginella_spores");
+			setTranslationKey("pf_selaginella_spores");
 			setRegistryName("selaginella_spores");
 			setCreativeTab(null);
 		}

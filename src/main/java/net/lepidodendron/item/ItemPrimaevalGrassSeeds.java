@@ -37,7 +37,7 @@ public class ItemPrimaevalGrassSeeds extends ElementsLepidodendronMod.ModElement
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("primaeval_grass_seeds");
+			setTranslationKey("pf_primaeval_grass_seeds");
 			setRegistryName("primaeval_grass_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

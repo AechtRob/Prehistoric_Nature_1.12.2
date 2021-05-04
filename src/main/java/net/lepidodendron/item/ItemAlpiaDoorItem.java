@@ -45,7 +45,7 @@ public class ItemAlpiaDoorItem extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("alpia_door_item");
+			setTranslationKey("pf_alpia_door_item");
 			setRegistryName("alpia_door_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

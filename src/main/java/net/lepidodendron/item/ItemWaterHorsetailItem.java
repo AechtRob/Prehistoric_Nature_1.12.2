@@ -58,7 +58,7 @@ public class ItemWaterHorsetailItem extends ElementsLepidodendronMod.ModElement 
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("water_horsetail_item");
+			setTranslationKey("pf_water_horsetail_item");
 			setRegistryName("water_horsetail_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

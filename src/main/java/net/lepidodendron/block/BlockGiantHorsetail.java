@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.item.ItemStack;
@@ -33,9 +32,8 @@ import net.minecraft.init.Blocks;
 
 import net.lepidodendron.creativetab.TabLepidodendron;
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.block.BlockGiantHorsetailShoot;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.LepidodendronTreeHandler;
+import net.lepidodendron.LepidodendronDecorationHandler;
 
 import java.util.Random;
 import java.util.List;
@@ -70,7 +68,8 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 			dimensionCriteria = true;
 		if (!LepidodendronConfig.genHorsetail && !LepidodendronConfig.genAllPlants)
 			dimensionCriteria = false;
-		if (LepidodendronConfig.dimCarboniferous == dimID)
+		if ((LepidodendronConfig.dimCarboniferous == dimID)
+			|| (LepidodendronConfig.dimPermian == dimID))
 			dimensionCriteria = true;
 		if (!dimensionCriteria)
 			return;
@@ -93,7 +92,9 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genHorsetailOverrideBiomes))
 			biomeCriteria = true;
-		if (LepidodendronConfig.dimCarboniferous == dimID)
+		if ((LepidodendronConfig.dimCarboniferous == dimID)
+			|| (LepidodendronConfig.dimPermian == dimID)
+			)
 			biomeCriteria = true;
 		if (!biomeCriteria)
 			return;
@@ -103,13 +104,19 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 		if (GenMultiplier < 0) {GenMultiplier = 0;}
 		GenChance = Math.min(15, (int) Math.round((double) GenChance * GenMultiplier));
 		//Is this a transformed biome?
-		if (LepidodendronTreeHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
+		if (LepidodendronDecorationHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
 			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
 				GenChance = 15;
 		}
 		
 		if (LepidodendronConfig.dimCarboniferous == dimID) {
 			GenChance = 25;
+		}
+		if (
+			(LepidodendronConfig.dimPermian == dimID)
+		)
+		{
+			GenChance = 16;
 		}
 
 		int maxheight = LepidodendronConfig.maxheightHorsetail;
@@ -170,7 +177,7 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("giant_horsetail");
+			setTranslationKey("pf_giant_horsetail");
 			setRegistryName("giant_horsetail");
 		}
 

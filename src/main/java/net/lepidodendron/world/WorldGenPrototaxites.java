@@ -22,7 +22,7 @@ public class WorldGenPrototaxites extends WorldGenerator
         {
             BlockPos blockpos = position.add(rand.nextInt(2) - rand.nextInt(2), rand.nextInt(2) - rand.nextInt(2), rand.nextInt(2) - rand.nextInt(2));
 
-            if (worldIn.isAirBlock(blockpos) && (!worldIn.provider.isNether() || blockpos.getY() < 254) && BlockPrototaxites.block.canPlaceBlockAt(worldIn, blockpos))
+            if (blockpos.getY() >= worldIn.getSeaLevel()-4 && worldIn.isAirBlock(blockpos) && (!worldIn.provider.isNether() || blockpos.getY() < 254) && BlockPrototaxites.block.canPlaceBlockAt(worldIn, blockpos))
             {
                	worldIn.setBlockState(blockpos, BlockPrototaxites.block.getDefaultState(), 2);
 

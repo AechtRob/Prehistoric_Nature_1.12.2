@@ -36,7 +36,7 @@ public class ItemHorsetailSpores extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("horsetail_spores");
+			setTranslationKey("pf_horsetail_spores");
 			setRegistryName("horsetail_spores");
 			setCreativeTab(null);
 		}

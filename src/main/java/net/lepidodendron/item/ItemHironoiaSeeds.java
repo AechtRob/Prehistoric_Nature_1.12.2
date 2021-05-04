@@ -37,7 +37,7 @@ public class ItemHironoiaSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("hironoia_seeds");
+			setTranslationKey("pf_hironoia_seeds");
 			setRegistryName("hironoia_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

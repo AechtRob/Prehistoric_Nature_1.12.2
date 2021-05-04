@@ -66,7 +66,7 @@ public class BlockProtolepidodendropsisSapling extends ElementsLepidodendronMod.
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("protolepidodendropsis_sapling");
+			setTranslationKey("pf_protolepidodendropsis_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

@@ -48,7 +48,7 @@ public class BlockAlpiaFenceGate extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockFenceGate {
 		public BlockCustom() {
 			super(EnumType.OAK);
-			setTranslationKey("alpia_fence_gate");
+			setTranslationKey("pf_alpia_fence_gate");
 			setHarvestLevel("axe", 1);
 			setSoundType(SoundType.WOOD);
 			setHardness(2F);

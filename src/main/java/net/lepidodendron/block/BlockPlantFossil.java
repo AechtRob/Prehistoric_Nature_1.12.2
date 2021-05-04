@@ -43,7 +43,7 @@ public class BlockPlantFossil extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.ROCK);
-			setTranslationKey("plant_fossil");
+			setTranslationKey("pf_plant_fossil");
 			setSoundType(SoundType.STONE);
 			setHarvestLevel("pickaxe", 1);
 			setHardness(1.5F);

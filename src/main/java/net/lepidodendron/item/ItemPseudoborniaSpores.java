@@ -36,7 +36,7 @@ public class ItemPseudoborniaSpores extends ElementsLepidodendronMod.ModElement 
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("pseudobornia_spores");
+			setTranslationKey("pf_pseudobornia_spores");
 			setRegistryName("pseudobornia_spores");
 			setCreativeTab(null);
 		}

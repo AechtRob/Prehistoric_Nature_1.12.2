@@ -37,7 +37,7 @@ public class ItemPetrifiedArchaefructus extends ElementsLepidodendronMod.ModElem
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_archaefructus");
+			setTranslationKey("pf_petrified_archaefructus");
 			setRegistryName("petrified_archaefructus");
 			setCreativeTab(TabLepidodendron.tab);
 		}

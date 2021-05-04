@@ -37,7 +37,7 @@ public class ItemPrototaxitesChunk extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("prototaxites_chunk");
+			setTranslationKey("pf_prototaxites_chunk");
 			setRegistryName("prototaxites_chunk");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -37,7 +37,7 @@ public class ItemWielandiellaSeeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("wielandiella_seeds");
+			setTranslationKey("pf_wielandiella_seeds");
 			setRegistryName("wielandiella_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

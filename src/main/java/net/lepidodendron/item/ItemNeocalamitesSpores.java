@@ -36,7 +36,7 @@ public class ItemNeocalamitesSpores extends ElementsLepidodendronMod.ModElement 
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("neocalamites_spores");
+			setTranslationKey("pf_neocalamites_spores");
 			setRegistryName("neocalamites_spores");
 			setCreativeTab(null);
 		}

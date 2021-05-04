@@ -25,7 +25,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class EntityPrehistoricFloraAmphibianBase extends EntityCreature implements IAnimatedEntity {
+public abstract class EntityPrehistoricFloraAmphibianBase extends EntityPrehistoricFloraAgeableBase implements IAnimatedEntity {
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;
@@ -106,7 +106,7 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityCreature
     @Override
     protected void applyEntityAttributes() {
         super.applyEntityAttributes();
-        this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100.0D);
+        //this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(100.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
     }
 
@@ -163,10 +163,6 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityCreature
     @Override
     public boolean getCanSpawnHere() {
         return this.posY < (double) this.world.getSeaLevel() && isInWater();
-    }
-
-    public boolean isNotColliding() {
-        return this.world.checkNoEntityCollision(this.getEntityBoundingBox(), this);
     }
 
     @Override

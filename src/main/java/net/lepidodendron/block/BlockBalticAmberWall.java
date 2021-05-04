@@ -72,7 +72,7 @@ public class BlockBalticAmberWall extends ElementsLepidodendronMod.ModElement {
 
 		public BlockCustom() {
 			super(Material.ROCK, Material.ROCK.getMaterialMapColor());
-			setTranslationKey("baltic_amber_wall");
+			setTranslationKey("pf_baltic_amber_wall");
 			setSoundType(SoundType.STONE);
 			setHardness(5F);
 			setResistance(3F);

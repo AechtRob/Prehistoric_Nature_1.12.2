@@ -36,7 +36,7 @@ public class ItemTetraxylopterisSpores extends ElementsLepidodendronMod.ModEleme
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 8;
-			setTranslationKey("tetraxylopteris_spores");
+			setTranslationKey("pf_tetraxylopteris_spores");
 			setRegistryName("tetraxylopteris_spores");
 			setCreativeTab(null);
 		}

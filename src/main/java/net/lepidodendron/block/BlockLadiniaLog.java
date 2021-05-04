@@ -59,7 +59,7 @@ public class BlockLadiniaLog extends ElementsLepidodendronMod.ModElement {
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModels(ModelRegistryEvent event) {
-		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("lepidodendron:cycas_log", "inventory"));
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0, new ModelResourceLocation("lepidodendron:ladinia_log", "inventory"));
 
 	}
 	public static class BlockCustom extends Block {
@@ -74,7 +74,7 @@ public class BlockLadiniaLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("ladinia_log");
+			setTranslationKey("pf_ladinia_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

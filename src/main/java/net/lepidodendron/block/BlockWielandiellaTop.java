@@ -63,7 +63,7 @@ public class BlockWielandiellaTop extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("wielandiella_top");
+			setTranslationKey("pf_wielandiella_top");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

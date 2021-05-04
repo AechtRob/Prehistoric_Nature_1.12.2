@@ -1,6 +1,8 @@
 package net.lepidodendron.world;
 
 import java.util.Random;
+
+import net.lepidodendron.LepidodendronConfig;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOldLeaf;
 import net.minecraft.block.BlockOldLog;
@@ -110,7 +112,7 @@ public class WorldGenLepidodendronTree extends WorldGenAbstractTree
 					 
 				}
 				
-                if (isSoil && position.getY() < worldIn.getHeight() - i - 1)
+                if (position.getY() >= worldIn.getSeaLevel()-4 && isSoil && position.getY() < worldIn.getHeight() - i - 1)
                 {
                     java.util.HashMap<String, Object> $_dependencies = new java.util.HashMap<>();
 					$_dependencies.put("x", position.getX());
@@ -120,6 +122,11 @@ public class WorldGenLepidodendronTree extends WorldGenAbstractTree
 					$_dependencies.put("vines", true);
 					$_dependencies.put("vines2", true);
 					$_dependencies.put("SaplingSpawn", false);
+                    if ((worldIn.provider.getDimension() == LepidodendronConfig.dimPermian)
+                    ){
+                        $_dependencies.put("SaplingSpawn", true); // disables Ankyropteris etc.
+                        $_dependencies.put("vines", false);
+                    }
 					ProcedureWorldGenLepidodendron.executeProcedure($_dependencies);
                     return true;
                 }

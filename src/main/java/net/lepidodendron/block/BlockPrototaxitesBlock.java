@@ -50,7 +50,7 @@ public class BlockPrototaxitesBlock extends ElementsLepidodendronMod.ModElement 
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.SPONGE);
-			setTranslationKey("prototaxites_block");
+			setTranslationKey("pf_prototaxites_block");
 			setSoundType(SoundType.SLIME);
 			setHardness(1F);
 			setResistance(1F);

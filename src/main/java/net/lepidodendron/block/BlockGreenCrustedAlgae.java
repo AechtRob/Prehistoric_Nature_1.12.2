@@ -101,6 +101,9 @@ public class BlockGreenCrustedAlgae extends ElementsLepidodendronMod.ModElement 
 		}
 		if (matchBiome(biome, LepidodendronConfig.genGreenCrustedAlgaeOverrideBiomes))
 			biomeCriteria = true;
+		if (dimID == LepidodendronConfig.dimCambrian) {
+			biomeCriteria = true;
+		}
 		if (!biomeCriteria)
 			return;
 
@@ -110,6 +113,10 @@ public class BlockGreenCrustedAlgae extends ElementsLepidodendronMod.ModElement 
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
 		) {
 			multiplier = 2;
+		}
+		if (dimID == LepidodendronConfig.dimCambrian)
+		{
+			multiplier = 1;
 		}
 
 		for (int i = 0; i < (int) 10 * multiplier; i++) {
@@ -151,7 +158,7 @@ public class BlockGreenCrustedAlgae extends ElementsLepidodendronMod.ModElement 
     
 		public BlockCustom() {
 			super(Material.WATER);
-			setTranslationKey("green_crusted_algae");
+			setTranslationKey("pf_green_crusted_algae");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.0F);
 			setResistance(0.0F);
@@ -435,8 +442,8 @@ public class BlockGreenCrustedAlgae extends ElementsLepidodendronMod.ModElement 
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Freshwater or Marine Algae");
-	        tooltip.add("Periods: Tonian - Cryogenian - Ediacaran - Cambrian - Ordovician - Silurian - Devonian - Carboniferous - Permian - Triassic - Jurassic - Cretaceous - Paleogene - Neogene - Quaternary");
-	        tooltip.add("Propagation: water");}
+	        	tooltip.add("Periods: Tonian - Cryogenian - Ediacaran - Cambrian - Ordovician - Silurian - Devonian - Carboniferous - Permian - Triassic - Jurassic - Cretaceous - Paleogene - Neogene - Quaternary");
+	        	tooltip.add("Propagation: water");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

@@ -59,7 +59,7 @@ public class BlockColumnarisLeaves extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("columnaris_leaves");
+			setTranslationKey("pf_columnaris_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

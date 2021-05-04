@@ -70,7 +70,7 @@ public class BlockColumnarisSapling extends ElementsLepidodendronMod.ModElement 
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("columnaris_sapling");
+			setTranslationKey("pf_columnaris_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

@@ -67,7 +67,7 @@ public class BlockArchaeopterisLeaves4 extends ElementsLepidodendronMod.ModEleme
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			//super(Material.PLANTS);
-			setTranslationKey("archaeopteris_leaves_4");
+			setTranslationKey("pf_archaeopteris_leaves_4");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

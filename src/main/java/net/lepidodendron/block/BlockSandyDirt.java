@@ -48,7 +48,7 @@ public class BlockSandyDirt extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends Block implements ISustainsPlantType {
 		public BlockCustom() {
 			super(Material.GROUND);
-			setTranslationKey("sandy_dirt");
+			setTranslationKey("pf_sandy_dirt");
 			this.setTickRandomly(true);
 			this.setHardness(0.5F);
 			this.setHarvestLevel("shovel", 0);

@@ -57,7 +57,7 @@ public class BlockGiantHorsetailShoot extends ElementsLepidodendronMod.ModElemen
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("giant_horsetail_shoot");
+			setTranslationKey("pf_giant_horsetail_shoot");
 			setRegistryName("giant_horsetail_shoot");
 		}
 

@@ -1,5 +1,6 @@
 package net.lepidodendron;
 
+import net.lepidodendron.entity.render.RenderHandler;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
@@ -14,6 +15,7 @@ public class ClientProxyLepidodendronMod implements IProxyLepidodendronMod {
 	@Override
 	public void preInit(FMLPreInitializationEvent event) {
 		OBJLoader.INSTANCE.addDomain("lepidodendron");
+		RenderHandler.RegisterEntityRenders();
 	}
 
 	@Override

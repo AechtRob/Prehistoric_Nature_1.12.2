@@ -47,7 +47,7 @@ public class BlockAraucarioxylonStairs extends ElementsLepidodendronMod.ModEleme
 	public static class BlockCustom extends BlockStairs {
 		public BlockCustom() {
 			super(new Block(Material.WOOD).getDefaultState());
-			setTranslationKey("araucarioxylon_stairs");
+			setTranslationKey("pf_araucarioxylon_stairs");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

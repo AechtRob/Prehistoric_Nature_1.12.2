@@ -61,7 +61,7 @@ public class BlockBunyaFruitBlock extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends BlockFalling {
 		public BlockCustom() {
 			super(Material.PLANTS);
-			setTranslationKey("bunya_fruit_block");
+			setTranslationKey("pf_bunya_fruit_block");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(0F);

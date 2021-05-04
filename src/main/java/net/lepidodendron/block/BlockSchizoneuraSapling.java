@@ -65,7 +65,7 @@ public class BlockSchizoneuraSapling extends ElementsLepidodendronMod.ModElement
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("schizoneura_sapling");
+			setTranslationKey("pf_schizoneura_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 

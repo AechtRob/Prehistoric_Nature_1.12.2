@@ -37,7 +37,7 @@ public class ItemCookedBreadfruit extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(6, 0.5f, false);
-			setTranslationKey("cooked_breadfruit");
+			setTranslationKey("pf_cooked_breadfruit");
 			setRegistryName("cooked_breadfruit");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(16);

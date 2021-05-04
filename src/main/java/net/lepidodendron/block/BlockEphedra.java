@@ -67,7 +67,7 @@ public class BlockEphedra extends ElementsLepidodendronMod.ModElement {
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
-			setTranslationKey("ephedra");
+			setTranslationKey("pf_ephedra");
 			setRegistryName("ephedra");
 		}
 

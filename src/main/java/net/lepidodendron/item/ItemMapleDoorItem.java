@@ -44,7 +44,7 @@ public class ItemMapleDoorItem extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("maple_door_item");
+			setTranslationKey("pf_maple_door_item");
 			setRegistryName("maple_door_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

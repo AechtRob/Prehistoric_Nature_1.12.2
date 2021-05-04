@@ -37,7 +37,7 @@ public class ItemPetrifiedMonkeypuzzleSapling extends ElementsLepidodendronMod.M
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_monkeypuzzle_sapling");
+			setTranslationKey("pf_petrified_monkeypuzzle_sapling");
 			setRegistryName("petrified_monkeypuzzle_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

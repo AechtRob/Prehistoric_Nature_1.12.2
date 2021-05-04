@@ -65,7 +65,7 @@ public class BlockQuasistrobusSideCentre extends ElementsLepidodendronMod.ModEle
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("quasistrobus_side_centre");
+			setTranslationKey("pf_quasistrobus_side_centre");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

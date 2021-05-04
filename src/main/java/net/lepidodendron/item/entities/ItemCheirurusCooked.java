@@ -33,7 +33,7 @@ public class ItemCheirurusCooked extends ElementsLepidodendronMod.ModElement {
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(5, 0.7f, false);
-			setTranslationKey("cheirurus_cooked");
+			setTranslationKey("pf_cheirurus_cooked");
 			setRegistryName("cheirurus_cooked");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

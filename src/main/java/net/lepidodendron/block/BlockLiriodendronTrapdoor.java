@@ -46,7 +46,7 @@ public class BlockLiriodendronTrapdoor extends ElementsLepidodendronMod.ModEleme
 	public static class BlockCustom extends BlockTrapDoor {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("liriodendron_trapdoor");
+			setTranslationKey("pf_liriodendron_trapdoor");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(3F);

@@ -80,7 +80,7 @@ public class BlockCycadeoideaLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("cycadeoidea_log");
+			setTranslationKey("pf_cycadeoidea_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

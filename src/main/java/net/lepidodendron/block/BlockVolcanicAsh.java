@@ -41,7 +41,7 @@ public class BlockVolcanicAsh extends ElementsLepidodendronMod.ModElement {
 		public BlockCustom() {
 			super(Material.SAND);
 			this.setSoundType(SoundType.SAND);
-			setTranslationKey("volcanic_ash");
+			setTranslationKey("pf_volcanic_ash");
 			setHardness(0.2F);
 			setResistance(0.2F);
 			setHarvestLevel("shovel", 0);

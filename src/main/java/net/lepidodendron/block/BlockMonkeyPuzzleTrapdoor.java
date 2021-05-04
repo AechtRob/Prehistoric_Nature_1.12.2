@@ -46,7 +46,7 @@ public class BlockMonkeyPuzzleTrapdoor extends ElementsLepidodendronMod.ModEleme
 	public static class BlockCustom extends BlockTrapDoor {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("monkey_puzzle_trapdoor");
+			setTranslationKey("pf_monkey_puzzle_trapdoor");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(3F);

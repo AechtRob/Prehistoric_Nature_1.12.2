@@ -37,7 +37,7 @@ public class ItemAraucarioxylonNuts extends ElementsLepidodendronMod.ModElement 
 	public static class ItemFoodCustom extends ItemFood {
 		public ItemFoodCustom() {
 			super(2, 0.2f, false);
-			setTranslationKey("araucarioxylon_nuts");
+			setTranslationKey("pf_araucarioxylon_nuts");
 			setRegistryName("araucarioxylon_nuts");
 			setCreativeTab(TabLepidodendron.tab);
 			setMaxStackSize(64);

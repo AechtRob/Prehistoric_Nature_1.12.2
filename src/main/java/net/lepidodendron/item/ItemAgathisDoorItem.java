@@ -45,7 +45,7 @@ public class ItemAgathisDoorItem extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("agathis_door_item");
+			setTranslationKey("pf_agathis_door_item");
 			setRegistryName("agathis_door_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

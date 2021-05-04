@@ -37,7 +37,7 @@ public class ItemPetrifiedTempskyaSapling extends ElementsLepidodendronMod.ModEl
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_tempskya_sapling");
+			setTranslationKey("pf_petrified_tempskya_sapling");
 			setRegistryName("petrified_tempskya_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

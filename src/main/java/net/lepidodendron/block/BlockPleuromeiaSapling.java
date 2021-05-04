@@ -70,7 +70,7 @@ public class BlockPleuromeiaSapling extends ElementsLepidodendronMod.ModElement 
 			setCreativeTab(TabLepidodendron.tab);
 			setHardness(0.2F);
         	setResistance(1F);
-			setTranslationKey("pleuromeia_sapling");
+			setTranslationKey("pf_pleuromeia_sapling");
 			setDefaultState(this.blockState.getBaseState().withProperty(STAGE, Integer.valueOf(0)));
 		}
 
@@ -93,6 +93,18 @@ public class BlockPleuromeiaSapling extends ElementsLepidodendronMod.ModElement 
 	            }
 	        }
 	    }
+
+	    @Override
+		public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state)
+		{
+			if (state.getBlock() == this) //Forge: This function is called during world gen and placement, before this block is set, so if we are not 'here' then assume it's the pre-check.
+			{
+				IBlockState soil = worldIn.getBlockState(pos.down());
+				if (soil.getMaterial() == Material.SAND) {return true;}
+				return soil.getBlock().canSustainPlant(soil, worldIn, pos.down(), net.minecraft.util.EnumFacing.UP, this);
+			}
+			return this.canSustainBush(worldIn.getBlockState(pos.down()));
+		}
 
 		public void grow(World world, Random rand, BlockPos pos, IBlockState state)
 	    {

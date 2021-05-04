@@ -46,7 +46,7 @@ public class BlockBrachyphyllumPlanks extends ElementsLepidodendronMod.ModElemen
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("brachyphyllum_planks");
+			setTranslationKey("pf_brachyphyllum_planks");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

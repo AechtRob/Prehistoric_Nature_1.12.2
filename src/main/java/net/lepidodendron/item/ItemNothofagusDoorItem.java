@@ -44,7 +44,7 @@ public class ItemNothofagusDoorItem extends ElementsLepidodendronMod.ModElement 
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("nothofagus_door_item");
+			setTranslationKey("pf_nothofagus_door_item");
 			setRegistryName("nothofagus_door_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

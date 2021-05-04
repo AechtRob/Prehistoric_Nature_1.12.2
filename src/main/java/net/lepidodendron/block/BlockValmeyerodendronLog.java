@@ -73,7 +73,7 @@ public class BlockValmeyerodendronLog extends ElementsLepidodendronMod.ModElemen
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("valmeyerodendron_log");
+			setTranslationKey("pf_valmeyerodendron_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

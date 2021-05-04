@@ -37,7 +37,7 @@ public class ItemPetrifiedAntarcticycas extends ElementsLepidodendronMod.ModElem
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_antarcticycas");
+			setTranslationKey("pf_petrified_antarcticycas");
 			setRegistryName("petrified_antarcticycas");
 			setCreativeTab(TabLepidodendron.tab);
 		}

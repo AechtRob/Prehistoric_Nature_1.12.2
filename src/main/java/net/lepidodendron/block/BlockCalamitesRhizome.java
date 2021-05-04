@@ -83,7 +83,7 @@ public class BlockCalamitesRhizome extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("calamites_rhizome");
+			setTranslationKey("pf_calamites_rhizome");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

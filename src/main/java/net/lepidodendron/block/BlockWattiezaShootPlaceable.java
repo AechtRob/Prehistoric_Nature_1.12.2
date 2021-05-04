@@ -71,7 +71,7 @@ public class BlockWattiezaShootPlaceable extends ElementsLepidodendronMod.ModEle
 		
 		public BlockCustom() {
 			super();
-			setTranslationKey("wattieza_shoot");
+			setTranslationKey("pf_wattieza_shoot");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

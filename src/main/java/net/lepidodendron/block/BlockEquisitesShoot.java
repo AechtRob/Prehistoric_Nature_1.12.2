@@ -67,7 +67,7 @@ public class BlockEquisitesShoot extends ElementsLepidodendronMod.ModElement {
 		public static final PropertyDirection FACING = BlockDirectional.FACING;
 		public BlockCustom() {
 			//super(Material.PLANTS);
-			setTranslationKey("equisetites_shoot_worldgen");
+			setTranslationKey("pf_equisetites_shoot_worldgen");
 			setSoundType(SoundType.PLANT);
 			setHardness(0F);
 			setResistance(0F);

@@ -73,7 +73,7 @@ public class BlockZamitesLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("zamites_log");
+			setTranslationKey("pf_zamites_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

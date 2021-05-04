@@ -101,11 +101,14 @@ public class BlockRugosa3 extends ElementsLepidodendronMod.ModElement {
 			multiplier = 2;
 		}
 
+		int minWaterDepth = 4;
+		int waterDepthCheckMax = 15;
+		int startHeight = world.getSeaLevel() - waterDepthCheckMax;
 		for (int i = 0; i < (int) 10 * multiplier; i++) {
 			int l6 = chunkX + random.nextInt(16) + 8;
-			int i11 = random.nextInt(128);
+			int i11 = random.nextInt(128 - startHeight) + startHeight;
 			int l14 = chunkZ + random.nextInt(16) + 8;
-			(new RugosaGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14));
+			(new RugosaGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14), minWaterDepth, waterDepthCheckMax);
 		}
 	}
 
@@ -140,7 +143,7 @@ public class BlockRugosa3 extends ElementsLepidodendronMod.ModElement {
     
 		public BlockCustom() {
 			super(Material.WATER);
-			setTranslationKey("rugosa_2");
+			setTranslationKey("pf_rugosa_2");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.0F);
 			setResistance(0.0F);

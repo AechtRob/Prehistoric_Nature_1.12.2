@@ -37,7 +37,7 @@ public class ItemPetrifiedEquisetitesSapling extends ElementsLepidodendronMod.Mo
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_equisetites_sapling");
+			setTranslationKey("pf_petrified_equisetites_sapling");
 			setRegistryName("petrified_equisetites_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

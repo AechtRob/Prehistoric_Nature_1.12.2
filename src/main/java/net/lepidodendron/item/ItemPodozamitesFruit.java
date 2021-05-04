@@ -37,7 +37,7 @@ public class ItemPodozamitesFruit extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("podozamites_fruit");
+			setTranslationKey("pf_podozamites_fruit");
 			setRegistryName("podozamites_fruit");
 			setCreativeTab(TabLepidodendron.tab);
 		}

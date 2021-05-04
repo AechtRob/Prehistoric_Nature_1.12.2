@@ -16,7 +16,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.item.ItemStack;
@@ -38,10 +37,8 @@ import net.minecraft.util.math.AxisAlignedBB;
 
 import net.lepidodendron.creativetab.TabLepidodendron;
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.block.BlockPseudobornia2;
-import net.lepidodendron.block.BlockPseudobornia3;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.LepidodendronTreeHandler;
+import net.lepidodendron.LepidodendronDecorationHandler;
 
 import java.util.Random;
 import java.util.List;
@@ -108,7 +105,7 @@ public class BlockPseudobornia extends ElementsLepidodendronMod.ModElement {
 		if (GenMultiplier < 0) {GenMultiplier = 0;}
 		GenChance = Math.min(15, (int) Math.round((double) GenChance * GenMultiplier));
 		//Is this a transformed biome?
-		if (LepidodendronTreeHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
+		if (LepidodendronDecorationHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
 			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
 				GenChance = 15;
 		}
@@ -181,7 +178,7 @@ public class BlockPseudobornia extends ElementsLepidodendronMod.ModElement {
 			setHardness(0.5F);
 			setResistance(0.5F);
 			setLightLevel(0F);
-			setTranslationKey("pseudobornia");
+			setTranslationKey("pf_pseudobornia");
 			setRegistryName("pseudobornia");
 			this.setDefaultState(this.blockState.getBaseState().withProperty(BASE, false).withProperty(AGE, Integer.valueOf(0)));
 		}

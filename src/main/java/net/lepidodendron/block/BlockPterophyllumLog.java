@@ -76,7 +76,7 @@ public class BlockPterophyllumLog extends ElementsLepidodendronMod.ModElement {
 
     	public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("pterophyllum_log");
+			setTranslationKey("pf_pterophyllum_log");
 			setSoundType(SoundType.WOOD);
 			setHardness(1F);
 			setResistance(10F);

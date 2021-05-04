@@ -35,7 +35,7 @@ public class ItemBanksia2Seeds extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("banksia_2_seeds");
+			setTranslationKey("pf_banksia_2_seeds");
 			setRegistryName("banksia_2_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

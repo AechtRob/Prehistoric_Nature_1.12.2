@@ -45,7 +45,7 @@ public class ItemGinkgoDoorItem extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("ginkgo_door_item");
+			setTranslationKey("pf_ginkgo_door_item");
 			setRegistryName("ginkgo_door_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

@@ -45,7 +45,7 @@ public class ItemAraucarioxylonDoorItem extends ElementsLepidodendronMod.ModElem
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("araucarioxylon_door_item");
+			setTranslationKey("pf_araucarioxylon_door_item");
 			setRegistryName("araucarioxylon_door_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

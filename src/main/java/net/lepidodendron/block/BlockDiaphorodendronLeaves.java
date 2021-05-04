@@ -54,7 +54,7 @@ public class BlockDiaphorodendronLeaves extends ElementsLepidodendronMod.ModElem
 	public static class BlockCustom extends BlockLeaves {
 		public BlockCustom() {
 			super();
-			setTranslationKey("diaphorodendron_leaves");
+			setTranslationKey("pf_diaphorodendron_leaves");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);
 			setResistance(0.2F);

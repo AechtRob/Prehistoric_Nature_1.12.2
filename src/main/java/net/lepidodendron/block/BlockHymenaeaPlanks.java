@@ -46,7 +46,7 @@ public class BlockHymenaeaPlanks extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("hymenaea_planks");
+			setTranslationKey("pf_hymenaea_planks");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

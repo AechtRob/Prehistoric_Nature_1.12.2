@@ -37,7 +37,7 @@ public class ItemPetrifiedBaiera extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_baiera");
+			setTranslationKey("pf_petrified_baiera");
 			setRegistryName("petrified_baiera");
 			setCreativeTab(TabLepidodendron.tab);
 		}

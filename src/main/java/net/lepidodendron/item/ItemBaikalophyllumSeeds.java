@@ -37,7 +37,7 @@ public class ItemBaikalophyllumSeeds extends ElementsLepidodendronMod.ModElement
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("baikalophyllum_seeds");
+			setTranslationKey("pf_baikalophyllum_seeds");
 			setRegistryName("baikalophyllum_seeds");
 			setCreativeTab(TabLepidodendron.tab);
 		}

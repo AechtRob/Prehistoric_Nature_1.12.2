@@ -38,7 +38,7 @@ public class ItemPetrifiedOmphalophloiosSapling extends ElementsLepidodendronMod
 		public ItemCustom() {
 			setMaxDamage(0);
 			maxStackSize = 64;
-			setTranslationKey("petrified_omphalophloios_sapling");
+			setTranslationKey("pf_petrified_omphalophloios_sapling");
 			setRegistryName("petrified_omphalophloios_sapling");
 			setCreativeTab(TabLepidodendron.tab);
 		}

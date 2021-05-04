@@ -45,7 +45,7 @@ public class ItemCordaitesDoorItem extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends Item {
 		public ItemCustom() {
-			setTranslationKey("cordaites_door_item");
+			setTranslationKey("pf_cordaites_door_item");
 			setRegistryName("cordaites_door_item");
 			setCreativeTab(TabLepidodendron.tab);
 		}

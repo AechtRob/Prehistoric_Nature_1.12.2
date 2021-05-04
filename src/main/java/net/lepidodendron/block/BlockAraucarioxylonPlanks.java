@@ -46,7 +46,7 @@ public class BlockAraucarioxylonPlanks extends ElementsLepidodendronMod.ModEleme
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.WOOD);
-			setTranslationKey("araucarioxylon_planks");
+			setTranslationKey("pf_araucarioxylon_planks");
 			setSoundType(SoundType.WOOD);
 			setHarvestLevel("axe", 1);
 			setHardness(2F);

@@ -11,6 +11,7 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -49,6 +50,7 @@ public class EntityPrehistoricFloraAmmonite_Titanites extends EntityPrehistoricF
 
 	protected void initEntityAI() {
 		tasks.addTask(0, new NautiloidWander(this, ANIMATION_NAUTILOID_WANDER));
+		tasks.addTask(1, new EntityAILookIdle(this));
 	}
 
 	@Override
