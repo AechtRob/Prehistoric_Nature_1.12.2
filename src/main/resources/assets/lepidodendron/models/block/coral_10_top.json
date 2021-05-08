@@ -1,0 +1,33 @@
+{
+	"ambientocclusion": false,
+	"textures": {
+		"texture": "lepidodendron:blocks/reef_block_variant10",
+		"particle": "lepidodendron:blocks/reef_block_variant10"
+	},
+	"elements": [
+		{
+			"name": "Top1",
+			"from": [5, 16, 4],
+			"to": [13, 22, 11],
+			"faces": {
+				"north": {"uv": [0, 0, 8, 6], "texture": "#texture"},
+				"east": {"uv": [0, 0, 7, 6], "texture": "#texture"},
+				"south": {"uv": [0, 0, 8, 6], "texture": "#texture"},
+				"west": {"uv": [0, 0, 7, 6], "texture": "#texture"},
+				"up": {"uv": [0, 0, 8, 7], "texture": "#texture"}
+			}
+		},
+		{
+			"name": "Top2",
+			"from": [6, 16, 5],
+			"to": [15, 20, 14],
+			"faces": {
+				"north": {"uv": [0, 0, 9, 3], "texture": "#texture"},
+				"east": {"uv": [0, 0, 9, 4], "texture": "#texture"},
+				"south": {"uv": [0, 0, 9, 4], "texture": "#texture"},
+				"west": {"uv": [0, 0, 9, 3], "texture": "#texture"},
+				"up": {"uv": [0, 0, 9, 9], "texture": "#texture"}
+			}
+		}
+	]
+}
