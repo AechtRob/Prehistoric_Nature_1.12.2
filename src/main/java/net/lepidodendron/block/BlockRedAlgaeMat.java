@@ -106,6 +106,9 @@ public class BlockRedAlgaeMat extends ElementsLepidodendronMod.ModElement {
 		if (dimID == LepidodendronConfig.dimCambrian) {
 			biomeCriteria = true;
 		}
+		if (dimID == LepidodendronConfig.dimPrecambrian) {
+			biomeCriteria = true;
+		}
 		if (!biomeCriteria)
 			return;
 
@@ -116,7 +119,8 @@ public class BlockRedAlgaeMat extends ElementsLepidodendronMod.ModElement {
 		) {
 			multiplier = 2;
 		}
-		if (dimID == LepidodendronConfig.dimCambrian)
+		if ((dimID == LepidodendronConfig.dimCambrian)
+				|| (dimID == LepidodendronConfig.dimPrecambrian))
 		{
 			multiplier = 3;
 		}

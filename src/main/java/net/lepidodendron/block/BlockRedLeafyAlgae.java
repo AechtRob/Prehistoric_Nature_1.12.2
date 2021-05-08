@@ -104,8 +104,11 @@ public class BlockRedLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genRedLeafyAlgaeOverrideBiomes))
 			biomeCriteria = true;
-		if (dimID == LepidodendronConfig.dimCambrian) {
-			biomeCriteria = true;
+		if (dimID == LepidodendronConfig.dimCambrian){
+			biomeCriteria = false;
+		}
+		if (dimID == LepidodendronConfig.dimPrecambrian){
+			biomeCriteria = false;
 		}
 		if (!biomeCriteria)
 			return;
@@ -116,10 +119,6 @@ public class BlockRedLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
 		) {
 			multiplier = 2;
-		}
-		if (dimID == LepidodendronConfig.dimCambrian)
-		{
-			multiplier = 1;
 		}
 
 		for (int i = 0; i < (int) 10 * multiplier; i++) {
@@ -465,7 +464,7 @@ public class BlockRedLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Marine Algae");
-	        tooltip.add("Periods: Tonian - Cryogenian - Ediacaran - Cambrian - Ordovician - Silurian - Devonian - Carboniferous - Permian - Triassic - Jurassic - Cretaceous - Paleogene - Neogene - Quaternary");
+	        tooltip.add("Periods: Ordovician - Silurian - Devonian - Carboniferous - Permian - Triassic - Jurassic - Cretaceous - Paleogene - Neogene - Quaternary");
 	        tooltip.add("Propagation: water");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }

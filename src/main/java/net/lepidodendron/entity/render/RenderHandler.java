@@ -343,8 +343,22 @@ public class RenderHandler {
                 return new RenderJellyfish_Precambrian(manager);
             }
         });
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrehistoricFloraSchinderhannes.class, new IRenderFactory<EntityPrehistoricFloraSchinderhannes>() {
+            @Override
+            public Render<? super EntityPrehistoricFloraSchinderhannes> createRenderFor(RenderManager manager) {
+                return new RenderSchinderhannes(manager);
+            }
+        });
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrehistoricFloraTitanicthys.class, new IRenderFactory<EntityPrehistoricFloraTitanicthys>() {
+        @Override
+            public Render<? super EntityPrehistoricFloraTitanicthys> createRenderFor(RenderManager manager) {
+                return new RenderTitanicthys(manager);
+            }
+        });
 
-        ClientRegistry.bindTileEntitySpecialRenderer(BlockCharnia.TileEntityCustom.class, new RenderCharnia());
+
+
+            ClientRegistry.bindTileEntitySpecialRenderer(BlockCharnia.TileEntityCustom.class, new RenderCharnia());
 
     }
 }

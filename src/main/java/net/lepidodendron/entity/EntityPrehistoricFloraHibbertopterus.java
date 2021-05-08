@@ -5,7 +5,7 @@ import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.HibbertopterusWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAmphibianBase;
-import net.lepidodendron.entity.base.EntityPrehistoricFloraHibbertopterusBase;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraWalkingAmphibianBase;
 import net.lepidodendron.entity.util.PathNavigateAmphibian;
 import net.lepidodendron.entity.util.PathNavigateAmphibianFindWater;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -21,7 +21,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public class EntityPrehistoricFloraHibbertopterus extends EntityPrehistoricFloraHibbertopterusBase {
+public class EntityPrehistoricFloraHibbertopterus extends EntityPrehistoricFloraWalkingAmphibianBase {
 
 	public BlockPos currentTarget;
 	@SideOnly(Side.CLIENT)
@@ -37,21 +37,6 @@ public class EntityPrehistoricFloraHibbertopterus extends EntityPrehistoricFlora
 		minSize = 0.2F;
 		maxSize = 1.0F;
 		maxHealthAgeable = 15.0D;
-		if (this.isInWater()) {
-			this.moveHelper = new EntityPrehistoricFloraAmphibianBase.WanderMoveHelper();
-			this.navigator = new PathNavigateAmphibian(this, world);
-		}
-		else {
-			if (isNearWater(this, this.getPosition())) {
-				this.moveHelper = new EntityPrehistoricFloraAmphibianBase.WanderMoveHelper();
-				this.navigator = new PathNavigateAmphibian(this, world);
-			}
-			else {//Find water!
-				this.moveHelper = new EntityPrehistoricFloraAmphibianBase.WanderMoveHelper();
-				this.navigator = new PathNavigateAmphibianFindWater(this, world);
-				this.setPathPriority(PathNodeType.WATER, 10F);
-			}
-		}
 	}
 
 	@Override
@@ -63,7 +48,7 @@ public class EntityPrehistoricFloraHibbertopterus extends EntityPrehistoricFlora
 	public int WaterDist() {return 2;}
 
 	@Override
-	protected float getAISpeedHibbertopterus() {
+	protected float getAISpeedWalkingAmphibian() {
 		return 0.15f;
 	}
 

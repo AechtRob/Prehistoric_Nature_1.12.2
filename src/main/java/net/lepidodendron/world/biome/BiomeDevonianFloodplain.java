@@ -1,6 +1,9 @@
 
 package net.lepidodendron.world.biome;
 
+import net.lepidodendron.block.BlockCoral;
+import net.lepidodendron.world.*;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.common.BiomeDictionary;
@@ -22,21 +25,6 @@ import net.minecraft.util.math.BlockPos;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockArchaeopterisLog;
-import net.lepidodendron.world.WorldGenTreeLog;
-import net.lepidodendron.world.WorldGenArchaeopterisTree;
-import net.lepidodendron.world.WorldGenRhacophyton;
-import net.lepidodendron.world.WorldGenWattieza;
-import net.lepidodendron.world.WorldGenPsilophyton;
-import net.lepidodendron.world.WorldGenGuangdedendron;
-import net.lepidodendron.world.WorldGenFoozia;
-import net.lepidodendron.world.WorldGenAsteroxylon;
-import net.lepidodendron.world.WorldGenAncientMoss;
-import net.lepidodendron.world.WorldGenSelaginella;
-import net.lepidodendron.world.WorldGenPertica;
-import net.lepidodendron.world.WorldGenIsoetes;
-import net.lepidodendron.world.WorldGenBaragwanathia;
-import net.lepidodendron.world.WorldGenPrehistoricGroundCoverSandy;
-import net.lepidodendron.world.WorldGenTopSoil;
 
 import java.util.Random;
 
@@ -94,7 +82,9 @@ public class BiomeDevonianFloodplain extends ElementsLepidodendronMod.ModElement
 		protected static final WorldGenIsoetes ISOETES_GENERATOR = new WorldGenIsoetes();
 		protected static final WorldGenBaragwanathia BARAGWANATHIA_GENERATOR = new WorldGenBaragwanathia();
 		protected static final WorldGenPrehistoricGroundCoverSandy GROUNDCOVER_GENERATOR = new WorldGenPrehistoricGroundCoverSandy();
-		
+		protected static final WorldGenReef REEF_GENERATOR = new WorldGenReef();
+		protected static final WorldGenBlueHole BLUE_HOLE_GENERATOR = new WorldGenBlueHole();
+
 		public WorldGenAbstractTree getRandomTreeFeature(Random rand)
 	    {
 	        return ARCHAEOPTERIS_TREE;
@@ -550,7 +540,39 @@ public class BiomeDevonianFloodplain extends ElementsLepidodendronMod.ModElement
 	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
 	            BARAGWANATHIA_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
-	        super.decorate(worldIn, rand, pos);
+
+	        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.CLAY)) {
+
+				int j = rand.nextInt(16) + 8;
+				int k = rand.nextInt(16) + 8;
+				int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+				BlockPos pos1 = pos.add(j, l, k);
+				if (
+					(pos1.getY() < worldIn.getSeaLevel() - 6)
+					&& (worldIn.getBlockState(pos1).getMaterial() == Material.WATER)
+					&& (worldIn.getBlockState(pos1.up()).getMaterial() == Material.WATER)
+					&& (worldIn.getBlockState(pos1.up(2)).getMaterial() == Material.WATER)
+				) {
+					BLUE_HOLE_GENERATOR.generate(worldIn, rand, pos1, 14);
+				}
+
+				for (int i = 0; i < 5; ++i) {
+					j = rand.nextInt(16) + 8;
+					k = rand.nextInt(16) + 8;
+					l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					pos1 = pos.add(j, l, k);
+					if (
+						(pos1.getY() < worldIn.getSeaLevel() - 5)
+						&& (worldIn.getBlockState(pos1).getMaterial() == Material.WATER)
+						&& (worldIn.getBlockState(pos1.up()).getMaterial() == Material.WATER)
+						&& (worldIn.getBlockState(pos1.up(2)).getMaterial() == Material.WATER)
+					) {
+						REEF_GENERATOR.generate(worldIn, rand, pos1, 14);
+					}
+				}
+			}
+
+			super.decorate(worldIn, rand, pos);
 	    }
 	}
 	

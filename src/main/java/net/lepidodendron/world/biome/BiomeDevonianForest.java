@@ -2,6 +2,7 @@
 package net.lepidodendron.world.biome;
 
 import net.lepidodendron.world.*;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.common.BiomeDictionary;
@@ -81,6 +82,8 @@ public class BiomeDevonianForest extends ElementsLepidodendronMod.ModElement {
 		protected static final WorldGenTopSoil TOPSOIL_GENERATOR = new WorldGenTopSoil();
 		protected static final WorldGenPrehistoricGroundCover GROUNDCOVER_GENERATOR = new WorldGenPrehistoricGroundCover();
 		protected static final WorldGenPuddles PUDDLES_GENERATOR = new WorldGenPuddles();
+		protected static final WorldGenReef REEF_GENERATOR = new WorldGenReef();
+		protected static final WorldGenBlueHole BLUE_HOLE_GENERATOR = new WorldGenBlueHole();
 
 		
 public WorldGenAbstractTree getRandomTreeFeature(Random rand)
@@ -535,7 +538,38 @@ public WorldGenAbstractTree getRandomTreeFeature(Random rand)
 	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
 	            BARAGWANATHIA_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
-	        super.decorate(worldIn, rand, pos);
+
+			if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.CLAY)) {
+				int j = rand.nextInt(16) + 8;
+				int k = rand.nextInt(16) + 8;
+				int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+				BlockPos pos1 = pos.add(j, l, k);
+				if (
+					(pos1.getY() < worldIn.getSeaLevel() - 6)
+					&& (worldIn.getBlockState(pos1).getMaterial() == Material.WATER)
+					&& (worldIn.getBlockState(pos1.up()).getMaterial() == Material.WATER)
+					&& (worldIn.getBlockState(pos1.up(2)).getMaterial() == Material.WATER)
+				) {
+					BLUE_HOLE_GENERATOR.generate(worldIn, rand, pos1, 14);
+				}
+
+				for (int i = 0; i < 5; ++i) {
+					j = rand.nextInt(16) + 8;
+					k = rand.nextInt(16) + 8;
+					l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					pos1 = pos.add(j, l, k);
+					if (
+						(pos1.getY() < worldIn.getSeaLevel() - 5)
+						&& (worldIn.getBlockState(pos1).getMaterial() == Material.WATER)
+						&& (worldIn.getBlockState(pos1.up()).getMaterial() == Material.WATER)
+						&& (worldIn.getBlockState(pos1.up(2)).getMaterial() == Material.WATER)
+					) {
+						REEF_GENERATOR.generate(worldIn, rand, pos1, 14);
+					}
+				}
+			}
+
+			super.decorate(worldIn, rand, pos);
 	    }
 
 		

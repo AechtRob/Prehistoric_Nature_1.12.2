@@ -46,6 +46,7 @@ public class AlgaeGenerator extends WorldGenerator
 		if ((dimID == LepidodendronConfig.dimDevonian && this.algae != BlockPinkSponge.block)
 			|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 			|| (dimID == LepidodendronConfig.dimCambrian)
+			|| (dimID == LepidodendronConfig.dimPrecambrian)
 			|| (dimID == LepidodendronConfig.dimCarboniferous && this.algae != BlockPinkSponge.block)
 			) {
 			dimensionCriteria = true;
@@ -106,6 +107,7 @@ public class AlgaeGenerator extends WorldGenerator
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.ROCK)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.GROUND)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.CLAY)
+						|| (worldIn.getBlockState(pos).getMaterial() == Material.CORAL)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.GLASS)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.IRON)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.WOOD))
@@ -140,6 +142,7 @@ public class AlgaeGenerator extends WorldGenerator
 										|| (worldIn.getBlockState(pos).getMaterial() == Material.ROCK)
 										|| (worldIn.getBlockState(pos).getMaterial() == Material.GROUND)
 										|| (worldIn.getBlockState(pos).getMaterial() == Material.CLAY)
+										|| (worldIn.getBlockState(pos).getMaterial() == Material.CORAL)
 										|| (worldIn.getBlockState(pos).getMaterial() == Material.GLASS)
 										|| (worldIn.getBlockState(pos).getMaterial() == Material.IRON)
 										|| (worldIn.getBlockState(pos).getMaterial() == Material.WOOD)) {

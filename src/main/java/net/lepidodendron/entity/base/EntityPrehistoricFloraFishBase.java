@@ -149,7 +149,7 @@ public abstract class EntityPrehistoricFloraFishBase extends EntityWaterMob impl
     public void travel(float strafe, float vertical, float forward) {
         float f4;
         if (this.isServerWorld()) {
-            if (isInWater()) {
+            if (this.isInWater()) {
                 this.moveRelative(strafe, vertical, forward, 0.1F);
                 f4 = 0.8F;
                 float speedModifier = (float) EnchantmentHelper.getDepthStriderModifier(this);

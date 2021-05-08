@@ -108,6 +108,7 @@ public class BlockStalkyBrownAlgae extends ElementsLepidodendronMod.ModElement {
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
 				|| (dimID == LepidodendronConfig.dimCambrian)
+				|| (dimID == LepidodendronConfig.dimPrecambrian)
 		) {
 			biomeCriteria = false;
 		}

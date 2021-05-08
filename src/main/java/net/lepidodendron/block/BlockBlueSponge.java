@@ -92,6 +92,9 @@ public class BlockBlueSponge extends ElementsLepidodendronMod.ModElement {
 		) {
 			biomeCriteria = true;
 		}
+		if (dimID == LepidodendronConfig.dimPrecambrian){
+			biomeCriteria = false;
+		}
 		if (!biomeCriteria)
 			return;
 

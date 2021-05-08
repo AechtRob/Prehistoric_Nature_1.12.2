@@ -1,26 +1,19 @@
 package net.lepidodendron.entity.base;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
-import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
-import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.block.BlockGreenAlgaeMat;
-import net.lepidodendron.block.BlockRedAlgaeMat;
 import net.lepidodendron.entity.util.PathNavigateAmphibian;
-import net.lepidodendron.entity.util.PathNavigateWaterBottom;
+import net.lepidodendron.entity.util.PathNavigateAmphibianFindWater;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityMoveHelper;
-import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.pathfinding.NodeProcessor;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNodeType;
-import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -30,23 +23,35 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class EntityPrehistoricFloraHibbertopterusBase extends EntityPrehistoricFloraAmphibianBase implements IAnimatedEntity {
+public abstract class EntityPrehistoricFloraWalkingAmphibianBase extends EntityPrehistoricFloraAmphibianBase implements IAnimatedEntity {
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;
     private int jumpTicks;
 
-    public EntityPrehistoricFloraHibbertopterusBase(World world) {
+    public EntityPrehistoricFloraWalkingAmphibianBase(World world) {
         super(world);
-        this.moveHelper = new EntityPrehistoricFloraHibbertopterusBase.WanderMoveHelper();
-        this.navigator = new PathNavigateAmphibian(this, world);
-        this.setPathPriority(PathNodeType.WATER, 5.0F);
+        if (this.isInWater()) {
+            this.moveHelper = new EntityPrehistoricFloraAmphibianBase.WanderMoveHelper();
+            this.navigator = new PathNavigateAmphibian(this, world);
+        }
+        else {
+            if (isNearWater(this, this.getPosition())) {
+                this.moveHelper = new EntityPrehistoricFloraAmphibianBase.WanderMoveHelper();
+                this.navigator = new PathNavigateAmphibian(this, world);
+            }
+            else {//Find water!
+                this.moveHelper = new EntityPrehistoricFloraAmphibianBase.WanderMoveHelper();
+                this.navigator = new PathNavigateAmphibianFindWater(this, world);
+                this.setPathPriority(PathNodeType.WATER, 10F);
+            }
+        }
         if (FMLCommonHandler.instance().getSide().isClient()) {
             this.chainBuffer = new ChainBuffer();
         }
     }
 
-    protected abstract float getAISpeedHibbertopterus();
+    protected abstract float getAISpeedWalkingAmphibian();
 
     protected void initEntityAI() {}
 
@@ -289,16 +294,16 @@ public abstract class EntityPrehistoricFloraHibbertopterusBase extends EntityPre
 
     public class WanderMoveHelper extends EntityMoveHelper {
 
-        private final EntityPrehistoricFloraHibbertopterusBase EntityBase = EntityPrehistoricFloraHibbertopterusBase.this;
+        private final EntityPrehistoricFloraWalkingAmphibianBase EntityBase = EntityPrehistoricFloraWalkingAmphibianBase.this;
 
         public WanderMoveHelper() {
-            super(EntityPrehistoricFloraHibbertopterusBase.this);
+            super(EntityPrehistoricFloraWalkingAmphibianBase.this);
         }
 
         public void onUpdateMoveHelper() {
             if (this.action == Action.STRAFE) {
                 //float f = (float) this.EntityBase.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();
-                float f = getAISpeedHibbertopterus();
+                float f = getAISpeedWalkingAmphibian();
                 float f1 = (float) this.speed * f;
                 float f2 = this.moveForward;
                 float f3 = this.moveStrafe;
@@ -350,12 +355,12 @@ public abstract class EntityPrehistoricFloraHibbertopterusBase extends EntityPre
 
                 //float speed = getAISpeedLand();
                 //this.EntityBase.setAIMoveSpeed((float) (0.4f * this.speed * this.EntityBase.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
-                this.EntityBase.setAIMoveSpeed((float) (0.6f * this.speed * getAISpeedHibbertopterus()));
+                this.EntityBase.setAIMoveSpeed((float) (0.6f * this.speed * getAISpeedWalkingAmphibian()));
 
 
                 //Land:
                 if (!this.EntityBase.isInWater()) {
-                    this.EntityBase.setAIMoveSpeed((float) (0.6f * this.speed * getAISpeedHibbertopterus()));
+                    this.EntityBase.setAIMoveSpeed((float) (0.6f * this.speed * getAISpeedWalkingAmphibian()));
                 }
 
                 if (
@@ -368,7 +373,7 @@ public abstract class EntityPrehistoricFloraHibbertopterusBase extends EntityPre
             } else if (this.action == Action.JUMPING) {
                 //float speed = getAISpeedLand();
                 //this.EntityBase.setAIMoveSpeed((float) (speed * this.EntityBase.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue()));
-                this.EntityBase.setAIMoveSpeed((float) (this.speed * getAISpeedHibbertopterus()));
+                this.EntityBase.setAIMoveSpeed((float) (this.speed * getAISpeedWalkingAmphibian()));
 
                 if (this.EntityBase.onGround) {
                     this.action = Action.WAIT;

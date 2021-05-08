@@ -22,6 +22,8 @@ public class LepidodendronConfig {
     public static int waterMossHorizontal = 4;
     public static int waterMossVertical = 1;
 
+    public static int attackHealth = 90;
+
     public static int dimPrecambrian = -78;
     public static int dimCambrian = -79;
     public static int dimOrdovicianSilurian = -80;
@@ -890,7 +892,9 @@ public class LepidodendronConfig {
 
     public static String[] genStromatoliteBlacklistBiomes = new String[0];
     public static String[] genStromatoliteOverrideBiomes = new String[0];
-    public static int[] dimStromatolite = new int[]{0, -81};
+    public static int[] dimStromatolite = new int[]{0};
+
+    public static int[] dimEdiacaran = new int[0];
 
     public static int[] dimAlgae = new int[]{0};
     public static String[] genMacrocystisBlacklistBiomes = new String[0];
@@ -1163,6 +1167,11 @@ public class LepidodendronConfig {
         doFlowers = prop.getBoolean();
         propOrder.add(prop.getName());
 
+        prop = cfg.get("Global World-Gen", "attackHealth", attackHealth);
+        prop.setComment("Mobs which can hunt will only hunt prey if their health is under this percentage of full (0-100) [default: 90]");
+        attackHealth = prop.getInt();
+        propOrder.add(prop.getName());
+
         prop = cfg.get("Global World-Gen", "genAllPlants", genAllPlants);
         prop.setComment("If set to true then all plants from this mod will generate, no matter how you set them below. You can still block them from biomes and dimensions in their individual settings. This setting does not affect algae. [default: false]");
         genAllPlants = prop.getBoolean();
@@ -1294,7 +1303,7 @@ public class LepidodendronConfig {
         propOrder.add(prop.getName());
 
         prop = cfg.get("WorldGen Stromatolite", "dimStromatolite", dimStromatolite);
-        prop.setComment("List of dimension IDs Stromatolites can generate in [default: 0, -81]");
+        prop.setComment("List of dimension IDs Stromatolites can generate in [default: 0]");
         dimStromatolite = prop.getIntList();
         propOrder.add(prop.getName());
         prop = cfg.get("WorldGen Stromatolite", "genStromatoliteBlacklistBiomes", genStromatoliteBlacklistBiomes);
@@ -1304,6 +1313,11 @@ public class LepidodendronConfig {
         prop = cfg.get("WorldGen Stromatolite", "genStromatoliteOverrideBiomes", genStromatoliteOverrideBiomes);
         prop.setComment("List of biomes Stromatolites are forced to generate in (provided the dimension is also valid), in the format: modid:biomeid [default: empty]");
         genStromatoliteOverrideBiomes = prop.getStringList();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("WorldGen Ediacaran", "dimEdiacaran", dimEdiacaran);
+        prop.setComment("List of dimension IDs the Ediacaran Biota can generate in [default: empty]");
+        dimEdiacaran = prop.getIntList();
         propOrder.add(prop.getName());
 
         prop = cfg.get("WorldGen Algae-Sponges", "dimAlgae", dimAlgae);

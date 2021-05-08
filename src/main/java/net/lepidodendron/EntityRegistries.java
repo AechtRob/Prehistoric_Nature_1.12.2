@@ -67,6 +67,8 @@ public class EntityRegistries {
         registerEntity("prehistoric_flora_palaeodictyoptera_sinodunbaria", EntityPrehistoricFloraPalaeodictyoptera_Sinodunbaria.class, LepidodendronMod.ENTITY_PALAEODICTYOPTERA_SINODUNBARIA, 32,-4544654,-6509419);
         registerEntity("prehistoric_flora_palaeodictyoptera_stenodictya", EntityPrehistoricFloraPalaeodictyoptera_Stenodictya.class, LepidodendronMod.ENTITY_PALAEODICTYOPTERA_STENODICTYA, 32,-6646910,-6509419);
         registerEntity("prehistoric_flora_jellyfish_precambrian", EntityPrehistoricFloraJellyfish_Precambrian.class, LepidodendronMod.ENTITY_JELLYFISH_PRECAMBRIAN, 32,-1,-4274237);
+        registerEntity("prehistoric_flora_schinderhannes", EntityPrehistoricFloraSchinderhannes.class, LepidodendronMod.ENTITY_SCHINDERHANNES, 32,-16711936,-12464471);
+        registerEntity("prehistoric_flora_titanichthys", EntityPrehistoricFloraTitanicthys.class, LepidodendronMod.ENTITY_TITANICTHYS, 32,-3355444,-4274237);
 
 
 

@@ -1,6 +1,8 @@
 
 package net.lepidodendron.world.dimension;
 
+import net.lepidodendron.block.BlockCoral;
+import net.lepidodendron.world.WorldGenReef;
 import org.jline.terminal.Size;
 
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -1056,8 +1058,7 @@ public class WorldDevonian extends ElementsLepidodendronMod.ModElement {
 								iblockstate1 = STONE;
 								if (Math.random() > 0.95 || (j1 < i - 10 && Math.random() > 0.5)) {
 									chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
-								}
-								else {
+								} else {
 									chunkPrimerIn.setBlockState(i1, j1, l, Blocks.SAND.getDefaultState());
 								}
 							} else {

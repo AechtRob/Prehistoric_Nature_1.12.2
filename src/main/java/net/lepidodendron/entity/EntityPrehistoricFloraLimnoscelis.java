@@ -2,16 +2,12 @@
 package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
-import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
-import net.lepidodendron.entity.ai.AmphibianWander;
-import net.lepidodendron.entity.base.EntityPrehistoricFloraAmphibianBase;
+import net.lepidodendron.entity.ai.*;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
-import net.minecraft.block.material.Material;
-import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraSwimmingAmphibianBase;
+import net.minecraft.entity.*;
+import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,15 +15,13 @@ import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.*;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import com.google.common.base.Predicate;
 
-public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmphibianBase {
+public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwimmingAmphibianBase {
 
 	public BlockPos currentTarget;
 	@SideOnly(Side.CLIENT)
@@ -35,29 +29,20 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmp
 
 	public EntityPrehistoricFloraLimnoscelis(World world) {
 		super(world);
-		setSize(0.99F, 0.8F);
+		setSize(0.7F, 0.8F);
 		experienceValue = 0;
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
 		minSize = 0.2F;
 		maxSize = 1.0F;
-		maxHealthAgeable = 36.0D;
+		maxHealthAgeable = 24.0D;
 	}
 
-	protected float getAISpeedAmphibian() {
+	protected float getAISpeedSwimmingAmphibian() {
+		if (this.isActuallyInWater()) {return 0.3f;}
 		return 0.25f;
 	}
-
-	private Animation animation = NO_ANIMATION;
-	private int animationTick;
-
-	public static final Animation ANIMATION_AMPHIBIAN_WANDER = Animation.create(20);
-	public static final Animation ANIMATION_AMPHIBIAN_YAWN = Animation.create(20);
-
-	private static final Animation[] ANIMATIONS = {ANIMATION_AMPHIBIAN_WANDER,ANIMATION_AMPHIBIAN_YAWN};
-
-	public AnimationAI currentAnim;
 
 	@Override
 	public int getAdultAge() {
@@ -67,48 +52,22 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmp
 	@Override
 	public int WaterDist() {return 10;}
 
-	@Override
-	public int getAnimationTick() {
-		return animationTick;
+	public AxisAlignedBB getAttackBoundingBox() {
+		float size = this.getRenderSizeModifier() * 0.25F;
+		return this.getEntityBoundingBox().grow(1.0F + size, 1.0F + size, 1.0F + size);
 	}
-
-	@Override
-	public void setAnimationTick(int tick)
-	{
-		animationTick = tick;
-	}
-
-	@Override
-	public Animation getAnimation()
-	{
-		return this.animation;
-	}
-
-	@Override
-	public void setAnimation(Animation animation)
-	{
-		if (animation == NO_ANIMATION){
-			onAnimationFinish(this.animation);
-			setAnimationTick(0);
-		}
-		this.animation = animation;
-	}
-
-	@Override
-	public Animation[] getAnimations()
-	{
-		return ANIMATIONS;
-	}
-
-	protected void onAnimationFinish(Animation animation)
-	{}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new AmphibianWander(this, 80));
-		tasks.addTask(1, new EntityAIWatchClosest(this, EntityPlayer.class, 8.0F));
-		tasks.addTask(1, new EntityAIWatchClosest(this, EntityPrehistoricFloraFishBase.class, 8.0F));
-		tasks.addTask(1, new EntityAIWatchClosest(this, EntityPrehistoricFloraAmphibianBase.class, 8.0F));
-		tasks.addTask(2, new EntityAILookIdle(this));
+		tasks.addTask(0, new AttackAI(this, 1.0D, false));
+		tasks.addTask(1, new AmphibianWander(this, NO_ANIMATION));
+		tasks.addTask(2, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+		tasks.addTask(2, new EntityAIWatchClosest(this, EntityPrehistoricFloraFishBase.class, 8.0F));
+		tasks.addTask(2, new EntityAIWatchClosest(this, EntityPrehistoricFloraAgeableBase.class, 8.0F));
+		tasks.addTask(3, new EntityAILookIdle(this));
+		this.targetTasks.addTask(0, new EatFishItemsAI(this));
+		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+		this.targetTasks.addTask(2, new HuntAI(this, EntityPlayer.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
+		this.targetTasks.addTask(3, new HuntAI(this, EntityPrehistoricFloraFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 	}
 
 	@Override
@@ -129,18 +88,14 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmp
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		//this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(35.0D);
+		this.getAttributeMap().registerAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
+		this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE).setBaseValue(3.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 	}
 
 	@Override
 	protected boolean canTriggerWalking() {
 		return false;
-	}
-
-	@Override
-	public boolean isInWater() {
-		return super.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
 	}
 
 	//@Override
@@ -214,13 +169,18 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmp
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 		this.renderYawOffset = this.rotationYaw;
+		//System.err.println(this.getAnimationTick());
+		if (this.getAnimation() == ATTACK_ANIMATION && this.getAnimationTick() == 5 && this.getAttackTarget() != null) {
+			launchAttack();
+		}
 	}
 
-	public void onEntityUpdate()
-	{
-		super.onEntityUpdate();
-
-
+	@Override
+	public boolean attackEntityAsMob(Entity entity) {
+		if (this.getAnimation() == NO_ANIMATION) {
+			this.setAnimation(ATTACK_ANIMATION);
+		}
+		return false;
 	}
 
 	public boolean isDirectPathBetweenPoints(Vec3d vec1, Vec3d vec2) {
@@ -232,46 +192,6 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraAmp
 	protected Item getDropItem() {
 		return null;
 		//return new ItemStack(ItemEurypterusMeat.block, (int) (1)).getItem();
-	}
-
-	@Override
-	public void travel(float strafe, float vertical, float forward) {
-		float f4;
-		if (this.isServerWorld()) {
-			if (this.isInWater()) {
-				this.moveRelative(strafe, vertical, forward, 0.1F);
-				f4 = 0.8F;
-				float speedModifier = (float) EnchantmentHelper.getDepthStriderModifier(this);
-				if (speedModifier > 3.0F) {
-					speedModifier = 3.0F;
-				}
-				if (!this.onGround) {
-					speedModifier *= 0.5F;
-				}
-				if (speedModifier > 0.0F) {
-					f4 += (0.54600006F - f4) * speedModifier / 3.0F;
-				}
-				this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
-				this.motionX *= f4;
-				this.motionX *= 0.9;
-				this.motionY *= 0.9;
-				this.motionY *= f4;
-				this.motionZ *= 0.9;
-				this.motionZ *= f4;
-			} else {
-				super.travel(strafe, vertical, forward);
-			}
-		}
-		this.prevLimbSwingAmount = this.limbSwingAmount;
-		double deltaX = this.posX - this.prevPosX;
-		double deltaZ = this.posZ - this.prevPosZ;
-		double deltaY = this.posY - this.prevPosY;
-		float delta = MathHelper.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ) * 4.0F;
-		if (delta > 1.0F) {
-			delta = 1.0F;
-		}
-		this.limbSwingAmount += (delta - this.limbSwingAmount) * 0.4F;
-		this.limbSwing += this.limbSwingAmount;
 	}
 
 }

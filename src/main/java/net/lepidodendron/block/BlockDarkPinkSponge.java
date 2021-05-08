@@ -92,14 +92,18 @@ public class BlockDarkPinkSponge extends ElementsLepidodendronMod.ModElement {
 		) {
 			biomeCriteria = true;
 		}
+		if ((dimID == LepidodendronConfig.dimPrecambrian)
+				|| (dimID == LepidodendronConfig.dimDevonian)
+				|| (dimID == LepidodendronConfig.dimCarboniferous)
+		) {
+			biomeCriteria = false;
+		}
 		if (!biomeCriteria)
 			return;
 
 		int multiplier = 1;
-		if ((dimID == LepidodendronConfig.dimDevonian)
-				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
-				|| (dimID == LepidodendronConfig.dimCarboniferous)
-		) {
+		if (dimID == LepidodendronConfig.dimOrdovicianSilurian)
+		 {
 			multiplier = 2;
 		}
 		if (dimID == LepidodendronConfig.dimCambrian)

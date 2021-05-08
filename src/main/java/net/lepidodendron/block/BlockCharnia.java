@@ -5,6 +5,7 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.creativetab.TabLepidodendron;
 import net.lepidodendron.world.AlgaeGenerator;
+import net.lepidodendron.world.CharniaGenerator;
 import net.minecraft.block.*;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -21,6 +22,9 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -61,6 +65,7 @@ public class BlockCharnia extends ElementsLepidodendronMod.ModElement {
 	}
 
 	public static final PropertyInteger LEVEL = PropertyInteger.create("level", 0, 15);
+	public static final PropertyDirection FACING = BlockDirectional.FACING;
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -70,7 +75,17 @@ public class BlockCharnia extends ElementsLepidodendronMod.ModElement {
 		ModelLoader.setCustomStateMapper(block, (new StateMap.Builder()).ignore(BlockCharnia.LEVEL).build());
 	}
 
-	public static class BlockCustom extends Block implements net.minecraftforge.common.IShearable, ITileEntityProvider {
+	@Override
+	public void generateWorld(Random random, int chunkX, int chunkZ, World world, int dimID, IChunkGenerator cg, IChunkProvider cp) {
+		for (int i = 0; i < (int) 48; i++) {
+			int l6 = chunkX + random.nextInt(16) + 8;
+			int i11 = random.nextInt(world.getSeaLevel()+1);
+			int l14 = chunkZ + random.nextInt(16) + 8;
+			(new CharniaGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14));
+		}
+	}
+
+	public static class BlockCustom extends Block implements net.minecraftforge.common.IShearable {
 
 		public BlockCustom() {
 			super(Material.WATER);
@@ -86,8 +101,44 @@ public class BlockCharnia extends ElementsLepidodendronMod.ModElement {
 		}
 
 		@Override
-		public boolean hasTileEntity() {
-			return true;
+		public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos) {
+			return state.withProperty(LEVEL, 0);
+		}
+
+		@Override
+		public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
+			//System.err.println("Placed by: " + placer);
+			return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());
+		}
+
+		@Override
+		public IBlockState getStateFromMeta(int meta)
+		{
+			EnumFacing enumfacing = EnumFacing.byIndex(meta);
+
+			if (enumfacing.getAxis() == EnumFacing.Axis.Y)
+			{
+				enumfacing = EnumFacing.NORTH;
+			}
+
+			return this.getDefaultState().withProperty(FACING, enumfacing);
+		}
+
+		@Override
+		public int getMetaFromState(IBlockState state)
+		{
+			return ((EnumFacing)state.getValue(FACING)).getIndex();
+		}
+
+		@Override
+		public IBlockState withRotation(IBlockState state, Rotation rot) {
+			return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
+		}
+
+		@SuppressWarnings("deprecation")
+		@Override
+		public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
+			return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 		}
 
 		@Override
@@ -97,9 +148,19 @@ public class BlockCharnia extends ElementsLepidodendronMod.ModElement {
 			return tileentity == null ? false : tileentity.receiveClientEvent(eventID, eventParam);
 		}
 
+		@Nullable
 		@Override
-		public TileEntity createNewTileEntity(World worldIn, int meta) {
-			return new BlockCharnia.TileEntityCustom();
+		public TileEntity createTileEntity(World world, IBlockState state) {
+			return new TileEntityCustom();
+		}
+
+		public TileEntityCustom createNewTileEntity(World worldIn, int meta) {
+			return new TileEntityCustom();
+		}
+
+		@Override
+		public boolean hasTileEntity(IBlockState state) {
+			return true;
 		}
 
 		@Override
@@ -116,20 +177,9 @@ public class BlockCharnia extends ElementsLepidodendronMod.ModElement {
 			super.breakBlock(world, pos, state);
 		}
 
-
 		@Override
 		protected BlockStateContainer createBlockState() {
-			return new BlockStateContainer(this, new IProperty[]{LEVEL});
-		}
-
-		@Override
-		public IBlockState getStateFromMeta(int meta) {
-			return this.getDefaultState();
-		}
-
-		@Override
-		public int getMetaFromState(IBlockState state) {
-			return 0;
+			return new BlockStateContainer(this, new IProperty[]{LEVEL, FACING});
 		}
 
 		@Override

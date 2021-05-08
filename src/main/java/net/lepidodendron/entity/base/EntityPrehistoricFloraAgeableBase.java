@@ -1,32 +1,100 @@
 package net.lepidodendron.entity.base;
 
+import net.ilexiconn.llibrary.server.animation.Animation;
+import net.ilexiconn.llibrary.server.animation.AnimationHandler;
+import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
+import net.lepidodendron.LepidodendronConfig;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 
-public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable {
+public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable implements IAnimatedEntity  {
 
     private static final DataParameter<Integer> AGETICKS = EntityDataManager.createKey(EntityPrehistoricFloraAgeableBase.class, DataSerializers.VARINT);
+    private static final DataParameter<Boolean> HUNTING = EntityDataManager.createKey(EntityPrehistoricFloraAgeableBase.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Boolean> RESENTFUL = EntityDataManager.createKey(EntityPrehistoricFloraAgeableBase.class, DataSerializers.BOOLEAN);
     public float minSize;
     public float maxSize;
     public double maxHealthAgeable;
+    private int animationTick;
+    public Animation ATTACK_ANIMATION;
+    public Animation ROAR_ANIMATION;
+    private Animation currentAnimation;
+    //private Animation currentAnimation = NO_ANIMATION;
 
     public EntityPrehistoricFloraAgeableBase(World worldIn) {
         super(worldIn);
         this.setScaleForAge(false);
+        ATTACK_ANIMATION = Animation.create(this.getAttackLength());
+        ROAR_ANIMATION = Animation.create(this.getRoarLength());
+    }
+
+    public int getAttackLength() {
+        return 10;
+    }
+
+    public int getRoarLength() {
+        return 20;
+    }
+
+    @Override
+    public int getAnimationTick() {
+        return animationTick;
+    }
+
+    @Override
+    public void setAnimationTick(int tick) {
+        animationTick = tick;
+    }
+
+    @Override
+    public Animation getAnimation() {
+        return currentAnimation == null ? NO_ANIMATION : currentAnimation;
+    }
+
+    @Override
+    public void setAnimation(Animation animation)
+    {
+        currentAnimation = animation;
+    }
+
+    @Override
+    public Animation[] getAnimations() {
+        return new Animation[]{ATTACK_ANIMATION};
     }
 
     @Override
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(AGETICKS, 0);
+        this.dataManager.register(HUNTING, false);
+        this.dataManager.register(RESENTFUL, false);
+    }
+
+    public void launchAttack() {
+        IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
+        if (getAttackTarget() != null) {
+            boolean b = this.getAttackTarget().attackEntityFrom(DamageSource.causeMobDamage(this), (float) iattributeinstance.getAttributeValue());
+        }
+    }
+
+    public AxisAlignedBB getAttackBoundingBox() {
+        float size = this.getRenderSizeModifier() * 0.25F;
+        return this.getEntityBoundingBox().grow(1.0F + size, 1.0F + size, 1.0F + size);
     }
 
     @Override
@@ -42,6 +110,22 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable {
         this.dataManager.set(AGETICKS, ageticks);
     }
 
+    public boolean getWillHunt() {
+        return this.dataManager.get(HUNTING);
+    }
+
+    public void setWillHunt(boolean willHunt) {
+        this.dataManager.set(HUNTING, willHunt);
+    }
+
+    public boolean getResentful() {
+        return this.dataManager.get(RESENTFUL);
+    }
+
+    public void setResentful(boolean isResentful) {
+        this.dataManager.set(RESENTFUL, isResentful);
+    }
+
     public double getMaxHealthAgeable()
     {
         return maxHealthAgeable;
@@ -53,6 +137,7 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable {
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         livingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setAgeTicks(this.getAdultAge()-1);
+        this.setResentful(false);
         this.heal(this.getMaxHealth());
         this.setNoAI(false);
         return livingdata;
@@ -76,12 +161,20 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable {
     {
         super.writeEntityToNBT(compound);
         compound.setInteger("AgeTicks", this.getAgeTicks());
+        compound.setBoolean("isResentful", this.getResentful());
     }
 
     //@Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setAgeTicks(compound.getInteger("AgeTicks"));
+        this.setResentful(compound.getBoolean("isResentful"));
+    }
+
+    @Override
+    public void onUpdate() {
+        super.onUpdate();
+        AnimationHandler.INSTANCE.updateAnimations(this);
     }
 
     public void onEntityUpdate()
@@ -124,6 +217,24 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable {
         //System.err.println("New Health Max: " + newHealthMax);
         //System.err.println("New Health: " + newHealth);
 
+        double aHealth = (double) LepidodendronConfig.attackHealth;
+        if (aHealth > 100) {aHealth = 100;}
+        if (aHealth < 0) {aHealth = 0;}
+        aHealth = aHealth/100D;
+        this.setWillHunt(oldHealthRatio < (float) aHealth);
+
+    }
+
+    public void eatItem(ItemStack stack) {
+        if (stack != null && stack.getItem() != null) {
+            this.setHealth(Math.min(this.getHealth() + 0.5F, (float) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue()));
+            stack.shrink(1);
+            if (this.getAnimation() == NO_ANIMATION) {
+                SoundEvent soundevent = SoundEvents.ENTITY_GENERIC_EAT;
+                this.getEntityWorld().playSound(null, this.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+                this.setAnimation(ATTACK_ANIMATION);
+            }
+        }
     }
 
 }

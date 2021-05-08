@@ -108,6 +108,9 @@ public class BlockGreenCharaAlgae extends ElementsLepidodendronMod.ModElement {
 		if (dimID == LepidodendronConfig.dimCambrian) {
 			biomeCriteria = false;
 		}
+		if (dimID == LepidodendronConfig.dimPrecambrian) {
+			biomeCriteria = false;
+		}
 		if (!biomeCriteria)
 			return;
 

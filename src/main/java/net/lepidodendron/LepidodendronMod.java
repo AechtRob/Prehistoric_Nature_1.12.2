@@ -136,7 +136,9 @@ public class LepidodendronMod {
 	public static final int ENTITY_PALAEODICTYOPTERA_STENODICTYA = 54;
 	public static final ResourceLocation PALAEODICTYOPTERA_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/palaeodictyoptera"));
 	public static final int ENTITY_JELLYFISH_PRECAMBRIAN = 55;
-
+	public static final int ENTITY_SCHINDERHANNES = 56;
+	public static final ResourceLocation SCHINDERHANNES_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/schinderhannes"));
+	public static final int ENTITY_TITANICTHYS = 57;
 
 
 	@Mod.EventHandler

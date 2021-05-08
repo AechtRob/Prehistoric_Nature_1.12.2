@@ -193,13 +193,13 @@ public class ModelLimnoscelis extends AdvancedModelBase {
         this.Head.addChild(this.Lowerjaw1);
         this.Upperjaw2.addChild(this.Upperteeth2);
 
-        animator = ModelAnimator.create();
         updateDefaultPose();
+        animator = ModelAnimator.create();
     }
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-
+        animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
         this.Hips.render(f5 * 0.5f);
     }
 
@@ -215,7 +215,11 @@ public class ModelLimnoscelis extends AdvancedModelBase {
         this.resetToDefaultPose();
         this.Hips.offsetY = 0.73F; //72
 
-        if (f3 == 0.0F) {return;}
+        if (f3 == 0.0F) {
+            return;
+        }
+
+        this.faceTarget(f3, f4, 2, Head);
 
         float speed = 0.2F;
         AdvancedModelRenderer[] Tail = {this.Tail1, this.Tail2, this.Tail3};
@@ -262,5 +266,21 @@ public class ModelLimnoscelis extends AdvancedModelBase {
         this.chainWave(Tail, speed, 0.05F, -3, f2, 1);
         this.chainSwing(Tail, speed, 0.3F, -3, f2, 0.8F);
         this.chainSwing(Torso, speed, 0.1F, -3, f2, 1);
+    }
+
+    public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
+        EntityPrehistoricFloraLimnoscelis e = (EntityPrehistoricFloraLimnoscelis) entity;
+        animator.update(entity);
+        this.resetToDefaultPose();
+        setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
+
+        animator.setAnimation(e.ATTACK_ANIMATION);
+        animator.startKeyframe(20);
+        animator.move(this.Hips,0,5f,0);
+        animator.rotate(this.Head, (float) Math.toRadians(-15), (float) Math.toRadians(0), (float) Math.toRadians(0));
+        animator.rotate(this.Lowerjaw1, (float) Math.toRadians(30), (float) Math.toRadians(0), (float) Math.toRadians(0));
+        animator.endKeyframe();
+        animator.resetKeyframe(20);
+        animator.resetKeyframe(1);
     }
 }

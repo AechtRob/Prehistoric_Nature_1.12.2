@@ -2,27 +2,24 @@ package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
-import net.lepidodendron.entity.base.EntityPrehistoricFloraAmphibianBase;
-import net.lepidodendron.entity.base.EntityPrehistoricFloraHibbertopterusBase;
-import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteBottomBase;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraWalkingAmphibianBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.RandomPositionGenerator;
 import net.minecraft.pathfinding.Path;
-import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 
 import java.util.Random;
 
 //public class FishWander extends EntityAIBase {
-public class HibbertopterusWander extends AnimationAI<EntityPrehistoricFloraHibbertopterusBase> {
+public class HibbertopterusWander extends AnimationAI<EntityPrehistoricFloraWalkingAmphibianBase> {
 
     protected float probability;
     protected Animation animation;
-    protected EntityPrehistoricFloraHibbertopterusBase PrehistoricFloraHibbertopterusBase;
+    protected EntityPrehistoricFloraWalkingAmphibianBase PrehistoricFloraHibbertopterusBase;
 
-    public HibbertopterusWander(EntityPrehistoricFloraHibbertopterusBase PrehistoricFloraHibbertopterusBase, Animation animation)
+    public HibbertopterusWander(EntityPrehistoricFloraWalkingAmphibianBase PrehistoricFloraHibbertopterusBase, Animation animation)
     {
         super(PrehistoricFloraHibbertopterusBase);
         setMutexBits(1);

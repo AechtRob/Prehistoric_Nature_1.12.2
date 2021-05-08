@@ -4,7 +4,6 @@ package net.lepidodendron.block;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.world.RugosaGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.BlockLiquid;
@@ -32,6 +31,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.feature.WorldGenReed;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.BiomeDictionary;
@@ -73,6 +73,13 @@ public class BlockRugosa1 extends ElementsLepidodendronMod.ModElement {
 		int weight = LepidodendronConfig.weightRugosa;
 		if (weight > 100) {weight = 100;}
 		if (weight < 0) {weight = 0;}
+		if (dimID == LepidodendronConfig.dimDevonian
+				|| dimID == LepidodendronConfig.dimOrdovicianSilurian
+				|| dimID == LepidodendronConfig.dimCarboniferous
+				|| dimID == LepidodendronConfig.dimPermian
+		)
+			weight = 100; //Full scale populations in these dims
+
 		if (Math.random() < ((double) (100 - (double) weight)/100)) {
 			return;
 		}
@@ -89,6 +96,12 @@ public class BlockRugosa1 extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genRugosaOverrideBiomes))
 			biomeCriteria = true;
+		if (dimID == LepidodendronConfig.dimDevonian
+				|| dimID == LepidodendronConfig.dimOrdovicianSilurian
+				|| dimID == LepidodendronConfig.dimCarboniferous
+				|| dimID == LepidodendronConfig.dimPermian
+		)
+			biomeCriteria = true;
 		if (!biomeCriteria)
 			return;
 
@@ -99,14 +112,93 @@ public class BlockRugosa1 extends ElementsLepidodendronMod.ModElement {
 		) {
 			multiplier = 2;
 		}
-		int minWaterDepth = 4;
-		int waterDepthCheckMax = 15;
-		int startHeight = world.getSeaLevel() - waterDepthCheckMax;
-		for (int i = 0; i < (int) 10 * multiplier; i++) {
+		int dimWeight = 1;
+		if ((dimID == LepidodendronConfig.dimCarboniferous)
+				|| (dimID == LepidodendronConfig.dimPermian)) {
+			dimWeight = 2;
+		}
+		int minWaterDepth = 4 * dimWeight;
+		int maxWaterDepth = 15 * dimWeight;
+		int startHeight = world.getSeaLevel() - maxWaterDepth;
+
+		for (int i = 0; i < (12 * multiplier); i++) {
 			int l6 = chunkX + random.nextInt(16) + 8;
-			int i11 = random.nextInt(128 - startHeight) + startHeight;
+			int i11 = random.nextInt(world.getSeaLevel() - startHeight) + startHeight;
 			int l14 = chunkZ + random.nextInt(16) + 8;
-			(new RugosaGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14), minWaterDepth, waterDepthCheckMax);
+			(new WorldGenReed() {
+				@Override
+				public boolean generate(World world, Random random, BlockPos pos) {
+					for (int i = 0; i < 40; ++i) {
+						BlockPos blockpos1 = pos.add(random.nextInt(4) - random.nextInt(4), 0, random.nextInt(4) - random.nextInt(4));
+
+						boolean waterDepthCheckMax = false;
+						boolean waterDepthCheckMin = true;
+						//find air within the right depth
+						int yy = 1;
+						while (yy <= maxWaterDepth + 1 && !waterDepthCheckMax) {
+							if ((world.getBlockState(blockpos1.add(0, yy, 0)).getMaterial() != Material.AIR)
+									&& ((world.getBlockState(blockpos1.add(0, yy, 0)).getMaterial() != Material.WATER))) {
+								yy = maxWaterDepth + 1;
+							} else if ((world.getBlockState(blockpos1.add(0, yy, 0)).getMaterial() == Material.AIR)
+									&& (i11 + yy >= world.getSeaLevel())) {
+								waterDepthCheckMax = true;
+							}
+							yy += 1;
+						}
+						//Check that at least enough water is over the position:
+						yy = 1;
+						while (yy <= minWaterDepth && waterDepthCheckMin) {
+							if (world.getBlockState(blockpos1.add(0, yy, 0)).getMaterial() != Material.WATER) {
+								waterDepthCheckMin = false;
+							}
+							yy += 1;
+						}
+
+						//figure out a position and facing to place this at!
+						//First try regular uprights and then the rotations:
+						EnumFacing enumfacing = EnumFacing.UP;
+						BlockPos pos1 = blockpos1.down();
+						if (waterDepthCheckMin & waterDepthCheckMax) {
+							if ((world.getBlockState(pos1).getMaterial() == Material.SAND)
+									|| (world.getBlockState(pos1).getMaterial() == Material.ROCK)
+									|| (world.getBlockState(pos1).getMaterial() == Material.GROUND)
+									|| (world.getBlockState(pos1).getMaterial() == Material.CORAL)
+									|| (world.getBlockState(pos1).getMaterial() == Material.CLAY)) {
+								world.setBlockState(blockpos1, block.getDefaultState().withProperty(BlockRugosa1.BlockCustom.FACING, enumfacing), 2);
+								return true;
+							} else {
+								for (EnumFacing enumfacing1 : BlockRugosa1.BlockCustom.FACING.getAllowedValues()) {
+									pos1 = blockpos1;
+									if (enumfacing1 == EnumFacing.NORTH) {
+										pos1 = blockpos1.add(0, 0, 1);
+									}
+									if (enumfacing1 == EnumFacing.SOUTH) {
+										pos1 = blockpos1.add(0, 0, -1);
+									}
+									if (enumfacing1 == EnumFacing.EAST) {
+										pos1 = blockpos1.add(-1, 0, 0);
+									}
+									if (enumfacing1 == EnumFacing.WEST) {
+										pos1 = blockpos1.add(1, 0, 0);
+									}
+									if (enumfacing1 != EnumFacing.DOWN && ((world.getBlockState(pos1).getMaterial() == Material.SAND)
+											|| (world.getBlockState(pos1).getMaterial() == Material.ROCK)
+											|| (world.getBlockState(pos1).getMaterial() == Material.GROUND)
+											|| (world.getBlockState(pos1).getMaterial() == Material.CLAY)
+											|| (world.getBlockState(pos1).getMaterial() == Material.GLASS)
+											|| (world.getBlockState(pos1).getMaterial() == Material.CORAL)
+											|| (world.getBlockState(pos1).getMaterial() == Material.IRON)
+											|| (world.getBlockState(pos1).getMaterial() == Material.WOOD))) {
+										world.setBlockState(blockpos1, block.getDefaultState().withProperty(BlockRugosa1.BlockCustom.FACING, enumfacing1), 2);
+										return true;
+									}
+								}
+							}
+						}
+					}
+					return true;
+				}
+			}).generate(world, random, new BlockPos(l6, i11, l14));
 		}
 	}
 
@@ -371,7 +463,12 @@ public class BlockRugosa1 extends ElementsLepidodendronMod.ModElement {
 	        return true;
 	    }
 
-	    //@Override
+		public boolean canBlockStay(World worldIn, BlockPos pos)
+		{
+			return this.canPlaceBlockAt(worldIn, pos);
+		}
+
+		//@Override
 		public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 		{
 

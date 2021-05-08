@@ -11,7 +11,7 @@ public class RenderLimnoscelis extends RenderLiving<EntityPrehistoricFloraLimnos
     private static final ResourceLocation TEXTURE = new ResourceLocation(LepidodendronMod.MODID + ":textures/entities/limnoscelis.png");
 
     public RenderLimnoscelis(RenderManager mgr) {
-        super(mgr, new ModelLimnoscelis(), 1.0f);
+        super(mgr, new ModelLimnoscelis(), 0.5f);
     }
 
     @Override

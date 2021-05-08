@@ -70,7 +70,8 @@ public class BiomeOrdovicianSilurianLand extends ElementsLepidodendronMod.ModEle
 		protected static final WorldGenNematophyta NEMATOPHYTA_GENERATOR = new WorldGenNematophyta();
 		protected static final WorldGenAncientMoss ANCIENT_MOSS_GENERATOR = new WorldGenAncientMoss();
 		protected static final WorldGenBaragwanathia BARAGWANATHIA_GENERATOR = new WorldGenBaragwanathia();
-		
+		protected static final WorldGenReef REEF_GENERATOR = new WorldGenReef();
+
 		public WorldGenAbstractTree getRandomTreeFeature(Random rand)
 	    {
 	        return ARCHAEOPTERIS_TREE;
@@ -486,6 +487,23 @@ public class BiomeOrdovicianSilurianLand extends ElementsLepidodendronMod.ModEle
 	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
 	            BARAGWANATHIA_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.CLAY))
+				for (int i = 0; i < 8; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					BlockPos pos1 = pos.add(j, l, k);
+					if (
+							(pos1.getY() < worldIn.getSeaLevel() - 5)
+									&& (worldIn.getBlockState(pos1).getMaterial() == Material.WATER)
+									&& (worldIn.getBlockState(pos1.up()).getMaterial() == Material.WATER)
+									&& (worldIn.getBlockState(pos1.up(2)).getMaterial() == Material.WATER)
+					) {
+						REEF_GENERATOR.generate(worldIn, rand, pos1, 20);
+					}
+				}
 
 	        super.decorate(worldIn, rand, pos);
 	    }
