@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.base;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
-import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
 import net.lepidodendron.entity.util.PathNavigateAmphibian;
 import net.lepidodendron.entity.util.PathNavigateAmphibianFindWater;
 import net.minecraft.block.material.Material;
@@ -45,7 +44,8 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
     protected boolean isSeekingWater;
     protected void initEntityAI() {}
 
-    protected void selectNavigator () {
+    @Override
+    public void selectNavigator () {
         if (this.isInWater() && !this.isWaterNavigator) {
             this.moveHelper = new EntityPrehistoricFloraSwimmingAmphibianBase.SwimmingMoveHelper();
             this.navigator = new PathNavigateSwimmer(this, world);

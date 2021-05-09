@@ -22,4 +22,10 @@ public class HuntAI<T extends EntityLivingBase> extends EntityAINearestAttackabl
         return super.shouldExecute();
     }
 
+    @Override
+    public void updateTask() {
+        if (!this.entity.world.isRemote) {this.entity.selectNavigator();}
+        super.updateTask();
+        }
+
 }

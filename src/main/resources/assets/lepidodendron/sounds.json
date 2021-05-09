@@ -115,5 +115,65 @@
         "stream": false
       }
     ]
+  },
+  
+  "limnoscelis_idle": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:limnoscelis_living01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:limnoscelis_living02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:limnoscelis_living03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:limnoscelis_living04",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:limnoscelis_living05",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:limnoscelis_living06",
+        "stream": false
+      }
+    ]
+  },
+  "limnoscelis_hurt": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:limnoscelis_hurt01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:limnoscelis_hurt02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:limnoscelis_hurt03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:limnoscelis_hurt04",
+        "stream": false
+      }
+    ]
+  },
+  "limnoscelis_death": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:limnoscelis_death",
+        "stream": false
+      }
+    ]
   }
 }

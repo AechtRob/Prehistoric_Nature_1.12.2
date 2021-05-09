@@ -7,6 +7,7 @@ import net.lepidodendron.item.ItemBucketQilinyu;
 import net.lepidodendron.item.ItemBucketSpawnLimnoscelis;
 import net.lepidodendron.item.ItemDiaphorodendronSpores;
 import net.lepidodendron.item.ItemSporeCollectionEnvelope;
+import net.lepidodendron.world.MobSpawnGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
@@ -71,7 +72,7 @@ public class BlockAmphibianSpawnLimnoscelis extends ElementsLepidodendronMod.Mod
 			int l6 = chunkX + random.nextInt(16) + 8;
 			int i11 = random.nextInt(128 - startHeight) + startHeight;
 			int l14 = chunkZ + random.nextInt(16) + 8;
-			//(new MobSpawnGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14), minWaterDepth, waterDepthCheckMax);
+			(new MobSpawnGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14), minWaterDepth, waterDepthCheckMax);
 		}
 	}
 	

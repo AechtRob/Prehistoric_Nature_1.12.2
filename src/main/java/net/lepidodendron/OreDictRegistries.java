@@ -18,6 +18,7 @@
 package net.lepidodendron;
 
 import net.lepidodendron.item.entities.*;
+import net.minecraft.init.Items;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 
 import net.minecraftforge.oredict.OreDictionary;
@@ -123,6 +124,14 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 			}
 		} catch (Exception e) {
 		}
+
+		OreDictionary.registerOre("listAllfishraw", Items.FISH);
+		OreDictionary.registerOre("listAllmeatraw", Items.FISH);
+		OreDictionary.registerOre("foodMeat", Items.FISH);
+		OreDictionary.registerOre("listAllfishcooked", Items.COOKED_FISH);
+		OreDictionary.registerOre("foodCooked", Items.COOKED_FISH);
+		OreDictionary.registerOre("foodMeat", Items.COOKED_FISH);
+		OreDictionary.registerOre("listAllmeatcooked", Items.COOKED_FISH);
 
 		OreDictionary.registerOre("listAllfishraw", ItemAcanthodesRaw.block);
 		OreDictionary.registerOre("listAllmeatraw", ItemAcanthodesRaw.block);

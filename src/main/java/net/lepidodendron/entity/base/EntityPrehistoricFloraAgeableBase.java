@@ -4,6 +4,8 @@ import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.entity.util.PathNavigateAmphibian;
+import net.lepidodendron.entity.util.PathNavigateAmphibianFindWater;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.passive.EntityTameable;
@@ -13,6 +15,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
+import net.minecraft.pathfinding.PathNavigateSwimmer;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -44,11 +48,11 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
     }
 
     public int getAttackLength() {
-        return 10;
+        return 20;
     }
 
     public int getRoarLength() {
-        return 20;
+        return 60;
     }
 
     @Override
@@ -75,6 +79,10 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
     @Override
     public Animation[] getAnimations() {
         return new Animation[]{ATTACK_ANIMATION};
+    }
+
+    public SoundEvent getSoundForAnimation(Animation animation) {
+        return null;
     }
 
     @Override
@@ -143,6 +151,12 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
         return livingdata;
     }
 
+    public void selectNavigator() {
+        //Used for complex navigation only
+        this.moveHelper = this.getMoveHelper();
+        this.navigator = this.getNavigator();
+    }
+
     @Override
     public void setScaleForAge(boolean child) {
         this.setScale(this.getAgeScale() * 0.9F);
@@ -172,13 +186,30 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
     }
 
     @Override
+    public boolean attackEntityFrom(DamageSource ds, float i) {
+        if (ds == DamageSource.IN_WALL) {
+            return false;
+        }
+        if (this.getHurtSound(DamageSource.GENERIC) != null && i >= 1 && ds != DamageSource.IN_WALL) {
+            if (this.getAnimation() != null) {
+                if (this.getAnimation() == NO_ANIMATION && world.isRemote) {
+                    this.setAnimation(ROAR_ANIMATION);
+                    //System.err.println("Hit");
+                }
+            }
+        }
+        return super.attackEntityFrom(ds, i);
+    }
+
+    @Override
     public void onUpdate() {
         super.onUpdate();
-        AnimationHandler.INSTANCE.updateAnimations(this);
+        //AnimationHandler.INSTANCE.updateAnimations(this);
     }
 
     public void onEntityUpdate()
     {
+        AnimationHandler.INSTANCE.updateAnimations(this);
         super.onEntityUpdate();
 
         if (world.isRemote) {
@@ -229,10 +260,11 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
         if (stack != null && stack.getItem() != null) {
             this.setHealth(Math.min(this.getHealth() + 0.5F, (float) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue()));
             stack.shrink(1);
-            if (this.getAnimation() == NO_ANIMATION) {
+            if (this.getAnimation() == NO_ANIMATION && !world.isRemote) {
+                this.setAnimation(ATTACK_ANIMATION);
+                //AnimationHandler.INSTANCE.sendAnimationMessage(this, ATTACK_ANIMATION);
                 SoundEvent soundevent = SoundEvents.ENTITY_GENERIC_EAT;
                 this.getEntityWorld().playSound(null, this.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
-                this.setAnimation(ATTACK_ANIMATION);
             }
         }
     }

@@ -61,6 +61,7 @@ public class AttackAI extends EntityAIBase {
     @Override
     public void updateTask() {
         EntityLivingBase target = this.entity.getAttackTarget();
+        if (!this.entity.world.isRemote) {this.entity.selectNavigator();}
         if (target == null) {
             return;
         }

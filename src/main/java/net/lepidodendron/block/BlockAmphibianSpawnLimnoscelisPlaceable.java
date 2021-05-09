@@ -82,14 +82,13 @@ public class BlockAmphibianSpawnLimnoscelisPlaceable extends ElementsLepidodendr
 		public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) 
 		{
 			super.updateTick(worldIn, pos, state, rand);
-			//Randomly spawn a matching creature:
 			if (!(worldIn.isRemote)) {
-				//Entity entity = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraLimnoscelis.class), pos.getX(), pos.getY(), pos.getZ());
-				//if (entity != null) {
-				//	EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) entity;
-				//	ee.setAgeTicks(0);
-				//	worldIn.destroyBlock(pos, false);
-				//}
+				Entity entity = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraLimnoscelis.class), pos.getX(), pos.getY(), pos.getZ());
+				if (entity != null) {
+					EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) entity;
+					ee.setAgeTicks(0);
+					worldIn.destroyBlock(pos, false);
+				}
 			}
 		}
 

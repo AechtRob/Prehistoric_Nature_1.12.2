@@ -215,9 +215,7 @@ public class ModelLimnoscelis extends AdvancedModelBase {
         this.resetToDefaultPose();
         this.Hips.offsetY = 0.73F; //72
 
-        if (f3 == 0.0F) {
-            return;
-        }
+        EntityPrehistoricFloraLimnoscelis Limnoscelis = (EntityPrehistoricFloraLimnoscelis) e;
 
         this.faceTarget(f3, f4, 2, Head);
 
@@ -225,47 +223,100 @@ public class ModelLimnoscelis extends AdvancedModelBase {
         AdvancedModelRenderer[] Tail = {this.Tail1, this.Tail2, this.Tail3};
         AdvancedModelRenderer[] Torso = {this.Head, this.Neck, this.Bodyfront, this.Belly, this.Hips};
 
-        ////this.flap(Leftthigh, speed, 0.65F, false, -3, -0.35F, f2, 0.5F);
-        this.flap(Leftthigh, speed, 0.45F, false, -3, -0.35F, f2, 0.5F);
-        ////this.swing(Leftthigh, speed, -0.3F, true, -1, 0.25F, f2, 0.5F);
-        this.swing(Leftthigh, speed, -0.5F, true, -1, 1F, f2, 0.5F);
-        this.walk(Leftshin, speed, -0.6F, true, -3, 0.0F, f2, 0.8F);
-        //this.flap(Lefthindfoot, speed, 0.5F, false, 3, 0.4F, f2, 0.3F);
-        //this.walk(Lefthindfoot, speed, 0.8F, false, 3, 0.4F, f2, 0.5F);
-        //this.swing(Lefthindfoot, speed, 0.4F, false, 3, 0F, f2, 0.5F);
-        this.flap(Lefthindfoot, speed, 0.5F, false, 0, 0.4F, f2, 0.3F);
-        this.walk(Lefthindfoot, speed, 0.8F, false, 0, 0.4F, f2, 0.5F);
-        this.swing(Lefthindfoot, speed, 0.4F, false, 0, 0F, f2, 0.5F);
+        if (!Limnoscelis.isActuallyInWater()) {
+            if (f3 == 0.0F) {
+                return;
+            }
+            ////this.flap(Leftthigh, speed, 0.65F, false, -3, -0.35F, f2, 0.5F);
+            this.flap(Leftthigh, speed, 0.45F, false, -3, -0.35F, f2, 0.5F);
+            ////this.swing(Leftthigh, speed, -0.3F, true, -1, 0.25F, f2, 0.5F);
+            this.swing(Leftthigh, speed, -0.5F, true, -1, 1F, f2, 0.5F);
+            this.walk(Leftshin, speed, -0.6F, true, -3, 0.0F, f2, 0.8F);
+            //this.flap(Lefthindfoot, speed, 0.5F, false, 3, 0.4F, f2, 0.3F);
+            //this.walk(Lefthindfoot, speed, 0.8F, false, 3, 0.4F, f2, 0.5F);
+            //this.swing(Lefthindfoot, speed, 0.4F, false, 3, 0F, f2, 0.5F);
+            this.flap(Lefthindfoot, speed, 0.5F, false, 0, 0.4F, f2, 0.3F);
+            this.walk(Lefthindfoot, speed, 0.8F, false, 0, 0.4F, f2, 0.5F);
+            this.swing(Lefthindfoot, speed, 0.4F, false, 0, 0F, f2, 0.5F);
 
-        ////this.flap(Rightthigh, speed, -0.65F, false, 0, 0.35F, f2, 0.5F);
-        this.flap(Rightthigh, speed, -0.45F, false, 0, 0.35F, f2, 0.5F);
-        ////this.swing(Rightthigh, speed, 0.3F, true, 2, -0.25F, f2, 0.5F);
-        this.swing(Rightthigh, speed, 0.5F, true, 2, -1F, f2, 0.5F);
-        this.walk(Rightshin, speed, -0.6F, true, 0, 0.0F, f2, 0.8F);
-        //this.flap(Righthindfoot, speed, -0.5F, false, 6, -0.4F, f2, 0.3F);
-        //this.walk(Righthindfoot, speed, 0.8F, false, 6, 0.4F, f2, 0.5F);
-        //this.swing(Righthindfoot, speed, -0.4F, false, 6, 0F, f2, 0.5F);
-        this.flap(Righthindfoot, speed, -0.5F, false, 3, -0.4F, f2, 0.3F);
-        this.walk(Righthindfoot, speed, 0.8F, false, 3, 0.4F, f2, 0.5F);
-        this.swing(Righthindfoot, speed, -0.4F, false, 3, 0F, f2, 0.5F);
+            ////this.flap(Rightthigh, speed, -0.65F, false, 0, 0.35F, f2, 0.5F);
+            this.flap(Rightthigh, speed, -0.45F, false, 0, 0.35F, f2, 0.5F);
+            ////this.swing(Rightthigh, speed, 0.3F, true, 2, -0.25F, f2, 0.5F);
+            this.swing(Rightthigh, speed, 0.5F, true, 2, -1F, f2, 0.5F);
+            this.walk(Rightshin, speed, -0.6F, true, 0, 0.0F, f2, 0.8F);
+            //this.flap(Righthindfoot, speed, -0.5F, false, 6, -0.4F, f2, 0.3F);
+            //this.walk(Righthindfoot, speed, 0.8F, false, 6, 0.4F, f2, 0.5F);
+            //this.swing(Righthindfoot, speed, -0.4F, false, 6, 0F, f2, 0.5F);
+            this.flap(Righthindfoot, speed, -0.5F, false, 3, -0.4F, f2, 0.3F);
+            this.walk(Righthindfoot, speed, 0.8F, false, 3, 0.4F, f2, 0.5F);
+            this.swing(Righthindfoot, speed, -0.4F, false, 3, 0F, f2, 0.5F);
 
-        this.flap(Leftupperarm, speed, 0.25F, false, 0, -0.18F, f2, 0.5F);
-        this.swing(Leftupperarm, speed, -0.15F, true, 2, 0.1F, f2, 0.5F);
-        this.walk(Leftlowerarm, speed, -0.3F, true, 0, 0.0F, f2, 0.8F);
-        this.flap(Leftfrontfoot, speed, 0.25F, true, 6, 0.2F, f2, 0.3F);
-        this.walk(Leftfrontfoot, speed, 0.25F, true, 6, 0.2F, f2, 0.3F);
-        this.swing(Leftfrontfoot, speed, 0.15F, true, 6, 0F, f2, 0.3F);
+            this.flap(Leftupperarm, speed, 0.25F, false, 0, -0.18F, f2, 0.5F);
+            this.swing(Leftupperarm, speed, -0.15F, true, 2, 0.1F, f2, 0.5F);
+            this.walk(Leftlowerarm, speed, -0.3F, true, 0, 0.0F, f2, 0.8F);
+            //this.flap(Leftfrontfoot, speed, 0.25F, true, 6, 0.2F, f2, 0.3F);
+            //this.walk(Leftfrontfoot, speed, 0.25F, true, 6, 0.2F, f2, 0.3F);
+            //this.swing(Leftfrontfoot, speed, 0.15F, true, 6, 0F, f2, 0.3F);
+            this.flap(Leftfrontfoot, speed, 0.3F, false, -3, 0.4F, f2, 0.3F);
+            this.walk(Leftfrontfoot, speed, 0.5F, false, -3, 0.4F, f2, 0.5F);
+            this.swing(Leftfrontfoot, speed, 0.3F, false, -3, 0F, f2, 0.5F);
 
-        this.flap(Rightupperarm, speed, -0.25F, false, -3, 0.18F, f2, 0.5F);
-        this.swing(Rightupperarm, speed, 0.15F, true, -1, -0.1F, f2, 0.5F);
-        this.walk(Rightlowerarm, speed, -0.3F, true, -3, 0.0F, f2, 0.8F);
-        this.flap(Rightfrontfoot, speed, -0.25F, true, 3, -0.2F, f2, 0.3F);
-        this.walk(Rightfrontfoot, speed, 0.25F, true, 3, 0.2F, f2, 0.3F);
-        this.swing(Rightfrontfoot, speed, -0.15F, true, 3, 0F, f2, 0.3F);
+            this.flap(Rightupperarm, speed, -0.25F, false, -3, 0.18F, f2, 0.5F);
+            this.swing(Rightupperarm, speed, 0.15F, true, -1, -0.1F, f2, 0.5F);
+            this.walk(Rightlowerarm, speed, -0.3F, true, -3, 0.0F, f2, 0.8F);
+            //this.flap(Rightfrontfoot, speed, -0.25F, true, 3, -0.2F, f2, 0.3F);
+            //this.walk(Rightfrontfoot, speed, 0.25F, true, 3, 0.2F, f2, 0.3F);
+            //this.swing(Rightfrontfoot, speed, -0.15F, true, 3, 0F, f2, 0.3F);
+            this.flap(Rightfrontfoot, speed, -0.5F, false, 0, -0.4F, f2, 0.3F);
+            this.walk(Rightfrontfoot, speed, 0.8F, false, 0, 0.4F, f2, 0.5F);
+            this.swing(Rightfrontfoot, speed, -0.4F, false, 0, 0F, f2, 0.5F);
 
-        this.chainWave(Tail, speed, 0.05F, -3, f2, 1);
-        this.chainSwing(Tail, speed, 0.3F, -3, f2, 0.8F);
-        this.chainSwing(Torso, speed, 0.1F, -3, f2, 1);
+            this.chainWave(Tail, speed, 0.05F, -3, f2, 1);
+            this.chainSwing(Tail, speed, 0.3F, -3, f2, 0.8F);
+            this.chainSwing(Torso, speed, 0.1F, -3, f2, 1);
+        }
+        else {
+            speed = speed * 2F;
+            this.Lefthindfoot.rotateAngleX = (float) Math.toRadians(45);
+            this.Righthindfoot.rotateAngleX = (float) Math.toRadians(45);
+
+            this.Leftthigh.rotateAngleZ= (float) Math.toRadians(30);
+            this.Leftshin.rotateAngleZ= (float) Math.toRadians(-40);
+            this.Leftthigh.rotateAngleX= (float) Math.toRadians(10);
+
+            this.Rightthigh.rotateAngleZ= (float) Math.toRadians(-30);
+            this.Rightshin.rotateAngleZ= (float) Math.toRadians(40);
+            this.Rightthigh.rotateAngleX= (float) Math.toRadians(10);
+
+            this.Leftfrontfoot.rotateAngleX = (float) Math.toRadians(45);
+            this.Rightfrontfoot.rotateAngleX = (float) Math.toRadians(45);
+
+            this.Leftupperarm.rotateAngleZ= (float) Math.toRadians(30);
+            this.Leftupperarm.rotateAngleX= (float) Math.toRadians(10);
+
+            this.Rightupperarm.rotateAngleZ= (float) Math.toRadians(-30);
+            this.Rightupperarm.rotateAngleX= (float) Math.toRadians(10);
+
+            this.Leftlowerarm.rotateAngleY= (float) Math.toRadians(25);
+            this.Leftlowerarm.rotateAngleZ= (float) Math.toRadians(-25);
+            this.Rightlowerarm.rotateAngleY= (float) Math.toRadians(-25);
+            this.Rightlowerarm.rotateAngleZ= (float) Math.toRadians(25);
+
+            AdvancedModelRenderer[] BackL = {this.Leftthigh, this.Leftshin, this.Lefthindfoot};
+            AdvancedModelRenderer[] BackR = {this.Rightthigh, this.Rightshin, this.Righthindfoot};
+            AdvancedModelRenderer[] FrontL = {this.Leftupperarm, this.Leftlowerarm, this.Leftfrontfoot};
+            AdvancedModelRenderer[] FrontR = {this.Rightupperarm, this.Rightlowerarm, this.Rightfrontfoot};
+
+            this.chainWave(BackL, speed * 0.5F, 0.3F, -3, f2, 1);
+            this.chainWave(BackR, speed * 0.5F, 0.3F, 0, f2, 1);
+            this.chainWave(FrontL, speed * 0.5F, 0.3F, 0, f2, 1);
+            this.chainWave(FrontR, speed * 0.5F, 0.3F, -3, f2, 1);
+
+            this.chainWave(Tail, speed, 0.05F, -3, f2, 1);
+            this.chainSwing(Tail, speed, 0.3F, -3, f2, 0.8F);
+            this.chainSwing(Torso, speed, 0.1F, -3, f2, 1);
+
+        }
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
@@ -275,12 +326,21 @@ public class ModelLimnoscelis extends AdvancedModelBase {
         setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
 
         animator.setAnimation(e.ATTACK_ANIMATION);
-        animator.startKeyframe(20);
-        animator.move(this.Hips,0,5f,0);
+        animator.startKeyframe(5);
+        animator.move(this.Head, 0,0,-2F);
         animator.rotate(this.Head, (float) Math.toRadians(-15), (float) Math.toRadians(0), (float) Math.toRadians(0));
         animator.rotate(this.Lowerjaw1, (float) Math.toRadians(30), (float) Math.toRadians(0), (float) Math.toRadians(0));
         animator.endKeyframe();
-        animator.resetKeyframe(20);
-        animator.resetKeyframe(1);
+        animator.setStaticKeyframe(5);
+        animator.resetKeyframe(2);
+
+        animator.setAnimation(e.ROAR_ANIMATION);
+        animator.startKeyframe(10);
+        animator.move(this.Head, 0,0,-2F);
+        animator.rotate(this.Head, (float) Math.toRadians(-45), (float) Math.toRadians(0), (float) Math.toRadians(0));
+        animator.rotate(this.Lowerjaw1, (float) Math.toRadians(35), (float) Math.toRadians(0), (float) Math.toRadians(0));
+        animator.endKeyframe();
+        animator.setStaticKeyframe(10);
+        animator.resetKeyframe(10);
     }
 }

@@ -2,10 +2,12 @@
 package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.entity.ai.*;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraSwimmingAmphibianBase;
+import net.minecraft.client.audio.SoundHandler;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -26,6 +28,7 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 	public BlockPos currentTarget;
 	@SideOnly(Side.CLIENT)
 	public ChainBuffer chainBuffer;
+	//public static final SoundEvent LIMNOSCELIS_ROAR = create("limnoscelis_roar");
 
 	public EntityPrehistoricFloraLimnoscelis(World world) {
 		super(world);
@@ -40,8 +43,11 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 	}
 
 	protected float getAISpeedSwimmingAmphibian() {
-		if (this.isActuallyInWater()) {return 0.3f;}
-		return 0.25f;
+		float calcSpeed = 0.2F;
+		if (this.isActuallyInWater()) {
+			calcSpeed= 0.32f;
+		}
+		return Math.min(1F, (this.getAgeScale() * 2F)) * calcSpeed;
 	}
 
 	@Override
@@ -95,41 +101,54 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 
 	@Override
 	protected boolean canTriggerWalking() {
-		return false;
+		return true;
+	}
+
+	@Override
+	public net.minecraft.util.SoundEvent getAmbientSound() {
+		if (this.isActuallyInWater()) {return null;}
+	    return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
+	            .getObject(new ResourceLocation("lepidodendron:limnoscelis_idle"));
 	}
 
 	//@Override
-	//public net.minecraft.util.SoundEvent getAmbientSound() {
-	//    return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
-	//            .getObject(new ResourceLocation("lepidodendron:eurypterus_idle"));
+	//public SoundEvent getAmbientSound() {
+	//	return (SoundEvent) SoundEvent.REGISTRY.getObject(new ResourceLocation(""));
 	//}
 
 	@Override
-	public SoundEvent getAmbientSound() {
-		return (SoundEvent) SoundEvent.REGISTRY.getObject(new ResourceLocation(""));
+	public void playLivingSound() {
+		if (this.getAnimation() != null) {
+			if (this.getAnimation() == NO_ANIMATION && !world.isRemote) {
+				this.setAnimation(ROAR_ANIMATION);
+				//System.err.println("Ambient");
+			}
+		}
+		super.playLivingSound();
 	}
 
+
+	@Override
+	public net.minecraft.util.SoundEvent getHurtSound(DamageSource ds) {
+	    return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
+	            .getObject(new ResourceLocation("lepidodendron:limnoscelis_hurt"));
+	}
 
 	//@Override
-	//public net.minecraft.util.SoundEvent getHurtSound(DamageSource ds) {
-	//    return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
-	//            .getObject(new ResourceLocation("lepidodendron:eurypterus_hurt"));
+	//public SoundEvent getHurtSound(DamageSource ds) {
+	//	return (SoundEvent) SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.generic.hurt"));
 	//}
 
 	@Override
-	public SoundEvent getHurtSound(DamageSource ds) {
-		return (SoundEvent) SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.generic.hurt"));
+	public net.minecraft.util.SoundEvent getDeathSound() {
+	    return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
+	            .getObject(new ResourceLocation("lepidodendron:limnoscelis_death"));
 	}
 
 	//@Override
-	//public net.minecraft.util.SoundEvent getDeathSound() {
-	//    return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
-	//            .getObject(new ResourceLocation("lepidodendron:eurypterus_death"));
+	//public SoundEvent getDeathSound() {
+	//	return (SoundEvent) SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.generic.death"));
 	//}
-	@Override
-	public SoundEvent getDeathSound() {
-		return (SoundEvent) SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.generic.death"));
-	}
 
 	@Override
 	protected float getSoundVolume() {
@@ -179,6 +198,7 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 	public boolean attackEntityAsMob(Entity entity) {
 		if (this.getAnimation() == NO_ANIMATION) {
 			this.setAnimation(ATTACK_ANIMATION);
+			//System.err.println("set attack");
 		}
 		return false;
 	}

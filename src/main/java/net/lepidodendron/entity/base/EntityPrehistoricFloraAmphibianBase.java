@@ -1,10 +1,6 @@
 package net.lepidodendron.entity.base;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
-import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
-import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
-import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.entity.util.PathNavigateAmphibian;
 import net.lepidodendron.entity.util.PathNavigateAmphibianFindWater;
 import net.minecraft.block.material.Material;
@@ -25,7 +21,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class EntityPrehistoricFloraAmphibianBase extends EntityPrehistoricFloraAgeableBase implements IAnimatedEntity {
+public abstract class EntityPrehistoricFloraAmphibianBase extends EntityPrehistoricFloraAgeableBase {
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;
@@ -51,48 +47,10 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityPrehisto
         }
     }
 
-    private Animation animation = NO_ANIMATION;
-    private int animationTick;
-    //public static final Animation ANIMATION_WANDER = Animation.create(20);
     public abstract int WaterDist();
 
-    protected void onAnimationFinish(Animation animation) {}
-
-    @Override
-    public int getAnimationTick() {
-        return this.animationTick;
-    }
-
-    @Override
-    public void setAnimationTick(int tick)
-    {
-        animationTick = tick;
-    }
-
-    @Override
-    public Animation getAnimation()
-    {
-        return this.animation;
-    }
-
-    @Override
-    public Animation[] getAnimations() {
-        return new Animation[]{};
-    }
-
-    @Override
-    public void setAnimation(Animation animation) {
-        if (animation == NO_ANIMATION) {
-            onAnimationFinish(this.animation);
-        }
-        this.animation = animation;
-        setAnimationTick(0);
-    }
-
     protected void initEntityAI() {
-        //tasks.addTask(0, new FishWander(this, ANIMATION_FISH_WANDER));
-        //this.tasks.addTask(0, new FishWander(this));
-        //this.tasks.addTask(1, new EntityAILookIdle(this));
+
     }
 
 
@@ -184,15 +142,6 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityPrehisto
     public void onLivingUpdate() {
         super.onLivingUpdate();
         this.renderYawOffset = this.rotationYaw;
-
-        //if (getAnimation() != NO_ANIMATION)
-        //{
-       //    animationTick++;
-       // }
-        //if (world.isRemote && animationTick >= animation.getDuration())
-        //{
-        //    setAnimation(NO_ANIMATION);
-        //}
     }
 
     public void onEntityUpdate()

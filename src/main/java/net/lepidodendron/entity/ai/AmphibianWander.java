@@ -65,7 +65,7 @@ public class AmphibianWander extends AnimationAI<EntityPrehistoricFloraSwimmingA
                 //Prefer water targets if too far:
                 BlockPos vec3;
                 if (!(this.PrehistoricFloraAmphibianBase.isNearWater(this.entity, this.entity.getPosition()))) {
-                    System.err.println("I'm not in a safe place!");
+                    //System.err.println("I'm not in a safe place!");
                     vec3 = this.findWaterTarget(32);
                     if (vec3 == null) {
                         vec3 = this.findLandTarget();
