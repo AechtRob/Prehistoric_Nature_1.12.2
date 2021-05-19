@@ -6,7 +6,7 @@ import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.FishWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
-import net.lepidodendron.item.ItemBucketPoraspis;
+import net.lepidodendron.item.entities.ItemBucketPoraspis;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;

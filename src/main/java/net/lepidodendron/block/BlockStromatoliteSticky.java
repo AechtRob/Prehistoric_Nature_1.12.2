@@ -132,13 +132,15 @@ public class BlockStromatoliteSticky extends ElementsLepidodendronMod.ModElement
 			boolean boolWest = false;
 
 			if (((worldIn.getBlockState(pos.north()).getBlock() == this)
+					|| (worldIn.getBlockState(pos.north()).getBlock() == BlockStromatolite.block)
 					|| worldIn.getBlockState(pos.north()).isFullCube()
 					|| worldIn.getBlockState(pos.north()).isOpaqueCube())
-				&& ((!worldIn.getBlockState(pos.north()).getMaterial().isLiquid()))
-				&& ((!worldIn.isAirBlock(pos.north())))) {
+					&& ((!worldIn.getBlockState(pos.north()).getMaterial().isLiquid()))
+					&& ((!worldIn.isAirBlock(pos.north())))) {
 				boolNorth = true;
 			}
 			if (((worldIn.getBlockState(pos.south()).getBlock() == this)
+					|| (worldIn.getBlockState(pos.south()).getBlock() == BlockStromatolite.block)
 					|| worldIn.getBlockState(pos.south()).isFullCube()
 					|| worldIn.getBlockState(pos.south()).isOpaqueCube())
 					&& ((!worldIn.getBlockState(pos.south()).getMaterial().isLiquid()))
@@ -146,6 +148,7 @@ public class BlockStromatoliteSticky extends ElementsLepidodendronMod.ModElement
 				boolSouth = true;
 			}
 			if (((worldIn.getBlockState(pos.east()).getBlock() == this)
+					|| (worldIn.getBlockState(pos.east()).getBlock() == BlockStromatolite.block)
 					|| worldIn.getBlockState(pos.east()).isFullCube()
 					|| worldIn.getBlockState(pos.east()).isOpaqueCube())
 					&& ((!worldIn.getBlockState(pos.east()).getMaterial().isLiquid()))
@@ -153,6 +156,7 @@ public class BlockStromatoliteSticky extends ElementsLepidodendronMod.ModElement
 				boolEast = true;
 			}
 			if (((worldIn.getBlockState(pos.west()).getBlock() == this)
+					|| (worldIn.getBlockState(pos.west()).getBlock() == BlockStromatolite.block)
 					|| worldIn.getBlockState(pos.west()).isFullCube()
 					|| worldIn.getBlockState(pos.west()).isOpaqueCube())
 					&& ((!worldIn.getBlockState(pos.west()).getMaterial().isLiquid()))
@@ -160,7 +164,7 @@ public class BlockStromatoliteSticky extends ElementsLepidodendronMod.ModElement
 				boolWest = true;
 			}
 
-			return state.withProperty(NORTH, boolNorth).withProperty(SOUTH, boolSouth).withProperty(EAST, boolEast).withProperty(WEST, boolWest).withProperty(TOPSHOOT, (worldIn.getBlockState(pos.up()).getBlock() != this));
+			return state.withProperty(NORTH, boolNorth).withProperty(SOUTH, boolSouth).withProperty(EAST, boolEast).withProperty(WEST, boolWest).withProperty(TOPSHOOT, (worldIn.getBlockState(pos.up()).getBlock() != this && worldIn.getBlockState(pos.up()).getBlock() != BlockStromatolite.block));
 		}
 
 		//Trigger state change block face geometry updates to attached blocks:

@@ -8,6 +8,7 @@ import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -67,7 +68,7 @@ public class CharniaGenerator extends WorldGenerator
 			int l = position.getZ() + rand.nextInt(bound) - rand.nextInt(bound);
 
 			if (this.charnia.canPlaceBlockAt(worldIn, new BlockPos(j, k, l))
-			&& (worldIn.getBlockState(new BlockPos(j, k, l)).getMaterial() == Material.WATER)){
+			&& (worldIn.getBlockState(new BlockPos(j, k, l)).getBlock() == Blocks.WATER)){
 
 				//Check that at least enough water is over the position (2 blocks):
 				boolean waterDepthCheckMin = true;

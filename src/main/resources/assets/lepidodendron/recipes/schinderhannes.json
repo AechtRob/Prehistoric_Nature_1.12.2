@@ -1,0 +1,13 @@
+{
+  "group": "lepidodendron",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lepidodendron:phial_eggs_schinderhannes"
+    }
+  ],
+  "result": {
+    "item": "lepidodendron:eggs_schinderhannes",
+    "count": 1
+  }
+}

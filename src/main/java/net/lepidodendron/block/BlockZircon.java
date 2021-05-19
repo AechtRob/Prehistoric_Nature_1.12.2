@@ -43,7 +43,7 @@ public class BlockZircon extends ElementsLepidodendronMod.ModElement {
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
 			super(Material.ROCK);
-			setTranslationKey("pf_pf_zircon_block");
+			setTranslationKey("pf_zircon_block");
 			setSoundType(SoundType.STONE);
 			setHarvestLevel("pickaxe", 0);
 			setHardness(10F);

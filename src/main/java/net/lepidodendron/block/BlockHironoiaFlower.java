@@ -260,6 +260,7 @@ public class BlockHironoiaFlower extends ElementsLepidodendronMod.ModElement {
 
 	    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	    {
+	    	Random rand = new Random();
         if ((!player.capabilities.allowEdit) || (player.getHeldItemMainhand().getItem() != Item.getItemFromBlock(this)) || !LepidodendronConfig.doFlowers)
 	        {
 	            return true;
@@ -276,9 +277,9 @@ public class BlockHironoiaFlower extends ElementsLepidodendronMod.ModElement {
 					}
 				}.getValue(pos, "decayable")) == (true)) {
 		        	if (!((hand != player.getActiveHand()) && (hand == EnumHand.MAIN_HAND))) {
-						if (Math.random() > 0.45) {
+						if (Math.random() > 0.4) {
 							ItemStack stackSeed = new ItemStack(ItemHironoiaSeeds.block, (int) (1));
-							stackSeed.setCount(1);
+							stackSeed.setCount(rand.nextInt(3) + 1);
 							ItemHandlerHelper.giveItemToPlayer(player, stackSeed);
 							if (Math.random() > 0.75) {
 								world.destroyBlock(pos, false);

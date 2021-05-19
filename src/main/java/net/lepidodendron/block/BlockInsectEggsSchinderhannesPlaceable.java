@@ -10,6 +10,7 @@ import net.lepidodendron.entity.EntityPrehistoricFloraSchinderhannes;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.item.ItemPhial;
 import net.lepidodendron.item.ItemPhialEggsPalaeodictyoptera;
+import net.lepidodendron.item.ItemPhialEggsSchinderhannes;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -98,9 +99,9 @@ public class BlockInsectEggsSchinderhannesPlaceable extends ElementsLepidodendro
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Insect");
-				tooltip.add("Periods: Carboniferous - Permian");
-				tooltip.add("Habitat: Eggs and nymphs in water; adults fly");
+				tooltip.add("Type: Radiodont");
+				tooltip.add("Periods: Devonian");
+				tooltip.add("Habitat: Water");
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}
@@ -114,7 +115,7 @@ public class BlockInsectEggsSchinderhannesPlaceable extends ElementsLepidodendro
 			else {
 				if (player.getHeldItemMainhand().getItem() == new ItemStack(ItemPhial.block, (int) (1)).getItem()) {
 					player.inventory.clearMatchingItems(new ItemStack(ItemPhial.block, (int) (1)).getItem(), -1, (int) 1, null);
-					ItemStack _setstack = new ItemStack(ItemPhialEggsPalaeodictyoptera.block, (int) (1));
+					ItemStack _setstack = new ItemStack(ItemPhialEggsSchinderhannes.block, (int) (1));
 					_setstack.setCount(1);
 					ItemHandlerHelper.giveItemToPlayer(player, _setstack);
 					world.setBlockToAir(pos);

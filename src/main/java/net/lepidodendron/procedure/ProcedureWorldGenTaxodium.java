@@ -55,9 +55,12 @@ public class ProcedureWorldGenTaxodium extends ElementsLepidodendronMod.ModEleme
 				(((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getMaterial() == Material.WATER)
 						&& (world.canSeeSky(new BlockPos((int) x, (int) y + 1, (int) z))))) {
 			world.setBlockToAir(new BlockPos((int) x, (int) y, (int) z));
-			
+
+			boolean variantSize = (Math.random() > 0.9);
+
 			//Trunk:
 			TrunkHeight = 16 + (int) Math.round(Math.random() * 6);
+			if (variantSize) TrunkHeight = (int)Math.round((double)TrunkHeight * 1.33D);
 			while (counter < TrunkHeight) {
 				ProcedureTreeLog.executeProcedure((int) x, (int) y + (int) counter, (int) z, world, BlockTaxodiumLog.block, EnumFacing.NORTH);
 				counter = counter + 1;
@@ -101,6 +104,7 @@ public class ProcedureWorldGenTaxodium extends ElementsLepidodendronMod.ModEleme
 			//North:
 			//Get an attachment point:
 			attach = rand.nextInt((int)TrunkHeight - 10) + 8;
+			if (variantSize) {attach = attach - (int) Math.round(5D * Math.random());}
 			//attach = (int) Math.round((Math.random() * (double)(TrunkHeight - 2) * 0.6) + (0.4 * (double)(TrunkHeight - 2)));
 			if (attach <= (int) Math.round((0.6 * (double)TrunkHeight))) {
 				seg = 4;
@@ -131,9 +135,44 @@ public class ProcedureWorldGenTaxodium extends ElementsLepidodendronMod.ModEleme
 				doShoot(world, new BlockPos(x, yy, z - zct), false);
 			}
 
+			if ((Math.random() > 0.5) && (variantSize) && (attach < TrunkHeight - 6)) {
+				//Second branch on this axis, perhaps:
+				attach = rand.nextInt((int)TrunkHeight - 6) + 2;
+				//attach = (int) Math.round((Math.random() * (double)(TrunkHeight - 2) * 0.6) + (0.4 * (double)(TrunkHeight - 2)));
+				if (attach <= (int) Math.round((0.6 * (double)TrunkHeight))) {
+					seg = 4;
+				}
+				else {
+					if (attach <= (int) Math.round((0.75 * (double)TrunkHeight))) {
+						seg = 3;
+					}
+					else {
+						seg = 2;
+					}
+				}
+				//System.err.println("HERE seg: " + seg);
+				yy = y + attach;
+				ProcedureLeavesAroundLog.executeProcedure(x, y + attach, z - 1, world, BlockTaxodiumLeaves.block, 1, 0.6);
+				zct = 1;
+				while (zct <= seg) {
+					ProcedureTreeLog.executeProcedure((int) x, yy, (int) z - zct, world, BlockTaxodiumLog.block, EnumFacing.WEST);
+					zct += 1;
+					yy += 1;
+				}
+				zct -= 1;
+				ProcedureTreeLog.executeProcedure((int) x, yy, (int) z - zct, world, BlockTaxodiumLog.block, EnumFacing.NORTH);
+				if (Math.random() > 0.5) {
+					doShoot(world, new BlockPos(x, yy, z - zct), true);
+				}
+				else {
+					doShoot(world, new BlockPos(x, yy, z - zct), false);
+				}
+			}
+
 			//South:
 			//Get an attachment point:
 			attach = rand.nextInt((int)TrunkHeight - 10) + 8;
+			if (variantSize) {attach = attach - (int) Math.round(5D * Math.random());}
 			if (attach <= (int) Math.round((0.6 * (double)TrunkHeight))) {
 				seg = 4;
 			}
@@ -162,9 +201,43 @@ public class ProcedureWorldGenTaxodium extends ElementsLepidodendronMod.ModEleme
 				doShoot(world, new BlockPos(x, yy, z + zct), false);
 			}
 
+			if ((Math.random() > 0.5) && (variantSize) && (attach < TrunkHeight - 6)) {
+				//Second branch on this axis, perhaps:
+				attach = rand.nextInt((int)TrunkHeight - 6) + 2;
+				//attach = (int) Math.round((Math.random() * (double)(TrunkHeight - 2) * 0.6) + (0.4 * (double)(TrunkHeight - 2)));
+				if (attach <= (int) Math.round((0.6 * (double)TrunkHeight))) {
+					seg = 4;
+				}
+				else {
+					if (attach <= (int) Math.round((0.75 * (double)TrunkHeight))) {
+						seg = 3;
+					}
+					else {
+						seg = 2;
+					}
+				}
+				yy = y + attach;
+				ProcedureLeavesAroundLog.executeProcedure(x, y + attach, z + 1, world, BlockTaxodiumLeaves.block, 1, 0.6);
+				zct = 1;
+				while (zct <= seg) {
+					ProcedureTreeLog.executeProcedure((int) x, yy, (int) z + zct, world, BlockTaxodiumLog.block, EnumFacing.WEST);
+					zct += 1;
+					yy += 1;
+				}
+				zct -= 1;
+				ProcedureTreeLog.executeProcedure((int) x, yy, (int) z + zct, world, BlockTaxodiumLog.block, EnumFacing.NORTH);
+				if (Math.random() > 0.5) {
+					doShoot(world, new BlockPos(x, yy, z + zct), true);
+				}
+				else {
+					doShoot(world, new BlockPos(x, yy, z + zct), false);
+				}
+			}
+
 			//West:
 			//Get an attachment point:
 			attach = rand.nextInt((int)TrunkHeight - 10) + 8;
+			if (variantSize) {attach = attach - (int) Math.round(5D * Math.random());}
 			if (attach <= (int) Math.round((0.6 * (double)TrunkHeight))) {
 				seg = 4;
 			}
@@ -194,9 +267,40 @@ public class ProcedureWorldGenTaxodium extends ElementsLepidodendronMod.ModEleme
 				doShoot(world, new BlockPos(x - xct, yy, z), false);
 			}
 
+			if ((Math.random() > 0.5) && (variantSize) && (attach < TrunkHeight - 6)) {
+				//Second branch on this axis, perhaps:
+				attach = rand.nextInt((int) TrunkHeight - 6) + 2;
+				if (attach <= (int) Math.round((0.6 * (double) TrunkHeight))) {
+					seg = 4;
+				} else {
+					if (attach <= (int) Math.round((0.75 * (double) TrunkHeight))) {
+						seg = 3;
+					} else {
+						seg = 2;
+					}
+				}
+				//System.err.println("HERE seg: " + seg);
+				yy = y + attach;
+				ProcedureLeavesAroundLog.executeProcedure(x - 1, y + attach, z, world, BlockTaxodiumLeaves.block, 1, 0.6);
+				xct = 1;
+				while (xct <= seg) {
+					ProcedureTreeLog.executeProcedure((int) x - xct, yy, (int) z, world, BlockTaxodiumLog.block, EnumFacing.UP);
+					xct += 1;
+					yy += 1;
+				}
+				xct -= 1;
+				ProcedureTreeLog.executeProcedure((int) x - xct, yy, (int) z, world, BlockTaxodiumLog.block, EnumFacing.NORTH);
+				if (Math.random() > 0.5) {
+					doShoot(world, new BlockPos(x - xct, yy, z), true);
+				} else {
+					doShoot(world, new BlockPos(x - xct, yy, z), false);
+				}
+			}
+
 			//East:
 			//Get an attachment point:
 			attach = rand.nextInt((int)TrunkHeight - 10) + 8;
+			if (variantSize) {attach = attach - (int) Math.round(5D * Math.random());}
 			if (attach <= (int) Math.round((0.6 * (double)TrunkHeight))) {
 				seg = 4;
 			}
@@ -226,6 +330,35 @@ public class ProcedureWorldGenTaxodium extends ElementsLepidodendronMod.ModEleme
 				doShoot(world, new BlockPos(x + xct, yy, z), false);
 			}
 
+			if ((Math.random() > 0.5) && (variantSize) && (attach < TrunkHeight - 6)) {
+				//Second branch on this axis, perhaps:
+				attach = rand.nextInt((int) TrunkHeight - 6) + 2;
+				if (attach <= (int) Math.round((0.6 * (double) TrunkHeight))) {
+					seg = 4;
+				} else {
+					if (attach <= (int) Math.round((0.75 * (double) TrunkHeight))) {
+						seg = 3;
+					} else {
+						seg = 2;
+					}
+				}
+				//System.err.println("HERE seg: " + seg);
+				yy = y + attach;
+				ProcedureLeavesAroundLog.executeProcedure(x + 1, y + attach, z, world, BlockTaxodiumLeaves.block, 1, 0.6);
+				xct = 1;
+				while (xct <= seg) {
+					ProcedureTreeLog.executeProcedure((int) x + xct, yy, (int) z, world, BlockTaxodiumLog.block, EnumFacing.UP);
+					xct += 1;
+					yy += 1;
+				}
+				xct -= 1;
+				ProcedureTreeLog.executeProcedure((int) x + xct, yy, (int) z, world, BlockTaxodiumLog.block, EnumFacing.NORTH);
+				if (Math.random() > 0.5) {
+					doShoot(world, new BlockPos(x + xct, yy, z), true);
+				} else {
+					doShoot(world, new BlockPos(x + xct, yy, z), false);
+				}
+			}
 
 			//Base:
 			zz = z;

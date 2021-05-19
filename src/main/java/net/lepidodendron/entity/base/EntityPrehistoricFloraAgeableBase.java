@@ -6,10 +6,15 @@ import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.entity.util.PathNavigateAmphibian;
 import net.lepidodendron.entity.util.PathNavigateAmphibianFindWater;
+import net.lepidodendron.item.entities.ItemBucketArandaspis;
+import net.minecraft.block.material.Material;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.passive.EntityTameable;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
@@ -18,17 +23,20 @@ import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigateSwimmer;
 import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nullable;
 
 public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable implements IAnimatedEntity  {
 
     private static final DataParameter<Integer> AGETICKS = EntityDataManager.createKey(EntityPrehistoricFloraAgeableBase.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> SATIETY = EntityDataManager.createKey(EntityPrehistoricFloraAgeableBase.class, DataSerializers.VARINT);
     private static final DataParameter<Boolean> HUNTING = EntityDataManager.createKey(EntityPrehistoricFloraAgeableBase.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> RESENTFUL = EntityDataManager.createKey(EntityPrehistoricFloraAgeableBase.class, DataSerializers.BOOLEAN);
     public float minSize;
@@ -38,6 +46,7 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
     public Animation ATTACK_ANIMATION;
     public Animation ROAR_ANIMATION;
     private Animation currentAnimation;
+    public int satiety;
     //private Animation currentAnimation = NO_ANIMATION;
 
     public EntityPrehistoricFloraAgeableBase(World worldIn) {
@@ -91,6 +100,13 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
         this.dataManager.register(AGETICKS, 0);
         this.dataManager.register(HUNTING, false);
         this.dataManager.register(RESENTFUL, false);
+        this.dataManager.register(SATIETY, 0);
+    }
+
+    @Override
+    public boolean isInWater() {
+        if (this.world.isAirBlock(this.getPosition())) {return false;}
+        return super.isInWater() || (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
     }
 
     public void launchAttack() {
@@ -116,6 +132,14 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
 
     public void setAgeTicks(int ageticks) {
         this.dataManager.set(AGETICKS, ageticks);
+    }
+
+    public int getSatiety() {
+        return this.dataManager.get(SATIETY);
+    }
+
+    public void setSatiety(int satiety) {
+        this.dataManager.set(SATIETY, satiety);
     }
 
     public boolean getWillHunt() {
@@ -175,6 +199,7 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
     {
         super.writeEntityToNBT(compound);
         compound.setInteger("AgeTicks", this.getAgeTicks());
+        compound.setInteger("Satiety", this.getSatiety());
         compound.setBoolean("isResentful", this.getResentful());
     }
 
@@ -182,6 +207,7 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setAgeTicks(compound.getInteger("AgeTicks"));
+        this.setSatiety(compound.getInteger("Satiety"));
         this.setResentful(compound.getBoolean("isResentful"));
     }
 
@@ -253,12 +279,23 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
         if (aHealth < 0) {aHealth = 0;}
         aHealth = aHealth/100D;
         this.setWillHunt(oldHealthRatio < (float) aHealth);
+        double adult = (double) LepidodendronConfig.adultAge;
+        if (adult > 100) {adult = 100;}
+        if (adult < 0) {adult = 0;}
+        adult = adult/100D;
+        if (getAgeScale() < adult) {
+            setWillHunt(false);
+        }
 
     }
 
     public void eatItem(ItemStack stack) {
         if (stack != null && stack.getItem() != null) {
-            this.setHealth(Math.min(this.getHealth() + 0.5F, (float) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue()));
+            float itemHealth = 0.5F; //Default minimal nutrition
+            if (stack.getItem() instanceof ItemFood) {
+                itemHealth = ((ItemFood) stack.getItem()).getHealAmount(stack);
+            }
+            this.setHealth(Math.min(this.getHealth() + itemHealth, (float) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue()));
             stack.shrink(1);
             if (this.getAnimation() == NO_ANIMATION && !world.isRemote) {
                 this.setAnimation(ATTACK_ANIMATION);
@@ -268,5 +305,4 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
             }
         }
     }
-
 }

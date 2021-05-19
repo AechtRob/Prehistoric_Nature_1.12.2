@@ -6,7 +6,7 @@ import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.FishWanderBottomDweller;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
-import net.lepidodendron.item.ItemBucketBothriolepis;
+import net.lepidodendron.item.entities.ItemBucketBothriolepis;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.*;
 import net.minecraft.entity.player.EntityPlayer;
@@ -143,9 +143,9 @@ public class EntityPrehistoricFloraBothriolepis extends EntityPrehistoricFloraFi
 			isAtBottom = ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
 					&& ((this.world.getBlockState(pos)).getMaterial() != Material.WATER));
 		}
-		if (isAtBottom && this.world.getBlockState(this.getPosition().up()).getMaterial() == Material.WATER) {
-			this.setPositionAndUpdate(this.getPosition().up().getX(), this.getPosition().up().getY(), this.getPosition().up().getZ());
-		}
+		//if (isAtBottom && this.world.getBlockState(this.getPosition().up()).getMaterial() == Material.WATER) {
+		//	this.setPositionAndUpdate(this.getPosition().up().getX(), this.getPosition().up().getY(), this.getPosition().up().getZ());
+		//}
 
 		if (source != DamageSource.DROWN) {
 			return super.attackEntityFrom(source, (amount * 0.25F));

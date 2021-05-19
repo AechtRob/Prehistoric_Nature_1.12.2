@@ -40,7 +40,6 @@ public class EurypteridWander extends AnimationAI<EntityPrehistoricFloraEurypter
     @Override
     public void startExecuting() {
         super.startExecuting();
-        PrehistoricFloraEurypteridBase.currentAnim = this;
     }
 
     @Override

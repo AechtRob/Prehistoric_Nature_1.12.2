@@ -4,7 +4,7 @@
       "model": "lepidodendron:adobe_slab"
     },
     "half=top,variant=default": {
-      "model": "lepidodendron:adobe_slab"
+      "model": "lepidodendron:adobe_slab_top"
     }
   }
 }

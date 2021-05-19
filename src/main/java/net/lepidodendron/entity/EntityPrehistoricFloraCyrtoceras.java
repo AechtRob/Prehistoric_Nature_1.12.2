@@ -2,6 +2,7 @@
 package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.NautiloidWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraNautiloidBase;
@@ -35,6 +36,14 @@ public class EntityPrehistoricFloraCyrtoceras extends EntityPrehistoricFloraNaut
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
+		minSize = 0.2F;
+		maxSize = 1.0F;
+		maxHealthAgeable = 4.0D;
+	}
+
+	@Override
+	public int getAdultAge() {
+		return 48000;
 	}
 
 	@Override
@@ -69,7 +78,7 @@ public class EntityPrehistoricFloraCyrtoceras extends EntityPrehistoricFloraNaut
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(4.0D);
+		//this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(4.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 	}
 
@@ -172,6 +181,13 @@ public class EntityPrehistoricFloraCyrtoceras extends EntityPrehistoricFloraNaut
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
+		double adult = (double) LepidodendronConfig.adultAge;
+		if (adult > 100) {adult = 100;}
+		if (adult < 0) {adult = 0;}
+		adult = adult/100D;
+		if (getAgeScale() < adult) {
+			return LepidodendronMod.CYRTOCERAS_LOOT_YOUNG;
+		}
 		return LepidodendronMod.CYRTOCERAS_LOOT;
 	}
 

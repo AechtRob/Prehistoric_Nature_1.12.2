@@ -2,6 +2,7 @@
 package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.HibbertopterusWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAmphibianBase;
@@ -49,7 +50,7 @@ public class EntityPrehistoricFloraHibbertopterus extends EntityPrehistoricFlora
 
 	@Override
 	protected float getAISpeedWalkingAmphibian() {
-		return 0.15f;
+		return (float) Math.min(1F, (this.getAgeScale() * 2F)) * 0.15F;
 	}
 
 	@Override
@@ -108,32 +109,19 @@ public class EntityPrehistoricFloraHibbertopterus extends EntityPrehistoricFlora
 
 	public void onEntityUpdate()
 	{
-		//System.err.println("Age: " + this.getAgeTicks());
-		int i = this.getAir();
 		super.onEntityUpdate();
-
-		if ((this.isEntityAlive() && !isInWater())
-				&& (!isNearWater(this, this.getPosition())) //Is not NEAR water
-		)
-		{
-			--i;
-			this.setAir(i);
-
-			if (this.getAir() == -20)
-			{
-				this.setAir(200);
-				this.attackEntityFrom(DamageSource.DROWN, 0.25F);
-			}
-		}
-		else
-		{
-			this.setAir(1000);
-		}
 	}
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-			return LepidodendronMod.HIBBERTOPTERUS_LOOT;
+		double adult = (double) LepidodendronConfig.adultAge;
+		if (adult > 100) {adult = 100;}
+		if (adult < 0) {adult = 0;}
+		adult = adult/100D;
+		if (getAgeScale() < adult) {
+			return LepidodendronMod.HIBBERTOPTERUS_LOOT_YOUNG;
+		}
+		return LepidodendronMod.HIBBERTOPTERUS_LOOT;
 	}
 
 }

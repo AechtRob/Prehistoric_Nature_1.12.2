@@ -1,18 +1,18 @@
 package net.lepidodendron.entity.base;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
-import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
-import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityMoveHelper;
-import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.PathNavigateSwimmer;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehistoricFloraAgeableBase implements IAnimatedEntity {
+public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehistoricFloraAgeableBase {
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;
@@ -37,65 +37,14 @@ public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehist
         }
     }
 
-    private Animation animation = NO_ANIMATION;
-    private int animationTick;
-
-    public static final Animation ANIMATION_FISH_WANDER = Animation.create(20);
-    public static final Animation ANIMATION_FISH_LAND = Animation.create(20);
-
-    private static final Animation[] ANIMATIONS = {ANIMATION_FISH_WANDER,ANIMATION_FISH_LAND};
-
-    public AnimationAI currentAnim;
-
-    @Override
-    public int getAnimationTick() {
-        return animationTick;
-    }
-
-    @Override
-    public void setAnimationTick(int tick)
-    {
-        animationTick = tick;
-    }
-
-    @Override
-    public Animation getAnimation()
-    {
-        return this.animation;
-    }
-
-    @Override
-    public void setAnimation(Animation animation)
-    {
-        if (animation == NO_ANIMATION){
-            onAnimationFinish(this.animation);
-            setAnimationTick(0);
-        }
-        this.animation = animation;
-    }
-
-    @Override
-    public Animation[] getAnimations()
-    {
-        return ANIMATIONS;
-    }
-
-    protected void onAnimationFinish(Animation animation)
-    {}
-
-    protected void initEntityAI() {
-        //tasks.addTask(0, new FishWander(this, ANIMATION_FISH_WANDER));
-        //this.tasks.addTask(0, new FishWander(this));
-        //this.tasks.addTask(1, new EntityAILookIdle(this));
-    }
-
-
     @Override
     public boolean isAIDisabled() {
         return false;
     }
 
     public abstract String getTexture();
+
+    protected abstract float getAISpeedEurypterid();
 
     @Override
     protected void applyEntityAttributes() {
@@ -130,11 +79,6 @@ public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehist
     //}
 
     protected abstract double getSwimSpeed();
-
-    @Override
-    public boolean isInWater() {
-        return super.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
-    }
 
     public boolean isAtBottom() {
         //System.err.println("Testing position");
@@ -183,15 +127,6 @@ public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehist
     public void onLivingUpdate() {
         super.onLivingUpdate();
         this.renderYawOffset = this.rotationYaw;
-
-        if (getAnimation() != NO_ANIMATION)
-        {
-            animationTick++;
-        }
-        if (world.isRemote && animationTick >= animation.getDuration())
-        {
-            setAnimation(NO_ANIMATION);
-        }
     }
 
     public void onEntityUpdate()
@@ -225,7 +160,7 @@ public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehist
     public void travel(float strafe, float vertical, float forward) {
         float f4;
         if (this.isServerWorld()) {
-            if (isInWater()) {
+            if (this.isInWater()) {
                 this.moveRelative(strafe, vertical, forward, 0.1F);
                 f4 = 0.8F;
                 float speedModifier = (float) EnchantmentHelper.getDepthStriderModifier(this);
@@ -239,6 +174,12 @@ public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehist
                     f4 += (0.54600006F - f4) * speedModifier / 3.0F;
                 }
                 this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+
+                if (this.collidedHorizontally)
+                {
+                    this.motionY = 0.05D;
+                }
+
                 this.motionX *= f4;
                 this.motionX *= 0.9;
                 this.motionY *= 0.9;
@@ -284,10 +225,11 @@ public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehist
                 //this.PrehistoricFloraFishBase.setAIMoveSpeed(0.65F);
 
                 this.EntityBase.rotationYaw = this.limitAngle(this.EntityBase.rotationYaw, angle, 10.0F);
-                this.EntityBase.setAIMoveSpeed(0.4F);
+                float speed = getAISpeedEurypterid();
+                this.EntityBase.setAIMoveSpeed(speed);
 
                 if (this.EntityBase.isAtBottom()) {
-                    this.EntityBase.setAIMoveSpeed(0.2F);
+                    this.EntityBase.setAIMoveSpeed(speed * 0.5F);
                     //System.err.println("At bottom!");
                 }
 
@@ -298,6 +240,20 @@ public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehist
             } else {
                 //System.err.println("Exception");
                 this.EntityBase.setAIMoveSpeed(0.0F);
+            }
+        }
+    }
+
+    @Override
+    public void eatItem(ItemStack stack) { //Jus removing the attack animation from their eating
+        if (stack != null && stack.getItem() != null) {
+            this.setHealth(Math.min(this.getHealth() + 0.5F, (float) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue()));
+            stack.shrink(1);
+            if (this.getAnimation() == NO_ANIMATION && !world.isRemote) {
+                //this.setAnimation(ATTACK_ANIMATION);
+                //AnimationHandler.INSTANCE.sendAnimationMessage(this, ATTACK_ANIMATION);
+                SoundEvent soundevent = SoundEvents.ENTITY_GENERIC_EAT;
+                this.getEntityWorld().playSound(null, this.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }
         }
     }

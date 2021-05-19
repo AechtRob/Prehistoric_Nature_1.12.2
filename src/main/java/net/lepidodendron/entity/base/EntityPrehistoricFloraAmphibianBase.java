@@ -12,6 +12,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.pathfinding.*;
+import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -99,10 +100,6 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityPrehisto
         return 20;
     }
 
-    @Override
-    public boolean isInWater() {
-        return super.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
-    }
 
     public boolean isPushedByWater()
     {
@@ -146,7 +143,27 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityPrehisto
 
     public void onEntityUpdate()
     {
+        //System.err.println("Age: " + this.getAgeTicks());
+        int i = this.getAir();
         super.onEntityUpdate();
+
+        if ((this.isEntityAlive() && !isInWater())
+                && (!isNearWater(this, this.getPosition())) //Is not NEAR water
+        )
+        {
+            --i;
+            this.setAir(i);
+
+            if (this.getAir() == -20)
+            {
+                this.setAir(200);
+                this.attackEntityFrom(DamageSource.DROWN, 0.25F);
+            }
+        }
+        else
+        {
+            this.setAir(1000);
+        }
     }
 
     public boolean isDirectPathBetweenPoints(Vec3d vec1, Vec3d vec2) {

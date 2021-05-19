@@ -19,13 +19,17 @@ public class AgeableFishWander extends AnimationAI<EntityPrehistoricFloraAgeable
 
     protected Animation animation;
     protected EntityPrehistoricFloraAgeableFishBase PrehistoricFloraAgeableFishBase;
+    protected double straightness;
+    protected double surfacelove;
 
-    public AgeableFishWander(EntityPrehistoricFloraAgeableFishBase PrehistoricFloraAgeableFishBase, Animation animation)
+    public AgeableFishWander(EntityPrehistoricFloraAgeableFishBase PrehistoricFloraAgeableFishBase, Animation animation, double straightness, double surfacelove)
     {
         super(PrehistoricFloraAgeableFishBase);
         setMutexBits(4);
         this.PrehistoricFloraAgeableFishBase = PrehistoricFloraAgeableFishBase;
         this.animation = animation;
+        this.straightness = straightness;
+        this.surfacelove = surfacelove;
     }
 
     @Override
@@ -105,21 +109,21 @@ public class AgeableFishWander extends AnimationAI<EntityPrehistoricFloraAgeable
     }
 
     public boolean canTarget(BlockPos pos) {
-        if (Math.random() > 0.01 && this.PrehistoricFloraAgeableFishBase.world.getBlockState(pos.up(2)).getMaterial() != Material.WATER) {
+        if (Math.random() > surfacelove && this.PrehistoricFloraAgeableFishBase.world.getBlockState(pos.up(2)).getMaterial() != Material.WATER) {
             return false;
         }
         //Target to the front and prefer not to be at the surface:
         EnumFacing EntityFacing = this.PrehistoricFloraAgeableFishBase.getHorizontalFacing();
-        if (Math.random() > 0.01 && (EntityFacing == EnumFacing.NORTH) && (pos.getZ() > this.PrehistoricFloraAgeableFishBase.getPosition().getZ())) {
+        if (Math.random() > straightness && (EntityFacing == EnumFacing.NORTH) && (pos.getZ() > this.PrehistoricFloraAgeableFishBase.getPosition().getZ())) {
             return false;
         }
-        if (Math.random() > 0.01 && (EntityFacing == EnumFacing.SOUTH) && (pos.getZ() < this.PrehistoricFloraAgeableFishBase.getPosition().getZ())) {
+        if (Math.random() > straightness && (EntityFacing == EnumFacing.SOUTH) && (pos.getZ() < this.PrehistoricFloraAgeableFishBase.getPosition().getZ())) {
             return false;
         }
-        if (Math.random() > 0.01 && (EntityFacing == EnumFacing.WEST) && (pos.getX() > this.PrehistoricFloraAgeableFishBase.getPosition().getX())) {
+        if (Math.random() > straightness && (EntityFacing == EnumFacing.WEST) && (pos.getX() > this.PrehistoricFloraAgeableFishBase.getPosition().getX())) {
             return false;
         }
-        if (Math.random() > 0.01 && (EntityFacing == EnumFacing.EAST) && (pos.getX() < this.PrehistoricFloraAgeableFishBase.getPosition().getX())) {
+        if (Math.random() > straightness && (EntityFacing == EnumFacing.EAST) && (pos.getX() < this.PrehistoricFloraAgeableFishBase.getPosition().getX())) {
             return false;
         }
         return true;

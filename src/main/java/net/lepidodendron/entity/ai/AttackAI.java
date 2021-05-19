@@ -1,10 +1,13 @@
 package net.lepidodendron.entity.ai;
 
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
 import net.minecraft.pathfinding.Path;
+import net.minecraft.potion.PotionEffect;
 import net.minecraft.util.EnumHand;
 import net.minecraft.world.EnumDifficulty;
 
@@ -72,6 +75,10 @@ public class AttackAI extends EntityAIBase {
         if (this.entity.getAttackBoundingBox().intersects(target.getEntityBoundingBox())) {
             this.attackTick = 20;
             this.entity.attackEntityAsMob(target);
+            //Apply a slight slowdown to the target:
+            if (target instanceof EntityLivingBase) {
+                ((EntityLivingBase) target).addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 20, 1, false, false));
+            }
             if (target instanceof EntityPlayer) {this.entity.setResentful(false);}
             if (this.entity.ATTACK_ANIMATION != null) {
                 this.entity.setAnimation(this.entity.ATTACK_ANIMATION);

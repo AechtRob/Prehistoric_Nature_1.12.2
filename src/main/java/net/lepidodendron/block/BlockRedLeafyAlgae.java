@@ -104,11 +104,15 @@ public class BlockRedLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genRedLeafyAlgaeOverrideBiomes))
 			biomeCriteria = true;
-		if (dimID == LepidodendronConfig.dimCambrian){
+
+		if ((dimID == LepidodendronConfig.dimCambrian)
+				|| (dimID == LepidodendronConfig.dimPrecambrian)) {
 			biomeCriteria = false;
 		}
-		if (dimID == LepidodendronConfig.dimPrecambrian){
-			biomeCriteria = false;
+		if ((dimID == LepidodendronConfig.dimOrdovicianSilurian)
+				|| (dimID == LepidodendronConfig.dimDevonian)
+				|| (dimID == LepidodendronConfig.dimCarboniferous) ) {
+			biomeCriteria = true;
 		}
 		if (!biomeCriteria)
 			return;
@@ -116,9 +120,13 @@ public class BlockRedLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 		int multiplier = 1;
 		if ((dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
-				|| (dimID == LepidodendronConfig.dimCarboniferous)
 		) {
 			multiplier = 2;
+		}
+
+		if ((dimID == LepidodendronConfig.dimCarboniferous))
+		{
+			multiplier = 5;
 		}
 
 		for (int i = 0; i < (int) 10 * multiplier; i++) {

@@ -6,7 +6,7 @@ import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.FishWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
-import net.lepidodendron.item.ItemBucketPromissum;
+import net.lepidodendron.item.entities.ItemBucketPromissum;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -41,7 +41,7 @@ public class EntityPrehistoricFloraPromissum extends EntityPrehistoricFloraFishB
 
 	@Override
 	protected float getAISpeedFish() {
-		return 0.5f;
+		return 0.4f;
 	}
 
 	@Override

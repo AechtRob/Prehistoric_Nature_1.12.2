@@ -79,11 +79,41 @@ public class BlockCoral extends ElementsLepidodendronMod.ModElement {
 			setSoundType(SoundType.STONE);
 			setHardness(2.0F);
 			setResistance(2.0F);
-			setLightLevel(0F);
-			setLightOpacity(255);
+			setLightLevel(0.5F);
+			setLightOpacity(0);
 			//this.setTickRandomly(true);
 			setCreativeTab(TabLepidodendron.tab);
 		}
+
+		@Deprecated
+		@SideOnly(Side.CLIENT)
+		public int getPackedLightmapCoords(IBlockState state, IBlockAccess source, BlockPos pos)
+		{
+			int i = source.getCombinedLight(pos, state.getLightValue(source, pos));
+
+			if (i == 0)
+			{
+				pos = pos.down();
+				state = source.getBlockState(pos);
+				return source.getCombinedLight(pos, state.getLightValue(source, pos));
+			}
+			else
+			{
+				return i;
+			}
+		}
+
+		//@Override
+		//public boolean isOpaqueCube(IBlockState state)
+		//{
+			//return false;
+		//}
+
+		//@Override
+		//public boolean isFullCube(IBlockState state)
+		//{
+		//	return false;
+		//}
 
 		@Override
 		public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer) {
@@ -133,18 +163,13 @@ public class BlockCoral extends ElementsLepidodendronMod.ModElement {
 		}
 
 		@Override
+		public EnumBlockRenderType getRenderType(IBlockState state) {
+			return super.getRenderType(state);
+		}
+
+		@Override
 		public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
 			return layer == BlockRenderLayer.CUTOUT_MIPPED;
-		}
-
-		@Override
-		public boolean isOpaqueCube(IBlockState state) {
-			return false;
-		}
-
-		@Override
-		public boolean isFullCube(IBlockState state) {
-			return false;
 		}
 
 		@Override

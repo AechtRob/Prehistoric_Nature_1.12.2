@@ -71,7 +71,7 @@ public abstract class EntityPrehistoricFloraFishBase extends EntityWaterMob impl
 
     @Override
     public boolean isInWater() {
-        return super.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
+        return super.isInWater() || (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
     }
 
     public boolean isAtBottom() {

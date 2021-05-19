@@ -97,6 +97,7 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
 
     @Override
     public boolean isInWater() { //Is in water if the block UNDER it is also water. i.e. in shalow water it just walks:
+        if (this.world.isAirBlock(this.getPosition())) {return false;}
         IBlockState state = this.world.getBlockState(this.getPosition().down());
         return ((super.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
                 && (state.getMaterial() == Material.WATER ));

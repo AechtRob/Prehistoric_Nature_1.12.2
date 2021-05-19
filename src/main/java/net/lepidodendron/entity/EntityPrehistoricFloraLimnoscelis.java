@@ -3,6 +3,8 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.*;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
@@ -12,6 +14,7 @@ import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
+import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
@@ -23,6 +26,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import com.google.common.base.Predicate;
 
+import javax.annotation.Nullable;
+
 public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwimmingAmphibianBase {
 
 	public BlockPos currentTarget;
@@ -32,7 +37,7 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 
 	public EntityPrehistoricFloraLimnoscelis(World world) {
 		super(world);
-		setSize(0.7F, 0.8F);
+		setSize(0.55F, 0.6F);
 		experienceValue = 0;
 		this.isImmuneToFire = false;
 		setNoAI(!true);
@@ -71,9 +76,12 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 		tasks.addTask(2, new EntityAIWatchClosest(this, EntityPrehistoricFloraAgeableBase.class, 8.0F));
 		tasks.addTask(3, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatFishItemsAI(this));
+		this.targetTasks.addTask(0, new EatMeatItemsAI(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
 		this.targetTasks.addTask(2, new HuntAI(this, EntityPlayer.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
-		this.targetTasks.addTask(3, new HuntAI(this, EntityPrehistoricFloraFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
+		this.targetTasks.addTask(2, new HuntAI(this, EntityPrehistoricFloraFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
+		this.targetTasks.addTask(2, new HuntAI(this, EntitySquid. class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
+		this.targetTasks.addTask(2, new HuntAI(this, EntityPrehistoricFloraAmphibamus.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 	}
 
 	@Override
@@ -208,10 +216,18 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 		return movingobjectposition == null || movingobjectposition.typeOfHit != RayTraceResult.Type.BLOCK;
 	}
 
-	@Override
-	protected Item getDropItem() {
-		return null;
-		//return new ItemStack(ItemEurypterusMeat.block, (int) (1)).getItem();
+
+
+	@Nullable
+	protected ResourceLocation getLootTable() {
+		double adult = (double) LepidodendronConfig.adultAge;
+		if (adult > 100) {adult = 100;}
+		if (adult < 0) {adult = 0;}
+		adult = adult/100D;
+		if (getAgeScale() < adult) {
+			return LepidodendronMod.LIMNOSCELIS_LOOT_YOUNG;
+		}
+		return LepidodendronMod.LIMNOSCELIS_LOOT;
 	}
 
 }

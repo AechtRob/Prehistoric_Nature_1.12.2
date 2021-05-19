@@ -2,6 +2,7 @@
 package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.NautiloidWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraNautiloidBase;
@@ -39,6 +40,14 @@ public class EntityPrehistoricFloraAmmonite_Goniatites extends EntityPrehistoric
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
+		minSize = 0.8F;
+		maxSize = 1.0F;
+		maxHealthAgeable = 3;
+	}
+
+	@Override
+	public int getAdultAge() {
+		return 36000;
 	}
 
 	@Override
@@ -177,7 +186,13 @@ public class EntityPrehistoricFloraAmmonite_Goniatites extends EntityPrehistoric
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		return LepidodendronMod.AMMONITE_LOOT;
+		double adult = (double) LepidodendronConfig.adultAge;
+		if (adult > 100) {adult = 100;}
+		if (adult < 0) {adult = 0;}
+		adult = adult/100D;
+		if (getAgeScale() < adult) {
+			return LepidodendronMod.GONIATITES_LOOT_YOUNG;
+		}return LepidodendronMod.GONIATITES_LOOT;
 	}
 
 	@Override

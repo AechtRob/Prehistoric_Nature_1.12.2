@@ -2,10 +2,10 @@
 package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.EurypteridWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraEurypteridBase;
-import net.lepidodendron.item.ItemBucketAsaphus;
-import net.lepidodendron.item.ItemBucketPalaeodictyopteraNymph;
+import net.lepidodendron.item.entities.ItemBucketPalaeodictyopteraNymph;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
@@ -61,12 +61,12 @@ public class EntityPrehistoricFloraPalaeodictyopteraNymph extends EntityPrehisto
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new EurypteridWander(this, ANIMATION_FISH_WANDER));
+		tasks.addTask(0, new EurypteridWander(this, NO_ANIMATION));
 	}
 
 	@Override
-	public boolean isAIDisabled() {
-		return false;
+	protected float getAISpeedEurypterid() {
+		return 0.41F;
 	}
 
 	@Override
@@ -155,29 +155,7 @@ public class EntityPrehistoricFloraPalaeodictyopteraNymph extends EntityPrehisto
 		return (SoundEvent) SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.generic.death"));
 	}
 
-	@Override
-	protected float getSoundVolume() {
-		return 1.0F;
-	}
 
-	@Override
-	public boolean canBreatheUnderwater() {
-		return true;
-	}
-
-	@Override
-	public boolean getCanSpawnHere() {
-		return this.posY < (double) this.world.getSeaLevel() && this.isInWater();
-	}
-
-	public boolean isNotColliding() {
-		return this.world.checkNoEntityCollision(this.getEntityBoundingBox(), this);
-	}
-
-	@Override
-	public int getTalkInterval() {
-		return 120;
-	}
 
 	@Override
 	protected int getExperiencePoints(EntityPlayer player) {
@@ -192,7 +170,6 @@ public class EntityPrehistoricFloraPalaeodictyopteraNymph extends EntityPrehisto
 	@Override
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
-		this.renderYawOffset = this.rotationYaw;
 	}
 
 	public void onEntityUpdate()
@@ -242,54 +219,9 @@ public class EntityPrehistoricFloraPalaeodictyopteraNymph extends EntityPrehisto
 		}
 	}
 
-	public boolean isDirectPathBetweenPoints(Vec3d vec1, Vec3d vec2) {
-		RayTraceResult movingobjectposition = this.world.rayTraceBlocks(vec1, new Vec3d(vec2.x, vec2.y, vec2.z), false, true, false);
-		return movingobjectposition == null || movingobjectposition.typeOfHit != RayTraceResult.Type.BLOCK;
-	}
-
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		return null;
-	}
-
-	@Override
-	public void travel(float strafe, float vertical, float forward) {
-		float f4;
-		if (this.isServerWorld()) {
-			if (this.isInWater()) {
-				this.moveRelative(strafe, vertical, forward, 0.1F);
-				f4 = 0.8F;
-				float speedModifier = (float) EnchantmentHelper.getDepthStriderModifier(this);
-				if (speedModifier > 3.0F) {
-					speedModifier = 3.0F;
-				}
-				if (!this.onGround) {
-					speedModifier *= 0.5F;
-				}
-				if (speedModifier > 0.0F) {
-					f4 += (0.54600006F - f4) * speedModifier / 3.0F;
-				}
-				this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
-				this.motionX *= f4;
-				this.motionX *= 0.9;
-				this.motionY *= 0.9;
-				this.motionY *= f4;
-				this.motionZ *= 0.9;
-				this.motionZ *= f4;
-			} else {
-				super.travel(strafe, vertical, forward);
-			}
-		}
-		this.prevLimbSwingAmount = this.limbSwingAmount;
-		double deltaX = this.posX - this.prevPosX;
-		double deltaZ = this.posZ - this.prevPosZ;
-		double deltaY = this.posY - this.prevPosY;
-		float delta = MathHelper.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ) * 4.0F;
-		if (delta > 1.0F) {
-			delta = 1.0F;
-		}
-		this.limbSwingAmount += (delta - this.limbSwingAmount) * 0.4F;
-		this.limbSwing += this.limbSwingAmount;
+		return LepidodendronMod.PALAEODICTYOPTERA_LOOT;
 	}
 
 	@Override

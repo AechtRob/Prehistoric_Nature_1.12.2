@@ -430,15 +430,10 @@ public class BlockAnemone1 extends ElementsLepidodendronMod.ModElement {
 	    	return false;
 	    }
 
-		@Override
-		public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity) {
-			super.onEntityCollision(world, pos, state, entity);
-			entity.attackEntityFrom(DamageSource.CACTUS, (float) 0.5);
-		}
-
+		@Nullable
 		public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 		{
-			return new AxisAlignedBB(0.0625D, 0.0D, 0.0625D, 0.9375D, 0.9375D, 0.9375D);
+			return NULL_AABB;
 		}
 
 	}

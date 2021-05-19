@@ -75,11 +75,6 @@ public abstract class EntityPrehistoricFloraAgeableFishBase extends EntityPrehis
         return false;
     }
 
-    @Override
-    public boolean isInWater() {
-        return super.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
-    }
-
     public boolean isAtBottom() {
         //System.err.println("Testing position");
         if (this.getPosition().getY() - 1 > 1) {

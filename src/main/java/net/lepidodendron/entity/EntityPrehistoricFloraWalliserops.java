@@ -6,7 +6,7 @@ import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.TrilobiteWanderBottom;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteBottomBase;
-import net.lepidodendron.item.ItemBucketWalliserops;
+import net.lepidodendron.item.entities.ItemBucketWalliserops;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;

@@ -1,6 +1,8 @@
 
 package net.lepidodendron.block;
 
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -12,8 +14,6 @@ import net.minecraft.world.World;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.Item;
@@ -25,7 +25,6 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.init.Blocks;
@@ -59,6 +58,7 @@ public class BlockAdoketophyton extends ElementsLepidodendronMod.ModElement {
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0,
 				new ModelResourceLocation("lepidodendron:adoketophyton", "inventory"));
 	}
+
 	public static class BlockCustom extends BlockBush implements IGrowable {
 		public BlockCustom() {
 			super(Material.PLANTS);

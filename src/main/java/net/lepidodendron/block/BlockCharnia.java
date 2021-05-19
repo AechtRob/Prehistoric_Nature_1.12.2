@@ -77,7 +77,7 @@ public class BlockCharnia extends ElementsLepidodendronMod.ModElement {
 
 	@Override
 	public void generateWorld(Random random, int chunkX, int chunkZ, World world, int dimID, IChunkGenerator cg, IChunkProvider cp) {
-		for (int i = 0; i < (int) 48; i++) {
+		for (int i = 0; i < (int) 36; i++) {
 			int l6 = chunkX + random.nextInt(16) + 8;
 			int i11 = random.nextInt(world.getSeaLevel()+1);
 			int l14 = chunkZ + random.nextInt(16) + 8;

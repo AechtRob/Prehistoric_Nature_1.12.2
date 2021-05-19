@@ -47,8 +47,8 @@ public class ModelCharnia extends AdvancedModelBase {
     public void renderAll(float f) {
         this.resetToDefaultPose();
         AdvancedModelRenderer[] bodyFull = {this.frond1,this.frond2,this.frond3,this.frond4};
-        float speed = 0.1F;
-        this.chainWave(bodyFull, speed, 0.2F, 2, f, 0.5F);
+        float speed = 0.091F;
+        this.chainWave(bodyFull, speed, 0.18F, 2, f, 0.42F);
         this.bone.render(0.1f);
     }
 

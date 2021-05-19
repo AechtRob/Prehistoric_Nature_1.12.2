@@ -88,12 +88,13 @@ public class BlockDarkOrangeSponge extends ElementsLepidodendronMod.ModElement {
 		if (matchBiome(biome, LepidodendronConfig.genFireSpongeOverrideBiomes))
 			biomeCriteria = true;
 		if ((dimID == LepidodendronConfig.dimOrdovicianSilurian)
-			|| (dimID == LepidodendronConfig.dimCambrian)
+				|| (dimID == LepidodendronConfig.dimCambrian)
+				|| (dimID == LepidodendronConfig.dimDevonian)
+				|| (dimID == LepidodendronConfig.dimCarboniferous)
 		) {
 			biomeCriteria = true;
 		}
-		if (dimID == LepidodendronConfig.dimPrecambrian)
-		 {
+		if (dimID == LepidodendronConfig.dimPrecambrian){
 			biomeCriteria = false;
 		}
 		if (!biomeCriteria)

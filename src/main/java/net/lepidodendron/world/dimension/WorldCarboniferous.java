@@ -1,6 +1,8 @@
 
 package net.lepidodendron.world.dimension;
 
+import net.lepidodendron.block.BlockCarboniferousMud;
+import net.lepidodendron.world.WorldGenCarboniferousLakes;
 import org.jline.terminal.Size;
 
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -815,7 +817,7 @@ public class WorldCarboniferous extends ElementsLepidodendronMod.ModElement {
 					int i1 = this.random.nextInt(16) + 8;
 					int j1 = this.random.nextInt(256);
 					int k1 = this.random.nextInt(16) + 8;
-					(new WorldGenPrehistoricLakes(FLUID.getBlock())).generate(this.world, this.random, blockpos.add(i1, j1, k1));
+					(new WorldGenCarboniferousLakes(FLUID.getBlock())).generate(this.world, this.random, blockpos.add(i1, j1, k1));
 			}
 						
 			net.minecraftforge.common.MinecraftForge.EVENT_BUS
@@ -1042,17 +1044,37 @@ public class WorldCarboniferous extends ElementsLepidodendronMod.ModElement {
 							j = k;
 							if (j1 >= i - 1) {
 								chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
-							} else if (j1 < i - 7 - k) {
-								iblockstate = AIR;
-								iblockstate1 = STONE;
-								if (Math.random() > 0.95 || (j1 < i - 10 && Math.random() > 0.3)) {
-									chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
+							}
+							else {
+								if (Math.random() > 0.4 && j1 >= i - 4) {
+									if (Math.random() > 0.5) {
+										chunkPrimerIn.setBlockState(i1, j1, l, BlockCarboniferousMud.block.getDefaultState());
+									}
+									else {
+										chunkPrimerIn.setBlockState(i1, j1, l, Blocks.DIRT.getStateFromMeta(1));
+									}
+								} else {
+									if (j1 < i - 7 - k) {
+										iblockstate = AIR;
+										iblockstate1 = STONE;
+										if (Math.random() > 0.6 && j1 >= i - 2) {
+											if (Math.random() > 0.5) {
+												chunkPrimerIn.setBlockState(i1, j1, l, BlockCarboniferousMud.block.getDefaultState());
+											}
+											else {
+												chunkPrimerIn.setBlockState(i1, j1, l, Blocks.DIRT.getStateFromMeta(1));
+											}
+										} else {
+											if (Math.random() > 0.95 || (j1 < i - 10 && Math.random() > 0.3)) {
+												chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
+											} else {
+												chunkPrimerIn.setBlockState(i1, j1, l, Blocks.SAND.getDefaultState());
+											}
+										}
+									} else {
+										chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
+									}
 								}
-								else {
-									chunkPrimerIn.setBlockState(i1, j1, l, Blocks.SAND.getDefaultState());
-								}
-							} else {
-								chunkPrimerIn.setBlockState(i1, j1, l, iblockstate1);
 							}
 						} else if (j > 0) {
 							--j;

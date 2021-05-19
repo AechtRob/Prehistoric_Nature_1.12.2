@@ -130,67 +130,72 @@ public class BlockRugosa1 extends ElementsLepidodendronMod.ModElement {
 				public boolean generate(World world, Random random, BlockPos pos) {
 					for (int i = 0; i < 40; ++i) {
 						BlockPos blockpos1 = pos.add(random.nextInt(4) - random.nextInt(4), 0, random.nextInt(4) - random.nextInt(4));
-
-						boolean waterDepthCheckMax = false;
-						boolean waterDepthCheckMin = true;
-						//find air within the right depth
-						int yy = 1;
-						while (yy <= maxWaterDepth + 1 && !waterDepthCheckMax) {
-							if ((world.getBlockState(blockpos1.add(0, yy, 0)).getMaterial() != Material.AIR)
-									&& ((world.getBlockState(blockpos1.add(0, yy, 0)).getMaterial() != Material.WATER))) {
-								yy = maxWaterDepth + 1;
-							} else if ((world.getBlockState(blockpos1.add(0, yy, 0)).getMaterial() == Material.AIR)
-									&& (i11 + yy >= world.getSeaLevel())) {
-								waterDepthCheckMax = true;
+						if (world.getBlockState(blockpos1).getBlock() == Blocks.WATER) {
+							boolean waterDepthCheckMax = false;
+							boolean waterDepthCheckMin = true;
+							//find air within the right depth
+							int yy = 1;
+							while (yy <= maxWaterDepth + 1 && !waterDepthCheckMax) {
+								if ((world.getBlockState(blockpos1.add(0, yy, 0)).getMaterial() != Material.AIR)
+										&& ((world.getBlockState(blockpos1.add(0, yy, 0)).getMaterial() != Material.WATER))) {
+									yy = maxWaterDepth + 1;
+								} else if ((world.getBlockState(blockpos1.add(0, yy, 0)).getMaterial() == Material.AIR)
+										&& (i11 + yy >= world.getSeaLevel())) {
+									waterDepthCheckMax = true;
+								}
+								yy += 1;
 							}
-							yy += 1;
-						}
-						//Check that at least enough water is over the position:
-						yy = 1;
-						while (yy <= minWaterDepth && waterDepthCheckMin) {
-							if (world.getBlockState(blockpos1.add(0, yy, 0)).getMaterial() != Material.WATER) {
-								waterDepthCheckMin = false;
+							//Check that at least enough water is over the position:
+							yy = 1;
+							while (yy <= minWaterDepth && waterDepthCheckMin) {
+								if (world.getBlockState(blockpos1.add(0, yy, 0)).getMaterial() != Material.WATER) {
+									waterDepthCheckMin = false;
+								}
+								yy += 1;
 							}
-							yy += 1;
-						}
 
-						//figure out a position and facing to place this at!
-						//First try regular uprights and then the rotations:
-						EnumFacing enumfacing = EnumFacing.UP;
-						BlockPos pos1 = blockpos1.down();
-						if (waterDepthCheckMin & waterDepthCheckMax) {
-							if ((world.getBlockState(pos1).getMaterial() == Material.SAND)
-									|| (world.getBlockState(pos1).getMaterial() == Material.ROCK)
-									|| (world.getBlockState(pos1).getMaterial() == Material.GROUND)
-									|| (world.getBlockState(pos1).getMaterial() == Material.CORAL)
-									|| (world.getBlockState(pos1).getMaterial() == Material.CLAY)) {
-								world.setBlockState(blockpos1, block.getDefaultState().withProperty(BlockRugosa1.BlockCustom.FACING, enumfacing), 2);
-								return true;
-							} else {
-								for (EnumFacing enumfacing1 : BlockRugosa1.BlockCustom.FACING.getAllowedValues()) {
-									pos1 = blockpos1;
-									if (enumfacing1 == EnumFacing.NORTH) {
-										pos1 = blockpos1.add(0, 0, 1);
-									}
-									if (enumfacing1 == EnumFacing.SOUTH) {
-										pos1 = blockpos1.add(0, 0, -1);
-									}
-									if (enumfacing1 == EnumFacing.EAST) {
-										pos1 = blockpos1.add(-1, 0, 0);
-									}
-									if (enumfacing1 == EnumFacing.WEST) {
-										pos1 = blockpos1.add(1, 0, 0);
-									}
-									if (enumfacing1 != EnumFacing.DOWN && ((world.getBlockState(pos1).getMaterial() == Material.SAND)
-											|| (world.getBlockState(pos1).getMaterial() == Material.ROCK)
-											|| (world.getBlockState(pos1).getMaterial() == Material.GROUND)
-											|| (world.getBlockState(pos1).getMaterial() == Material.CLAY)
-											|| (world.getBlockState(pos1).getMaterial() == Material.GLASS)
-											|| (world.getBlockState(pos1).getMaterial() == Material.CORAL)
-											|| (world.getBlockState(pos1).getMaterial() == Material.IRON)
-											|| (world.getBlockState(pos1).getMaterial() == Material.WOOD))) {
-										world.setBlockState(blockpos1, block.getDefaultState().withProperty(BlockRugosa1.BlockCustom.FACING, enumfacing1), 2);
-										return true;
+							//figure out a position and facing to place this at!
+							//First try regular uprights and then the rotations:
+							EnumFacing enumfacing = EnumFacing.UP;
+							BlockPos pos1 = blockpos1.down();
+							if (waterDepthCheckMin & waterDepthCheckMax) {
+								if (((world.getBlockState(pos1).getMaterial() == Material.SAND)
+										|| (world.getBlockState(pos1).getMaterial() == Material.ROCK)
+										|| (world.getBlockState(pos1).getMaterial() == Material.GROUND)
+										|| (world.getBlockState(pos1).getMaterial() == Material.CORAL)
+										|| (world.getBlockState(pos1).getMaterial() == Material.CLAY))
+										&& (world.getBlockState(pos1).getBlockFaceShape(world, pos1, EnumFacing.UP) == BlockFaceShape.SOLID)) {
+									world.setBlockState(blockpos1, block.getDefaultState().withProperty(BlockRugosa1.BlockCustom.FACING, enumfacing), 2);
+									return true;
+								} else {
+									for (EnumFacing enumfacing1 : BlockRugosa1.BlockCustom.FACING.getAllowedValues()) {
+										pos1 = blockpos1;
+
+										if (enumfacing1 == EnumFacing.NORTH) {
+											pos1 = blockpos1.add(0, 0, 1);
+										}
+										if (enumfacing1 == EnumFacing.SOUTH) {
+											pos1 = blockpos1.add(0, 0, -1);
+										}
+										if (enumfacing1 == EnumFacing.EAST) {
+											pos1 = blockpos1.add(-1, 0, 0);
+										}
+										if (enumfacing1 == EnumFacing.WEST) {
+											pos1 = blockpos1.add(1, 0, 0);
+										}
+										if (enumfacing1 != EnumFacing.UP && enumfacing1 != EnumFacing.DOWN &&
+												((world.getBlockState(pos1).getMaterial() == Material.SAND)
+														|| (world.getBlockState(pos1).getMaterial() == Material.ROCK)
+														|| (world.getBlockState(pos1).getMaterial() == Material.GROUND)
+														|| (world.getBlockState(pos1).getMaterial() == Material.CLAY)
+														|| (world.getBlockState(pos1).getMaterial() == Material.GLASS)
+														|| (world.getBlockState(pos1).getMaterial() == Material.CORAL)
+														|| (world.getBlockState(pos1).getMaterial() == Material.IRON)
+														|| (world.getBlockState(pos1).getMaterial() == Material.WOOD))
+												&& (world.getBlockState(pos1).getBlockFaceShape(world, pos1, enumfacing1) == BlockFaceShape.SOLID)) {
+											world.setBlockState(blockpos1, block.getDefaultState().withProperty(BlockRugosa1.BlockCustom.FACING, enumfacing1), 2);
+											return true;
+										}
 									}
 								}
 							}

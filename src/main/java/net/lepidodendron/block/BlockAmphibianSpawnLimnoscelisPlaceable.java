@@ -6,7 +6,7 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.creativetab.TabLepidodendron;
 import net.lepidodendron.entity.EntityPrehistoricFloraLimnoscelis;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
-import net.lepidodendron.item.ItemBucketSpawnLimnoscelis;
+import net.lepidodendron.item.entities.ItemBucketSpawnLimnoscelis;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
@@ -16,7 +16,6 @@ import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -83,7 +82,7 @@ public class BlockAmphibianSpawnLimnoscelisPlaceable extends ElementsLepidodendr
 		{
 			super.updateTick(worldIn, pos, state, rand);
 			if (!(worldIn.isRemote)) {
-				Entity entity = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraLimnoscelis.class), pos.getX(), pos.getY(), pos.getZ());
+				Entity entity = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraLimnoscelis.class), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
 				if (entity != null) {
 					EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) entity;
 					ee.setAgeTicks(0);

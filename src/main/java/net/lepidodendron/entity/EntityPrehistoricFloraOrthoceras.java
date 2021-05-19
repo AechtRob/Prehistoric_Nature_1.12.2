@@ -2,6 +2,7 @@
 package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.NautiloidWander;
 import net.lepidodendron.entity.ai.NautiloidWanderBottomFeed;
@@ -40,6 +41,14 @@ public class EntityPrehistoricFloraOrthoceras extends EntityPrehistoricFloraNaut
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
+		minSize = 0.2F;
+		maxSize = 1.0F;
+		maxHealthAgeable = 24.0D;
+	}
+
+	@Override
+	public int getAdultAge() {
+		return 72000;
 	}
 
 	@Override
@@ -74,7 +83,6 @@ public class EntityPrehistoricFloraOrthoceras extends EntityPrehistoricFloraNaut
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(24.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 	}
 
@@ -197,6 +205,13 @@ public class EntityPrehistoricFloraOrthoceras extends EntityPrehistoricFloraNaut
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
+		double adult = (double) LepidodendronConfig.adultAge;
+		if (adult > 100) {adult = 100;}
+		if (adult < 0) {adult = 0;}
+		adult = adult/100D;
+		if (getAgeScale() < adult) {
+			return LepidodendronMod.ORTHOCERAS_LOOT_YOUNG;
+		}
 		return LepidodendronMod.ORTHOCERAS_LOOT;
 	}
 

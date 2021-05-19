@@ -1,4 +1,61 @@
 {
+  
+  "wet_crunch_plants": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:waterplant_wetcrunch01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:waterplant_wetcrunch02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:waterplant_wetcrunch03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:waterplant_wetcrunch04",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:waterplant_wetcrunch05",
+        "stream": false
+      }
+    ]
+  },
+
+  "dry_crunch_plants": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:landplant_drycrunch01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:landplant_drycrunch02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:landplant_drycrunch03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:landplant_drycrunch04",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:landplant_drycrunch05",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:landplant_drycrunch06",
+        "stream": false
+      }
+    ]
+  },
+  
   "pneudodesmus_idle": {
     "category": "master",
     "sounds": [
@@ -172,6 +229,110 @@
     "sounds": [
       {
         "name": "lepidodendron:limnoscelis_death",
+        "stream": false
+      }
+    ]
+  },
+  
+  "amphibamus_idle": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:amphibamus_living01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:amphibamus_living02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:amphibamus_living03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:amphibamus_living04",
+        "stream": false
+      }
+    ]
+  },
+  "amphibamus_hurt": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:amphibamus_hurt01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:amphibamus_hurt02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:amphibamus_hurt03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:amphibamus_hurt04",
+        "stream": false
+      }
+    ]
+  },
+  "amphibamus_death": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:amphibamus_death",
+        "stream": false
+      }
+    ]
+  },
+  
+  "ichthyostega_idle": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:ichthyostega_living01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:ichthyostega_living02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:ichthyostega_living03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:ichthyostega_living04",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:ichthyostega_living05",
+        "stream": false
+      }
+    ]
+  },
+  "ichthyostega_hurt": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:ichthyostega_hurt01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:ichthyostega_hurt02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:ichthyostega_hurt03",
+        "stream": false
+      }
+    ]
+  },
+  "ichthyostega_death": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:ichthyostega_death",
         "stream": false
       }
     ]

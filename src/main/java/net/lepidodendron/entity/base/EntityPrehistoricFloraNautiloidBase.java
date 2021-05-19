@@ -22,7 +22,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class EntityPrehistoricFloraNautiloidBase extends EntityWaterMob implements IAnimatedEntity {
+public abstract class EntityPrehistoricFloraNautiloidBase extends EntityPrehistoricFloraAgeableBase implements IAnimatedEntity {
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;
@@ -135,7 +135,7 @@ public abstract class EntityPrehistoricFloraNautiloidBase extends EntityWaterMob
 
     @Override
     public boolean isInWater() {
-        return super.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
+        return super.isInWater() || (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
     }
 
     //protected boolean isTargetInWater() {
@@ -148,9 +148,9 @@ public abstract class EntityPrehistoricFloraNautiloidBase extends EntityWaterMob
     }
 
     public boolean isAtBottom() {
-        //System.err.println("Testing position");
-        if (this.getPosition().getY() - 2 > 1) {
-            BlockPos pos = new BlockPos(this.getPosition().getX(),this.getPosition().getY() - 1.2, this.getPosition().getZ());
+        //Used for orthocone feeding animations:
+        if (this.getPosition().getY() - ((double)this.getAgeScale() * 2)  > 1) {
+            BlockPos pos = new BlockPos(this.getPosition().getX(),this.getPosition().getY() - ((double)this.getAgeScale() * 1.2), this.getPosition().getZ());
             return ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
                     && ((this.world.getBlockState(pos)).getMaterial() != Material.WATER)
                     && ((this.world.getBlockState(pos.north())).getMaterial() != Material.WATER)

@@ -41,16 +41,24 @@ public class AlgaeGenerator extends WorldGenerator
     {
 		int dimID = worldIn.provider.getDimension();
 		boolean dimensionCriteria = false;
-		if (shouldGenerateInDimension(dimID, LepidodendronConfig.dimAlgae))
+		boolean rugosas = (this.algae == BlockRugosa1.block || this.algae == BlockRugosa2.block || this.algae == BlockRugosa3.block || this.algae == BlockRugosa4.block || this.algae == BlockRugosa5.block);
+		boolean anemones = (this.algae == BlockAnemone1.block || this.algae == BlockAnemone2.block || this.algae == BlockAnemone3.block || this.algae == BlockAnemone4.block || this.algae == BlockAnemone5.block || this.algae == BlockAnemone6.block || this.algae == BlockAnemone7.block || this.algae == BlockAnemone8.block || this.algae == BlockAnemone9.block);
+		boolean cystoids = (this.algae == BlockCystoidBolboporites.block || this.algae == BlockCystoidEchinosphaerites.block);
+		int[] dimCheck = LepidodendronConfig.dimAlgae;
+		if (rugosas) {dimCheck = LepidodendronConfig.dimRugosa;}
+		if (anemones) {dimCheck = LepidodendronConfig.dimAnemone;}
+		if (cystoids) {dimCheck = LepidodendronConfig.dimCrinoid;}
+		if (shouldGenerateInDimension(dimID, dimCheck))
 		dimensionCriteria = true;
-		if ((dimID == LepidodendronConfig.dimDevonian && this.algae != BlockPinkSponge.block)
+		if ((dimID == LepidodendronConfig.dimDevonian && this.algae != BlockPinkSponge.block && (!cystoids))
 			|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
-			|| (dimID == LepidodendronConfig.dimCambrian)
-			|| (dimID == LepidodendronConfig.dimPrecambrian)
-			|| (dimID == LepidodendronConfig.dimCarboniferous && this.algae != BlockPinkSponge.block)
+			|| (dimID == LepidodendronConfig.dimCambrian && (!rugosas) && (!cystoids))
+			|| (dimID == LepidodendronConfig.dimPrecambrian && (!rugosas) && (!cystoids))
+			|| (dimID == LepidodendronConfig.dimCarboniferous && this.algae != BlockPinkSponge.block && (!cystoids))
 			) {
 			dimensionCriteria = true;
 		}
+
 		if (!dimensionCriteria)
 			return true;
 
@@ -74,7 +82,7 @@ public class AlgaeGenerator extends WorldGenerator
 			int l = position.getZ() + rand.nextInt(bound) - rand.nextInt(bound);
 
 			if (this.algae.canPlaceBlockAt(worldIn, new BlockPos(j, k, l))
-			&& (worldIn.getBlockState(new BlockPos(j, k, l)).getMaterial() == Material.WATER)){
+			&& (worldIn.getBlockState(new BlockPos(j, k, l)).getBlock() == Blocks.WATER)){
 
 				//Check that at least enough water is over the position (sponges):
 				boolean waterDepthCheckMin = true;
@@ -103,7 +111,7 @@ public class AlgaeGenerator extends WorldGenerator
 					//First try regular uprights and then the rotations:
 					EnumFacing enumfacing = EnumFacing.UP;
 					BlockPos pos = new BlockPos(j, k - 1, l);
-					if ((worldIn.getBlockState(pos).getMaterial() == Material.SAND)
+					if (((worldIn.getBlockState(pos).getMaterial() == Material.SAND)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.ROCK)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.GROUND)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.CLAY)
@@ -111,21 +119,34 @@ public class AlgaeGenerator extends WorldGenerator
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.GLASS)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.IRON)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.WOOD))
+						&& (worldIn.getBlockState(pos).getBlockFaceShape(worldIn, pos, EnumFacing.UP) == BlockFaceShape.SOLID))
 					{
 						worldIn.setBlockState(new BlockPos(j, k, l), this.state.withProperty(FACING, enumfacing), 2);
 						return true;
 					}
 					else {
-						if ( //exclude ones which can't go sideways!
+						if ( //exclude ones which are better not/can't go sideways!
 								(this.algae != BlockGreenCharaAlgae.block)
 										&& (this.algae != BlockGreenLeafyAlgae.block)
 										&& (this.algae != BlockDarkPinkSponge.block)
 										&& (this.algae != BlockPinkSponge.block)
 										&& (this.algae != BlockYellowSponge.block)
 										&& (this.algae != BlockAnemone1.block)
+										&& (this.algae != BlockAnemone2.block)
+										&& (this.algae != BlockAnemone3.block)
+										&& (this.algae != BlockAnemone4.block)
+										&& (this.algae != BlockAnemone5.block)
+										&& (this.algae != BlockAnemone6.block)
+										&& (this.algae != BlockAnemone7.block)
+										&& (this.algae != BlockAnemone8.block)
+										&& (this.algae != BlockAnemone9.block)
+										&& (this.algae != BlockCystoidBolboporites.block)
+										&& (this.algae != BlockCystoidEchinosphaerites.block)
+										&& (this.algae != BlockCystoidAristocystites.block)
 						) {
 							for (EnumFacing enumfacing1 : FACING.getAllowedValues()) {
 								pos = new BlockPos(j, k, l);
+
 								if (enumfacing1 == EnumFacing.NORTH) {
 									pos = new BlockPos(j, k, l + 1);
 								}
@@ -138,14 +159,17 @@ public class AlgaeGenerator extends WorldGenerator
 								if (enumfacing1 == EnumFacing.WEST) {
 									pos = new BlockPos(j + 1, k, l);
 								}
-								if ((worldIn.getBlockState(pos).getMaterial() == Material.SAND)
+
+								if (enumfacing1 != EnumFacing.UP && enumfacing1 != EnumFacing.DOWN &&
+										((worldIn.getBlockState(pos).getMaterial() == Material.SAND)
 										|| (worldIn.getBlockState(pos).getMaterial() == Material.ROCK)
 										|| (worldIn.getBlockState(pos).getMaterial() == Material.GROUND)
 										|| (worldIn.getBlockState(pos).getMaterial() == Material.CLAY)
 										|| (worldIn.getBlockState(pos).getMaterial() == Material.CORAL)
 										|| (worldIn.getBlockState(pos).getMaterial() == Material.GLASS)
 										|| (worldIn.getBlockState(pos).getMaterial() == Material.IRON)
-										|| (worldIn.getBlockState(pos).getMaterial() == Material.WOOD)) {
+										|| (worldIn.getBlockState(pos).getMaterial() == Material.WOOD))
+										&& (worldIn.getBlockState(pos).getBlockFaceShape(worldIn, pos, enumfacing1) == BlockFaceShape.SOLID)) {
 									worldIn.setBlockState(new BlockPos(j, k, l), this.state.withProperty(FACING, enumfacing1), 2);
 									return true;
 								}

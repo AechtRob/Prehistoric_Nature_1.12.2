@@ -2,6 +2,7 @@
 package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.NautiloidWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraNautiloidBase;
@@ -39,6 +40,14 @@ public class EntityPrehistoricFloraAmmonite_Manticoceras extends EntityPrehistor
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
+		minSize = 0.3F;
+		maxSize = 1.0F;
+		maxHealthAgeable = 4;
+	}
+
+	@Override
+	public int getAdultAge() {
+		return 36000;
 	}
 
 	@Override
@@ -74,7 +83,7 @@ public class EntityPrehistoricFloraAmmonite_Manticoceras extends EntityPrehistor
 	@Override
 	protected void applyEntityAttributes() {
 		super.applyEntityAttributes();
-		this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(4.0D);
+		//this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(4.0D);
 		this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
 	}
 
@@ -177,7 +186,13 @@ public class EntityPrehistoricFloraAmmonite_Manticoceras extends EntityPrehistor
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		return LepidodendronMod.AMMONITE_LOOT;
+		double adult = (double) LepidodendronConfig.adultAge;
+		if (adult > 100) {adult = 100;}
+		if (adult < 0) {adult = 0;}
+		adult = adult/100D;
+		if (getAgeScale() < adult) {
+			return LepidodendronMod.MANTICOCERAS_LOOT_YOUNG;
+		}return LepidodendronMod.MANTICOCERAS_LOOT;
 	}
 
 	@Override

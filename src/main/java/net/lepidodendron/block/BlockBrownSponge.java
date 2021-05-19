@@ -88,7 +88,9 @@ public class BlockBrownSponge extends ElementsLepidodendronMod.ModElement {
 		if (matchBiome(biome, LepidodendronConfig.genBrownSpongeOverrideBiomes))
 			biomeCriteria = true;
 		if ((dimID == LepidodendronConfig.dimOrdovicianSilurian)
-			|| (dimID == LepidodendronConfig.dimCambrian)
+				|| (dimID == LepidodendronConfig.dimCambrian)
+				|| (dimID == LepidodendronConfig.dimDevonian)
+				|| (dimID == LepidodendronConfig.dimCarboniferous)
 		) {
 			biomeCriteria = true;
 		}

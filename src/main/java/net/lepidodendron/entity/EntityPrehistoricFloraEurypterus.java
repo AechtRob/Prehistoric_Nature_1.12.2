@@ -2,13 +2,17 @@
 package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.entity.ai.AttackAI;
+import net.lepidodendron.entity.ai.EatFishItemsAI;
 import net.lepidodendron.entity.ai.EurypteridWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraEurypteridBase;
 import net.lepidodendron.item.entities.ItemEurypterusRaw;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
+import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -33,7 +37,7 @@ public class EntityPrehistoricFloraEurypterus extends EntityPrehistoricFloraEury
 
 	public EntityPrehistoricFloraEurypterus(World world) {
 		super(world);
-		setSize(0.5F, 0.5F);
+		setSize(0.5F, 0.3F);
 		experienceValue = 0;
 		this.isImmuneToFire = false;
 		setNoAI(!true);
@@ -49,7 +53,10 @@ public class EntityPrehistoricFloraEurypterus extends EntityPrehistoricFloraEury
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new EurypteridWander(this, ANIMATION_FISH_WANDER));
+		tasks.addTask(0, new AttackAI(this, 1.0D, false));
+		tasks.addTask(1, new EurypteridWander(this, NO_ANIMATION));
+		tasks.addTask(2, new EntityAILookIdle(this));
+		this.targetTasks.addTask(0, new EatFishItemsAI(this));
 	}
 
 	@Override
@@ -90,6 +97,11 @@ public class EntityPrehistoricFloraEurypterus extends EntityPrehistoricFloraEury
 	}
 
 	@Override
+	protected float getAISpeedEurypterid() {
+		return (float) Math.min(1F, (this.getAgeScale() * 2F)) * 0.4F;
+	}
+
+	@Override
 	public boolean isInWater() {
 		return super.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
 	}
@@ -102,9 +114,9 @@ public class EntityPrehistoricFloraEurypterus extends EntityPrehistoricFloraEury
 			isAtBottom =  ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
 					&& ((this.world.getBlockState(pos)).getMaterial() != Material.WATER));
 		}
-		if (isAtBottom && this.world.getBlockState(this.getPosition().up()).getMaterial() == Material.WATER) {
-			this.setPositionAndUpdate(this.getPosition().up().getX(), this.getPosition().up().getY(), this.getPosition().up().getZ());
-		}
+		//if (isAtBottom && this.world.getBlockState(this.getPosition().up()).getMaterial() == Material.WATER) {
+		//	this.setPositionAndUpdate(this.getPosition().up().getX(), this.getPosition().up().getY(), this.getPosition().up().getZ());
+		//}
 
 		return super.attackEntityFrom(source, (amount * 0.7F));
 
@@ -180,79 +192,22 @@ public class EntityPrehistoricFloraEurypterus extends EntityPrehistoricFloraEury
 	@Override
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
-		this.renderYawOffset = this.rotationYaw;
 	}
 
 	public void onEntityUpdate()
 	{
-		int i = this.getAir();
 		super.onEntityUpdate();
-
-		if (this.isEntityAlive() && !isInWater())
-		{
-			--i;
-			this.setAir(i);
-
-			if (this.getAir() == -20)
-			{
-				this.setAir(0);
-				this.attackEntityFrom(DamageSource.DROWN, 2.0F);
-			}
-		}
-		else
-		{
-			this.setAir(300);
-		}
-	}
-
-	public boolean isDirectPathBetweenPoints(Vec3d vec1, Vec3d vec2) {
-		RayTraceResult movingobjectposition = this.world.rayTraceBlocks(vec1, new Vec3d(vec2.x, vec2.y, vec2.z), false, true, false);
-		return movingobjectposition == null || movingobjectposition.typeOfHit != RayTraceResult.Type.BLOCK;
 	}
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		return LepidodendronMod.EURYPTERUS_LOOT;
-	}
-
-	@Override
-	public void travel(float strafe, float vertical, float forward) {
-		float f4;
-		if (this.isServerWorld()) {
-			if (this.isInWater()) {
-				this.moveRelative(strafe, vertical, forward, 0.1F);
-				f4 = 0.8F;
-				float speedModifier = (float) EnchantmentHelper.getDepthStriderModifier(this);
-				if (speedModifier > 3.0F) {
-					speedModifier = 3.0F;
-				}
-				if (!this.onGround) {
-					speedModifier *= 0.5F;
-				}
-				if (speedModifier > 0.0F) {
-					f4 += (0.54600006F - f4) * speedModifier / 3.0F;
-				}
-				this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
-				this.motionX *= f4;
-				this.motionX *= 0.9;
-				this.motionY *= 0.9;
-				this.motionY *= f4;
-				this.motionZ *= 0.9;
-				this.motionZ *= f4;
-			} else {
-				super.travel(strafe, vertical, forward);
-			}
-		}
-		this.prevLimbSwingAmount = this.limbSwingAmount;
-		double deltaX = this.posX - this.prevPosX;
-		double deltaZ = this.posZ - this.prevPosZ;
-		double deltaY = this.posY - this.prevPosY;
-		float delta = MathHelper.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ) * 4.0F;
-		if (delta > 1.0F) {
-			delta = 1.0F;
-		}
-		this.limbSwingAmount += (delta - this.limbSwingAmount) * 0.4F;
-		this.limbSwing += this.limbSwingAmount;
+		double adult = (double) LepidodendronConfig.adultAge;
+		if (adult > 100) {adult = 100;}
+		if (adult < 0) {adult = 0;}
+		adult = adult/100D;
+		if (getAgeScale() < adult) {
+			return LepidodendronMod.EURYPTERUS_LOOT_YOUNG;
+		}return LepidodendronMod.EURYPTERUS_LOOT;
 	}
 
 }

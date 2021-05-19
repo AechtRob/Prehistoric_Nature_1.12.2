@@ -5,7 +5,7 @@ import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.entity.ai.JellyfishWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraJellyfishBase;
-import net.lepidodendron.item.ItemBucketJellyfish4;
+import net.lepidodendron.item.entities.ItemBucketJellyfish4;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.*;
 import net.minecraft.entity.monster.EntityMob;
