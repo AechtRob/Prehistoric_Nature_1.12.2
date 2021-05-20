@@ -70,6 +70,19 @@ public class BlockRugosa5 extends ElementsLepidodendronMod.ModElement {
 	@Override
 	public void generateWorld(Random random, int chunkX, int chunkZ, World world, int dimID, IChunkGenerator cg, IChunkProvider cp) {
 
+		boolean dimensionCriteria = false;
+		if (shouldGenerateInDimension(dimID, LepidodendronConfig.dimRugosa))
+			dimensionCriteria = true;
+		if ((dimID == LepidodendronConfig.dimDevonian)
+				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
+				|| (dimID == LepidodendronConfig.dimCarboniferous)
+				|| (dimID == LepidodendronConfig.dimPermian)
+		) {
+			dimensionCriteria = true;
+		}
+		if (!dimensionCriteria)
+			return;
+
 		int weight = LepidodendronConfig.weightRugosa;
 		if (weight > 100) {weight = 100;}
 		if (weight < 0) {weight = 0;}
@@ -231,6 +244,18 @@ public class BlockRugosa5 extends ElementsLepidodendronMod.ModElement {
 
         return false;
     }
+
+	public boolean shouldGenerateInDimension(int id, int[] dims) {
+		int[] var2 = dims;
+		int var3 = dims.length;
+		for (int var4 = 0; var4 < var3; ++var4) {
+			int dim = var2[var4];
+			if (dim == id) {
+				return true;
+			}
+		}
+		return false;
+	}
 	
 	public static class BlockCustom extends Block implements net.minecraftforge.common.IShearable  {
 		

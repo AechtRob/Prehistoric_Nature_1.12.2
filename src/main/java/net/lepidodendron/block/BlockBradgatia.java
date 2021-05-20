@@ -67,6 +67,13 @@ public class BlockBradgatia extends ElementsLepidodendronMod.ModElement {
 
 	@Override
 	public void generateWorld(Random random, int chunkX, int chunkZ, World world, int dimID, IChunkGenerator cg, IChunkProvider cp) {
+		int weight = LepidodendronConfig.weightEdiacaran;
+		if (weight > 100) {weight = 100;}
+		if (weight < 0) {weight = 0;}
+		if (Math.random() < ((double) (100 - (double) weight)/100)) {
+			return;
+		}
+
 		int minWaterDepth;
 		int maxWaterDepth;
 		int startHeight;
@@ -427,10 +434,11 @@ public class BlockBradgatia extends ElementsLepidodendronMod.ModElement {
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Frondose organism");
 				tooltip.add("Periods: Ediacaran");
-				super.addInformation(stack, player, tooltip, advanced);
 			}
-
+			super.addInformation(stack, player, tooltip, advanced);
 		}
+
 	}
 }

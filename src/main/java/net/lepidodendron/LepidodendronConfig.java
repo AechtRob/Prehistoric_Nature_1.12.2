@@ -36,7 +36,7 @@ public class LepidodendronConfig {
     public static String[] dimPrecambrianMobs = new String[]{"lepidodendron:prehistoric_flora_jellyfish_precambrian:2:20"};
     public static String[] dimCarboniferousMobs = new String[]{"lepidodendron:prehistoric_flora_acanthodes:8:18:3","lepidodendron:prehistoric_flora_ammonite_goniatites:2:15:2","lepidodendron:prehistoric_flora_ammonite_goniatites:2:15:3","lepidodendron:prehistoric_flora_amphibamus:2:18:1","lepidodendron:prehistoric_flora_anthracomedusa:1:10:3","lepidodendron:prehistoric_flora_hibbertopterus:1:7:3","lepidodendron:prehistoric_flora_jellyfish1:1:4:2","lepidodendron:prehistoric_flora_jellyfish2:1:4:2","lepidodendron:prehistoric_flora_jellyfish3:1:4:2","lepidodendron:prehistoric_flora_jellyfish4:1:4:2","lepidodendron:prehistoric_flora_jellyfish5:1:4:2","lepidodendron:prehistoric_flora_jellyfish6:1:4:2","lepidodendron:prehistoric_flora_jellyfish7:1:4:2","lepidodendron:prehistoric_flora_limnoscelis:1:14:1","lepidodendron:prehistoric_flora_megarachne:2:7:3","lepidodendron:prehistoric_flora_palaeodictyoptera_delitzschala:2:3:1","lepidodendron:prehistoric_flora_palaeodictyoptera_homaloneura:2:3:1","lepidodendron:prehistoric_flora_palaeodictyoptera_homoioptera:2:3:1","lepidodendron:prehistoric_flora_palaeodictyoptera_lithomantis:2:3:1","lepidodendron:prehistoric_flora_palaeodictyoptera_lycocercus:2:3:1","lepidodendron:prehistoric_flora_palaeodictyoptera_sinodunbaria:2:3:1","lepidodendron:prehistoric_flora_palaeodictyoptera_stenodictya:2:3:1","lepidodendron:prehistoric_flora_squatinactis:2:9:2"};
     public static String[] dimDevonianMobs = new String[]{"lepidodendron:prehistoric_flora_acanthodes:4:25:2","lepidodendron:prehistoric_flora_cheirurus:3:17:3","lepidodendron:prehistoric_flora_ammonite_manticoceras:2:12:2","lepidodendron:prehistoric_flora_ammonite_manticoceras:2:12:3","lepidodendron:prehistoric_flora_ammonite_goniatites:2:12:2","lepidodendron:prehistoric_flora_ammonite_goniatites:2:12:3","lepidodendron:prehistoric_flora_bothriolepis:3:15:2","lepidodendron:prehistoric_flora_bothriolepis:3:10:3","lepidodendron:prehistoric_flora_cephalaspis:3:16:2","lepidodendron:prehistoric_flora_cyrtoceras:1:18:2","lepidodendron:prehistoric_flora_eoarthropleura:2:20:1","lepidodendron:prehistoric_flora_furcacauda:8:7:2","lepidodendron:prehistoric_flora_hemicyclaspis:3:16:2","lepidodendron:prehistoric_flora_hibbertopterus:1:7:3","lepidodendron:prehistoric_flora_hibernaspis:3:14:3","lepidodendron:prehistoric_flora_hibernaspis:2:16:2","lepidodendron:prehistoric_flora_ichthyostega:2:16:3","lepidodendron:prehistoric_flora_jaekelopterus:1:4:2","lepidodendron:prehistoric_flora_jellyfish1:1:3:2","lepidodendron:prehistoric_flora_jellyfish2:1:3:2","lepidodendron:prehistoric_flora_jellyfish3:1:3:2","lepidodendron:prehistoric_flora_jellyfish4:1:3:2","lepidodendron:prehistoric_flora_jellyfish5:1:3:2","lepidodendron:prehistoric_flora_jellyfish6:1:3:2","lepidodendron:prehistoric_flora_jellyfish7:1:3:2","lepidodendron:prehistoric_flora_pneumodesmus:2:20:1","lepidodendron:prehistoric_flora_poraspis:2:8:3","lepidodendron:prehistoric_flora_poraspis:3:8:2","lepidodendron:prehistoric_flora_psarolepis:1:20:3","lepidodendron:prehistoric_flora_pteraspis:4:12:3","lepidodendron:prehistoric_flora_pteraspis:4:12:2","lepidodendron:prehistoric_flora_pterygotus:1:4:2","lepidodendron:prehistoric_flora_schinderhannes:3:12:3","lepidodendron:prehistoric_flora_terataspis:2:15:3","lepidodendron:prehistoric_flora_titanichthys:1:2:2","lepidodendron:prehistoric_flora_titanichthys{AgeTicks:0}:1:2:2","lepidodendron:prehistoric_flora_walliserops:5:18:3"};
-    public static String[] dimOrdovicianSilurianMobs = new String[]{"lepidodendron:prehistoric_flora_aphetoceras:2:15:2","lepidodendron:prehistoric_flora_arandaspis:6:12:3","lepidodendron:prehistoric_flora_arandaspis:6:10:2","lepidodendron:prehistoric_flora_asaphus:3:22:3","lepidodendron:prehistoric_flora_ateleaspis:2:9:2","lepidodendron:prehistoric_flora_cephalaspis:1:6:2","lepidodendron:prehistoric_flora_cheirurus:2:22:3","lepidodendron:prehistoric_flora_cyrtoceras:1:18:2","lepidodendron:prehistoric_flora_cameroceras:2:3:2","lepidodendron:prehistoric_flora_eoarthropleura:2:30:1","lepidodendron:prehistoric_flora_endoceras:2:3:2","lepidodendron:prehistoric_flora_eurypterus:3:20:3","lepidodendron:prehistoric_flora_isotelus:5:20:2","lepidodendron:prehistoric_flora_jellyfish1:1:5:2","lepidodendron:prehistoric_flora_jellyfish2:1:5:2","lepidodendron:prehistoric_flora_jellyfish3:1:5:2","lepidodendron:prehistoric_flora_jellyfish4:1:5:2","lepidodendron:prehistoric_flora_jellyfish5:1:5:2","lepidodendron:prehistoric_flora_jellyfish6:1:5:2","lepidodendron:prehistoric_flora_jellyfish7:1:5:2","lepidodendron:prehistoric_flora_jellyfish1:1:3:3","lepidodendron:prehistoric_flora_jellyfish2:1:3:3","lepidodendron:prehistoric_flora_jellyfish3:1:3:3","lepidodendron:prehistoric_flora_jellyfish4:1:3:3","lepidodendron:prehistoric_flora_jellyfish5:1:3:3","lepidodendron:prehistoric_flora_jellyfish6:1:3:3","lepidodendron:prehistoric_flora_jellyfish7:1:3:3","lepidodendron:prehistoric_flora_lunataspis:2:16:3","lepidodendron:prehistoric_flora_mixopterus:2:20:3","lepidodendron:prehistoric_flora_orthoceras:2:3:2","lepidodendron:prehistoric_flora_poraspis:2:8:3","lepidodendron:prehistoric_flora_poraspis:3:8:2","lepidodendron:prehistoric_flora_promissum:1:5:3","lepidodendron:prehistoric_flora_promissum:2:18:2","lepidodendron:prehistoric_flora_psarolepis:1:12:3","lepidodendron:prehistoric_flora_pterygotus:1:4:2","lepidodendron:prehistoric_flora_qilinyu:6:12:3","lepidodendron:prehistoric_flora_qilinyu:6:10:2","lepidodendron:prehistoric_flora_sacabambaspis:6:12:3","lepidodendron:prehistoric_flora_sacabambaspis:6:10:2","lepidodendron:prehistoric_flora_selenopeltis:5:18:3"};
+    public static String[] dimOrdovicianSilurianMobs = new String[]{"lepidodendron:prehistoric_flora_aegirocassis:2:3:2","lepidodendron:prehistoric_flora_aphetoceras:2:15:2","lepidodendron:prehistoric_flora_arandaspis:6:12:3","lepidodendron:prehistoric_flora_arandaspis:6:10:2","lepidodendron:prehistoric_flora_asaphus:3:22:3","lepidodendron:prehistoric_flora_ateleaspis:2:9:2","lepidodendron:prehistoric_flora_cephalaspis:1:6:2","lepidodendron:prehistoric_flora_cheirurus:2:22:3","lepidodendron:prehistoric_flora_cyrtoceras:1:18:2","lepidodendron:prehistoric_flora_cameroceras:2:3:2","lepidodendron:prehistoric_flora_eoarthropleura:2:30:1","lepidodendron:prehistoric_flora_endoceras:2:3:2","lepidodendron:prehistoric_flora_eurypterus:3:20:3","lepidodendron:prehistoric_flora_isotelus:5:20:2","lepidodendron:prehistoric_flora_jellyfish1:1:5:2","lepidodendron:prehistoric_flora_jellyfish2:1:5:2","lepidodendron:prehistoric_flora_jellyfish3:1:5:2","lepidodendron:prehistoric_flora_jellyfish4:1:5:2","lepidodendron:prehistoric_flora_jellyfish5:1:5:2","lepidodendron:prehistoric_flora_jellyfish6:1:5:2","lepidodendron:prehistoric_flora_jellyfish7:1:5:2","lepidodendron:prehistoric_flora_jellyfish1:1:3:3","lepidodendron:prehistoric_flora_jellyfish2:1:3:3","lepidodendron:prehistoric_flora_jellyfish3:1:3:3","lepidodendron:prehistoric_flora_jellyfish4:1:3:3","lepidodendron:prehistoric_flora_jellyfish5:1:3:3","lepidodendron:prehistoric_flora_jellyfish6:1:3:3","lepidodendron:prehistoric_flora_jellyfish7:1:3:3","lepidodendron:prehistoric_flora_lunataspis:2:16:3","lepidodendron:prehistoric_flora_mixopterus:2:20:3","lepidodendron:prehistoric_flora_orthoceras:2:3:2","lepidodendron:prehistoric_flora_poraspis:2:8:3","lepidodendron:prehistoric_flora_poraspis:3:8:2","lepidodendron:prehistoric_flora_promissum:1:5:3","lepidodendron:prehistoric_flora_promissum:2:18:2","lepidodendron:prehistoric_flora_psarolepis:1:12:3","lepidodendron:prehistoric_flora_pterygotus:1:4:2","lepidodendron:prehistoric_flora_qilinyu:6:12:3","lepidodendron:prehistoric_flora_qilinyu:6:10:2","lepidodendron:prehistoric_flora_sacabambaspis:6:12:3","lepidodendron:prehistoric_flora_sacabambaspis:6:10:2","lepidodendron:prehistoric_flora_selenopeltis:5:18:3"};
     public static String[] dimPermianGlossopterisMobs = new String[0];
     public static String[] dimPermianWetlandsMobs = new String[0];
 
@@ -896,13 +896,14 @@ public class LepidodendronConfig {
     public static int[] dimStromatolite = new int[]{0};
 
     public static int[] dimEdiacaran = new int[0];
+    public static int weightEdiacaran = 100;
 
-    public static int[] dimGraptolite = new int[]{0};
+    public static int[] dimGraptolite = new int[0];
     public static String[] genGraptoliteBlacklistBiomes = new String[0];
     public static String[] genGraptoliteOverrideBiomes = new String[0];
     public static int weightGraptolite = 100;
 
-    public static int[] dimCrinoid = new int[]{0};
+    public static int[] dimCrinoid = new int[0];
     public static String[] genCrinoidBlacklistBiomes = new String[0];
     public static String[] genCrinoidOverrideBiomes = new String[0];
     public static int weightCrinoid = 100;
@@ -1001,7 +1002,7 @@ public class LepidodendronConfig {
     public static String[] genFenestellaOverrideBiomes = new String[0];
     public static int weightFenestella = 10;
 
-    public static int[] dimAnemone = new int[0];
+    public static int[] dimAnemone = new int[]{0};
     public static String[] genAnemoneBlacklistBiomes = new String[0];
     public static String[] genAnemoneOverrideBiomes = new String[0];
     public static int weightAnemone = 10;
@@ -1149,8 +1150,10 @@ public class LepidodendronConfig {
     public static double multiplierPrimaevalGrass = 1;
     public static boolean spreadPrimaevalGrass = true;
 
-
     public static int waterHibbertopterus = 2;
+    public static int waterLimnoscelis = 10;
+    public static int waterAmphibamus = 8;
+    public static int waterIchthyostega = 8;
 
     public LepidodendronConfig() {
     }
@@ -1354,6 +1357,10 @@ public class LepidodendronConfig {
         prop.setComment("List of dimension IDs the Ediacaran Biota can generate in [default: empty]");
         dimEdiacaran = prop.getIntList();
         propOrder.add(prop.getName());
+        prop = cfg.get("WorldGen Ediacaran", "weightEdiacaran", weightEdiacaran);
+        prop.setComment("Percentage chance that non-mob-like members of the Ediacaran Biota generate in a suitable chunk (0 to 100) [default: 100]");
+        weightEdiacaran = prop.getInt();
+        propOrder.add(prop.getName());
 
         prop = cfg.get("WorldGen Algae-Sponges", "dimAlgae", dimAlgae);
         prop.setComment("List of dimension IDs Algae and Sponges can generate in [default: 0]");
@@ -1390,7 +1397,7 @@ public class LepidodendronConfig {
         propOrder.add(prop.getName());
 
         prop = cfg.get("WorldGen Crinoids", "dimCrinoid", dimCrinoid);
-        prop.setComment("List of dimension IDs Crinoids, Cystoids, etc. can generate in [default: 0]");
+        prop.setComment("List of dimension IDs Crinoids, Cystoids, etc. can generate in [default: empty]");
         dimCrinoid = prop.getIntList();
         propOrder.add(prop.getName());
         prop = cfg.get("WorldGen Crinoids", "genCrinoidBlacklistBiomes", genCrinoidBlacklistBiomes);
@@ -1407,7 +1414,7 @@ public class LepidodendronConfig {
         propOrder.add(prop.getName());
 
         prop = cfg.get("WorldGen Graptolites", "dimGraptolite", dimGraptolite);
-        prop.setComment("List of dimension IDs Graptolites can generate in [default: 0]");
+        prop.setComment("List of dimension IDs Graptolites can generate in [default: empty]");
         dimGraptolite = prop.getIntList();
         propOrder.add(prop.getName());
         prop = cfg.get("WorldGen Graptolites", "genGraptoliteBlacklistBiomes", genGraptoliteBlacklistBiomes);
@@ -1712,7 +1719,7 @@ public class LepidodendronConfig {
         propOrder.add(prop.getName());
 
         prop = cfg.get("WorldGen Corals", "dimRugosa", dimRugosa);
-        prop.setComment("List of dimension IDs Rugosa Corals can generate in [default: 0]");
+        prop.setComment("List of dimension IDs Rugosa Corals can generate in [default: empty]");
         dimRugosa = prop.getIntList();
         propOrder.add(prop.getName());
         prop = cfg.get("WorldGen Corals", "genRugosaBlacklistBiomes", genRugosaBlacklistBiomes);
@@ -1729,7 +1736,7 @@ public class LepidodendronConfig {
         propOrder.add(prop.getName());
 
         prop = cfg.get("WorldGen Corals", "dimTabulata", dimTabulata);
-        prop.setComment("List of dimension IDs Tabulata Corals can generate in [default: 0]");
+        prop.setComment("List of dimension IDs Tabulata Corals can generate in [default: empty]");
         dimTabulata = prop.getIntList();
         propOrder.add(prop.getName());
         prop = cfg.get("WorldGen Corals", "genTabulataBlacklistBiomes", genTabulataBlacklistBiomes);
@@ -1746,7 +1753,7 @@ public class LepidodendronConfig {
         propOrder.add(prop.getName());
 
         prop = cfg.get("WorldGen Fenestella Bryozoans", "dimFenestella", dimFenestella);
-        prop.setComment("List of dimension IDs Fenestella Bryozoans can generate in [default: 0]");
+        prop.setComment("List of dimension IDs Fenestella Bryozoans can generate in [default: empty]");
         dimFenestella = prop.getIntList();
         propOrder.add(prop.getName());
         prop = cfg.get("WorldGen Fenestella Bryozoans", "genFenestellaBlacklistBiomes", genFenestellaBlacklistBiomes);
@@ -5650,9 +5657,21 @@ public class LepidodendronConfig {
         spreadPrimaevalGrass = prop.getBoolean();
         propOrder.add(prop.getName());
 
-        prop = cfg.get("Mob Hibbertopterus", "waterHibbertopterus", waterHibbertopterus);
+        prop = cfg.get("Mobs", "waterHibbertopterus", waterHibbertopterus);
         prop.setComment("Distance NSEW from water that Hibbertopterus can go to without taking suffocation damage (1 to 16) [default: 2]");
         waterHibbertopterus = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Mobs", "waterLimnoscelis", waterLimnoscelis);
+        prop.setComment("Distance NSEW from water that Limnoscelis can go to without taking suffocation damage (1 to 16) [default: 10]");
+        waterLimnoscelis = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Mobs", "waterAmphibamus", waterAmphibamus);
+        prop.setComment("Distance NSEW from water that Amphibamus can go to without taking suffocation damage (1 to 16) [default: 8]");
+        waterAmphibamus = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Mobs", "waterIchthyostega", waterIchthyostega);
+        prop.setComment("Distance NSEW from water that Ichthyostega can go to without taking suffocation damage (1 to 16) [default: 8]");
+        waterIchthyostega = prop.getInt();
         propOrder.add(prop.getName());
 
 

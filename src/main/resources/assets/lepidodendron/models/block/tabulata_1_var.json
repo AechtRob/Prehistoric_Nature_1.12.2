@@ -6,8 +6,8 @@
         "plant": "lepidodendron:blocks/tabulata_1_var"
     },
     "elements": [
-        {   "from": [0, 0, 0 ],
-            "to": [ 16, 1, 16 ],
+        {   "from": [0, 0.25, 0 ],
+            "to": [ 16, 0.25, 16 ],
             "faces": {
                 "up": { "uv": [ 0, 0, 16, 16 ],  "texture": "#texture" },
                 "down": { "uv": [ 16, 0, 0, 16 ],  "texture": "#texture", "cullface": "down" }

@@ -198,9 +198,9 @@ public class ItemBucketTitanichthys extends ElementsLepidodendronMod.ModElement 
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Trilobite");
-				tooltip.add("Periods: Ordovician");
-				tooltip.add("Habitat: Water");
+				tooltip.add("Type: Armoured (placoderm) fish");
+				tooltip.add("Periods: Devonian");
+				tooltip.add("Habitat: Water, filter/planktonic-feeder");
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

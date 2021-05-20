@@ -81,6 +81,14 @@ public class BlockDendrograptus extends ElementsLepidodendronMod.ModElement {
 			return;
 		}
 
+		boolean dimensionCriteria = false;
+		if (shouldGenerateInDimension(dimID, LepidodendronConfig.dimGraptolite))
+			dimensionCriteria = true;
+		if (dimID == LepidodendronConfig.dimOrdovicianSilurian)
+			dimensionCriteria = true;
+		if (!dimensionCriteria)
+			return;
+
 		boolean biomeCriteria = false;
 		Biome biome = world.getBiome(new BlockPos(chunkX, world.getSeaLevel(), chunkZ));
 		if (!matchBiome(biome, LepidodendronConfig.genGraptoliteBlacklistBiomes)) {
@@ -213,6 +221,18 @@ public class BlockDendrograptus extends ElementsLepidodendronMod.ModElement {
 
         return false;
     }
+
+	public boolean shouldGenerateInDimension(int id, int[] dims) {
+		int[] var2 = dims;
+		int var3 = dims.length;
+		for (int var4 = 0; var4 < var3; ++var4) {
+			int dim = var2[var4];
+			if (dim == id) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public static class BlockCustom extends Block implements net.minecraftforge.common.IShearable  {
 

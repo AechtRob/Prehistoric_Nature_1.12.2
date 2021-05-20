@@ -43,7 +43,7 @@ public class AlgaeGenerator extends WorldGenerator
 		boolean dimensionCriteria = false;
 		boolean rugosas = (this.algae == BlockRugosa1.block || this.algae == BlockRugosa2.block || this.algae == BlockRugosa3.block || this.algae == BlockRugosa4.block || this.algae == BlockRugosa5.block);
 		boolean anemones = (this.algae == BlockAnemone1.block || this.algae == BlockAnemone2.block || this.algae == BlockAnemone3.block || this.algae == BlockAnemone4.block || this.algae == BlockAnemone5.block || this.algae == BlockAnemone6.block || this.algae == BlockAnemone7.block || this.algae == BlockAnemone8.block || this.algae == BlockAnemone9.block);
-		boolean cystoids = (this.algae == BlockCystoidBolboporites.block || this.algae == BlockCystoidEchinosphaerites.block);
+		boolean cystoids = (this.algae == BlockCystoidAristocystites.block || this.algae == BlockCystoidBolboporites.block || this.algae == BlockCystoidEchinosphaerites.block);
 		int[] dimCheck = LepidodendronConfig.dimAlgae;
 		if (rugosas) {dimCheck = LepidodendronConfig.dimRugosa;}
 		if (anemones) {dimCheck = LepidodendronConfig.dimAnemone;}

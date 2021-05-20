@@ -61,7 +61,12 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 	}
 
 	@Override
-	public int WaterDist() {return 10;}
+	public int WaterDist() {
+		int i = (int) LepidodendronConfig.waterLimnoscelis;
+		if (i > 16) {i = 16;}
+		if (i < 1) {i = 1;}
+		return i;
+	}
 
 	public AxisAlignedBB getAttackBoundingBox() {
 		float size = this.getRenderSizeModifier() * 0.25F;

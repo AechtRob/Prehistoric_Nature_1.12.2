@@ -46,7 +46,12 @@ public class EntityPrehistoricFloraHibbertopterus extends EntityPrehistoricFlora
 	}
 
 	@Override
-	public int WaterDist() {return 2;}
+	public int WaterDist() {
+		int i = (int) LepidodendronConfig.waterHibbertopterus;
+		if (i > 16) {i = 16;}
+		if (i < 1) {i = 1;}
+		return i;
+	}
 
 	@Override
 	protected float getAISpeedWalkingAmphibian() {

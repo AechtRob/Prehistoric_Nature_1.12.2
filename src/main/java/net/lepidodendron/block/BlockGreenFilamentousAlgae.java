@@ -312,7 +312,7 @@ public class BlockGreenFilamentousAlgae extends ElementsLepidodendronMod.ModElem
 	    		return false;
 	    	}
 
-			if (worldIn.getBlockState(pos.down(2)).getMaterial() == Material.WATER)
+			if (worldIn.getBlockState(pos.down(3)).getMaterial() == Material.WATER)
 			{
 				return false;
 			}
