@@ -1,32 +1,31 @@
 
 package net.lepidodendron.block;
 
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.Item;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.ElementsLepidodendronMod;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class BlockArchaeopterisThatchBundle extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:archaeopteris_thatch_bundle")
 	public static final Block block = null;
 	public BlockArchaeopterisThatchBundle(ElementsLepidodendronMod instance) {
-		super(instance, 205);
+		super(instance, LepidodendronSorter.archaeopteris_thatch_bundle);
 	}
 
 	@Override
@@ -45,7 +44,7 @@ public class BlockArchaeopterisThatchBundle extends ElementsLepidodendronMod.Mod
 		public BlockCustom() {
 			super(Material.LEAVES);
 			setTranslationKey("pf_archaeopteris_thatch_bundle");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
         	this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.Y));
 		}
 

@@ -2,6 +2,7 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemGangamopterisDoorItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
@@ -30,7 +31,7 @@ public class BlockGangamopterisDoor extends ElementsLepidodendronMod.ModElement 
 	@GameRegistry.ObjectHolder("lepidodendron:gangamopteris_door")
 	public static final Block block = null;
 	public BlockGangamopterisDoor(ElementsLepidodendronMod instance) {
-		super(instance, 1375);
+		super(instance, LepidodendronSorter.gangamopteris_door);
 	}
 
 	@Override

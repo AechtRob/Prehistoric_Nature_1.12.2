@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
@@ -35,7 +36,7 @@ public class BlockLavaRockSlab extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:lava_rock_slab_double")
 	public static final Block block_slab_double = null;
 	public BlockLavaRockSlab(ElementsLepidodendronMod instance) {
-		super(instance, 394);
+		super(instance, LepidodendronSorter.lava_rock_slab);
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class BlockLavaRockSlab extends ElementsLepidodendronMod.ModElement {
 			setResistance(4.2F);
 			setLightLevel(0F);
 			setLightOpacity(255);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 			IBlockState state = this.blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
 			if (!this.isDouble())
 				state = state.withProperty(BlockSlab.HALF, EnumBlockHalf.BOTTOM);

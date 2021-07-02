@@ -2,6 +2,7 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronSorter;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -17,7 +18,7 @@ public class ItemPhialEggsPneumodesmus extends ElementsLepidodendronMod.ModEleme
 	@GameRegistry.ObjectHolder("lepidodendron:phial_eggs_pneumodesmus")
 	public static final Item block = null;
 	public ItemPhialEggsPneumodesmus(ElementsLepidodendronMod instance) {
-		super(instance, 493);
+		super(instance, LepidodendronSorter.phial_eggs_pneumodesmus);
 	}
 
 	@Override

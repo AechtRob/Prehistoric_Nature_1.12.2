@@ -3,12 +3,13 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.item.*;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.item.ItemPhial;
+import net.lepidodendron.item.ItemPhialEggsEurypterus;
 import net.lepidodendron.world.MobSpawnGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.statemap.StateMap;
-import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
@@ -34,7 +35,7 @@ public class BlockEurypteridEggsEurypterus extends ElementsLepidodendronMod.ModE
 	@GameRegistry.ObjectHolder("lepidodendron:eurypterid_eggs_eurypterus_worldgen")
 	public static final Block block = null;
 	public BlockEurypteridEggsEurypterus(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.eurypterid_eggs_eurypterus_worldgen);
 	}
 
 	@Override

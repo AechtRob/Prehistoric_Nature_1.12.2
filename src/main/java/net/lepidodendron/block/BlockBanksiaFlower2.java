@@ -3,7 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.item.ItemBanksia2Seeds;
 import net.lepidodendron.procedure.ProcedureBanksiaFlowerNeighbourBlockChanges;
 import net.minecraft.block.Block;
@@ -44,7 +45,7 @@ public class BlockBanksiaFlower2 extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:banksia_2_flower")
 	public static final Block block = null;
 	public BlockBanksiaFlower2(ElementsLepidodendronMod instance) {
-		super(instance, 50);
+		super(instance, LepidodendronSorter.banksia_2_flower);
 	}
 
 	@Override
@@ -74,7 +75,7 @@ public class BlockBanksiaFlower2 extends ElementsLepidodendronMod.ModElement {
 			setResistance(0F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.UP));
 			setTickRandomly(true);
 		}

@@ -1,13 +1,11 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.tileentity.TileEntity;
-
+import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockCalamitesBranch;
 import net.lepidodendron.block.BlockCalamitesLog;
-
-import net.lepidodendron.ElementsLepidodendronMod;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureCalamitesStrobilusNeighbourBlockChanges extends ElementsLepidodendronMod.ModElement {

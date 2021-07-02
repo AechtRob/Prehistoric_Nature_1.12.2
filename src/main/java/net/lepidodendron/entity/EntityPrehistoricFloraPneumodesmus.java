@@ -85,7 +85,7 @@ public class EntityPrehistoricFloraPneumodesmus extends EntityPrehistoricFloraLa
 
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute() {
-		return EnumCreatureAttribute.UNDEFINED;
+		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
 	@Override

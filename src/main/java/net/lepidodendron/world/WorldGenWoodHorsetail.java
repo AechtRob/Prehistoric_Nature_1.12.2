@@ -1,6 +1,5 @@
 package net.lepidodendron.world;
 
-import net.lepidodendron.block.BlockStauropteris;
 import net.lepidodendron.block.BlockWoodHorsetail;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

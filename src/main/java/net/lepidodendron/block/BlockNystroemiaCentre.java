@@ -3,6 +3,7 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemNystroemiaFruit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -10,7 +11,6 @@ import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -36,7 +36,7 @@ public class BlockNystroemiaCentre extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:nystroemia_centre")
 	public static final Block block = null;
 	public BlockNystroemiaCentre(ElementsLepidodendronMod instance) {
-		super(instance, 287);
+		super(instance, LepidodendronSorter.nystroemia_centre);
 	}
 
 	@Override

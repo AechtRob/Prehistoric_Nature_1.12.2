@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.SoundType;
@@ -37,7 +38,7 @@ public class BlockDioonPallisade extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:dioon_pallisade")
 	public static final Block block = null;
 	public BlockDioonPallisade(ElementsLepidodendronMod instance) {
-		super(instance, 398);
+		super(instance, LepidodendronSorter.dioon_pallisade);
 	}
 
 	@Override
@@ -71,7 +72,7 @@ public class BlockDioonPallisade extends ElementsLepidodendronMod.ModElement {
 			setResistance(3F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			//setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
 		}
 

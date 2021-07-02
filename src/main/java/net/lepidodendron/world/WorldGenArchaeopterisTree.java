@@ -1,19 +1,13 @@
 package net.lepidodendron.world;
 
-import java.util.Random;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockOldLeaf;
-import net.minecraft.block.BlockOldLog;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.material.Material;
+import net.lepidodendron.procedure.ProcedureWorldGenArchaeopteris;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.lepidodendron.procedure.ProcedureWorldGenArchaeopteris;
-import java.util.Map;
-import java.util.HashMap;
+
+import java.util.Random;
 
 public class WorldGenArchaeopterisTree extends WorldGenAbstractTree
 {
@@ -88,6 +82,7 @@ public class WorldGenArchaeopterisTree extends WorldGenAbstractTree
 					$_dependencies.put("y", position.getY());
 					$_dependencies.put("z", position.getZ());
 					$_dependencies.put("world", worldIn);
+                    $_dependencies.put("SaplingSpawn", false);
 					ProcedureWorldGenArchaeopteris.executeProcedure($_dependencies);
                     return true;
                 }

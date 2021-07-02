@@ -5,7 +5,6 @@ import com.google.common.cache.LoadingCache;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockGlossopterisLeafLitter;
-import net.lepidodendron.block.BlockGlossopterisTreeLeaves;
 import net.lepidodendron.world.WorldGenPermianLakes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
@@ -276,7 +275,7 @@ public class WorldPermian extends ElementsLepidodendronMod.ModElement {
 							boolean flag = k8 < 0;
 							this.world.setBlockState(new BlockPos(k9, k10+1, k11),
 									flag
-											? BlockGlossopterisTreeLeaves.block.getDefaultState().getBlock().getDefaultState()
+											? BlockGlossopterisLeafLitter.block.getDefaultState().getBlock().getDefaultState()
 											: Blocks.AIR.getDefaultState());
 						}
 					}
@@ -291,7 +290,7 @@ public class WorldPermian extends ElementsLepidodendronMod.ModElement {
 						int k12 = k6 + (l8 - 1) * i3;
 						boolean flag1 = l8 == 0 || l8 == 3 || l9 == -1 || l9 == 3;
 						this.world.setBlockState(new BlockPos(l10, l11+1, k12),
-								flag1 ? BlockGlossopterisTreeLeaves.block.getDefaultState().getBlock().getDefaultState() : iblockstate, 2);
+								flag1 ? BlockGlossopterisLeafLitter.block.getDefaultState().getBlock().getDefaultState() : iblockstate, 2);
 					}
 				}
 				for (int i9 = 0; i9 < 4; ++i9) {
@@ -329,7 +328,7 @@ public class WorldPermian extends ElementsLepidodendronMod.ModElement {
 							boolean flag = l1 < 0;
 							this.world.setBlockState(new BlockPos(i2, j2, k2),
 									flag
-											? BlockGlossopterisTreeLeaves.block.getDefaultState().getBlock().getDefaultState()
+											? BlockGlossopterisLeafLitter.block.getDefaultState().getBlock().getDefaultState()
 											: Blocks.AIR.getDefaultState());
 						}
 					}
@@ -611,12 +610,12 @@ public class WorldPermian extends ElementsLepidodendronMod.ModElement {
 				for (i = 0; i < 22; ++i) {
 					BlockPos blockpos = p_180120_1_.offset(p_180120_2_, i);
 					if (!this.isEmptyBlock(this.world.getBlockState(blockpos).getBlock())
-							|| this.world.getBlockState(blockpos.down()).getBlock() != BlockGlossopterisTreeLeaves.block.getDefaultState().getBlock()) {
+							|| this.world.getBlockState(blockpos.down()).getBlock() != BlockGlossopterisLeafLitter.block.getDefaultState().getBlock()) {
 						break;
 					}
 				}
 				Block block = this.world.getBlockState(p_180120_1_.offset(p_180120_2_, i)).getBlock();
-				return block == BlockGlossopterisTreeLeaves.block.getDefaultState().getBlock() ? i : 0;
+				return block == BlockGlossopterisLeafLitter.block.getDefaultState().getBlock() ? i : 0;
 			}
 
 			public int getHeight() {
@@ -640,12 +639,12 @@ public class WorldPermian extends ElementsLepidodendronMod.ModElement {
 						}
 						if (i == 0) {
 							block = this.world.getBlockState(blockpos.offset(this.leftDir)).getBlock();
-							if (block != BlockGlossopterisTreeLeaves.block.getDefaultState().getBlock()) {
+							if (block != BlockGlossopterisLeafLitter.block.getDefaultState().getBlock()) {
 								break label56;
 							}
 						} else if (i == this.width - 1) {
 							block = this.world.getBlockState(blockpos.offset(this.rightDir)).getBlock();
-							if (block != BlockGlossopterisTreeLeaves.block.getDefaultState().getBlock()) {
+							if (block != BlockGlossopterisLeafLitter.block.getDefaultState().getBlock()) {
 								break label56;
 							}
 						}
@@ -653,7 +652,7 @@ public class WorldPermian extends ElementsLepidodendronMod.ModElement {
 				}
 				for (int j = 0; j < this.width; ++j) {
 					if (this.world.getBlockState(this.bottomLeft.offset(this.rightDir, j).up(this.height))
-							.getBlock() != BlockGlossopterisTreeLeaves.block.getDefaultState().getBlock()) {
+							.getBlock() != BlockGlossopterisLeafLitter.block.getDefaultState().getBlock()) {
 						this.height = 0;
 						break;
 					}
@@ -1042,12 +1041,12 @@ public class WorldPermian extends ElementsLepidodendronMod.ModElement {
 	}
 
 	public static class GenLayerBiomesCustom extends GenLayer {
-		//private Biome[] allowedBiomes = {Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:devonian_hills")),};
 
 		private Biome[] allowedBiomes = {Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:permian_wetlands")),
-				//Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:permian_cold_glossopteris_forest")),
-				//Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:carboniferous_hills")),
 				Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:permian_wetlands_unwooded")),};
+
+		//private Biome[] allowedBiomes = {Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:permian_cold_glossopteris_forest")),};
+
 
 		public GenLayerBiomesCustom(long seed) {
 			super(seed);

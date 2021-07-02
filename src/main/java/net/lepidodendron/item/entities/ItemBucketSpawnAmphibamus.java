@@ -3,9 +3,9 @@ package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.block.BlockAmphibianSpawnAmphibamusPlaceable;
-import net.lepidodendron.block.BlockAmphibianSpawnIchthyostegaPlaceable;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -43,7 +43,7 @@ public class ItemBucketSpawnAmphibamus extends ElementsLepidodendronMod.ModEleme
 	public static final Item block = null;
 
 	public ItemBucketSpawnAmphibamus(ElementsLepidodendronMod instance) {
-		super(instance, 786);
+		super(instance, LepidodendronSorter.amphibamus_spawn_bucket);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class ItemBucketSpawnAmphibamus extends ElementsLepidodendronMod.ModEleme
 			setTranslationKey("pf_amphibamus_spawn_bucket");
 			setRegistryName("amphibamus_spawn_bucket");
 			maxStackSize = 1;
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)

@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
@@ -31,7 +32,7 @@ public class BlockTaxodiumLog extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:taxodium_log")
 	public static final Block block = null;
 	public BlockTaxodiumLog(ElementsLepidodendronMod instance) {
-		super(instance, 205);
+		super(instance, LepidodendronSorter.taxodium_log);
 	}
 
 	@Override
@@ -57,7 +58,7 @@ public class BlockTaxodiumLog extends ElementsLepidodendronMod.ModElement {
 			setResistance(2F);
 			setLightLevel(0F);
 			setLightOpacity(255);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.SOUTH));
 		}
 

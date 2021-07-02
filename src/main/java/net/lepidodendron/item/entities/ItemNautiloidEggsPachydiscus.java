@@ -2,8 +2,8 @@
 package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.entity.EntityPrehistoricFloraAmmonite_Pachydesmoceras;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraAmmonite_Pachydiscus;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.material.Material;
@@ -35,7 +35,7 @@ public class ItemNautiloidEggsPachydiscus extends ElementsLepidodendronMod.ModEl
 	@GameRegistry.ObjectHolder("lepidodendron:eggs_pachydiscus")
 	public static final Item block = null;
 	public ItemNautiloidEggsPachydiscus(ElementsLepidodendronMod instance) {
-		super(instance, 786);
+		super(instance, LepidodendronSorter.eggs_pachydiscus);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class ItemNautiloidEggsPachydiscus extends ElementsLepidodendronMod.ModEl
 		public ItemCustom() {
 			setTranslationKey("pf_eggs_pachydiscus");
 			setRegistryName("eggs_pachydiscus");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)

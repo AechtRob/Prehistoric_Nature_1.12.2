@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -25,7 +26,7 @@ public class BlockTaxodiumPlanks extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:taxodium_planks")
 	public static final Block block = null;
 	public BlockTaxodiumPlanks(ElementsLepidodendronMod instance) {
-		super(instance, 12);
+		super(instance, LepidodendronSorter.taxodium_planks);
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public class BlockTaxodiumPlanks extends ElementsLepidodendronMod.ModElement {
 			setResistance(3F);
 			setLightLevel(0F);
 			setLightOpacity(255);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 
 		//@Override

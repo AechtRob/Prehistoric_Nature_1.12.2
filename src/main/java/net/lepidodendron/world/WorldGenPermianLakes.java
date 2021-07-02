@@ -1,6 +1,7 @@
 package net.lepidodendron.world;
 
-import net.lepidodendron.block.*;
+import net.lepidodendron.block.BlockLavaRock;
+import net.lepidodendron.block.BlockPrehistoricGroundSandPangaean;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;

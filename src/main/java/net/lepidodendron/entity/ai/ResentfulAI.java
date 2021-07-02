@@ -1,10 +1,8 @@
 package net.lepidodendron.entity.ai;
 
-import com.google.common.base.Predicate;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
 import net.minecraft.entity.ai.EntityAITarget;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.util.math.AxisAlignedBB;

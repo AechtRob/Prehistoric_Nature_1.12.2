@@ -1,36 +1,36 @@
 
 package net.lepidodendron.item;
 
+import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.block.BlockDawnRedwoodDoor;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.block.SoundType;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.block.state.IBlockState;
-
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.block.BlockDawnRedwoodDoor;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ItemDawnRedwoodDoorItem extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:dawn_redwood_door_item")
 	public static final Item block = null;
 	public ItemDawnRedwoodDoorItem(ElementsLepidodendronMod instance) {
-		super(instance, 1376);
+		super(instance, LepidodendronSorter.dawn_redwood_door_item);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class ItemDawnRedwoodDoorItem extends ElementsLepidodendronMod.ModElement
 		public ItemCustom() {
 			setTranslationKey("pf_dawn_redwood_door_item");
 			setRegistryName("dawn_redwood_door_item");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 
 		public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)

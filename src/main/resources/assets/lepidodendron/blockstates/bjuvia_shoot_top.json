@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "normal": [
-      {"model": "lepidodendron:bjuvia_shoot_top"},
-      {"model": "lepidodendron:bjuvia_shoot_top_flower"}
-    ]
-  }
-}

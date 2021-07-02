@@ -1,19 +1,12 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.block.Block;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.BlockHorizontal;
-
-import net.lepidodendron.block.BlockWattiezaLog;
-import net.lepidodendron.block.BlockWattiezaShoot;
-import net.lepidodendron.block.BlockWattiezaShoot02;
-import net.lepidodendron.block.BlockWattiezaShoot03;
-import net.lepidodendron.block.BlockWattiezaShootSide02;
-import net.lepidodendron.block.BlockWattiezaShootSide03;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.block.*;
+import net.minecraft.block.BlockHorizontal;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureWorldGenWattieza extends ElementsLepidodendronMod.ModElement {

@@ -3,8 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemPhial;
-import net.lepidodendron.item.ItemPhialEggsEurypterus;
 import net.lepidodendron.item.ItemPhialEggsHibbertopterus;
 import net.lepidodendron.world.MobSpawnGenerator;
 import net.minecraft.block.Block;
@@ -35,7 +35,7 @@ public class BlockEurypteridEggsHibbertopterus extends ElementsLepidodendronMod.
 	@GameRegistry.ObjectHolder("lepidodendron:eurypterid_eggs_hibbertopterus_worldgen")
 	public static final Block block = null;
 	public BlockEurypteridEggsHibbertopterus(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.eurypterid_eggs_hibbertopterus_worldgen);
 	}
 
 	@Override

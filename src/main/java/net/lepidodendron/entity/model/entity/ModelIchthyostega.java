@@ -5,7 +5,7 @@ import net.ilexiconn.llibrary.client.model.tools.AdvancedModelBase;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelRenderer;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
 import net.lepidodendron.entity.EntityPrehistoricFloraIchthyostega;
-import net.lepidodendron.entity.EntityPrehistoricFloraLimnoscelis;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
@@ -191,7 +191,6 @@ public class ModelIchthyostega extends AdvancedModelBase {
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
         this.resetToDefaultPose();
-        //this.body.offsetY = 1.4F;
         this.body.offsetY = 1.35F;
 
         EntityPrehistoricFloraIchthyostega Ichthyostega = (EntityPrehistoricFloraIchthyostega) e;
@@ -201,11 +200,6 @@ public class ModelIchthyostega extends AdvancedModelBase {
         float speed = 0.2F;
         AdvancedModelRenderer[] Tail = {this.tailbase, this.tail1, this.tail2};
         AdvancedModelRenderer[] Torso = {this.neck, this.bodyfront, this.body, this.bodyrear};
-
-        AdvancedModelRenderer[] FL = {this.leftarm1, this.leftarm2, this.leftfrontfin};
-        AdvancedModelRenderer[] FR = {this.rightarm1, this.rightarm2, this.rightfrontfin};
-        AdvancedModelRenderer[] BL = {this.leftleg1, this.leftleg2, this.leftrearfin};
-        AdvancedModelRenderer[] BR = {this.rightleg1, this.rightleg2, this.rightrearfin};
 
         if (!Ichthyostega.isActuallyInWater()) {
             this.leftarm2.rotateAngleY = (float) Math.toRadians(90);
@@ -221,7 +215,6 @@ public class ModelIchthyostega extends AdvancedModelBase {
             this.walk(this.rightleg1, speed * 0.6F, -0.4F,false, -0.8F,0.8F, f2, 1F);
             this.walk(this.leftleg1, speed * 0.6F, -0.4F,true, 0.8F,0.8F, f2, 1F);
 
-
             this.chainWave(Tail, speed, 0.05F, -3, f2, 1);
             this.chainSwing(Tail, speed * 0.8F, 0.12F, -3, f2, 0.8F);
             this.chainSwing(Torso, speed, 0.1F, -3, f2, 1);
@@ -236,24 +229,18 @@ public class ModelIchthyostega extends AdvancedModelBase {
 
             this.flap(this.rightleg2, speed * 0.7F, 0.3F,false, 0F,0.5F, f2, 0.7F);
             this.flap(this.leftleg2, speed * 0.7F, -0.3F,false, 0F,0.5F, f2, 0.7F);
-            //this.chainSwing(BL, speed * 0.7F, 0.3F, 0, f2, 0.8F);
-            //this.chainSwing(BR, speed * 0.7F, 0.3F, 0, f2, 0.8F);
 
             this.swing(this.rightarm2, speed * 0.7F, 0.5F,false, 2F,0.5F, f2, 1F);
             this.swing(this.leftarm2, speed * 0.7F, -0.5F,false, 2F,0.5F, f2, 1F);
-            //this.chainFlap(FL, speed * 0.7F, 0.3F, 0, f2, 0.8F);
-            //this.chainFlap(FR, speed * 0.7F, 0.3F, 0, f2, 0.8F);
-
 
             this.chainWave(Tail, speed, 0.05F, -3, f2, 1);
             this.chainSwing(Tail, speed, 0.35F, -3, f2, 1F);
-
 
         }
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        EntityPrehistoricFloraIchthyostega e = (EntityPrehistoricFloraIchthyostega) entity;
+        EntityPrehistoricFloraAgeableBase e = (EntityPrehistoricFloraAgeableBase) entity;
         animator.update(entity);
         this.resetToDefaultPose();
         setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);

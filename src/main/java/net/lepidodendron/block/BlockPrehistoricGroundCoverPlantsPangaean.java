@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.SoundType;
@@ -33,7 +34,7 @@ public class BlockPrehistoricGroundCoverPlantsPangaean extends ElementsLepidoden
 	@GameRegistry.ObjectHolder("lepidodendron:prehistoric_ground_cover_plants_pangaean")
 	public static final Block block = null;
 	public BlockPrehistoricGroundCoverPlantsPangaean(ElementsLepidodendronMod instance) {
-		super(instance, 1012);
+		super(instance, LepidodendronSorter.prehistoric_ground_cover_plants_pangaean);
 	}
 
 	@Override
@@ -57,7 +58,7 @@ public class BlockPrehistoricGroundCoverPlantsPangaean extends ElementsLepidoden
 			setResistance(0F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 		
 		@Override

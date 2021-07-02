@@ -1,58 +1,51 @@
 
 package net.lepidodendron.block;
 
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-
-import net.minecraft.world.World;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.Item;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.Block;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraft.world.biome.Biome;
-
-import net.lepidodendron.creativetab.TabLepidodendron;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-
-import net.minecraft.block.state.BlockFaceShape;
-import java.util.Random;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.lepidodendron.world.TmesipterisGenerator;
 import net.lepidodendron.LepidodendronDecorationHandler;
-
-import java.util.List;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.lepidodendron.world.TmesipterisGenerator;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Random;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class BlockTmesipteris extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:tmesipteris")
 	public static final Block block = null;
 	public BlockTmesipteris(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.tmesipteris);
 	}
 
 	@Override
@@ -145,7 +138,7 @@ public class BlockTmesipteris extends ElementsLepidodendronMod.ModElement {
 			setResistance(0F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.DOWN));
 			setTickRandomly(true);
 		}

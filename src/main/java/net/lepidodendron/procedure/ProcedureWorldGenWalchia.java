@@ -1,14 +1,12 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.block.Block;
-
-import net.lepidodendron.block.BlockWalchiaLeaves;
-import net.lepidodendron.block.BlockWalchiaLog;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.block.BlockWalchiaLeaves;
+import net.lepidodendron.block.BlockWalchiaLog;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureWorldGenWalchia extends ElementsLepidodendronMod.ModElement {

@@ -3,6 +3,7 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemEmplectopterisSeeds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -42,7 +43,7 @@ public class BlockEmplectopterisShoot extends ElementsLepidodendronMod.ModElemen
 	@GameRegistry.ObjectHolder("lepidodendron:emplectopteris_shoot_worldgen")
 	public static final Block block = null;
 	public BlockEmplectopterisShoot(ElementsLepidodendronMod instance) {
-		super(instance, 287);
+		super(instance, LepidodendronSorter.emplectopteris_shoot_worldgen);
 	}
 
 	@Override

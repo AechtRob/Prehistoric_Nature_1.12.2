@@ -1,17 +1,13 @@
 package net.lepidodendron.procedure;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.minecraft.world.biome.Biome;
 import net.lepidodendron.LepidodendronConfig;
-import net.minecraft.world.World;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
-import net.lepidodendron.procedure.ProcedureWorldGenAnkyropteris;
 
-import java.util.Map;
 import java.util.Random;
-import java.util.HashMap;
-import net.minecraftforge.event.terraingen.SaplingGrowTreeEvent;
 
 
 @ElementsLepidodendronMod.ModElement.Tag

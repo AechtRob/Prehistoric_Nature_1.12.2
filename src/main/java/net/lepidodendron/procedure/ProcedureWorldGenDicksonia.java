@@ -1,16 +1,10 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.block.Block;
-
-import net.lepidodendron.block.BlockDicksoniaLeaves2;
-import net.lepidodendron.block.BlockDicksoniaLeaves3;
-import net.lepidodendron.block.BlockDicksoniaLeaves4;
-import net.lepidodendron.block.BlockDicksoniaLeaves;
-import net.lepidodendron.block.BlockDicksoniaLog;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.block.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureWorldGenDicksonia extends ElementsLepidodendronMod.ModElement {

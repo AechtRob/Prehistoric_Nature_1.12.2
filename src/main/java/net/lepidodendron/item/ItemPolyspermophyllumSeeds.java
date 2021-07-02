@@ -2,7 +2,8 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
@@ -19,7 +20,7 @@ public class ItemPolyspermophyllumSeeds extends ElementsLepidodendronMod.ModElem
 	@GameRegistry.ObjectHolder("lepidodendron:polyspermophyllum_seeds")
 	public static final Item block = null;
 	public ItemPolyspermophyllumSeeds(ElementsLepidodendronMod instance) {
-		super(instance, 1508);
+		super(instance, LepidodendronSorter.polyspermophyllum_seeds);
 	}
 
 	@Override
@@ -37,7 +38,7 @@ public class ItemPolyspermophyllumSeeds extends ElementsLepidodendronMod.ModElem
 			super(1, 0.2f, false);
 			setTranslationKey("pf_polyspermophyllum_seeds");
 			setRegistryName("polyspermophyllum_seeds");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			setMaxStackSize(64);
 		}
 

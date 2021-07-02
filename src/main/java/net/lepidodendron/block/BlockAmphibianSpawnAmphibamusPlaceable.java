@@ -3,12 +3,11 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraAmphibamus;
-import net.lepidodendron.entity.EntityPrehistoricFloraIchthyostega;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.item.entities.ItemBucketSpawnAmphibamus;
-import net.lepidodendron.item.entities.ItemBucketSpawnLimnoscelis;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
@@ -43,7 +42,7 @@ public class BlockAmphibianSpawnAmphibamusPlaceable extends ElementsLepidodendro
 	@GameRegistry.ObjectHolder("lepidodendron:amphibian_spawn_amphibamus")
 	public static final Block block = null;
 	public BlockAmphibianSpawnAmphibamusPlaceable(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.amphibian_spawn_amphibamus);
 	}
 
 	@Override
@@ -66,7 +65,7 @@ public class BlockAmphibianSpawnAmphibamusPlaceable extends ElementsLepidodendro
 		public BlockCustom() {
 			setTranslationKey("pf_amphibian_spawn_amphibamus");
 			this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		@Override

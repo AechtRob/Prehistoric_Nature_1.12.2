@@ -1,15 +1,15 @@
 package net.lepidodendron.world;
 
-import java.util.Random;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.gen.feature.WorldGenerator;
+
+import java.util.Random;
 
 public class WorldGenTreeLog extends WorldGenerator
 {

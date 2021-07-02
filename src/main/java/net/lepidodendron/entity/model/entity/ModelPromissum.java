@@ -153,8 +153,8 @@ public class ModelPromissum extends AdvancedModelBase {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
         this.resetToDefaultPose();
         this.head.offsetY = 1.1F;
-        this.gill.rotateAngleY = f3 / (180F / (float) Math.PI);
-        this.gill.rotateAngleX = f4 / (180F / (float) Math.PI);
+        //this.gill.rotateAngleY = f3 / (180F / (float) Math.PI);
+        //this.gill.rotateAngleX = f4 / (180F / (float) Math.PI);
 
         //this.Tailfin.setScale(1.1F, 1.1F, 1.1F);
         AdvancedModelRenderer[] fishTail = {this.body, this.body2, this.body3, this.body4, this.body5, this.body6, this.body7, this.body8, this.body9, this.body10, this.tail1, this.tail2, this.tail3, this.tail4};

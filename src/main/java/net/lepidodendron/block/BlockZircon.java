@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -25,7 +26,7 @@ public class BlockZircon extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:zircon_block")
 	public static final Block block = null;
 	public BlockZircon(ElementsLepidodendronMod instance) {
-		super(instance, 431);
+		super(instance, LepidodendronSorter.zircon_block);
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public class BlockZircon extends ElementsLepidodendronMod.ModElement {
 			setResistance(5F);
 			setLightLevel(0F);
 			setLightOpacity(255);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 		}
 
 		//@Override

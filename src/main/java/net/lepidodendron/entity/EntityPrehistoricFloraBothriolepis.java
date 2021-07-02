@@ -7,14 +7,14 @@ import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.FishWanderBottomDweller;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.item.entities.ItemBucketBothriolepis;
-import net.minecraft.block.material.Material;
-import net.minecraft.entity.*;
+import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
-import net.minecraft.util.math.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -137,15 +137,6 @@ public class EntityPrehistoricFloraBothriolepis extends EntityPrehistoricFloraFi
 
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		boolean isAtBottom = false;
-		if (this.getPosition().getY() - 1 > 1) {
-			BlockPos pos = new BlockPos(this.getPosition().getX(), this.getPosition().getY() - 1, this.getPosition().getZ());
-			isAtBottom = ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
-					&& ((this.world.getBlockState(pos)).getMaterial() != Material.WATER));
-		}
-		//if (isAtBottom && this.world.getBlockState(this.getPosition().up()).getMaterial() == Material.WATER) {
-		//	this.setPositionAndUpdate(this.getPosition().up().getX(), this.getPosition().up().getY(), this.getPosition().up().getZ());
-		//}
 
 		if (source != DamageSource.DROWN) {
 			return super.attackEntityFrom(source, (amount * 0.25F));

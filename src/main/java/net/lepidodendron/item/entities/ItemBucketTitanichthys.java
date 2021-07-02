@@ -3,7 +3,8 @@ package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraTitanichthys;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -45,7 +46,7 @@ public class ItemBucketTitanichthys extends ElementsLepidodendronMod.ModElement 
 	public static final Item block = null;
 
 	public ItemBucketTitanichthys(ElementsLepidodendronMod instance) {
-		super(instance, 786);
+		super(instance, LepidodendronSorter.titanichthys_bucket);
 	}
 
 	@Override
@@ -64,7 +65,7 @@ public class ItemBucketTitanichthys extends ElementsLepidodendronMod.ModElement 
 			setTranslationKey("pf_titanichthys_bucket");
 			setRegistryName("titanichthys_bucket");
 			maxStackSize = 1;
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)

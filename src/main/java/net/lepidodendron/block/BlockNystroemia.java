@@ -3,7 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.item.ItemNystroemiaFruit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -11,7 +12,6 @@ import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -43,7 +43,7 @@ public class BlockNystroemia extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:nystroemia")
 	public static final Block block = null;
 	public BlockNystroemia(ElementsLepidodendronMod instance) {
-		super(instance, 287);
+		super(instance, LepidodendronSorter.nystroemia);
 	}
 
 	@Override
@@ -69,7 +69,7 @@ public class BlockNystroemia extends ElementsLepidodendronMod.ModElement {
 			setResistance(0.2F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, false));
 		}
 

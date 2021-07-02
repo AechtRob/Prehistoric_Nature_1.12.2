@@ -88,7 +88,7 @@ public class EntityPrehistoricFloraAsaphus extends EntityPrehistoricFloraTrilobi
 
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute() {
-		return EnumCreatureAttribute.UNDEFINED;
+		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
 	@Override

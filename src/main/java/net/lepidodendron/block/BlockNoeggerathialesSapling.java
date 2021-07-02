@@ -3,7 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.procedure.ProcedureWorldGenNoeggerathiales;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -41,7 +42,7 @@ public class BlockNoeggerathialesSapling extends ElementsLepidodendronMod.ModEle
 	@GameRegistry.ObjectHolder("lepidodendron:noeggerathiales_sapling")
 	public static final Block block = null;
 	public BlockNoeggerathialesSapling(ElementsLepidodendronMod instance) {
-		super(instance, 286);
+		super(instance, LepidodendronSorter.noeggerathiales_sapling);
 	}
 
 	@Override
@@ -63,7 +64,7 @@ public class BlockNoeggerathialesSapling extends ElementsLepidodendronMod.ModEle
 		public BlockCustom() {
 			super(Material.PLANTS);
 			setSoundType(SoundType.PLANT);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			setHardness(0.2F);
         	setResistance(1F);
 			setTranslationKey("pf_noeggerathiales_sapling");
@@ -159,7 +160,7 @@ public class BlockNoeggerathialesSapling extends ElementsLepidodendronMod.ModEle
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Proto-tree");
+				tooltip.add("Type: Spore-bearing woody plant");
 				tooltip.add("Periods: Permian");
 				tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);

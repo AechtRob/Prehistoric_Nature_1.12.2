@@ -1,47 +1,40 @@
 
 package net.lepidodendron.block;
 
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-
-import net.minecraft.world.World;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.Item;
-import net.minecraft.init.Blocks;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.client.renderer.block.statemap.StateMap;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.BlockLeaves;
+import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.lepidodendron.item.ItemGigantopteridSeeds;
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockFaceShape;
-//import net.lepidodendron.block.BlockPleuromeiaShootTopFlower;
-//import net.lepidodendron.block.BlockPleuromeiaShootTopNoflower;
-import java.util.Random;
-import net.minecraft.entity.item.EntityItem;
-
-import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.item.ItemGigantopteridSeeds;
-
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 @ElementsLepidodendronMod.ModElement.Tag
@@ -49,7 +42,7 @@ public class BlockGigantopteridShootPlaceable extends ElementsLepidodendronMod.M
 	@GameRegistry.ObjectHolder("lepidodendron:gigantopterid_shoot")
 	public static final Block block = null;
 	public BlockGigantopteridShootPlaceable(ElementsLepidodendronMod instance) {
-		super(instance, 287);
+		super(instance, LepidodendronSorter.gigantopterid_shoot);
 	}
 
 	@Override
@@ -78,7 +71,7 @@ public class BlockGigantopteridShootPlaceable extends ElementsLepidodendronMod.M
 			setResistance(0.2F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(STEM, false).withProperty(TOP, false).withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, false));
 		}
 

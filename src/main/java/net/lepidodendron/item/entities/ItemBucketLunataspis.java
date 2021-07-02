@@ -3,7 +3,8 @@ package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraLunataspis;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
@@ -44,7 +45,7 @@ public class ItemBucketLunataspis extends ElementsLepidodendronMod.ModElement {
 	public static final Item block = null;
 
 	public ItemBucketLunataspis(ElementsLepidodendronMod instance) {
-		super(instance, 786);
+		super(instance, LepidodendronSorter.lunataspis_bucket);
 	}
 
 	@Override
@@ -63,7 +64,7 @@ public class ItemBucketLunataspis extends ElementsLepidodendronMod.ModElement {
 			setTranslationKey("pf_lunataspis_bucket");
 			setRegistryName("lunataspis_bucket");
 			maxStackSize = 1;
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)

@@ -2,22 +2,16 @@
 package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.block.BlockIsoetes;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraCameroceras;
-import net.lepidodendron.entity.EntityPrehistoricFloraIchthyostega;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
-import net.minecraft.advancements.CriteriaTriggers;
-import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemMonsterPlacer;
@@ -36,14 +30,12 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.List;
-
 @ElementsLepidodendronMod.ModElement.Tag
 public class ItemNautiloidEggsCameroceras extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:eggs_cameroceras")
 	public static final Item block = null;
 	public ItemNautiloidEggsCameroceras(ElementsLepidodendronMod instance) {
-		super(instance, 786);
+		super(instance, LepidodendronSorter.eggs_cameroceras);
 	}
 
 	@Override
@@ -60,7 +52,7 @@ public class ItemNautiloidEggsCameroceras extends ElementsLepidodendronMod.ModEl
 		public ItemCustom() {
 			setTranslationKey("pf_eggs_cameroceras");
 			setRegistryName("eggs_cameroceras");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)

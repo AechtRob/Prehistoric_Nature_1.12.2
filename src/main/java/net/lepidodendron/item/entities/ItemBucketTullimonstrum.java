@@ -3,8 +3,9 @@ package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.entity.EntityPrehistoricFloraWalliserops;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
+import net.lepidodendron.entity.EntityPrehistoricFloraTullimonstrum;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -44,7 +45,7 @@ public class ItemBucketTullimonstrum extends ElementsLepidodendronMod.ModElement
 	public static final Item block = null;
 
 	public ItemBucketTullimonstrum(ElementsLepidodendronMod instance) {
-		super(instance, 786);
+		super(instance, LepidodendronSorter.tullimonstrum_bucket);
 	}
 
 	@Override
@@ -63,7 +64,7 @@ public class ItemBucketTullimonstrum extends ElementsLepidodendronMod.ModElement
 			setTranslationKey("pf_tullimonstrum_bucket");
 			setRegistryName("tullimonstrum_bucket");
 			maxStackSize = 1;
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
@@ -156,7 +157,7 @@ public class ItemBucketTullimonstrum extends ElementsLepidodendronMod.ModElement
 						worldIn.setBlockState(posIn, Blocks.FLOWING_WATER.getDefaultState(), 11);
 
 						if (MobSpawn == null && !(worldIn.isRemote)) {
-							//ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraTullimonstrum.class), (double) posIn.getX() + 0.5D, (double) posIn.getY() + 0.5D, (double) posIn.getZ() + 0.5D);
+							ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraTullimonstrum.class), (double) posIn.getX() + 0.5D, (double) posIn.getY() + 0.5D, (double) posIn.getZ() + 0.5D);
 						}
 					}
 
@@ -192,7 +193,7 @@ public class ItemBucketTullimonstrum extends ElementsLepidodendronMod.ModElement
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Unknown");
+				tooltip.add("Type: Uncertain");
 				tooltip.add("Periods: Carboniferous");
 				tooltip.add("Habitat: Estuaries");
 				super.addInformation(stack, player, tooltip, advanced);

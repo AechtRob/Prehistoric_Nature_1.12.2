@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -38,7 +39,7 @@ public class BlockNoeggerathialesSide extends ElementsLepidodendronMod.ModElemen
 	@GameRegistry.ObjectHolder("lepidodendron:noeggerathiales_shoot_side")
 	public static final Block block = null;
 	public BlockNoeggerathialesSide(ElementsLepidodendronMod instance) {
-		super(instance, 287);
+		super(instance, LepidodendronSorter.noeggerathiales_shoot_side);
 	}
 
 	@Override
@@ -66,7 +67,7 @@ public class BlockNoeggerathialesSide extends ElementsLepidodendronMod.ModElemen
 			setResistance(0.2F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(SIDE, 0).withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, false));
 		}
 

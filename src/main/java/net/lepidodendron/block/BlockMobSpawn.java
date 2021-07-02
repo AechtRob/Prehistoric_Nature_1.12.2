@@ -1,39 +1,25 @@
 
 package net.lepidodendron.block;
 
-import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.world.MobSpawnGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -327,10 +313,10 @@ public class BlockMobSpawn extends Block implements net.minecraftforge.common.IS
 
 	public boolean isWaterBlock(World world, BlockPos pos) {
 		if (world.getBlockState(pos).getMaterial() == Material.WATER) {
-			IBlockState iblockstate = world.getBlockState(pos);
-			if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
+			//IBlockState iblockstate = world.getBlockState(pos);
+			//if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
 				return true;
-			}
+			//}
 		}
 		return false;
 	}

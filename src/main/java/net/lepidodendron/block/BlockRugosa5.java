@@ -3,10 +3,10 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronStatic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -48,7 +48,7 @@ public class BlockRugosa5 extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:rugosa_5")
 	public static final Block block = null;
 	public BlockRugosa5(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.rugosa_5);
 	}
 
 	@Override
@@ -143,8 +143,15 @@ public class BlockRugosa5 extends ElementsLepidodendronMod.ModElement {
 				public boolean generate(World world, Random random, BlockPos pos) {
 					for (int i = 0; i < 40; ++i) {
 						BlockPos blockpos1 = pos.add(random.nextInt(4) - random.nextInt(4), 0, random.nextInt(4) - random.nextInt(4));
-						if (world.getBlockState(blockpos1).getBlock() == Blocks.WATER) {
-							boolean waterDepthCheckMax = false;
+						if (blockpos1.getY() < world.getSeaLevel()
+								&& (world.getBlockState(blockpos1).getBlock() == Blocks.WATER
+								|| world.getBlockState(blockpos1).getBlock() == Blocks.FLOWING_WATER)
+								&& !world.isAirBlock(blockpos1.north())
+								&& !world.isAirBlock(blockpos1.south())
+								&& !world.isAirBlock(blockpos1.east())
+								&& !world.isAirBlock(blockpos1.west())
+						)
+						{	boolean waterDepthCheckMax = false;
 							boolean waterDepthCheckMin = true;
 							//find air within the right depth
 							int yy = 1;
@@ -270,7 +277,7 @@ public class BlockRugosa5 extends ElementsLepidodendronMod.ModElement {
 			setLightLevel(0F);
 			setLightOpacity(0);
 			//this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronStatic.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL, 0).withProperty(FACING, EnumFacing.UP));
 		}
 			
@@ -553,10 +560,10 @@ public class BlockRugosa5 extends ElementsLepidodendronMod.ModElement {
 
 	    public boolean isWaterBlock(World world, BlockPos pos) {
 			if (world.getBlockState(pos).getMaterial() == Material.WATER) {
-				IBlockState iblockstate = world.getBlockState(pos);
-				if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
+				//IBlockState iblockstate = world.getBlockState(pos);
+				//if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
 					return true;
-				}
+				//}
 			}
 	    	return false;
 	    }

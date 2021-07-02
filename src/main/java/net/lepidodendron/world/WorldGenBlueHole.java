@@ -1,7 +1,6 @@
 package net.lepidodendron.world;
 
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.block.BlockCoral;
 import net.lepidodendron.block.BlockRugosa5;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;

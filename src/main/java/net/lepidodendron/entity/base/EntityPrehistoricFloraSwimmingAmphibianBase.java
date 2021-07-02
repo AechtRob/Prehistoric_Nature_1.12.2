@@ -10,7 +10,6 @@ import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
 import net.minecraft.pathfinding.NodeProcessor;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateSwimmer;
@@ -96,15 +95,15 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
     }
 
     @Override
-    public boolean isInWater() { //Is in water if the block UNDER it is also water. i.e. in shalow water it just walks:
+    public boolean isInWater() { //Is in water if the block UNDER it is also water. i.e. in shallow water it just walks:
         if (this.world.isAirBlock(this.getPosition())) {return false;}
         IBlockState state = this.world.getBlockState(this.getPosition().down());
-        return ((super.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
+        return ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
                 && (state.getMaterial() == Material.WATER ));
     }
 
     public boolean isActuallyInWater() { //Is in water:
-        return (super.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL));
+        return (this.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL));
     }
 
     @Override
@@ -129,6 +128,29 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
 
     @Override
     public boolean isOnLadder() {
+        return false;
+    }
+
+    public boolean isReallyInWater() {
+        return (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
+    }
+    public boolean isCollidingRim() {
+        if (this.isReallyInWater()) {
+            //System.err.println("collided");
+            Vec3d vec3d = this.getPositionEyes(0);
+            Vec3d vec3d1 = this.getLook(0);
+            Vec3d vec3d2 = vec3d.add(vec3d1.x * 1, vec3d1.y * 1, vec3d1.z * 1);
+            RayTraceResult rayTrace = world.rayTraceBlocks(vec3d, vec3d2, true);
+            if (rayTrace != null && rayTrace.hitVec != null) {
+                //System.err.println("raytraced");
+                BlockPos sidePos = rayTrace.getBlockPos();
+                if (world.getBlockState(sidePos).getMaterial() == Material.WATER) {
+                    //System.err.println("colliding rim");
+                    return true;
+                }
+            }
+        }
+        //System.err.println("not colliding rim");
         return false;
     }
 
@@ -250,7 +272,7 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
                 }
                 this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
 
-                if (this.collidedHorizontally)
+                if (this.collidedHorizontally && this.isCollidingRim())
                 {
                     this.motionY = 0.05D;
                 }

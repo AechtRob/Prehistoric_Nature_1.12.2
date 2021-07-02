@@ -1,13 +1,9 @@
 package net.lepidodendron.procedure;
 
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.block.Block;
-
 import net.lepidodendron.ElementsLepidodendronMod;
-
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 
 @ElementsLepidodendronMod.ModElement.Tag
@@ -43,6 +39,7 @@ public class ProcedureWorldGenAgathis extends ElementsLepidodendronMod.ModElemen
 		int y = (int) dependencies.get("y");
 		int z = (int) dependencies.get("z");
 		World world = (World) dependencies.get("world");
+
 		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))
 			&& (world.canSeeSky(new BlockPos((int) (x + 1), (int) (y + 1), (int) (z - 1))))
 			&& (world.canSeeSky(new BlockPos((int) (x + 1), (int) (y + 1), (int) z)))

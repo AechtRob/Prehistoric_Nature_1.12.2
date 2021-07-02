@@ -2,7 +2,6 @@ package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
-import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteBottomBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteSwimBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;

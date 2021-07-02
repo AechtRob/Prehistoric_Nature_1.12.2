@@ -1,16 +1,13 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.block.Block;
-
-import net.lepidodendron.block.BlockLadiniaShootTop;
-import net.lepidodendron.block.BlockLadiniaShoot;
-import net.lepidodendron.block.BlockLadiniaShootMaleTop;
-import net.lepidodendron.block.BlockLadiniaShootMale;
-import net.lepidodendron.block.BlockLadiniaLog;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.block.BlockLadiniaLog;
+import net.lepidodendron.block.BlockLadiniaShoot;
+import net.lepidodendron.block.BlockLadiniaShootMale;
+import net.minecraft.block.Block;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureWorldGenLadinia extends ElementsLepidodendronMod.ModElement {
@@ -53,7 +50,7 @@ public class ProcedureWorldGenLadinia extends ElementsLepidodendronMod.ModElemen
 					block = world.getBlockState(new BlockPos((int) x, (int) (y + 2), (int) z)).getBlock();
 					if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + 2), (int) z)), world, new BlockPos((int) x, (int) (y + 2), (int) z))) {
 						world.setBlockState(new BlockPos((int) x, (int) (y + 1), (int) z), BlockLadiniaShoot.block.getDefaultState(), 3);
-						world.setBlockState(new BlockPos((int) x, (int) (y + 2), (int) z), BlockLadiniaShootTop.block.getDefaultState(), 3);
+						//world.setBlockState(new BlockPos((int) x, (int) (y + 2), (int) z), BlockLadiniaShootTop.block.getDefaultState(), 3);
 					}
 				}
 			}
@@ -63,7 +60,7 @@ public class ProcedureWorldGenLadinia extends ElementsLepidodendronMod.ModElemen
 					block = world.getBlockState(new BlockPos((int) x, (int) (y + 2), (int) z)).getBlock();
 					if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + 2), (int) z)), world, new BlockPos((int) x, (int) (y + 2), (int) z))) {
 						world.setBlockState(new BlockPos((int) x, (int) (y + 1), (int) z), BlockLadiniaShootMale.block.getDefaultState(), 3);
-						world.setBlockState(new BlockPos((int) x, (int) (y + 2), (int) z), BlockLadiniaShootMaleTop.block.getDefaultState(), 3);
+						//world.setBlockState(new BlockPos((int) x, (int) (y + 2), (int) z), BlockLadiniaShootMaleTop.block.getDefaultState(), 3);
 					}
 				}
 			}

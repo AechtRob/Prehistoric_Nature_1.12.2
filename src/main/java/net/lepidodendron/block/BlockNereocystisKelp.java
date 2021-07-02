@@ -1,54 +1,48 @@
 
 package net.lepidodendron.block;
 
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-
-import net.minecraft.world.gen.feature.WorldGenReed;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.World;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.Item;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.client.renderer.block.statemap.StateMap;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.BlockReed;
+import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLiquid;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.state.BlockFaceShape;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.math.AxisAlignedBB;
-import javax.annotation.Nullable;
-import net.minecraft.init.Blocks;
 import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraft.world.biome.Biome;
-import java.util.List;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.feature.WorldGenReed;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.LepidodendronConfig;
-
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
 
 @ElementsLepidodendronMod.ModElement.Tag
@@ -56,7 +50,7 @@ public class BlockNereocystisKelp extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:nereocystis_kelp")
 	public static final Block block = null;
 	public BlockNereocystisKelp(ElementsLepidodendronMod instance) {
-		super(instance, 1401);
+		super(instance, LepidodendronSorter.nereocystis_kelp);
 	}
 
 	@Override
@@ -142,7 +136,7 @@ public class BlockNereocystisKelp extends ElementsLepidodendronMod.ModElement {
 		public BlockCustom() {
 			super(Material.WATER);
 			setSoundType(SoundType.PLANT);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
@@ -255,7 +249,7 @@ public class BlockNereocystisKelp extends ElementsLepidodendronMod.ModElement {
 			}
 			
 			if ((world.getBlockState(pos.down()).getMaterial() != Material.SAND)
-				&& (world.getBlockState(pos.down()).getMaterial() != Material.ROCK)
+				//&& (world.getBlockState(pos.down()).getMaterial() != Material.ROCK)
 				&& (world.getBlockState(pos.down()).getMaterial() != Material.GROUND)
 				&& (world.getBlockState(pos.down()).getMaterial() != Material.WOOD)
 				&& (world.getBlockState(pos.down()).getMaterial() != Material.CLAY)
@@ -316,10 +310,10 @@ public class BlockNereocystisKelp extends ElementsLepidodendronMod.ModElement {
 
 		public boolean isWaterBlock(World world, BlockPos pos) {
 			if (world.getBlockState(pos).getMaterial() == Material.WATER) {
-				IBlockState iblockstate = world.getBlockState(pos);
-				if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
+				//IBlockState iblockstate = world.getBlockState(pos);
+				//if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
 					return true;
-				}
+				//}
 			}
 	    	return false;
 	    }

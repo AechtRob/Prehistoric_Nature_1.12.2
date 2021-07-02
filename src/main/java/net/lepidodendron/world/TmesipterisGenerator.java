@@ -1,21 +1,18 @@
 package net.lepidodendron.world;
 
-import java.util.Random;
-import net.minecraft.init.Blocks;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.block.BlockTmesipteris;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.lepidodendron.LepidodendronConfig;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.BlockDirectional;
-import net.lepidodendron.block.BlockTmesipteris;
+
+import java.util.Random;
 
 public class TmesipterisGenerator extends WorldGenerator
 {

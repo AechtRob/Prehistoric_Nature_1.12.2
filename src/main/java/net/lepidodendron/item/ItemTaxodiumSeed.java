@@ -2,7 +2,8 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
@@ -19,7 +20,7 @@ public class ItemTaxodiumSeed extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:taxodium_seed")
 	public static final Item block = null;
 	public ItemTaxodiumSeed(ElementsLepidodendronMod instance) {
-		super(instance, 1486);
+		super(instance, LepidodendronSorter.taxodium_seed);
 	}
 
 	@Override
@@ -37,7 +38,7 @@ public class ItemTaxodiumSeed extends ElementsLepidodendronMod.ModElement {
 			super(1, 0.2f, false);
 			setTranslationKey("pf_taxodium_seed");
 			setRegistryName("taxodium_seed");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			setMaxStackSize(64);
 		}
 

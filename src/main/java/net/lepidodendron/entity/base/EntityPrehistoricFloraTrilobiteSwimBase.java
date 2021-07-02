@@ -2,7 +2,6 @@ package net.lepidodendron.entity.base;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
 import net.lepidodendron.block.BlockGreenAlgaeMat;
 import net.lepidodendron.block.BlockRedAlgaeMat;
@@ -110,6 +109,29 @@ public abstract class EntityPrehistoricFloraTrilobiteSwimBase extends EntityWate
         return false;
     }
 
+    public boolean isReallyInWater() {
+        return (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
+    }
+    public boolean isCollidingRim() {
+        if (this.isReallyInWater()) {
+            //System.err.println("collided");
+            Vec3d vec3d = this.getPositionEyes(0);
+            Vec3d vec3d1 = this.getLook(0);
+            Vec3d vec3d2 = vec3d.add(vec3d1.x * 1, vec3d1.y * 1, vec3d1.z * 1);
+            RayTraceResult rayTrace = world.rayTraceBlocks(vec3d, vec3d2, true);
+            if (rayTrace != null && rayTrace.hitVec != null) {
+                //System.err.println("raytraced");
+                BlockPos sidePos = rayTrace.getBlockPos();
+                if (world.getBlockState(sidePos).getMaterial() == Material.WATER) {
+                    //System.err.println("colliding rim");
+                    return true;
+                }
+            }
+        }
+        //System.err.println("not colliding rim");
+        return false;
+    }
+
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
@@ -171,6 +193,12 @@ public abstract class EntityPrehistoricFloraTrilobiteSwimBase extends EntityWate
                     f4 += (0.54600006F - f4) * speedModifier / 3.0F;
                 }
                 this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+
+                if (this.collidedHorizontally && this.isCollidingRim())
+                {
+                    this.motionY = 0.05D;
+                }
+
                 this.motionX *= f4;
                 this.motionX *= 0.9;
                 this.motionY *= 0.9;

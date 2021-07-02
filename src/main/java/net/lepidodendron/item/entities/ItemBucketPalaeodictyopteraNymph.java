@@ -3,8 +3,8 @@ package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.entity.EntityPrehistoricFloraAnthracomedusa;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraPalaeodictyopteraNymph;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
@@ -45,7 +45,7 @@ public class ItemBucketPalaeodictyopteraNymph extends ElementsLepidodendronMod.M
 	public static final Item block = null;
 
 	public ItemBucketPalaeodictyopteraNymph(ElementsLepidodendronMod instance) {
-		super(instance, 786);
+		super(instance, LepidodendronSorter.palaeodictyoptera_nymph_bucket);
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class ItemBucketPalaeodictyopteraNymph extends ElementsLepidodendronMod.M
 			setTranslationKey("pf_palaeodictyoptera_nymph_bucket");
 			setRegistryName("palaeodictyoptera_nymph_bucket");
 			maxStackSize = 1;
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)

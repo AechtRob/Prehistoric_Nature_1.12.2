@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
@@ -35,7 +36,7 @@ public class BlockTaxodiumSlab extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:taxodium_slab_double")
 	public static final Block block_slab_double = null;
 	public BlockTaxodiumSlab(ElementsLepidodendronMod instance) {
-		super(instance, 219);
+		super(instance, LepidodendronSorter.taxodium_slab);
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class BlockTaxodiumSlab extends ElementsLepidodendronMod.ModElement {
 			setResistance(3F);
 			setLightLevel(0F);
 			setLightOpacity(255);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			IBlockState state = this.blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
 			if (!this.isDouble())
 				state = state.withProperty(BlockSlab.HALF, EnumBlockHalf.BOTTOM);

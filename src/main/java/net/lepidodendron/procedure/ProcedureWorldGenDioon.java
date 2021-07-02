@@ -1,15 +1,13 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.block.Block;
-
-import net.lepidodendron.block.BlockDioonShootTop;
+import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.block.BlockDioonLog;
 import net.lepidodendron.block.BlockDioonShoot;
 import net.lepidodendron.block.BlockDioonShootPlaceable;
-import net.lepidodendron.block.BlockDioonLog;
-import net.lepidodendron.ElementsLepidodendronMod;
+import net.minecraft.block.Block;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement {
@@ -62,7 +60,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 					block = world.getBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z)).getBlock();
 					if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z)), world, new BlockPos((int) x, (int) (y + counter + 1), (int) z))) {
 						world.setBlockState(new BlockPos((int) x, (int) (y + counter), (int) z), BlockDioonShootPlaceable.block.getDefaultState(), 3);
-						world.setBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
+						//world.setBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
 					}
 				}
 			}
@@ -73,7 +71,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 					block = world.getBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z)).getBlock();
 					if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z)), world, new BlockPos((int) x, (int) (y + counter + 1), (int) z))) {
 						world.setBlockState(new BlockPos((int) x, (int) (y + counter), (int) z), BlockDioonShoot.block.getDefaultState(), 3);
-						world.setBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
+						//world.setBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
 					}
 				}
 			}
@@ -88,7 +86,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 							block = world.getBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z + 1))).getBlock();
 							if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z + 1))), world, new BlockPos((int) x, (int) (y + 3), (int) (z + 1)))) {
 								world.setBlockState(new BlockPos((int) x, (int) (y + 2), (int) (z + 1)), BlockDioonShoot.block.getDefaultState(), 3);
-								world.setBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z + 1)), BlockDioonShootTop.block.getDefaultState(), 3);
+								//world.setBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z + 1)), BlockDioonShootTop.block.getDefaultState(), 3);
 							}
 						}
 						ProcedureTreeLog.executeProcedure((int) x, (int) (y + 1), (int) (z - 1), world, BlockDioonLog.block, EnumFacing.DOWN);
@@ -97,7 +95,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 							block = world.getBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z - 1))).getBlock();
 							if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z - 1))), world, new BlockPos((int) x, (int) (y + 3), (int) (z - 1)))) {
 								world.setBlockState(new BlockPos((int) x, (int) (y + 2), (int) (z - 1)), BlockDioonShoot.block.getDefaultState(), 3);
-								world.setBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z - 1)), BlockDioonShootTop.block.getDefaultState(), 3);
+								//world.setBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z - 1)), BlockDioonShootTop.block.getDefaultState(), 3);
 							}
 						}
 						
@@ -110,7 +108,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 							block = world.getBlockState(new BlockPos((int) x + 1, (int) (y + 3), (int) z)).getBlock();
 							if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x + 1, (int) (y + 3), (int) z)), world, new BlockPos((int) x + 1, (int) (y + 3), (int) z))) {
 								world.setBlockState(new BlockPos((int) x + 1, (int) (y + 2), (int) z), BlockDioonShoot.block.getDefaultState(), 3);
-								world.setBlockState(new BlockPos((int) x + 1, (int) (y + 3), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
+								//world.setBlockState(new BlockPos((int) x + 1, (int) (y + 3), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
 							}
 						}
 						ProcedureTreeLog.executeProcedure((int) x - 1, (int) (y + 1), (int) z, world, BlockDioonLog.block, EnumFacing.DOWN);
@@ -119,7 +117,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 							block = world.getBlockState(new BlockPos((int) x - 1, (int) (y + 3), (int) z)).getBlock();
 							if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x - 1, (int) (y + 3), (int) z)), world, new BlockPos((int) x - 1, (int) (y + 3), (int) z))) {
 								world.setBlockState(new BlockPos((int) x - 1, (int) (y + 2), (int) z), BlockDioonShoot.block.getDefaultState(), 3);
-								world.setBlockState(new BlockPos((int) x - 1, (int) (y + 3), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
+								//world.setBlockState(new BlockPos((int) x - 1, (int) (y + 3), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
 							}
 						}
 					}
@@ -130,7 +128,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 						block = world.getBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z)).getBlock();
 						if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z)), world, new BlockPos((int) x, (int) (y + counter + 1), (int) z))) {
 							world.setBlockState(new BlockPos((int) x, (int) (y + counter), (int) z), BlockDioonShoot.block.getDefaultState(), 3);
-							world.setBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
+							//world.setBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
 						}
 					}
 				}
@@ -142,7 +140,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 					block = world.getBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z)).getBlock();
 					if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z)), world, new BlockPos((int) x, (int) (y + counter + 1), (int) z))) {
 						world.setBlockState(new BlockPos((int) x, (int) (y + counter), (int) z), BlockDioonShoot.block.getDefaultState(), 3);
-						world.setBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
+						//world.setBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
 					}
 				}
 
@@ -156,7 +154,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 							block = world.getBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z - 1))).getBlock();
 							if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z - 1))), world, new BlockPos((int) x, (int) (y + 3), (int) (z - 1)))) {
 								world.setBlockState(new BlockPos((int) x, (int) (y + 2), (int) (z - 1)), BlockDioonShoot.block.getDefaultState(), 3);
-								world.setBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z - 1)), BlockDioonShootTop.block.getDefaultState(), 3);
+								//world.setBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z - 1)), BlockDioonShootTop.block.getDefaultState(), 3);
 							}
 						}
 						if (TrunkHeight >=4) {
@@ -166,7 +164,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 								block = world.getBlockState(new BlockPos((int) x, (int) (y + 4), (int) (z + 1))).getBlock();
 								if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + 4), (int) (z + 1))), world, new BlockPos((int) x, (int) (y + 4), (int) (z + 1)))) {
 									world.setBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z + 1)), BlockDioonShoot.block.getDefaultState(), 3);
-									world.setBlockState(new BlockPos((int) x, (int) (y + 4), (int) (z + 1)), BlockDioonShootTop.block.getDefaultState(), 3);
+									//world.setBlockState(new BlockPos((int) x, (int) (y + 4), (int) (z + 1)), BlockDioonShootTop.block.getDefaultState(), 3);
 								}
 							}
 						}
@@ -180,7 +178,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 								block = world.getBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z + 1))).getBlock();
 								if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z + 1))), world, new BlockPos((int) x, (int) (y + 3), (int) (z + 1)))) {
 									world.setBlockState(new BlockPos((int) x, (int) (y + 2), (int) (z + 1)), BlockDioonShoot.block.getDefaultState(), 3);
-									world.setBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z + 1)), BlockDioonShootTop.block.getDefaultState(), 3);
+									//world.setBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z + 1)), BlockDioonShootTop.block.getDefaultState(), 3);
 								}
 							}
 							if (TrunkHeight >=4) {
@@ -190,7 +188,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 									block = world.getBlockState(new BlockPos((int) x, (int) (y + 4), (int) (z - 1))).getBlock();
 									if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + 4), (int) (z - 1))), world, new BlockPos((int) x, (int) (y + 4), (int) (z - 1)))) {
 										world.setBlockState(new BlockPos((int) x, (int) (y + 3), (int) (z - 1)), BlockDioonShoot.block.getDefaultState(), 3);
-										world.setBlockState(new BlockPos((int) x, (int) (y + 4), (int) (z - 1)), BlockDioonShootTop.block.getDefaultState(), 3);
+										//world.setBlockState(new BlockPos((int) x, (int) (y + 4), (int) (z - 1)), BlockDioonShootTop.block.getDefaultState(), 3);
 									}
 								}
 							}
@@ -204,7 +202,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 									block = world.getBlockState(new BlockPos((int) x + 1, (int) (y + 3), (int) z)).getBlock();
 									if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x + 1, (int) (y + 3), (int) z)), world, new BlockPos((int) x + 1, (int) (y + 3), (int) z))) {
 										world.setBlockState(new BlockPos((int) x + 1, (int) (y + 2), (int) z), BlockDioonShoot.block.getDefaultState(), 3);
-										world.setBlockState(new BlockPos((int) x + 1, (int) (y + 3), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
+										//world.setBlockState(new BlockPos((int) x + 1, (int) (y + 3), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
 									}
 								}
 								if (TrunkHeight >=4) {
@@ -214,7 +212,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 										block = world.getBlockState(new BlockPos((int) x - 1, (int) (y + 4), (int) z)).getBlock();
 										if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + 4), (int) z)), world, new BlockPos((int) x - 1, (int) (y + 4), (int) z))) {
 											world.setBlockState(new BlockPos((int) x - 1, (int) (y + 3), (int) z), BlockDioonShoot.block.getDefaultState(), 3);
-											world.setBlockState(new BlockPos((int) x - 1, (int) (y + 4), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
+											//world.setBlockState(new BlockPos((int) x - 1, (int) (y + 4), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
 										}
 									}
 								}
@@ -227,7 +225,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 									block = world.getBlockState(new BlockPos((int) x - 1, (int) (y + 3), (int) z)).getBlock();
 									if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x - 1, (int) (y + 3), (int) z)), world, new BlockPos((int) x - 1, (int) (y + 3), (int) z))) {
 										world.setBlockState(new BlockPos((int) x - 1, (int) (y + 2), (int) z), BlockDioonShoot.block.getDefaultState(), 3);
-										world.setBlockState(new BlockPos((int) x - 1, (int) (y + 3), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
+										//world.setBlockState(new BlockPos((int) x - 1, (int) (y + 3), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
 									}
 								}
 								if (TrunkHeight >=4) {
@@ -237,7 +235,7 @@ public class ProcedureWorldGenDioon extends ElementsLepidodendronMod.ModElement 
 										block = world.getBlockState(new BlockPos((int) x + 1, (int) (y + 4), (int) z)).getBlock();
 										if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x + 1, (int) (y + 4), (int) z)), world, new BlockPos((int) x + 1, (int) (y + 4), (int) z))) {
 											world.setBlockState(new BlockPos((int) x + 1, (int) (y + 3), (int) z), BlockDioonShoot.block.getDefaultState(), 3);
-											world.setBlockState(new BlockPos((int) x + 1, (int) (y + 4), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
+											//world.setBlockState(new BlockPos((int) x + 1, (int) (y + 4), (int) z), BlockDioonShootTop.block.getDefaultState(), 3);
 										}
 									}
 								}

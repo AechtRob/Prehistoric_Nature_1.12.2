@@ -3,7 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -33,7 +34,7 @@ public class BlockGangamopterisLeaves extends ElementsLepidodendronMod.ModElemen
 	@GameRegistry.ObjectHolder("lepidodendron:gangamopteris_leaves")
 	public static final Block block = null;
 	public BlockGangamopterisLeaves(ElementsLepidodendronMod instance) {
-		super(instance, 30);
+		super(instance, LepidodendronSorter.gangamopteris_leaves);
 	}
 
 	@Override
@@ -58,7 +59,7 @@ public class BlockGangamopterisLeaves extends ElementsLepidodendronMod.ModElemen
 			setResistance(0.2F);
 			setLightLevel(0F);
 			setLightOpacity(1);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
 		}
 

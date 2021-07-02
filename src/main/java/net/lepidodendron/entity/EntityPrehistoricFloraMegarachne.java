@@ -5,7 +5,10 @@ import com.google.common.base.Predicate;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
-import net.lepidodendron.entity.ai.*;
+import net.lepidodendron.entity.ai.AttackAI;
+import net.lepidodendron.entity.ai.EatFishItemsAI;
+import net.lepidodendron.entity.ai.EurypteridWanderBottomDweller;
+import net.lepidodendron.entity.ai.HuntAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraEurypteridBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.minecraft.block.material.Material;
@@ -75,7 +78,7 @@ public class EntityPrehistoricFloraMegarachne extends EntityPrehistoricFloraEury
 
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute() {
-		return EnumCreatureAttribute.UNDEFINED;
+		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
 	@Override

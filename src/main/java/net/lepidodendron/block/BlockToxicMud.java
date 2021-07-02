@@ -2,17 +2,15 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
@@ -31,7 +29,7 @@ public class BlockToxicMud extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:toxic_mud")
 	public static final Block block = null;
 	public BlockToxicMud(ElementsLepidodendronMod instance) {
-		super(instance, 1611);
+		super(instance, LepidodendronSorter.toxic_mud);
 	}
 
 	@Override
@@ -56,7 +54,7 @@ public class BlockToxicMud extends ElementsLepidodendronMod.ModElement {
 			setResistance(0.5F);
 			setLightLevel(0F);
 			setLightOpacity(255);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 			setDefaultSlipperiness(0.98f);
 		}
 

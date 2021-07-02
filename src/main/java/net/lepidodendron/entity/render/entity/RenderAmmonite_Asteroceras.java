@@ -2,7 +2,6 @@ package net.lepidodendron.entity.render.entity;
 
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.EntityPrehistoricFloraAmmonite_Asteroceras;
-import net.lepidodendron.entity.EntityPrehistoricFloraAphetoceras;
 import net.lepidodendron.entity.model.entity.ModelAmmonite50cm;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.entity.RenderLiving;

@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.render.entity;
 
 import net.lepidodendron.LepidodendronMod;
-import net.lepidodendron.entity.EntityPrehistoricFloraAmmonite_Cylolobus;
 import net.lepidodendron.entity.EntityPrehistoricFloraAmmonite_Dactylioceras;
 import net.lepidodendron.entity.model.entity.ModelAmmonite15cm;
 import net.minecraft.client.renderer.GlStateManager;

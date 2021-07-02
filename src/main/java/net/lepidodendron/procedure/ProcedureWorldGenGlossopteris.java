@@ -1,24 +1,21 @@
 package net.lepidodendron.procedure;
 
-import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.block.BlockPalaeognetaleana;
-import net.minecraft.block.BlockVine;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.Block;
-import net.minecraft.tileentity.TileEntity;
-
-import net.lepidodendron.block.BlockGlossopterisTreeLeaves;
-import net.lepidodendron.block.BlockGlossopterisLog;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.block.BlockGlossopterisLog;
 import net.lepidodendron.block.BlockGlossopterisStrobilus;
+import net.lepidodendron.block.BlockGlossopterisTreeLeaves;
+import net.lepidodendron.block.BlockPalaeognetaleana;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 

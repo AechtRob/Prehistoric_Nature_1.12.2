@@ -1,24 +1,17 @@
 
 package net.lepidodendron.world.structure;
 
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.block.BlockQuasistrobus;
-import net.lepidodendron.block.BlockQuasistrobusCentre;
-import net.lepidodendron.block.BlockQuasistrobusTop;
-import net.lepidodendron.block.BlockQuasistrobusSide;
-import net.lepidodendron.block.BlockQuasistrobusSideCentre;
-import net.lepidodendron.block.BlockQuasistrobusSideTop;
-
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
-import net.minecraftforge.common.BiomeDictionary;
+import net.lepidodendron.block.*;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.common.BiomeDictionary;
 
 import java.util.Random;
 

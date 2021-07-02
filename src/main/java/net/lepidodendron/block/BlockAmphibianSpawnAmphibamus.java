@@ -3,8 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.entities.ItemBucketSpawnAmphibamus;
-import net.lepidodendron.item.entities.ItemBucketSpawnIchthyostega;
 import net.lepidodendron.world.MobSpawnGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyInteger;
@@ -37,7 +37,7 @@ public class BlockAmphibianSpawnAmphibamus extends ElementsLepidodendronMod.ModE
 	@GameRegistry.ObjectHolder("lepidodendron:amphibian_spawn_amphibamus_worldgen")
 	public static final Block block = null;
 	public BlockAmphibianSpawnAmphibamus(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.amphibian_spawn_amphibamus_worldgen);
 	}
 
 	@Override

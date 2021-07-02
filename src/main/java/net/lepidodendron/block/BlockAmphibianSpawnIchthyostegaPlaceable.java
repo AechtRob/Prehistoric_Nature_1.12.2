@@ -3,10 +3,11 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraIchthyostega;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
-import net.lepidodendron.item.entities.ItemBucketSpawnLimnoscelis;
+import net.lepidodendron.item.entities.ItemBucketSpawnIchthyostega;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
@@ -41,7 +42,7 @@ public class BlockAmphibianSpawnIchthyostegaPlaceable extends ElementsLepidodend
 	@GameRegistry.ObjectHolder("lepidodendron:amphibian_spawn_ichthyostega")
 	public static final Block block = null;
 	public BlockAmphibianSpawnIchthyostegaPlaceable(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.amphibian_spawn_ichthyostega);
 	}
 
 	@Override
@@ -64,7 +65,7 @@ public class BlockAmphibianSpawnIchthyostegaPlaceable extends ElementsLepidodend
 		public BlockCustom() {
 			setTranslationKey("pf_amphibian_spawn_ichthyostega");
 			this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		@Override
@@ -101,7 +102,7 @@ public class BlockAmphibianSpawnIchthyostegaPlaceable extends ElementsLepidodend
 					playerIn.inventory.clearMatchingItems(new ItemStack(Items.WATER_BUCKET, (int) (1)).getItem(), -1, (int) 1, null);
 					SoundEvent soundevent = SoundEvents.ITEM_BUCKET_FILL;
 					playerIn.getEntityWorld().playSound(playerIn, playerIn.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
-					ItemStack itemstack1 = new ItemStack(ItemBucketSpawnLimnoscelis.block, (int) (1));
+					ItemStack itemstack1 = new ItemStack(ItemBucketSpawnIchthyostega.block, (int) (1));
 					itemstack1.setCount(1);
 					ItemHandlerHelper.giveItemToPlayer(playerIn, itemstack1);
 					worldIn.setBlockToAir(pos);
@@ -115,9 +116,9 @@ public class BlockAmphibianSpawnIchthyostegaPlaceable extends ElementsLepidodend
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Fish-like stem-tetrapod");
+				tooltip.add("Type: Fish/Stem-Amphibian");
 				tooltip.add("Periods: Devonian");
-				tooltip.add("Habitat: Water, can come on land");
+				tooltip.add("Habitat: Swamps, rivers");
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

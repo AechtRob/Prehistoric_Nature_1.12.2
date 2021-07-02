@@ -2,7 +2,8 @@
 package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
@@ -17,7 +18,7 @@ public class ItemPalaeodictyopteraCooked extends ElementsLepidodendronMod.ModEle
 	@GameRegistry.ObjectHolder("lepidodendron:palaeodictyoptera_cooked")
 	public static final Item block = null;
 	public ItemPalaeodictyopteraCooked(ElementsLepidodendronMod instance) {
-		super(instance, 1296);
+		super(instance, LepidodendronSorter.palaeodictyoptera_cooked);
 	}
 
 	@Override
@@ -35,7 +36,7 @@ public class ItemPalaeodictyopteraCooked extends ElementsLepidodendronMod.ModEle
 			super(5, 0.7f, false);
 			setTranslationKey("pf_palaeodictyoptera_cooked");
 			setRegistryName("palaeodictyoptera_cooked");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 			setMaxStackSize(64);
 		}
 

@@ -2,9 +2,9 @@ package net.lepidodendron.procedure;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.block.BlockGangamopterisLeaves;
 import net.lepidodendron.block.BlockGangamopterisLog;
 import net.lepidodendron.block.BlockGangamopterisStrobilus;
-import net.lepidodendron.block.BlockGangamopterisLeaves;
 import net.lepidodendron.block.BlockPalaeognetaleana;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;

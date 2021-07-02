@@ -9,8 +9,10 @@ import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityMoveHelper;
-import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigateSwimmer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
@@ -25,6 +27,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public abstract class EntityPrehistoricFloraNautiloidBase extends EntityPrehistoricFloraAgeableBase implements IAnimatedEntity {
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
+    private static final DataParameter<Boolean> SHELL = EntityDataManager.createKey(EntityPrehistoricFloraAgeableBase.class, DataSerializers.BOOLEAN);
     public ChainBuffer chainBuffer;
 
     public EntityPrehistoricFloraNautiloidBase(World world) {
@@ -40,10 +43,7 @@ public abstract class EntityPrehistoricFloraNautiloidBase extends EntityPrehisto
     private Animation animation = NO_ANIMATION;
     private int animationTick;
 
-    public static final Animation ANIMATION_NAUTILOID_WANDER = Animation.create(20);
-    public static final Animation ANIMATION_NAUTILOID_LAND = Animation.create(20);
-
-    private static final Animation[] ANIMATIONS = {ANIMATION_NAUTILOID_WANDER,ANIMATION_NAUTILOID_LAND};
+    private static final Animation[] ANIMATIONS = {};
 
     public AnimationAI currentAnim;
 
@@ -86,11 +86,12 @@ public abstract class EntityPrehistoricFloraNautiloidBase extends EntityPrehisto
     protected abstract float getAISpeedNautiloid();
 
     protected void initEntityAI() {
-        //tasks.addTask(0, new FishWander(this, ANIMATION_FISH_WANDER));
-        //this.tasks.addTask(0, new FishWander(this));
-        //this.tasks.addTask(1, new EntityAILookIdle(this));
     }
 
+    @Override
+    protected void entityInit() {
+        super.entityInit();
+    }
 
     @Override
     public boolean isAIDisabled() {
@@ -106,41 +107,15 @@ public abstract class EntityPrehistoricFloraNautiloidBase extends EntityPrehisto
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
     }
 
-    // @Nullable
-    // protected ResourceLocation getLootTable() {
-    //     return PrehistoricEntityType.FISH_LOOT;
-    // }
-
     @Override
     protected boolean canTriggerWalking() {
         return false;
     }
 
-    //public void swimTowardsTarget() {
-    //    if (currentTarget != null && isTargetInWater() && this.inWater) {
-    //        double targetX = currentTarget.getX() + 0.5D - posX;
-    //        double targetY = currentTarget.getY() + 1D - posY;
-    //        double targetZ = currentTarget.getZ() + 0.5D - posZ;
-    //        motionX += (Math.signum(targetX) * 0.5D - motionX) * 0.100000000372529 * getSwimSpeed(); // 0.10000000149011612D
-    //        motionY += (Math.signum(targetY) * 0.5D - motionY) * 0.100000000372529 * getSwimSpeed();// 0.10000000149011612D
-    //        motionZ += (Math.signum(targetZ) * 0.5D - motionZ) * 0.100000000372529 * getSwimSpeed(); // 0.10000000149011612D
-    //       float angle = (float) (Math.atan2(motionZ, motionX) * 180.0D / Math.PI) - 90.0F;
-    //        float rotation = MathHelper.wrapDegrees(angle - rotationYaw);
-    //        moveForward = 0.5F;
-    //        rotationYaw += rotation;
-     //   }
-    //}
-
-    protected abstract double getSwimSpeed();
-
     @Override
     public boolean isInWater() {
         return super.isInWater() || (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
     }
-
-    //protected boolean isTargetInWater() {
-    //    return currentTarget != null && (world.getBlockState(new BlockPos(currentTarget.getX(), currentTarget.getY(), currentTarget.getZ())).getMaterial() == Material.WATER && world.getBlockState(new BlockPos(currentTarget.getX(), currentTarget.getY() + 1, currentTarget.getZ())).getMaterial() == Material.WATER);
-    //}
 
     @Override
     public boolean canBreatheUnderwater() {
@@ -182,6 +157,29 @@ public abstract class EntityPrehistoricFloraNautiloidBase extends EntityPrehisto
 
     @Override
     public boolean isOnLadder() {
+        return false;
+    }
+
+    public boolean isReallyInWater() {
+        return (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
+    }
+    public boolean isCollidingRim() {
+        if (this.isReallyInWater()) {
+            //System.err.println("collided");
+            Vec3d vec3d = this.getPositionEyes(0);
+            Vec3d vec3d1 = this.getLook(0);
+            Vec3d vec3d2 = vec3d.add(vec3d1.x * 1, vec3d1.y * 1, vec3d1.z * 1);
+            RayTraceResult rayTrace = world.rayTraceBlocks(vec3d, vec3d2, true);
+            if (rayTrace != null && rayTrace.hitVec != null) {
+                //System.err.println("raytraced");
+                BlockPos sidePos = rayTrace.getBlockPos();
+                if (world.getBlockState(sidePos).getMaterial() == Material.WATER) {
+                    //System.err.println("colliding rim");
+                    return true;
+                }
+            }
+        }
+        //System.err.println("not colliding rim");
         return false;
     }
 
@@ -245,6 +243,12 @@ public abstract class EntityPrehistoricFloraNautiloidBase extends EntityPrehisto
                     f4 += (0.54600006F - f4) * speedModifier / 3.0F;
                 }
                 this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+
+                if (this.collidedHorizontally && this.isCollidingRim())
+                {
+                    this.motionY = 0.05D;
+                }
+
                 this.motionX *= f4;
                 this.motionX *= 0.9;
                 this.motionY *= 0.9;

@@ -1,7 +1,6 @@
 package net.lepidodendron.world;
 
 import net.lepidodendron.block.BlockPrehistoricGroundCoverPlants;
-import net.lepidodendron.block.BlockPrehistoricGroundCoverPlantsPangaean;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;

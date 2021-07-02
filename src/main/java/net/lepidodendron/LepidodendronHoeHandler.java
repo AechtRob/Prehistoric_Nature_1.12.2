@@ -2,7 +2,6 @@ package net.lepidodendron;
 
 import net.lepidodendron.block.*;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockDirt;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
@@ -32,6 +31,46 @@ public class LepidodendronHoeHandler {
         IBlockState state = world.getBlockState(pos);
         Block block = state.getBlock();
         boolean result = false;
+
+        //Toggle rippled sand
+        if (state == Blocks.SAND.getStateFromMeta(0) || block == BlockSandSticky.block)
+        {
+            result = true;
+            world.setBlockState(pos, BlockSandWavy.block.getDefaultState());
+        }
+        else {
+            if (block == BlockSandWavy.block || block == BlockSandWavySticky.block)
+            {
+                result = true;
+                world.setBlockState(pos, Blocks.SAND.getStateFromMeta(0));
+            }
+        }
+
+        if (state == Blocks.SAND.getStateFromMeta(1) || block == BlockSandRedSticky.block)
+        {
+            result = true;
+            world.setBlockState(pos, BlockSandRedWavy.block.getDefaultState());
+        }
+        else {
+            if (block == BlockSandRedWavy.block || block == BlockSandRedWavySticky.block)
+            {
+                result = true;
+                world.setBlockState(pos, Blocks.SAND.getStateFromMeta(1));
+            }
+        }
+
+        if (block == BlockSandPangaean.block || block == BlockSandPangaeanSticky.block)
+        {
+            result = true;
+            world.setBlockState(pos, BlockSandPangaeanWavy.block.getDefaultState());
+        }
+        else {
+            if (block == BlockSandPangaeanWavy.block || block == BlockSandPangaeanWavySticky.block)
+            {
+                result = true;
+                world.setBlockState(pos, BlockSandPangaean.block.getDefaultState());
+            }
+        }
 
         if (((block == BlockPrehistoricGroundLush.block)
                 || (block == BlockPrehistoricGroundBasic.block)

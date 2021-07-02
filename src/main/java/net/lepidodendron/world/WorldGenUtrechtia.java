@@ -2,10 +2,7 @@ package net.lepidodendron.world;
 
 import net.lepidodendron.block.BlockUtrechtiaSapling;
 import net.lepidodendron.block.BlockUtrechtiaStem;
-import net.lepidodendron.block.BlockWattiezaLog;
-import net.lepidodendron.block.BlockWattiezaSapling;
 import net.lepidodendron.procedure.ProcedureWorldGenUtrechtia;
-import net.lepidodendron.procedure.ProcedureWorldGenWattieza;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;

@@ -1,51 +1,47 @@
 
 package net.lepidodendron.block;
 
-import net.lepidodendron.LepidodendronConfig;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-
-import net.minecraft.world.World;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.Item;
-import net.minecraft.init.Blocks;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.client.renderer.block.statemap.StateMap;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.BlockFaceShape;
-//import net.lepidodendron.block.BlockPleuromeiaShootTopFlower;
-//import net.lepidodendron.block.BlockPleuromeiaShootTopNoflower;
-import java.util.Random;
-import net.minecraft.entity.item.EntityItem;
-
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import java.util.List;
-import net.minecraft.client.util.ITooltipFlag;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLeaves;
+import net.minecraft.block.BlockPlanks;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+import java.util.Random;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class BlockAntarcticycas extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:antarcticycas")
 	public static final Block block = null;
 	public BlockAntarcticycas(ElementsLepidodendronMod instance) {
-		super(instance, 287);
+		super(instance, LepidodendronSorter.antarcticycas);
 	}
 
 	@Override
@@ -70,7 +66,7 @@ public class BlockAntarcticycas extends ElementsLepidodendronMod.ModElement {
 			setResistance(0.2F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, false));
 		}
 
@@ -104,7 +100,7 @@ public class BlockAntarcticycas extends ElementsLepidodendronMod.ModElement {
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
@@ -146,7 +142,10 @@ public class BlockAntarcticycas extends ElementsLepidodendronMod.ModElement {
 
 		@Override
 		public Item getItemDropped(IBlockState state, java.util.Random rand, int fortune) {
-			return Item.getItemFromBlock(BlockAntarcticycas.block);
+			if (!LepidodendronConfig.doFruits) {
+				return Item.getItemFromBlock(BlockAntarcticycas.block);
+			}
+			return null;
 		}
 
 		public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
@@ -159,66 +158,36 @@ public class BlockAntarcticycas extends ElementsLepidodendronMod.ModElement {
 	        return true;
 	    }
 
-	    @Override
-		public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock, BlockPos fromPos) {
-			
-			super.neighborChanged(state, world, pos, neighborBlock, fromPos);
-
-			if (world.isAirBlock(pos.down())) {
-				world.destroyBlock(pos, false);
-				if (Math.random() > 0.66) {
-					//Spawn another sapling:
-					if (!world.isRemote) {
-						EntityItem entityToSpawn = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockAntarcticycas.block, (int) (1)));
-						entityToSpawn.setPickupDelay(10);
-						world.spawnEntity(entityToSpawn);
-					}
+		@Override
+		public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+			super.harvestBlock(worldIn, player, pos, state, te, stack);
+			if (Math.random() > 0.66 && !LepidodendronConfig.doFruits) {
+				//Spawn another sapling:
+				if (!worldIn.isRemote) {
+					EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockAntarcticycas.block, (int) (1)));
+					entityToSpawn.setPickupDelay(10);
+					worldIn.spawnEntity(entityToSpawn);
 				}
 			}
-			else {
-				Block block = world.getBlockState(pos.up()).getBlock();
-				if (block != BlockAntarcticycasTop.block) {
-					world.setBlockToAir(pos);
-	
-					if (Math.random() > 0.66) {
-							//Spawn another sapling:
-							if (!world.isRemote) {
-								EntityItem entityToSpawn = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockAntarcticycas.block, (int) (1)));
-								entityToSpawn.setPickupDelay(10);
-								world.spawnEntity(entityToSpawn);
-							}
-						}
-	
-				}
-			}
-			
 		}
-		
+
+		@Override
+		public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+			super.updateTick(worldIn, pos, state, rand);
+			//System.err.println("Ticked");
+			if (Math.random()>0.8 && Math.random()>0.8 && (!(((Boolean)state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean)state.getValue(DECAYABLE)).booleanValue()))) {
+				worldIn.setBlockState(pos, BlockAntarcticycasCone.block.getDefaultState(), 3);
+			}
+		}
+
 		@Override
 		public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {
 	        return super.canPlaceBlockAt(worldIn, pos) && worldIn.isAirBlock(pos.up());
-	    }
-
-	    public void onBlockAdded(World world, BlockPos pos, IBlockState state) {
-			world.setBlockState(pos.up(), BlockAntarcticycasTop.block.getDefaultState(), 3);
-			super.onBlockAdded(world, pos, state);
 	    }
 
 	    @Override
 		public BlockFaceShape getBlockFaceShape(IBlockAccess world, IBlockState state, BlockPos pos, EnumFacing face) {
 			return BlockFaceShape.UNDEFINED;
 		}
-		
-	    @SideOnly(Side.CLIENT)
-		@Override
-	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
-	        if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Cycad");
-				tooltip.add("Periods: mid Triassic");
-				tooltip.add("Propagation: fruit/cone");
-			}
-	        super.addInformation(stack, player, tooltip, advanced);
-	    }
-
 	}
 }

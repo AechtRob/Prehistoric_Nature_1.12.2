@@ -2,10 +2,7 @@ package net.lepidodendron.world;
 
 import net.lepidodendron.block.BlockGigantopteridLog;
 import net.lepidodendron.block.BlockGigantopteridSapling;
-import net.lepidodendron.block.BlockUtrechtiaSapling;
-import net.lepidodendron.block.BlockUtrechtiaStem;
 import net.lepidodendron.procedure.ProcedureWorldGenGigantopterid;
-import net.lepidodendron.procedure.ProcedureWorldGenUtrechtia;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;

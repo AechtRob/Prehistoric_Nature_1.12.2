@@ -5,7 +5,10 @@ import com.google.common.base.Predicate;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
-import net.lepidodendron.entity.ai.*;
+import net.lepidodendron.entity.ai.AttackAI;
+import net.lepidodendron.entity.ai.EatFishItemsAI;
+import net.lepidodendron.entity.ai.EurypteridWanderBottomDweller;
+import net.lepidodendron.entity.ai.HuntAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraEurypteridBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteBottomBase;
@@ -84,7 +87,7 @@ public class EntityPrehistoricFloraJaekelopterus extends EntityPrehistoricFloraE
 
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute() {
-		return EnumCreatureAttribute.UNDEFINED;
+		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
 	@Override
@@ -107,7 +110,11 @@ public class EntityPrehistoricFloraJaekelopterus extends EntityPrehistoricFloraE
 
 	@Override
 	protected float getAISpeedEurypterid() {
-		return (float) Math.min(1F, (this.getAgeScale() * 2F)) * 0.24F;
+		float AIspeed = (float) Math.min(1F, (this.getAgeScale() * 2F)) * 0.24F;
+		if (this.isHunting()) {
+			AIspeed = AIspeed * 1.8F;
+		}
+		return AIspeed;
 	}
 
 	@Override

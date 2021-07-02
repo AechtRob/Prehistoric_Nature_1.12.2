@@ -2,10 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -14,7 +12,8 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.item.EntityFallingBlock;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -24,21 +23,13 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.gen.feature.WorldGenReed;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
-import java.util.Random;
 
 
 @ElementsLepidodendronMod.ModElement.Tag
@@ -46,13 +37,20 @@ public class BlockStromatoliteSticky extends ElementsLepidodendronMod.ModElement
 	@GameRegistry.ObjectHolder("lepidodendron:stromatolite_sticky")
 	public static final Block block = null;
 	public BlockStromatoliteSticky(ElementsLepidodendronMod instance) {
-		super(instance, 1409);
+		super(instance, LepidodendronSorter.stromatolite_sticky);
 	}
 
 	@Override
 	public void initElements() {
 		elements.blocks.add(() -> new BlockCustom().setRegistryName("stromatolite_sticky"));
-		//elements.items.add(() -> new ItemBlock(block).setRegistryName(block.getRegistryName()));
+		elements.items.add(() -> new ItemBlock(block).setRegistryName(block.getRegistryName()));
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void registerModels(ModelRegistryEvent event) {
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0,
+				new ModelResourceLocation("lepidodendron:stromatolite_sticky", "inventory"));
 	}
 
 	public static final PropertyBool TOPSHOOT = PropertyBool.create("topshoot");
@@ -76,6 +74,20 @@ public class BlockStromatoliteSticky extends ElementsLepidodendronMod.ModElement
 			useNeighborBrightness = true;
 			this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, false).withProperty(SOUTH, false).withProperty(EAST, false).withProperty(WEST, false).withProperty(TOPSHOOT, false));
 		}
+
+		public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
+		{
+			if (entityIn instanceof EntityPlayer)
+			{
+				if (!((EntityPlayer) entityIn).capabilities.isCreativeMode) {
+					entityIn.setInWeb();
+				}
+			}
+			else if (entityIn instanceof EntityLivingBase)
+			{
+				entityIn.setInWeb();
+			}
+		}
 		
 		@Override
 		public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
@@ -97,11 +109,6 @@ public class BlockStromatoliteSticky extends ElementsLepidodendronMod.ModElement
 	    {
 	        return BlockFaceShape.SOLID;
 	    }
-
-		@Override
-		public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-			return new ItemStack(BlockStromatolite.block, (int) (1));
-		}
 
 	    @SideOnly(Side.CLIENT)
 		@Override

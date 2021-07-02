@@ -1,22 +1,16 @@
 package net.lepidodendron.world;
 
-import java.util.Random;
-
 import net.lepidodendron.LepidodendronConfig;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockOldLeaf;
-import net.minecraft.block.BlockOldLog;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.material.Material;
+import net.lepidodendron.procedure.ProcedureWorldGenAlethopteris;
+import net.lepidodendron.procedure.ProcedureWorldGenPitys;
+import net.lepidodendron.procedure.ProcedureWorldGenWalchia;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.lepidodendron.procedure.ProcedureWorldGenWalchia;
-import net.lepidodendron.procedure.ProcedureWorldGenAlethopteris;
-import java.util.Map;
-import java.util.HashMap;
+
+import java.util.Random;
 
 public class WorldGenWalchiaTree extends WorldGenAbstractTree
 {
@@ -105,7 +99,12 @@ public class WorldGenWalchiaTree extends WorldGenAbstractTree
                             ProcedureWorldGenWalchia.executeProcedure($_dependencies);
                         }
 					    else {
-                            ProcedureWorldGenAlethopteris.executeProcedure($_dependencies);
+					        if (Math.random() > 0.8) {
+                                ProcedureWorldGenPitys.executeProcedure($_dependencies);
+                            }
+					        else {
+                                ProcedureWorldGenAlethopteris.executeProcedure($_dependencies);
+                            }
                         }
 					}
                     return true;

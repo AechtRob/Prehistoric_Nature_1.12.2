@@ -2,45 +2,42 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.lepidodendron.item.ItemBottleOfResin;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.FluidUtil;
-import net.minecraftforge.fluids.UniversalBucket;
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.Item;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.Block;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 import net.minecraftforge.oredict.OreDictionary;
 
@@ -53,7 +50,7 @@ public class BlockResinExtractor extends ElementsLepidodendronMod.ModElement {
 	public static final Block block = null;
 
 	public BlockResinExtractor(ElementsLepidodendronMod instance) {
-		super(instance, 1780);
+		super(instance, LepidodendronSorter.resin_extractor);
 	}
 
 	@Override
@@ -84,8 +81,8 @@ public class BlockResinExtractor extends ElementsLepidodendronMod.ModElement {
 			setHardness(5F);
 			setResistance(5F);
 			setLightLevel(0F);
-			setLightOpacity(255);
-			setCreativeTab(TabLepidodendron.tab);
+			setLightOpacity(0);
+			setCreativeTab(TabLepidodendronMisc.tab);
 			setTickRandomly(true);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.DOWN));
 		}
@@ -113,9 +110,9 @@ public class BlockResinExtractor extends ElementsLepidodendronMod.ModElement {
 			if (mb < 0) {
 				mb = 0;
 			}
-			System.err.println("mb: " + mb);
+			//System.err.println("mb: " + mb);
 			i = Math.floor(((double)mb/2000D) * 15D);
-			System.err.println("rf: " + i);
+			//System.err.println("rf: " + i);
 			return (int) i;
 		}
 
@@ -151,11 +148,6 @@ public class BlockResinExtractor extends ElementsLepidodendronMod.ModElement {
 		public BlockRenderLayer getRenderLayer()
 		{
 			return BlockRenderLayer.CUTOUT;
-		}
-
-		@Override
-		public boolean canRenderInLayer(IBlockState state, BlockRenderLayer layer) {
-			return layer == BlockRenderLayer.CUTOUT_MIPPED;
 		}
 
 		@Override
@@ -302,6 +294,12 @@ public class BlockResinExtractor extends ElementsLepidodendronMod.ModElement {
 
 		@Override
 		public boolean isOpaqueCube(IBlockState state) {
+			return false;
+		}
+
+		@Override
+		public boolean isFullCube(IBlockState state)
+		{
 			return false;
 		}
 

@@ -3,16 +3,14 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.item.ItemAgathisNuts;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.lepidodendron.item.ItemZircon;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -35,7 +33,7 @@ public class BlockZirconOre extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:zircon_ore")
 	public static final Block block = null;
 	public BlockZirconOre(ElementsLepidodendronMod instance) {
-		super(instance, 1735);
+		super(instance, LepidodendronSorter.zircon_ore);
 	}
 
 	@Override
@@ -84,7 +82,7 @@ public class BlockZirconOre extends ElementsLepidodendronMod.ModElement {
 			setResistance(4F);
 			setLightLevel(0F);
 			setLightOpacity(255);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 		}
 
 		@Override

@@ -1,55 +1,54 @@
 
 package net.lepidodendron.block;
 
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.common.EnumPlantType;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-
-import net.minecraft.world.gen.feature.WorldGenReed;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.World;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.Item;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.BlockReed;
-import net.minecraft.block.Block;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraft.init.Blocks;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyInteger;
-import net.minecraft.util.math.AxisAlignedBB;
-
-import net.lepidodendron.creativetab.TabLepidodendron;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
-
-import java.util.Random;
-import java.util.List;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockReed;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyInteger;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.feature.WorldGenReed;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
+import java.util.Random;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class BlockPseudobornia extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:pseudobornia")
 	public static final Block block = null;
 	public BlockPseudobornia(ElementsLepidodendronMod instance) {
-		super(instance, 631);
+		super(instance, LepidodendronSorter.pseudobornia);
 	}
 
 	@Override
@@ -174,7 +173,7 @@ public class BlockPseudobornia extends ElementsLepidodendronMod.ModElement {
 		
 		public BlockCustomFlower() {
 			setSoundType(SoundType.PLANT);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			setHardness(0.5F);
 			setResistance(0.5F);
 			setLightLevel(0F);
@@ -298,7 +297,7 @@ public class BlockPseudobornia extends ElementsLepidodendronMod.ModElement {
 						&& ((world.getBlockState(pos.up(2))).getBlock() == BlockPseudobornia3.block)) {
 						int l;
 						for (l = 1; world.getBlockState(pos.down(l)).getBlock() == this; ++l);
-						if (l < 18) {
+						if (l < 16) {
 							int i1 = (Integer) state.getValue(AGE);
 							if (i1 == 15) {
 								//world.setBlockToAir(pos.up(2));

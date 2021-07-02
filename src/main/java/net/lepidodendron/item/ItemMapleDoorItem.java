@@ -2,8 +2,9 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.block.BlockMapleDoor;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
 import net.minecraft.block.SoundType;
@@ -29,7 +30,7 @@ public class ItemMapleDoorItem extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:maple_door_item")
 	public static final Item block = null;
 	public ItemMapleDoorItem(ElementsLepidodendronMod instance) {
-		super(instance, 1376);
+		super(instance, LepidodendronSorter.maple_door_item);
 	}
 
 	@Override
@@ -46,7 +47,7 @@ public class ItemMapleDoorItem extends ElementsLepidodendronMod.ModElement {
 		public ItemCustom() {
 			setTranslationKey("pf_maple_door_item");
 			setRegistryName("maple_door_item");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 
 		public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)

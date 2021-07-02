@@ -1,72 +1,50 @@
 
 package net.lepidodendron.block;
 
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-
-import net.minecraft.world.World;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.AxisAlignedBB;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.Mirror;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.tileentity.TileEntityLockableLoot;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.Item;
-import net.minecraft.inventory.ItemStackHelper;
-import net.minecraft.inventory.InventoryHelper;
-import net.minecraft.inventory.ContainerChest;
-import net.minecraft.inventory.Container;
-import net.minecraft.init.Blocks;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.ITileEntityProvider;
-import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.Block;
-
-import net.lepidodendron.procedure.ProcedureHironoiaFlowerNeighbourBlockChanges;
-import net.lepidodendron.creativetab.TabLepidodendron;
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.minecraft.block.state.BlockFaceShape;
-import net.minecraft.util.EnumFacing;
-import java.util.Random;
-
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.item.ItemHironoiaSeeds;
-
+import net.lepidodendron.procedure.ProcedureHironoiaFlowerNeighbourBlockChanges;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.ITileEntityProvider;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumHand;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 
-import java.util.Map;
-import java.util.HashMap;
+import java.util.Random;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class BlockHironoiaFlower extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:hironoia_flower")
 	public static final Block block = null;
 	public BlockHironoiaFlower(ElementsLepidodendronMod instance) {
-		super(instance, 50);
+		super(instance, LepidodendronSorter.hironoia_flower);
 	}
 
 	@Override
@@ -97,7 +75,7 @@ public class BlockHironoiaFlower extends ElementsLepidodendronMod.ModElement {
 			setResistance(0F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.UP));
 			setTickRandomly(true);
 		}

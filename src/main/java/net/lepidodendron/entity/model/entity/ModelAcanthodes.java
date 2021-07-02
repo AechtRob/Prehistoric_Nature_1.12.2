@@ -146,8 +146,8 @@ public class ModelAcanthodes extends AdvancedModelBase {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
         this.resetToDefaultPose();
         this.Bodyfront.offsetY = 1.1F;
-        this.Gills.rotateAngleY = f3 / (180F / (float) Math.PI);
-        this.Gills.rotateAngleX = f4 / (180F / (float) Math.PI);
+        //this.Gills.rotateAngleY = f3 / (180F / (float) Math.PI);
+        //this.Gills.rotateAngleX = f4 / (180F / (float) Math.PI);
 
         //this.Tailfin.setScale(1.1F, 1.1F, 1.1F);
         AdvancedModelRenderer[] fishTail = {this.Tail1, this.Tail2, this.Tail3};

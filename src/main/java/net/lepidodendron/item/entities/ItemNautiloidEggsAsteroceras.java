@@ -2,9 +2,9 @@
 package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraAmmonite_Asteroceras;
-import net.lepidodendron.entity.EntityPrehistoricFloraAmmonite_Ceratites;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -35,7 +35,7 @@ public class ItemNautiloidEggsAsteroceras extends ElementsLepidodendronMod.ModEl
 	@GameRegistry.ObjectHolder("lepidodendron:eggs_asteroceras")
 	public static final Item block = null;
 	public ItemNautiloidEggsAsteroceras(ElementsLepidodendronMod instance) {
-		super(instance, 786);
+		super(instance, LepidodendronSorter.eggs_asteroceras);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class ItemNautiloidEggsAsteroceras extends ElementsLepidodendronMod.ModEl
 		public ItemCustom() {
 			setTranslationKey("pf_eggs_asteroceras");
 			setRegistryName("eggs_asteroceras");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)

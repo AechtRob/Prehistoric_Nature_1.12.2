@@ -2,7 +2,8 @@
 package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
@@ -17,7 +18,7 @@ public class ItemAteleaspisCooked extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:ateleaspis_cooked")
 	public static final Item block = null;
 	public ItemAteleaspisCooked(ElementsLepidodendronMod instance) {
-		super(instance, 1296);
+		super(instance, LepidodendronSorter.ateleaspis_cooked);
 	}
 
 	@Override
@@ -35,7 +36,7 @@ public class ItemAteleaspisCooked extends ElementsLepidodendronMod.ModElement {
 			super(5, 0.7f, false);
 			setTranslationKey("pf_ateleaspis_cooked");
 			setRegistryName("ateleaspis_cooked");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 			setMaxStackSize(64);
 		}
 

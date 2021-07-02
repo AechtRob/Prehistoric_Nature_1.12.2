@@ -1,6 +1,5 @@
 package net.lepidodendron.world;
 
-import net.lepidodendron.block.BlockCarboniferousMud;
 import net.lepidodendron.block.BlockToxicMud;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;

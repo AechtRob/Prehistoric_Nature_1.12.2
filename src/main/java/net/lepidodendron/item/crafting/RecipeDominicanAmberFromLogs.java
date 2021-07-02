@@ -1,14 +1,12 @@
 
 package net.lepidodendron.item.crafting;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-
-import net.minecraft.item.ItemStack;
-
-import net.lepidodendron.item.ItemDominicanAmberChunk;
-import net.lepidodendron.block.BlockHymenaeaLog;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.block.BlockHymenaeaLog;
+import net.lepidodendron.item.ItemDominicanAmberChunk;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class RecipeDominicanAmberFromLogs extends ElementsLepidodendronMod.ModElement {

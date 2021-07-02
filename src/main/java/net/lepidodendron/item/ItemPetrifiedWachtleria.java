@@ -1,26 +1,24 @@
 
 package net.lepidodendron.item;
 
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.block.state.IBlockState;
-
-import net.lepidodendron.creativetab.TabLepidodendron;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.block.BlockWachtleria;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ItemPetrifiedWachtleria extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:petrified_wachtleria")
 	public static final Item block = null;
 	public ItemPetrifiedWachtleria(ElementsLepidodendronMod instance) {
-		super(instance, 857);
+		super(instance, LepidodendronSorter.petrified_wachtleria);
 	}
 
 	@Override
@@ -33,28 +31,12 @@ public class ItemPetrifiedWachtleria extends ElementsLepidodendronMod.ModElement
 	public void registerModels(ModelRegistryEvent event) {
 		ModelLoader.setCustomModelResourceLocation(block, 0, new ModelResourceLocation("lepidodendron:petrified_wachtleria", "inventory"));
 	}
-	public static class ItemCustom extends Item {
+	public static class ItemCustom extends ItemPetrified {
 		public ItemCustom() {
-			setMaxDamage(0);
-			maxStackSize = 64;
+			super(BlockWachtleria.block);
 			setTranslationKey("pf_petrified_wachtleria");
 			setRegistryName("petrified_wachtleria");
-			setCreativeTab(TabLepidodendron.tab);
-		}
-
-		@Override
-		public int getItemEnchantability() {
-			return 0;
-		}
-
-		@Override
-		public int getMaxItemUseDuration(ItemStack itemstack) {
-			return 0;
-		}
-
-		@Override
-		public float getDestroySpeed(ItemStack par1ItemStack, IBlockState par2Block) {
-			return 1F;
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 	}
 }

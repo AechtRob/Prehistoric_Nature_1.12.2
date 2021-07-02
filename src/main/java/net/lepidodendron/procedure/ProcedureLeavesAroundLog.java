@@ -1,12 +1,8 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.block.Block;
-import net.minecraft.util.math.BlockPos;
-
 import net.lepidodendron.ElementsLepidodendronMod;
-
-import java.util.Map;
+import net.minecraft.block.Block;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureLeavesAroundLog extends ElementsLepidodendronMod.ModElement {

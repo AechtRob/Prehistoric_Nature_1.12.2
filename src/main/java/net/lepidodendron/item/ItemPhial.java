@@ -2,7 +2,8 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -18,7 +19,7 @@ public class ItemPhial extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:phial")
 	public static final Item block = null;
 	public ItemPhial(ElementsLepidodendronMod instance) {
-		super(instance, 142);
+		super(instance, LepidodendronSorter.phial);
 	}
 
 	@Override
@@ -37,7 +38,7 @@ public class ItemPhial extends ElementsLepidodendronMod.ModElement {
 			maxStackSize = 64;
 			setTranslationKey("pf_phial");
 			setRegistryName("phial");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 		}
 
 		@Override

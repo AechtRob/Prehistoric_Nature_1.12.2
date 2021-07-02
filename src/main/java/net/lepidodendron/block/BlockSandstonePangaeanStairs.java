@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.SoundType;
@@ -25,7 +26,7 @@ public class BlockSandstonePangaeanStairs extends ElementsLepidodendronMod.ModEl
 	@GameRegistry.ObjectHolder("lepidodendron:sandstone_stairs_pangaean")
 	public static final Block block = null;
 	public BlockSandstonePangaeanStairs(ElementsLepidodendronMod instance) {
-		super(instance, 396);
+		super(instance, LepidodendronSorter.sandstone_stairs_pangaean);
 	}
 
 	@Override
@@ -48,22 +49,18 @@ public class BlockSandstonePangaeanStairs extends ElementsLepidodendronMod.ModEl
 			setHardness(0.8F);
 			setResistance(0.8F);
 			setHarvestLevel("pickaxe", 0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 		}
 
-		//@Override
-		//public int tickRate(World world) {
-		//	return 0;
-		//}
+		@Override
+		public MapColor getMapColor(IBlockState state, IBlockAccess blockAccess, BlockPos pos) {
+			return MapColor.ADOBE;
+		}
 
 		@Override
 		public boolean isOpaqueCube(IBlockState state) {
 			return false;
 		}
 
-		@Override
-		public MapColor getMapColor(IBlockState state, IBlockAccess blockAccess, BlockPos pos) {
-			return MapColor.STONE;
-		}
 	}
 }

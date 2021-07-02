@@ -1,58 +1,41 @@
 
 package net.lepidodendron.block;
 
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-
-import net.minecraft.world.World;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.NonNullList;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.Item;
-import net.minecraft.init.Blocks;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.client.renderer.block.statemap.StateMap;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.material.MapColor;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.BlockPlanks;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.Block;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.BlockDirectional;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.Mirror;
-import net.minecraft.block.state.BlockFaceShape;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.math.AxisAlignedBB;
-
-import java.util.Random;
-import net.minecraft.entity.item.EntityItem;
-
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-
+import net.lepidodendron.LepidodendronSorter;
+import net.minecraft.block.*;
+import net.minecraft.block.material.MapColor;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.statemap.StateMap;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.EnumHand;
-import net.minecraftforge.items.ItemHandlerHelper;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class BlockNilssoniocladusShoot extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:nilssoniocladus_shoot_worldgen")
 	public static final Block block = null;
 	public BlockNilssoniocladusShoot(ElementsLepidodendronMod instance) {
-		super(instance, 287);
+		super(instance, LepidodendronSorter.nilssoniocladus_shoot_worldgen);
 	}
 
 	@Override
@@ -206,13 +189,10 @@ public class BlockNilssoniocladusShoot extends ElementsLepidodendronMod.ModEleme
 
 		@Override
 		public Item getItemDropped(IBlockState state, java.util.Random rand, int fortune) {
-			//if (LepidodendronConfig.doFruits) {
-				// Drop air and use the fruit/cone method instead:
-			//	return new ItemStack(Blocks.AIR, (int) (1)).getItem();
-			//}
-			//else {
+			if (!LepidodendronConfig.doFruits) {
 				return Item.getItemFromBlock(BlockNilssoniocladusSapling.block);
-			//}
+			}
+			return null;
 		}
 
 		public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
@@ -242,26 +222,25 @@ public class BlockNilssoniocladusShoot extends ElementsLepidodendronMod.ModEleme
 		
 		@Override
 		public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock, BlockPos fromPos) {
-			if (((Boolean)state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean)state.getValue(DECAYABLE)).booleanValue())
+		if (((Boolean)state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean)state.getValue(DECAYABLE)).booleanValue())
+			{
+			if (
+				(!getActualState(state, world, pos).getValue(VINE))
+				&& (!(state.getValue(FACING) == EnumFacing.UP && world.getBlockState(pos.down()).getBlock() == BlockNilssoniocladusStem.block))
+				&& (!(state.getValue(FACING) == EnumFacing.DOWN && world.getBlockState(pos.up()).getBlock() == BlockNilssoniocladusStem.block))
+				)
 				{
-				if (
-					(!getActualState(state, world, pos).getValue(VINE))
-					&& (!(state.getValue(FACING) == EnumFacing.UP && world.getBlockState(pos.down()).getBlock() == BlockNilssoniocladusStem.block))
-					&& (!(state.getValue(FACING) == EnumFacing.DOWN && world.getBlockState(pos.up()).getBlock() == BlockNilssoniocladusStem.block))
-					)
-					{
-						world.setBlockToAir(pos);
-						if ((Math.random() >= 0.5) && (!LepidodendronConfig.doFruits)) {
-								//Spawn another sapling:
-								if (!world.isRemote) {
-									EntityItem entityToSpawn = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockNilssoniocladusSapling.block, (int) (1)));
-									entityToSpawn.setPickupDelay(10);
-									world.spawnEntity(entityToSpawn);
-								}
-							}
+					world.setBlockToAir(pos);
+					if ((Math.random() >= 0.5) && (!LepidodendronConfig.doFruits)) {
+						//Spawn another sapling:
+						if (!world.isRemote) {
+							EntityItem entityToSpawn = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockNilssoniocladusSapling.block, (int) (1)));
+							entityToSpawn.setPickupDelay(10);
+							world.spawnEntity(entityToSpawn);
+						}
 					}
 				}
-			
+			}
 		}
 		
 		@Override
@@ -276,16 +255,17 @@ public class BlockNilssoniocladusShoot extends ElementsLepidodendronMod.ModEleme
 				)
 				{
 					worldIn.setBlockToAir(pos);
-					if ((Math.random() >= 0.5) && (!LepidodendronConfig.doFruits)) {
-							//Spawn another sapling:
-							if (!worldIn.isRemote) {
-								EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockNilssoniocladusSapling.block, (int) (1)));
-								entityToSpawn.setPickupDelay(10);
-								worldIn.spawnEntity(entityToSpawn);
-							}
-						}
+					if (!worldIn.isRemote) {
+						EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockNilssoniocladusSapling.block, (int) (1)));
+						entityToSpawn.setPickupDelay(10);
+						worldIn.spawnEntity(entityToSpawn);
+					}
+				}
+				else if (Math.random()>0.8 && Math.random()>0.8) {
+					worldIn.setBlockState(pos, BlockNilssoniocladusShootCone.block.getDefaultState().withProperty(FACING, state.getValue(FACING)), 3);
 				}
 			}
+
 		}
 
 		@Override

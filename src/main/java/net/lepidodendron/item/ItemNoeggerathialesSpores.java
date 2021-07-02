@@ -2,6 +2,7 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronSorter;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -17,7 +18,7 @@ public class ItemNoeggerathialesSpores extends ElementsLepidodendronMod.ModEleme
 	@GameRegistry.ObjectHolder("lepidodendron:noeggerathiales_spores")
 	public static final Item block = null;
 	public ItemNoeggerathialesSpores(ElementsLepidodendronMod instance) {
-		super(instance, 1724);
+		super(instance, LepidodendronSorter.noeggerathiales_spores);
 	}
 
 	@Override

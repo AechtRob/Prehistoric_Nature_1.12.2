@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -37,7 +38,7 @@ public class BlockNilssoniaLog extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:nilssonia_log")
 	public static final Block block = null;
 	public BlockNilssoniaLog(ElementsLepidodendronMod instance) {
-		super(instance, 286);
+		super(instance, LepidodendronSorter.nilssonia_log);
 	}
 
 	@Override
@@ -70,7 +71,7 @@ public class BlockNilssoniaLog extends ElementsLepidodendronMod.ModElement {
 			setResistance(10F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			
         	this.setDefaultState(this.blockState.getBaseState().withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)).withProperty(UP, Boolean.valueOf(false)).withProperty(DOWN, Boolean.valueOf(false)).withProperty(LEAVES, Boolean.valueOf(false)));
 		}
@@ -88,7 +89,7 @@ public class BlockNilssoniaLog extends ElementsLepidodendronMod.ModElement {
 			Boolean leavesblock1 = false;
 			Boolean leavesattached = false;
 
-			if ((block1 == BlockNilssoniaShoot.block) || (block1 == BlockNilssoniaShootPlaceable.block)) {
+			if ((block1 == BlockNilssoniaShoot.block) || (block1 == BlockNilssoniaShootPlaceable.block) || (block1 == BlockNilssoniaShootCone.block)) {
 				leavesattached = true;
 				leavesblock1 = true;
 	    	}

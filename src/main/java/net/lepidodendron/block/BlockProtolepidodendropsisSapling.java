@@ -3,8 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.procedure.ProcedureWorldGenArchaeopteris;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.IGrowable;
@@ -41,7 +41,7 @@ public class BlockProtolepidodendropsisSapling extends ElementsLepidodendronMod.
 	@GameRegistry.ObjectHolder("lepidodendron:protolepidodendropsis_sapling")
 	public static final Block block = null;
 	public BlockProtolepidodendropsisSapling(ElementsLepidodendronMod instance) {
-		super(instance, 286);
+		super(instance, LepidodendronSorter.protolepidodendropsis_sapling);
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class BlockProtolepidodendropsisSapling extends ElementsLepidodendronMod.
 		public BlockCustom() {
 			super(Material.PLANTS);
 			setSoundType(SoundType.PLANT);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			setHardness(0.2F);
         	setResistance(1F);
 			setTranslationKey("pf_protolepidodendropsis_sapling");

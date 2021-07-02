@@ -1,12 +1,11 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.tileentity.TileEntity;
-
-import net.lepidodendron.block.BlockProteaLeaves1;
-import net.lepidodendron.block.BlockProteaLeaves;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.block.BlockProteaLeaves;
+import net.lepidodendron.block.BlockProteaLeaves1;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 import java.util.Map;
 

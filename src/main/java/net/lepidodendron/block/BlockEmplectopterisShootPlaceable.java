@@ -3,7 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.item.ItemEmplectopterisSeeds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -44,7 +45,7 @@ public class BlockEmplectopterisShootPlaceable extends ElementsLepidodendronMod.
 	@GameRegistry.ObjectHolder("lepidodendron:emplectopteris_shoot")
 	public static final Block block = null;
 	public BlockEmplectopterisShootPlaceable(ElementsLepidodendronMod instance) {
-		super(instance, 287);
+		super(instance, LepidodendronSorter.emplectopteris_shoot);
 	}
 
 	@Override
@@ -72,7 +73,7 @@ public class BlockEmplectopterisShootPlaceable extends ElementsLepidodendronMod.
 			setResistance(0.2F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(WATER, false).withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
 		}
 

@@ -4,7 +4,6 @@ import net.ilexiconn.llibrary.client.model.tools.AdvancedModelBase;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelRenderer;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 
 public class ModelTitanicthys extends AdvancedModelBase {
     public AdvancedModelRenderer Body;
@@ -152,28 +151,37 @@ public class ModelTitanicthys extends AdvancedModelBase {
 
         float speed = 0.1F;
         float still = 1f;
+        float inwater = 1f;
         if (f3 == 0.0F) {
             still = 0.3F;}
         if (!e.isInWater()) {
             speed = 0.3F;
+            inwater = 0.5F;
         }
 
-        this.Neck.rotateAngleY += f3 / (180F / (float) Math.PI);
-        this.Neck.rotateAngleX += f4 / (180F / (float) Math.PI);
+        //this.Neck.rotateAngleY += f3 / (180F / (float) Math.PI);
+        //this.Neck.rotateAngleX += f4 / (180F / (float) Math.PI);
 
         if (f3 != 0.0F) {this.walk(Jaw, (float) (speed * 1.5), 0.2F, true, 0, 0, f2, 1);}
 
         this.chainWave(fishTail, speed * still, 0.02F * still, -3, f2, 0.8F * still);
         this.chainSwing(fishTail, speed * still, 0.4F * still, -3, f2, 0.6F * still);
-        this.swing(Body, speed, 0.3F, true, 0, 0, f2, 1);
-        this.flap(Lfin, (float) (speed * 0.65), 0.5F, true, 0.8F, 0, f2, 1);
-        this.swing(Lfin, (float) (speed * 0.65), 0.3F, true, 0, 0, f2, 1);
-        this.flap(Rfin, (float) (speed * 0.65), -0.5F, true, 0.8F, 0, f2, 1);
-        this.swing(Rfin, (float) (speed * 0.65), -0.3F, true, 0, 0, f2, 1);
+        if (e.isInWater()) {
+            this.swing(Body, speed, 0.3F, true, 0, 0, f2, 1);
+        }
+        else {
+            this.swing(Body, speed, 0.1F, true, 0, 0, f2, 0.5F);
+        }
+        this.flap(Lfin, (float) (speed * 0.65), 0.5F * inwater, true, 0.8F, 0, f2, 1 * inwater);
+        this.swing(Lfin, (float) (speed * 0.65), 0.3F * inwater, true, 0, 0, f2, 1 * inwater);
+        this.flap(Rfin, (float) (speed * 0.65), -0.5F * inwater, true, 0.8F, 0, f2, 1 * inwater);
+        this.swing(Rfin, (float) (speed * 0.65), -0.3F * inwater, true, 0, 0, f2, 1 * inwater);
         if (!e.isInWater()) {
             this.Body.rotateAngleZ = (float) Math.toRadians(90);
-            this.Body.offsetY = 1.25F;
-            this.bob(Body, -speed, 5F, false, f2, 1);
+            this.Body.offsetY = 0.7F;
+            this.bob(Body, -speed * 1.8F, 2.5F, false, f2, 1);
+            this.chainWave(fishTail, speed * 1.5F, 0.02F, -0.2, f2, 0.8F * still);
+            this.chainSwing(fishTail, speed * 1.5F, 0.2F, -0.55, f2, 0.4F * still);
         }
 
     }

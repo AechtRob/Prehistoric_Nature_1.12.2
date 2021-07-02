@@ -3,25 +3,21 @@ package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.block.BlockAmphibianSpawnLimnoscelisPlaceable;
-import net.lepidodendron.block.BlockMobSpawn;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.entity.EntityPrehistoricFloraAcanthodes;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
@@ -47,7 +43,7 @@ public class ItemBucketSpawnLimnoscelis extends ElementsLepidodendronMod.ModElem
 	public static final Item block = null;
 
 	public ItemBucketSpawnLimnoscelis(ElementsLepidodendronMod instance) {
-		super(instance, 786);
+		super(instance, LepidodendronSorter.limnoscelis_spawn_bucket);
 	}
 
 	@Override
@@ -66,7 +62,7 @@ public class ItemBucketSpawnLimnoscelis extends ElementsLepidodendronMod.ModElem
 			setTranslationKey("pf_limnoscelis_spawn_bucket");
 			setRegistryName("limnoscelis_spawn_bucket");
 			maxStackSize = 1;
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)

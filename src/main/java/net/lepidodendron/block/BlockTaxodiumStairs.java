@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.SoundType;
@@ -26,7 +27,7 @@ public class BlockTaxodiumStairs extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:taxodium_stairs")
 	public static final Block block = null;
 	public BlockTaxodiumStairs(ElementsLepidodendronMod instance) {
-		super(instance, 13);
+		super(instance, LepidodendronSorter.taxodium_stairs);
 	}
 
 	@Override
@@ -51,7 +52,7 @@ public class BlockTaxodiumStairs extends ElementsLepidodendronMod.ModElement {
 			setResistance(3F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 
 		//@Override

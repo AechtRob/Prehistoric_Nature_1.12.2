@@ -3,6 +3,7 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.minecraft.block.*;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.properties.IProperty;
@@ -35,7 +36,7 @@ public class BlockZygopteridaceaeLeaves extends ElementsLepidodendronMod.ModElem
 	@GameRegistry.ObjectHolder("lepidodendron:zygopteridaceae_leaves_worldgen")
 	public static final Block block = null;
 	public BlockZygopteridaceaeLeaves(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.zygopteridaceae_leaves_worldgen);
 	}
 
 	@Override

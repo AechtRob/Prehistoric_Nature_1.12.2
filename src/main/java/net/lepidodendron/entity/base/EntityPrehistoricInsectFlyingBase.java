@@ -1,16 +1,13 @@
 package net.lepidodendron.entity.base;
 
+import com.google.common.base.Optional;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
-import com.google.common.base.Optional;
 import net.lepidodendron.entity.util.PathNavigateFlyingNoWater;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityAgeable;
-import net.minecraft.entity.MoverType;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityMoveHelper;
@@ -172,6 +169,7 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         this.tasks.addTask(0, new AIWanderInsect());
         //this.tasks.addTask(0, new InsectFlyingWander());
         this.tasks.addTask(1, new EntityAILookIdle(this));
+
     }
 
     @Override
@@ -200,8 +198,13 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         sitCooldown = 1500 + rand.nextInt(1200);
         //this.dataManager.set(SIT_FACE, EnumFacing.DOWN);
         this.setAttachmentPos(null);
-        System.err.println("Taken damage from " + ds.getDamageType());
+        //System.err.println("Taken damage from " + ds.getDamageType());
         return super.attackEntityFrom(ds, f);
+    }
+
+    @Override
+    public EnumCreatureAttribute getCreatureAttribute() {
+        return EnumCreatureAttribute.ARTHROPOD;
     }
 
     @Override

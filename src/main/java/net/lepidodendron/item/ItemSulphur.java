@@ -2,7 +2,8 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -16,7 +17,7 @@ public class ItemSulphur extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:sulphur")
 	public static final Item block = null;
 	public ItemSulphur(ElementsLepidodendronMod instance) {
-		super(instance, 1673);
+		super(instance, LepidodendronSorter.sulphur);
 	}
 
 	@Override
@@ -35,7 +36,7 @@ public class ItemSulphur extends ElementsLepidodendronMod.ModElement {
 			maxStackSize = 64;
 			setTranslationKey("pf_sulphur");
 			setRegistryName("sulphur");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 		}
 	}
 }

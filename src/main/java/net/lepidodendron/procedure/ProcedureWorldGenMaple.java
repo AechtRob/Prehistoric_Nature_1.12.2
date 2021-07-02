@@ -1,26 +1,23 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.block.state.IBlockState;
-import java.util.Random;
 import com.google.common.collect.Lists;
-import java.util.List;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
-
+import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockMapleLeaves;
 import net.lepidodendron.block.BlockMapleLog;
-//import net.lepidodendron.block.BlockMapleFlower;
-import net.lepidodendron.ElementsLepidodendronMod;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.World;
+
+import java.util.List;
+import java.util.Random;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureWorldGenMaple extends ElementsLepidodendronMod.ModElement {

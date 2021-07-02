@@ -1,20 +1,10 @@
 package net.lepidodendron.procedure;
 
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.block.Block;
-import net.minecraft.util.EnumFacing;
-
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.BlockDirectional;
-
-import net.minecraft.tileentity.TileEntity;
 import net.lepidodendron.block.BlockSahnioxylonLog;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 
 @ElementsLepidodendronMod.ModElement.Tag

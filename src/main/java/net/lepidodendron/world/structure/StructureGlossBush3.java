@@ -1,25 +1,24 @@
 
 package net.lepidodendron.world.structure;
 
-import net.minecraft.world.gen.structure.template.Template;
-import net.minecraft.world.gen.structure.template.PlacementSettings;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.WorldServer;
-import net.minecraft.world.World;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.Rotation;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.Mirror;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.Block;
-
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.Rotation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraft.world.gen.structure.template.PlacementSettings;
+import net.minecraft.world.gen.structure.template.Template;
 import net.minecraftforge.common.BiomeDictionary;
 
 import java.util.Random;

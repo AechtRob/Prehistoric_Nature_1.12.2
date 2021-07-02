@@ -3,11 +3,11 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronStatic;
 import net.lepidodendron.world.AlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -46,7 +46,7 @@ public class BlockBlueSponge extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:blue_sponge")
 	public static final Block block = null;
 	public BlockBlueSponge(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.blue_sponge);
 	}
 
 	@Override
@@ -158,7 +158,7 @@ public class BlockBlueSponge extends ElementsLepidodendronMod.ModElement {
 			setLightLevel(0F);
 			setLightOpacity(0);
 			//this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronStatic.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL, 0).withProperty(FACING, EnumFacing.UP));
 		}
 			
@@ -441,10 +441,10 @@ public class BlockBlueSponge extends ElementsLepidodendronMod.ModElement {
 
 	    public boolean isWaterBlock(World world, BlockPos pos) {
 			if (world.getBlockState(pos).getMaterial() == Material.WATER) {
-				IBlockState iblockstate = world.getBlockState(pos);
-				if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
+				//IBlockState iblockstate = world.getBlockState(pos);
+				//if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
 					return true;
-				}
+				//}
 			}
 	    	return false;
 	    }

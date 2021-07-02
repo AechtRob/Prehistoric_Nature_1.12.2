@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.render.entity;
 
 import net.lepidodendron.LepidodendronMod;
-import net.lepidodendron.entity.EntityPrehistoricFloraHibbertopterus;
 import net.lepidodendron.entity.EntityPrehistoricFloraTitanichthys;
 import net.lepidodendron.entity.model.entity.ModelTitanicthys;
 import net.minecraft.client.renderer.GlStateManager;

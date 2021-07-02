@@ -1,10 +1,6 @@
 package net.lepidodendron.world;
 
-import net.lepidodendron.block.BlockGlossopterisLeafLitter;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLeaves;
-import net.minecraft.block.BlockSnow;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;

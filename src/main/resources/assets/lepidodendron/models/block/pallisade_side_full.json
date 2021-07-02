@@ -6,7 +6,7 @@
 	"elements": [
 		{
 			"name": "pallisade",
-			"from": [6, 0, 6],
+			"from": [6, 0.01, 6],
 			"to": [10, 16.01, 8],
 			"faces": {
 				"north": {"uv": [7, 0, 11, 16], "texture": "#pallisade"},
@@ -19,7 +19,7 @@
 		},
 		{
 			"name": "pallisade",
-			"from": [7, 0, 2],
+			"from": [7, 0.01, 2],
 			"to": [11, 16.01, 6],
 			"color": 0,
 			"faces": {
@@ -33,7 +33,7 @@
 		},
 		{
 			"name": "pallisade",
-			"from": [6, 0, 0],
+			"from": [6, 0.01, 0],
 			"to": [10, 16.01, 2],
 			"color": 0,
 			"faces": {

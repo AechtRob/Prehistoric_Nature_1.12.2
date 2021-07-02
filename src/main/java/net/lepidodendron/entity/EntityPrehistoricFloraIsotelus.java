@@ -87,7 +87,7 @@ public class EntityPrehistoricFloraIsotelus extends EntityPrehistoricFloraTrilob
 
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute() {
-		return EnumCreatureAttribute.UNDEFINED;
+		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
 	@Override

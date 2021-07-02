@@ -5,16 +5,14 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockLavaRock;
 import net.lepidodendron.world.*;
-import net.minecraft.block.material.Material;
-import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -67,6 +65,7 @@ public class BiomePrecambrianBiome extends ElementsLepidodendronMod.ModElement {
 		protected static final WorldGenToxicMud TOXIC_MUD_GENERATOR = new WorldGenToxicMud();
 		protected static final WorldGenIceOnSea ICE_GENERATOR = new WorldGenIceOnSea();
 		protected static final WorldGenSnow SNOW_GENERATOR = new WorldGenSnow();
+		protected static final WorldGenStromatoliteReefPrecambrian REEF_GENERATOR = new WorldGenStromatoliteReefPrecambrian();
 
 		public WorldGenAbstractTree getRandomTreeFeature(Random rand)
 	    {
@@ -136,6 +135,20 @@ public class BiomePrecambrianBiome extends ElementsLepidodendronMod.ModElement {
 						BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
 						ICE_GENERATOR.generate(worldIn, rand, blockpos);
 					}
+				}
+			}
+
+			if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.CLAY)) {
+				for (int i = 0; i < 2; ++i) {
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					BlockPos pos1 = pos.add(j, l, k);
+					if (
+							(pos1.getY() < worldIn.getSeaLevel())
+					) {
+						REEF_GENERATOR.generate(worldIn, rand, pos1, 10);
+						}
 				}
 			}
 

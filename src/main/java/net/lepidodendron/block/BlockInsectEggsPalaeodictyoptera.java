@@ -3,8 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemPhial;
-import net.lepidodendron.item.ItemPhialEggsEoarthropleura;
 import net.lepidodendron.item.ItemPhialEggsPalaeodictyoptera;
 import net.lepidodendron.world.MobSpawnGenerator;
 import net.minecraft.block.Block;
@@ -35,7 +35,7 @@ public class BlockInsectEggsPalaeodictyoptera extends ElementsLepidodendronMod.M
 	@GameRegistry.ObjectHolder("lepidodendron:insect_eggs_palaeodictyoptera_worldgen")
 	public static final Block block = null;
 	public BlockInsectEggsPalaeodictyoptera(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.insect_eggs_palaeodictyoptera_worldgen);
 	}
 
 	@Override

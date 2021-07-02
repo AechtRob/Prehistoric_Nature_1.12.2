@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRotatedPillar;
 import net.minecraft.block.material.Material;
@@ -24,7 +25,7 @@ public class BlockTieteaThatchBundle extends ElementsLepidodendronMod.ModElement
 	@GameRegistry.ObjectHolder("lepidodendron:tietea_thatch_bundle")
 	public static final Block block = null;
 	public BlockTieteaThatchBundle(ElementsLepidodendronMod instance) {
-		super(instance, 205);
+		super(instance, LepidodendronSorter.tietea_thatch_bundle);
 	}
 
 	@Override
@@ -43,7 +44,7 @@ public class BlockTieteaThatchBundle extends ElementsLepidodendronMod.ModElement
 		public BlockCustom() {
 			super(Material.LEAVES);
 			setTranslationKey("pf_tietea_thatch_bundle");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
         	this.setDefaultState(this.blockState.getBaseState().withProperty(AXIS, EnumFacing.Axis.Y));
 		}
 

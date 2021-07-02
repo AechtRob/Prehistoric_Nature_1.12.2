@@ -2,10 +2,12 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -37,7 +39,7 @@ public class BlockSandstonePangaeanWall extends ElementsLepidodendronMod.ModElem
 	@GameRegistry.ObjectHolder("lepidodendron:sandstone_wall_pangaean")
 	public static final Block block = null;
 	public BlockSandstonePangaeanWall(ElementsLepidodendronMod instance) {
-		super(instance, 398);
+		super(instance, LepidodendronSorter.sandstone_wall_pangaean);
 	}
 
 	@Override
@@ -69,12 +71,16 @@ public class BlockSandstonePangaeanWall extends ElementsLepidodendronMod.ModElem
 			setHardness(0.8F);
 			setResistance(0.8F);
 			setHarvestLevel("pickaxe", 0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 			//setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
 		}
 
+		@Override
+		public MapColor getMapColor(IBlockState state, IBlockAccess blockAccess, BlockPos pos) {
+			return MapColor.ADOBE;
+		}
 
-	    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+		public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	    {
 	        state = this.getActualState(state, source, pos);
 	        return AABB_BY_INDEX[getAABBIndex(state)];

@@ -1,15 +1,13 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.block.Block;
-
-import net.lepidodendron.block.BlockSpinyCycadShootTop;
+import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.block.BlockSpinyCycadLog;
 import net.lepidodendron.block.BlockSpinyCycadShoot;
 import net.lepidodendron.block.BlockSpinyCycadShootPlaceable;
-import net.lepidodendron.block.BlockSpinyCycadLog;
-import net.lepidodendron.ElementsLepidodendronMod;
+import net.minecraft.block.Block;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureWorldGenSpinyCycad extends ElementsLepidodendronMod.ModElement {
@@ -62,7 +60,7 @@ public class ProcedureWorldGenSpinyCycad extends ElementsLepidodendronMod.ModEle
 					block = world.getBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z)).getBlock();
 					if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z)), world, new BlockPos((int) x, (int) (y + counter + 1), (int) z))) {
 						world.setBlockState(new BlockPos((int) x, (int) (y + counter), (int) z), BlockSpinyCycadShootPlaceable.block.getDefaultState(), 3);
-						world.setBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z), BlockSpinyCycadShootTop.block.getDefaultState(), 3);
+						//world.setBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z), BlockSpinyCycadShootTop.block.getDefaultState(), 3);
 					}
 				}
 			}
@@ -73,7 +71,7 @@ public class ProcedureWorldGenSpinyCycad extends ElementsLepidodendronMod.ModEle
 					block = world.getBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z)).getBlock();
 					if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z)), world, new BlockPos((int) x, (int) (y + counter + 1), (int) z))) {
 						world.setBlockState(new BlockPos((int) x, (int) (y + counter), (int) z), BlockSpinyCycadShoot.block.getDefaultState(), 3);
-						world.setBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z), BlockSpinyCycadShootTop.block.getDefaultState(), 3);
+						//world.setBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z), BlockSpinyCycadShootTop.block.getDefaultState(), 3);
 					}
 				}
 			}

@@ -6,16 +6,15 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockLavaRock;
 import net.lepidodendron.world.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
@@ -65,6 +64,10 @@ public class BiomeCambrianBiome extends ElementsLepidodendronMod.ModElement {
 		protected static final WorldGenIgneous IGNEOUS_GENERATOR = new WorldGenIgneous();
     	protected static final WorldGenLavaFlow LAVAFLOW_GENERATOR = new WorldGenLavaFlow();
 		protected static final WorldGenToxicMud TOXIC_MUD_GENERATOR = new WorldGenToxicMud();
+		protected static final WorldGenStromatoliteReefCambrian REEF_GENERATOR = new WorldGenStromatoliteReefCambrian();
+		protected static final WorldGenThrombolite THROMBOLITE_GENERATOR = new WorldGenThrombolite();
+		protected static final WorldGenReefCambrian REEF_GENERATOR_CAMBRIAN = new WorldGenReefCambrian();
+		protected static final WorldGenBacterialCrust CRUST_GENERATOR = new WorldGenBacterialCrust();
 
 		public WorldGenAbstractTree getRandomTreeFeature(Random rand)
 	    {
@@ -79,6 +82,18 @@ public class BiomeCambrianBiome extends ElementsLepidodendronMod.ModElement {
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.DEAD_BUSH))
 			{
 				ChunkGenSpawner.executeProcedure(true, LepidodendronConfig.dimCambrianMobs, worldIn, topBlock, pos, rand);
+			}
+
+			if (Math.random() > 0.8 && net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.ROCK))
+			{
+				//int i = rand.nextInt(2);
+				//for (int j = 0; j < i; ++j)
+				//{
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(16) + 8;
+					BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
+					THROMBOLITE_GENERATOR.generate(worldIn, rand, blockpos);
+				//}
 			}
 
 	        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.ROCK))
@@ -100,9 +115,18 @@ public class BiomeCambrianBiome extends ElementsLepidodendronMod.ModElement {
 					int k = rand.nextInt(16) + 8;
 					int l = rand.nextInt(16) + 8;
 					BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
-					LAVAFLOW_GENERATOR.generate(worldIn, rand, blockpos,30);
+					LAVAFLOW_GENERATOR.generate(worldIn, rand, blockpos,28);
 				}
 	        }
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int i = 0; i < 30; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					CRUST_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+				}
 
 	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
 	        for (int i = 0; i < 128; ++i)
@@ -112,6 +136,37 @@ public class BiomeCambrianBiome extends ElementsLepidodendronMod.ModElement {
 	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
 	            TOXIC_MUD_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
+
+			if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.CLAY)) {
+				for (int i = 0; i < 2; ++i) {
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					BlockPos pos1 = pos.add(j, l, k);
+					if (
+							(pos1.getY() < worldIn.getSeaLevel())
+					) {
+						REEF_GENERATOR.generate(worldIn, rand, pos1, 6);
+					}
+				}
+			}
+
+			if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.ROCK))
+				for (int i = 0; i < 8; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					BlockPos pos1 = pos.add(j, l, k);
+					if (
+							(pos1.getY() < worldIn.getSeaLevel() - 5)
+									&& (worldIn.getBlockState(pos1).getMaterial() == Material.WATER)
+									&& (worldIn.getBlockState(pos1.up()).getMaterial() == Material.WATER)
+									&& (worldIn.getBlockState(pos1.up(2)).getMaterial() == Material.WATER)
+					) {
+						REEF_GENERATOR_CAMBRIAN.generate(worldIn, rand, pos1, 8);
+					}
+				}
 
 	        super.decorate(worldIn, rand, pos);
 	    }

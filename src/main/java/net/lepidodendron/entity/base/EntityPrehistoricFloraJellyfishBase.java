@@ -25,6 +25,8 @@ public abstract class EntityPrehistoricFloraJellyfishBase extends EntityWaterMob
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;
+    private int rotationStage;
+    private int jumpTicks;
 
     public EntityPrehistoricFloraJellyfishBase(World world) {
         super(world);
@@ -99,13 +101,96 @@ public abstract class EntityPrehistoricFloraJellyfishBase extends EntityWaterMob
 
     @Override
     public void onLivingUpdate() {
-        super.onLivingUpdate();
+        //this.renderYawOffset = this.rotationYaw;
+        //Updated from vanilla to disable jumping and limit rotations
+        if (this.jumpTicks > 0)
+        {
+            --this.jumpTicks;
+        }
+
+        if (this.newPosRotationIncrements > 0 && !this.canPassengerSteer())
+        {
+            double d0 = this.posX + (this.interpTargetX - this.posX) / (double)this.newPosRotationIncrements;
+            double d1 = this.posY + (this.interpTargetY - this.posY) / (double)this.newPosRotationIncrements;
+            double d2 = this.posZ + (this.interpTargetZ - this.posZ) / (double)this.newPosRotationIncrements;
+            double d3 = MathHelper.wrapDegrees(this.interpTargetYaw - (double)this.rotationYaw);
+            if (this.rotationStage > 155) {
+                this.rotationYaw = (float) ((double) this.rotationYaw + Math.min(2, (d3 / (double) this.newPosRotationIncrements)));
+            }
+            this.rotationPitch = (float)((double)this.rotationPitch + (this.interpTargetPitch - (double)this.rotationPitch) / (double)this.newPosRotationIncrements);
+            --this.newPosRotationIncrements;
+            this.setPosition(d0, d1, d2);
+            this.setRotation(this.rotationYaw, this.rotationPitch);
+        }
+        else if (!this.isServerWorld())
+        {
+            this.motionX *= 0.98D;
+            this.motionY *= 0.98D;
+            this.motionZ *= 0.98D;
+        }
+
+        if (Math.abs(this.motionX) < 0.003D)
+        {
+            this.motionX = 0.0D;
+        }
+
+        if (Math.abs(this.motionY) < 0.003D)
+        {
+            this.motionY = 0.0D;
+        }
+
+        if (Math.abs(this.motionZ) < 0.003D)
+        {
+            this.motionZ = 0.0D;
+        }
+
+        this.world.profiler.startSection("ai");
+
+        if (this.isMovementBlocked())
+        {
+            this.isJumping = false;
+            this.moveStrafing = 0.0F;
+            this.moveForward = 0.0F;
+            this.randomYawVelocity = 0.0F;
+        }
+        else if (this.isServerWorld())
+        {
+            this.world.profiler.startSection("newAi");
+            this.updateEntityActionState();
+            this.world.profiler.endSection();
+        }
+
+        this.world.profiler.endSection();
+        this.world.profiler.startSection("jump");
+
+        {
+            this.jumpTicks = 0;
+        }
+
+        this.world.profiler.endSection();
+        this.world.profiler.startSection("travel");
+        this.moveStrafing *= 0.98F;
+        this.moveForward *= 0.98F;
+        this.randomYawVelocity *= 0.9F;
+        //this.updateElytra();
+        this.travel(this.moveStrafing, this.moveVertical, this.moveForward);
+        this.world.profiler.endSection();
+        this.world.profiler.startSection("push");
+        this.collideWithNearbyEntities();
+        this.world.profiler.endSection();
     }
 
     public void onEntityUpdate()
     {
         int i = this.getAir();
         super.onEntityUpdate();
+
+        if (!(rotationStage > 0)) {rotationStage = 0;}
+        if (rotationStage > 180) {
+            rotationStage = 1;
+        } else {
+            rotationStage = rotationStage + rand.nextInt(2);
+        }
 
         if (this.isEntityAlive() && !isInWater())
         {

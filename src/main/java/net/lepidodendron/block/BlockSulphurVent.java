@@ -3,10 +3,10 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.lepidodendron.item.ItemSulphur;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -14,10 +14,8 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
@@ -29,13 +27,11 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraft.world.gen.feature.WorldGenReed;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -47,7 +43,7 @@ public class BlockSulphurVent extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:sulphur_vent")
 	public static final Block block = null;
 	public BlockSulphurVent(ElementsLepidodendronMod instance) {
-		super(instance, 1735);
+		super(instance, LepidodendronSorter.sulphur_vent);
 	}
 
 	@Override
@@ -121,7 +117,7 @@ public class BlockSulphurVent extends ElementsLepidodendronMod.ModElement {
 			setHarvestLevel("pickaxe", 0);
 			setHardness(0.2F);
 			setResistance(0.5F);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 			this.setDefaultState( this.blockState.getBaseState().withProperty(LEVEL, 0));
 		}
 
@@ -186,10 +182,10 @@ public class BlockSulphurVent extends ElementsLepidodendronMod.ModElement {
 
 		public boolean isWaterBlock(World world, BlockPos pos) {
 			if (world.getBlockState(pos).getMaterial() == Material.WATER) {
-				IBlockState iblockstate = world.getBlockState(pos);
-				if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
+				//IBlockState iblockstate = world.getBlockState(pos);
+				//if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
 					return true;
-				}
+				//}
 			}
 			return false;
 		}

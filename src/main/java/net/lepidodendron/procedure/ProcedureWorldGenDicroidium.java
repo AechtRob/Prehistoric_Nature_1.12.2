@@ -1,15 +1,13 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.block.Block;
-
-import net.lepidodendron.block.BlockDicroidiumLeavesTop;
+import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockDicroidiumLeaves;
 import net.lepidodendron.block.BlockDicroidiumLeavesSmall;
+import net.lepidodendron.block.BlockDicroidiumLeavesTop;
 import net.lepidodendron.block.BlockDicroidiumStem;
-import net.lepidodendron.ElementsLepidodendronMod;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureWorldGenDicroidium extends ElementsLepidodendronMod.ModElement {

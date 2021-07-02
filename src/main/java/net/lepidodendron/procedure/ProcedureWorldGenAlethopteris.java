@@ -1,23 +1,17 @@
 package net.lepidodendron.procedure;
 
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.block.Block;
-import net.minecraft.util.EnumFacing;
-
+import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockAlethopterisLeaves;
 import net.lepidodendron.block.BlockAlethopterisLeaves1;
 import net.lepidodendron.block.BlockAlethopterisLog;
 import net.lepidodendron.block.BlockAlethopterisStrobilus;
-import net.lepidodendron.ElementsLepidodendronMod;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.BlockDirectional;
-
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureWorldGenAlethopteris extends ElementsLepidodendronMod.ModElement {

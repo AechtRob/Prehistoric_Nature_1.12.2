@@ -3,11 +3,11 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronStatic;
 import net.lepidodendron.world.AlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -46,7 +46,7 @@ public class BlockDarkPinkSponge extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:dark_pink_sponge")
 	public static final Block block = null;
 	public BlockDarkPinkSponge(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.dark_pink_sponge);
 	}
 
 	@Override
@@ -89,21 +89,22 @@ public class BlockDarkPinkSponge extends ElementsLepidodendronMod.ModElement {
 			biomeCriteria = true;
 		if ((dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCambrian)
-		) {
-			biomeCriteria = true;
-		}
-		if ((dimID == LepidodendronConfig.dimPrecambrian)
 				|| (dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
 		) {
+			biomeCriteria = true;
+		}
+		if (dimID == LepidodendronConfig.dimPrecambrian){
 			biomeCriteria = false;
 		}
 		if (!biomeCriteria)
 			return;
 
 		int multiplier = 1;
-		if (dimID == LepidodendronConfig.dimOrdovicianSilurian)
-		 {
+		if ((dimID == LepidodendronConfig.dimDevonian)
+				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
+				|| (dimID == LepidodendronConfig.dimCarboniferous)
+		) {
 			multiplier = 2;
 		}
 		if (dimID == LepidodendronConfig.dimCambrian)
@@ -157,7 +158,7 @@ public class BlockDarkPinkSponge extends ElementsLepidodendronMod.ModElement {
 			setLightLevel(0F);
 			setLightOpacity(0);
 			//this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronStatic.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL, 0).withProperty(FACING, EnumFacing.UP));
 		}
 			
@@ -421,10 +422,10 @@ public class BlockDarkPinkSponge extends ElementsLepidodendronMod.ModElement {
 
 	    public boolean isWaterBlock(World world, BlockPos pos) {
 			if (world.getBlockState(pos).getMaterial() == Material.WATER) {
-				IBlockState iblockstate = world.getBlockState(pos);
-				if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
+				//IBlockState iblockstate = world.getBlockState(pos);
+				//if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
 					return true;
-				}
+				//}
 			}
 	    	return false;
 	    }

@@ -1,7 +1,6 @@
 package net.lepidodendron.world;
 
 import net.lepidodendron.block.BlockLavaRock;
-import net.lepidodendron.block.BlockStauropteris;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

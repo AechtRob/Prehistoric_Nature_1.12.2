@@ -2,6 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -35,7 +37,7 @@ public class BlockNilssoniaShoot extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:nilssonia_shoot_worldgen")
 	public static final Block block = null;
 	public BlockNilssoniaShoot(ElementsLepidodendronMod instance) {
-		super(instance, 287);
+		super(instance, LepidodendronSorter.nilssonia_shoot_worldgen);
 	}
 
 	@Override
@@ -140,8 +142,11 @@ public class BlockNilssoniaShoot extends ElementsLepidodendronMod.ModElement {
 		}
 
 		@Override
-		public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-			return Item.getItemFromBlock(BlockNilssoniaSapling.block);
+		public Item getItemDropped(IBlockState state, java.util.Random rand, int fortune) {
+			if (!LepidodendronConfig.doFruits) {
+				return Item.getItemFromBlock(BlockNilssoniaSapling.block);
+			}
+			return null;
 		}
 
 		public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
@@ -161,23 +166,23 @@ public class BlockNilssoniaShoot extends ElementsLepidodendronMod.ModElement {
 
 		@Override
 		public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+			//super.updateTick(worldIn, pos, state, rand);
 			if (((Boolean)state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean)state.getValue(DECAYABLE)).booleanValue())
-				{
-					Block block = worldIn.getBlockState(pos.down()).getBlock();
-					if (block != BlockNilssoniaLog.block) {
-						worldIn.setBlockToAir(pos);
-
-						//if (Math.random() >= 0.5) {
-						//Spawn the default sapling chance:
-						if (!worldIn.isRemote) {
-							EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockNilssoniaSapling.block, (int) (1)));
-							entityToSpawn.setPickupDelay(10);
-							worldIn.spawnEntity(entityToSpawn);
-						}
-					//}
+			{
+				Block block = worldIn.getBlockState(pos.down()).getBlock();
+				if (block != BlockNilssoniaLog.block) {
+					worldIn.setBlockToAir(pos);
+					if (!worldIn.isRemote) {
+						EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockNilssoniaSapling.block, (int) (1)));
+						entityToSpawn.setPickupDelay(10);
+						worldIn.spawnEntity(entityToSpawn);
+					}
+				}
+				else if (Math.random()>0.8 && Math.random()>0.8) {
+					worldIn.setBlockState(pos, BlockNilssoniaShootCone.block.getDefaultState(), 3);
 				}
 			}
-			
+
 		}
 
 		@Override

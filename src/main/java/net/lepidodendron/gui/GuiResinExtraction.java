@@ -1,38 +1,34 @@
 
 package net.lepidodendron.gui;
 
-import org.lwjgl.opengl.GL11;
-import org.lwjgl.input.Keyboard;
-
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
-import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.inventory.Slot;
-import net.minecraft.inventory.InventoryBasic;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.Container;
-import net.minecraft.init.Items;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.client.gui.inventory.GuiContainer;
-import net.minecraft.client.gui.GuiButton;
-
-import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.ElementsLepidodendronMod;
-
-import java.util.function.Supplier;
-import java.util.Map;
-import java.util.HashMap;
+import net.lepidodendron.LepidodendronMod;
+import net.minecraft.client.gui.GuiButton;
+import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.IInventory;
+import net.minecraft.inventory.InventoryBasic;
+import net.minecraft.inventory.Slot;
+import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import org.lwjgl.input.Keyboard;
+import org.lwjgl.opengl.GL11;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.function.Supplier;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class GuiResinExtraction extends ElementsLepidodendronMod.ModElement {

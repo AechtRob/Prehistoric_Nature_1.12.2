@@ -1,15 +1,11 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.block.Block;
-import net.minecraft.util.EnumFacing;
-
+import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockWollemiLeaves;
 import net.lepidodendron.block.BlockWollemiLog;
-import net.lepidodendron.ElementsLepidodendronMod;
-
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 
 @ElementsLepidodendronMod.ModElement.Tag

@@ -1,27 +1,22 @@
 
 package net.lepidodendron.world.biome;
 
-import net.lepidodendron.world.*;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.common.BiomeDictionary;
-
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.lepidodendron.LepidodendronConfig;
-import net.minecraft.block.material.Material;
-
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.world.*;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.Random;
 

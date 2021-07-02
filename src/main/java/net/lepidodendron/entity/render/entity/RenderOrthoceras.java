@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.render.entity;
 
 import net.lepidodendron.LepidodendronMod;
-import net.lepidodendron.entity.EntityPrehistoricFloraEndoceras;
 import net.lepidodendron.entity.EntityPrehistoricFloraOrthoceras;
 import net.lepidodendron.entity.model.entity.ModelOrthoceras;
 import net.minecraft.client.renderer.GlStateManager;

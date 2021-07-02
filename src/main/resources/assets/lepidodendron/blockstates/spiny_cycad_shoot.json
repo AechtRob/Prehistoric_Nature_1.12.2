@@ -2,9 +2,10 @@
   "variants": {
     "normal": [
       {"model": "lepidodendron:spiny_cycad_shoot"},
-      {"model": "lepidodendron:spiny_cycad_shoot_flower"}
+      {"model": "lepidodendron:spiny_cycad_shoot_flower", "weight":  2},
+      {"model": "lepidodendron:spiny_cycad_shoot_var"}
     ],
-    
+
     "inventory": {
       "model": "lepidodendron:spiny_cycad_shoot_inventory"
     }

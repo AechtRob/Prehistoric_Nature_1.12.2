@@ -3,7 +3,6 @@ package net.lepidodendron.procedure;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockBanksiaLog2;
-import net.lepidodendron.block.BlockValmeyerodendronLog;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

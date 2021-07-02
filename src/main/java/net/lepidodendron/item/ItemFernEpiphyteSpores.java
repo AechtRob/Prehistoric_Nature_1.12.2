@@ -2,6 +2,7 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronSorter;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -17,7 +18,7 @@ public class ItemFernEpiphyteSpores extends ElementsLepidodendronMod.ModElement 
 	@GameRegistry.ObjectHolder("lepidodendron:fern_epiphyte_spores")
 	public static final Item block = null;
 	public ItemFernEpiphyteSpores(ElementsLepidodendronMod instance) {
-		super(instance, 1432);
+		super(instance, LepidodendronSorter.fern_epiphyte_spores);
 	}
 
 	@Override

@@ -2,7 +2,8 @@
 package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
@@ -17,7 +18,7 @@ public class ItemCephalaspisRaw extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:cephalaspis_raw")
 	public static final Item block = null;
 	public ItemCephalaspisRaw(ElementsLepidodendronMod instance) {
-		super(instance, 1658);
+		super(instance, LepidodendronSorter.cephalaspis_raw);
 	}
 
 	@Override
@@ -35,7 +36,7 @@ public class ItemCephalaspisRaw extends ElementsLepidodendronMod.ModElement {
 			super(2, 0.1f, false);
 			setTranslationKey("pf_cephalaspis_raw");
 			setRegistryName("cephalaspis_raw");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 			setMaxStackSize(64);
 		}
 	}

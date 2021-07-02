@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.SoundType;
@@ -25,7 +26,7 @@ public class BlockArchaeopterisFenceThin extends ElementsLepidodendronMod.ModEle
 	@GameRegistry.ObjectHolder("lepidodendron:archaeopteris_fence_thin")
 	public static final Block block = null;
 	public BlockArchaeopterisFenceThin(ElementsLepidodendronMod instance) {
-		super(instance, 16);
+		super(instance, LepidodendronSorter.archaeopteris_fence_thin);
 	}
 
 	@Override
@@ -49,7 +50,7 @@ public class BlockArchaeopterisFenceThin extends ElementsLepidodendronMod.ModEle
 			setResistance(3F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 
 		@Override

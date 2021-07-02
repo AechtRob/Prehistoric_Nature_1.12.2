@@ -3,8 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.entity.EntityPrehistoricFloraEurypterus;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraPalaeodictyopteraNymph;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.item.ItemPhial;
@@ -42,7 +42,7 @@ public class BlockInsectEggsPalaeodictyopteraPlaceable extends ElementsLepidoden
 	@GameRegistry.ObjectHolder("lepidodendron:insect_eggs_palaeodictyoptera")
 	public static final Block block = null;
 	public BlockInsectEggsPalaeodictyopteraPlaceable(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.insect_eggs_palaeodictyoptera);
 	}
 
 	@Override
@@ -63,7 +63,7 @@ public class BlockInsectEggsPalaeodictyopteraPlaceable extends ElementsLepidoden
 		public BlockCustom() {
 			setTranslationKey("pf_insect_eggs_palaeodictyoptera");
 			this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		@Override

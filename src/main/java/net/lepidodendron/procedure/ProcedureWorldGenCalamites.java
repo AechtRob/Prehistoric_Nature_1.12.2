@@ -1,26 +1,15 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.block.Block;
-import net.minecraft.util.EnumFacing;
-
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.block.*;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyDirection;
-
 import net.minecraft.tileentity.TileEntity;
-
-import net.lepidodendron.block.BlockCalamitesRhizome;
-import net.lepidodendron.block.BlockCalamitesLog;
-import net.lepidodendron.block.BlockCalamitesBranch;
-import net.lepidodendron.block.BlockCalamitesShoot;
-import net.lepidodendron.block.BlockCalamitesShootTop;
-import net.lepidodendron.block.BlockCalamitesStrobilus;
-import net.lepidodendron.block.BlockCalamitesLeaves;
-import net.lepidodendron.LepidodendronConfig;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureWorldGenCalamites extends ElementsLepidodendronMod.ModElement {

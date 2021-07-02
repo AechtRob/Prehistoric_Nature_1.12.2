@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFence;
 import net.minecraft.block.SoundType;
@@ -25,7 +26,7 @@ public class BlockGigantopteridFence extends ElementsLepidodendronMod.ModElement
 	@GameRegistry.ObjectHolder("lepidodendron:gigantopterid_fence_thin")
 	public static final Block block = null;
 	public BlockGigantopteridFence(ElementsLepidodendronMod instance) {
-		super(instance, 16);
+		super(instance, LepidodendronSorter.gigantopterid_fence_thin);
 	}
 
 	@Override
@@ -49,7 +50,7 @@ public class BlockGigantopteridFence extends ElementsLepidodendronMod.ModElement
 			setResistance(3F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 
 		@Override

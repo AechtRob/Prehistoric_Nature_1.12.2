@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.SoundType;
@@ -37,7 +38,7 @@ public class BlockZygopteridaceaePallisade extends ElementsLepidodendronMod.ModE
 	@GameRegistry.ObjectHolder("lepidodendron:zygopteridaceae_pallisade")
 	public static final Block block = null;
 	public BlockZygopteridaceaePallisade(ElementsLepidodendronMod instance) {
-		super(instance, 398);
+		super(instance, LepidodendronSorter.zygopteridaceae_pallisade);
 	}
 
 	@Override
@@ -71,7 +72,7 @@ public class BlockZygopteridaceaePallisade extends ElementsLepidodendronMod.ModE
 			setResistance(3F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			//setDefaultState(this.blockState.getBaseState().withProperty(UP, Boolean.valueOf(false)).withProperty(NORTH, Boolean.valueOf(false)).withProperty(EAST, Boolean.valueOf(false)).withProperty(SOUTH, Boolean.valueOf(false)).withProperty(WEST, Boolean.valueOf(false)));
 		}
 

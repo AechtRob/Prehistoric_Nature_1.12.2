@@ -1,26 +1,26 @@
 
 package net.lepidodendron.item;
 
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Item;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.block.state.IBlockState;
-
-import net.lepidodendron.creativetab.TabLepidodendron;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.block.BlockLiriodendronSapling;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.client.event.ModelRegistryEvent;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ItemPetrifiedLiriodendronSapling extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:petrified_liriodendron_sapling")
 	public static final Item block = null;
 	public ItemPetrifiedLiriodendronSapling(ElementsLepidodendronMod instance) {
-		super(instance, 44);
+		super(instance, LepidodendronSorter.petrified_liriodendron_sapling);
 	}
 
 	@Override
@@ -33,13 +33,12 @@ public class ItemPetrifiedLiriodendronSapling extends ElementsLepidodendronMod.M
 	public void registerModels(ModelRegistryEvent event) {
 		ModelLoader.setCustomModelResourceLocation(block, 0, new ModelResourceLocation("lepidodendron:petrified_liriodendron_sapling", "inventory"));
 	}
-	public static class ItemCustom extends Item {
+	public static class ItemCustom extends ItemPetrified {
 		public ItemCustom() {
-			setMaxDamage(0);
-			maxStackSize = 64;
+			super(BlockLiriodendronSapling.block);
 			setTranslationKey("pf_petrified_liriodendron_sapling");
 			setRegistryName("petrified_liriodendron_sapling");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 
 		@Override

@@ -1,8 +1,9 @@
 package net.lepidodendron.world;
 
-import net.lepidodendron.block.*;
+import net.lepidodendron.block.BlockEmplectopterisLog;
+import net.lepidodendron.block.BlockEmplectopterisSapling;
+import net.lepidodendron.block.BlockEmplectopterisShoot;
 import net.lepidodendron.procedure.ProcedureWorldGenEmplectopteris;
-import net.lepidodendron.procedure.ProcedureWorldGenGigantopterid;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

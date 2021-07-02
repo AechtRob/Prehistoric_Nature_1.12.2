@@ -3,6 +3,7 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemPhial;
 import net.lepidodendron.item.ItemPhialEggsJaekelopterus;
 import net.lepidodendron.world.MobSpawnGenerator;
@@ -34,7 +35,7 @@ public class BlockEurypteridEggsJaekelopterus extends ElementsLepidodendronMod.M
 	@GameRegistry.ObjectHolder("lepidodendron:eurypterid_eggs_jaekelopterus_worldgen")
 	public static final Block block = null;
 	public BlockEurypteridEggsJaekelopterus(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.eurypterid_eggs_jaekelopterus_worldgen);
 	}
 
 	@Override

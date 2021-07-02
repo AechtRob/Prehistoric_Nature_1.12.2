@@ -118,6 +118,29 @@ public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehist
         return 1 + this.world.rand.nextInt(3);
     }
 
+    public boolean isReallyInWater() {
+        return (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
+    }
+    public boolean isCollidingRim() {
+        if (this.isReallyInWater()) {
+            //System.err.println("collided");
+            Vec3d vec3d = this.getPositionEyes(0);
+            Vec3d vec3d1 = this.getLook(0);
+            Vec3d vec3d2 = vec3d.add(vec3d1.x * 1, vec3d1.y * 1, vec3d1.z * 1);
+            RayTraceResult rayTrace = world.rayTraceBlocks(vec3d, vec3d2, true);
+            if (rayTrace != null && rayTrace.hitVec != null) {
+                //System.err.println("raytraced");
+                BlockPos sidePos = rayTrace.getBlockPos();
+                if (world.getBlockState(sidePos).getMaterial() == Material.WATER) {
+                    //System.err.println("colliding rim");
+                    return true;
+                }
+            }
+        }
+        //System.err.println("not colliding rim");
+        return false;
+    }
+
     @Override
     public boolean isOnLadder() {
         return false;
@@ -175,7 +198,7 @@ public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehist
                 }
                 this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
 
-                if (this.collidedHorizontally)
+                if (this.collidedHorizontally && this.isCollidingRim())
                 {
                     this.motionY = 0.05D;
                 }
@@ -211,7 +234,7 @@ public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehist
 
         @Override
         public void onUpdateMoveHelper() {
-            //System.err.println("Action " + this.action);
+            //System.err.println(this.EntityBase.getClass() + " Action target" + this.posX + " " + this.posY + " "  + this.posZ);
             //System.err.println("NoPath " + this.EntityBase.getNavigator().noPath());
             if (this.action == Action.MOVE_TO && !this.EntityBase.getNavigator().noPath()) {
                 double distanceX = this.posX - this.EntityBase.posX;
@@ -238,7 +261,7 @@ public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehist
 
                 this.EntityBase.motionY += (double) this.EntityBase.getAIMoveSpeed() * distanceY * 0.1D;
             } else {
-                //System.err.println("Exception");
+                //System.err.println("Exception: " + this.EntityBase.getNavigator());
                 this.EntityBase.setAIMoveSpeed(0.0F);
             }
         }

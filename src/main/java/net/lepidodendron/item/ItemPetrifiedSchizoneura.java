@@ -2,11 +2,11 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.minecraft.block.state.IBlockState;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.block.BlockSchizoneuraSapling;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -18,7 +18,7 @@ public class ItemPetrifiedSchizoneura extends ElementsLepidodendronMod.ModElemen
 	@GameRegistry.ObjectHolder("lepidodendron:petrified_schizoneura")
 	public static final Item block = null;
 	public ItemPetrifiedSchizoneura(ElementsLepidodendronMod instance) {
-		super(instance, 1762);
+		super(instance, LepidodendronSorter.petrified_schizoneura);
 	}
 
 	@Override
@@ -31,28 +31,12 @@ public class ItemPetrifiedSchizoneura extends ElementsLepidodendronMod.ModElemen
 	public void registerModels(ModelRegistryEvent event) {
 		ModelLoader.setCustomModelResourceLocation(block, 0, new ModelResourceLocation("lepidodendron:petrified_schizoneura", "inventory"));
 	}
-	public static class ItemCustom extends Item {
+	public static class ItemCustom extends ItemPetrified {
 		public ItemCustom() {
-			setMaxDamage(0);
-			maxStackSize = 64;
+			super(BlockSchizoneuraSapling.block);
 			setTranslationKey("pf_petrified_schizoneura");
 			setRegistryName("petrified_schizoneura");
-			setCreativeTab(TabLepidodendron.tab);
-		}
-
-		@Override
-		public int getItemEnchantability() {
-			return 0;
-		}
-
-		@Override
-		public int getMaxItemUseDuration(ItemStack itemstack) {
-			return 0;
-		}
-
-		@Override
-		public float getDestroySpeed(ItemStack par1ItemStack, IBlockState par2Block) {
-			return 1F;
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 	}
 }

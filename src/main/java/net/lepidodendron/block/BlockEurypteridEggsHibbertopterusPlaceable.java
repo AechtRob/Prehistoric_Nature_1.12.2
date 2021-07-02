@@ -3,7 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraHibbertopterus;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.item.ItemPhial;
@@ -41,7 +42,7 @@ public class BlockEurypteridEggsHibbertopterusPlaceable extends ElementsLepidode
 	@GameRegistry.ObjectHolder("lepidodendron:eurypterid_eggs_hibbertopterus")
 	public static final Block block = null;
 	public BlockEurypteridEggsHibbertopterusPlaceable(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.eurypterid_eggs_hibbertopterus);
 	}
 
 	@Override
@@ -62,7 +63,7 @@ public class BlockEurypteridEggsHibbertopterusPlaceable extends ElementsLepidode
 		public BlockCustom() {
 			setTranslationKey("pf_eurypterid_eggs_hibbertopterus");
 			this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		@Override

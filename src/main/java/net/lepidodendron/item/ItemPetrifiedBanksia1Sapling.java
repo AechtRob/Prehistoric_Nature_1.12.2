@@ -2,11 +2,11 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.minecraft.block.state.IBlockState;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.block.BlockBanksia1Sapling;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -18,7 +18,7 @@ public class ItemPetrifiedBanksia1Sapling extends ElementsLepidodendronMod.ModEl
 	@GameRegistry.ObjectHolder("lepidodendron:petrified_banksia_1_sapling")
 	public static final Item block = null;
 	public ItemPetrifiedBanksia1Sapling(ElementsLepidodendronMod instance) {
-		super(instance, 740);
+		super(instance, LepidodendronSorter.petrified_banksia_1_sapling);
 	}
 
 	@Override
@@ -31,28 +31,12 @@ public class ItemPetrifiedBanksia1Sapling extends ElementsLepidodendronMod.ModEl
 	public void registerModels(ModelRegistryEvent event) {
 		ModelLoader.setCustomModelResourceLocation(block, 0, new ModelResourceLocation("lepidodendron:petrified_banksia_1_sapling", "inventory"));
 	}
-	public static class ItemCustom extends Item {
+	public static class ItemCustom extends ItemPetrified {
 		public ItemCustom() {
-			setMaxDamage(0);
-			maxStackSize = 64;
+			super(BlockBanksia1Sapling.block);
 			setTranslationKey("pf_petrified_banksia_1_sapling");
 			setRegistryName("petrified_banksia_1_sapling");
-			setCreativeTab(TabLepidodendron.tab);
-		}
-
-		@Override
-		public int getItemEnchantability() {
-			return 0;
-		}
-
-		@Override
-		public int getMaxItemUseDuration(ItemStack itemstack) {
-			return 0;
-		}
-
-		@Override
-		public float getDestroySpeed(ItemStack par1ItemStack, IBlockState par2Block) {
-			return 1F;
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 	}
 }

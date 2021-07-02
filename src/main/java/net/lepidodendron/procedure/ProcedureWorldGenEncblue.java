@@ -1,14 +1,12 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.block.Block;
-
-import net.lepidodendron.block.BlockEncblueShootTop;
-import net.lepidodendron.block.BlockEncblueShoot;
-import net.lepidodendron.block.BlockEncblueLog;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.block.BlockEncblueLog;
+import net.lepidodendron.block.BlockEncblueShoot;
+import net.minecraft.block.Block;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureWorldGenEncblue extends ElementsLepidodendronMod.ModElement {
@@ -60,7 +58,7 @@ public class ProcedureWorldGenEncblue extends ElementsLepidodendronMod.ModElemen
 				block = world.getBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z)).getBlock();
 				if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z)), world, new BlockPos((int) x, (int) (y + counter + 1), (int) z))) {
 					world.setBlockState(new BlockPos((int) x, (int) (y + counter), (int) z), BlockEncblueShoot.block.getDefaultState(), 3);
-					world.setBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z), BlockEncblueShootTop.block.getDefaultState(), 3);
+					//world.setBlockState(new BlockPos((int) x, (int) (y + counter + 1), (int) z), BlockEncblueShootTop.block.getDefaultState(), 3);
 				}
 			}
 		}

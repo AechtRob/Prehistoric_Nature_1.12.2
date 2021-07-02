@@ -1,9 +1,9 @@
 package net.lepidodendron.entity.ai;
 
+import com.google.common.base.Predicate;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAINearestAttackableTarget;
-import com.google.common.base.Predicate;
 
 public class HuntAI<T extends EntityLivingBase> extends EntityAINearestAttackableTarget {
     private final EntityPrehistoricFloraAgeableBase entity;

@@ -3,7 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.item.ItemGangamopterisSeeds;
 import net.lepidodendron.procedure.ProcedureGangamopterisStrobilusNeighbourBlockChanges;
 import net.minecraft.block.Block;
@@ -44,7 +45,7 @@ public class BlockGangamopterisStrobilus extends ElementsLepidodendronMod.ModEle
 	@GameRegistry.ObjectHolder("lepidodendron:gangamopteris_strobilus")
 	public static final Block block = null;
 	public BlockGangamopterisStrobilus(ElementsLepidodendronMod instance) {
-		super(instance, 50);
+		super(instance, LepidodendronSorter.gangamopteris_strobilus);
 	}
 
 	@Override
@@ -74,7 +75,7 @@ public class BlockGangamopterisStrobilus extends ElementsLepidodendronMod.ModEle
 			setResistance(0F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.UP));
 			setTickRandomly(true);
 		}

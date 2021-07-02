@@ -1,79 +1,57 @@
 
 package net.lepidodendron.world.dimension;
 
-import org.jline.terminal.Size;
-
-import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.ReflectionHelper;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.common.DimensionManager;
-import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.client.event.ModelRegistryEvent;
-
-import net.minecraft.world.gen.layer.IntCache;
-import net.minecraft.world.gen.layer.GenLayerZoom;
-import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
-import net.minecraft.world.gen.layer.GenLayer;
-import net.minecraft.world.gen.NoiseGeneratorPerlin;
-import net.minecraft.world.gen.NoiseGeneratorOctaves;
-import net.minecraft.world.gen.MapGenRavine;
-import net.minecraft.world.gen.MapGenCaves;
-import net.minecraft.world.gen.MapGenBase;
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.chunk.ChunkPrimer;
-import net.minecraft.world.chunk.Chunk;
-import net.minecraft.world.biome.BiomeProvider;
-import net.minecraft.world.biome.BiomeCache;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.WorldType;
-import net.minecraft.world.WorldServer;
-import net.minecraft.world.WorldProvider;
-import net.minecraft.world.WorldEntitySpawner;
-import net.minecraft.world.World;
-import net.minecraft.world.Teleporter;
-import net.minecraft.world.DimensionType;
-import net.minecraft.util.math.Vec3d;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.ChunkPos;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.ReportedException;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Biomes;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.entity.Entity;
-import net.minecraft.crash.CrashReportCategory;
-import net.minecraft.crash.CrashReport;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.block.state.pattern.BlockPattern;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.state.BlockWorldState;
-import net.minecraft.block.material.Material;
-import net.minecraft.block.BlockSand;
-import net.minecraft.block.BlockPortal;
-import net.minecraft.block.BlockFalling;
-import net.minecraft.block.Block;
-
-//import net.lepidodendron.item.ItemDevonian;
-import net.lepidodendron.block.BlockPrototaxitesBlock;
+import com.google.common.cache.LoadingCache;
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.world.WorldGenPrehistoricLakes;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.block.BlockPrototaxitesBlock;
+import net.lepidodendron.block.BlockSandWavy;
+import net.lepidodendron.world.WorldGenPrehistoricLakes;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockFalling;
+import net.minecraft.block.BlockPortal;
+import net.minecraft.block.BlockSand;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockWorldState;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.state.pattern.BlockPattern;
+import net.minecraft.crash.CrashReport;
+import net.minecraft.crash.CrashReportCategory;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EnumCreatureType;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Biomes;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.ReportedException;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.*;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeCache;
+import net.minecraft.world.biome.BiomeProvider;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraft.world.chunk.ChunkPrimer;
+import net.minecraft.world.gen.*;
+import net.minecraft.world.gen.layer.GenLayer;
+import net.minecraft.world.gen.layer.GenLayerVoronoiZoom;
+import net.minecraft.world.gen.layer.GenLayerZoom;
+import net.minecraft.world.gen.layer.IntCache;
+import net.minecraftforge.common.DimensionManager;
+import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.ReflectionHelper;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-
-import java.util.Random;
 import java.util.List;
-
-import com.google.common.cache.LoadingCache;
+import java.util.Random;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class WorldOrdovicianSilurian extends ElementsLepidodendronMod.ModElement {
@@ -1059,7 +1037,14 @@ public class WorldOrdovicianSilurian extends ElementsLepidodendronMod.ModElement
 									if (Math.random() > 0.6) {
 										chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
 									} else {
-										chunkPrimerIn.setBlockState(i1, j1, l, Blocks.SAND.getDefaultState());
+										if (Math.random() > 0.25) {
+											if (Math.random() > 0.85) {
+												chunkPrimerIn.setBlockState(i1, j1, l, Blocks.SAND.getStateFromMeta(0));
+											}
+											else {
+												chunkPrimerIn.setBlockState(i1, j1, l, BlockSandWavy.block.getDefaultState());
+											}
+										}
 									}
 								}
 							} else {

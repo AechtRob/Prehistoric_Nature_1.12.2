@@ -103,7 +103,7 @@ public class WorldGenCarboniferousLakes extends WorldGenerator
                             worldIn.setBlockState(position.add(l1, i4, i3), i4 >= 4 ? Blocks.AIR.getDefaultState() : this.block.getDefaultState(), 2);
                             if (Math.random() > 0.4 && worldIn.getBlockState(position.add(l1, i4-1, i3)).getBlock() != this.block && worldIn.getBlockState(position.add(l1, i4-1, i3)).getBlock() != Blocks.AIR) {
                                 //worldIn.setBlockState(position.add(l1, i4, i3), BlockCarboniferousMud.block.getDefaultState());
-                                if (Math.random() > 0.5) {
+                                if (Math.random() > 0.75) {
                                     worldIn.setBlockState(position.add(l1, i4, i3), BlockCarboniferousMud.block.getDefaultState());
                                 }
                                 else {

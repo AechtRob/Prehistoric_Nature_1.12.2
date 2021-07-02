@@ -2,13 +2,14 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.EnumFacing;
@@ -26,7 +27,7 @@ public class BlockCoarseSandyDirt extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:coarse_sandy_dirt")
 	public static final Block block = null;
 	public BlockCoarseSandyDirt(ElementsLepidodendronMod instance) {
-		super(instance, 1735);
+		super(instance, LepidodendronSorter.coarse_sandy_dirt);
 	}
 
 	@Override
@@ -48,8 +49,14 @@ public class BlockCoarseSandyDirt extends ElementsLepidodendronMod.ModElement {
 			this.setHarvestLevel("shovel", 0);
 			this.setSoundType(SoundType.GROUND);
 			setTranslationKey("pf_coarse_sandy_dirt");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 		}
+
+		@Override
+		public MapColor getMapColor(IBlockState state, IBlockAccess blockAccess, BlockPos pos) {
+			return MapColor.DIRT;
+		}
+
 
 		public boolean canSustainPlantType(IBlockAccess world, BlockPos pos, EnumPlantType plantType)
 		{

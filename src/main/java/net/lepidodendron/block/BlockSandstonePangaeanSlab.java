@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.SoundType;
@@ -35,7 +36,7 @@ public class BlockSandstonePangaeanSlab extends ElementsLepidodendronMod.ModElem
 	@GameRegistry.ObjectHolder("lepidodendron:sandstone_slab_pangaean_double")
 	public static final Block block_slab_double = null;
 	public BlockSandstonePangaeanSlab(ElementsLepidodendronMod instance) {
-		super(instance, 394);
+		super(instance, LepidodendronSorter.sandstone_slab_pangaean);
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class BlockSandstonePangaeanSlab extends ElementsLepidodendronMod.ModElem
 			setResistance(0.8F);
 			setLightLevel(0F);
 			setLightOpacity(255);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 			IBlockState state = this.blockState.getBaseState().withProperty(VARIANT, Variant.DEFAULT);
 			if (!this.isDouble())
 				state = state.withProperty(BlockSlab.HALF, EnumBlockHalf.BOTTOM);
@@ -69,6 +70,11 @@ public class BlockSandstonePangaeanSlab extends ElementsLepidodendronMod.ModElem
 				setLightOpacity(0);
 			this.setDefaultState(state);
 			this.useNeighborBrightness = !this.isDouble();
+		}
+
+		@Override
+		public MapColor getMapColor(IBlockState state, IBlockAccess blockAccess, BlockPos pos) {
+			return MapColor.ADOBE;
 		}
 
 		@Override
@@ -155,11 +161,6 @@ public class BlockSandstonePangaeanSlab extends ElementsLepidodendronMod.ModElem
 		@Override
 		public boolean isOpaqueCube(IBlockState state) {
 			return false;
-		}
-
-		@Override
-		public MapColor getMapColor(IBlockState state, IBlockAccess blockAccess, BlockPos pos) {
-			return MapColor.STONE;
 		}
 	}
 }

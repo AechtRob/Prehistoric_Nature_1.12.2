@@ -1,23 +1,20 @@
 package net.lepidodendron.world;
 
-import java.util.Random;
-
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.*;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
-import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
-import net.lepidodendron.LepidodendronConfig;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraft.world.biome.Biome;
+
+import java.util.Random;
 
 public class AlgaeGenerator extends WorldGenerator
 {
@@ -43,18 +40,20 @@ public class AlgaeGenerator extends WorldGenerator
 		boolean dimensionCriteria = false;
 		boolean rugosas = (this.algae == BlockRugosa1.block || this.algae == BlockRugosa2.block || this.algae == BlockRugosa3.block || this.algae == BlockRugosa4.block || this.algae == BlockRugosa5.block);
 		boolean anemones = (this.algae == BlockAnemone1.block || this.algae == BlockAnemone2.block || this.algae == BlockAnemone3.block || this.algae == BlockAnemone4.block || this.algae == BlockAnemone5.block || this.algae == BlockAnemone6.block || this.algae == BlockAnemone7.block || this.algae == BlockAnemone8.block || this.algae == BlockAnemone9.block);
-		boolean cystoids = (this.algae == BlockCystoidAristocystites.block || this.algae == BlockCystoidBolboporites.block || this.algae == BlockCystoidEchinosphaerites.block);
+		boolean cystoids = (this.algae == BlockCystoidAristocystites.block || this.algae == BlockCystoidBolboporites.block || this.algae == BlockCystoidEchinosphaerites.block || this.algae == BlockCystoidPseudocrinites.block);
+		boolean ediacaran = (this.algae == BlockTawuia.block);
 		int[] dimCheck = LepidodendronConfig.dimAlgae;
 		if (rugosas) {dimCheck = LepidodendronConfig.dimRugosa;}
 		if (anemones) {dimCheck = LepidodendronConfig.dimAnemone;}
 		if (cystoids) {dimCheck = LepidodendronConfig.dimCrinoid;}
+		if (ediacaran) {dimCheck = LepidodendronConfig.dimEdiacaran;}
 		if (shouldGenerateInDimension(dimID, dimCheck))
 		dimensionCriteria = true;
-		if ((dimID == LepidodendronConfig.dimDevonian && this.algae != BlockPinkSponge.block && (!cystoids))
-			|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
-			|| (dimID == LepidodendronConfig.dimCambrian && (!rugosas) && (!cystoids))
-			|| (dimID == LepidodendronConfig.dimPrecambrian && (!rugosas) && (!cystoids))
-			|| (dimID == LepidodendronConfig.dimCarboniferous && this.algae != BlockPinkSponge.block && (!cystoids))
+		if ((dimID == LepidodendronConfig.dimDevonian && (!cystoids) && (!ediacaran))
+			|| (dimID == LepidodendronConfig.dimOrdovicianSilurian && (!ediacaran))
+			|| (dimID == LepidodendronConfig.dimCambrian && (!rugosas) && (!cystoids) && (!ediacaran))
+			|| (dimID == LepidodendronConfig.dimPrecambrian && (!rugosas) && (!cystoids) && (!anemones))
+			|| (dimID == LepidodendronConfig.dimCarboniferous && (!cystoids) && (!ediacaran))
 			) {
 			dimensionCriteria = true;
 		}
@@ -82,7 +81,11 @@ public class AlgaeGenerator extends WorldGenerator
 			int l = position.getZ() + rand.nextInt(bound) - rand.nextInt(bound);
 
 			if (this.algae.canPlaceBlockAt(worldIn, new BlockPos(j, k, l))
-			&& (worldIn.getBlockState(new BlockPos(j, k, l)).getBlock() == Blocks.WATER)){
+			&& (worldIn.getBlockState(new BlockPos(j, k, l)).getBlock() == Blocks.WATER || worldIn.getBlockState(new BlockPos(j, k, l)).getBlock() == Blocks.FLOWING_WATER)
+			&& !worldIn.isAirBlock(new BlockPos(j, k, l+1))
+			&& !worldIn.isAirBlock(new BlockPos(j, k, l-1))
+			&& !worldIn.isAirBlock(new BlockPos(j+1, k, l))
+			&& !worldIn.isAirBlock(new BlockPos(j-1, k, l))) {
 
 				//Check that at least enough water is over the position (sponges):
 				boolean waterDepthCheckMin = true;
@@ -119,9 +122,16 @@ public class AlgaeGenerator extends WorldGenerator
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.GLASS)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.IRON)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.WOOD))
-						&& (worldIn.getBlockState(pos).getBlockFaceShape(worldIn, pos, EnumFacing.UP) == BlockFaceShape.SOLID))
+						&& (worldIn.getBlockState(pos).getBlockFaceShape(worldIn, pos, EnumFacing.UP) == BlockFaceShape.SOLID)
+						&& (this.algae != BlockCystoidPseudocrinites.block) //this is preferred on the sides
+					)
 					{
-						worldIn.setBlockState(new BlockPos(j, k, l), this.state.withProperty(FACING, enumfacing), 2);
+						if (this.algae != BlockCrinoidPetalocrinus.block && this.algae != BlockCrinoidVadarocrinus.block) {
+							worldIn.setBlockState(new BlockPos(j, k, l), this.state.withProperty(FACING, enumfacing), 2);
+						}
+						else {
+							worldIn.setBlockState(new BlockPos(j, k, l), this.state, 2);
+						}
 						return true;
 					}
 					else {
@@ -143,6 +153,8 @@ public class AlgaeGenerator extends WorldGenerator
 										&& (this.algae != BlockCystoidBolboporites.block)
 										&& (this.algae != BlockCystoidEchinosphaerites.block)
 										&& (this.algae != BlockCystoidAristocystites.block)
+										&& (this.algae != BlockCrinoidPetalocrinus.block)
+										&& (this.algae != BlockCrinoidVadarocrinus.block)
 						) {
 							for (EnumFacing enumfacing1 : FACING.getAllowedValues()) {
 								pos = new BlockPos(j, k, l);

@@ -1,8 +1,5 @@
 package net.lepidodendron.world;
 
-import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.block.BlockGreenCharaAlgae;
-import net.lepidodendron.block.BlockGreenLeafyAlgae;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.material.Material;

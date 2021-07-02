@@ -2,7 +2,8 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -18,7 +19,7 @@ public class ItemPalaeognetaleanaFruit extends ElementsLepidodendronMod.ModEleme
 	@GameRegistry.ObjectHolder("lepidodendron:palaeognetaleana_fruit")
 	public static final Item block = null;
 	public ItemPalaeognetaleanaFruit(ElementsLepidodendronMod instance) {
-		super(instance, 1190);
+		super(instance, LepidodendronSorter.palaeognetaleana_fruit);
 	}
 
 	@Override
@@ -37,7 +38,7 @@ public class ItemPalaeognetaleanaFruit extends ElementsLepidodendronMod.ModEleme
 			maxStackSize = 64;
 			setTranslationKey("pf_palaeognetaleana_fruit");
 			setRegistryName("palaeognetaleana_fruit");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 
 		@Override

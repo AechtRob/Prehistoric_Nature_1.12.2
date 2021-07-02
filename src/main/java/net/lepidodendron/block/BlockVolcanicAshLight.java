@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
@@ -21,7 +22,7 @@ public class BlockVolcanicAshLight extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:volcanic_ash_light")
 	public static final Block block = null;
 	public BlockVolcanicAshLight(ElementsLepidodendronMod instance) {
-		super(instance, 526);
+		super(instance, LepidodendronSorter.volcanic_ash_light);
 	}
 
 	@Override
@@ -45,7 +46,7 @@ public class BlockVolcanicAshLight extends ElementsLepidodendronMod.ModElement {
 			setResistance(0.2F);
 			setHarvestLevel("shovel", 0);
 			setTranslationKey("pf_volcanic_ash_light");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 		}
 	    
 	}

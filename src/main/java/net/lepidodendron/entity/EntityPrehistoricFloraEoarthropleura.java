@@ -9,7 +9,8 @@ import net.lepidodendron.block.BlockEdwardsiphyton;
 import net.lepidodendron.block.BlockSelaginella;
 import net.lepidodendron.entity.ai.LandWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraLandBase;
-import net.minecraft.entity.*;
+import net.minecraft.entity.EnumCreatureAttribute;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.item.Item;
 import net.minecraft.util.DamageSource;
@@ -83,7 +84,7 @@ public class EntityPrehistoricFloraEoarthropleura extends EntityPrehistoricFlora
 
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute() {
-		return EnumCreatureAttribute.UNDEFINED;
+		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
 	@Override

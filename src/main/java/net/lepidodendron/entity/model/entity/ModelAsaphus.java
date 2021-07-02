@@ -6,8 +6,6 @@ import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
-import java.util.Random;
-
 public class ModelAsaphus extends AdvancedModelBase {
     private final AdvancedModelRenderer body;
     private final AdvancedModelRenderer cube_r1;

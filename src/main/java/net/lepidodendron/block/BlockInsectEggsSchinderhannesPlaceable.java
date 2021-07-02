@@ -3,13 +3,10 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.entity.EntityPrehistoricFloraPalaeodictyopteraNymph;
-import net.lepidodendron.entity.EntityPrehistoricFloraPneumodesmus;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraSchinderhannes;
-import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.item.ItemPhial;
-import net.lepidodendron.item.ItemPhialEggsPalaeodictyoptera;
 import net.lepidodendron.item.ItemPhialEggsSchinderhannes;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -44,7 +41,7 @@ public class BlockInsectEggsSchinderhannesPlaceable extends ElementsLepidodendro
 	@GameRegistry.ObjectHolder("lepidodendron:eggs_schinderhannes")
 	public static final Block block = null;
 	public BlockInsectEggsSchinderhannesPlaceable(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.eggs_schinderhannes);
 	}
 
 	@Override
@@ -65,7 +62,7 @@ public class BlockInsectEggsSchinderhannesPlaceable extends ElementsLepidodendro
 		public BlockCustom() {
 			setTranslationKey("pf_eggs_schinderhannes");
 			this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		@Override

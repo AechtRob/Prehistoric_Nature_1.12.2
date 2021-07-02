@@ -1,18 +1,14 @@
 package net.lepidodendron.world;
 
-import java.util.Random;
-
-import net.lepidodendron.block.*;
-import net.minecraft.block.BlockDoublePlant;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.lepidodendron.block.BlockPalaeostachyaBottom;
+import net.lepidodendron.block.BlockPalaeostachyaSapling;
+import net.lepidodendron.block.BlockPalaeostachyaStem;
+import net.lepidodendron.block.BlockPalaeostachyaTop;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
 
-import net.lepidodendron.procedure.ProcedureWorldGenMedullosales;
-import java.util.Map;
-import java.util.HashMap;
+import java.util.Random;
 
 
 public class WorldGenPalaeostachya extends WorldGenerator

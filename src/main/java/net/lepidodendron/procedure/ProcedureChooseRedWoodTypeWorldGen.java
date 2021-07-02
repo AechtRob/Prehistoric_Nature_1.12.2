@@ -1,12 +1,9 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.minecraft.world.World;
 
 import java.util.Map;
-import java.util.HashMap;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureChooseRedWoodTypeWorldGen extends ElementsLepidodendronMod.ModElement {

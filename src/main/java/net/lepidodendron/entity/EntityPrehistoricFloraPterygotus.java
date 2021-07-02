@@ -87,7 +87,7 @@ public class EntityPrehistoricFloraPterygotus extends EntityPrehistoricFloraEury
 
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute() {
-		return EnumCreatureAttribute.UNDEFINED;
+		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
 	@Override
@@ -110,7 +110,11 @@ public class EntityPrehistoricFloraPterygotus extends EntityPrehistoricFloraEury
 
 	@Override
 	protected float getAISpeedEurypterid() {
-		return (float) Math.min(1F, (this.getAgeScale() * 2F)) * 0.24F;
+		float AIspeed = (float) Math.min(1F, (this.getAgeScale() * 2F)) * 0.24F;
+		if (this.isHunting()) {
+			AIspeed = AIspeed * 1.8F;
+		}
+		return AIspeed;
 	}
 
 	@Override

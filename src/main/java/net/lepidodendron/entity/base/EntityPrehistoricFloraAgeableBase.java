@@ -4,15 +4,12 @@ import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.entity.util.PathNavigateAmphibian;
-import net.lepidodendron.entity.util.PathNavigateAmphibianFindWater;
-import net.lepidodendron.item.entities.ItemBucketArandaspis;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.*;
+import net.minecraft.entity.EntityAgeable;
+import net.minecraft.entity.IEntityLivingData;
+import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.passive.EntityTameable;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
@@ -20,16 +17,12 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.pathfinding.PathNavigateSwimmer;
-import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nullable;
 
@@ -42,6 +35,7 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
     public float minSize;
     public float maxSize;
     public double maxHealthAgeable;
+    public int maxAge;
     private int animationTick;
     public Animation ATTACK_ANIMATION;
     public Animation ROAR_ANIMATION;
@@ -63,6 +57,8 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
     public int getRoarLength() {
         return 60;
     }
+
+    public boolean isHunting() { return this.getAttackTarget() != null; }
 
     @Override
     public int getAnimationTick() {

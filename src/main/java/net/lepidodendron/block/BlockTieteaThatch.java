@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
@@ -37,7 +38,7 @@ public class BlockTieteaThatch extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:tietea_thatch")
 	public static final Block block = null;
 	public BlockTieteaThatch(ElementsLepidodendronMod instance) {
-		super(instance, 1087);
+		super(instance, LepidodendronSorter.tietea_thatch);
 	}
 
 	@Override
@@ -69,7 +70,7 @@ public class BlockTieteaThatch extends ElementsLepidodendronMod.ModElement {
 			setResistance(0.5F);
 			setLightLevel(0F);
 			setLightOpacity(1);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.UP).withProperty(INNER, false).withProperty(OUTER, false).withProperty(SW, false).withProperty(SE, false).withProperty(NW, false).withProperty(NE, false));
 
 		}

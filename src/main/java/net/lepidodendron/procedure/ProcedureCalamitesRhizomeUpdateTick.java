@@ -1,20 +1,18 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.block.Block;
-import java.util.Random;
-
-import net.minecraft.tileentity.TileEntity;
-import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraft.block.material.Material;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.entity.player.EntityPlayer;
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockCalamitesRhizome;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+
+import java.util.Random;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureCalamitesRhizomeUpdateTick extends ElementsLepidodendronMod.ModElement {

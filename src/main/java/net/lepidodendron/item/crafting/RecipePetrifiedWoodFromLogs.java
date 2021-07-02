@@ -1,14 +1,12 @@
 
 package net.lepidodendron.item.crafting;
 
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-
-import net.minecraft.item.ItemStack;
-
-import net.lepidodendron.block.BlockAraucarioxylonLogPetrified;
-import net.lepidodendron.block.BlockAraucarioxylonLog;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.block.BlockAraucarioxylonLog;
+import net.lepidodendron.block.BlockAraucarioxylonLogPetrified;
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class RecipePetrifiedWoodFromLogs extends ElementsLepidodendronMod.ModElement {

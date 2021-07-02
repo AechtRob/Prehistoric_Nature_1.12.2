@@ -1,9 +1,7 @@
 package net.lepidodendron.entity.render.entity;
 
 import net.lepidodendron.LepidodendronMod;
-import net.lepidodendron.entity.EntityPrehistoricFloraPteraspis;
 import net.lepidodendron.entity.EntityPrehistoricFloraSchinderhannes;
-import net.lepidodendron.entity.model.entity.ModelPteraspis;
 import net.lepidodendron.entity.model.entity.ModelSchinderhannes;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;

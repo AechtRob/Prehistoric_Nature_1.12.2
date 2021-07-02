@@ -52,7 +52,6 @@ public class ModelIsotelus extends AdvancedModelBase {
         this.body = new AdvancedModelRenderer(this);
         this.body.setRotationPoint(0.0F, 24.0F, -2.0F);
 
-
         this.head = new AdvancedModelRenderer(this);
         this.head.setRotationPoint(0.0F, 0.0F, 2.0F);
         this.body.addChild(head);

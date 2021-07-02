@@ -4,11 +4,10 @@ import net.ilexiconn.llibrary.client.model.ModelAnimator;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelBase;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelRenderer;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
-import net.lepidodendron.entity.EntityPrehistoricFloraJellyfish1;
 import net.lepidodendron.entity.EntityPrehistoricFloraLimnoscelis;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 
 public class ModelLimnoscelis extends AdvancedModelBase {
     public AdvancedModelRenderer Hips;
@@ -341,7 +340,7 @@ public class ModelLimnoscelis extends AdvancedModelBase {
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        EntityPrehistoricFloraLimnoscelis e = (EntityPrehistoricFloraLimnoscelis) entity;
+        EntityPrehistoricFloraAgeableBase e = (EntityPrehistoricFloraAgeableBase) entity;
         animator.update(entity);
         this.resetToDefaultPose();
         setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);

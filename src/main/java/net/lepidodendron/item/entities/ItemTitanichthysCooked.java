@@ -2,7 +2,8 @@
 package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
@@ -17,7 +18,7 @@ public class ItemTitanichthysCooked extends ElementsLepidodendronMod.ModElement 
 	@GameRegistry.ObjectHolder("lepidodendron:titanichthys_cooked")
 	public static final Item block = null;
 	public ItemTitanichthysCooked(ElementsLepidodendronMod instance) {
-		super(instance, 1296);
+		super(instance, LepidodendronSorter.titanichthys_cooked);
 	}
 
 	@Override
@@ -35,7 +36,7 @@ public class ItemTitanichthysCooked extends ElementsLepidodendronMod.ModElement 
 			super(5, 0.7f, false);
 			setTranslationKey("pf_titanichthys_cooked");
 			setRegistryName("titanichthys_cooked");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 			setMaxStackSize(64);
 		}
 

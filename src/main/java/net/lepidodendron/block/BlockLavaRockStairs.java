@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.SoundType;
@@ -25,7 +26,7 @@ public class BlockLavaRockStairs extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:lava_rock_stairs")
 	public static final Block block = null;
 	public BlockLavaRockStairs(ElementsLepidodendronMod instance) {
-		super(instance, 396);
+		super(instance, LepidodendronSorter.lava_rock_stairs);
 	}
 
 	@Override
@@ -48,7 +49,7 @@ public class BlockLavaRockStairs extends ElementsLepidodendronMod.ModElement {
 			setHardness(1.25F);
 			setResistance(4.2F);
 			setHarvestLevel("pickaxe", 0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 		}
 
 		//@Override

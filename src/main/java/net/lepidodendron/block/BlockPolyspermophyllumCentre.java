@@ -3,6 +3,7 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemPolyspermophyllumFruit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -35,7 +36,7 @@ public class BlockPolyspermophyllumCentre extends ElementsLepidodendronMod.ModEl
 	@GameRegistry.ObjectHolder("lepidodendron:polyspermophyllum_centre")
 	public static final Block block = null;
 	public BlockPolyspermophyllumCentre(ElementsLepidodendronMod instance) {
-		super(instance, 287);
+		super(instance, LepidodendronSorter.polyspermophyllum_centre);
 	}
 
 	@Override

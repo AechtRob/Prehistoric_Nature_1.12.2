@@ -2,11 +2,10 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.minecraft.block.state.IBlockState;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -18,7 +17,7 @@ public class ItemZircon extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:zircon")
 	public static final Item block = null;
 	public ItemZircon(ElementsLepidodendronMod instance) {
-		super(instance, 1673);
+		super(instance, LepidodendronSorter.zircon);
 	}
 
 	@Override
@@ -37,7 +36,7 @@ public class ItemZircon extends ElementsLepidodendronMod.ModElement {
 			maxStackSize = 64;
 			setTranslationKey("pf_zircon");
 			setRegistryName("zircon");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 		}
 	}
 }

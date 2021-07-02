@@ -2,7 +2,8 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -18,7 +19,7 @@ public class ItemBanksia2Seeds extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:banksia_2_seeds")
 	public static final Item block = null;
 	public ItemBanksia2Seeds(ElementsLepidodendronMod instance) {
-		super(instance, 984);
+		super(instance, LepidodendronSorter.banksia_2_seeds);
 	}
 
 	@Override
@@ -37,7 +38,7 @@ public class ItemBanksia2Seeds extends ElementsLepidodendronMod.ModElement {
 			maxStackSize = 64;
 			setTranslationKey("pf_banksia_2_seeds");
 			setRegistryName("banksia_2_seeds");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 
 		@Override

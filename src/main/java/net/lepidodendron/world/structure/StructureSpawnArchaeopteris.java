@@ -1,19 +1,17 @@
 
 package net.lepidodendron.world.structure;
 
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-
-import net.lepidodendron.procedure.ProcedureWorldGenArchaeopteris;
 import net.lepidodendron.ElementsLepidodendronMod;
-
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
-import net.minecraftforge.common.BiomeDictionary;
+import net.lepidodendron.procedure.ProcedureWorldGenArchaeopteris;
 import net.minecraft.block.material.Material;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.common.BiomeDictionary;
 
 import java.util.Random;
 
@@ -179,6 +177,7 @@ public class StructureSpawnArchaeopteris extends ElementsLepidodendronMod.ModEle
 					$_dependencies.put("y", j + 1);
 					$_dependencies.put("z", k);
 					$_dependencies.put("world", world);
+					$_dependencies.put("SaplingSpawn", false);
 					if ((world.canSeeSky(spawnTo)) || 
 					(((world.getBlockState(spawnTo)).getMaterial() == Material.SNOW)
 					&& world.canSeeSky(spawnTo.up()))) {

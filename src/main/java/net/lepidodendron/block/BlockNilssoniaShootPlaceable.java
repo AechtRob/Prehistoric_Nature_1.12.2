@@ -2,7 +2,9 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -30,14 +32,12 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import java.util.Random;
-
 @ElementsLepidodendronMod.ModElement.Tag
 public class BlockNilssoniaShootPlaceable extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:nilssonia_shoot")
 	public static final Block block = null;
 	public BlockNilssoniaShootPlaceable(ElementsLepidodendronMod instance) {
-		super(instance, 287);
+		super(instance, LepidodendronSorter.nilssonia_shoot);
 	}
 
 	@Override
@@ -62,7 +62,7 @@ public class BlockNilssoniaShootPlaceable extends ElementsLepidodendronMod.ModEl
 			setResistance(0.2F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, false));
 		}
 
@@ -142,8 +142,11 @@ public class BlockNilssoniaShootPlaceable extends ElementsLepidodendronMod.ModEl
 		}
 
 		@Override
-		public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-			return Item.getItemFromBlock(BlockNilssoniaSapling.block);
+		public Item getItemDropped(IBlockState state, java.util.Random rand, int fortune) {
+			if (!LepidodendronConfig.doFruits) {
+				return Item.getItemFromBlock(BlockNilssoniaSapling.block);
+			}
+			return null;
 		}
 
 		public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {

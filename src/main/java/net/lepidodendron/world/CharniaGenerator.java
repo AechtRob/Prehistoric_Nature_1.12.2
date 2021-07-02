@@ -1,10 +1,9 @@
 package net.lepidodendron.world;
 
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.block.*;
+import net.lepidodendron.block.BlockStromatolite;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
@@ -83,14 +82,15 @@ public class CharniaGenerator extends WorldGenerator
 				if (waterDepthCheckMin) {
 					//figure out a position and facing to place this at!
 					BlockPos pos = new BlockPos(j, k - 1, l);
-					if ((worldIn.getBlockState(pos).getMaterial() == Material.SAND)
+					if (((worldIn.getBlockState(pos).getMaterial() == Material.SAND)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.ROCK)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.GROUND)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.CLAY)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.GLASS)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.IRON)
 						|| (worldIn.getBlockState(pos).getMaterial() == Material.WOOD))
-					{
+						&& (worldIn.getBlockState(pos).getBlock() != BlockStromatolite.block))
+					{ //Do not generate on top of Stromatolites: they have their own different community
 						worldIn.setBlockState(new BlockPos(j, k, l), this.state, 2);
 						return true;
 					}

@@ -4,6 +4,7 @@ package net.lepidodendron.block;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
+import net.lepidodendron.LepidodendronSorter;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -45,7 +46,7 @@ public class BlockProtolepidodendropsis extends ElementsLepidodendronMod.ModElem
 	@GameRegistry.ObjectHolder("lepidodendron:protolepidodendropsis")
 	public static final Block block = null;
 	public BlockProtolepidodendropsis(ElementsLepidodendronMod instance) {
-		super(instance, 286);
+		super(instance, LepidodendronSorter.protolepidodendropsis);
 	}
 
 	@Override

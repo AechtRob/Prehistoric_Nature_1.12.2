@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.render.entity;
 
 import net.lepidodendron.LepidodendronMod;
-import net.lepidodendron.entity.EntityPrehistoricFloraAmmonite_Parapuzosia;
 import net.lepidodendron.entity.EntityPrehistoricFloraAmmonite_Titanites;
 import net.lepidodendron.entity.model.entity.ModelAmmonite150cm;
 import net.minecraft.client.renderer.GlStateManager;

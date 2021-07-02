@@ -3,9 +3,9 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronStatic;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -50,7 +50,7 @@ public class BlockCrinoidCaryocrinites extends ElementsLepidodendronMod.ModEleme
 	@GameRegistry.ObjectHolder("lepidodendron:crinoid_caryocrinites")
 	public static final Block block = null;
 	public BlockCrinoidCaryocrinites(ElementsLepidodendronMod instance) {
-		super(instance, 1401);
+		super(instance, LepidodendronSorter.crinoid_caryocrinites);
 	}
 
 	@Override
@@ -143,7 +143,7 @@ public class BlockCrinoidCaryocrinites extends ElementsLepidodendronMod.ModEleme
 		public BlockCustom() {
 			super(Material.WATER);
 			setSoundType(SoundType.PLANT);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronStatic.tab);
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
@@ -319,10 +319,10 @@ public class BlockCrinoidCaryocrinites extends ElementsLepidodendronMod.ModEleme
 
 		public boolean isWaterBlock(World world, BlockPos pos) {
 			if (world.getBlockState(pos).getMaterial() == Material.WATER) {
-				IBlockState iblockstate = world.getBlockState(pos);
-				if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
+				//IBlockState iblockstate = world.getBlockState(pos);
+				//if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
 					return true;
-				}
+				//}
 			}
 	    	return false;
 	    }
@@ -332,7 +332,7 @@ public class BlockCrinoidCaryocrinites extends ElementsLepidodendronMod.ModEleme
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Crinoid");
+				tooltip.add("Type: Crinoid-like cystoid");
 				tooltip.add("Periods: Ordovician - Silurian");
 			}
 	        super.addInformation(stack, player, tooltip, advanced);

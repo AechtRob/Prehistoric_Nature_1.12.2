@@ -3,7 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraLimnoscelis;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.item.entities.ItemBucketSpawnLimnoscelis;
@@ -41,7 +42,7 @@ public class BlockAmphibianSpawnLimnoscelisPlaceable extends ElementsLepidodendr
 	@GameRegistry.ObjectHolder("lepidodendron:amphibian_spawn_limnoscelis")
 	public static final Block block = null;
 	public BlockAmphibianSpawnLimnoscelisPlaceable(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.amphibian_spawn_limnoscelis_worldgen);
 	}
 
 	@Override
@@ -64,7 +65,7 @@ public class BlockAmphibianSpawnLimnoscelisPlaceable extends ElementsLepidodendr
 		public BlockCustom() {
 			setTranslationKey("pf_amphibian_spawn_limnoscelis");
 			this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		@Override

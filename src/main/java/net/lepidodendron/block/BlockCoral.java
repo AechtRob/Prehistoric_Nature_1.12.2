@@ -2,40 +2,38 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.world.CharniaGenerator;
-import net.minecraft.block.*;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.BlockFalling;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 @ElementsLepidodendronMod.ModElement.Tag
@@ -43,7 +41,7 @@ public class BlockCoral extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:coral")
 	public static final Block block = null;
 	public BlockCoral(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.coral);
 	}
 
 	@Override
@@ -61,16 +59,6 @@ public class BlockCoral extends ElementsLepidodendronMod.ModElement {
 				new ModelResourceLocation("lepidodendron:coral", "inventory"));
 	}
 
-	//@Override
-	//public void generateWorld(Random random, int chunkX, int chunkZ, World world, int dimID, IChunkGenerator cg, IChunkProvider cp) {
-	//	for (int i = 0; i < (int) 48; i++) {
-	//		int l6 = chunkX + random.nextInt(16) + 8;
-	//		int i11 = random.nextInt(world.getSeaLevel()+1);
-	//		int l14 = chunkZ + random.nextInt(16) + 8;
-	//		(new CharniaGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14));
-	//	}
-	//}
-
 	public static class BlockCustom extends BlockFalling {
 
 		public BlockCustom() {
@@ -82,7 +70,7 @@ public class BlockCoral extends ElementsLepidodendronMod.ModElement {
 			setLightLevel(0.5F);
 			setLightOpacity(0);
 			//this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 		}
 
 		@Deprecated
@@ -160,11 +148,6 @@ public class BlockCoral extends ElementsLepidodendronMod.ModElement {
 		@Override
 		public BlockRenderLayer getRenderLayer() {
 			return BlockRenderLayer.CUTOUT;
-		}
-
-		@Override
-		public EnumBlockRenderType getRenderType(IBlockState state) {
-			return super.getRenderType(state);
 		}
 
 		@Override

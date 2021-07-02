@@ -3,8 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.entity.EntityPrehistoricFloraEoarthropleura;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraPneumodesmus;
 import net.lepidodendron.item.ItemPhial;
 import net.lepidodendron.item.ItemPhialEggsPneumodesmus;
@@ -40,7 +40,7 @@ public class BlockInsectEggsPneumodesmusPlaceable extends ElementsLepidodendronM
 	@GameRegistry.ObjectHolder("lepidodendron:insect_eggs_pneumodesmus")
 	public static final Block block = null;
 	public BlockInsectEggsPneumodesmusPlaceable(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.insect_eggs_pneumodesmus);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class BlockInsectEggsPneumodesmusPlaceable extends ElementsLepidodendronM
 		public BlockCustom() {
 			setTranslationKey("pf_insect_eggs_pneumodesmus");
 			this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		@Override

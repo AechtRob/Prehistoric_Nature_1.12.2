@@ -4,8 +4,9 @@ package net.lepidodendron.world.dimension;
 import com.google.common.cache.LoadingCache;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.block.BlockArchaeocyatha;
 import net.lepidodendron.block.BlockBacterialLayer;
-import net.lepidodendron.block.BlockToxicMud;
+import net.lepidodendron.block.BlockSandWavy;
 import net.lepidodendron.world.WorldGenPrecambrianLakes;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
@@ -1036,16 +1037,57 @@ public class WorldCambrian extends ElementsLepidodendronMod.ModElement {
 								iblockstate = AIR;
 								iblockstate1 = STONE;
 								if (j1 < i - 6) {
-									chunkPrimerIn.setBlockState(i1, j1, l, STONE2);
+									if (Math.random() > 0.94) {
+										chunkPrimerIn.setBlockState(i1, j1, l, BlockBacterialLayer.block.getDefaultState());
+									}
+									else {
+										if (Math.random() > 0.45) {
+											chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
+										} else {
+											if (Math.random() > 0.25) {
+												if (Math.random()> 0.92) {
+													chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState());
+												}
+												else {
+													if (Math.random() > 0.85) {
+														chunkPrimerIn.setBlockState(i1, j1, l, Blocks.SAND.getStateFromMeta(0));
+													} else {
+														chunkPrimerIn.setBlockState(i1, j1, l, BlockSandWavy.block.getDefaultState());
+													}
+												}
+											}
+											else {
+												chunkPrimerIn.setBlockState(i1, j1, l, Blocks.STONE.getStateFromMeta(0));
+											}
+
+										}
+									}
 								}
 								else {
 									if (Math.random() > 0.9) {
 										chunkPrimerIn.setBlockState(i1, j1, l, BlockBacterialLayer.block.getDefaultState());
 									} else {
-										if (Math.random() > 0.4) {
+										if (Math.random() > 0.5) {
 											chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
 										} else {
-											chunkPrimerIn.setBlockState(i1, j1, l, Blocks.SAND.getDefaultState());
+											if (Math.random() > 0.5) {
+												if (Math.random() > 0.25) {
+													if (Math.random()> 0.92) {
+														chunkPrimerIn.setBlockState(i1, j1, l, BlockArchaeocyatha.block.getDefaultState());
+													}
+													else {
+														if (Math.random() > 0.85) {
+															chunkPrimerIn.setBlockState(i1, j1, l, Blocks.SAND.getStateFromMeta(0));
+														} else {
+															chunkPrimerIn.setBlockState(i1, j1, l, BlockSandWavy.block.getDefaultState());
+														}
+													}
+												}
+											}
+											else {
+												chunkPrimerIn.setBlockState(i1, j1, l, Blocks.STONE.getStateFromMeta(0));
+											}
+
 										}
 									}
 								}

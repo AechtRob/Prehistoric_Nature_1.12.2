@@ -1,30 +1,24 @@
 
 package net.lepidodendron.world.biome;
 
-import net.lepidodendron.block.BlockCoral;
-import net.lepidodendron.world.*;
-import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.common.BiomeDictionary;
-
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraft.block.material.Material;
-
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-
-import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockArchaeopterisLog;
+import net.lepidodendron.world.*;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 
 import java.util.Random;
 
@@ -60,7 +54,7 @@ public class BiomeDevonianFloodplain extends ElementsLepidodendronMod.ModElement
 			decorator.reedsPerChunk = 0;
 			decorator.cactiPerChunk = 0;
 			decorator.sandPatchesPerChunk = 0;
-			decorator.gravelPatchesPerChunk = 20;
+			decorator.gravelPatchesPerChunk = 0;
 			this.spawnableMonsterList.clear();
 			this.spawnableCreatureList.clear();
 			this.spawnableWaterCreatureList.clear();
@@ -72,16 +66,21 @@ public class BiomeDevonianFloodplain extends ElementsLepidodendronMod.ModElement
 		protected static final WorldGenRhacophyton RHACOPHYTON_GENERATOR = new WorldGenRhacophyton();
 		protected static final WorldGenTreeLog ARCHAEOPTERIS_LOG_GENERATOR = new WorldGenTreeLog(BlockArchaeopterisLog.block);
     	protected static final WorldGenWattieza WATTIEZA_GENERATOR = new WorldGenWattieza();
+		protected static final WorldGenCalamophyton CALAMOPHYTON_GENERATOR = new WorldGenCalamophyton();
 		protected static final WorldGenPsilophyton PSILOPHYTON_GENERATOR = new WorldGenPsilophyton();
 		protected static final WorldGenAsteroxylon ASTEROXYLON_GENERATOR = new WorldGenAsteroxylon();
 		protected static final WorldGenFoozia FOOZIA_GENERATOR = new WorldGenFoozia();
 		protected static final WorldGenPertica PERTICA_GENERATOR = new WorldGenPertica();
+		protected static final WorldGenLeclercqia LECLERCQIA_GENERATOR = new WorldGenLeclercqia();
 		protected static final WorldGenGuangdedendron GUANGDEDENDRON_GENERATOR = new WorldGenGuangdedendron();
 		protected static final WorldGenTopSoil TOPSOIL_GENERATOR = new WorldGenTopSoil();
+		protected static final WorldGenSandyDirt SANDY_DIRT_GENERATOR = new WorldGenSandyDirt();
+		protected static final WorldGenWaterSideSandyDirt WATERSIDE_SANDY_DIRT_GENERATOR = new WorldGenWaterSideSandyDirt();
 		protected static final WorldGenAncientMoss ANCIENT_MOSS_GENERATOR = new WorldGenAncientMoss();
 		protected static final WorldGenSelaginella SELAGINELLA_GENERATOR = new WorldGenSelaginella();
 		protected static final WorldGenIsoetes ISOETES_GENERATOR = new WorldGenIsoetes();
 		protected static final WorldGenBaragwanathia BARAGWANATHIA_GENERATOR = new WorldGenBaragwanathia();
+		protected static final WorldGenRhynia RHYNIA_GENERATOR = new WorldGenRhynia();
 		protected static final WorldGenPrehistoricGroundCoverSandy GROUNDCOVER_GENERATOR = new WorldGenPrehistoricGroundCoverSandy();
 		protected static final WorldGenReef REEF_GENERATOR = new WorldGenReef();
 		protected static final WorldGenBlueHole BLUE_HOLE_GENERATOR = new WorldGenBlueHole();
@@ -121,8 +120,26 @@ public class BiomeDevonianFloodplain extends ElementsLepidodendronMod.ModElement
 	            int k = rand.nextInt(16) + 8;
 	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
 	            TOPSOIL_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
-	        } 
-	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+	        }
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int i = 0; i < 12; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					SANDY_DIRT_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+				}
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int i = 0; i < 64; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					WATERSIDE_SANDY_DIRT_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+				}
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
 	        for (int i = 0; i < 5; ++i)
 	        {
 	            int j = rand.nextInt(16) + 8;
@@ -146,14 +163,32 @@ public class BiomeDevonianFloodplain extends ElementsLepidodendronMod.ModElement
 	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
 	            RHACOPHYTON_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int i = 0; i < 12; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					LECLERCQIA_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+				}
+
 	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
-	        for (int i = 0; i < 2; ++i)
-	        {
-	            int j = rand.nextInt(16) + 8;
-	            int k = rand.nextInt(16) + 8;
-	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
-	            WATTIEZA_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
-	        }
+				for (int i = 0; i < 2; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					WATTIEZA_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+				}
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int i = 0; i < 4; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					CALAMOPHYTON_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+				}
 
 	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
 	        for (int i = 0; i < 20; ++i)
@@ -223,6 +258,14 @@ public class BiomeDevonianFloodplain extends ElementsLepidodendronMod.ModElement
 	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
 	            BARAGWANATHIA_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int i = 0; i < 15; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					RHYNIA_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+				}
 
 	        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), DecorateBiomeEvent.Decorate.EventType.ROCK)) {
 

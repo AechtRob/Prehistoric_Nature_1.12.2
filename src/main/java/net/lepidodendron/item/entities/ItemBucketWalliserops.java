@@ -3,8 +3,8 @@ package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
-import net.lepidodendron.entity.EntityPrehistoricFloraAnthracomedusa;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraWalliserops;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
@@ -45,7 +45,7 @@ public class ItemBucketWalliserops extends ElementsLepidodendronMod.ModElement {
 	public static final Item block = null;
 
 	public ItemBucketWalliserops(ElementsLepidodendronMod instance) {
-		super(instance, 786);
+		super(instance, LepidodendronSorter.walliserops_bucket);
 	}
 
 	@Override
@@ -64,7 +64,7 @@ public class ItemBucketWalliserops extends ElementsLepidodendronMod.ModElement {
 			setTranslationKey("pf_walliserops_bucket");
 			setRegistryName("walliserops_bucket");
 			maxStackSize = 1;
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)

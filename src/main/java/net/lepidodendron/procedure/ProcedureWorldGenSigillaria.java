@@ -1,26 +1,16 @@
 package net.lepidodendron.procedure;
 
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.block.Block;
-import net.minecraft.util.EnumFacing;
-
-import net.lepidodendron.block.BlockSigillariaShoot;
-import net.lepidodendron.block.BlockSigillariaShootPlaceable;
-import net.lepidodendron.block.BlockSigillariaShootCentre;
-import net.lepidodendron.block.BlockSigillariaShootTop;
-import net.lepidodendron.block.BlockSigillariaLog;
-import net.lepidodendron.block.BlockSigillariaStem;
-import net.lepidodendron.block.BlockSigillariaStrobilus;
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.block.*;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.block.properties.IProperty;
-import net.minecraft.block.properties.PropertyDirection;
-
 import net.minecraft.tileentity.TileEntity;
-import net.lepidodendron.LepidodendronConfig;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureWorldGenSigillaria extends ElementsLepidodendronMod.ModElement {

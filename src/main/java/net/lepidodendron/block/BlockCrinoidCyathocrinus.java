@@ -3,9 +3,9 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronStatic;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
@@ -50,7 +50,7 @@ public class BlockCrinoidCyathocrinus extends ElementsLepidodendronMod.ModElemen
 	@GameRegistry.ObjectHolder("lepidodendron:crinoid_cyathocrinus")
 	public static final Block block = null;
 	public BlockCrinoidCyathocrinus(ElementsLepidodendronMod instance) {
-		super(instance, 1401);
+		super(instance, LepidodendronSorter.crinoid_cyathocrinus);
 	}
 
 	@Override
@@ -149,7 +149,7 @@ public class BlockCrinoidCyathocrinus extends ElementsLepidodendronMod.ModElemen
 		public BlockCustom() {
 			super(Material.WATER);
 			setSoundType(SoundType.PLANT);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronStatic.tab);
 			setHardness(0F);
 			setResistance(0F);
 			setLightLevel(0F);
@@ -184,7 +184,7 @@ public class BlockCrinoidCyathocrinus extends ElementsLepidodendronMod.ModElemen
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
@@ -325,10 +325,10 @@ public class BlockCrinoidCyathocrinus extends ElementsLepidodendronMod.ModElemen
 
 		public boolean isWaterBlock(World world, BlockPos pos) {
 			if (world.getBlockState(pos).getMaterial() == Material.WATER) {
-				IBlockState iblockstate = world.getBlockState(pos);
-				if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
+				//IBlockState iblockstate = world.getBlockState(pos);
+				//if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
 					return true;
-				}
+				//}
 			}
 	    	return false;
 	    }

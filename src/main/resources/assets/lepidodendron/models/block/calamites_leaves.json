@@ -1,5 +1,5 @@
 {
-	"parent": "block/cube",
+	"parent": "lepidodendron:block/cube_noao",
     "textures": {
         "particle": "lepidodendron:blocks/calamites_leaves",
         "down": "lepidodendron:blocks/calamites_leaves",

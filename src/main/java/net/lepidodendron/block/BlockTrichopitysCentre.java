@@ -3,6 +3,7 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemTrichopitysFruit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -36,7 +37,7 @@ public class BlockTrichopitysCentre extends ElementsLepidodendronMod.ModElement 
 	@GameRegistry.ObjectHolder("lepidodendron:trichopitys_centre")
 	public static final Block block = null;
 	public BlockTrichopitysCentre(ElementsLepidodendronMod instance) {
-		super(instance, 287);
+		super(instance, LepidodendronSorter.trichopitys_centre);
 	}
 
 	@Override

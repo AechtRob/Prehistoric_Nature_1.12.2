@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockTrapDoor;
 import net.minecraft.block.SoundType;
@@ -25,7 +26,7 @@ public class BlockGangamopterisTrapdoor extends ElementsLepidodendronMod.ModElem
 	@GameRegistry.ObjectHolder("lepidodendron:gangamopteris_trapdoor")
 	public static final Block block = null;
 	public BlockGangamopterisTrapdoor(ElementsLepidodendronMod instance) {
-		super(instance, 36);
+		super(instance, LepidodendronSorter.gangamopteris_trapdoor);
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public class BlockGangamopterisTrapdoor extends ElementsLepidodendronMod.ModElem
 			setResistance(3F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 
 		//@Override

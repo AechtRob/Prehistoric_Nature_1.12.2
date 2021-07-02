@@ -1,8 +1,0 @@
-{
-  "variants": {
-    "normal": [
-      {"model": "lepidodendron:spiny_cycad_shoot_top" },
-      {"model": "lepidodendron:spiny_cycad_shoot_top_var" }
-    ]
-  }
-}

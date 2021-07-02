@@ -2,9 +2,9 @@
 package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraAmmonite_Cylolobus;
-import net.lepidodendron.entity.EntityPrehistoricFloraAmmonite_Dactylioceras;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -35,7 +35,7 @@ public class ItemNautiloidEggsCylolobus extends ElementsLepidodendronMod.ModElem
 	@GameRegistry.ObjectHolder("lepidodendron:eggs_cylolobus")
 	public static final Item block = null;
 	public ItemNautiloidEggsCylolobus(ElementsLepidodendronMod instance) {
-		super(instance, 786);
+		super(instance, LepidodendronSorter.eggs_cylolobus);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class ItemNautiloidEggsCylolobus extends ElementsLepidodendronMod.ModElem
 		public ItemCustom() {
 			setTranslationKey("pf_eggs_cylolobus");
 			setRegistryName("eggs_cylolobus");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)

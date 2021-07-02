@@ -1,7 +1,5 @@
 package net.lepidodendron.entity.util;
 
-import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.entity.EntityPrehistoricFloraHibbertopterus;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;

@@ -4,10 +4,13 @@ package net.lepidodendron.block;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemGreenFilamentousAlgaeItem;
 import net.lepidodendron.world.FilamentousAlgaeGenerator;
-import net.lepidodendron.world.TmesipterisGenerator;
-import net.minecraft.block.*;
+import net.minecraft.block.Block;
+import net.minecraft.block.BlockLilyPad;
+import net.minecraft.block.IGrowable;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -31,7 +34,6 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -42,7 +44,7 @@ public class BlockGreenFilamentousAlgae extends ElementsLepidodendronMod.ModElem
 	@GameRegistry.ObjectHolder("lepidodendron:green_filamentous_algae")
 	public static final Block block = null;
 	public BlockGreenFilamentousAlgae(ElementsLepidodendronMod instance) {
-		super(instance, 643);
+		super(instance, LepidodendronSorter.green_filamentous_algae);
 	}
 
 	@Override
@@ -291,7 +293,9 @@ public class BlockGreenFilamentousAlgae extends ElementsLepidodendronMod.ModElem
 	        {
 	            IBlockState iblockstate = worldIn.getBlockState(pos.down());
 	            Material material = iblockstate.getMaterial();
-	            return canSurviveAt(worldIn, pos) && (material == Material.WATER && ((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0 || material == Material.ICE);
+	            return canSurviveAt(worldIn, pos) && (material == Material.WATER
+						//&& ((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0
+						|| material == Material.ICE);
 	        }
 	        else
 	        {

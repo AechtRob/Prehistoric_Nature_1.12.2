@@ -5,7 +5,6 @@ import net.ilexiconn.llibrary.client.model.tools.AdvancedModelBase;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelRenderer;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
 import net.lepidodendron.entity.EntityPrehistoricFloraAmphibamus;
-import net.lepidodendron.entity.EntityPrehistoricFloraIchthyostega;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 

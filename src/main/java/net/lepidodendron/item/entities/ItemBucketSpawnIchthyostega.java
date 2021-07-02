@@ -3,8 +3,9 @@ package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.block.BlockAmphibianSpawnIchthyostegaPlaceable;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
@@ -42,7 +43,7 @@ public class ItemBucketSpawnIchthyostega extends ElementsLepidodendronMod.ModEle
 	public static final Item block = null;
 
 	public ItemBucketSpawnIchthyostega(ElementsLepidodendronMod instance) {
-		super(instance, 786);
+		super(instance, LepidodendronSorter.ichthyostega_spawn_bucket);
 	}
 
 	@Override
@@ -61,7 +62,7 @@ public class ItemBucketSpawnIchthyostega extends ElementsLepidodendronMod.ModEle
 			setTranslationKey("pf_ichthyostega_spawn_bucket");
 			setRegistryName("ichthyostega_spawn_bucket");
 			maxStackSize = 1;
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
@@ -191,8 +192,8 @@ public class ItemBucketSpawnIchthyostega extends ElementsLepidodendronMod.ModEle
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Amphibian");
-				tooltip.add("Periods: Carboniferous");
+				tooltip.add("Type: Fish/Stem-Amphibian");
+				tooltip.add("Periods: Devonian");
 				tooltip.add("Habitat: Swamps, rivers");
 				super.addInformation(stack, player, tooltip, advanced);
 			}

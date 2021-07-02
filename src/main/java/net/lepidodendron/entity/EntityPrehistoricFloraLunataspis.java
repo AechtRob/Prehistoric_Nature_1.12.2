@@ -33,7 +33,7 @@ public class EntityPrehistoricFloraLunataspis extends EntityPrehistoricFloraTril
 
 	public EntityPrehistoricFloraLunataspis(World world) {
 		super(world);
-		setSize(0.5F, 0.3F);
+		setSize(0.3F, 0.2F);
 		experienceValue = 0;
 		this.isImmuneToFire = false;
 		setNoAI(!true);

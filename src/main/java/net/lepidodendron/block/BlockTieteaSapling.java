@@ -3,7 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.procedure.ProcedureWorldGenTietea;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -41,7 +42,7 @@ public class BlockTieteaSapling extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:tietea_sapling")
 	public static final Block block = null;
 	public BlockTieteaSapling(ElementsLepidodendronMod instance) {
-		super(instance, 286);
+		super(instance, LepidodendronSorter.tietea_sapling);
 	}
 
 	@Override
@@ -63,7 +64,7 @@ public class BlockTieteaSapling extends ElementsLepidodendronMod.ModElement {
 		public BlockCustom() {
 			super(Material.PLANTS);
 			setSoundType(SoundType.PLANT);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			setHardness(0.2F);
         	setResistance(1F);
 			setTranslationKey("pf_tietea_sapling");

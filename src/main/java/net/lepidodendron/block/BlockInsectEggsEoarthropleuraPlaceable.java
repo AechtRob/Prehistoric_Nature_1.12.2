@@ -3,9 +3,9 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraEoarthropleura;
-import net.lepidodendron.entity.EntityPrehistoricFloraPneumodesmus;
 import net.lepidodendron.item.ItemPhial;
 import net.lepidodendron.item.ItemPhialEggsEoarthropleura;
 import net.minecraft.block.Block;
@@ -40,7 +40,7 @@ public class BlockInsectEggsEoarthropleuraPlaceable extends ElementsLepidodendro
 	@GameRegistry.ObjectHolder("lepidodendron:insect_eggs_eoarthropleura")
 	public static final Block block = null;
 	public BlockInsectEggsEoarthropleuraPlaceable(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.insect_eggs_eoarthropleura);
 	}
 
 	@Override
@@ -60,7 +60,7 @@ public class BlockInsectEggsEoarthropleuraPlaceable extends ElementsLepidodendro
 		public BlockCustom() {
 			setTranslationKey("pf_insect_eggs_eoarthropleura");
 			this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		@Override

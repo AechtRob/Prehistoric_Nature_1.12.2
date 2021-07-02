@@ -336,5 +336,61 @@
         "stream": false
       }
     ]
+  },
+
+
+
+
+  "trigonotarbid_idle": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:trigonotarbid_living01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:trigonotarbid_living02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:trigonotarbid_living03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:trigonotarbid_living04",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:trigonotarbid_living05",
+        "stream": false
+      }
+    ]
+  },
+  "trigonotarbid_hurt": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:trigonotarbid_hurt01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:trigonotarbid_hurt02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:trigonotarbid_hurt03",
+        "stream": false
+      }
+    ]
+  },
+  "trigonotarbid_death": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:trigonotarbid_death",
+        "stream": false
+      }
+    ]
   }
+
 }

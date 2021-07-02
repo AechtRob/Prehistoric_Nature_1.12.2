@@ -1,7 +1,7 @@
 {
 	"parent": "lepidodendron:block/cube_noao",
     "textures": {
-        "particle": "lepidodendron:blocks/green_seaweed_1",
+        "particle": "lepidodendron:items/green_seaweed_inventory",
         "texture1": "lepidodendron:blocks/seaweed_1_anim",
         "texture2": "lepidodendron:blocks/seaweed_anim" 
     },

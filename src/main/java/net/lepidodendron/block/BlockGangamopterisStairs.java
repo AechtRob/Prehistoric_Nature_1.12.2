@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.SoundType;
@@ -26,7 +27,7 @@ public class BlockGangamopterisStairs extends ElementsLepidodendronMod.ModElemen
 	@GameRegistry.ObjectHolder("lepidodendron:gangamopteris_stairs")
 	public static final Block block = null;
 	public BlockGangamopterisStairs(ElementsLepidodendronMod instance) {
-		super(instance, 34);
+		super(instance, LepidodendronSorter.gangamopteris_stairs);
 	}
 
 	@Override
@@ -51,7 +52,7 @@ public class BlockGangamopterisStairs extends ElementsLepidodendronMod.ModElemen
 			setResistance(3F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 
 		//@Override

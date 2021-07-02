@@ -3,7 +3,6 @@ package net.lepidodendron.entity.ai;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraEurypteridBase;
-import net.lepidodendron.entity.base.EntityPrehistoricFloraEurypteridBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.pathfinding.Path;
@@ -65,7 +64,7 @@ public class EurypteridWanderBottomDweller extends AnimationAI<EntityPrehistoric
                 BlockPos vec3 = this.findWaterTarget();
                 if (vec3 != null) {
                     this.PrehistoricFloraEurypteridBase.getNavigator().tryMoveToXYZ(vec3.getX() + 0.5D, Math.floor(vec3.getY())-1D  , vec3.getZ() + 0.5D, 1.0);
-
+                    //System.err.println("Movetotarget: " + vec3.getX() + " " + vec3.getY() + " " + vec3.getZ());
                     return true;
                 }
             }
@@ -114,8 +113,10 @@ public class EurypteridWanderBottomDweller extends AnimationAI<EntityPrehistoric
                     }
                 }
 
+                //System.err.println("Path to target " + this.PrehistoricFloraEurypteridBase.isDirectPathBetweenPoints(this.PrehistoricFloraEurypteridBase.getPositionVector(), new Vec3d(randPos.getX() + 0.5, randPos.getY() + 0.5, randPos.getZ() + 0.5)));
                 //System.err.println("Target " + randPos.getX() + " " + randPos.getY() + " " + randPos.getZ());
                 if (this.PrehistoricFloraEurypteridBase.world.getBlockState(randPos).getMaterial() == Material.WATER && this.PrehistoricFloraEurypteridBase.isDirectPathBetweenPoints(this.PrehistoricFloraEurypteridBase.getPositionVector(), new Vec3d(randPos.getX() + 0.5, randPos.getY() + 0.5, randPos.getZ() + 0.5))) {
+                    //System.err.println("Movetotarget1: " + randPos.getX() + " " + randPos.getY() + " " + randPos.getZ());
                     return randPos;
                 }
             }
@@ -123,9 +124,11 @@ public class EurypteridWanderBottomDweller extends AnimationAI<EntityPrehistoric
             BlockPos blockpos1;
             blockpos1 = new BlockPos(this.PrehistoricFloraEurypteridBase.getAttackTarget());
             if (this.PrehistoricFloraEurypteridBase.world.getBlockState(blockpos1).getMaterial() == Material.WATER) {
+                //System.err.println("Movetotarget1: " + blockpos1.getX() + " " + blockpos1.getY() + " " + blockpos1.getZ());
                 return blockpos1;
             }
         }
+        //System.err.println("Returning null target");
         return null;
     }
 }

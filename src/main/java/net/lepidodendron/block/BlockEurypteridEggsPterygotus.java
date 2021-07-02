@@ -3,6 +3,7 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemPhial;
 import net.lepidodendron.item.ItemPhialEggsPterygotus;
 import net.lepidodendron.world.MobSpawnGenerator;
@@ -34,7 +35,7 @@ public class BlockEurypteridEggsPterygotus extends ElementsLepidodendronMod.ModE
 	@GameRegistry.ObjectHolder("lepidodendron:eurypterid_eggs_pterygotus_worldgen")
 	public static final Block block = null;
 	public BlockEurypteridEggsPterygotus(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.eurypterid_eggs_pterygotus_worldgen);
 	}
 
 	@Override

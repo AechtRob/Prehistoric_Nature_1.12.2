@@ -1,24 +1,14 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.EnumFacing;
+import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.block.*;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.tileentity.TileEntity;
-
-import net.lepidodendron.block.BlockArchaeopterisLeaves;
-import net.lepidodendron.block.BlockArchaeopterisLeaves2;
-import net.lepidodendron.block.BlockArchaeopterisLeaves3;
-import net.lepidodendron.block.BlockArchaeopterisLeaves4;
-import net.lepidodendron.block.BlockArchaeopterisLeavesSmall;
-import net.lepidodendron.block.BlockArchaeopterisBranch;
-import net.lepidodendron.block.BlockArchaeopterisLog;
-import net.lepidodendron.ElementsLepidodendronMod;
-import net.minecraft.client.renderer.EnumFaceDirection;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureWorldGenArchaeopteris extends ElementsLepidodendronMod.ModElement {
@@ -45,14 +35,20 @@ public class ProcedureWorldGenArchaeopteris extends ElementsLepidodendronMod.Mod
 			System.err.println("Failed to load dependency world for procedure WorldGenArchaeopteris!");
 			return;
 		}
+		if (dependencies.get("SaplingSpawn") == null) {
+			System.err.println("Failed to load dependency SaplingSpawn for procedure WorldGenArchaeopteris!");
+			return;
+		}
 		int x = (int) dependencies.get("x");
 		int y = (int) dependencies.get("y");
 		int z = (int) dependencies.get("z");
 		World world = (World) dependencies.get("world");
+		boolean SaplingSpawn = (boolean) dependencies.get("SaplingSpawn");
 		int TrunkHeight = 0;
 		int counter = 0;
 		int yy = y;
-		
+
+		//System.err.println("Spawning tree: " + x + " " + y + " " + z);
 
 		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))
 			) {			
@@ -445,8 +441,11 @@ public class ProcedureWorldGenArchaeopteris extends ElementsLepidodendronMod.Mod
 			if (block.canBeReplacedByLeaves(world.getBlockState(new BlockPos((int) x, (int) y + TrunkHeight + 1, (int) z)), world, new BlockPos((int) x, (int) y + TrunkHeight + 1, (int) z))) {
 				world.setBlockState(new BlockPos((int) x, (int) y + TrunkHeight + 1, (int) z), BlockArchaeopterisLeaves.block.getDefaultState().withProperty(FACING, EnumFacing.UP), 3);
 			}
+
+			ProcedureSpawnXenocladia.executeProcedure(x, (int) dependencies.get("y"), z, world, LepidodendronConfig.genXenocladiaArchaeopteris, SaplingSpawn);
+
 		}
-			
+
 	}
 
 	public static void Leaves(int x, int y, int z, World world, EnumFacing facing) {
@@ -514,6 +513,7 @@ public class ProcedureWorldGenArchaeopteris extends ElementsLepidodendronMod.Mod
 				world.setBlockState(pos.west(3), BlockArchaeopterisLeaves4.block.getDefaultState().withProperty(FACING,facing), 3);
 			}
 		}
+
 	}
 
 	public static void LeavesSmall(int x, int y, int z, World world, EnumFacing facing) {

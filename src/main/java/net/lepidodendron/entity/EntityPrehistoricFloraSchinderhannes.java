@@ -91,7 +91,7 @@ public class EntityPrehistoricFloraSchinderhannes extends EntityPrehistoricFlora
 
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute() {
-		return EnumCreatureAttribute.UNDEFINED;
+		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
 	@Override

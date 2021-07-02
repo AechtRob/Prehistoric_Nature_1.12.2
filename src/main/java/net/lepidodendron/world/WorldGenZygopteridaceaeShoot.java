@@ -1,6 +1,5 @@
 package net.lepidodendron.world;
 
-import net.lepidodendron.block.BlockDicksoniaLeavesPlaceable;
 import net.lepidodendron.block.BlockZygopteridaceaeLeavesPlaceable;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;

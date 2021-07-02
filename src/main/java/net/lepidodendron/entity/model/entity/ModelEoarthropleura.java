@@ -6,7 +6,6 @@ import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
-import net.minecraft.entity.ai.EntityMoveHelper;
 
 public class ModelEoarthropleura extends AdvancedModelBase {
     private final AdvancedModelRenderer body;

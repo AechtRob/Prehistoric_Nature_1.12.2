@@ -3,15 +3,14 @@ package net.lepidodendron.world.biome;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.block.*;
+import net.lepidodendron.block.BlockCordaitesLog;
+import net.lepidodendron.block.BlockPrehistoricGroundLush;
+import net.lepidodendron.block.BlockWalchiaLog;
 import net.lepidodendron.world.*;
 import net.minecraft.block.BlockDoublePlant;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.command.ICommandSender;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -97,6 +96,7 @@ public class BiomePermianWetlands extends ElementsLepidodendronMod.ModElement {
 		protected static final WorldGenLepidodendronTree LEPIDODENDRON_TREE = new WorldGenLepidodendronTree(false);
 		protected static final WorldGenSigillaria SIGILLARIA_TREE = new WorldGenSigillaria(false);
 		protected static final WorldGenWalchiaTree WALCHIA_TREE = new WorldGenWalchiaTree(false);
+		protected static final WorldGenZygopterisTree ZYGOPTERIS_TREE = new WorldGenZygopterisTree(false);
 		protected static final WorldGenUtrechtia UTRECHTIA_GENERATOR = new WorldGenUtrechtia();
 		protected static final WorldGenTietea TIETEA = new WorldGenTietea(false);
 		protected static final WorldGenCordaitesTree CORDAITES_TREE = new WorldGenCordaitesTree(false);
@@ -130,7 +130,7 @@ public class BiomePermianWetlands extends ElementsLepidodendronMod.ModElement {
 	       		case 4 :
 	    			return TIETEA;
 	       		case 5 :
-	    			return WALCHIA_TREE;
+	    			return ZYGOPTERIS_TREE;
 				case 6 :
 					return SIGILLARIA_TREE;
 				case 7 :

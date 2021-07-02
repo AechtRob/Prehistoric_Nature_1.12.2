@@ -2,18 +2,11 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.MobEffects;
-import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.PotionEffect;
-import net.minecraft.util.DamageSource;
-import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -26,7 +19,7 @@ public class ItemPalaeognetaleanaSeed extends ElementsLepidodendronMod.ModElemen
 	public static final Item block = null;
 
 	public ItemPalaeognetaleanaSeed(ElementsLepidodendronMod instance) {
-		super(instance, 1191);
+		super(instance, LepidodendronSorter.palaeognetaleana_seed);
 	}
 
 	@Override
@@ -46,7 +39,7 @@ public class ItemPalaeognetaleanaSeed extends ElementsLepidodendronMod.ModElemen
 			setTranslationKey("pf_palaeognetaleana_seed");
 			setRegistryName("palaeognetaleana_seed");
 			setAlwaysEdible();
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			setMaxStackSize(64);
 		}
 

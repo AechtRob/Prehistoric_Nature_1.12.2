@@ -87,7 +87,7 @@ public class EntityPrehistoricFloraTerataspis extends EntityPrehistoricFloraTril
 
 	@Override
 	public EnumCreatureAttribute getCreatureAttribute() {
-		return EnumCreatureAttribute.UNDEFINED;
+		return EnumCreatureAttribute.ARTHROPOD;
 	}
 
 	@Override

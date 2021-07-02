@@ -4,8 +4,7 @@ import net.ilexiconn.llibrary.client.model.ModelAnimator;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelBase;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelRenderer;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
-import net.lepidodendron.entity.EntityPrehistoricFloraAmphibamus;
-import net.lepidodendron.entity.EntityPrehistoricFloraMixopterus;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
@@ -241,6 +240,11 @@ public class ModelMixopterus extends AdvancedModelBase {
         this.resetToDefaultPose();
         this.carapace.offsetY = 1.0F;
 
+        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
+        float speedMultiplier = 1F;
+        if (ee.isHunting()){
+            speedMultiplier = 1.5F;
+        }
         AdvancedModelRenderer[] fishTail = {this.tail, this.tail2, this.tail3, this.tail4, this.tail5};
         AdvancedModelRenderer[] fishBody = {this.body, this.body2, this.body3, this.body4, this.tail, this.tail2, this.tail3, this.tail4, this.tail5};
         AdvancedModelRenderer[] fishfinL = {this.l5L};
@@ -252,7 +256,7 @@ public class ModelMixopterus extends AdvancedModelBase {
         this.swing(l1L, 0.4F, 0.2F, false, 0, -0.1F, f2, 0.8F);
         this.swing(l1R, 0.4F, -0.2F, false, 0, 0.1F, f2, 0.8F);
 
-        float speed = 0.4F;
+        float speed = 0.4F * speedMultiplier;
         float tailHdegree = 0.0F;
         float paddleVdegree = 0.4F;
         float paddleHdegree = 0.4F;
@@ -272,7 +276,7 @@ public class ModelMixopterus extends AdvancedModelBase {
 
         if (isAtBottom) {
             //System.err.println("Animation at bottom");
-            speed = 0.15F;
+            speed = 0.15F * speedMultiplier;
             tailHdegree = 0.4F;
             tailSwing = 0.25F;
             paddleVdegree = 0.1F;
@@ -330,7 +334,7 @@ public class ModelMixopterus extends AdvancedModelBase {
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        EntityPrehistoricFloraMixopterus e = (EntityPrehistoricFloraMixopterus) entity;
+        EntityPrehistoricFloraAgeableBase e = (EntityPrehistoricFloraAgeableBase) entity;
         animator.update(entity);
         this.resetToDefaultPose();
         setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);

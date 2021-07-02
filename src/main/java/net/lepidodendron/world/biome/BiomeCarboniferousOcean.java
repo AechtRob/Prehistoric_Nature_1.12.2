@@ -1,44 +1,27 @@
 
 package net.lepidodendron.world.biome;
 
-import net.lepidodendron.world.*;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.world.ColorizerFoliage;
-import net.minecraft.world.ColorizerGrass;
-import net.minecraftforge.fml.common.registry.GameRegistry;
-import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.common.BiomeDictionary;
-
-import net.minecraft.server.MinecraftServer;
-import net.minecraft.command.ICommandSender;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.lepidodendron.LepidodendronConfig;
-import net.minecraft.block.material.Material;
-
-import net.minecraft.world.gen.feature.WorldGenAbstractTree;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.block.properties.PropertyEnum;
-
-
-import net.lepidodendron.block.BlockPrehistoricGroundLush;
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.block.BlockSigillariaLog;
-import net.lepidodendron.block.BlockCalamitesLog;
-import net.lepidodendron.block.BlockWoodenLog;
-import net.lepidodendron.block.BlockDiaphorodendronLog;
-import net.lepidodendron.block.BlockBothrodendronLog;
-
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.block.*;
+import net.lepidodendron.world.*;
 import net.minecraft.block.BlockDoublePlant;
-
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.entity.Entity;
+import net.minecraft.init.Blocks;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.gen.feature.WorldGenAbstractTree;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.registry.EntityEntry;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
+import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-
 
 import java.util.Random;
 
@@ -77,7 +60,8 @@ public class BiomeCarboniferousOcean extends ElementsLepidodendronMod.ModElement
 			decorator.reedsPerChunk = 0;
 			decorator.cactiPerChunk = 0;
 			decorator.sandPatchesPerChunk = 0;
-			decorator.gravelPatchesPerChunk = 30;
+			decorator.gravelPatchesPerChunk = 0;
+			decorator.clayPerChunk = 0;
 			this.spawnableMonsterList.clear();
 			this.spawnableCreatureList.clear();
 			this.spawnableWaterCreatureList.clear();
@@ -121,6 +105,7 @@ public class BiomeCarboniferousOcean extends ElementsLepidodendronMod.ModElement
 		protected static final WorldGenStauropteris STAUROPTERIS_GENERATOR = new WorldGenStauropteris();
 		protected static final WorldGenSphenopteris SPHENOPTERIS_GENERATOR = new WorldGenSphenopteris();
 		protected static final WorldGenMedullosales MEDULLOSALES_GENERATOR = new WorldGenMedullosales();
+		protected static final WorldGenRufloria RUFLORIA_GENERATOR = new WorldGenRufloria();
 		protected static final WorldGenOmphalophloios OMPHALOPHLOIOS_GENERATOR = new WorldGenOmphalophloios();
 		protected static final WorldGenAncientMoss ANCIENT_MOSS_GENERATOR = new WorldGenAncientMoss();
 		protected static final WorldGenSelaginella SELAGINELLA_GENERATOR = new WorldGenSelaginella();
@@ -267,6 +252,17 @@ public class BiomeCarboniferousOcean extends ElementsLepidodendronMod.ModElement
 	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
 	            MEDULLOSALES_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int i = 0; i < 4; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					if ((pos.getY() + l) > (worldIn.getSeaLevel() + 12)) {
+						RUFLORIA_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+					}
+				}
 	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
 	        for (int i = 0; i < 50; ++i)
 	        {

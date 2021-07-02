@@ -2,7 +2,8 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -18,7 +19,7 @@ public class ItemGangamopterisSeeds extends ElementsLepidodendronMod.ModElement 
 	@GameRegistry.ObjectHolder("lepidodendron:gangamopteris_seeds")
 	public static final Item block = null;
 	public ItemGangamopterisSeeds(ElementsLepidodendronMod instance) {
-		super(instance, 960);
+		super(instance, LepidodendronSorter.gangamopteris_seeds);
 	}
 
 	@Override
@@ -37,7 +38,7 @@ public class ItemGangamopterisSeeds extends ElementsLepidodendronMod.ModElement 
 			maxStackSize = 64;
 			setTranslationKey("pf_gangamopteris_seeds");
 			setRegistryName("gangamopteris_seeds");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 
 		@Override

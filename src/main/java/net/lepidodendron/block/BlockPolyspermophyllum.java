@@ -3,7 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.item.ItemPolyspermophyllumFruit;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
@@ -42,7 +43,7 @@ public class BlockPolyspermophyllum extends ElementsLepidodendronMod.ModElement 
 	@GameRegistry.ObjectHolder("lepidodendron:polyspermophyllum")
 	public static final Block block = null;
 	public BlockPolyspermophyllum(ElementsLepidodendronMod instance) {
-		super(instance, 287);
+		super(instance, LepidodendronSorter.polyspermophyllum);
 	}
 
 	@Override
@@ -68,7 +69,7 @@ public class BlockPolyspermophyllum extends ElementsLepidodendronMod.ModElement 
 			setResistance(0.2F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, false));
 		}
 

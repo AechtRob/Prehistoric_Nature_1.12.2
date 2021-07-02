@@ -1,13 +1,10 @@
 package net.lepidodendron.entity.util;
 
 import com.google.common.collect.Sets;
-import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.entity.EntityPrehistoricFloraHibbertopterus;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAmphibianBase;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.init.Blocks;
 import net.minecraft.pathfinding.NodeProcessor;

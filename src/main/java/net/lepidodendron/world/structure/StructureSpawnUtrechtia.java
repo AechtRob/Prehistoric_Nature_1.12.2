@@ -1,25 +1,22 @@
 
 package net.lepidodendron.world.structure;
 
-import net.minecraft.world.gen.IChunkGenerator;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.biome.Biome;
-import net.minecraft.world.World;
-import net.minecraft.util.math.BlockPos;
-
-import net.lepidodendron.procedure.ProcedureWorldGenUtrechtia;
 import net.lepidodendron.ElementsLepidodendronMod;
-
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraft.block.material.Material;
-import net.minecraft.util.EnumFacing;
-
-import net.lepidodendron.block.BlockUtrechtiaLeavesTop;
 import net.lepidodendron.block.BlockUtrechtiaLeavesPlaceable;
 import net.lepidodendron.block.BlockUtrechtiaLeavesSmallPlaceable;
+import net.lepidodendron.block.BlockUtrechtiaLeavesTop;
 import net.lepidodendron.procedure.ProcedureTreeLog;
+import net.lepidodendron.procedure.ProcedureWorldGenUtrechtia;
+import net.minecraft.block.material.Material;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.common.BiomeDictionary;
 
 import java.util.Random;
 

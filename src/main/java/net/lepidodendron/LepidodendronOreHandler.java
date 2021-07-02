@@ -2,8 +2,8 @@ package net.lepidodendron;
 
 import net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable;
 import net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.eventhandler.Event;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 
 public class LepidodendronOreHandler {

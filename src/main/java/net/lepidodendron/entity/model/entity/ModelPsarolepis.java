@@ -4,7 +4,7 @@ import net.ilexiconn.llibrary.client.model.ModelAnimator;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelBase;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelRenderer;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
-import net.lepidodendron.entity.EntityPrehistoricFloraPsarolepis;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
@@ -275,8 +275,8 @@ public class ModelPsarolepis extends AdvancedModelBase {
         this.resetToDefaultPose();
         this.Body1.offsetY = 1.35F;
 
-        this.Head.rotateAngleY = f3 / (180F / (float) Math.PI);
-        this.Head.rotateAngleX = f4 / (180F / (float) Math.PI);
+        //this.Head.rotateAngleY = f3 / (180F / (float) Math.PI);
+        //this.Head.rotateAngleX = f4 / (180F / (float) Math.PI);
 
         //this.Tailfin.setScale(1.1F, 1.1F, 1.1F);
         AdvancedModelRenderer[] fishTail = {this.Body2, this.Tail1, this.Tail2, this.Tail3, this.Tail4};
@@ -294,14 +294,14 @@ public class ModelPsarolepis extends AdvancedModelBase {
             this.swing(Rightpectoralfin, (float) (speed * 0.75), 0.2F, true, 0, 0, f2, 1);
             if (!e.isInWater()) {
                 this.Body1.rotateAngleZ = (float) Math.toRadians(90);
-                this.Body1.offsetY = 1.25F;
+                this.Body1.offsetY = 1.35F;
                 this.bob(Body1, -speed, 5F, false, f2, 1);
             }
         }
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        EntityPrehistoricFloraPsarolepis e = (EntityPrehistoricFloraPsarolepis) entity;
+        EntityPrehistoricFloraAgeableBase e = (EntityPrehistoricFloraAgeableBase) entity;
         animator.update(entity);
         this.resetToDefaultPose();
         setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);

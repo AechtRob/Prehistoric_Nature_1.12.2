@@ -4,7 +4,7 @@ import net.ilexiconn.llibrary.client.model.ModelAnimator;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelBase;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelRenderer;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
-import net.lepidodendron.entity.EntityPrehistoricFloraJaekelopterus;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
@@ -377,6 +377,11 @@ public class ModelJaekelopterus extends AdvancedModelBase {
         this.resetToDefaultPose();
         this.body.offsetY = 0F;
 
+        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
+        float speedMultiplier = 1F;
+        if (ee.isHunting()){
+            speedMultiplier = 1.5F;
+        }
         AdvancedModelRenderer[] fishBody = {this.tergiteA, this.tergiteA2, this.tergiteA3, this.tergiteA4, this.tergiteB, this.tergiteB, this.tergiteC, this.tergiteD, this.tergiteD2, this.tergiteE, this.tergiteE2, this.tergiteF, this.telson};
         AdvancedModelRenderer[] fishTail = {this.tergiteF, this.telson};
         AdvancedModelRenderer[] fishfinL = {this.legL5};
@@ -386,7 +391,7 @@ public class ModelJaekelopterus extends AdvancedModelBase {
         this.walk(cheliceraL, 0.35F, -0.15F, false, 0, -0.1F, f2, 0.6F);
         this.walk(cheliceraR, 0.35F, 0.15F, false, -1, 0.1F, f2, 0.6F);
 
-        float speed = 0.4F;
+        float speed = 0.4F * speedMultiplier;
         float tailHdegree = 0.0F;
         float paddleVdegree = 0.2F;
         float paddleHdegree = 0.4F;
@@ -406,7 +411,7 @@ public class ModelJaekelopterus extends AdvancedModelBase {
 
         if (isAtBottom) {
             //System.err.println("Animation at bottom");
-            speed = 0.15F;
+            speed = 0.15F * speedMultiplier;
             tailHdegree = 0.4F;
             tailSwing = 0.25F;
             paddleVdegree = 0.1F;
@@ -500,7 +505,7 @@ public class ModelJaekelopterus extends AdvancedModelBase {
     }
 
     public void animate(IAnimatedEntity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        EntityPrehistoricFloraJaekelopterus e = (EntityPrehistoricFloraJaekelopterus) entity;
+        EntityPrehistoricFloraAgeableBase e = (EntityPrehistoricFloraAgeableBase) entity;
         animator.update(entity);
         this.resetToDefaultPose();
         setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);

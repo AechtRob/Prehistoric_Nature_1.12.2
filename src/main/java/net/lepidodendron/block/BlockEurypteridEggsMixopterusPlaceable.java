@@ -3,7 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraMixopterus;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.item.ItemPhial;
@@ -41,7 +42,7 @@ public class BlockEurypteridEggsMixopterusPlaceable extends ElementsLepidodendro
 	@GameRegistry.ObjectHolder("lepidodendron:eurypterid_eggs_mixopterus")
 	public static final Block block = null;
 	public BlockEurypteridEggsMixopterusPlaceable(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.eurypterid_eggs_mixopterus);
 	}
 
 	@Override
@@ -62,7 +63,7 @@ public class BlockEurypteridEggsMixopterusPlaceable extends ElementsLepidodendro
 		public BlockCustom() {
 			setTranslationKey("pf_eurypterid_eggs_mixopterus");
 			this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		@Override

@@ -2,9 +2,9 @@
 package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraCyrtoceras;
-import net.lepidodendron.entity.EntityPrehistoricFloraOrthoceras;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -35,7 +35,7 @@ public class ItemNautiloidEggsCyrtoceras extends ElementsLepidodendronMod.ModEle
 	@GameRegistry.ObjectHolder("lepidodendron:eggs_cyrtoceras")
 	public static final Item block = null;
 	public ItemNautiloidEggsCyrtoceras(ElementsLepidodendronMod instance) {
-		super(instance, 786);
+		super(instance, LepidodendronSorter.eggs_cyrtoceras);
 	}
 
 	@Override
@@ -52,7 +52,7 @@ public class ItemNautiloidEggsCyrtoceras extends ElementsLepidodendronMod.ModEle
 		public ItemCustom() {
 			setTranslationKey("pf_eggs_cyrtoceras");
 			setRegistryName("eggs_cyrtoceras");
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)

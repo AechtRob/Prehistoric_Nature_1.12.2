@@ -3,7 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.procedure.ProcedureWorldGenZygopteridaceae;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBush;
@@ -41,7 +42,7 @@ public class BlockZygopteridaceaeSapling extends ElementsLepidodendronMod.ModEle
 	@GameRegistry.ObjectHolder("lepidodendron:zygopteridaceae_sapling")
 	public static final Block block = null;
 	public BlockZygopteridaceaeSapling(ElementsLepidodendronMod instance) {
-		super(instance, 286);
+		super(instance, LepidodendronSorter.zygopteridaceae_sapling);
 	}
 
 	@Override
@@ -63,7 +64,7 @@ public class BlockZygopteridaceaeSapling extends ElementsLepidodendronMod.ModEle
 		public BlockCustom() {
 			super(Material.PLANTS);
 			setSoundType(SoundType.PLANT);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			setHardness(0.2F);
         	setResistance(1F);
 			setTranslationKey("pf_zygopteridaceae_sapling");
@@ -160,7 +161,7 @@ public class BlockZygopteridaceaeSapling extends ElementsLepidodendronMod.ModEle
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Tree-fern");
-				tooltip.add("Periods: late-Devonian - Carboniferous - Permian - Triassic - Jurassic - Cretaceous]");
+				tooltip.add("Periods: Carboniferous");
 				tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }

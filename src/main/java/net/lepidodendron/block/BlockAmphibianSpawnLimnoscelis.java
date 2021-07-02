@@ -3,6 +3,7 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.entities.ItemBucketSpawnLimnoscelis;
 import net.lepidodendron.world.MobSpawnGenerator;
 import net.minecraft.block.Block;
@@ -13,7 +14,10 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumHand;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -33,7 +37,7 @@ public class BlockAmphibianSpawnLimnoscelis extends ElementsLepidodendronMod.Mod
 	@GameRegistry.ObjectHolder("lepidodendron:amphibian_spawn_limnoscelis_worldgen")
 	public static final Block block = null;
 	public BlockAmphibianSpawnLimnoscelis(ElementsLepidodendronMod instance) {
-		super(instance, 355);
+		super(instance, LepidodendronSorter.amphibian_spawn_limnoscelis);
 	}
 
 	@Override

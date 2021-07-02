@@ -2,7 +2,8 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.BlockPlanks.EnumType;
@@ -25,7 +26,7 @@ public class BlockUtrechtiaFenceGate extends ElementsLepidodendronMod.ModElement
 	@GameRegistry.ObjectHolder("lepidodendron:utrechtia_fence_gate_thin")
 	public static final Block block = null;
 	public BlockUtrechtiaFenceGate(ElementsLepidodendronMod instance) {
-		super(instance, 354);
+		super(instance, LepidodendronSorter.utrechtia_fence_gate_thin);
 	}
 
 	@Override
@@ -50,7 +51,7 @@ public class BlockUtrechtiaFenceGate extends ElementsLepidodendronMod.ModElement
 			setResistance(3F);
 			setLightLevel(0F);
 			setLightOpacity(0);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 
 		@Override

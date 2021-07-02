@@ -140,7 +140,6 @@ public class EntityPrehistoricFloraFurcacauda extends EntityPrehistoricFloraFish
 		return LepidodendronMod.FURCACAUDA_LOOT;
 	}
 
-
 	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{

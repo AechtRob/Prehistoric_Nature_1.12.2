@@ -1,12 +1,9 @@
 package net.lepidodendron.procedure;
 
-import net.minecraft.world.World;
+import net.lepidodendron.ElementsLepidodendronMod;
 import net.minecraft.block.Block;
 import net.minecraft.util.math.BlockPos;
-
-import net.lepidodendron.ElementsLepidodendronMod;
-
-import java.util.Map;
+import net.minecraft.world.World;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ProcedureTreeLeaf extends ElementsLepidodendronMod.ModElement {

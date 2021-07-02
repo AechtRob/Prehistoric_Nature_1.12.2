@@ -2,7 +2,7 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.item.ItemAgathisDoorItem;
+import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemHymenaeaDoorItem;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDoor;
@@ -31,7 +31,7 @@ public class BlockHymenaeaDoor extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:hymenaea_door")
 	public static final Block block = null;
 	public BlockHymenaeaDoor(ElementsLepidodendronMod instance) {
-		super(instance, 1375);
+		super(instance, LepidodendronSorter.hymenaea_door);
 	}
 
 	@Override

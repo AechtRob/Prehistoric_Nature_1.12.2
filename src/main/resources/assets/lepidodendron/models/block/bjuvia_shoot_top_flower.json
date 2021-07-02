@@ -1,9 +1,0 @@
-{
-"parent":"lepidodendron:block/4x4_8pointedplant",
-"textures":{
-"e":"lepidodendron:blocks/bjuvia_t_flower",
-"w":"lepidodendron:blocks/bjuvia_t_flower",
-"ee":"lepidodendron:blocks/bjuvia_t_e",
-"ww":"lepidodendron:blocks/bjuvia_t_w"
-}
-}

@@ -1,6 +1,5 @@
 package net.lepidodendron.world;
 
-import net.lepidodendron.block.BlockAsteroxylon;
 import net.lepidodendron.block.BlockGlossopterisSapling;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;

@@ -1,7 +1,9 @@
 package net.lepidodendron.procedure;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.block.*;
+import net.lepidodendron.block.BlockNilssoniaLog;
+import net.lepidodendron.block.BlockNilssoniaShoot;
+import net.lepidodendron.block.BlockNilssoniaShootPlaceable;
 import net.minecraft.block.Block;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;

@@ -3,7 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.creativetab.TabLepidodendron;
+import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.IGrowable;
@@ -39,7 +40,7 @@ public class BlockPrehistoricGroundSandPangaean extends ElementsLepidodendronMod
 	@GameRegistry.ObjectHolder("lepidodendron:sandy_prehistoric_ground_cover_pangaean")
 	public static final Block block = null;
 	public BlockPrehistoricGroundSandPangaean(ElementsLepidodendronMod instance) {
-		super(instance, 526);
+		super(instance, LepidodendronSorter.sandy_prehistoric_ground_cover_pangaean);
 	}
 
 	@Override
@@ -64,7 +65,7 @@ public class BlockPrehistoricGroundSandPangaean extends ElementsLepidodendronMod
 			setSoundType(SoundType.SAND);
         	setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
         	setTickRandomly(true);
-			setCreativeTab(TabLepidodendron.tab);
+			setCreativeTab(TabLepidodendronMisc.tab);
 			setHarvestLevel("shovel", 1);
 			setHardness(0.5F);
 			setResistance(0.5F);

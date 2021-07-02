@@ -3,12 +3,13 @@ package net.lepidodendron.entity;
 
 import com.google.common.base.Predicate;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
-import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
-import net.lepidodendron.entity.ai.*;
+import net.lepidodendron.entity.ai.AgeableFishWander;
+import net.lepidodendron.entity.ai.AttackAI;
+import net.lepidodendron.entity.ai.EatFishItemsAI;
+import net.lepidodendron.entity.ai.HuntAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableFishBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
-import net.lepidodendron.item.entities.ItemBucketAcanthodes;
 import net.lepidodendron.item.entities.ItemBucketPsarolepis;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;

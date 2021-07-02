@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.util;
 
 import com.google.common.collect.Sets;
-import net.lepidodendron.entity.base.EntityPrehistoricFloraAmphibianBase;
 import net.minecraft.block.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

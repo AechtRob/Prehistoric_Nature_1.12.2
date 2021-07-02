@@ -1,7 +1,6 @@
 package net.lepidodendron.world.biome;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.LepidodendronConfig;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.command.ICommandSender;
@@ -29,7 +28,7 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
         String mobToSpawn;
         String nbtStr = "";
         int locationID = 1;
-        if (onlyWater) {locationID = 3;}
+        if (onlyWater) {locationID = 4;}
         boolean errFound;
         boolean posCheck;
         int strPos1;
@@ -49,7 +48,7 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
             errFound = false;
             String checkEntity = var2[var4].trim();
             if (onlyWater) {
-                checkEntity = var2[var4].trim() + ":3";
+                checkEntity = var2[var4].trim() + ":4";
             }
 
             strPos1 = 0;
@@ -80,7 +79,7 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                 }
                 else {
                     String locationStr = checkEntity.substring(checkEntity.length()-1, checkEntity.length());
-                    if (!(locationStr.equals((String) "1") || locationStr.equals((String) "2") || locationStr.equals((String) "3"))) {
+                    if (!(locationStr.equals((String) "1") || locationStr.equals((String) "2") || locationStr.equals((String) "3") ||locationStr.equals((String) "4"))) {
                         errFound = true;
                     }
                     else {
@@ -158,6 +157,8 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                     if (l14 > 0) {
                                                         int i18 = rand.nextInt(l14);
 
+                                                        //System.err.println(locationID);
+
                                                         switch (locationID) {
 
                                                             case 1: //Land
@@ -208,7 +209,7 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                                         //System.err.println("block: " + (worldIn.getBlockState(pos1).getBlock()));
                                                                         //System.err.println("topblock: " + topBlock.getBlock());
                                                                         if ((world.getBlockState(pos1).getMaterial() == Material.WATER)
-                                                                                && (world.isAirBlock(pos1.up(3)))
+                                                                                && (world.isAirBlock(pos1.up(3)) || world.getBlockState(pos1.up(3)).getMaterial() == Material.ICE)
                                                                                 && (world.getBlockState(pos1.up()).getMaterial() == Material.WATER)
                                                                                 && (world.getBlockState(pos1.up(2)).getMaterial() == Material.WATER)
                                                                                 && (world.getBlockState(pos1.down()).getMaterial() == Material.WATER)
@@ -248,16 +249,68 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                                         //System.err.println("block: " + (worldIn.getBlockState(pos1).getBlock()));
                                                                         //System.err.println("topblock: " + topBlock.getBlock());
                                                                         if ((world.getBlockState(pos1).getMaterial() == Material.WATER)
-                                                                                && (world.isAirBlock(pos1.up()))
-                                                                                && (pos1.up().getY() >= world.getSeaLevel())
-                                                                                && (world.getBlockState(pos1.down(4)).getMaterial() != Material.WATER)
+                                                                            && (world.isAirBlock(pos1.up()) || world.getBlockState(pos1.up()).getMaterial() == Material.ICE)
+                                                                            && (pos1.up(2).getY() >= world.getSeaLevel())
+                                                                            && (world.getBlockState(pos1.down(4)).getMaterial() != Material.WATER)
                                                                         ) {
                                                                             posCheck = true;
                                                                         }
+
+                                                                        //Code below causes immense lag :/
+                                                                        //Check hitbox size for this location so we don't spawn something in water that is too shallow::
+                                                                        //EntityLivingBase ee = (EntityLivingBase) EntityList.createEntityByIDFromName(new ResourceLocation(mobToSpawn), world);
+                                                                        //double eHeight = ee.getEntityBoundingBox().maxY;
+                                                                        //if (eHeight > 0.6 &&
+                                                                        //   world.getBlockState(pos1.up()).getMaterial() != Material.WATER
+                                                                        //) {
+                                                                        //    posCheck = false;
+                                                                        //}
+
                                                                         int xx = -1;
                                                                         while (xx <= 1 && posCheck) {
                                                                             int zz = -1;
                                                                             while (zz <= 1 && posCheck) {
+                                                                                if (world.getBlockState(pos1.add(xx, 0, zz)).getMaterial() != Material.WATER) {
+                                                                                    posCheck = false;
+                                                                                }
+                                                                                zz = zz + 1;
+                                                                            }
+                                                                            xx = xx + 1;
+                                                                        }
+                                                                    }
+                                                                    i2 = i2 + 1;
+                                                                }
+                                                                break;
+
+                                                            case 4: //In a 5x5 block of water anywhere under sea-level
+                                                                //System.err.println("Case: 4");
+                                                                posCheck = false;
+
+                                                                i2 = 0;
+                                                                while (i2 < 14 && !posCheck) {
+                                                                    k7 = rand.nextInt(16) + 8;
+                                                                    j11 = rand.nextInt(16) + 8;
+
+                                                                    i18 = 1;
+                                                                    while (i18 < 255 && !posCheck) {
+                                                                        i18 = i18 + 1;
+                                                                        BlockPos pos1 = new BlockPos(pos.getX() + k7, i18, pos.getZ() + j11);
+                                                                        //System.err.println("y: " + i18);
+                                                                        //System.err.println("block: " + (worldIn.getBlockState(pos1).getBlock()));
+                                                                        //System.err.println("topblock: " + topBlock.getBlock());
+                                                                        if ((world.getBlockState(pos1).getMaterial() == Material.WATER)
+                                                                                && (world.getBlockState(pos1.up()).getMaterial() == Material.WATER)
+                                                                                && (world.getBlockState(pos1.up(2)).getMaterial() == Material.WATER)
+                                                                                && (world.getBlockState(pos1.down()).getMaterial() == Material.WATER)
+                                                                                && (world.getBlockState(pos1.down(2)).getMaterial() == Material.WATER)
+                                                                                && (pos1.getY() < (world.getSeaLevel() - 2))
+                                                                        ) {
+                                                                            posCheck = true;
+                                                                        }
+                                                                        int xx = -2;
+                                                                        while (xx <= 2 && posCheck) {
+                                                                            int zz = -2;
+                                                                            while (zz <= 2 && posCheck) {
                                                                                 if (world.getBlockState(pos1.add(xx, 0, zz)).getMaterial() != Material.WATER) {
                                                                                     posCheck = false;
                                                                                 }
@@ -275,14 +328,14 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                         //System.err.println("Poscheck: " + posCheck);
                                                         //System.err.println("errFound: " + errFound);
                                                         if (posCheck && !errFound) {
-                                                            //System.err.println("Spawning " + mobToSpawn + " at: " + pos.add(k7, i18, j11).getX() + " " + pos.add(k7, i18, j11).getY() + " " + pos.add(k7, i18, j11).getZ());
+                                                            //System.err.println("Spawning " + mobToSpawn + " with locationID " + locationID + " at: " + pos.add(k7, i18, j11).getX() + " " + pos.add(k7, i18, j11).getY() + " " + pos.add(k7, i18, j11).getZ());
                                                             //System.err.println("maxSpawn: " + maxSpawn);
                                                             //System.err.println("weight: " + weight);
                                                             double weighter = 500;
                                                             if (locationID == 2) {
                                                                 weighter = 800;
                                                             }
-                                                            if ((Math.random() * weighter) <= weight) {
+                                                            if ((Math.random() * weighter) <= (double)weight) {
                                                                 //System.err.println("Trying......");
                                                                 int spawnQty = rand.nextInt(maxSpawn) + 1;
                                                                 //System.err.println("spawnQty: " + spawnQty);
@@ -320,7 +373,7 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                                     }
                                                                     //System.err.println("Spawned");
                                                                 }
-                                                                return; //Stop as we have spawned our group in thsi chun now
+                                                                return; //Stop as we have spawned our group in this chunk now
                                                             }
                                                         }
                                                     }
