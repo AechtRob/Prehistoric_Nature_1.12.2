@@ -56,7 +56,8 @@ public class AmphibianWander extends AnimationAI<EntityPrehistoricFloraSwimmingA
             Path path = this.PrehistoricFloraAmphibianBase.getNavigator().getPath();
             if (this.PrehistoricFloraAmphibianBase.isInWater()) {
                 if (!this.PrehistoricFloraAmphibianBase.getNavigator().noPath() && !isDirectPathBetweenPoints(this.PrehistoricFloraAmphibianBase, this.PrehistoricFloraAmphibianBase.getPositionVector(), new Vec3d(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z)) || path != null && path.getFinalPathPoint() != null && this.PrehistoricFloraAmphibianBase.getDistanceSq(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z) < 3) {
-                    this.PrehistoricFloraAmphibianBase.getNavigator().clearPath();
+                   this.PrehistoricFloraAmphibianBase.getNavigator().clearPath();
+                   //System.err.println("reset path");
                 }
             }
             if (this.PrehistoricFloraAmphibianBase.getNavigator().noPath()) {

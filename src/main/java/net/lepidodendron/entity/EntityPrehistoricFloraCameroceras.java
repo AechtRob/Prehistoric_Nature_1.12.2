@@ -31,8 +31,11 @@ public class EntityPrehistoricFloraCameroceras extends EntityPrehistoricFloraNau
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.1F;
-		maxSize = 1.0F;
+		//minSize = 0.1F;
+		//maxSize = 1.0F;
+		minWidth = 0.1F;
+		maxWidth = 1.0F;
+		maxHeight = 0.99F;
 		maxHealthAgeable = 32;
 	}
 

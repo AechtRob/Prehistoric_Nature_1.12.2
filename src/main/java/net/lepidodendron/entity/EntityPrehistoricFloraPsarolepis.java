@@ -44,8 +44,11 @@ public class EntityPrehistoricFloraPsarolepis extends EntityPrehistoricFloraAgea
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.2F;
-		maxSize = 1.0F;
+		//minSize = 0.2F;
+		//maxSize = 1.0F;
+		minWidth = 0.1F;
+		maxWidth = 0.5F;
+		maxHeight = 0.4F;
 		maxHealthAgeable = 7.0D;
 	}
 

@@ -280,7 +280,11 @@ public class BlockPlantFossil extends ElementsLepidodendronMod.ModElement {
 			new ItemStack(ItemPetrifiedRufloriaSapling.block,1),
 			new ItemStack(ItemPetrifiedXenocladiaSapling.block,1),
 			new ItemStack(ItemPetrifiedZygopterisSapling.block,1),
-			new ItemStack(ItemPetrifiedPitysSapling.block,1)
+			new ItemStack(ItemPetrifiedPitysSapling.block,1),
+			new ItemStack(ItemPetrifiedEremopteris.block,1),
+			new ItemStack(ItemPetrifiedAlliopteris.block,1),
+			new ItemStack(ItemPetrifiedNemejcopteris.block,1),
+			new ItemStack(ItemPetrifiedReticulopteris.block,1)
 		};
 		return stack;
 	}

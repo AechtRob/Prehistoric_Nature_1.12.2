@@ -240,10 +240,10 @@ public class ModelMixopterus extends AdvancedModelBase {
         this.resetToDefaultPose();
         this.carapace.offsetY = 1.0F;
 
-        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
         float speedMultiplier = 1F;
-        if (ee.isHunting()){
-            speedMultiplier = 1.5F;
+        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
+        if (ee.getIsFast()) {
+            speedMultiplier = 1.75F;
         }
         AdvancedModelRenderer[] fishTail = {this.tail, this.tail2, this.tail3, this.tail4, this.tail5};
         AdvancedModelRenderer[] fishBody = {this.body, this.body2, this.body3, this.body4, this.tail, this.tail2, this.tail3, this.tail4, this.tail5};

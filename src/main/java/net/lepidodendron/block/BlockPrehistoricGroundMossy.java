@@ -150,10 +150,8 @@ public class BlockPrehistoricGroundMossy extends ElementsLepidodendronMod.ModEle
 		                        IBlockState iblockstate = worldIn.getBlockState(blockpos.up());
 		                        IBlockState iblockstate1 = worldIn.getBlockState(blockpos);
 		
-		                        if (iblockstate1.getBlock() == Blocks.STONE && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2)
+		                        if (iblockstate1 == Blocks.STONE.getStateFromMeta(0) && worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2)
 		                        {
-
-
 									waterDown = LepidodendronConfig.waterMossVertical;
 									if (waterDown > 6) waterDown = 6;
 									if (waterDown < 0) waterDown = 0;

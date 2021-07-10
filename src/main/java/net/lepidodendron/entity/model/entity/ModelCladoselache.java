@@ -176,12 +176,12 @@ public class ModelCladoselache extends AdvancedModelBase {
 
         this.body.offsetY = 0.4F;
 
-        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
         AdvancedModelRenderer[] fishTail = {this.body3, this.body4, this.body5, this.body6};
 
         float speed = 0.22F;
-        if (ee.isHunting()){
-            speed = 0.55F;
+        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
+        if (ee.getIsFast()) {
+            speed = speed * 3F;
         }
         float still = 1f;
         if (f3 == 0.0F) {
@@ -190,9 +190,6 @@ public class ModelCladoselache extends AdvancedModelBase {
         if (!e.isInWater()) {
             speed = 0.35F;
         }
-
-        //this.head.rotateAngleY += f3 / (180F / (float) Math.PI);
-        //this.head.rotateAngleX += f4 / (180F / (float) Math.PI);
 
         //if (f3 != 0.0F) {this.walk(Jaw, (float) (speed * 1.5), 0.2F, true, 0, 0, f2, 1);}
         if (e.isInWater()) {

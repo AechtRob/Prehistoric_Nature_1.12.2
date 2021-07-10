@@ -26,13 +26,16 @@ public class EntityPrehistoricFloraHibbertopterus extends EntityPrehistoricFlora
 
 	public EntityPrehistoricFloraHibbertopterus(World world) {
 		super(world);
-		setSize(1F, 0.99F);
+		//setSize(1F, 0.99F);
 		experienceValue = 0;
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.2F;
-		maxSize = 1.0F;
+		//minSize = 0.2F;
+		//maxSize = 1.0F;
+		minWidth = 0.1F;
+		maxWidth = 1.0F;
+		maxHeight = 0.99F;
 		maxHealthAgeable = 15.0D;
 	}
 
@@ -51,6 +54,7 @@ public class EntityPrehistoricFloraHibbertopterus extends EntityPrehistoricFlora
 
 	@Override
 	protected float getAISpeedWalkingAmphibian() {
+		//System.err.println("Speed Hibbert: " + (float) Math.min(1F, (this.getAgeScale() * 2F)) * 0.15F);
 		return (float) Math.min(1F, (this.getAgeScale() * 2F)) * 0.15F;
 	}
 

@@ -40,8 +40,11 @@ public class EntityPrehistoricFloraXenacanthus extends EntityPrehistoricFloraAge
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.1F;
-		maxSize = 1.0F;
+		//minSize = 0.1F;
+		//maxSize = 1.0F;
+		minWidth = 0.1F;
+		maxWidth = 0.68F;
+		maxHeight = 0.88F;
 		maxHealthAgeable = 22.0D;
 	}
 
@@ -53,7 +56,7 @@ public class EntityPrehistoricFloraXenacanthus extends EntityPrehistoricFloraAge
 	@Override
 	protected float getAISpeedFish() {
 		float AIspeed = 0.221f;
-		if (this.isHunting()) {
+		if (this.getIsFast()) {
 			AIspeed = AIspeed * 2F;
 		}
 		return AIspeed;

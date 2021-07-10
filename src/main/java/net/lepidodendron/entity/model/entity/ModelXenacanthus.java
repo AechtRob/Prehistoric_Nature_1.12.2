@@ -227,12 +227,12 @@ public class ModelXenacanthus extends AdvancedModelBase {
 
         this.body.offsetY = 0.4F;
 
-        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
         AdvancedModelRenderer[] fishTail = {this.body3, this.body4, this.body5, this.body6, this.body7, this.body8, this.body9, this.body10, this.body11};
 
         float speed = 0.18F;
-        if (ee.isHunting()){
-            speed = 0.45F;
+        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
+        if (ee.getIsFast()) {
+            speed = speed * 3F;
         }
         float still = 1f;
         if (f3 == 0.0F) {

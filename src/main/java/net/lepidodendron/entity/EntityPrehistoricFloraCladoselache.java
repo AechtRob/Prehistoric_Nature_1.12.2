@@ -35,13 +35,16 @@ public class EntityPrehistoricFloraCladoselache extends EntityPrehistoricFloraAg
 
 	public EntityPrehistoricFloraCladoselache(World world) {
 		super(world);
-		setSize(0.85F, 0.85F);
+		//setSize(0.85F, 0.85F);
 		experienceValue = 0;
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.1F;
-		maxSize = 1.0F;
+		//minSize = 0.1F;
+		//maxSize = 1.0F;
+		minWidth = 0.1F;
+		maxWidth = 0.85F;
+		maxHeight = 0.85F;
 		maxHealthAgeable = 22.0D;
 	}
 
@@ -53,7 +56,7 @@ public class EntityPrehistoricFloraCladoselache extends EntityPrehistoricFloraAg
 	@Override
 	protected float getAISpeedFish() {
 		float AIspeed = 0.263f;
-		if (this.isHunting()) {
+		if (this.getIsFast()) {
 			AIspeed = AIspeed * 1.85F;
 		}
 		return AIspeed;

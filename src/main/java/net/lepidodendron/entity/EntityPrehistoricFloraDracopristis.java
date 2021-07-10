@@ -39,8 +39,11 @@ public class EntityPrehistoricFloraDracopristis extends EntityPrehistoricFloraAg
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.1F;
-		maxSize = 1.0F;
+		//minSize = 0.1F;
+		//maxSize = 1.0F;
+		minWidth = 0.1F;
+		maxWidth = 0.9F;
+		maxHeight = 0.9F;
 		maxHealthAgeable = 28.0D;
 	}
 
@@ -52,7 +55,7 @@ public class EntityPrehistoricFloraDracopristis extends EntityPrehistoricFloraAg
 	@Override
 	protected float getAISpeedFish() {
 		float AIspeed = 0.251f;
-		if (this.isHunting()) {
+		if (this.getIsFast()) {
 			AIspeed = AIspeed * 2.2F;
 		}
 		return AIspeed;

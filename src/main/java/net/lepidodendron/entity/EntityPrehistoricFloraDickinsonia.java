@@ -5,7 +5,7 @@ import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.entity.ai.SlitheringWanderBottom;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraSlitheringWaterBase;
-import net.lepidodendron.item.entities.ItemBucketTerataspis;
+import net.lepidodendron.item.entities.ItemBucketDickinsonia;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.player.EntityPlayer;
@@ -82,7 +82,7 @@ public class EntityPrehistoricFloraDickinsonia extends EntityPrehistoricFloraSli
 				player.inventory.clearMatchingItems(new ItemStack(Items.WATER_BUCKET, (int) (1)).getItem(), -1, (int) 1, null);
 				SoundEvent soundevent = SoundEvents.ITEM_BUCKET_FILL;
 				player.getEntityWorld().playSound(player, player.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				ItemStack itemstack1 = new ItemStack(ItemBucketTerataspis.block, (int) (1));
+				ItemStack itemstack1 = new ItemStack(ItemBucketDickinsonia.block, (int) (1));
 				itemstack1.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(player, itemstack1);
 				this.setDead();

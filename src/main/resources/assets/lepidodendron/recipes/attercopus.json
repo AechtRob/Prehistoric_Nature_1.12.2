@@ -1,0 +1,13 @@
+{
+  "group": "lepidodendron",
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "lepidodendron:phial_eggs_attercopus"
+    }
+  ],
+  "result": {
+    "item": "lepidodendron:insect_eggs_attercopus",
+    "count": 1
+  }
+}

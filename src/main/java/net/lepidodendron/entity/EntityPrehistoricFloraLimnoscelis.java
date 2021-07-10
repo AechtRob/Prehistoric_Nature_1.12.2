@@ -44,8 +44,11 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.2F;
-		maxSize = 1.0F;
+		//minSize = 0.2F;
+		//maxSize = 1.0F;
+		minWidth = 0.1F;
+		maxWidth = 0.55F;
+		maxHeight = 0.6F;
 		maxHealthAgeable = 24.0D;
 	}
 

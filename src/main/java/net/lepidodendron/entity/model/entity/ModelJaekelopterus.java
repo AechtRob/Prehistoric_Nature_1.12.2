@@ -377,10 +377,10 @@ public class ModelJaekelopterus extends AdvancedModelBase {
         this.resetToDefaultPose();
         this.body.offsetY = 0F;
 
-        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
         float speedMultiplier = 1F;
-        if (ee.isHunting()){
-            speedMultiplier = 1.5F;
+        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
+        if (ee.getIsFast()) {
+            speedMultiplier = 1.75F;
         }
         AdvancedModelRenderer[] fishBody = {this.tergiteA, this.tergiteA2, this.tergiteA3, this.tergiteA4, this.tergiteB, this.tergiteB, this.tergiteC, this.tergiteD, this.tergiteD2, this.tergiteE, this.tergiteE2, this.tergiteF, this.telson};
         AdvancedModelRenderer[] fishTail = {this.tergiteF, this.telson};

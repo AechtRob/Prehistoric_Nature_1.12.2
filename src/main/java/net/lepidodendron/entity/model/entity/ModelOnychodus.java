@@ -266,12 +266,12 @@ public class ModelOnychodus extends AdvancedModelBase {
 
         this.Body1.offsetY = 1F;
 
-        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
         AdvancedModelRenderer[] fishTail = {this.Body2, this.Tail1, this.Tail2, this.Tail3, this.Tail4};
 
         float speed = 0.25F;
-        if (ee.isHunting()){
-            speed = 0.5F;
+        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
+        if (ee.getIsFast()) {
+            speed = speed * 3F;
         }
         float still = 1f;
         if (f3 == 0.0F) {

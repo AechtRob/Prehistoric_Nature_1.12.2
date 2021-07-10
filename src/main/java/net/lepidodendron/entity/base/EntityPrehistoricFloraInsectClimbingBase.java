@@ -89,7 +89,8 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
             boolean isSolid = false;
 
             Vec3d vec3d = this.getPositionEyes(0);
-            Vec3d vec3d1 = this.getLook(0);
+            //Vec3d vec3d1 = this.getLook(0);
+            Vec3d vec3d1 = this.getForward();
             Vec3d vec3d2 = vec3d.add(vec3d1.x * 1, vec3d1.y * 1, vec3d1.z * 1);
             RayTraceResult rayTrace = world.rayTraceBlocks(vec3d, vec3d2, true);
             if (rayTrace != null && rayTrace.hitVec != null) {
@@ -100,8 +101,12 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
                 }
             }
 
-            this.setBesideClimbableBlock(isCollided && isFacing && isSolid);
+            this.setBesideClimbableBlock(isCollided && isFacing && isSolid && (this.getMoveHelper().getSpeed() != 0));
         }
+    }
+
+    public boolean getUpBlocked() {
+        return this.world.getBlockState(this.getPosition().up()).getBlock().isPassable(this.world, this.getPosition().up());
     }
 
     @Override
@@ -162,7 +167,8 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
     public EnumFacing getClimbingFacing() {
         if (getClimbing()) {
             Vec3d vec3d = this.getPositionEyes(0);
-            Vec3d vec3d1 = this.getLook(0);
+            //Vec3d vec3d1 = this.getLook(0);
+            Vec3d vec3d1 = this.getForward();
             Vec3d vec3d2 = vec3d.add(vec3d1.x * 1, vec3d1.y * 1, vec3d1.z * 1);
             RayTraceResult rayTrace = world.rayTraceBlocks(vec3d, vec3d2, true);
             if (rayTrace != null && rayTrace.hitVec != null) {

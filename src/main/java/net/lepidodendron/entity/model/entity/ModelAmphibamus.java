@@ -138,6 +138,8 @@ public class ModelAmphibamus extends AdvancedModelBase {
             this.chainWave(Tail, speed * (0.1F + f3), 0.05F, -3, f2, 1);
             this.chainSwing(Tail, speed * (0.1F + f3), 0.12F, -3, f2, 0.8F);
 
+            //System.err.println("Blinking: " + Amphibamus.getBlinking());
+
             if (Amphibamus.getBlinking()) {
                 this.flap(eyeleft,0.008F, 0.05F,false, 0F,0.8F, f2, 0.2F);
                 this.flap(eyeright,0.008F, 0.05F,true, 0F,0.8F, f2, 0.2F);

@@ -42,8 +42,11 @@ public class EntityPrehistoricFloraMixopterus extends EntityPrehistoricFloraEury
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.2F;
-		maxSize = 1.0F;
+		//minSize = 0.2F;
+		//maxSize = 1.0F;
+		minWidth = 0.1F;
+		maxWidth = 0.5F;
+		maxHeight = 0.3F;
 		maxHealthAgeable = 7.5D;
 	}
 
@@ -102,7 +105,7 @@ public class EntityPrehistoricFloraMixopterus extends EntityPrehistoricFloraEury
 	@Override
 	protected float getAISpeedEurypterid() {
 		float AIspeed = (float) Math.min(1F, (this.getAgeScale() * 2F)) * 0.32F;
-		if (this.isHunting()) {
+		if (this.getIsFast()) {
 			AIspeed = AIspeed * 1.8F;
 		}
 		return AIspeed;

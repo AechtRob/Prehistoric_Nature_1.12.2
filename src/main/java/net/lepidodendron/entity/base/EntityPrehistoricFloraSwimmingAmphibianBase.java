@@ -103,7 +103,10 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
     }
 
     public boolean isActuallyInWater() { //Is in water:
-        return (this.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL));
+        //return (this.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL));
+        IBlockState state = this.world.getBlockState(this.getPosition());
+        IBlockState stated = this.world.getBlockState(this.getPosition().down());
+        return ((stated.getMaterial() != Material.WATER) && ((state.getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL)));
     }
 
     @Override
@@ -134,6 +137,7 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
     public boolean isReallyInWater() {
         return (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
     }
+
     public boolean isCollidingRim() {
         if (this.isReallyInWater()) {
             //System.err.println("collided");
@@ -146,7 +150,8 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
                 BlockPos sidePos = rayTrace.getBlockPos();
                 if (world.getBlockState(sidePos).getMaterial() == Material.WATER) {
                     //System.err.println("colliding rim");
-                    return true;
+                    if (this.moveHelper.action != EntityMoveHelper.Action.JUMPING)
+                        return true;
                 }
             }
         }
@@ -158,7 +163,6 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
     public void onLivingUpdate() {
 
         if (!this.world.isRemote) {selectNavigator();}
-
         if (this.isInWater()) {
             super.onLivingUpdate();
         }
@@ -213,7 +217,7 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
             this.world.profiler.startSection("jump");
 
             if (this.isJumping) {
-                if (this.isActuallyInWater() && this.jumpTicks == 0) {
+                if (this.isInWater() && this.jumpTicks == 0) {
                     this.jump();
                     this.jumpTicks = 10;
                 } else if (this.isInLava()) {
@@ -284,6 +288,7 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
                 this.motionZ *= 0.9;
                 this.motionZ *= f4;
             } else {
+                //System.err.println("Vanilla travel hander");
                 super.travel(strafe, vertical, forward);
             }
         }
@@ -308,6 +313,7 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
         }
 
         public void onUpdateMoveHelper() {
+
             if (this.action == Action.STRAFE) {
                 //float f = (float) this.EntityBase.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();
                 float f = getAISpeedSwimmingAmphibian();
@@ -371,11 +377,12 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
                 }
 
                 if (
-                        (this.EntityBase.collidedHorizontally)
-                                && (d2 > (double) this.EntityBase.stepHeight && d0 * d0 + d1 * d1 < (double) Math.max(1.0F, this.EntityBase.width))
+                    (this.EntityBase.collidedHorizontally)
+                    && (d2 > (double) this.EntityBase.stepHeight && d0 * d0 + d1 * d1 < (double) Math.max(1.0F, this.EntityBase.width))
                 ) {
                     this.EntityBase.getJumpHelper().setJumping();
                     this.action = Action.JUMPING;
+                    //System.err.println("action: " +  this.action);
                 }
             } else if (this.action == Action.JUMPING) {
                 //float speed = getAISpeedLand();

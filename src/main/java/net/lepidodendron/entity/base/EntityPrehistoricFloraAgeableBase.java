@@ -32,22 +32,29 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
     private static final DataParameter<Integer> SATIETY = EntityDataManager.createKey(EntityPrehistoricFloraAgeableBase.class, DataSerializers.VARINT);
     private static final DataParameter<Boolean> HUNTING = EntityDataManager.createKey(EntityPrehistoricFloraAgeableBase.class, DataSerializers.BOOLEAN);
     private static final DataParameter<Boolean> RESENTFUL = EntityDataManager.createKey(EntityPrehistoricFloraAgeableBase.class, DataSerializers.BOOLEAN);
-    public float minSize;
-    public float maxSize;
+
+    private static final DataParameter<Boolean> ISFAST = EntityDataManager.createKey(EntityPrehistoricFloraAgeableBase.class, DataSerializers.BOOLEAN);
+
+    //public float minSize;
+    public float minWidth;
+    public float maxWidth;
+    public float maxHeight;
     public double maxHealthAgeable;
-    public int maxAge;
     private int animationTick;
     public Animation ATTACK_ANIMATION;
     public Animation ROAR_ANIMATION;
     private Animation currentAnimation;
-    public int satiety;
-    //private Animation currentAnimation = NO_ANIMATION;
 
     public EntityPrehistoricFloraAgeableBase(World worldIn) {
         super(worldIn);
         this.setScaleForAge(false);
         ATTACK_ANIMATION = Animation.create(this.getAttackLength());
         ROAR_ANIMATION = Animation.create(this.getRoarLength());
+    }
+
+    @Override
+    public float getEyeHeight() {
+        return Math.max(super.getEyeHeight(), 0.3F);
     }
 
     public int getAttackLength() {
@@ -57,8 +64,6 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
     public int getRoarLength() {
         return 60;
     }
-
-    public boolean isHunting() { return this.getAttackTarget() != null; }
 
     @Override
     public int getAnimationTick() {
@@ -93,10 +98,12 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataManager.register(AGETICKS, 0);
+        this.dataManager.register(AGETICKS, getAdultAge());
         this.dataManager.register(HUNTING, false);
         this.dataManager.register(RESENTFUL, false);
         this.dataManager.register(SATIETY, 0);
+        this.dataManager.register(ISFAST, false);
+        this.setScaleForAge(false);
     }
 
     @Override
@@ -161,11 +168,21 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
 
     public abstract int getAdultAge();
 
+    public boolean getIsFast() {
+        return this.dataManager.get(ISFAST);
+    }
+
+    public void setIsFast(boolean isFast) {
+        this.dataManager.set(ISFAST, isFast);
+    }
+
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         livingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setAgeTicks(this.getAdultAge()-1);
         this.setResentful(false);
+        this.setIsFast(false);
+        this.setWillHunt(false);
         this.heal(this.getMaxHealth());
         this.setNoAI(false);
         return livingdata;
@@ -179,15 +196,31 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
 
     @Override
     public void setScaleForAge(boolean child) {
-        this.setScale(this.getAgeScale() * 0.9F);
+        //System.err.println("AgeScale: " + this.getAgeScale());
+        //System.err.println("width: " + (this.getAgeScale() * this.maxWidth));
+        //System.err.println("height: " + (this.getAgeScale() * this.maxHeight));
+        this.setSizer(this.getAgeScale() * this.maxWidth, this.getAgeScale() * this.maxHeight);
+    }
+
+    //Taken from the Entity class, not the EntityAgeable class
+    protected void setSizer(float width, float height)
+    {
+        if (width != this.width || height != this.height)
+        {
+            this.width = width;
+            this.height = height;
+
+            double d0 = (double)width / 2.0D;
+            this.setEntityBoundingBox(new AxisAlignedBB(this.posX - d0, this.posY, this.posZ - d0, this.posX + d0, this.posY + (double)this.height, this.posZ + d0));
+        }
     }
 
     public float getAgeScale() {
-        float step = (this.maxSize - this.minSize) / (this.getAdultAge() + 1);
-        if (this.getAgeTicks() > this.getAdultAge()) {
-            return this.minSize + ((step) * this.getAdultAge());
+        float step = 1F / (this.getAdultAge() + 1);
+        if (this.getAgeTicks() >= this.getAdultAge()) {
+            return 1;
         }
-        return this.minSize + ((step * this.getAgeTicks()));
+        return Math.max((this.minWidth/this.maxWidth), (step * this.getAgeTicks()));
     }
 
     //@Override
@@ -197,6 +230,8 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
         compound.setInteger("AgeTicks", this.getAgeTicks());
         compound.setInteger("Satiety", this.getSatiety());
         compound.setBoolean("isResentful", this.getResentful());
+        compound.setBoolean("willHunt", this.getWillHunt());
+        compound.setBoolean("isFast", this.getIsFast());
     }
 
     //@Override
@@ -205,6 +240,8 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
         this.setAgeTicks(compound.getInteger("AgeTicks"));
         this.setSatiety(compound.getInteger("Satiety"));
         this.setResentful(compound.getBoolean("isResentful"));
+        this.setWillHunt(compound.getBoolean("willHunt"));
+        this.setIsFast(compound.getBoolean("isFast"));
     }
 
     @Override
@@ -226,6 +263,10 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
     @Override
     public void onUpdate() {
         super.onUpdate();
+        if (!world.isRemote) {
+            this.setIsFast(this.getAttackTarget() != null);
+            //System.err.println("Entity side isFast: " + this.getIsFast());
+        }
         //AnimationHandler.INSTANCE.updateAnimations(this);
     }
 
@@ -238,7 +279,7 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
             this.setScaleForAge(false);
         }
         if (this.getGrowingAge() < 0) {
-            this.setGrowingAge(0);
+            this.setGrowingAge(0); //Resetting vanilla methods which we don't use
         }
 
         int i = this.getAgeTicks();

@@ -85,12 +85,12 @@ public class BlockEurypteridEggsHibbertopterusPlaceable extends ElementsLepidode
 				worldIn.destroyBlock(pos, false);
 				Entity entity1 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraHibbertopterus.class), (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
 				EntityPrehistoricFloraAgeableBase ee1 = (EntityPrehistoricFloraAgeableBase) entity1;
-				ee1.setAgeTicks(0);
+				ee1.setAgeTicks(1);
 				Entity entity2 = null;
 				if (Math.random() > 0.75) {
 					entity2 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraHibbertopterus.class), (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
 					EntityPrehistoricFloraAgeableBase ee2 = (EntityPrehistoricFloraAgeableBase) entity2;
-					ee2.setAgeTicks(0);
+					ee2.setAgeTicks(1);
 				}
 				if (entity1 != null || entity2 != null) {
 					worldIn.destroyBlock(pos, false);

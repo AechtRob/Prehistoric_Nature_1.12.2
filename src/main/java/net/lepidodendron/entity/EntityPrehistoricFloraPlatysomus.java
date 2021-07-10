@@ -140,7 +140,6 @@ public class EntityPrehistoricFloraPlatysomus extends EntityPrehistoricFloraFish
 		return LepidodendronMod.PLATYSOMUS_LOOT;
 	}
 
-
 	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{

@@ -1326,8 +1326,41 @@ public class ProcedureRighclickBlocks extends ElementsLepidodendronMod.ModElemen
 				}
 			}
 
+			if ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockAlliopteris.block)
+			{
+				if (!(world.isRemote)) {
+					if (entity instanceof EntityLivingBase) {
+						((EntityLivingBase) entity).swingArm(EnumHand.MAIN_HAND);
+					}
+					if (entity instanceof EntityPlayer) {
+						if ((((entity instanceof EntityLivingBase) ? ((EntityLivingBase) entity).getHeldItemMainhand() : ItemStack.EMPTY)
+								.getItem() == new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem())) {
+							((EntityPlayer) entity).inventory.clearMatchingItems(new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem(), -1, (int) 1, null);
+							ItemStack _setstack = new ItemStack(ItemAlliopterisSpores.block, (int) (1));
+							_setstack.setCount(1);
+							ItemHandlerHelper.giveItemToPlayer(((EntityPlayer) entity), _setstack);
+						}
+					}
+				}
+			}
 
-
+			if ((world.getBlockState(new BlockPos((int) x, (int) y, (int) z))).getBlock() == BlockNemejcopteris.block)
+			{
+				if (!(world.isRemote)) {
+					if (entity instanceof EntityLivingBase) {
+						((EntityLivingBase) entity).swingArm(EnumHand.MAIN_HAND);
+					}
+					if (entity instanceof EntityPlayer) {
+						if ((((entity instanceof EntityLivingBase) ? ((EntityLivingBase) entity).getHeldItemMainhand() : ItemStack.EMPTY)
+								.getItem() == new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem())) {
+							((EntityPlayer) entity).inventory.clearMatchingItems(new ItemStack(ItemSporeCollectionEnvelope.block, (int) (1)).getItem(), -1, (int) 1, null);
+							ItemStack _setstack = new ItemStack(ItemNemejcopterisSpores.block, (int) (1));
+							_setstack.setCount(1);
+							ItemHandlerHelper.giveItemToPlayer(((EntityPlayer) entity), _setstack);
+						}
+					}
+				}
+			}
 
 
 

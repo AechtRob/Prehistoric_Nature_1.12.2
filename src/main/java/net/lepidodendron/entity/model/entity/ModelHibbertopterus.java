@@ -291,6 +291,7 @@ public class ModelHibbertopterus extends AdvancedModelBase {
 
         float speedFactor = 2.0F; // a float indicating how much the size affects the speed changes
         float speedMultplier = (float) (1 + ((1F - ee.getAgeScale()) * speedFactor));
+        //System.err.println("Agescale Hibbert: " + ee.getAgeScale());
 
         if (!e.isInWater()) {
             this.swing(l3L_r1, 0.12F * speedMultplier, -0.12F, false, 0, -0.1F, f2, 1F);

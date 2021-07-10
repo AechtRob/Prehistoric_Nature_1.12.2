@@ -22,14 +22,7 @@ public class TabLepidodendronStatic extends ElementsLepidodendronMod.ModElement 
 			public ItemStack createIcon() {
 				return new ItemStack(BlockRugosa1.block, (int) (1));
 			}
-
-			@SideOnly(Side.CLIENT)
-			@Override
-			public boolean hasSearchBar() {
-				return false;
-			}
-
-		}.setBackgroundImageName("item_search.png");
+		};
 	}
 	public static CreativeTabs tab;
 }

@@ -179,14 +179,11 @@ public class ModelAkmonistion extends AdvancedModelBase {
         this.resetToDefaultPose();
         this.body.offsetY = 1.0F;
 
-        //this.head.rotateAngleY = f3 / (180F / (float) Math.PI);
-        //this.head.rotateAngleX = f4 / (180F / (float) Math.PI);
-
-        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
         AdvancedModelRenderer[] fishTail = {this.body2, this.body3, this.body4};
         float speed = 0.2F;
-        if (ee.isHunting()){
-            speed = 0.41F;
+        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
+        if (ee.getIsFast()) {
+            speed = speed * 3F;
         }
         if (!e.isInWater()) {
             speed = 0.7F;

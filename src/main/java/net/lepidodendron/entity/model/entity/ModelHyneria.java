@@ -268,12 +268,13 @@ public class ModelHyneria extends AdvancedModelBase {
 
         this.body.offsetY = 0.25F;
 
-        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
         AdvancedModelRenderer[] fishTail = {this.body2, this.body3, this.body4, this.body5, this.tailfin};
 
         float speed = 0.16F;
-        if (ee.isHunting()){
-            speed = 0.36F;
+
+        EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) e;
+        if (ee.getIsFast()) {
+            speed = speed * 3F;
         }
         float still = 1f;
         if (f3 == 0.0F) {

@@ -35,13 +35,17 @@ public class EntityPrehistoricFloraHyneria extends EntityPrehistoricFloraAgeable
 
 	public EntityPrehistoricFloraHyneria(World world) {
 		super(world);
-		setSize(0.95F, 0.9F);
+		//setSize(0.95F, 0.9F);
 		experienceValue = 0;
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.1F;
-		maxSize = 1.0F;
+		//minWidth = 0.1F;
+		//maxWidth = 0.95F;
+		//maxHeight = 0.9F;
+		minWidth = 0.1F;
+		maxWidth = 0.95F;
+		maxHeight = 0.9F;
 		maxHealthAgeable = 28.0D;
 	}
 
@@ -53,7 +57,7 @@ public class EntityPrehistoricFloraHyneria extends EntityPrehistoricFloraAgeable
 	@Override
 	protected float getAISpeedFish() {
 		float AIspeed = 0.2f;
-		if (this.isHunting()) {
+		if (this.getIsFast()) {
 			AIspeed = AIspeed * 2.8F;
 		}
 		return AIspeed;

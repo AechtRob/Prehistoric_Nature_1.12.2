@@ -22,9 +22,7 @@ public class HuntSmallerThanMeAIAgeable<T extends EntityLivingBase> extends Enti
             return false;
         }
         if (this.targetEntity != null) {
-            //System.err.println("My size: "  + this.entity.getEntityBoundingBox().getAverageEdgeLength());
-            //System.err.println("Target size: "  + this.targetEntity.getEntityBoundingBox().getAverageEdgeLength());
-            if (this.entity.getEntityBoundingBox().getAverageEdgeLength() <= this.targetEntity.getEntityBoundingBox().getAverageEdgeLength()) {
+           if (this.entity.getEntityBoundingBox().getAverageEdgeLength() <= this.targetEntity.getEntityBoundingBox().getAverageEdgeLength()) {
                 return false;
             }
         }

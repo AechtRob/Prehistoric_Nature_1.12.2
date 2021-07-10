@@ -31,8 +31,11 @@ public class EntityPrehistoricFloraOrthoceras extends EntityPrehistoricFloraNaut
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.2F;
-		maxSize = 1.0F;
+		//minSize = 0.2F;
+		//maxSize = 1.0F;
+		minWidth = 0.1F;
+		maxWidth = 1.0F;
+		maxHeight = 0.99F;
 		maxHealthAgeable = 24.0D;
 	}
 

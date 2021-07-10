@@ -195,7 +195,7 @@ public class ItemBucketJellyfish_Precambrian extends ElementsLepidodendronMod.Mo
 			if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Jellyfish");
 				tooltip.add("Periods: Ediacaran");
-				tooltip.add("Habitat: water");
+				tooltip.add("Note: Not known conclusively from fossils");
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

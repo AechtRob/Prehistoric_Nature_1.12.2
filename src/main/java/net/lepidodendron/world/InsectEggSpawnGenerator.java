@@ -42,13 +42,12 @@ public class InsectEggSpawnGenerator extends WorldGenerator
 				//First try regular uprights and then the rotations:
 				EnumFacing enumfacing = EnumFacing.UP;
 				BlockPos pos = new BlockPos(j, k - 1, l);
-				if (((worldIn.getBlockState(pos).getMaterial() == Material.SAND)
+				if ((worldIn.getBlockState(pos).getMaterial() == Material.SAND)
 					|| (worldIn.getBlockState(pos).getMaterial() == Material.ROCK)
 					|| (worldIn.getBlockState(pos).getMaterial() == Material.GROUND)
 					|| (worldIn.getBlockState(pos).getMaterial() == Material.CLAY)
 					|| (worldIn.getBlockState(pos).getMaterial() == Material.IRON)
 					|| (worldIn.getBlockState(pos).getMaterial() == Material.WOOD))
-					&& isByWater(worldIn, new BlockPos(j, k, l)))
 				{
 					worldIn.setBlockState(new BlockPos(j, k, l), this.state.withProperty(FACING, enumfacing), 2);
 					return true;
@@ -69,14 +68,13 @@ public class InsectEggSpawnGenerator extends WorldGenerator
 						if (enumfacing1 == EnumFacing.WEST) {
 							pos = new BlockPos(j + 1, k, l);
 						}
-						if (((worldIn.getBlockState(pos).getMaterial() == Material.SAND)
+						if ((worldIn.getBlockState(pos).getMaterial() == Material.SAND)
 								|| (worldIn.getBlockState(pos).getMaterial() == Material.ROCK)
 								|| (worldIn.getBlockState(pos).getMaterial() == Material.GROUND)
 								|| (worldIn.getBlockState(pos).getMaterial() == Material.CLAY)
 								|| (worldIn.getBlockState(pos).getMaterial() == Material.GLASS)
 								|| (worldIn.getBlockState(pos).getMaterial() == Material.IRON)
-								|| (worldIn.getBlockState(pos).getMaterial() == Material.WOOD))
-								&& isByWater(worldIn, new BlockPos(j, k, l))) {
+								|| (worldIn.getBlockState(pos).getMaterial() == Material.WOOD)) {
 							worldIn.setBlockState(new BlockPos(j, k, l), this.state.withProperty(FACING, enumfacing1), 2);
 							return true;
 						}
@@ -85,26 +83,5 @@ public class InsectEggSpawnGenerator extends WorldGenerator
 			}
 		}
 		return true;
-		}
-
-		private boolean isByWater(World world, BlockPos pos) {
-    		int x = -1;
-    		int y = -1;
-    		int z = -1;
-    		while (x <=1) {
-				while (y <=1) {
-					while (z <=1) {
-							if (!(x == 0 && y ==0 && z == 0)) {
-								 if (world.getBlockState(pos.add(x, y, z)).getMaterial() == Material.WATER) {
-								 	return true;
-								 }
-							}
-						z = z + 1;
-					}
-					y = y + 1;
-				}
-    			x = x + 1;
-			}
-    		return false;
 		}
 }

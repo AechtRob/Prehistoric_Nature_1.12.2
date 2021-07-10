@@ -80,7 +80,7 @@ public class BlockEggsCladoselachePlaceable extends ElementsLepidodendronMod.Mod
 				worldIn.destroyBlock(pos, false);
 				Entity entity1 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraCladoselache.class), (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
 				EntityPrehistoricFloraAgeableBase ee1 = (EntityPrehistoricFloraAgeableBase) entity1;
-				ee1.setAgeTicks(0);
+				ee1.setAgeTicks(1);
 				if (entity1 != null) {
 					worldIn.destroyBlock(pos, false);
 				}

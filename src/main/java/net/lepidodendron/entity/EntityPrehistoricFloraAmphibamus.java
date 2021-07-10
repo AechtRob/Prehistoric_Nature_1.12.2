@@ -46,8 +46,11 @@ public class EntityPrehistoricFloraAmphibamus extends EntityPrehistoricFloraSwim
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.6F;
-		maxSize = 1.0F;
+		//minSize = 0.6F;
+		//maxSize = 1.0F;
+		minWidth = 0.1F;
+		maxWidth = 0.6F;
+		maxHeight = 0.35F;
 		maxHealthAgeable = 8.0D;
 	}
 

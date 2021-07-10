@@ -232,6 +232,7 @@ public class LepidodendronMod {
 	public static final int ENTITY_KIMBERELLA = 93;
 	public static final int ENTITY_EOANDROMEDA = 94;
 	public static final int ENTITY_PARVANCORINA = 95;
+	public static final ResourceLocation PARVANCORINA_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/parvancorina"));
 	public static final int ENTITY_SPRIGGINA = 96;
 	public static final int ENTITY_YILINGIA = 97;
 	public static final int ENTITY_YORGIA = 98;
@@ -248,7 +249,7 @@ public class LepidodendronMod {
 	public static final int ENTITY_CAMPBELLODUS = 105;
 	public static final ResourceLocation CAMPBELLODUS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/campbellodus"));
 	public static final int ENTITY_PLATYSOMUS = 106;
-	public static final ResourceLocation PLATYSOMUS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/playsomus"));
+	public static final ResourceLocation PLATYSOMUS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/platysomus"));
 	public static final int ENTITY_COCCOSTEUS = 107;
 	public static final ResourceLocation COCCOSTEUS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/coccosteus"));
 	public static final int ENTITY_GEMUENDINA = 108;

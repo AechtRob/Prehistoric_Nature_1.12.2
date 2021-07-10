@@ -6,7 +6,7 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemPhial;
 import net.lepidodendron.item.ItemPhialEggsPneumodesmus;
-import net.lepidodendron.world.InsectEggSpawnGenerator;
+import net.lepidodendron.world.InsectEggByWaterSpawnGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -62,7 +62,7 @@ public class BlockInsectEggsPneumodesmus extends ElementsLepidodendronMod.ModEle
 			int l6 = chunkX + random.nextInt(16) + 8;
 			int i11 = random.nextInt(128 - startHeight) + startHeight;
 			int l14 = chunkZ + random.nextInt(16) + 8;
-			(new InsectEggSpawnGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14));
+			(new InsectEggByWaterSpawnGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14));
 		}
 	}
 

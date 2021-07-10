@@ -42,13 +42,18 @@ public class EntityPrehistoricFloraAcutiramus extends EntityPrehistoricFloraEury
 
 	public EntityPrehistoricFloraAcutiramus(World world) {
 		super(world);
-		setSize(0.75F, 0.56F);
+		//setSize(0.75F, 0.56F);
 		experienceValue = 0;
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.2F;
-		maxSize = 1.0F;
+		minWidth = 0.2F;
+		maxWidth = 0.75F;
+		maxHeight = 0.56F;
+		//maxWidth = 0.75;
+		//maxHeight = 0.56F;
+		//minSize = 0.2F;
+		//maxSize = 1.0F;
 		maxHealthAgeable = 16D;
 	}
 
@@ -111,7 +116,7 @@ public class EntityPrehistoricFloraAcutiramus extends EntityPrehistoricFloraEury
 	@Override
 	protected float getAISpeedEurypterid() {
 		float AIspeed = (float) Math.min(1F, (this.getAgeScale() * 2F)) * 0.24F;
-		if (this.isHunting()) {
+		if (this.getIsFast()) {
 			AIspeed = AIspeed * 1.8F;
 		}
 		return AIspeed;

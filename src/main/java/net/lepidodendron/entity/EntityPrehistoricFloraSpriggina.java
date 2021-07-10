@@ -5,7 +5,7 @@ import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.entity.ai.TrilobiteWanderBottom;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteBottomBase;
-import net.lepidodendron.item.entities.ItemBucketSelenopeltis;
+import net.lepidodendron.item.entities.ItemBucketSpriggina;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
@@ -149,7 +149,7 @@ public class EntityPrehistoricFloraSpriggina extends EntityPrehistoricFloraTrilo
 				player.inventory.clearMatchingItems(new ItemStack(Items.WATER_BUCKET, (int) (1)).getItem(), -1, (int) 1, null);
 				SoundEvent soundevent = SoundEvents.ITEM_BUCKET_FILL;
 				player.getEntityWorld().playSound(player, player.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
-				ItemStack itemstack1 = new ItemStack(ItemBucketSelenopeltis.block, (int) (1));
+				ItemStack itemstack1 = new ItemStack(ItemBucketSpriggina.block, (int) (1));
 				itemstack1.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(player, itemstack1);
 				this.setDead();

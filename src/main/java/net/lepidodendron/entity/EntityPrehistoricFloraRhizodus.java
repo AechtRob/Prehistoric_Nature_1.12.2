@@ -35,13 +35,16 @@ public class EntityPrehistoricFloraRhizodus extends EntityPrehistoricFloraAgeabl
 
 	public EntityPrehistoricFloraRhizodus(World world) {
 		super(world);
-		setSize(0.95F, 0.95F);
+		//setSize(0.95F, 0.95F);
 		experienceValue = 0;
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.1F;
-		maxSize = 1.0F;
+		//minSize = 0.1F;
+		//maxSize = 1.0F;
+		minWidth = 0.1F;
+		maxWidth = 0.95F;
+		maxHeight = 0.95F;
 		maxHealthAgeable = 28.0D;
 	}
 
@@ -58,7 +61,7 @@ public class EntityPrehistoricFloraRhizodus extends EntityPrehistoricFloraAgeabl
 	@Override
 	protected float getAISpeedFish() {
 		float AIspeed = 0.154f;
-		if (this.isHunting()) {
+		if (this.getIsFast()) {
 			AIspeed = AIspeed * 2.3F;
 		}
 		return AIspeed;

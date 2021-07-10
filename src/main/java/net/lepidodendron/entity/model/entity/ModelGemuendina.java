@@ -2,6 +2,7 @@ package net.lepidodendron.entity.model.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelBase;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelRenderer;
+import net.lepidodendron.entity.EntityPrehistoricFloraGemuendina;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
@@ -30,6 +31,7 @@ public class ModelGemuendina extends AdvancedModelBase {
     private final AdvancedModelRenderer cube_r8;
     private final AdvancedModelRenderer finL;
     private final AdvancedModelRenderer finR;
+
 
     public ModelGemuendina() {
         this.textureWidth = 64;
@@ -173,6 +175,32 @@ public class ModelGemuendina extends AdvancedModelBase {
         this.resetToDefaultPose();
         this.body.offsetY = 1.05F;
 
+        EntityPrehistoricFloraGemuendina ee = (EntityPrehistoricFloraGemuendina) e;
+
+        //System.err.println("swimmingTicks = " + ee.swimmingTicks);
+        //System.err.println("buriedTicks = " + buriedTicks);
+
+        float speedmodifier = 1;
+        float swaymodifier = 1;
+
+        if (ee.getBuriedTick() > 0 || ee.getBuried()) {
+            if (ee.getBuriedTick() > 0) {
+                speedmodifier = 6F;
+            }
+            if (ee.getBuried() && (ee.getBuriedTick() <= 0)) {
+                this.body.offsetY = 1.13F;
+                this.body.rotateAngleX = -(float) Math.toRadians(30);
+                swaymodifier = 0;
+            }
+            else {
+                this.body.offsetY = 1.05F + (0.08F * (float)((double)ee.getBuriedTick()/60D));
+                this.body.rotateAngleX = -(float) Math.toRadians(30 * ((double)ee.getBuriedTick()/60D));
+            }
+        }
+        else {
+            this.body.offsetY = 1.05F;
+        }
+
         //this.Tailfin.setScale(1.1F, 1.1F, 1.1F);
         AdvancedModelRenderer[] fishTail = {this.body4, this.body5, this.body6};
 
@@ -183,6 +211,7 @@ public class ModelGemuendina extends AdvancedModelBase {
             speed = 0.7F;
         }
 
+
         boolean isAtBottom = false;
         if (e.getPosition().getY() - 1 > 1) {
             BlockPos pos = new BlockPos(e.getPosition().getX(), e.getPosition().getY() - 1, e.getPosition().getZ());
@@ -191,14 +220,14 @@ public class ModelGemuendina extends AdvancedModelBase {
         }
         if (isAtBottom) {
             //System.err.println("Animation at bottom");
-            speed = 0.15F;
+            speed = 0.15F * speedmodifier;
             taildegree = 0.15F;
         }
 
         if (e instanceof EntityLiving && !((EntityLiving) e).isAIDisabled()) {
             this.chainWave(fishTail, speed, 0.05F, -3, f2, 1);
             this.chainSwing(fishTail, speed, taildegree, -3, f2, 1);
-            this.swing(body, speed, 0.3F, true, 0, 0, f2, 1);
+            this.swing(body, speed, 0.3F * swaymodifier, true, 0, 0, f2, 1);
             //this.walk(jaw, (float) (speed * 0.75), -0.5F, true, 0, 0, f2, 1);
             this.flap(finL, (float) (speed * 0.75), 0.12F, true, 0, 0, f2, 1);
             this.swing(finL, (float) (speed * 0.75), 0.12F, true, 0, 0, f2, 1);

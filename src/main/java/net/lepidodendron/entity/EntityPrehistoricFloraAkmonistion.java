@@ -36,13 +36,16 @@ public class EntityPrehistoricFloraAkmonistion extends EntityPrehistoricFloraAge
 
 	public EntityPrehistoricFloraAkmonistion(World world) {
 		super(world);
-		setSize(0.4F, 0.4F);
+		//setSize(0.4F, 0.4F);
 		experienceValue = 0;
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.2F;
-		maxSize = 1.0F;
+		//minSize = 0.2F;
+		//maxSize = 1.0F;
+		minWidth = 0.1F;
+		maxWidth = 0.4F;
+		maxHeight = 0.4F;
 		maxHealthAgeable = 9.0D;
 	}
 
@@ -54,7 +57,7 @@ public class EntityPrehistoricFloraAkmonistion extends EntityPrehistoricFloraAge
 	@Override
 	protected float getAISpeedFish() {
 		float AIspeed = 0.224F;
-		if (this.isHunting()) {
+		if (this.getIsFast()) {
 			AIspeed = AIspeed * 1.5F;
 		}
 		return AIspeed;

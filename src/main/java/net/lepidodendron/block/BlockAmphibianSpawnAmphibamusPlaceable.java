@@ -86,7 +86,7 @@ public class BlockAmphibianSpawnAmphibamusPlaceable extends ElementsLepidodendro
 				Entity entity = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraAmphibamus.class), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
 				if (entity != null) {
 					EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) entity;
-					ee.setAgeTicks(0);
+					ee.setAgeTicks(1);
 					worldIn.destroyBlock(pos, false);
 				}
 			}

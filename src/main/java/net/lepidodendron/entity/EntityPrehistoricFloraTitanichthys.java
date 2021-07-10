@@ -38,8 +38,11 @@ public class EntityPrehistoricFloraTitanichthys extends EntityPrehistoricFloraAg
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		minSize = 0.05F;
-		maxSize = 1.0F;
+		//minSize = 0.05F;
+		//maxSize = 1.0F;
+		minWidth = 0.1F;
+		maxWidth = 1.5F;
+		maxHeight = 2F;
 		maxHealthAgeable = 30.0D;
 	}
 
