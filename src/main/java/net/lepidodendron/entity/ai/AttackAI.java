@@ -13,14 +13,13 @@ public class AttackAI extends EntityAIBase {
     private final EntityPrehistoricFloraAgeableBase entity;
     private final double speed;
     private final boolean memory;
-    private int attackTick;
     private Path currentPath;
 
-    public AttackAI(EntityPrehistoricFloraAgeableBase entity, double speed, boolean memory) {
+    public AttackAI(EntityPrehistoricFloraAgeableBase entity, double speed, boolean memory, int attackLength) {
         this.entity = entity;
         this.speed = speed;
         this.memory = memory;
-        this.setMutexBits(3);
+        this.setMutexBits(7);
     }
 
     @Override
@@ -29,12 +28,6 @@ public class AttackAI extends EntityAIBase {
         if (target == null || !target.isEntityAlive()) {
             return false;
         } else if (this.entity.world.getDifficulty() == EnumDifficulty.PEACEFUL && target instanceof EntityPlayer) {
-            return false;
-        }
-        if (!this.entity.getWillHunt() && !(target instanceof EntityPlayer)) {
-            return false;
-        }
-        if ((!this.entity.getWillHunt() && !this.entity.getResentful()) && (target instanceof EntityPlayer)) {
             return false;
         }
         this.currentPath = this.entity.getNavigator().getPathToEntityLiving(target);
@@ -69,17 +62,18 @@ public class AttackAI extends EntityAIBase {
         if (this.entity.getControllingPassenger() == null) {
             this.entity.getNavigator().tryMoveToEntityLiving(target, this.speed);
         }
-        this.attackTick = Math.max(this.attackTick - 1, 0);
         if (this.entity.getAttackBoundingBox().intersects(target.getEntityBoundingBox())) {
-            this.attackTick = 20;
             this.entity.attackEntityAsMob(target);
             //Apply a slight slowdown to the target:
             if (target instanceof EntityLivingBase) {
                 ((EntityLivingBase) target).addPotionEffect(new PotionEffect(MobEffects.SLOWNESS, 20, 1, false, false));
             }
-            if (target instanceof EntityPlayer) {this.entity.setResentful(false);}
             if (this.entity.ATTACK_ANIMATION != null) {
-                this.entity.setAnimation(this.entity.ATTACK_ANIMATION);
+                if (this.entity.getAnimation() != this.entity.ATTACK_ANIMATION) {
+                    //System.err.println("Set AI");
+                    //AnimationHandler.INSTANCE.sendAnimationMessage(this.entity, this.entity.ATTACK_ANIMATION);
+                    this.entity.setAnimation(this.entity.ATTACK_ANIMATION);
+                }
             }
         } else {
             this.entity.getLookHelper().setLookPositionWithEntity(target, 30.0F, 30.0F);

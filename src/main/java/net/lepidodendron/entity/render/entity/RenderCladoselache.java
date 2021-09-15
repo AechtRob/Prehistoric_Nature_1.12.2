@@ -12,7 +12,7 @@ public class RenderCladoselache extends RenderLiving<EntityPrehistoricFloraClado
     private static final ResourceLocation TEXTURE = new ResourceLocation(LepidodendronMod.MODID + ":textures/entities/cladoselache.png");
 
     public RenderCladoselache(RenderManager mgr) {
-        super(mgr, new ModelCladoselache(), 0.5f);
+        super(mgr, new ModelCladoselache(), 0.32f);
     }
 
     @Override

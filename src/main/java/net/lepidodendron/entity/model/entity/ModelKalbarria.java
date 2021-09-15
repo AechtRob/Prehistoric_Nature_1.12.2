@@ -381,7 +381,8 @@ public class ModelKalbarria extends AdvancedModelBase {
         if (e.getPosition().getY() - 1 > 1) {
             BlockPos pos = new BlockPos(e.getPosition().getX(), e.getPosition().getY() - 1, e.getPosition().getZ());
             isAtBottom = ((e.isInsideOfMaterial(Material.WATER) || e.isInsideOfMaterial(Material.CORAL))
-                && ((e.world.getBlockState(pos)).getMaterial() != Material.WATER));
+                && ((e.world.getBlockState(pos)).getMaterial() != Material.WATER)
+                    && ((double)e.getPosition().getY() + 0.334D) > e.posY);
         }
 
         AdvancedModelRenderer[] legsL = {this.legL, this.legL2, this.legL3, this.legL4, this.legL5, this.legL6, this.legL7, this.legL8, this.legL9};
@@ -399,16 +400,16 @@ public class ModelKalbarria extends AdvancedModelBase {
             this.flap(legR3, 0.5F, 0.25F, false, 2.0F, 0.25F, f2, 0.2F);
             this.flap(legL4, 0.5F, -0.25F, false, 3.0F, -0.25F, f2, 0.2F);
             this.flap(legR4, 0.5F, 0.25F, false, 3.0F, 0.25F, f2, 0.2F);
-            this.flap(legL5, 0.5F, -0.2F, false, 2.0F, -0.2F, f2, 0.2F);
-            this.flap(legR5, 0.5F, 0.2F, false, 2.0F, 0.2F, f2, 0.2F);
-            this.flap(legL6, 0.5F, -0.2F, false, 1.0F, -0.2F, f2, 0.2F);
-            this.flap(legR6, 0.5F, 0.2F, false, 1.0F, 0.2F, f2, 0.2F);
-            this.flap(legL7, 0.5F, -0.2F, false, 0.0F, -0.2F, f2, 0.2F);
-            this.flap(legR7, 0.5F, 0.2F, false, 0.0F, 0.2F, f2, 0.2F);
-            this.flap(legL8, 0.5F, -0.2F, false, 1.0F, -0.2F, f2, 0.15F);
-            this.flap(legR8, 0.5F, 0.2F, false, 1.0F, 0.2F, f2, 0.15F);
-            this.flap(legL9, 0.5F, -0.2F, false, 2.0F, -0.2F, f2, 0.15F);
-            this.flap(legR9, 0.5F, 0.2F, false, 2.0F, 0.2F, f2, 0.15F);
+            this.flap(legL5, 0.5F, -0.2F, false, 4.0F, -0.2F, f2, 0.2F);
+            this.flap(legR5, 0.5F, 0.2F, false, 4.0F, 0.2F, f2, 0.2F);
+            this.flap(legL6, 0.5F, -0.2F, false, 5.0F, -0.2F, f2, 0.2F);
+            this.flap(legR6, 0.5F, 0.2F, false, 5.0F, 0.2F, f2, 0.2F);
+            this.flap(legL7, 0.5F, -0.2F, false, 6.0F, -0.2F, f2, 0.2F);
+            this.flap(legR7, 0.5F, 0.2F, false, 6.0F, 0.2F, f2, 0.2F);
+            this.flap(legL8, 0.5F, -0.2F, false, 7.0F, -0.2F, f2, 0.15F);
+            this.flap(legR8, 0.5F, 0.2F, false, 7.0F, 0.2F, f2, 0.15F);
+            this.flap(legL9, 0.5F, -0.2F, false, 8.0F, -0.2F, f2, 0.15F);
+            this.flap(legR9, 0.5F, 0.2F, false, 8.0F, 0.2F, f2, 0.15F);
             this.chainWave(bodyF, 0.5F, 0.01f, -1, f2, 0.4F);
             this.bob(body, 0.5F, 0.02F, true, f2, 0.5F);
         }
@@ -423,16 +424,16 @@ public class ModelKalbarria extends AdvancedModelBase {
             this.flap(legR3, 0.2F, 0.25F, false, 2.0F, 0.25F, f2, 0.2F);
             this.flap(legL4, 0.2F, -0.25F, false, 3.0F, -0.25F, f2, 0.2F);
             this.flap(legR4, 0.2F, 0.25F, false, 3.0F, 0.25F, f2, 0.2F);
-            this.flap(legL5, 0.2F, -0.2F, false, 2.0F, -0.2F, f2, 0.2F);
-            this.flap(legR5, 0.2F, 0.2F, false, 2.0F, 0.2F, f2, 0.2F);
-            this.flap(legL6, 0.2F, -0.2F, false, 1.0F, -0.2F, f2, 0.2F);
-            this.flap(legR6, 0.2F, 0.2F, false, 1.0F, 0.2F, f2, 0.2F);
-            this.flap(legL7, 0.2F, -0.2F, false, 0.0F, -0.2F, f2, 0.2F);
-            this.flap(legR7, 0.2F, 0.2F, false, 0.0F, 0.2F, f2, 0.2F);
-            this.flap(legL8, 0.2F, -0.2F, false, 1.0F, -0.2F, f2, 0.15F);
-            this.flap(legR8, 0.2F, 0.2F, false, 1.0F, 0.2F, f2, 0.15F);
-            this.flap(legL9, 0.2F, -0.2F, false, 2.0F, -0.2F, f2, 0.15F);
-            this.flap(legR9, 0.2F, 0.2F, false, 2.0F, 0.2F, f2, 0.15F);
+            this.flap(legL5, 0.2F, -0.2F, false, 4.0F, -0.2F, f2, 0.2F);
+            this.flap(legR5, 0.2F, 0.2F, false, 4.0F, 0.2F, f2, 0.2F);
+            this.flap(legL6, 0.2F, -0.2F, false, 5.0F, -0.2F, f2, 0.2F);
+            this.flap(legR6, 0.2F, 0.2F, false, 5.0F, 0.2F, f2, 0.2F);
+            this.flap(legL7, 0.2F, -0.2F, false, 6.0F, -0.2F, f2, 0.2F);
+            this.flap(legR7, 0.2F, 0.2F, false, 6.0F, 0.2F, f2, 0.2F);
+            this.flap(legL8, 0.2F, -0.2F, false, 7.0F, -0.2F, f2, 0.15F);
+            this.flap(legR8, 0.2F, 0.2F, false, 7.0F, 0.2F, f2, 0.15F);
+            this.flap(legL9, 0.2F, -0.2F, false, 8.0F, -0.2F, f2, 0.15F);
+            this.flap(legR9, 0.2F, 0.2F, false, 8.0F, 0.2F, f2, 0.15F);
             //this.chainSwing(bodyF, 0.2F, 0.05F, -3, f2, 0.2F);
             this.chainWave(bodyF, 0.5F, 0.07f, -2, f2, 0.4F);
             this.bob(body, 0.2F, 0.2F, false, f2, 1);

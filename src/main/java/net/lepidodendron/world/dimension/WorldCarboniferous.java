@@ -6,6 +6,7 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockCalamitesPlanks;
 import net.lepidodendron.block.BlockCarboniferousMud;
+import net.lepidodendron.block.BlockGravelWavy;
 import net.lepidodendron.block.BlockSandWavy;
 import net.lepidodendron.world.WorldGenCarboniferousLakes;
 import net.minecraft.block.Block;
@@ -76,7 +77,7 @@ public class WorldCarboniferous extends ElementsLepidodendronMod.ModElement {
 	public void preInit(FMLPreInitializationEvent event) {
 		if (DimensionManager.isDimensionRegistered(DIMID)) {
 			//DIMID = DimensionManager.getNextFreeDimId();
-			System.err.println("Prehistoric Flora loading error! Dimension ID for dimension Carboniferous is already registered by another mod: " + DIMID);
+			System.err.println("Prehistoric Nature loading error! Dimension ID for dimension Carboniferous is already registered by another mod: " + DIMID);
 			return;
 		}
 		dtype = DimensionType.register("carboniferous", "_carboniferous", DIMID, WorldProviderMod.class, false);
@@ -548,12 +549,30 @@ public class WorldCarboniferous extends ElementsLepidodendronMod.ModElement {
 					thePlayer.timeUntilPortal = 10;
 					ReflectionHelper.setPrivateValue(EntityPlayerMP.class, thePlayer, true, "invulnerableDimensionChange", "field_184851_cj");
 					thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, DIMID, getTeleporterForDimension(thePlayer, pos, DIMID));
-					thePlayer.setSpawnPoint(new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ), true);
+					if (thePlayer.dimension == DIMID) {
+						BlockPos spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ).offset(thePlayer.getHorizontalFacing());
+						if (thePlayer.world.getBlockState(spawnPos).isFullBlock()) {
+							spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ).offset(thePlayer.getHorizontalFacing().getOpposite());
+						}
+						if (thePlayer.world.getBlockState(spawnPos).isFullBlock()) {
+							spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ);
+						}
+						thePlayer.setSpawnPoint(spawnPos, true);
+					}
 				} else {
 					thePlayer.timeUntilPortal = 10;
 					ReflectionHelper.setPrivateValue(EntityPlayerMP.class, thePlayer, true, "invulnerableDimensionChange", "field_184851_cj");
 					thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, getTeleporterForDimension(thePlayer, pos, 0));
-					thePlayer.setSpawnPoint(new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ), true);
+					if (thePlayer.dimension == 0) {
+						BlockPos spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ).offset(thePlayer.getHorizontalFacing());
+						if (thePlayer.world.getBlockState(spawnPos).isFullBlock()) {
+							spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ).offset(thePlayer.getHorizontalFacing().getOpposite());
+						}
+						if (thePlayer.world.getBlockState(spawnPos).isFullBlock()) {
+							spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ);
+						}
+						thePlayer.setSpawnPoint(spawnPos, true);
+					}
 				}
 			}
 		}
@@ -1052,7 +1071,12 @@ public class WorldCarboniferous extends ElementsLepidodendronMod.ModElement {
 											}
 										} else {
 											if (Math.random() > 0.95 || (j1 < i - 10 && Math.random() > 0.3)) {
-												chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
+												if (Math.random() > 0.82) {
+													chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
+												}
+												else {
+													chunkPrimerIn.setBlockState(i1, j1, l, BlockGravelWavy.block.getDefaultState());
+												}
 											} else {
 												if (Math.random() > 0.25) {
 													if (Math.random() > 0.85) {

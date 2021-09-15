@@ -4,7 +4,9 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.block.BlockInsectEggsPalaeodictyoptera;
 import net.lepidodendron.entity.base.EntityPrehistoricInsectFlyingBase;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -31,6 +33,21 @@ public class EntityPrehistoricFloraPalaeodictyoptera_Homoioptera extends EntityP
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return false;
+	}
+
+	@Override
+	public boolean laysEggs() {
+		return true;
+	}
+
+	@Override
+	public IBlockState getEggBlockState() {
+		return BlockInsectEggsPalaeodictyoptera.block.getDefaultState();
 	}
 
 	@Override
@@ -71,6 +88,10 @@ public class EntityPrehistoricFloraPalaeodictyoptera_Homoioptera extends EntityP
 
 	@Override
 	protected float getAISpeedInsect() {
+
+		if (this.getTicks() < 0) {
+			return 0.0F; //Is laying eggs
+		}
 		return 3f;
 	}
 

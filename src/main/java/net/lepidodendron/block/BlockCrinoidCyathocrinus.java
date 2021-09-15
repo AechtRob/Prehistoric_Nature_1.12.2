@@ -87,7 +87,7 @@ public class BlockCrinoidCyathocrinus extends ElementsLepidodendronMod.ModElemen
 		if (dimID == LepidodendronConfig.dimDevonian
 				|| dimID == LepidodendronConfig.dimOrdovicianSilurian
 				|| dimID == LepidodendronConfig.dimCarboniferous
-				|| dimID == LepidodendronConfig.dimPermian
+				
 		) {
 			dimensionCriteria = true;
 		}
@@ -109,7 +109,7 @@ public class BlockCrinoidCyathocrinus extends ElementsLepidodendronMod.ModElemen
 		if (dimID == LepidodendronConfig.dimDevonian
 				|| dimID == LepidodendronConfig.dimOrdovicianSilurian
 				|| dimID == LepidodendronConfig.dimCarboniferous
-				|| dimID == LepidodendronConfig.dimPermian
+				
 		) {
 			biomeCriteria = true;
 		}

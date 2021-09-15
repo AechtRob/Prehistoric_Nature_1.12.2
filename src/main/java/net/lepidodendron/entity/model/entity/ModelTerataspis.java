@@ -423,7 +423,8 @@ public class ModelTerataspis extends AdvancedModelBase {
         if (e.getPosition().getY() - 1 > 1) {
             BlockPos pos = new BlockPos(e.getPosition().getX(), e.getPosition().getY() - 1, e.getPosition().getZ());
             isAtBottom = ((e.isInsideOfMaterial(Material.WATER) || e.isInsideOfMaterial(Material.CORAL))
-                    && ((e.world.getBlockState(pos)).getMaterial() != Material.WATER));
+                    && ((e.world.getBlockState(pos)).getMaterial() != Material.WATER)
+                    && ((double)e.getPosition().getY() + 0.334D) > e.posY);
         }
 
         AdvancedModelRenderer[] legsL = {this.legL, this.legL2, this.legL3, this.legL4, this.legL5, this.legL6, this.legL7, this.legL8, this.legL9, this.legL10};
@@ -439,18 +440,18 @@ public class ModelTerataspis extends AdvancedModelBase {
         this.flap(legR3, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
         this.flap(legL4, 0.5F, -0.5F, false, 3.0F, -0.5F, f2, 0.3F);
         this.flap(legR4, 0.5F, 0.5F, false, 3.0F, 0.5F, f2, 0.3F);
-        this.flap(legL5, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-        this.flap(legR5, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
-        this.flap(legL6, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-        this.flap(legR6, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
-        this.flap(legL7, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-        this.flap(legR7, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
-        this.flap(legL8, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-        this.flap(legR8, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
-        this.flap(legL9, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-        this.flap(legR9, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
-        this.flap(legL10, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-        this.flap(legR10, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
+        this.flap(legL5, 0.5F, -0.5F, false, 4.0F, -0.5F, f2, 0.3F);
+        this.flap(legR5, 0.5F, 0.5F, false, 4.0F, 0.5F, f2, 0.3F);
+        this.flap(legL6, 0.5F, -0.5F, false, 5.0F, -0.5F, f2, 0.3F);
+        this.flap(legR6, 0.5F, 0.5F, false, 5.0F, 0.5F, f2, 0.3F);
+        this.flap(legL7, 0.5F, -0.5F, false, 6.0F, -0.5F, f2, 0.3F);
+        this.flap(legR7, 0.5F, 0.5F, false, 6.0F, 0.5F, f2, 0.3F);
+        this.flap(legL8, 0.5F, -0.5F, false, 7.0F, -0.5F, f2, 0.3F);
+        this.flap(legR8, 0.5F, 0.5F, false, 7.0F, 0.5F, f2, 0.3F);
+        this.flap(legL9, 0.5F, -0.5F, false, 8.0F, -0.5F, f2, 0.3F);
+        this.flap(legR9, 0.5F, 0.5F, false, 8.0F, 0.5F, f2, 0.3F);
+        this.flap(legL10, 0.5F, -0.5F, false, 9.0F, -0.5F, f2, 0.3F);
+        this.flap(legR10, 0.5F, 0.5F, false, 9.0F, 0.5F, f2, 0.3F);
         this.bob(base, 0.0F, 0.02F, false, f2, 1);
 
         this.swing(antennaL, 0.4F, -0.3F, false, 0, -0.1F, f2, 0.8F);

@@ -157,7 +157,7 @@ public class ItemBucketCheirurus extends ElementsLepidodendronMod.ModElement {
 						worldIn.setBlockState(posIn, Blocks.FLOWING_WATER.getDefaultState(), 11);
 
 						if (MobSpawn == null && !(worldIn.isRemote)) {
-							ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraCheirurus.class), (double) posIn.getX() + 0.5D, (double) posIn.getY() + 0.5D, (double) posIn.getZ() + 0.5D);
+							ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraCheirurus.class), (double) posIn.getX() + 0.5D, (double) posIn.getY(), (double) posIn.getZ() + 0.5D);
 						}
 					}
 
@@ -194,7 +194,7 @@ public class ItemBucketCheirurus extends ElementsLepidodendronMod.ModElement {
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Trilobite");
-				tooltip.add("Periods: Cambrian - Ordovician - Silurian - Devonian");
+				tooltip.add("Periods: Ordovician - Silurian - Devonian");
 				tooltip.add("Habitat: Water");
 				super.addInformation(stack, player, tooltip, advanced);
 			}

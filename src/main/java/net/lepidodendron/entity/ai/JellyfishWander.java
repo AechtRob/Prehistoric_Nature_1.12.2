@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraJellyfishBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -13,7 +12,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.Random;
 
 //public class FishWander extends EntityAIBase {
-public class JellyfishWander extends AnimationAI<EntityPrehistoricFloraJellyfishBase> {
+public class JellyfishWander extends AnimationAINoAnimation<EntityPrehistoricFloraJellyfishBase> {
 
     protected Animation animation;
     protected EntityPrehistoricFloraJellyfishBase PrehistoricFloraJellyfishBase;
@@ -58,7 +57,7 @@ public class JellyfishWander extends AnimationAI<EntityPrehistoricFloraJellyfish
             if (!this.PrehistoricFloraJellyfishBase.getNavigator().noPath()
                 && !isDirectPathBetweenPoints(this.PrehistoricFloraJellyfishBase, this.PrehistoricFloraJellyfishBase.getPositionVector(), new Vec3d(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z))
                 || path != null && path.getFinalPathPoint() != null
-                && this.PrehistoricFloraJellyfishBase.getDistanceSq(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z) < 3)
+                && this.PrehistoricFloraJellyfishBase.getDistanceSq(path.getFinalPathPoint().x, path.getFinalPathPoint().y + 0.5, path.getFinalPathPoint().z + 0.5) < 3)
             {
                 this.PrehistoricFloraJellyfishBase.getNavigator().clearPath();
             }
@@ -88,7 +87,7 @@ public class JellyfishWander extends AnimationAI<EntityPrehistoricFloraJellyfish
         Random rand = this.PrehistoricFloraJellyfishBase.getRNG();
         if (this.PrehistoricFloraJellyfishBase.getAttackTarget() == null) {
             for (int i = 0; i < 10; i++) {
-                BlockPos randPos = this.PrehistoricFloraJellyfishBase.getPosition().add(rand.nextInt(16) - 8, rand.nextInt(8) - 4, rand.nextInt(16) - 8);
+                BlockPos randPos = this.PrehistoricFloraJellyfishBase.getPosition().add(rand.nextInt(17) - 8, rand.nextInt(9) - 4, rand.nextInt(17) - 8);
                 boolean surfaceCheck = false;
                 int ii = 0;
                 while (ii < 6 && !surfaceCheck

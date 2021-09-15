@@ -91,6 +91,7 @@ public class BlockOrangeSponge extends ElementsLepidodendronMod.ModElement {
 				|| (dimID == LepidodendronConfig.dimCambrian)
 				|| (dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
+				
 		) {
 			biomeCriteria = true;
 		}

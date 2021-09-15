@@ -22,7 +22,8 @@ private int tickIndex = 0;
 					|| (dimension == LepidodendronConfig.dimOrdovicianSilurian)
 					|| (dimension == LepidodendronConfig.dimDevonian)
 					|| (dimension == LepidodendronConfig.dimCarboniferous)
-					|| (dimension == LepidodendronConfig.dimPermian)
+					|| (dimension == LepidodendronConfig.dimPrecambrian)
+					
 					) {
 				
 	                WorldServer worldServer = DimensionManager.getWorld(dimension);

@@ -10,7 +10,6 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -75,14 +74,18 @@ public class BlockEggsRhizodus extends ElementsLepidodendronMod.ModElement {
 		}
 
 		@Override
-		public NonNullList<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
-			return NonNullList.withSize(1, new ItemStack(BlockEggsRhizodusPlaceable.block, (int) (1)));
-		}
-
-		@Override
 		public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 			return new ItemStack(BlockEggsRhizodusPlaceable.block, (int) (1));
 		}
 
+		@Override
+		public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
+		{
+			super.updateTick(worldIn, pos, state, rand);
+			//Small chance of decaying:
+			if (!(worldIn.isRemote) && rand.nextInt(45) == 0) {
+				worldIn.destroyBlock(pos, false);
+			}
+		}
 	}
 }

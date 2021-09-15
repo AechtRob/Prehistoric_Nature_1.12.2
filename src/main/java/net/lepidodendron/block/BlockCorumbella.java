@@ -88,7 +88,7 @@ public class BlockCorumbella extends ElementsLepidodendronMod.ModElement {
 		if ((dimID == LepidodendronConfig.dimCambrian)
 				||(dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
-				|| (dimID == LepidodendronConfig.dimPermian)) {
+				) {
 			dimensionCriteria = false; //Not here!
 		}
 		if (!dimensionCriteria)

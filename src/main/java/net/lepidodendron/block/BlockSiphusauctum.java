@@ -76,7 +76,7 @@ public class BlockSiphusauctum extends ElementsLepidodendronMod.ModElement {
 		if ((dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
-				|| (dimID == LepidodendronConfig.dimPermian)
+				
 				|| (dimID == LepidodendronConfig.dimPrecambrian)
 		) {
 			dimensionCriteria = false;
@@ -573,7 +573,7 @@ public class BlockSiphusauctum extends ElementsLepidodendronMod.ModElement {
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Filter feeding animal");
+				tooltip.add("Type: Filter feeding sessile animal");
 				tooltip.add("Periods: Cambrian");}
 			super.addInformation(stack, player, tooltip, advanced);
 		}

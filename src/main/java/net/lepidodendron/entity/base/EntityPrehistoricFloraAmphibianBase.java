@@ -108,10 +108,6 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityPrehisto
         return !isInWater();
     }
 
-    //protected boolean isTargetInWater() {
-    //    return currentTarget != null && (world.getBlockState(new BlockPos(currentTarget.getX(), currentTarget.getY(), currentTarget.getZ())).getMaterial() == Material.WATER && world.getBlockState(new BlockPos(currentTarget.getX(), currentTarget.getY() + 1, currentTarget.getZ())).getMaterial() == Material.WATER);
-    //}
-
     @Override
     public boolean canBreatheUnderwater() {
         return true;

@@ -32,7 +32,20 @@ public class LepidodendronHoeHandler {
         Block block = state.getBlock();
         boolean result = false;
 
-        //Toggle rippled sand
+        //Toggle rippled blocks etc:
+        if (state == Blocks.GRAVEL.getStateFromMeta(0) || block == BlockGravelSticky.block)
+        {
+            result = true;
+            world.setBlockState(pos, BlockGravelWavy.block.getDefaultState());
+        }
+        else {
+            if (block == BlockGravelWavy.block || block == BlockGravelWavySticky.block)
+            {
+                result = true;
+                world.setBlockState(pos, Blocks.GRAVEL.getStateFromMeta(0));
+            }
+        }
+
         if (state == Blocks.SAND.getStateFromMeta(0) || block == BlockSandSticky.block)
         {
             result = true;

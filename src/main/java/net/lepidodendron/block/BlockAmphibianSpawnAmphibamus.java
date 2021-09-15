@@ -4,20 +4,13 @@ package net.lepidodendron.block;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
-import net.lepidodendron.item.entities.ItemBucketSpawnAmphibamus;
 import net.lepidodendron.world.MobSpawnGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Items;
-import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -28,7 +21,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 import java.util.Random;
 
@@ -59,7 +51,7 @@ public class BlockAmphibianSpawnAmphibamus extends ElementsLepidodendronMod.ModE
 	@Override
 	public void generateWorld(Random random, int chunkX, int chunkZ, World world, int dimID, IChunkGenerator cg, IChunkProvider cp) {
 
-		if (dimID != LepidodendronConfig.dimDevonian) {
+		if (dimID != LepidodendronConfig.dimCarboniferous) {
 			return;
 		}
 
@@ -83,33 +75,17 @@ public class BlockAmphibianSpawnAmphibamus extends ElementsLepidodendronMod.ModE
 
 		@Override
 		public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-			return new ItemStack(BlockAmphibianSpawnIchthyostegaPlaceable.block, (int) (1));
+			return new ItemStack(BlockAmphibianSpawnAmphibamusPlaceable.block, (int) (1));
 		}
 
 		@Override
-		public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) 
+		public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
 		{
 			super.updateTick(worldIn, pos, state, rand);
-		}
-
-		@Override
-		public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-
-			ItemStack itemstack = playerIn.getHeldItem(hand);
-
-			if (!itemstack.isEmpty()) {
-				if (itemstack.getItem() == Items.WATER_BUCKET) {
-					playerIn.inventory.clearMatchingItems(new ItemStack(Items.WATER_BUCKET, (int) (1)).getItem(), -1, (int) 1, null);
-					SoundEvent soundevent = SoundEvents.ITEM_BUCKET_FILL;
-					playerIn.getEntityWorld().playSound(playerIn, playerIn.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
-					ItemStack itemstack1 = new ItemStack(ItemBucketSpawnAmphibamus.block, (int) (1));
-					itemstack1.setCount(1);
-					ItemHandlerHelper.giveItemToPlayer(playerIn, itemstack1);
-					worldIn.setBlockToAir(pos);
-					return true;
-				}
+			//Small chance of decaying:
+			if (!(worldIn.isRemote) && rand.nextInt(45) == 0) {
+					worldIn.destroyBlock(pos, false);
 			}
-			return super.onBlockActivated(worldIn, pos, state, playerIn, hand, facing, hitX, hitY, hitZ);
 		}
 	}
 }

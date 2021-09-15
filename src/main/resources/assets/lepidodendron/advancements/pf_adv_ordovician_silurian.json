@@ -1,0 +1,37 @@
+{
+	"display": {
+		"icon": {
+			"item": "lepidodendron:bone_wand"
+		  },
+		"title": {
+			"translate": "advancements.pf_adv_ordovician_silurian.title"
+		},
+		"description": {
+			"translate": "advancements.pf_adv_ordovician_silurian.description"
+		}
+	},
+    "parent": "lepidodendron:pf_base_adv",
+	"criteria": {
+		"ordovician_silurian_biome": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"biome": "lepidodendron:ordovician_silurian_biome"
+			}
+		},
+		"ordovician_silurian_sea": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"biome": "lepidodendron:ordovician_silurian_sea"
+			}
+		},
+		"ordovician_silurian_land": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"biome": "lepidodendron:ordovician_silurian_land"
+			}
+		}
+	},
+  "rewards": {
+	  "experience": 20
+  }
+}

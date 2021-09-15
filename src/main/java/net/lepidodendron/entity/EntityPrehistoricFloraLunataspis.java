@@ -4,6 +4,7 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.entity.ai.EatFishFoodAITrilobiteSwimBase;
 import net.lepidodendron.entity.ai.TrilobiteWanderSwim;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteSwimBase;
 import net.lepidodendron.item.entities.ItemBucketLunataspis;
@@ -41,6 +42,11 @@ public class EntityPrehistoricFloraLunataspis extends EntityPrehistoricFloraTril
 	}
 
 	@Override
+	public boolean dropsEggs() {
+		return true;
+	}
+
+	@Override
 	public int getAnimationTick() {
 		return getAnimationTick();
 	}
@@ -71,8 +77,9 @@ public class EntityPrehistoricFloraLunataspis extends EntityPrehistoricFloraTril
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new TrilobiteWanderSwim(this, ANIMATION_WANDER));
+		tasks.addTask(0, new TrilobiteWanderSwim(this, NO_ANIMATION));
 		tasks.addTask(1, new EntityAILookIdle(this));
+		this.targetTasks.addTask(0, new EatFishFoodAITrilobiteSwimBase(this));
 	}
 
 	@Override

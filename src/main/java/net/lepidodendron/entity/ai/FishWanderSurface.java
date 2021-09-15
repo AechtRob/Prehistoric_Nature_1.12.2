@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -13,7 +12,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.Random;
 
 //public class FishWander extends EntityAIBase {
-public class FishWanderSurface extends AnimationAI<EntityPrehistoricFloraFishBase> {
+public class FishWanderSurface extends AnimationAINoAnimation<EntityPrehistoricFloraFishBase> {
 
     protected Animation animation;
     protected EntityPrehistoricFloraFishBase PrehistoricFloraFishBase;
@@ -55,7 +54,7 @@ public class FishWanderSurface extends AnimationAI<EntityPrehistoricFloraFishBas
         }
         if (this.PrehistoricFloraFishBase.getRNG().nextFloat() < 0.5F) {
             Path path = this.PrehistoricFloraFishBase.getNavigator().getPath();
-            if (!this.PrehistoricFloraFishBase.getNavigator().noPath() && !isDirectPathBetweenPoints(this.PrehistoricFloraFishBase, this.PrehistoricFloraFishBase.getPositionVector(), new Vec3d(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z)) || path != null && path.getFinalPathPoint() != null && this.PrehistoricFloraFishBase.getDistanceSq(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z) < 3) {
+            if (!this.PrehistoricFloraFishBase.getNavigator().noPath() && !isDirectPathBetweenPoints(this.PrehistoricFloraFishBase, this.PrehistoricFloraFishBase.getPositionVector(), new Vec3d(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z)) || path != null && path.getFinalPathPoint() != null && this.PrehistoricFloraFishBase.getDistanceSq(path.getFinalPathPoint().x, path.getFinalPathPoint().y + 0.5, path.getFinalPathPoint().z + 0.5) < 3) {
                 this.PrehistoricFloraFishBase.getNavigator().clearPath();
             }
             if (this.PrehistoricFloraFishBase.getNavigator().noPath()) {
@@ -95,7 +94,7 @@ public class FishWanderSurface extends AnimationAI<EntityPrehistoricFloraFishBas
         Random rand = this.PrehistoricFloraFishBase.getRNG();
         if (this.PrehistoricFloraFishBase.getAttackTarget() == null) {
             for (int i = 0; i < 10; i++) {
-                BlockPos randPos = this.PrehistoricFloraFishBase.getPosition().add(rand.nextInt(16) - 8, rand.nextInt(16) - 8, rand.nextInt(16) - 8);
+                BlockPos randPos = this.PrehistoricFloraFishBase.getPosition().add(rand.nextInt(17) - 8, rand.nextInt(17) - 8, rand.nextInt(17) - 8);
                 //Prefer targets which are at the top:
                 BlockPos randPosVar = randPos;
                 if (this.PrehistoricFloraFishBase.world.getBlockState(randPos).getMaterial() == Material.WATER && !isAtTop(randPos) && Math.random() < 0.90) {

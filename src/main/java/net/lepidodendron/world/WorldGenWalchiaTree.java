@@ -86,7 +86,7 @@ public class WorldGenWalchiaTree extends WorldGenAbstractTree
 					$_dependencies.put("z", position.getZ());
 					$_dependencies.put("world", worldIn);
 					$_dependencies.put("SaplingSpawn", false);
-                    if ((worldIn.provider.getDimension() == LepidodendronConfig.dimPermian)
+                    if ((worldIn.provider.getDimension() != LepidodendronConfig.dimCarboniferous)
                     ){
                         $_dependencies.put("SaplingSpawn", true); // disables Ankyropteris
                     }
@@ -94,7 +94,7 @@ public class WorldGenWalchiaTree extends WorldGenAbstractTree
 						ProcedureWorldGenWalchia.executeProcedure($_dependencies);
 					}
 					else {
-                        if ((worldIn.provider.getDimension() == LepidodendronConfig.dimPermian)
+                        if ((worldIn.provider.getDimension() != LepidodendronConfig.dimCarboniferous)
                         ){
                             ProcedureWorldGenWalchia.executeProcedure($_dependencies);
                         }

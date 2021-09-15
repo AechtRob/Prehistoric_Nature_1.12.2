@@ -39,7 +39,7 @@ public class FernEpiphyteGenerator extends WorldGenerator
 			dimensionCriteria = true;
 		if (
 			(dimID == LepidodendronConfig.dimCarboniferous)
-			|| (dimID == LepidodendronConfig.dimPermian)
+			
 			)
 			{
 				dimensionCriteria = true;

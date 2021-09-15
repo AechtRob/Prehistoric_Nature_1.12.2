@@ -6,6 +6,7 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockArchaeocyatha;
 import net.lepidodendron.block.BlockBacterialLayer;
+import net.lepidodendron.block.BlockGravelWavy;
 import net.lepidodendron.block.BlockSandWavy;
 import net.lepidodendron.world.WorldGenPrecambrianLakes;
 import net.minecraft.block.Block;
@@ -76,7 +77,7 @@ public class WorldCambrian extends ElementsLepidodendronMod.ModElement {
 	public void preInit(FMLPreInitializationEvent event) {
 		if (DimensionManager.isDimensionRegistered(DIMID)) {
 			//DIMID = DimensionManager.getNextFreeDimId();
-			System.err.println("Prehistoric Flora loading error! Dimension ID for the Cambrian dimension is already registered by another mod: " + DIMID);
+			System.err.println("Prehistoric Nature loading error! Dimension ID for the Cambrian dimension is already registered by another mod: " + DIMID);
 			return;
 		}
 		dtype = DimensionType.register("cambrian", "_cambrian", DIMID, WorldProviderMod.class, false);
@@ -105,7 +106,8 @@ public class WorldCambrian extends ElementsLepidodendronMod.ModElement {
 		@SideOnly(Side.CLIENT)
 		public Vec3d getFogColor(float par1, float par2) {
 			//return new Vec3d(0.752941176471, 0.847058823529, 1);
-			return new Vec3d(1, 0.8, 0.6);
+			//return new Vec3d(1, 0.8, 0.6);
+			return new Vec3d(0.51, 0.39, 0.29);
 		}
 
 		@Override
@@ -132,6 +134,9 @@ public class WorldCambrian extends ElementsLepidodendronMod.ModElement {
 		@SideOnly(Side.CLIENT)
 		@Override
 		public boolean doesXZShowFog(int par1, int par2) {
+			if (world.isRaining()) {
+				return true;
+			}
 			return false;
 		}
 
@@ -552,12 +557,30 @@ public class WorldCambrian extends ElementsLepidodendronMod.ModElement {
 					thePlayer.timeUntilPortal = 10;
 					ReflectionHelper.setPrivateValue(EntityPlayerMP.class, thePlayer, true, "invulnerableDimensionChange", "field_184851_cj");
 					thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, DIMID, getTeleporterForDimension(thePlayer, pos, DIMID));
-					thePlayer.setSpawnPoint(new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ), true);
+					if (thePlayer.dimension == DIMID) {
+						BlockPos spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ).offset(thePlayer.getHorizontalFacing());
+						if (thePlayer.world.getBlockState(spawnPos).isFullBlock()) {
+							spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ).offset(thePlayer.getHorizontalFacing().getOpposite());
+						}
+						if (thePlayer.world.getBlockState(spawnPos).isFullBlock()) {
+							spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ);
+						}
+						thePlayer.setSpawnPoint(spawnPos, true);
+					}
 				} else {
 					thePlayer.timeUntilPortal = 10;
 					ReflectionHelper.setPrivateValue(EntityPlayerMP.class, thePlayer, true, "invulnerableDimensionChange", "field_184851_cj");
 					thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, getTeleporterForDimension(thePlayer, pos, 0));
-					thePlayer.setSpawnPoint(new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ), true);
+					if (thePlayer.dimension == 0) {
+						BlockPos spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ).offset(thePlayer.getHorizontalFacing());
+						if (thePlayer.world.getBlockState(spawnPos).isFullBlock()) {
+							spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ).offset(thePlayer.getHorizontalFacing().getOpposite());
+						}
+						if (thePlayer.world.getBlockState(spawnPos).isFullBlock()) {
+							spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ);
+						}
+						thePlayer.setSpawnPoint(spawnPos, true);
+					}
 				}
 			}
 		}
@@ -1042,7 +1065,12 @@ public class WorldCambrian extends ElementsLepidodendronMod.ModElement {
 									}
 									else {
 										if (Math.random() > 0.45) {
-											chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
+											if (Math.random() > 0.82) {
+												chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
+											}
+											else {
+												chunkPrimerIn.setBlockState(i1, j1, l, BlockGravelWavy.block.getDefaultState());
+											}
 										} else {
 											if (Math.random() > 0.25) {
 												if (Math.random()> 0.92) {
@@ -1068,7 +1096,13 @@ public class WorldCambrian extends ElementsLepidodendronMod.ModElement {
 										chunkPrimerIn.setBlockState(i1, j1, l, BlockBacterialLayer.block.getDefaultState());
 									} else {
 										if (Math.random() > 0.5) {
-											chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
+											//chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
+											if (Math.random() > 0.82) {
+												chunkPrimerIn.setBlockState(i1, j1, l, Blocks.GRAVEL.getDefaultState());
+											}
+											else {
+												chunkPrimerIn.setBlockState(i1, j1, l, BlockGravelWavy.block.getDefaultState());
+											}
 										} else {
 											if (Math.random() > 0.5) {
 												if (Math.random() > 0.25) {

@@ -9,7 +9,7 @@
   "key": {
     "0": {
       "type": "forge:ore_dict",
-      "ore": "blockGlass"
+      "ore": "paneGlass"
     },
     "1": {
       "item": "minecraft:sponge",
@@ -17,23 +17,23 @@
     },
     "2": {
       "type": "forge:ore_dict",
-      "ore": "blockGlass"
+      "ore": "paneGlass"
     },
     "3": {
       "type": "forge:ore_dict",
-      "ore": "blockGlass"
+      "ore": "paneGlass"
     },
     "5": {
       "type": "forge:ore_dict",
-      "ore": "blockGlass"
+      "ore": "paneGlass"
     },
     "7": {
       "type": "forge:ore_dict",
-      "ore": "blockGlass"
+      "ore": "paneGlass"
     }
   },
   "result": {
     "item": "lepidodendron:phial",
-    "count": 1
+    "count": 8
   }
 }

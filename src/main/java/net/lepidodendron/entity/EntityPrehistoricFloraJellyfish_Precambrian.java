@@ -41,6 +41,11 @@ public class EntityPrehistoricFloraJellyfish_Precambrian extends EntityPrehistor
         enablePersistence();
     }
 
+    @Override
+    public boolean dropsEggs() {
+        return true;
+    }
+
     //Arbitrary for jellyfish as there is no specific AI animation:
     public static final Animation ANIMATION_JELLYFISH_WANDER = Animation.create(0);
 

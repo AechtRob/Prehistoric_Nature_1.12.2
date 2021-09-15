@@ -21,6 +21,10 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -28,6 +32,8 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
+import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -49,6 +55,10 @@ public class BlockAncientMoss extends ElementsLepidodendronMod.ModElement {
 		elements.items.add(() -> new ItemBlock(block).setRegistryName(block.getRegistryName()));
 	}
 
+	@Override
+	public void init(FMLInitializationEvent event) {
+		GameRegistry.registerTileEntity(BlockAncientMoss.TileEntityCustom.class, "lepidodendron:tileentityancient_moss");
+	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
@@ -77,6 +87,28 @@ public class BlockAncientMoss extends ElementsLepidodendronMod.ModElement {
 			//this.setTickRandomly(true);
 			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.UP).withProperty(NORTH, false).withProperty(SOUTH, false).withProperty(EAST, false).withProperty(WEST, false).withProperty(UP, false).withProperty(DOWN, false));
+		}
+
+		@Override
+		public boolean hasTileEntity(IBlockState state) {
+			return true;
+		}
+
+		@Nullable
+		@Override
+		public TileEntity createTileEntity(World world, IBlockState state) {
+			return new BlockAncientMoss.TileEntityCustom();
+		}
+
+		public BlockAncientMoss.TileEntityCustom createNewTileEntity(World worldIn, int meta) {
+			return new BlockAncientMoss.TileEntityCustom();
+		}
+
+		@Override
+		public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int eventID, int eventParam) {
+			super.eventReceived(state, worldIn, pos, eventID, eventParam);
+			TileEntity tileentity = worldIn.getTileEntity(pos);
+			return tileentity == null ? false : tileentity.receiveClientEvent(eventID, eventParam);
 		}
 
 		@Override
@@ -226,6 +258,12 @@ public class BlockAncientMoss extends ElementsLepidodendronMod.ModElement {
 	    {
 	        return NULL_AABB;
 	    }
+
+		@SideOnly(Side.CLIENT)
+		@Override
+		public EnumBlockRenderType getRenderType(IBlockState state) {
+			return EnumBlockRenderType.MODEL;
+		}
 
 		@SideOnly(Side.CLIENT)
 		@Override
@@ -506,6 +544,14 @@ public class BlockAncientMoss extends ElementsLepidodendronMod.ModElement {
 						EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this, (int) (1)));
 						entityToSpawn.setPickupDelay(10);
 						worldIn.spawnEntity(entityToSpawn);
+
+						SpawnEggs(worldIn, pos);
+						//Clear nbt:
+						TileEntity te = worldIn.getTileEntity(pos);
+						if (te != null) {
+							te.getTileData().removeTag("egg");
+						}
+						worldIn.notifyBlockUpdate(pos, state, state, 3);
 					}
 				}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.SOUTH) {
@@ -521,6 +567,14 @@ public class BlockAncientMoss extends ElementsLepidodendronMod.ModElement {
 						EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this, (int) (1)));
 						entityToSpawn.setPickupDelay(10);
 						worldIn.spawnEntity(entityToSpawn);
+
+						SpawnEggs(worldIn, pos);
+						//Clear nbt:
+						TileEntity te = worldIn.getTileEntity(pos);
+						if (te != null) {
+							te.getTileData().removeTag("egg");
+						}
+						worldIn.notifyBlockUpdate(pos, state, state, 3);
 					}
 				}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.EAST) {
@@ -536,6 +590,14 @@ public class BlockAncientMoss extends ElementsLepidodendronMod.ModElement {
 						EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this, (int) (1)));
 						entityToSpawn.setPickupDelay(10);
 						worldIn.spawnEntity(entityToSpawn);
+
+						SpawnEggs(worldIn, pos);
+						//Clear nbt:
+						TileEntity te = worldIn.getTileEntity(pos);
+						if (te != null) {
+							te.getTileData().removeTag("egg");
+						}
+						worldIn.notifyBlockUpdate(pos, state, state, 3);
 					}
 				}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.WEST) {
@@ -551,6 +613,14 @@ public class BlockAncientMoss extends ElementsLepidodendronMod.ModElement {
 						EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this, (int) (1)));
 						entityToSpawn.setPickupDelay(10);
 						worldIn.spawnEntity(entityToSpawn);
+
+						SpawnEggs(worldIn, pos);
+						//Clear nbt:
+						TileEntity te = worldIn.getTileEntity(pos);
+						if (te != null) {
+							te.getTileData().removeTag("egg");
+						}
+						worldIn.notifyBlockUpdate(pos, state, state, 3);
 					}
 				}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.UP) {
@@ -566,6 +636,14 @@ public class BlockAncientMoss extends ElementsLepidodendronMod.ModElement {
 						EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this, (int) (1)));
 						entityToSpawn.setPickupDelay(10);
 						worldIn.spawnEntity(entityToSpawn);
+
+						SpawnEggs(worldIn, pos);
+						//Clear nbt:
+						TileEntity te = worldIn.getTileEntity(pos);
+						if (te != null) {
+							te.getTileData().removeTag("egg");
+						}
+						worldIn.notifyBlockUpdate(pos, state, state, 3);
 					}
 				}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.DOWN) {
@@ -581,6 +659,14 @@ public class BlockAncientMoss extends ElementsLepidodendronMod.ModElement {
 						EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this, (int) (1)));
 						entityToSpawn.setPickupDelay(10);
 						worldIn.spawnEntity(entityToSpawn);
+
+						SpawnEggs(worldIn, pos);
+						//Clear nbt:
+						TileEntity te = worldIn.getTileEntity(pos);
+						if (te != null) {
+							te.getTileData().removeTag("egg");
+						}
+						worldIn.notifyBlockUpdate(pos, state, state, 3);
 					}
 				}
 		}
@@ -643,6 +729,87 @@ public class BlockAncientMoss extends ElementsLepidodendronMod.ModElement {
 	    {
 	        return true;
 	    }
+
+		public void SpawnEggs(World world, BlockPos pos) {
+			String eggRenderType = new Object() {
+				public String getValue(BlockPos pos, String tag) {
+					TileEntity tileEntity = world.getTileEntity(pos);
+					if (tileEntity != null)
+						return tileEntity.getTileData().getString(tag);
+					return "";
+				}
+			}.getValue(new BlockPos(pos), "egg");
+
+			EntityItem entityToSpawn = null;
+			if (!eggRenderType.equals("")) {
+				Block blockSpawn = ForgeRegistries.BLOCKS.getValue(new ResourceLocation(eggRenderType)).getDefaultState().getBlock();
+				//System.err.println("Block " + blockSpawn);
+				if (blockSpawn != null) {
+					if (!(blockSpawn instanceof BlockInsectEggs)) { //Do not spawn insect eggs - these need collecting
+						entityToSpawn = new EntityItem(world, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(blockSpawn, (int) (1)));
+					}
+				}
+			}
+			//Spawn the eggs:
+			if (!world.isRemote && entityToSpawn != null) {
+				entityToSpawn.setPickupDelay(10);
+				world.spawnEntity(entityToSpawn);
+				//System.err.println("Spawned " + entityToSpawn);
+			}
+		}
+
+	}
+
+	public static class TileEntityCustom extends TileEntity {
+
+		private String egg;
+
+		@Override
+		public SPacketUpdateTileEntity getUpdatePacket() {
+			NBTTagCompound tag = new NBTTagCompound();
+			this.writeToNBT(tag);
+			return new SPacketUpdateTileEntity(pos, 1, tag);
+		}
+
+		@Override
+		public void onDataPacket(NetworkManager netManager, SPacketUpdateTileEntity packet) {
+			readFromNBT(packet.getNbtCompound());
+		}
+
+		@Override
+		public NBTTagCompound getUpdateTag() {
+			return this.writeToNBT(new NBTTagCompound());
+		}
+
+		@Override
+		public void handleUpdateTag(NBTTagCompound tag) {
+			this.readFromNBT(tag);
+		}
+
+		@Override
+		public void readFromNBT(NBTTagCompound compound)
+		{
+			super.readFromNBT(compound);
+			if (compound.hasKey("egg")) {
+				this.egg = compound.getString("egg");
+			}
+		}
+
+		@Override
+		public NBTTagCompound writeToNBT(NBTTagCompound compound)
+		{
+			super.writeToNBT(compound);
+			if (this.hasEgg())
+			{
+				compound.setString("egg", this.egg);
+			}
+			return compound;
+		}
+
+		public boolean hasEgg()
+		{
+			return this.egg != null;
+		}
 
 	}
 }

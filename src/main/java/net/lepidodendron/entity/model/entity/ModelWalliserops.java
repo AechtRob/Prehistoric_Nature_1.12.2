@@ -175,8 +175,8 @@ public class ModelWalliserops extends AdvancedModelBase {
         this.flap(legR3, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
         this.flap(legL4, 0.5F, -0.5F, false, 3.0F, -0.5F, f2, 0.3F);
         this.flap(legR4, 0.5F, 0.5F, false, 3.0F, 0.5F, f2, 0.3F);
-        this.flap(legL5, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-        this.flap(legR5, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
+        this.flap(legL5, 0.5F, -0.5F, false, 4.0F, -0.5F, f2, 0.3F);
+        this.flap(legR5, 0.5F, 0.5F, false, 4.0F, 0.5F, f2, 0.3F);
 
 
     }

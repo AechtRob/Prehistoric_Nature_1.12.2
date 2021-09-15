@@ -96,7 +96,8 @@ public class BlockRedLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 		}
 		if ((dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimDevonian)
-				|| (dimID == LepidodendronConfig.dimCarboniferous) ) {
+				|| (dimID == LepidodendronConfig.dimCarboniferous)
+				 ) {
 			biomeCriteria = true;
 		}
 		if (!biomeCriteria)

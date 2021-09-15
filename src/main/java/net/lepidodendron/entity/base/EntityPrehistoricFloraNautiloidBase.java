@@ -2,7 +2,6 @@ package net.lepidodendron.entity.base;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -10,9 +9,6 @@ import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigateSwimmer;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.math.BlockPos;
@@ -27,8 +23,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public abstract class EntityPrehistoricFloraNautiloidBase extends EntityPrehistoricFloraAgeableBase implements IAnimatedEntity {
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
-    private static final DataParameter<Boolean> SHELL = EntityDataManager.createKey(EntityPrehistoricFloraAgeableBase.class, DataSerializers.BOOLEAN);
-    public ChainBuffer chainBuffer;
+     public ChainBuffer chainBuffer;
 
     public EntityPrehistoricFloraNautiloidBase(World world) {
         super(world);
@@ -41,47 +36,11 @@ public abstract class EntityPrehistoricFloraNautiloidBase extends EntityPrehisto
     }
 
     private Animation animation = NO_ANIMATION;
-    private int animationTick;
+    //private int animationTick;
 
-    private static final Animation[] ANIMATIONS = {};
+    //private static final Animation[] ANIMATIONS = {};
 
-    public AnimationAI currentAnim;
-
-    @Override
-    public int getAnimationTick() {
-        return animationTick;
-    }
-
-    @Override
-    public void setAnimationTick(int tick)
-    {
-        animationTick = tick;
-    }
-
-    @Override
-    public Animation getAnimation()
-    {
-        return this.animation;
-    }
-
-    @Override
-    public void setAnimation(Animation animation)
-    {
-        if (animation == NO_ANIMATION){
-            onAnimationFinish(this.animation);
-            setAnimationTick(0);
-        }
-        this.animation = animation;
-    }
-
-    @Override
-    public Animation[] getAnimations()
-    {
-        return ANIMATIONS;
-    }
-
-    protected void onAnimationFinish(Animation animation)
-    {}
+    //public AnimationAI currentAnim;
 
     protected abstract float getAISpeedNautiloid();
 
@@ -123,17 +82,17 @@ public abstract class EntityPrehistoricFloraNautiloidBase extends EntityPrehisto
     }
 
     public boolean isAtBottom() {
-        //Used for orthocone feeding animations:
+        //Used for giant orthocone feeding animations:
         if (this.getPosition().getY() - ((double)this.getAgeScale() * 2)  > 1) {
             BlockPos pos = new BlockPos(this.getPosition().getX(),this.getPosition().getY() - ((double)this.getAgeScale() * 1.2), this.getPosition().getZ());
             return ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
-                    && ((this.world.getBlockState(pos)).getMaterial() != Material.WATER)
-                    && ((this.world.getBlockState(pos.north())).getMaterial() != Material.WATER)
-                    && ((this.world.getBlockState(pos.south())).getMaterial() != Material.WATER)
-                    && ((this.world.getBlockState(pos.east())).getMaterial() != Material.WATER)
-                    && ((this.world.getBlockState(pos.west())).getMaterial() != Material.WATER));
+                && ((this.world.getBlockState(pos)).getMaterial() != Material.WATER)
+                && ((this.world.getBlockState(pos.north())).getMaterial() != Material.WATER)
+                && ((this.world.getBlockState(pos.south())).getMaterial() != Material.WATER)
+                && ((this.world.getBlockState(pos.east())).getMaterial() != Material.WATER)
+                && ((this.world.getBlockState(pos.west())).getMaterial() != Material.WATER));
         }
-        return true;
+        return false;
     }
 
     @Override
@@ -188,14 +147,6 @@ public abstract class EntityPrehistoricFloraNautiloidBase extends EntityPrehisto
         super.onLivingUpdate();
         this.renderYawOffset = this.rotationYaw;
 
-        if (getAnimation() != NO_ANIMATION)
-        {
-            animationTick++;
-        }
-        if (world.isRemote && animationTick >= animation.getDuration())
-        {
-            setAnimation(NO_ANIMATION);
-        }
     }
 
     public void onEntityUpdate()

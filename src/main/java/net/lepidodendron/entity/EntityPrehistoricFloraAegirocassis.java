@@ -7,8 +7,11 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.AgeableFishWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableFishBase;
+import net.lepidodendron.item.entities.ItemEggsAegirocassis;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -40,6 +43,25 @@ public class EntityPrehistoricFloraAegirocassis extends EntityPrehistoricFloraAg
 		maxWidth = 0.7F;
 		maxHeight = 0.8F;
 		maxHealthAgeable = 25.0D;
+	}
+
+	@Override
+	public int getRoarLength() {
+		return 0;
+	}
+
+	@Override
+	public void playLivingSound() {
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return false;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return false;
 	}
 
 	@Override
@@ -142,15 +164,21 @@ public class EntityPrehistoricFloraAegirocassis extends EntityPrehistoricFloraAg
 
 	public void onEntityUpdate() {
 		super.onEntityUpdate();
+		//Drop an egg perhaps:
+		if (!world.isRemote && this.isPFAdult() && this.getCanBreed() && LepidodendronConfig.doMultiplyMobs) {
+			if (Math.random() > 0.5) {
+				ItemStack itemstack = new ItemStack(ItemEggsAegirocassis.block, (int) (1));
+				EntityItem entityToSpawn = new EntityItem(world, this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), itemstack);
+				entityToSpawn.setPickupDelay(10);
+				world.spawnEntity(entityToSpawn);
+			}
+			this.setTicks(0);
+		}
 	}
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		double adult = (double) LepidodendronConfig.adultAge;
-		if (adult > 100) {adult = 100;}
-		if (adult < 0) {adult = 0;}
-		adult = adult/100D;
-		if (getAgeScale() < adult) {
+		if (!this.isPFAdult()) {
 			return LepidodendronMod.AEGIROCASSIS_LOOT_YOUNG;
 		}
 		return LepidodendronMod.AEGIROCASSIS_LOOT;

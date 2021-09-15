@@ -7,7 +7,6 @@ import net.lepidodendron.block.BlockCalamophytonSapling;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -40,9 +39,5 @@ public class ItemPetrifiedCalamophytonSapling extends ElementsLepidodendronMod.M
 			setCreativeTab(TabLepidodendronPlants.tab);
 		}
 
-		@Override
-		public ItemStack getPlantStack() {
-			return new ItemStack(ItemIsoetesItem.block, 1);
-		}
 	}
 }

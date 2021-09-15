@@ -43,6 +43,11 @@ public class EntityPrehistoricFloraPoleumita extends EntityPrehistoricFloraTrilo
 	}
 
 	@Override
+	public boolean dropsEggs() {
+		return true;
+	}
+
+	@Override
 	public int getAnimationTick() {
 		return getAnimationTick();
 	}
@@ -73,7 +78,7 @@ public class EntityPrehistoricFloraPoleumita extends EntityPrehistoricFloraTrilo
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new TrilobiteWanderBottom(this, ANIMATION_WANDER));
+		tasks.addTask(0, new TrilobiteWanderBottom(this, NO_ANIMATION));
 		tasks.addTask(1, new EntityAILookIdle(this));
 	}
 

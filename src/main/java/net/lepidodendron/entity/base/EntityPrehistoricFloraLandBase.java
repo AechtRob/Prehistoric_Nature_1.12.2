@@ -2,8 +2,6 @@ package net.lepidodendron.entity.base;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
-import net.minecraft.entity.EntityCreature;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -20,7 +18,7 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public abstract class EntityPrehistoricFloraLandBase extends EntityCreature implements IAnimatedEntity {
+public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFloraAgeableBase {
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;
@@ -34,6 +32,12 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityCreature impl
         if (FMLCommonHandler.instance().getSide().isClient()) {
             this.chainBuffer = new ChainBuffer();
         }
+    }
+
+    @Override
+    public float getEyeHeight()
+    {
+        return this.height * 0.85F;
     }
 
     protected abstract float getAISpeedLand();
@@ -84,11 +88,6 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityCreature impl
     @Override
     public boolean isOnLadder() {
         return false;
-    }
-
-    public void onEntityUpdate()
-    {
-        super.onEntityUpdate();
     }
 
     public boolean isDirectPathBetweenPoints(Vec3d vec1, Vec3d vec2) {

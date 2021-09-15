@@ -15,7 +15,10 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.*;
+import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -26,7 +29,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockMobSpawn extends Block implements net.minecraftforge.common.IShearable {
+public class BlockMobSpawn extends Block {
 
 	public static final PropertyDirection FACING = BlockDirectional.FACING;
 	public static final PropertyInteger LEVEL = PropertyInteger.create("level", 0, 15);
@@ -40,13 +43,6 @@ public class BlockMobSpawn extends Block implements net.minecraftforge.common.IS
 		setLightOpacity(0);
 		//this.setTickRandomly(true);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(LEVEL, 0).withProperty(FACING, EnumFacing.UP));
-	}
-
-	@Override public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos){ return true; }
-
-	@Override
-	public NonNullList<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
-		return null;
 	}
 
 	@Nullable
@@ -265,7 +261,6 @@ public class BlockMobSpawn extends Block implements net.minecraftforge.common.IS
 	//@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
-
 		if ((isWaterBlock(worldIn, pos)) && (isWaterBlock(worldIn, pos.up()))) {
 			return super.canPlaceBlockAt(worldIn, pos);
 		}
@@ -313,10 +308,7 @@ public class BlockMobSpawn extends Block implements net.minecraftforge.common.IS
 
 	public boolean isWaterBlock(World world, BlockPos pos) {
 		if (world.getBlockState(pos).getMaterial() == Material.WATER) {
-			//IBlockState iblockstate = world.getBlockState(pos);
-			//if (((Integer)iblockstate.getValue(BlockLiquid.LEVEL)).intValue() == 0) {
-				return true;
-			//}
+			return true;
 		}
 		return false;
 	}

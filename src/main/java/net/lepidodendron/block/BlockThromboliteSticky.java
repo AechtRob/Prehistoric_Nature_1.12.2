@@ -61,17 +61,15 @@ public class BlockThromboliteSticky extends ElementsLepidodendronMod.ModElement 
 			setDefaultSlipperiness(0.7f);
 		}
 
-		public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
-		{
-			if (entityIn instanceof EntityPlayer)
-			{
-				if (!((EntityPlayer) entityIn).capabilities.isCreativeMode) {
+		public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+			if (Math.abs(entityIn.motionY) < 0.1D && entityIn.posY <= (double)entityIn.getPosition().getY()+0.1) {
+				if (entityIn instanceof EntityPlayer &&  !entityIn.isSneaking()) {
+					if (!((EntityPlayer) entityIn).capabilities.isCreativeMode) {
+						entityIn.setInWeb();
+					}
+				} else if (entityIn instanceof EntityLivingBase) {
 					entityIn.setInWeb();
 				}
-			}
-			else if (entityIn instanceof EntityLivingBase)
-			{
-				entityIn.setInWeb();
 			}
 		}
 		

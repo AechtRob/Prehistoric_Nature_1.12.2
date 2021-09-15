@@ -81,7 +81,7 @@ public class BlockGogia extends ElementsLepidodendronMod.ModElement {
 		if ((dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
-				|| (dimID == LepidodendronConfig.dimPermian)
+				
 				|| (dimID == LepidodendronConfig.dimPrecambrian)
 		) {
 			dimensionCriteria = false;
@@ -570,8 +570,8 @@ public class BlockGogia extends ElementsLepidodendronMod.ModElement {
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Sessile echinoderm");
-				tooltip.add("Periods: Ordovician - Silurian - Devonian - Carboniferous - Permian");}
+				tooltip.add("Type: Crinoid-like sessile animal");
+				tooltip.add("Periods: Cambrian");}
 			super.addInformation(stack, player, tooltip, advanced);
 		}
 

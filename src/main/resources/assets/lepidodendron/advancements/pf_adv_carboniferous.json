@@ -1,0 +1,43 @@
+{
+	"display": {
+		"icon": {
+			"item": "lepidodendron:bone_wand"
+		  },
+		"title": {
+			"translate": "advancements.pf_adv_carboniferous.title"
+		},
+		"description": {
+			"translate": "advancements.pf_adv_carboniferous.description"
+		}
+	},
+    "parent": "lepidodendron:pf_base_adv",
+	"criteria": {
+		"carboniferous_hills": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"biome": "lepidodendron:carboniferous_hills"
+			}
+		},
+		"carboniferous_ocean": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"biome": "lepidodendron:carboniferous_ocean"
+			}
+		},
+		"carboniferous_swamp": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"biome": "lepidodendron:carboniferous_swamp"
+			}
+		},
+		"carboniferous_swamp_hills": {
+			"trigger": "minecraft:location",
+			"conditions": {
+				"biome": "lepidodendron:carboniferous_swamp_hills"
+			}
+		}
+	},
+  "rewards": {
+	  "experience": 20
+  }
+}

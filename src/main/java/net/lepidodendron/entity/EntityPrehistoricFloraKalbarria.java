@@ -5,6 +5,7 @@ import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.AmphibianWander;
+import net.lepidodendron.entity.ai.EatFishFoodAIAgeable;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraSwimmingAmphibianBase;
 import net.lepidodendron.item.entities.ItemBucketKalbarria;
 import net.minecraft.entity.Entity;
@@ -41,12 +42,20 @@ public class EntityPrehistoricFloraKalbarria extends EntityPrehistoricFloraSwimm
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		//minSize = 0.2F;
-		//maxSize = 1.0F;
 		minWidth = 0.1F;
 		maxWidth = 0.3F;
 		maxHeight = 0.3F;
 		maxHealthAgeable = 3.0D;
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return true;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return false;
 	}
 
 	protected float getAISpeedSwimmingAmphibian() {
@@ -83,8 +92,10 @@ public class EntityPrehistoricFloraKalbarria extends EntityPrehistoricFloraSwimm
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(1, new AmphibianWander(this, NO_ANIMATION));
+		tasks.addTask(1, new AmphibianWander(this, NO_ANIMATION, 0.6));
 		tasks.addTask(2, new EntityAILookIdle(this));
+		this.targetTasks.addTask(0, new EatFishFoodAIAgeable(this));
+
 		}
 
 	@Override

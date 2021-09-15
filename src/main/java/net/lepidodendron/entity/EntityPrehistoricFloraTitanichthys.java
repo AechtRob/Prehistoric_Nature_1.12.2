@@ -3,9 +3,9 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.AgeableFishWander;
+import net.lepidodendron.entity.ai.EatFishFoodAIAgeable;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableFishBase;
 import net.lepidodendron.item.entities.ItemBucketTitanichthys;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -40,10 +40,20 @@ public class EntityPrehistoricFloraTitanichthys extends EntityPrehistoricFloraAg
 		enablePersistence();
 		//minSize = 0.05F;
 		//maxSize = 1.0F;
-		minWidth = 0.1F;
+		minWidth = 0.2F;
 		maxWidth = 1.5F;
 		maxHeight = 2F;
 		maxHealthAgeable = 30.0D;
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return true;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return false;
 	}
 
 	@Override
@@ -53,7 +63,7 @@ public class EntityPrehistoricFloraTitanichthys extends EntityPrehistoricFloraAg
 
 	@Override
 	protected float getAISpeedFish() {
-		return 0.3f;
+		return 0.275f;
 	}
 
 	@Override
@@ -96,6 +106,7 @@ public class EntityPrehistoricFloraTitanichthys extends EntityPrehistoricFloraAg
 
 	protected void initEntityAI() {
 		tasks.addTask(0, new AgeableFishWander(this, NO_ANIMATION, 0.03/(double)this.getAgeScale(), 0.01));
+		this.targetTasks.addTask(0, new EatFishFoodAIAgeable(this));
 	}
 
 	@Override
@@ -157,11 +168,7 @@ public class EntityPrehistoricFloraTitanichthys extends EntityPrehistoricFloraAg
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		double adult = (double) LepidodendronConfig.adultAge;
-		if (adult > 100) {adult = 100;}
-		if (adult < 0) {adult = 0;}
-		adult = adult/100D;
-		if (getAgeScale() < adult) {
+		 		if (!this.isPFAdult()) {
 			return LepidodendronMod.TITANICHTHYS_LOOT_YOUNG;
 		}
 		return LepidodendronMod.TITANICHTHYS_LOOT;
@@ -170,7 +177,7 @@ public class EntityPrehistoricFloraTitanichthys extends EntityPrehistoricFloraAg
 	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
-		if (this.getAgeScale() < 0.1) { //Only catch babies
+		if (this.getAgeScale() < 0.2) { //Only catch babies
 			ItemStack itemstack = player.getHeldItem(hand);
 
 			if (!itemstack.isEmpty()) {

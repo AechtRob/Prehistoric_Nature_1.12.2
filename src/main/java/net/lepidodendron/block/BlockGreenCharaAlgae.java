@@ -96,7 +96,8 @@ public class BlockGreenCharaAlgae extends ElementsLepidodendronMod.ModElement {
 			biomeCriteria = false;
 		}
 		if ((dimID == LepidodendronConfig.dimDevonian)
-			|| (dimID == LepidodendronConfig.dimCarboniferous) ){
+			|| (dimID == LepidodendronConfig.dimCarboniferous)
+			 ){
 			biomeCriteria = true;
 		}
 		if (!biomeCriteria)

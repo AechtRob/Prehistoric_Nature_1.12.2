@@ -271,7 +271,8 @@ public class ModelMixopterus extends AdvancedModelBase {
         if (e.getPosition().getY() - 1 > 1) {
             BlockPos pos = new BlockPos(e.getPosition().getX(), e.getPosition().getY() - 1, e.getPosition().getZ());
             isAtBottom = ((e.isInsideOfMaterial(Material.WATER) || e.isInsideOfMaterial(Material.CORAL))
-                    && ((e.world.getBlockState(pos)).getMaterial() != Material.WATER));
+                    && ((e.world.getBlockState(pos)).getMaterial() != Material.WATER)
+                    && ((double)e.getPosition().getY() + 0.334D) > e.posY);
         }
 
         if (isAtBottom) {
@@ -340,7 +341,7 @@ public class ModelMixopterus extends AdvancedModelBase {
         setRotationAngles(f, f1, f2, f3, f4, f5, (Entity) entity);
 
         animator.setAnimation(e.ATTACK_ANIMATION);
-        animator.startKeyframe(8);
+        animator.startKeyframe(5);
         animator.rotate(this.body, (float) Math.toRadians(27.5), (float) Math.toRadians(0), (float) Math.toRadians(0));
         animator.rotate(this.body2, (float) Math.toRadians(27.5), (float) Math.toRadians(0), (float) Math.toRadians(0));
         animator.rotate(this.body3, (float) Math.toRadians(27.5), (float) Math.toRadians(0), (float) Math.toRadians(0));
@@ -351,7 +352,7 @@ public class ModelMixopterus extends AdvancedModelBase {
         animator.rotate(this.tail5, (float) Math.toRadians(22.5), (float) Math.toRadians(0), (float) Math.toRadians(0));
         animator.rotate(this.tail6, (float) Math.toRadians(17.5), (float) Math.toRadians(0), (float) Math.toRadians(0));
         animator.endKeyframe();
-        animator.setStaticKeyframe(2);
+        animator.setStaticKeyframe(5);
         animator.resetKeyframe(20);
     }
 }

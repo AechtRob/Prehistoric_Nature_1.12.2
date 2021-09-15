@@ -206,7 +206,6 @@ public class ModelAsaphus extends AdvancedModelBase {
         this.resetToDefaultPose();
         this.body.offsetY = 0.91F;
 
-
         this.eyeL.rotateAngleZ += f3 / (180F / (float) Math.PI) * 0.5;
         this.eyeL.rotateAngleX += f3 / (180F / (float) Math.PI) * 0.5;
         this.eyeR.rotateAngleZ += f3 / (180F / (float) Math.PI) * 0.5;
@@ -229,12 +228,12 @@ public class ModelAsaphus extends AdvancedModelBase {
         this.flap(legR3, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
         this.flap(legL4, 0.5F, -0.5F, false, 3.0F, -0.5F, f2, 0.3F);
         this.flap(legR4, 0.5F, 0.5F, false, 3.0F, 0.5F, f2, 0.3F);
-        this.flap(legL5, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-        this.flap(legR5, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
-        this.flap(legL6, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-        this.flap(legR6, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
-        this.flap(legL7, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-        this.flap(legR7, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
+        this.flap(legL5, 0.5F, -0.5F, false, 4.0F, -0.5F, f2, 0.3F);
+        this.flap(legR5, 0.5F, 0.5F, false, 4.0F, 0.5F, f2, 0.3F);
+        this.flap(legL6, 0.5F, -0.5F, false, 5.0F, -0.5F, f2, 0.3F);
+        this.flap(legR6, 0.5F, 0.5F, false, 5.0F, 0.5F, f2, 0.3F);
+        this.flap(legL7, 0.5F, -0.5F, false, 6.0F, -0.5F, f2, 0.3F);
+        this.flap(legR7, 0.5F, 0.5F, false, 6.0F, 0.5F, f2, 0.3F);
 
     }
 }

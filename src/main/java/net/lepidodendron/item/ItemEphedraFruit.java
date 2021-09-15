@@ -4,10 +4,17 @@ package net.lepidodendron.item;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
+import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import net.minecraft.util.DamageSource;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -24,7 +31,7 @@ public class ItemEphedraFruit extends ElementsLepidodendronMod.ModElement {
 
 	@Override
 	public void initElements() {
-		elements.items.add(() -> new ItemCustom());
+		elements.items.add(() -> new ItemFoodCustom());
 	}
 
 	@SideOnly(Side.CLIENT)
@@ -32,28 +39,30 @@ public class ItemEphedraFruit extends ElementsLepidodendronMod.ModElement {
 	public void registerModels(ModelRegistryEvent event) {
 		ModelLoader.setCustomModelResourceLocation(block, 0, new ModelResourceLocation("lepidodendron:ephedra_fruit", "inventory"));
 	}
-	public static class ItemCustom extends Item {
-		public ItemCustom() {
-			setMaxDamage(0);
-			maxStackSize = 64;
+	public static class ItemFoodCustom extends ItemFood {
+		public ItemFoodCustom() {
+			super(1, 0.2f, false);
 			setTranslationKey("pf_ephedra_fruit");
 			setRegistryName("ephedra_fruit");
+			setAlwaysEdible();
 			setCreativeTab(TabLepidodendronPlants.tab);
+			setMaxStackSize(64);
 		}
 
 		@Override
-		public int getItemEnchantability() {
-			return 0;
+		public EnumAction getItemUseAction(ItemStack par1ItemStack) {
+			return EnumAction.EAT;
 		}
 
 		@Override
-		public int getMaxItemUseDuration(ItemStack itemstack) {
-			return 0;
+		protected void onFoodEaten(ItemStack itemStack, World world, EntityPlayer entity) {
+			super.onFoodEaten(itemStack, world, entity);
+			if (entity instanceof EntityLivingBase) {
+				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.SPEED, (int) 300, (int) 3));
+				entity.attackEntityFrom(DamageSource.GENERIC, (float) 5);
+			}
+
 		}
 
-		@Override
-		public float getDestroySpeed(ItemStack par1ItemStack, IBlockState par2Block) {
-			return 1F;
-		}
 	}
 }

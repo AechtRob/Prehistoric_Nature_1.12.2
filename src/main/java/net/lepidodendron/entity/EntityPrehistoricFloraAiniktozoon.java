@@ -4,6 +4,7 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.entity.ai.EatFishFoodAIFish;
 import net.lepidodendron.entity.ai.FishWanderSurface;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.item.entities.ItemBucketAiniktozoon;
@@ -37,6 +38,11 @@ public class EntityPrehistoricFloraAiniktozoon extends EntityPrehistoricFloraFis
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return true;
 	}
 
 	@Override
@@ -76,7 +82,8 @@ public class EntityPrehistoricFloraAiniktozoon extends EntityPrehistoricFloraFis
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new FishWanderSurface(this, ANIMATION_FISH_WANDER));
+		tasks.addTask(0, new FishWanderSurface(this, NO_ANIMATION));
+		this.targetTasks.addTask(0, new EatFishFoodAIFish(this));
 	}
 
 	@Override

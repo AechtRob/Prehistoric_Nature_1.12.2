@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraSlitheringWaterBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.pathfinding.Path;
@@ -10,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import java.util.Random;
 
 //public class FishWander extends EntityAIBase {
-public class SlitheringWanderBottom extends AnimationAI<EntityPrehistoricFloraSlitheringWaterBase> {
+public class SlitheringWanderBottom extends AnimationAINoAnimation<EntityPrehistoricFloraSlitheringWaterBase> {
 
     protected Animation animation;
     protected EntityPrehistoricFloraSlitheringWaterBase PrehistoricFloraSlitheringWaterBase;
@@ -86,7 +85,7 @@ public class SlitheringWanderBottom extends AnimationAI<EntityPrehistoricFloraSl
         Random rand = this.PrehistoricFloraSlitheringWaterBase.getRNG();
         if (this.PrehistoricFloraSlitheringWaterBase.getAttackTarget() == null) {
             for (int i = 0; i < 10; i++) {
-                BlockPos randPos = this.PrehistoricFloraSlitheringWaterBase.getPosition().add(rand.nextInt(16) - 8, rand.nextInt(16) - 8, rand.nextInt(16) - 8);
+                BlockPos randPos = this.PrehistoricFloraSlitheringWaterBase.getPosition().add(rand.nextInt(17) - 8, rand.nextInt(17) - 8, rand.nextInt(17) - 8);
                 //Use targets which are at the bottom:
                 BlockPos randPosVar = randPos;
                 if (this.PrehistoricFloraSlitheringWaterBase.world.getBlockState(randPos).getMaterial() == Material.WATER && !isAtBottom(randPos)) {

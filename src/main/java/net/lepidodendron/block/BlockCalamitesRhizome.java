@@ -2,7 +2,9 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.procedure.ProcedureCalamitesRhizomeUpdateTick;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
@@ -14,12 +16,16 @@ import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
@@ -33,6 +39,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import java.util.List;
 import java.util.Random;
 
 @ElementsLepidodendronMod.ModElement.Tag
@@ -71,7 +78,7 @@ public class BlockCalamitesRhizome extends ElementsLepidodendronMod.ModElement {
 			setResistance(2F);
 			setLightLevel(0F);
 			setLightOpacity(255);
-			setCreativeTab(null);
+			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.NORTH));
 			setTickRandomly(true);
 		}
@@ -199,9 +206,58 @@ public class BlockCalamitesRhizome extends ElementsLepidodendronMod.ModElement {
 		public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 			drops.add(new ItemStack(Blocks.AIR, (int) (1)));
 		}
+
+		@Override
+		public void onBlockPlacedBy(World worldIn, BlockPos pos, IBlockState state, EntityLivingBase placer, ItemStack stack) {
+			super.onBlockPlacedBy(worldIn, pos, state, placer, stack);
+			if (!worldIn.isRemote) {
+				TileEntity te = worldIn.getTileEntity(pos);
+				if (te != null) {
+					te.getTileData().setBoolean("worldgen", false);
+					te.getTileData().setDouble("x", pos.getX());
+					te.getTileData().setDouble("z", pos.getZ());
+				}
+				worldIn.notifyBlockUpdate(pos, state, state, 3);
+			}
+		}
+
+		@SideOnly(Side.CLIENT)
+		@Override
+		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
+			if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Note: If this block exists underneath a Calamites plant (either immediately or one-block lower) then the plant will follow its spreading rules in the mod config.");
+			}
+			super.addInformation(stack, player, tooltip, advanced);
+		}
 	}
 
 	public static class TileEntityCustom extends TileEntity {
-		
+
+		@Override
+		public boolean shouldRefresh(World world, BlockPos pos, IBlockState oldState, IBlockState newSate)
+		{
+			return (oldState.getBlock() != newSate.getBlock());
+		}
+
+		@Override
+		public SPacketUpdateTileEntity getUpdatePacket() {
+			return new SPacketUpdateTileEntity(this.pos, 0, this.getUpdateTag());
+		}
+
+		@Override
+		public NBTTagCompound getUpdateTag() {
+			return this.writeToNBT(new NBTTagCompound());
+		}
+
+		@Override
+		public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+			this.readFromNBT(pkt.getNbtCompound());
+		}
+
+		@Override
+		public void handleUpdateTag(NBTTagCompound tag) {
+			this.readFromNBT(tag);
+		}
+
 	}
 }

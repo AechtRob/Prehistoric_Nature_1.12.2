@@ -189,12 +189,12 @@ public class ModelPalaeodictyoptera extends AdvancedModelBase {
             //this.swing(cerciR, 1F, 0.4F, false, 0, 0.1F, f2, 0.8F);
             float modifier = 1F;
             //modifier = 0.02F;
-            this.flap(forewingL,2.2F * modifier, 0.5F, true, 0,0.5F, f2, 1F);
-            this.flap(hindwingL,2.2F * modifier, 0.5F, true, 3,0.5F, f2, 1F);
-            this.flap(forewingL,2.2F * modifier, 0.5F, true, -1,0.2F, f2, 1F);
-            this.flap(forewingR,2.2F * modifier, 0.5F, false, 0,0.5F, f2, 1F);
-            this.flap(hindwingR,2.2F * modifier, 0.5F, false, 3,0.5F, f2, 1F);
-            this.flap(forewingR,2.2F * modifier, 0.5F, false, -1,0.2F, f2, 1F);
+            this.flap(forewingL,2.2F * modifier, 0.5F, true, 0,0, f2, 1F);
+            this.flap(hindwingL,2.2F * modifier, 0.5F, true, 3,0, f2, 1F);
+            //this.flap(forewingL,2.2F * modifier, 0.5F, true, -1,0.2F, f2, 1F);
+            this.flap(forewingR,2.2F * modifier, 0.5F, false, 0,0, f2, 1F);
+            this.flap(hindwingR,2.2F * modifier, 0.5F, false, 3,0F, f2, 1F);
+            //this.flap(forewingR,2.2F * modifier, 0.5F, false, -1,0.2F, f2, 1F);
         }
 
         this.walk(antennaL, 0.3F, -0.15F, false,0,0.1F, f2, 1F);

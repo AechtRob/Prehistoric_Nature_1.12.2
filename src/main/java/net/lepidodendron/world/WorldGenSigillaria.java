@@ -91,12 +91,12 @@ public class WorldGenSigillaria extends WorldGenAbstractTree
 					$_dependencies.put("z", position.getZ());
 					$_dependencies.put("world", worldIn);
 					$_dependencies.put("SaplingSpawn", false);
-                    if ((worldIn.provider.getDimension() == LepidodendronConfig.dimPermian)
+                    if ((worldIn.provider.getDimension() != LepidodendronConfig.dimCarboniferous)
                     ){
                         $_dependencies.put("SaplingSpawn", true); // disables Ankyropteris etc.
                     }
 					if (position.getY() > (worldIn.getSeaLevel()+20)) {
-                        if ((worldIn.provider.getDimension() == LepidodendronConfig.dimPermian)
+                        if ((worldIn.provider.getDimension() != LepidodendronConfig.dimCarboniferous)
                         ){
                             ProcedureWorldGenNoeggerathiales.executeProcedure($_dependencies);
                         }

@@ -3,28 +3,46 @@ package net.lepidodendron.entity.base;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.item.entities.ItemUnknownEgg;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityMoveHelper;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityWaterMob;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigateSwimmer;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public abstract class EntityPrehistoricFloraFishBase extends EntityWaterMob implements IAnimatedEntity {
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;
+    private static final DataParameter<Integer> TICKS = EntityDataManager.createKey(EntityPrehistoricFloraFishBase.class, DataSerializers.VARINT);
 
     public EntityPrehistoricFloraFishBase(World world) {
         super(world);
@@ -41,9 +59,14 @@ public abstract class EntityPrehistoricFloraFishBase extends EntityWaterMob impl
         }
     }
 
+    @Override
+    public float getEyeHeight() {
+        return Math.max(super.getEyeHeight(), 0.2F);
+    }
+
     private Animation animation = NO_ANIMATION;
 
-    public static final Animation ANIMATION_FISH_WANDER = Animation.create(20);
+    public abstract boolean dropsEggs();
 
     protected void initEntityAI() {}
 
@@ -59,6 +82,42 @@ public abstract class EntityPrehistoricFloraFishBase extends EntityWaterMob impl
         super.applyEntityAttributes();
         this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(20.0D);
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
+    }
+
+    public int getTicks() {
+       return this.dataManager.get(TICKS);
+    }
+
+    public void setTicks(int ticks) {
+        this.dataManager.set(TICKS, ticks);
+    }
+
+    public boolean getCanBreed() {
+        return this.getTicks() > 24000; //If the mob has done not bred for a MC day
+    }
+
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("Ticks", this.getTicks());
+    }
+
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        this.setTicks(compound.getInteger("Ticks"));
+    }
+
+    @Override
+    protected void entityInit() {
+        super.entityInit();
+        this.dataManager.register(TICKS, 0);
+    }
+
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        livingdata = super.onInitialSpawn(difficulty, livingdata);
+        this.setTicks(0);
+        return livingdata;
     }
 
     @Override
@@ -80,7 +139,8 @@ public abstract class EntityPrehistoricFloraFishBase extends EntityWaterMob impl
         if (this.getPosition().getY() - 1 > 1) {
             BlockPos pos = new BlockPos(this.getPosition().getX(),this.getPosition().getY() - 1, this.getPosition().getZ());
             return ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
-                    && ((this.world.getBlockState(pos)).getMaterial() != Material.WATER));
+                && ((this.world.getBlockState(pos)).getMaterial() != Material.WATER)
+                && ((double)this.getPosition().getY() + 0.334D) > this.posY);
         }
         return true;
     }
@@ -137,11 +197,6 @@ public abstract class EntityPrehistoricFloraFishBase extends EntityWaterMob impl
         return false;
     }
 
-    @Override
-    public void onLivingUpdate() {
-        super.onLivingUpdate();
-    }
-
     public void onEntityUpdate()
     {
         int i = this.getAir();
@@ -161,6 +216,49 @@ public abstract class EntityPrehistoricFloraFishBase extends EntityWaterMob impl
         else
         {
             this.setAir(300);
+        }
+
+        //General ticker (for babies etc.)
+        int ii = this.getTicks();
+        if (this.isEntityAlive())
+        {
+            ++ii;
+            //limit at 48000 (two MC days) and then reset:
+            if (ii >= 48000) {ii = 0;}
+            this.setTicks(ii);
+        }
+
+        //Drop an egg perhaps:
+        if (!world.isRemote && this.getCanBreed() && this.dropsEggs() && LepidodendronConfig.doMultiplyMobs) {
+            if (Math.random() > 0.5) {
+                ItemStack itemstack = new ItemStack(ItemUnknownEgg.block, (int) (1));
+                if (!itemstack.hasTagCompound()) {
+                    itemstack.setTagCompound(new NBTTagCompound());
+                }
+                String stringEgg = EntityRegistry.getEntry(this.getClass()).getRegistryName().toString();
+                itemstack.getTagCompound().setString("creature", stringEgg);
+                EntityItem entityToSpawn = new EntityItem(world, this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), itemstack);
+                entityToSpawn.setPickupDelay(10);
+                this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+                world.spawnEntity(entityToSpawn);
+            }
+            this.setTicks(0);
+        }
+
+    }
+
+    public void eatItem(ItemStack stack) {
+        if (stack != null && stack.getItem() != null) {
+            float itemHealth = 0.2F; //Default minimal nutrition
+            if (stack.getItem() instanceof ItemFood) {
+                itemHealth = ((ItemFood) stack.getItem()).getHealAmount(stack);
+            }
+            this.setHealth(Math.min(this.getHealth() + itemHealth, (float) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue()));
+            stack.shrink(1);
+            if (!world.isRemote) {
+                SoundEvent soundevent = SoundEvents.ENTITY_GENERIC_EAT;
+                this.getEntityWorld().playSound(null, this.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
         }
     }
 

@@ -3,6 +3,7 @@ package net.lepidodendron.entity;
 
 import com.google.common.base.Predicate;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.AgeableFishWander;
 import net.lepidodendron.entity.ai.AttackAI;
@@ -44,12 +45,24 @@ public class EntityPrehistoricFloraPsarolepis extends EntityPrehistoricFloraAgea
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		//minSize = 0.2F;
-		//maxSize = 1.0F;
 		minWidth = 0.1F;
 		maxWidth = 0.5F;
 		maxHeight = 0.4F;
 		maxHealthAgeable = 7.0D;
+	}
+
+	@Override
+	public void playLivingSound() {
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return true;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return false;
 	}
 
 	@Override
@@ -76,7 +89,7 @@ public class EntityPrehistoricFloraPsarolepis extends EntityPrehistoricFloraAgea
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new AttackAI(this, 1.0D, false));
+		tasks.addTask(0, new AttackAI(this, 1.0D, false, this.getAttackLength()));
 		tasks.addTask(1, new AgeableFishWander(this, NO_ANIMATION, 1D, 0.5D));
 		this.targetTasks.addTask(0, new EatFishItemsAI(this));
 		this.targetTasks.addTask(1, new HuntAI(this, EntityPrehistoricFloraFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
@@ -135,12 +148,13 @@ public class EntityPrehistoricFloraPsarolepis extends EntityPrehistoricFloraAgea
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 		this.renderYawOffset = this.rotationYaw;
+
 		//System.err.println(this.getAnimationTick());
 		if (this.getAnimation() == ATTACK_ANIMATION && this.getAnimationTick() == 5 && this.getAttackTarget() != null) {
 			launchAttack();
 		}
-		//System.err.println("Agescale: " + getAgeScale());
-		//System.err.println("Hunt: " + getWillHunt());
+
+		AnimationHandler.INSTANCE.updateAnimations(this);
 	}
 
 	@Override
@@ -160,10 +174,6 @@ public class EntityPrehistoricFloraPsarolepis extends EntityPrehistoricFloraAgea
 	public boolean isDirectPathBetweenPoints(Vec3d vec1, Vec3d vec2) {
 		RayTraceResult movingobjectposition = this.world.rayTraceBlocks(vec1, new Vec3d(vec2.x, vec2.y, vec2.z), false, true, false);
 		return movingobjectposition == null || movingobjectposition.typeOfHit != RayTraceResult.Type.BLOCK;
-	}
-
-	public void onEntityUpdate() {
-		super.onEntityUpdate();
 	}
 
 	@Nullable

@@ -406,7 +406,8 @@ public class ModelAcutiramus extends AdvancedModelBase {
         if (e.getPosition().getY() - 1 > 1) {
             BlockPos pos = new BlockPos(e.getPosition().getX(), e.getPosition().getY() - 1, e.getPosition().getZ());
             isAtBottom = ((e.isInsideOfMaterial(Material.WATER) || e.isInsideOfMaterial(Material.CORAL))
-                    && ((e.world.getBlockState(pos)).getMaterial() != Material.WATER));
+                    && ((e.world.getBlockState(pos)).getMaterial() != Material.WATER)
+                    && ((double)e.getPosition().getY() + 0.334D) > e.posY);
         }
 
         if (isAtBottom) {

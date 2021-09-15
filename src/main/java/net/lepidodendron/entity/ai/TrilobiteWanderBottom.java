@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteBottomBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.pathfinding.Path;
@@ -10,7 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import java.util.Random;
 
 //public class FishWander extends EntityAIBase {
-public class TrilobiteWanderBottom extends AnimationAI<EntityPrehistoricFloraTrilobiteBottomBase> {
+public class TrilobiteWanderBottom extends AnimationAINoAnimation<EntityPrehistoricFloraTrilobiteBottomBase> {
 
     protected Animation animation;
     protected EntityPrehistoricFloraTrilobiteBottomBase PrehistoricFloraTrilobiteBase;
@@ -86,7 +85,7 @@ public class TrilobiteWanderBottom extends AnimationAI<EntityPrehistoricFloraTri
         Random rand = this.PrehistoricFloraTrilobiteBase.getRNG();
         if (this.PrehistoricFloraTrilobiteBase.getAttackTarget() == null) {
             for (int i = 0; i < 10; i++) {
-                BlockPos randPos = this.PrehistoricFloraTrilobiteBase.getPosition().add(rand.nextInt(16) - 8, rand.nextInt(16) - 8, rand.nextInt(16) - 8);
+                BlockPos randPos = this.PrehistoricFloraTrilobiteBase.getPosition().add(rand.nextInt(17) - 8, rand.nextInt(17) - 8, rand.nextInt(17) - 8);
                 //Use targets which are at the bottom:
                 BlockPos randPosVar = randPos;
                 if (this.PrehistoricFloraTrilobiteBase.world.getBlockState(randPos).getMaterial() == Material.WATER && !isAtBottom(randPos)) {

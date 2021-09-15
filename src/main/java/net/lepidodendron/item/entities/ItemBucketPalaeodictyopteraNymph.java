@@ -157,7 +157,7 @@ public class ItemBucketPalaeodictyopteraNymph extends ElementsLepidodendronMod.M
 						worldIn.setBlockState(posIn, Blocks.FLOWING_WATER.getDefaultState(), 11);
 
 						if (MobSpawn == null && !(worldIn.isRemote)) {
-							ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraPalaeodictyopteraNymph.class), (double) posIn.getX() + 0.5D, (double) posIn.getY() + 0.5D, (double) posIn.getZ() + 0.5D);
+							ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraPalaeodictyopteraNymph.class), (double) posIn.getX() + 0.5D, (double) posIn.getY(), (double) posIn.getZ() + 0.5D);
 						}
 					}
 
@@ -194,7 +194,7 @@ public class ItemBucketPalaeodictyopteraNymph extends ElementsLepidodendronMod.M
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Insect nymph");
-				tooltip.add("Periods: Carboniferous - Permian");
+				tooltip.add("Periods: Carboniferous");
 				tooltip.add("Habitat: Water");
 				super.addInformation(stack, player, tooltip, advanced);
 			}

@@ -1,7 +1,7 @@
 package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
+import net.lepidodendron.entity.EntityPrehistoricFloraEglonaspis;
 import net.lepidodendron.entity.EntityPrehistoricFloraGemuendina;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.minecraft.block.material.Material;
@@ -14,7 +14,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.Random;
 
 //public class FishWander extends EntityAIBase {
-public class FishWanderBottomDweller extends AnimationAI<EntityPrehistoricFloraFishBase> {
+public class FishWanderBottomDweller extends AnimationAINoAnimation<EntityPrehistoricFloraFishBase> {
 
     protected Animation animation;
     protected EntityPrehistoricFloraFishBase PrehistoricFloraFishBase;
@@ -54,6 +54,12 @@ public class FishWanderBottomDweller extends AnimationAI<EntityPrehistoricFloraF
 
         if (this.PrehistoricFloraFishBase instanceof EntityPrehistoricFloraGemuendina) {
             EntityPrehistoricFloraGemuendina entity = (EntityPrehistoricFloraGemuendina) this.PrehistoricFloraFishBase;
+            if (entity.getBuriedTick() > 0 || entity.getBuried()) {
+                return false;
+            }
+        }
+        if (this.PrehistoricFloraFishBase instanceof EntityPrehistoricFloraEglonaspis) {
+            EntityPrehistoricFloraEglonaspis entity = (EntityPrehistoricFloraEglonaspis) this.PrehistoricFloraFishBase;
             if (entity.getBuriedTick() > 0 || entity.getBuried()) {
                 return false;
             }
@@ -105,7 +111,7 @@ public class FishWanderBottomDweller extends AnimationAI<EntityPrehistoricFloraF
         Random rand = this.PrehistoricFloraFishBase.getRNG();
         if (this.PrehistoricFloraFishBase.getAttackTarget() == null) {
             for (int i = 0; i < 10; i++) {
-                BlockPos randPos = this.PrehistoricFloraFishBase.getPosition().add(rand.nextInt(16) - 8, rand.nextInt(16) - 8, rand.nextInt(16) - 8);
+                BlockPos randPos = this.PrehistoricFloraFishBase.getPosition().add(rand.nextInt(17) - 8, rand.nextInt(17) - 8, rand.nextInt(17) - 8);
                 //Prefer targets which are at the bottom:
                 BlockPos randPosVar = randPos;
                 if (this.PrehistoricFloraFishBase.world.getBlockState(randPos).getMaterial() == Material.WATER && !isAtBottom(randPos) && Math.random() < 0.90) {

@@ -35,7 +35,7 @@ public class MobSpawnGenerator extends WorldGenerator
 
     public boolean generate(World worldIn, Random rand, BlockPos position, int waterDepthMin, int waterDepthMax)
     {
-		for (int i = 0; i < 3; ++i)
+		for (int i = 0; i < 5; ++i)
 		{
 			int j = position.getX() + rand.nextInt(8) - rand.nextInt(8);
 			int k = position.getY() + rand.nextInt(4) - rand.nextInt(4);
@@ -73,12 +73,13 @@ public class MobSpawnGenerator extends WorldGenerator
 				EnumFacing enumfacing = EnumFacing.UP;
 				BlockPos pos = new BlockPos(j, k - 1, l);
 				if (waterDepthCheckMin & waterDepthCheckMax) {
-					if ((worldIn.getBlockState(pos).getMaterial() == Material.SAND)
+					if (this.mobspawn.canPlaceBlockOnSide(worldIn, new BlockPos(j, k, l), enumfacing)
+					&& ((worldIn.getBlockState(pos).getMaterial() == Material.SAND)
 							|| (worldIn.getBlockState(pos).getMaterial() == Material.ROCK)
 							|| (worldIn.getBlockState(pos).getMaterial() == Material.GROUND)
 							|| (worldIn.getBlockState(pos).getMaterial() == Material.CLAY)
 							|| (worldIn.getBlockState(pos).getMaterial() == Material.IRON)
-							|| (worldIn.getBlockState(pos).getMaterial() == Material.WOOD)) {
+							|| (worldIn.getBlockState(pos).getMaterial() == Material.WOOD))) {
 						worldIn.setBlockState(new BlockPos(j, k, l), this.state.withProperty(FACING, enumfacing), 2);
 						return true;
 					} else {
@@ -96,13 +97,14 @@ public class MobSpawnGenerator extends WorldGenerator
 							if (enumfacing1 == EnumFacing.WEST) {
 								pos = new BlockPos(j + 1, k, l);
 							}
-							if ((worldIn.getBlockState(pos).getMaterial() == Material.SAND)
+							if (this.mobspawn.canPlaceBlockOnSide(worldIn, new BlockPos(j, k, l), enumfacing1)
+								&& ((worldIn.getBlockState(pos).getMaterial() == Material.SAND)
 									|| (worldIn.getBlockState(pos).getMaterial() == Material.ROCK)
 									|| (worldIn.getBlockState(pos).getMaterial() == Material.GROUND)
 									|| (worldIn.getBlockState(pos).getMaterial() == Material.CLAY)
 									|| (worldIn.getBlockState(pos).getMaterial() == Material.GLASS)
 									|| (worldIn.getBlockState(pos).getMaterial() == Material.IRON)
-									|| (worldIn.getBlockState(pos).getMaterial() == Material.WOOD)) {
+									|| (worldIn.getBlockState(pos).getMaterial() == Material.WOOD))) {
 								worldIn.setBlockState(new BlockPos(j, k, l), this.state.withProperty(FACING, enumfacing1), 2);
 								return true;
 							}

@@ -224,9 +224,9 @@ public class BlockTetraxylopteris extends ElementsLepidodendronMod.ModElement {
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Proto-Plant shrub");
-	        tooltip.add("Periods: mid- to late-Devonian");
-	        tooltip.add("Propagation: spores");}
+				tooltip.add("Type: Proto-Plant (Progymnosperm)");
+	        	tooltip.add("Periods: mid- to late-Devonian");
+	        	tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

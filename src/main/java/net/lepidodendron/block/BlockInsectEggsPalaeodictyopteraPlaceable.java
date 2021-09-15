@@ -4,11 +4,8 @@ package net.lepidodendron.block;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
-import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraPalaeodictyopteraNymph;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
-import net.lepidodendron.item.ItemPhial;
-import net.lepidodendron.item.ItemPhialEggsPalaeodictyoptera;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
@@ -21,9 +18,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -32,7 +26,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 import java.util.List;
 import java.util.Random;
@@ -63,12 +56,7 @@ public class BlockInsectEggsPalaeodictyopteraPlaceable extends ElementsLepidoden
 		public BlockCustom() {
 			setTranslationKey("pf_insect_eggs_palaeodictyoptera");
 			this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendronMobile.tab);
-		}
-
-		@Override
-		public NonNullList<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
-			return NonNullList.withSize(1, new ItemStack(BlockInsectEggsPalaeodictyopteraPlaceable.block, (int) (1)));
+			setCreativeTab(null);
 		}
 
 		@Override
@@ -82,7 +70,7 @@ public class BlockInsectEggsPalaeodictyopteraPlaceable extends ElementsLepidoden
 			super.updateTick(worldIn, pos, state, rand);
 
 			if (worldIn.getBlockState(pos).getBlock() == this && !(worldIn.isRemote)) {
-				worldIn.destroyBlock(pos, false);
+				//worldIn.destroyBlock(pos, false);
 				Entity entity1 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraPalaeodictyopteraNymph.class), (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
 				EntityPrehistoricFloraAgeableBase ee1 = (EntityPrehistoricFloraAgeableBase) entity1;
 				ee1.setAgeTicks(1);
@@ -103,28 +91,11 @@ public class BlockInsectEggsPalaeodictyopteraPlaceable extends ElementsLepidoden
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Insect");
-				tooltip.add("Periods: Carboniferous - Permian");
+				tooltip.add("Periods: Carboniferous");
 				tooltip.add("Habitat: Eggs and nymphs in water; adults fly");
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}
 
-		public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-		{
-			if (!player.capabilities.allowEdit)
-			{
-				return super.onBlockActivated(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
-			}
-			else {
-				if (player.getHeldItemMainhand().getItem() == new ItemStack(ItemPhial.block, (int) (1)).getItem()) {
-					player.inventory.clearMatchingItems(new ItemStack(ItemPhial.block, (int) (1)).getItem(), -1, (int) 1, null);
-					ItemStack _setstack = new ItemStack(ItemPhialEggsPalaeodictyoptera.block, (int) (1));
-					_setstack.setCount(1);
-					ItemHandlerHelper.giveItemToPlayer(player, _setstack);
-					world.setBlockToAir(pos);
-				}
-				return true;
-			}
-		}
 	}
 }

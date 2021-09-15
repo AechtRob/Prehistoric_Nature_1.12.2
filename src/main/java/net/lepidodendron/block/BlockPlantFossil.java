@@ -63,7 +63,7 @@ public class BlockPlantFossil extends ElementsLepidodendronMod.ModElement {
 			dimensionCriteria = true;
 		if (!dimensionCriteria)
 			return;
-		for (int i = 0; i < 24; i++) {
+		for (int i = 0; i < 18; i++) {
 			int x = chunkX + random.nextInt(16);
 			int y = random.nextInt(Math.max(world.getSeaLevel()-15,1)) + 10;
 			int z = chunkZ + random.nextInt(16);
@@ -134,6 +134,7 @@ public class BlockPlantFossil extends ElementsLepidodendronMod.ModElement {
 
 
 	public static ItemStack[] getPetrifiedDrops() {
+
 		ItemStack[] stack = {
 			new ItemStack(ItemPetrifiedSapling.block,1),
 			new ItemStack(ItemPetrifiedGlossopterisSapling.block,1),
@@ -284,7 +285,25 @@ public class BlockPlantFossil extends ElementsLepidodendronMod.ModElement {
 			new ItemStack(ItemPetrifiedEremopteris.block,1),
 			new ItemStack(ItemPetrifiedAlliopteris.block,1),
 			new ItemStack(ItemPetrifiedNemejcopteris.block,1),
-			new ItemStack(ItemPetrifiedReticulopteris.block,1)
+			new ItemStack(ItemPetrifiedReticulopteris.block,1),
+			new ItemStack(ItemPetrifiedLycopia.block,1),
+			new ItemStack(ItemPetrifiedCzekanowskiaSapling.block,1),
+			new ItemStack(ItemPetrifiedNilssoniopteris.block,1),
+			new ItemStack(ItemPetrifiedBelemnopteris.block,1),
+			new ItemStack(ItemPetrifiedBrasilodendron.block,1),
+			new ItemStack(ItemPetrifiedSurangephyllum.block,1),
+			new ItemStack(ItemPetrifiedCyclodendron.block,1),
+			new ItemStack(ItemPetrifiedPaurodendron.block,1),
+			new ItemStack(ItemPetrifiedPhyllotheca.block,1),
+			new ItemStack(ItemPetrifiedBuriadia.block,1),
+			new ItemStack(ItemPetrifiedPseudovoltzia.block,1),
+			new ItemStack(ItemPetrifiedQuadrocladus.block,1),
+			new ItemStack(ItemPetrifiedAridHorsetail.block,1),
+			new ItemStack(ItemPetrifiedSwampHorsetail.block,1),
+			new ItemStack(ItemPetrifiedAneurophytonSapling.block,1),
+			new ItemStack(ItemPetrifiedSkaaripteris.block,1),
+			new ItemStack(ItemPetrifiedGlenopteris.block,1),
+			new ItemStack(ItemPetrifiedDicranophyllum.block,1)
 		};
 		return stack;
 	}

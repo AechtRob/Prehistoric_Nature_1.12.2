@@ -11,12 +11,12 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.init.Blocks;
-import net.minecraft.item.Item;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
@@ -25,7 +25,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockInsectEggs extends Block implements net.minecraftforge.common.IShearable {
+public class BlockInsectEggs extends Block {
 
 	public static final PropertyDirection FACING = BlockDirectional.FACING;
 
@@ -40,17 +40,21 @@ public class BlockInsectEggs extends Block implements net.minecraftforge.common.
 		this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.UP));
 	}
 
-	@Override public boolean isShearable(ItemStack item, IBlockAccess world, BlockPos pos){ return true; }
-
 	@Override
-	public NonNullList<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
-		return null;
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+		return new ItemStack(this, (int) (1));
 	}
 
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
 		return NULL_AABB;
+	}
+
+	@SideOnly(Side.CLIENT)
+	@Override
+	public EnumBlockRenderType getRenderType(IBlockState state) {
+		return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
 	}
 
 	@Override
@@ -142,109 +146,173 @@ public class BlockInsectEggs extends Block implements net.minecraftforge.common.
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		return new ItemStack(Blocks.AIR, (int) (1)).getItem();
-	}
-
-	@Override
-	protected boolean canSilkHarvest()
-	{
-		return false;
-	}
-
-	@Override
 	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock, BlockPos fromPos) {
-		Random rand = new Random();
-		super.neighborChanged(state, world, pos, neighborBlock, fromPos);
-		super.updateTick(world, pos, state, rand);
-	}
-
-	@Override
-	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-	{
-		if (!canPlaceBlockAt(worldIn, pos)) {
-			worldIn.setBlockToAir(pos);
+		if (!canPlaceBlockAt(world, pos)) {
+			//worldIn.setBlockToAir(pos);
+			world.destroyBlock(pos, true);
 		}
 		else {
 			//Test the orientation of this block and then check if it is still connected:
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.NORTH) {
+				IBlockState iblockstate = world.getBlockState(pos.south());
+				if (world.isAirBlock(pos.south()) ||
+						(
+								(iblockstate.getBlockFaceShape(world, pos.south(), EnumFacing.NORTH) != BlockFaceShape.SOLID)
+										&& (!iblockstate.getBlock().isLeaves(iblockstate, world, pos.south()))
+						)
+				)
+				{
+					world.destroyBlock(pos, true);
+
+				}
+			}
+			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.SOUTH) {
+				IBlockState iblockstate = world.getBlockState(pos.north());
+				if (world.isAirBlock(pos.north()) ||
+						(
+								(iblockstate.getBlockFaceShape(world, pos.north(), EnumFacing.SOUTH) != BlockFaceShape.SOLID)
+										&& (!iblockstate.getBlock().isLeaves(iblockstate, world, pos.north()))
+						)
+				)
+				{
+					world.destroyBlock(pos, true);
+
+				}
+			}
+			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.EAST) {
+				IBlockState iblockstate = world.getBlockState(pos.west());
+				if (world.isAirBlock(pos.west()) ||
+						(
+								(iblockstate.getBlockFaceShape(world, pos.west(), EnumFacing.EAST) != BlockFaceShape.SOLID)
+										&& (!iblockstate.getBlock().isLeaves(iblockstate, world, pos.west()))
+						)
+				)
+				{
+					world.destroyBlock(pos, true);
+
+				}
+			}
+			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.WEST) {
+				IBlockState iblockstate = world.getBlockState(pos.east());
+				if (world.isAirBlock(pos.east()) ||
+						(
+								(iblockstate.getBlockFaceShape(world, pos.east(), EnumFacing.WEST) != BlockFaceShape.SOLID)
+										&& (!iblockstate.getBlock().isLeaves(iblockstate, world, pos.east()))
+						)
+				)
+				{
+					world.destroyBlock(pos, true);
+
+				}
+			}
+			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.UP) {
+				IBlockState iblockstate = world.getBlockState(pos.down());
+				if (world.isAirBlock(pos.down()) ||
+						(
+								(iblockstate.getBlockFaceShape(world, pos.down(), EnumFacing.UP) != BlockFaceShape.SOLID)
+										&& (!iblockstate.getBlock().isLeaves(iblockstate, world, pos.down()))
+						)
+				)
+				{
+					world.destroyBlock(pos, true);
+
+				}
+			}
+			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.DOWN) {
+				IBlockState iblockstate = world.getBlockState(pos.up());
+				if (world.isAirBlock(pos.up()) ||
+						(
+								(iblockstate.getBlockFaceShape(world, pos.up(), EnumFacing.DOWN) != BlockFaceShape.SOLID)
+										&& (!iblockstate.getBlock().isLeaves(iblockstate, world, pos.up()))
+						)
+				)
+				{
+					world.destroyBlock(pos, true);
+
+				}
+			}
+		}
+		super.neighborChanged(state, world, pos, neighborBlock, fromPos);
+	}
+
+	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
+		if (!canPlaceBlockAt(worldIn, pos)) {
+			//worldIn.setBlockToAir(pos);
+			worldIn.destroyBlock(pos, true);
+		} else {
+			//Test the orientation of this block and then check if it is still connected:
+			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.NORTH) {
 				IBlockState iblockstate = worldIn.getBlockState(pos.south());
 				if (worldIn.isAirBlock(pos.south()) ||
-					(
-						(iblockstate.getBlockFaceShape(worldIn, pos.south(), EnumFacing.NORTH) != BlockFaceShape.SOLID)
-						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.south()))
-					)
-				)
-					{
-						worldIn.setBlockToAir(pos);
+						(
+								(iblockstate.getBlockFaceShape(worldIn, pos.south(), EnumFacing.NORTH) != BlockFaceShape.SOLID)
+										&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.south()))
+						)
+				) {
+					worldIn.destroyBlock(pos, true);
 
-					}
 				}
+			}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.SOUTH) {
 				IBlockState iblockstate = worldIn.getBlockState(pos.north());
 				if (worldIn.isAirBlock(pos.north()) ||
-					(
-						(iblockstate.getBlockFaceShape(worldIn, pos.north(), EnumFacing.SOUTH) != BlockFaceShape.SOLID)
-						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.north()))
-					)
-				)
-					{
-						worldIn.setBlockToAir(pos);
+						(
+								(iblockstate.getBlockFaceShape(worldIn, pos.north(), EnumFacing.SOUTH) != BlockFaceShape.SOLID)
+										&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.north()))
+						)
+				) {
+					worldIn.destroyBlock(pos, true);
 
-					}
 				}
+			}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.EAST) {
 				IBlockState iblockstate = worldIn.getBlockState(pos.west());
 				if (worldIn.isAirBlock(pos.west()) ||
-					(
-						(iblockstate.getBlockFaceShape(worldIn, pos.west(), EnumFacing.EAST) != BlockFaceShape.SOLID)
-						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.west()))
-					)
-				)
-					{
-						worldIn.setBlockToAir(pos);
+						(
+								(iblockstate.getBlockFaceShape(worldIn, pos.west(), EnumFacing.EAST) != BlockFaceShape.SOLID)
+										&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.west()))
+						)
+				) {
+					worldIn.destroyBlock(pos, true);
 
-					}
 				}
+			}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.WEST) {
 				IBlockState iblockstate = worldIn.getBlockState(pos.east());
 				if (worldIn.isAirBlock(pos.east()) ||
-					(
-						(iblockstate.getBlockFaceShape(worldIn, pos.east(), EnumFacing.WEST) != BlockFaceShape.SOLID)
-						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.east()))
-					)
-				)
-					{
-						worldIn.setBlockToAir(pos);
+						(
+								(iblockstate.getBlockFaceShape(worldIn, pos.east(), EnumFacing.WEST) != BlockFaceShape.SOLID)
+										&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.east()))
+						)
+				) {
+					worldIn.destroyBlock(pos, true);
 
-					}
 				}
+			}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.UP) {
 				IBlockState iblockstate = worldIn.getBlockState(pos.down());
 				if (worldIn.isAirBlock(pos.down()) ||
-					(
-						(iblockstate.getBlockFaceShape(worldIn, pos.down(), EnumFacing.UP) != BlockFaceShape.SOLID)
-						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.down()))
-					)
-				)
-					{
-						worldIn.setBlockToAir(pos);
+						(
+								(iblockstate.getBlockFaceShape(worldIn, pos.down(), EnumFacing.UP) != BlockFaceShape.SOLID)
+										&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.down()))
+						)
+				) {
+					worldIn.destroyBlock(pos, true);
 
-					}
 				}
+			}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.DOWN) {
 				IBlockState iblockstate = worldIn.getBlockState(pos.up());
 				if (worldIn.isAirBlock(pos.up()) ||
-					(
-						(iblockstate.getBlockFaceShape(worldIn, pos.up(), EnumFacing.DOWN) != BlockFaceShape.SOLID)
-						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.up()))
-					)
-				)
-					{
-						worldIn.setBlockToAir(pos);
+						(
+								(iblockstate.getBlockFaceShape(worldIn, pos.up(), EnumFacing.DOWN) != BlockFaceShape.SOLID)
+										&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.up()))
+						)
+				) {
+					worldIn.destroyBlock(pos, true);
 
-					}
 				}
+			}
 		}
 	}
 

@@ -95,7 +95,8 @@ public class BlockGreenSproutingAlgae extends ElementsLepidodendronMod.ModElemen
 		if ((dimID == LepidodendronConfig.dimCambrian)
 			|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 			|| (dimID == LepidodendronConfig.dimDevonian)
-			|| (dimID == LepidodendronConfig.dimCarboniferous) ) {
+			|| (dimID == LepidodendronConfig.dimCarboniferous)
+			 ) {
 			biomeCriteria = true;
 		}
 		if (!biomeCriteria)

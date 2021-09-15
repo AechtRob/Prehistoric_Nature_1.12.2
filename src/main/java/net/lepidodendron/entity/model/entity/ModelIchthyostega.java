@@ -201,7 +201,7 @@ public class ModelIchthyostega extends AdvancedModelBase {
         AdvancedModelRenderer[] Tail = {this.tailbase, this.tail1, this.tail2};
         AdvancedModelRenderer[] Torso = {this.neck, this.bodyfront, this.body, this.bodyrear};
 
-        if (!Ichthyostega.isActuallyInWater()) {
+        if (!Ichthyostega.isReallyInWater()) {
             this.leftarm2.rotateAngleY = (float) Math.toRadians(90);
             this.rightarm2.rotateAngleY = (float) Math.toRadians(-90);
 

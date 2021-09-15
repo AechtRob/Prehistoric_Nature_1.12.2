@@ -5,10 +5,8 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.block.BlockBristleconeSapling;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -39,21 +37,6 @@ public class ItemPetrifiedBristleconeSapling extends ElementsLepidodendronMod.Mo
 			setTranslationKey("pf_petrified_bristlecone_sapling");
 			setRegistryName("petrified_bristlecone_sapling");
 			setCreativeTab(TabLepidodendronPlants.tab);
-		}
-
-		@Override
-		public int getItemEnchantability() {
-			return 0;
-		}
-
-		@Override
-		public int getMaxItemUseDuration(ItemStack itemstack) {
-			return 0;
-		}
-
-		@Override
-		public float getDestroySpeed(ItemStack par1ItemStack, IBlockState par2Block) {
-			return 1F;
 		}
 	}
 }

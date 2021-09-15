@@ -406,7 +406,8 @@ public class ModelJaekelopterus extends AdvancedModelBase {
         if (e.getPosition().getY() - 1 > 1) {
             BlockPos pos = new BlockPos(e.getPosition().getX(), e.getPosition().getY() - 1, e.getPosition().getZ());
             isAtBottom = ((e.isInsideOfMaterial(Material.WATER) || e.isInsideOfMaterial(Material.CORAL))
-                    && ((e.world.getBlockState(pos)).getMaterial() != Material.WATER));
+                    && ((e.world.getBlockState(pos)).getMaterial() != Material.WATER)
+                    && ((double)e.getPosition().getY() + 0.334D) > e.posY);
         }
 
         if (isAtBottom) {
@@ -482,10 +483,10 @@ public class ModelJaekelopterus extends AdvancedModelBase {
 
                         this.swing(legL2, speed * 2F, 0.3F, false, 0F, 0.4F, f2, 0.8F);
                         this.swing(legL3, speed * 2F, 0.3F, false, 3F, 0.4F, f2, 0.8F);
-                        this.swing(legL4, speed * 2F, 0.3F, false, 3F, 0.4F, f2, 0.8F);
+                        this.swing(legL4, speed * 2F, 0.3F, false, 0F, 0.4F, f2, 0.8F);
 
-                        this.swing(legR2, speed * 2F, 0.3F, true, 0F, 0.4F, f2, 0.8F);
-                        this.swing(legR3, speed * 2F, 0.3F, true, 3F, 0.4F, f2, 0.8F);
+                        this.swing(legR2, speed * 2F, 0.3F, true, 3F, 0.4F, f2, 0.8F);
+                        this.swing(legR3, speed * 2F, 0.3F, true, 0F, 0.4F, f2, 0.8F);
                         this.swing(legR4, speed * 2F, 0.3F, true, 3F, 0.4F, f2, 0.8F);
                     }
                 }

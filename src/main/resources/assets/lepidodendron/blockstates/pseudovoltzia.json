@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "normal": [
+      {"model": "lepidodendron:pseudovoltzia"},
+      {"model": "lepidodendron:pseudovoltzia_var"}
+    ],
+    
+    "inventory": {
+      "model": "lepidodendron:pseudovoltzia_inventory"
+    }
+  }
+}

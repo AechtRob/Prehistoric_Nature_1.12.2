@@ -3,10 +3,17 @@ package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.block.BlockEurypteridEggsPterygotusPlaceable;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -53,6 +60,25 @@ public class ItemPhialEggsPterygotus extends ElementsLepidodendronMod.ModElement
 		@Override
 		public float getDestroySpeed(ItemStack par1ItemStack, IBlockState par2Block) {
 			return 1F;
+		}
+
+		@Override
+		public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+			{
+				ItemStack itemstack = player.getHeldItem(hand);
+
+				if (!player.canPlayerEdit(pos.offset(facing), facing, itemstack)) {
+					return EnumActionResult.FAIL;
+				} else {
+					if (BlockEurypteridEggsPterygotusPlaceable.block.canPlaceBlockOnSide(worldIn, pos.offset(facing), facing)) {
+						worldIn.setBlockState(pos.offset(facing), BlockEurypteridEggsPterygotusPlaceable.block.getStateForPlacement(worldIn, pos.offset(facing), facing, hitX, hitY, hitZ, 0, (EntityLivingBase) player));
+						SoundEvent soundevent = SoundEvents.ITEM_BOTTLE_EMPTY;
+						worldIn.playSound(player, pos.offset(facing), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+						return EnumActionResult.SUCCESS;
+					}
+				}
+				return EnumActionResult.PASS;
+			}
 		}
 	}
 }

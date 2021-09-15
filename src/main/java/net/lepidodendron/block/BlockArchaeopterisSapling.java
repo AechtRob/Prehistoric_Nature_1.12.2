@@ -161,7 +161,7 @@ public class BlockArchaeopterisSapling extends ElementsLepidodendronMod.ModEleme
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Proto-tree");
+				tooltip.add("Type: Proto-tree (Progymnosperm)");
 				tooltip.add("Periods: late Devonian - early Carboniferous");
 				tooltip.add("Propagation: spores");
 			}

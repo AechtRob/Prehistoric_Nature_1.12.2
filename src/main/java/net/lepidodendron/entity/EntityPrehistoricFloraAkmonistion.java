@@ -3,6 +3,7 @@ package net.lepidodendron.entity;
 
 import com.google.common.base.Predicate;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.*;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableFishBase;
@@ -50,6 +51,20 @@ public class EntityPrehistoricFloraAkmonistion extends EntityPrehistoricFloraAge
 	}
 
 	@Override
+	public void playLivingSound() {
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return true;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return false;
+	}
+
+	@Override
 	public int getAdultAge() {
 		return 1;
 	} //Only adults!
@@ -69,7 +84,7 @@ public class EntityPrehistoricFloraAkmonistion extends EntityPrehistoricFloraAge
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new AttackAI(this, 1.0D, false));
+		tasks.addTask(0, new AttackAI(this, 1.0D, false, this.getAttackLength()));
 		tasks.addTask(1, new AgeableFishWander(this, NO_ANIMATION, 1D, 0.5D));
 		this.targetTasks.addTask(0, new EatFishItemsAI(this));
 		this.targetTasks.addTask(0, new EatMeatItemsAI(this));
@@ -129,12 +144,13 @@ public class EntityPrehistoricFloraAkmonistion extends EntityPrehistoricFloraAge
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 		this.renderYawOffset = this.rotationYaw;
-		//System.err.println(this.getAnimationTick());
+
 		if (this.getAnimation() == ATTACK_ANIMATION && this.getAnimationTick() == 5 && this.getAttackTarget() != null) {
 			launchAttack();
 		}
-		//System.err.println("Agescale: " + getAgeScale());
-		//System.err.println("Hunt: " + getWillHunt());
+
+		AnimationHandler.INSTANCE.updateAnimations(this);
+
 	}
 
 	@Override
@@ -154,10 +170,6 @@ public class EntityPrehistoricFloraAkmonistion extends EntityPrehistoricFloraAge
 	public boolean isDirectPathBetweenPoints(Vec3d vec1, Vec3d vec2) {
 		RayTraceResult movingobjectposition = this.world.rayTraceBlocks(vec1, new Vec3d(vec2.x, vec2.y, vec2.z), false, true, false);
 		return movingobjectposition == null || movingobjectposition.typeOfHit != RayTraceResult.Type.BLOCK;
-	}
-
-	public void onEntityUpdate() {
-		super.onEntityUpdate();
 	}
 
 	@Nullable

@@ -35,6 +35,11 @@ public class EntityPrehistoricFloraFurcaster extends EntityPrehistoricFloraSlith
 		setSize(0.5F, 0.3F);
 	}
 
+	@Override
+	public boolean dropsEggs() {
+		return false;
+	}
+
 	protected float getAISpeedSlithering() {
 		return 0.042f;
 	}

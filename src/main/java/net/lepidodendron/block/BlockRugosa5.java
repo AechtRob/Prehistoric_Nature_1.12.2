@@ -76,7 +76,7 @@ public class BlockRugosa5 extends ElementsLepidodendronMod.ModElement {
 		if ((dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
-				|| (dimID == LepidodendronConfig.dimPermian)
+				
 		) {
 			dimensionCriteria = true;
 		}
@@ -89,7 +89,7 @@ public class BlockRugosa5 extends ElementsLepidodendronMod.ModElement {
 		if (dimID == LepidodendronConfig.dimDevonian
 				|| dimID == LepidodendronConfig.dimOrdovicianSilurian
 				|| dimID == LepidodendronConfig.dimCarboniferous
-				|| dimID == LepidodendronConfig.dimPermian
+				
 		)
 			weight = 100; //Full scale populations in these dims
 
@@ -112,7 +112,7 @@ public class BlockRugosa5 extends ElementsLepidodendronMod.ModElement {
 		if (dimID == LepidodendronConfig.dimDevonian
 				|| dimID == LepidodendronConfig.dimOrdovicianSilurian
 				|| dimID == LepidodendronConfig.dimCarboniferous
-				|| dimID == LepidodendronConfig.dimPermian
+				
 		)
 			biomeCriteria = true;
 		if (!biomeCriteria)
@@ -127,7 +127,7 @@ public class BlockRugosa5 extends ElementsLepidodendronMod.ModElement {
 		}
 		double dimWeight = 1;
 		if ((dimID == LepidodendronConfig.dimCarboniferous)
-				|| (dimID == LepidodendronConfig.dimPermian)) {
+				) {
 			dimWeight = 1.5;
 		}
 		int minWaterDepth = (int) Math.round(15D * dimWeight);

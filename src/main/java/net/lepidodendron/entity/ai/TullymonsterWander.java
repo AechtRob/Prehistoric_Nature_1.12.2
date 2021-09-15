@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.lepidodendron.entity.EntityPrehistoricFloraTullimonstrum;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -13,7 +12,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.Random;
 
 //public class FishWander extends EntityAIBase {
-public class TullymonsterWander extends AnimationAI<EntityPrehistoricFloraTullimonstrum> {
+public class TullymonsterWander extends AnimationAINoAnimation<EntityPrehistoricFloraTullimonstrum> {
 
     protected Animation animation;
     protected EntityPrehistoricFloraTullimonstrum PrehistoricFloraTullimonstrum;
@@ -55,7 +54,7 @@ public class TullymonsterWander extends AnimationAI<EntityPrehistoricFloraTullim
         }
         if (this.PrehistoricFloraTullimonstrum.getRNG().nextFloat() < 0.5F) {
             Path path = this.PrehistoricFloraTullimonstrum.getNavigator().getPath();
-            if (!this.PrehistoricFloraTullimonstrum.getNavigator().noPath() && !isDirectPathBetweenPoints(this.PrehistoricFloraTullimonstrum, this.PrehistoricFloraTullimonstrum.getPositionVector(), new Vec3d(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z)) || path != null && path.getFinalPathPoint() != null && this.PrehistoricFloraTullimonstrum.getDistanceSq(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z) < 3) {
+            if (!this.PrehistoricFloraTullimonstrum.getNavigator().noPath() && !isDirectPathBetweenPoints(this.PrehistoricFloraTullimonstrum, this.PrehistoricFloraTullimonstrum.getPositionVector(), new Vec3d(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z)) || path != null && path.getFinalPathPoint() != null && this.PrehistoricFloraTullimonstrum.getDistanceSq(path.getFinalPathPoint().x, path.getFinalPathPoint().y + 0.5, path.getFinalPathPoint().z + 0.5) < 3) {
                 this.PrehistoricFloraTullimonstrum.getNavigator().clearPath();
             }
             if (!this.PrehistoricFloraTullimonstrum.getNavigator().noPath() && this.PrehistoricFloraTullimonstrum.isHungry() && (!(isAtBottom(new BlockPos(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z))))) {
@@ -90,9 +89,9 @@ public class TullymonsterWander extends AnimationAI<EntityPrehistoricFloraTullim
         Random rand = this.PrehistoricFloraTullimonstrum.getRNG();
         if (this.PrehistoricFloraTullimonstrum.getAttackTarget() == null) {
             for (int i = 0; i < 10; i++) {
-                BlockPos randPos = this.PrehistoricFloraTullimonstrum.getPosition().add(rand.nextInt(16) - 8, rand.nextInt(8) - 4, rand.nextInt(16) - 8);
+                BlockPos randPos = this.PrehistoricFloraTullimonstrum.getPosition().add(rand.nextInt(17) - 8, rand.nextInt(9) - 4, rand.nextInt(17) - 8);
                 BlockPos randPosVar = randPos;
-                //System.err.println("Target " + randPos.getX() + " " + this.PrehistoricFloraFishBase.getPosition().getY() + " " + randPos.getZ());
+                //System.err.println("Target " + randPos.getX() + " " + this.PrehistoricFloraTullimonstrum.getPosition().getY() + " " + randPos.getZ());
                 if (this.PrehistoricFloraTullimonstrum.world.getBlockState(randPos).getMaterial() == Material.WATER && this.PrehistoricFloraTullimonstrum.isDirectPathBetweenPoints(this.PrehistoricFloraTullimonstrum.getPositionVector(), new Vec3d(randPos.getX() + 0.5, randPos.getY() + 0.5, randPos.getZ() + 0.5))) {
                     if (this.PrehistoricFloraTullimonstrum.isHungry()) {
                         int ii = 0;

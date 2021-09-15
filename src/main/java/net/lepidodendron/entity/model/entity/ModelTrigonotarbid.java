@@ -200,6 +200,8 @@ public class ModelTrigonotarbid extends AdvancedModelBase {
         this.resetToDefaultPose();
         this.body.offsetY = 1F;
 
+        this.body.rotateAngleY = f3 * 0.017453292F;
+
         //this.body.rotateAngleY = f3 / (180F / (float) Math.PI);
         EntityPrehistoricFloraInsectClimbingBase ee = (EntityPrehistoricFloraInsectClimbingBase) e;
         if (f3 == 0.0F && !ee.getClimbing()) {

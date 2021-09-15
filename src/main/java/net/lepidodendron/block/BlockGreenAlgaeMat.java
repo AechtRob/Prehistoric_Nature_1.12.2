@@ -93,6 +93,7 @@ public class BlockGreenAlgaeMat extends ElementsLepidodendronMod.ModElement {
 			|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 			|| (dimID == LepidodendronConfig.dimDevonian)
 			|| (dimID == LepidodendronConfig.dimCarboniferous)
+			
 		) {
 			biomeCriteria = true;
 		}

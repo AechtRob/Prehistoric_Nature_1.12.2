@@ -3,18 +3,24 @@ package net.lepidodendron.entity;
 
 import com.google.common.base.Predicate;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.block.BlockEggsDracopristis;
 import net.lepidodendron.entity.ai.*;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableFishBase;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraAmphibianBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -48,6 +54,25 @@ public class EntityPrehistoricFloraDracopristis extends EntityPrehistoricFloraAg
 	}
 
 	@Override
+	public void playLivingSound() {
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return false;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return false;
+	}
+
+	@Override
+	public boolean divesToLay() {
+		return true;
+	}
+
+	@Override
 	public int getAdultAge() {
 		return 72000;
 	}
@@ -58,6 +83,9 @@ public class EntityPrehistoricFloraDracopristis extends EntityPrehistoricFloraAg
 		if (this.getIsFast()) {
 			AIspeed = AIspeed * 2.2F;
 		}
+		if (this.getTicks() < 0) {
+			return 0.0F; //Is laying eggs
+		}
 		return AIspeed;
 	}
 
@@ -67,13 +95,14 @@ public class EntityPrehistoricFloraDracopristis extends EntityPrehistoricFloraAg
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new AttackAI(this, 1.0D, false));
+		tasks.addTask(0, new AttackAI(this, 1.0D, false, this.getAttackLength()));
 		tasks.addTask(1, new AgeableFishWander(this, NO_ANIMATION, 1D, 0.5D));
 		this.targetTasks.addTask(0, new EatFishItemsAI(this));
 		this.targetTasks.addTask(0, new EatMeatItemsAI(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
 		this.targetTasks.addTask(2, new HuntAI(this, EntityPrehistoricFloraFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(2, new HuntSmallerThanMeAIAgeable(this, EntityPrehistoricFloraAgeableFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
+		this.targetTasks.addTask(2, new HuntSmallerThanMeAIAgeable(this, EntityPrehistoricFloraAmphibianBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(2, new HuntAI(this, EntitySquid.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 	}
 
@@ -129,12 +158,42 @@ public class EntityPrehistoricFloraDracopristis extends EntityPrehistoricFloraAg
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 		this.renderYawOffset = this.rotationYaw;
-		//System.err.println(this.getAnimationTick());
+
 		if (this.getAnimation() == ATTACK_ANIMATION && this.getAnimationTick() == 5 && this.getAttackTarget() != null) {
 			launchAttack();
 		}
-		//System.err.println("Agescale: " + getAgeScale());
-		//System.err.println("Hunt: " + getWillHunt());
+
+		AnimationHandler.INSTANCE.updateAnimations(this);
+
+	}
+
+	@Override
+	public void onEntityUpdate() {
+		super.onEntityUpdate();
+
+		//Lay eggs perhaps:
+		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getCanBreed() && LepidodendronConfig.doMultiplyMobs
+				&& (BlockEggsDracopristis.block.canPlaceBlockOnSide(world, this.getPosition(), EnumFacing.UP)
+				|| BlockEggsDracopristis.block.canPlaceBlockOnSide(world, this.getPosition().down(), EnumFacing.UP))
+				&& (BlockEggsDracopristis.block.canPlaceBlockAt(world, this.getPosition())
+				|| BlockEggsDracopristis.block.canPlaceBlockAt(world, this.getPosition().down()))
+		){
+			if (Math.random() > 0.5) {
+				this.setTicks(-50); //Flag this as stationary for egg-laying
+			}
+		}
+		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getTicks() > -30 && this.getTicks() < 0 && LepidodendronConfig.doMultiplyMobs) {
+			//Is stationary for egg-laying:
+			IBlockState eggs = BlockEggsDracopristis.block.getDefaultState();
+			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+			if (BlockEggsDracopristis.block.canPlaceBlockOnSide(world, this.getPosition(), EnumFacing.UP) && BlockEggsDracopristis.block.canPlaceBlockAt(world, this.getPosition())) {
+				world.setBlockState(this.getPosition(), eggs);
+			}
+			if (BlockEggsDracopristis.block.canPlaceBlockOnSide(world, this.getPosition().down(), EnumFacing.UP) && BlockEggsDracopristis.block.canPlaceBlockAt(world, this.getPosition().down())) {
+				world.setBlockState(this.getPosition().down(), eggs);
+			}
+			this.setTicks(-20);
+		}
 	}
 
 	@Override
@@ -151,18 +210,9 @@ public class EntityPrehistoricFloraDracopristis extends EntityPrehistoricFloraAg
 		return movingobjectposition == null || movingobjectposition.typeOfHit != RayTraceResult.Type.BLOCK;
 	}
 
-	public void onEntityUpdate() {
-
-		super.onEntityUpdate();
-	}
-
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		double adult = (double) LepidodendronConfig.adultAge;
-		if (adult > 100) {adult = 100;}
-		if (adult < 0) {adult = 0;}
-		adult = adult/100D;
-		if (getAgeScale() < adult) {
+		 		if (!this.isPFAdult()) {
 			return LepidodendronMod.DRACOPRISTIS_LOOT_YOUNG;
 		}
 		return LepidodendronMod.DRACOPRISTIS_LOOT;

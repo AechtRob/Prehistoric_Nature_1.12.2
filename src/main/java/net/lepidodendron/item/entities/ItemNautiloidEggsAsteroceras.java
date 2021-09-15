@@ -2,6 +2,7 @@
 package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraAmmonite_Asteroceras;
@@ -9,6 +10,7 @@ import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
@@ -29,6 +31,8 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.List;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ItemNautiloidEggsAsteroceras extends ElementsLepidodendronMod.ModElement {
@@ -53,6 +57,7 @@ public class ItemNautiloidEggsAsteroceras extends ElementsLepidodendronMod.ModEl
 			setTranslationKey("pf_eggs_asteroceras");
 			setRegistryName("eggs_asteroceras");
 			setCreativeTab(TabLepidodendronMobile.tab);
+			setMaxStackSize(16);
 		}
 
 		public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
@@ -100,6 +105,16 @@ public class ItemNautiloidEggsAsteroceras extends ElementsLepidodendronMod.ModEl
 	            return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
 	        }
 	    }
+
+		@SideOnly(Side.CLIENT)
+		@Override
+		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
+			if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Nautiloid Ammonite");
+				tooltip.add("Periods: Triassic - Jurassic");
+				super.addInformation(stack, player, tooltip, advanced);
+			}
+		}
 	}
 
 }

@@ -84,7 +84,7 @@ public class BlockGreenStemmedAlgae extends ElementsLepidodendronMod.ModElement 
 			dimensionCriteria = true;
 		if (
 			(dimID == LepidodendronConfig.dimCarboniferous)
-			|| (dimID == LepidodendronConfig.dimPermian)
+			
 		) {
 			dimensionCriteria = true;
 		}
@@ -105,7 +105,7 @@ public class BlockGreenStemmedAlgae extends ElementsLepidodendronMod.ModElement 
 			biomeCriteria = true;
 		if (
 			(dimID == LepidodendronConfig.dimCarboniferous)
-			|| (dimID == LepidodendronConfig.dimPermian)
+			
 			) {
 			biomeCriteria = true;
 		}

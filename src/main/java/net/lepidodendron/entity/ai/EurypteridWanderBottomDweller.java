@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraEurypteridBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -13,7 +12,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.Random;
 
 //public class EurypteridWander extends EntityAIBase {
-public class EurypteridWanderBottomDweller extends AnimationAI<EntityPrehistoricFloraEurypteridBase> {
+public class EurypteridWanderBottomDweller extends AnimationAINoAnimation<EntityPrehistoricFloraEurypteridBase> {
 
     protected Animation animation;
     protected EntityPrehistoricFloraEurypteridBase PrehistoricFloraEurypteridBase;
@@ -97,7 +96,7 @@ public class EurypteridWanderBottomDweller extends AnimationAI<EntityPrehistoric
         Random rand = this.PrehistoricFloraEurypteridBase.getRNG();
         if (this.PrehistoricFloraEurypteridBase.getAttackTarget() == null) {
             for (int i = 0; i < 10; i++) {
-                BlockPos randPos = this.PrehistoricFloraEurypteridBase.getPosition().add(rand.nextInt(16) - 8, rand.nextInt(16) - 8, rand.nextInt(16) - 8);
+                BlockPos randPos = this.PrehistoricFloraEurypteridBase.getPosition().add(rand.nextInt(17) - 8, rand.nextInt(17) - 8, rand.nextInt(17) - 8);
                 //Prefer targets which are at the bottom:
                 BlockPos randPosVar = randPos;
                 if (this.PrehistoricFloraEurypteridBase.world.getBlockState(randPos).getMaterial() == Material.WATER && !isAtBottom(randPos) && Math.random() < 0.90) {

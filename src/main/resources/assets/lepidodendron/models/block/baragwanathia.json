@@ -1,9 +1,9 @@
 {
     "ambientocclusion": false,
     "textures": {
-        "particle": "lepidodendron:blocks/isoetes_b",
-        "top": "lepidodendron:blocks/isoetes_t",
-        "bottom": "lepidodendron:blocks/isoetes_b"
+        "particle": "lepidodendron:blocks/baragwanathia_b",
+        "top": "lepidodendron:blocks/baragwanathia_t",
+        "bottom": "lepidodendron:blocks/baragwanathia_b"
     },
     "elements": [
         {   "from": [ 0.8, 0, 8 ],

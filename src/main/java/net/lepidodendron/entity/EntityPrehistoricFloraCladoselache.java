@@ -3,19 +3,24 @@ package net.lepidodendron.entity;
 
 import com.google.common.base.Predicate;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.block.BlockEggsCladoselache;
 import net.lepidodendron.entity.ai.*;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableFishBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteBottomBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteSwimBase;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -43,9 +48,28 @@ public class EntityPrehistoricFloraCladoselache extends EntityPrehistoricFloraAg
 		//minSize = 0.1F;
 		//maxSize = 1.0F;
 		minWidth = 0.1F;
-		maxWidth = 0.85F;
-		maxHeight = 0.85F;
+		maxWidth = 0.62F;
+		maxHeight = 0.68F;
 		maxHealthAgeable = 22.0D;
+	}
+
+	@Override
+	public void playLivingSound() {
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return false;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return false;
+	}
+
+	@Override
+	public boolean divesToLay() {
+		return true;
 	}
 
 	@Override
@@ -59,6 +83,9 @@ public class EntityPrehistoricFloraCladoselache extends EntityPrehistoricFloraAg
 		if (this.getIsFast()) {
 			AIspeed = AIspeed * 1.85F;
 		}
+		if (this.getTicks() < 0) {
+			return 0.0F; //Is laying eggs
+		}
 		return AIspeed;
 	}
 
@@ -68,7 +95,7 @@ public class EntityPrehistoricFloraCladoselache extends EntityPrehistoricFloraAg
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new AttackAI(this, 1.0D, false));
+		tasks.addTask(0, new AttackAI(this, 1.0D, false, this.getAttackLength()));
 		tasks.addTask(1, new AgeableFishWander(this, NO_ANIMATION, 1D, 0.5D));
 		this.targetTasks.addTask(0, new EatFishItemsAI(this));
 		this.targetTasks.addTask(0, new EatMeatItemsAI(this));
@@ -131,12 +158,13 @@ public class EntityPrehistoricFloraCladoselache extends EntityPrehistoricFloraAg
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 		this.renderYawOffset = this.rotationYaw;
-		//System.err.println(this.getAnimationTick());
+
 		if (this.getAnimation() == ATTACK_ANIMATION && this.getAnimationTick() == 5 && this.getAttackTarget() != null) {
 			launchAttack();
 		}
-		//System.err.println("Agescale: " + getAgeScale());
-		//System.err.println("Hunt: " + getWillHunt());
+
+		AnimationHandler.INSTANCE.updateAnimations(this);
+
 	}
 
 	@Override
@@ -153,21 +181,40 @@ public class EntityPrehistoricFloraCladoselache extends EntityPrehistoricFloraAg
 		return movingobjectposition == null || movingobjectposition.typeOfHit != RayTraceResult.Type.BLOCK;
 	}
 
-	public void onEntityUpdate() {
-
-		super.onEntityUpdate();
-	}
-
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		double adult = (double) LepidodendronConfig.adultAge;
-		if (adult > 100) {adult = 100;}
-		if (adult < 0) {adult = 0;}
-		adult = adult/100D;
-		if (getAgeScale() < adult) {
+		 		if (!this.isPFAdult()) {
 			return LepidodendronMod.CLADOSELACHE_LOOT_YOUNG;
 		}
 		return LepidodendronMod.CLADOSELACHE_LOOT;
+	}
+	
+	@Override
+	public void onEntityUpdate() {
+		super.onEntityUpdate();
+		//Lay eggs perhaps:
+		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getCanBreed() && LepidodendronConfig.doMultiplyMobs
+				&& (BlockEggsCladoselache.block.canPlaceBlockOnSide(world, this.getPosition(), EnumFacing.UP)
+				|| BlockEggsCladoselache.block.canPlaceBlockOnSide(world, this.getPosition().down(), EnumFacing.UP))
+				&& (BlockEggsCladoselache.block.canPlaceBlockAt(world, this.getPosition())
+				|| BlockEggsCladoselache.block.canPlaceBlockAt(world, this.getPosition().down()))
+		){
+			if (Math.random() > 0.5) {
+				this.setTicks(-50); //Flag this as stationary for egg-laying
+			}
+		}
+		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getTicks() > -30 && this.getTicks() < 0 && LepidodendronConfig.doMultiplyMobs) {
+			//Is stationary for egg-laying:
+			IBlockState eggs = BlockEggsCladoselache.block.getDefaultState();
+			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+			if (BlockEggsCladoselache.block.canPlaceBlockOnSide(world, this.getPosition(), EnumFacing.UP) && BlockEggsCladoselache.block.canPlaceBlockAt(world, this.getPosition())) {
+				world.setBlockState(this.getPosition(), eggs);
+			}
+			if (BlockEggsCladoselache.block.canPlaceBlockOnSide(world, this.getPosition().down(), EnumFacing.UP) && BlockEggsCladoselache.block.canPlaceBlockAt(world, this.getPosition().down())) {
+				world.setBlockState(this.getPosition().down(), eggs);
+			}
+			this.setTicks(-20);
+		}
 	}
 
 }

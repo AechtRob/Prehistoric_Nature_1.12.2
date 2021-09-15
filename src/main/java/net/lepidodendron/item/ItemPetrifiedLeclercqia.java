@@ -7,7 +7,6 @@ import net.lepidodendron.block.BlockLeclercqia;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -38,11 +37,6 @@ public class ItemPetrifiedLeclercqia extends ElementsLepidodendronMod.ModElement
 			setTranslationKey("pf_petrified_leclercqia");
 			setRegistryName("petrified_leclercqia");
 			setCreativeTab(TabLepidodendronPlants.tab);
-		}
-
-		@Override
-		public ItemStack getPlantStack() {
-			return new ItemStack(ItemIsoetesItem.block, 1);
 		}
 	}
 }

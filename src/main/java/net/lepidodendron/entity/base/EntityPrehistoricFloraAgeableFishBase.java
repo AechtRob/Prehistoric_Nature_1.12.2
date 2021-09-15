@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.base;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
-import net.ilexiconn.llibrary.server.animation.Animation;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.MoverType;
@@ -39,9 +38,7 @@ public abstract class EntityPrehistoricFloraAgeableFishBase extends EntityPrehis
         }
     }
 
-    private Animation animation = NO_ANIMATION;
-
-    public static final Animation ANIMATION_FISH_WANDER = Animation.create(20);
+    //private Animation animation = NO_ANIMATION;
 
     protected void initEntityAI() {}
 
@@ -78,7 +75,8 @@ public abstract class EntityPrehistoricFloraAgeableFishBase extends EntityPrehis
         if (this.getPosition().getY() - 1 > 1) {
             BlockPos pos = new BlockPos(this.getPosition().getX(),this.getPosition().getY() - 1, this.getPosition().getZ());
             return ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
-                    && ((this.world.getBlockState(pos)).getMaterial() != Material.WATER));
+                    && ((this.world.getBlockState(pos)).getMaterial() != Material.WATER)
+                    && ((double)this.getPosition().getY() + 0.334D) > this.posY);
         }
         return true;
     }
@@ -133,11 +131,6 @@ public abstract class EntityPrehistoricFloraAgeableFishBase extends EntityPrehis
     @Override
     public boolean isOnLadder() {
         return false;
-    }
-
-    @Override
-    public void onLivingUpdate() {
-        super.onLivingUpdate();
     }
 
     public void onEntityUpdate()

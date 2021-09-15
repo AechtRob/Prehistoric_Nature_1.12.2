@@ -81,13 +81,13 @@ public class BlockAlpiaDoor extends ElementsLepidodendronMod.ModElement {
 		@Override
 	    public String getTranslationKey()
 	    {
-	        return "tile.alpia_door.name";
+	        return "tile.pf_alpia_door.name";
 	    }
 
 		@Override
 	    public String getLocalizedName()
    	 	{
-        	return I18n.translateToLocal("item.alpia_door_item.name");
+        	return I18n.translateToLocal("item.pf_alpia_door_item.name");
     	}
     	
 		@Override

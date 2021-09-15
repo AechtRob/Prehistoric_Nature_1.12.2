@@ -4,109 +4,141 @@ package net.lepidodendron.block;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
-import net.lepidodendron.item.ItemPhial;
-import net.lepidodendron.item.ItemPhialEggsTrigonotarbidCarb;
-import net.lepidodendron.world.InsectEggSpawnGenerator;
+import net.lepidodendron.entity.EntityPrehistoricFloraTrigonotarbid_Cryptomartus;
+import net.lepidodendron.entity.EntityPrehistoricFloraTrigonotarbid_Eophrynus;
+import net.lepidodendron.entity.EntityPrehistoricFloraTrigonotarbid_Kreischeria;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.renderer.block.statemap.StateMap;
-import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.IChunkProvider;
-import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.ItemHandlerHelper;
 
+import javax.annotation.Nullable;
+import java.util.List;
 import java.util.Random;
-
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class BlockInsectEggsTrigonotarbidCarb extends ElementsLepidodendronMod.ModElement {
-	@GameRegistry.ObjectHolder("lepidodendron:insect_eggs_trigonotarbid_carb_worldgen")
+	@GameRegistry.ObjectHolder("lepidodendron:insect_eggs_trigonotarbid_carb")
 	public static final Block block = null;
 	public BlockInsectEggsTrigonotarbidCarb(ElementsLepidodendronMod instance) {
-		super(instance, LepidodendronSorter.insect_eggs_trigonotarbid_carb_worldgen);
+		super(instance, LepidodendronSorter.insect_eggs_trigonotarbid_carb);
 	}
 
 	@Override
 	public void initElements() {
-		elements.blocks.add(() -> new BlockCustom().setRegistryName("insect_eggs_trigonotarbid_carb_worldgen"));
-		//elements.items.add(() -> new ItemBlock(block).setRegistryName(block.getRegistryName()));
+		elements.blocks.add(() -> new BlockCustom().setRegistryName("insect_eggs_trigonotarbid_carb"));
+		elements.items.add(() -> new ItemBlock(block).setRegistryName(block.getRegistryName()));
+	}
+
+	@Override
+	public void init(FMLInitializationEvent event) {
+		GameRegistry.registerTileEntity(BlockInsectEggsTrigonotarbidCarb.TileEntityCustom.class, "lepidodendron:tileentityinsect_eggs_trigonotarbid_carb");
 	}
 
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void registerModels(ModelRegistryEvent event) {
-		//ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0,
-				//new ModelResourceLocation("lepidodendron:insect_eggs_eoarthropleura_worldgen", "inventory"));
-		ModelLoader.setCustomStateMapper(block, (new StateMap.Builder()).build());
-	}
-
-	@Override
-	public void generateWorld(Random random, int chunkX, int chunkZ, World world, int dimID, IChunkGenerator cg, IChunkProvider cp) {
-
-		if (dimID != LepidodendronConfig.dimCarboniferous) {
-			return;
-		}
-		int startHeight = world.getSeaLevel() - 10;
-		for (int i = 0; i < (int) 3; i++) {
-			int l6 = chunkX + random.nextInt(16) + 8;
-			int i11 = random.nextInt(128 - startHeight) + startHeight;
-			int l14 = chunkZ + random.nextInt(16) + 8;
-			(new InsectEggSpawnGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14));
-		}
+		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0,
+				new ModelResourceLocation("lepidodendron:insect_eggs_trigonotarbid_carb", "inventory"));
 	}
 
 	public static class BlockCustom extends BlockInsectEggs {
 		public BlockCustom() {
-			setTranslationKey("pf_insect_eggs_trigonotarbid_carb_worldgen");
-			//this.setTickRandomly(true);
+			setTranslationKey("pf_insect_eggs_trigonotarbid_carb");
+			this.setTickRandomly(true);
 			setCreativeTab(null);
 		}
 
 		@Override
-		public NonNullList<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
-			return NonNullList.withSize(1, new ItemStack(BlockInsectEggsTrigonotarbidCarbPlaceable.block, (int) (1)));
+		public void breakBlock(World world, BlockPos pos, IBlockState state) {
+			world.removeTileEntity(pos);
+			super.breakBlock(world, pos, state);
 		}
 
 		@Override
-		public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
-			return new ItemStack(BlockInsectEggsTrigonotarbidCarbPlaceable.block, (int) (1));
+		public boolean hasTileEntity(IBlockState state) {
+			return true;
+		}
+
+		@Nullable
+		@Override
+		public TileEntity createTileEntity(World world, IBlockState state) {
+			return new BlockInsectEggsTrigonotarbidCarb.TileEntityCustom();
+		}
+
+		public BlockInsectEggsTrigonotarbidCarb.TileEntityCustom createNewTileEntity(World worldIn, int meta) {
+			return new BlockInsectEggsTrigonotarbidCarb.TileEntityCustom();
 		}
 
 		@Override
-		public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) 
-		{
+		public boolean eventReceived(IBlockState state, World worldIn, BlockPos pos, int eventID, int eventParam) {
+			super.eventReceived(state, worldIn, pos, eventID, eventParam);
+			TileEntity tileentity = worldIn.getTileEntity(pos);
+			return tileentity == null ? false : tileentity.receiveClientEvent(eventID, eventParam);
+		}
+
+		@Override
+		public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand) {
 			super.updateTick(worldIn, pos, state, rand);
 
+			if (worldIn.getBlockState(pos).getBlock() == this && !(worldIn.isRemote)) {
+				//worldIn.destroyBlock(pos, false);
+				Entity entity1 = null;
+				Entity entity2 = null;
+
+				int i = rand.nextInt(3);
+				if (i == 0) {
+					entity1 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraTrigonotarbid_Eophrynus.class), (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D);
+					if (Math.random() > 0.75) {
+						entity2 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraTrigonotarbid_Eophrynus.class), (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D);
+					}
+				}
+				if (i == 1) {
+					entity1 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraTrigonotarbid_Kreischeria.class), (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D);
+					if (Math.random() > 0.75) {
+						entity2 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraTrigonotarbid_Kreischeria.class), (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D);
+					}
+				}
+				if (i == 2) {
+					entity1 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraTrigonotarbid_Cryptomartus.class), (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D);
+					if (Math.random() > 0.75) {
+						entity2 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraTrigonotarbid_Cryptomartus.class), (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D);
+					}
+				}
+
+				if (entity1 != null || entity2 != null) {
+					worldIn.destroyBlock(pos, false);
+				}
+			}
 		}
 
-		public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-		{
-			if (!player.capabilities.allowEdit)
-			{
-				return super.onBlockActivated(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
-			}
-			else {
-				if (player.getHeldItemMainhand().getItem() == new ItemStack(ItemPhial.block, (int) (1)).getItem()) {
-					player.inventory.clearMatchingItems(new ItemStack(ItemPhial.block, (int) (1)).getItem(), -1, (int) 1, null);
-					ItemStack _setstack = new ItemStack(ItemPhialEggsTrigonotarbidCarb.block, (int) (1));
-					_setstack.setCount(1);
-					ItemHandlerHelper.giveItemToPlayer(player, _setstack);
-					world.setBlockToAir(pos);
-				}
-				return true;
+		@SideOnly(Side.CLIENT)
+		@Override
+		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
+			if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: Arachnid");
+				tooltip.add("Periods: Carboniferous");
+				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}
+	}
+
+	public static class TileEntityCustom extends TileEntity {
+
 	}
 }

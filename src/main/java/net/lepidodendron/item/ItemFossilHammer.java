@@ -75,8 +75,6 @@ public class ItemFossilHammer extends ElementsLepidodendronMod.ModElement {
 
         @Override
         public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
-            //stack.damageItem(2, entityLiving);
-
             if (!worldIn.isRemote)
             {
                 if (entityLiving instanceof EntityPlayer) {

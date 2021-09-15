@@ -9,6 +9,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.math.BlockPos;
@@ -56,7 +57,7 @@ public class BlockCarboniferousMud extends ElementsLepidodendronMod.ModElement {
 		@Override
 		public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn)
 		{
-			if (Math.abs(entityIn.motionY) < 0.1D && !entityIn.isSneaking())
+			if (entityIn instanceof EntityPlayer && Math.abs(entityIn.motionY) < 0.1D && !entityIn.isSneaking())
 			{
 				double d0 = 0.4D + Math.abs(entityIn.motionY) * 0.2D;
 				entityIn.motionX *= d0;

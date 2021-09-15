@@ -70,7 +70,7 @@ public class BlockDendrograptus extends ElementsLepidodendronMod.ModElement {
 	@Override
 	public void generateWorld(Random random, int chunkX, int chunkZ, World world, int dimID, IChunkGenerator cg, IChunkProvider cp) {
 
-		int weight = LepidodendronConfig.weightGraptolite;
+		int weight = LepidodendronConfig.weightCrinoid;
 		if (weight > 100) {weight = 100;}
 		if (weight < 0) {weight = 0;}
 		if (dimID == LepidodendronConfig.dimOrdovicianSilurian
@@ -82,7 +82,7 @@ public class BlockDendrograptus extends ElementsLepidodendronMod.ModElement {
 		}
 
 		boolean dimensionCriteria = false;
-		if (shouldGenerateInDimension(dimID, LepidodendronConfig.dimGraptolite))
+		if (shouldGenerateInDimension(dimID, LepidodendronConfig.dimCrinoid))
 			dimensionCriteria = true;
 		if (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 			dimensionCriteria = true;
@@ -91,7 +91,7 @@ public class BlockDendrograptus extends ElementsLepidodendronMod.ModElement {
 
 		boolean biomeCriteria = false;
 		Biome biome = world.getBiome(new BlockPos(chunkX, world.getSeaLevel(), chunkZ));
-		if (!matchBiome(biome, LepidodendronConfig.genGraptoliteBlacklistBiomes)) {
+		if (!matchBiome(biome, LepidodendronConfig.genCrinoidBlacklistBiomes)) {
 			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.OCEAN))
 				biomeCriteria = true;
 			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.BEACH))
@@ -99,7 +99,7 @@ public class BlockDendrograptus extends ElementsLepidodendronMod.ModElement {
 			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.DEAD))
 				biomeCriteria = false;
 		}
-		if (matchBiome(biome, LepidodendronConfig.genGraptoliteOverrideBiomes))
+		if (matchBiome(biome, LepidodendronConfig.genCrinoidOverrideBiomes))
 			biomeCriteria = true;
 		if (dimID == LepidodendronConfig.dimOrdovicianSilurian
 		)

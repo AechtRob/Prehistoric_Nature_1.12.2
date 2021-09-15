@@ -2,7 +2,7 @@ package net.lepidodendron.entity.model.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelBase;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelRenderer;
-import net.lepidodendron.entity.base.EntityPrehistoricFloraNautiloidBase;
+import net.lepidodendron.entity.EntityPrehistoricFloraOrthoceras;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
 
@@ -391,7 +391,7 @@ public class ModelOrthoceras extends AdvancedModelBase {
 
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
-        this.shellbase.render(f5 * 0.7F);
+        this.shellbase.render(f5 * 0.325F);
     }
 
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
@@ -424,8 +424,9 @@ public class ModelOrthoceras extends AdvancedModelBase {
             speed = 0.5F;
         }
 
-        EntityPrehistoricFloraNautiloidBase ee = (EntityPrehistoricFloraNautiloidBase) e;
+        EntityPrehistoricFloraOrthoceras ee = (EntityPrehistoricFloraOrthoceras) e;
         if (ee.isAtBottom()) {
+            //this.shellbase.offsetY = 1.6F;
             speed = speed * 2F;
             //Left:
             this.chainSwing(tentacle2, speed, -0.2F, 0, f2, 1F);

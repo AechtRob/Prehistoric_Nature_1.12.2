@@ -4,7 +4,6 @@ package net.lepidodendron.block;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
-import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraRhizodus;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.Block;
@@ -19,7 +18,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
@@ -58,12 +56,7 @@ public class BlockEggsRhizodusPlaceable extends ElementsLepidodendronMod.ModElem
 		public BlockCustom() {
 			setTranslationKey("pf_eggs_rhizodus");
 			this.setTickRandomly(true);
-			setCreativeTab(TabLepidodendronMobile.tab);
-		}
-
-		@Override
-		public NonNullList<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
-			return NonNullList.withSize(1, new ItemStack(BlockEggsRhizodusPlaceable.block, (int) (1)));
+			setCreativeTab(null);
 		}
 
 		@Override
@@ -77,7 +70,7 @@ public class BlockEggsRhizodusPlaceable extends ElementsLepidodendronMod.ModElem
 			super.updateTick(worldIn, pos, state, rand);
 
 			if (worldIn.getBlockState(pos).getBlock() == this && !(worldIn.isRemote)) {
-				worldIn.destroyBlock(pos, false);
+				//worldIn.destroyBlock(pos, false);
 				Entity entity1 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraRhizodus.class), (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
 				EntityPrehistoricFloraAgeableBase ee1 = (EntityPrehistoricFloraAgeableBase) entity1;
 				ee1.setAgeTicks(1);

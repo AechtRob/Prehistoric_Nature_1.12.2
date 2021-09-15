@@ -25,6 +25,7 @@ public class LayerEoandromedaBody implements LayerRenderer<EntityPrehistoricFlor
         if (!entitylivingbaseIn.isInvisible())
         {
             this.eoandromedaRenderer.bindTexture(TEXTURE);
+            GlStateManager.pushMatrix();
             GlStateManager.color(1.0F, 1.0F, 1.0F, 0.9F);
             GlStateManager.enableNormalize();
             GlStateManager.enableBlend();
@@ -34,6 +35,7 @@ public class LayerEoandromedaBody implements LayerRenderer<EntityPrehistoricFlor
             this.eoandromedaModel.render(entitylivingbaseIn, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch, scale);
             GlStateManager.disableBlend();
             GlStateManager.disableNormalize();
+            GlStateManager.popMatrix();
         }
     }
 

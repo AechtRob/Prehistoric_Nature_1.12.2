@@ -171,10 +171,10 @@ public class BlockDinomischus extends ElementsLepidodendronMod.ModElement {
 										|| (world.getBlockState(pos1).getMaterial() == Material.CORAL)
 										|| (world.getBlockState(pos1).getMaterial() == Material.CLAY))
 										&& (world.getBlockState(pos1).getBlockFaceShape(world, pos1, EnumFacing.UP) == BlockFaceShape.SOLID)) {
-									world.setBlockState(blockpos1, block.getDefaultState().withProperty(BlockFenestella1.BlockCustom.FACING, enumfacing), 2);
+									world.setBlockState(blockpos1, block.getDefaultState().withProperty(BlockDinomischus.BlockCustom.FACING, enumfacing), 2);
 									return true;
 								} else {
-									for (EnumFacing enumfacing1 : BlockFenestella1.BlockCustom.FACING.getAllowedValues()) {
+									for (EnumFacing enumfacing1 : BlockDinomischus.BlockCustom.FACING.getAllowedValues()) {
 										pos1 = blockpos1;
 
 										if (enumfacing1 == EnumFacing.NORTH) {
@@ -199,7 +199,7 @@ public class BlockDinomischus extends ElementsLepidodendronMod.ModElement {
 														|| (world.getBlockState(pos1).getMaterial() == Material.IRON)
 														|| (world.getBlockState(pos1).getMaterial() == Material.WOOD))
 												&& (world.getBlockState(pos1).getBlockFaceShape(world, pos1, enumfacing1) == BlockFaceShape.SOLID)) {
-											world.setBlockState(blockpos1, block.getDefaultState().withProperty(BlockFenestella1.BlockCustom.FACING, enumfacing1), 2);
+											world.setBlockState(blockpos1, block.getDefaultState().withProperty(BlockDinomischus.BlockCustom.FACING, enumfacing1), 2);
 											return true;
 										}
 									}

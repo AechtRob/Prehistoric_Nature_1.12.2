@@ -3,6 +3,7 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.entity.ai.EatFishFoodAIAgeable;
 import net.lepidodendron.entity.ai.EurypteridWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraEurypteridBase;
 import net.lepidodendron.item.entities.ItemBucketPalaeodictyopteraNymph;
@@ -45,6 +46,16 @@ public class EntityPrehistoricFloraPalaeodictyopteraNymph extends EntityPrehisto
 		maxHealthAgeable = 5.0D;
 	}
 
+	@Override
+	public boolean dropsEggs() {
+		return false;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return false;
+	}
+
 	@Override //Spawn as baby so it grows:
 	public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
 		livingdata = super.onInitialSpawn(difficulty, livingdata);
@@ -61,6 +72,7 @@ public class EntityPrehistoricFloraPalaeodictyopteraNymph extends EntityPrehisto
 
 	protected void initEntityAI() {
 		tasks.addTask(0, new EurypteridWander(this, NO_ANIMATION));
+		this.targetTasks.addTask(0, new EatFishFoodAIAgeable(this));
 	}
 
 	@Override
@@ -107,16 +119,6 @@ public class EntityPrehistoricFloraPalaeodictyopteraNymph extends EntityPrehisto
 
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		boolean isAtBottom = false;
-		if (this.getPosition().getY() - 1 > 1) {
-			BlockPos pos = new BlockPos(this.getPosition().getX(),this.getPosition().getY() - 1, this.getPosition().getZ());
-			isAtBottom =  ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
-					&& ((this.world.getBlockState(pos)).getMaterial() != Material.WATER));
-		}
-		if (isAtBottom && this.world.getBlockState(this.getPosition().up()).getMaterial() == Material.WATER) {
-			this.setPositionAndUpdate(this.getPosition().up().getX(), this.getPosition().up().getY(), this.getPosition().up().getZ());
-		}
-
 		return super.attackEntityFrom(source, (amount));
 
 	}
@@ -179,12 +181,12 @@ public class EntityPrehistoricFloraPalaeodictyopteraNymph extends EntityPrehisto
 		{
 			if (!(world.isRemote)) {
 				BlockPos pos = this.getPosition();
-				int i = rand.nextInt(8);
+				int i = rand.nextInt(7);
 				if (i == 0) {
 					entity = ItemMonsterPlacer.spawnCreature(this.getEntityWorld(), EntityList.getKey(EntityPrehistoricFloraPalaeodictyoptera_Delitzschala.class), (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D);
 				}
 				if (i == 1) {
-					entity = ItemMonsterPlacer.spawnCreature(this.getEntityWorld(), EntityList.getKey(EntityPrehistoricFloraPalaeodictyoptera_Dunbaria.class), (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D);
+					entity = ItemMonsterPlacer.spawnCreature(this.getEntityWorld(), EntityList.getKey(EntityPrehistoricFloraPalaeodictyoptera_Stenodictya.class), (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D);
 				}
 				if (i == 2) {
 					entity = ItemMonsterPlacer.spawnCreature(this.getEntityWorld(), EntityList.getKey(EntityPrehistoricFloraPalaeodictyoptera_Homaloneura.class), (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D);
@@ -200,9 +202,6 @@ public class EntityPrehistoricFloraPalaeodictyopteraNymph extends EntityPrehisto
 				}
 				if (i == 6) {
 					entity = ItemMonsterPlacer.spawnCreature(this.getEntityWorld(), EntityList.getKey(EntityPrehistoricFloraPalaeodictyoptera_Sinodunbaria.class), (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D);
-				}
-				if (i == 7) {
-					entity = ItemMonsterPlacer.spawnCreature(this.getEntityWorld(), EntityList.getKey(EntityPrehistoricFloraPalaeodictyoptera_Stenodictya.class), (double) pos.getX() + 0.5D, (double) pos.getY() + 0.5D, (double) pos.getZ() + 0.5D);
 				}
 
 				if (entity != null) {

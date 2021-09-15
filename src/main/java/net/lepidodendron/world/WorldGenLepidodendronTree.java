@@ -117,7 +117,7 @@ public class WorldGenLepidodendronTree extends WorldGenAbstractTree
 					$_dependencies.put("vines", true);
 					$_dependencies.put("vines2", true);
 					$_dependencies.put("SaplingSpawn", false);
-                    if ((worldIn.provider.getDimension() == LepidodendronConfig.dimPermian)
+                    if ((worldIn.provider.getDimension() != LepidodendronConfig.dimCarboniferous)
                     ){
                         $_dependencies.put("SaplingSpawn", true); // disables Ankyropteris etc.
                         $_dependencies.put("vines", false);

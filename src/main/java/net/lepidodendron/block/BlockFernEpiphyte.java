@@ -80,7 +80,7 @@ public class BlockFernEpiphyte extends ElementsLepidodendronMod.ModElement {
 			biomeCriteria = false;
 		if (
 			(dimID == LepidodendronConfig.dimCarboniferous)
-			|| (dimID == LepidodendronConfig.dimPermian)
+			
 			)
 			{
 				biomeCriteria = true;

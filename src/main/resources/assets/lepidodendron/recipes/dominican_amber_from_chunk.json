@@ -1,40 +1,20 @@
 {
   "group": "lepidodendron",
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "012",
-    "345",
-    "678"
-  ],
-  "key": {
-    "0": {
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
       "item": "lepidodendron:dominican_amber_chunk"
     },
-    "1": {
+    {
       "item": "lepidodendron:dominican_amber_chunk"
     },
-    "2": {
+    {
       "item": "lepidodendron:dominican_amber_chunk"
     },
-    "3": {
-      "item": "lepidodendron:dominican_amber_chunk"
-    },
-    "4": {
-      "item": "lepidodendron:dominican_amber_chunk"
-    },
-    "5": {
-      "item": "lepidodendron:dominican_amber_chunk"
-    },
-    "6": {
-      "item": "lepidodendron:dominican_amber_chunk"
-    },
-    "7": {
-      "item": "lepidodendron:dominican_amber_chunk"
-    },
-    "8": {
+    {
       "item": "lepidodendron:dominican_amber_chunk"
     }
-  },
+  ],
   "result": {
     "item": "lepidodendron:dominican_amber_block",
     "count": 1

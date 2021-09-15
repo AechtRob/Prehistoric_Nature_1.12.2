@@ -28,7 +28,7 @@ public class RenderAphetoceras extends RenderLiving<EntityPrehistoricFloraApheto
     @Override
     protected void preRenderCallback(EntityPrehistoricFloraAphetoceras entity, float f) {
         float scale = entity.getAgeScale();
-        GlStateManager.scale(scale, scale, scale);
+        GlStateManager.scale(scale * 0.55, scale * 0.55, scale * 0.55);
         this.shadowSize = entity.width * scale * 0.45F;
     }
 

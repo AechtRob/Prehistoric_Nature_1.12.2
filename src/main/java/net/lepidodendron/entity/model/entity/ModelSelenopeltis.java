@@ -247,7 +247,8 @@ public class ModelSelenopeltis extends AdvancedModelBase {
         if (e.getPosition().getY() - 1 > 1) {
             BlockPos pos = new BlockPos(e.getPosition().getX(), e.getPosition().getY() - 1, e.getPosition().getZ());
             isAtBottom = ((e.isInsideOfMaterial(Material.WATER) || e.isInsideOfMaterial(Material.CORAL))
-                    && ((e.world.getBlockState(pos)).getMaterial() != Material.WATER));
+                    && ((e.world.getBlockState(pos)).getMaterial() != Material.WATER)
+                    && ((double)e.getPosition().getY() + 0.334D) > e.posY);
         }
 
         AdvancedModelRenderer[] legsL = {this.legL, this.legL2, this.legL3, this.legL4, this.legL5, this.legL6};
@@ -283,7 +284,7 @@ public class ModelSelenopeltis extends AdvancedModelBase {
             this.flap(legL4, 0.2F, -0.5F, false, 3.0F, -0.5F, f2, 0.3F);
             this.flap(legR4, 0.2F, 0.5F, false, 3.0F, 0.5F, f2, 0.3F);
             this.flap(legL5, 0.2F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-            this.flap(legR5, 0.2F, 0.5F, false, 3.0F, 0.5F, f2, 0.3F);
+            this.flap(legR5, 0.2F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
             this.chainSwing(bodyF, 0.2F, 0.05F, -3, f2, 0.2F);
             this.chainWave(bodyF, 0.5F, 0.07f, -3, f2, 0.3F);
             this.bob(head, 0.2F, 0.2F, false, f2, 1);

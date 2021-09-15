@@ -6,6 +6,7 @@ import net.lepidodendron.block.*;
 import net.lepidodendron.item.ItemCookedBreadfruit;
 import net.lepidodendron.item.ItemCookedPrototaxites;
 import net.lepidodendron.item.ItemPrototaxitesChunk;
+import net.lepidodendron.item.ItemZircon;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -24,6 +25,8 @@ public class RecipeCharcoalFromLepidodendron extends ElementsLepidodendronMod.Mo
 		GameRegistry.addSmelting(new ItemStack(BlockArtocarpusFruitBlock.block, (int) (1)), new ItemStack(ItemCookedBreadfruit.block, (int) (1)), 0.5F);
 		GameRegistry.addSmelting(new ItemStack(ItemPrototaxitesChunk.block, (int) (1)), new ItemStack(ItemCookedPrototaxites.block, (int) (1)), 0.5F);
 
+		GameRegistry.addSmelting(new ItemStack(BlockZirconOre.block, (int) (1)), new ItemStack(ItemZircon.block, (int) (1)), 0.75F);
+
 		GameRegistry.addSmelting(new ItemStack(BlockRedClay.block, (int) (1)), new ItemStack(Blocks.HARDENED_CLAY, (int) (1)), 0.35F);
 
 		GameRegistry.addSmelting(new ItemStack(BlockOrangeSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
@@ -35,6 +38,7 @@ public class RecipeCharcoalFromLepidodendron extends ElementsLepidodendronMod.Mo
 		GameRegistry.addSmelting(new ItemStack(BlockDarkPinkSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockYellowSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockBlueSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockBranchedSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
 
 		GameRegistry.addSmelting(new ItemStack(BlockWoodenLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockPodozamitesLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
@@ -115,5 +119,10 @@ public class RecipeCharcoalFromLepidodendron extends ElementsLepidodendronMod.Mo
 		GameRegistry.addSmelting(new ItemStack(BlockCtenisLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockXenocladiaStem.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockXenocladiaStemNE.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockCzekanowskiaLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockAneurophytonLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockLyginopterisStem.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockLyginopterisStemNE.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+
 	}
 }

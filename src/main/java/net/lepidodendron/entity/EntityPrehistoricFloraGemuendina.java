@@ -4,10 +4,12 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.entity.ai.EatFishFoodAIFish;
 import net.lepidodendron.entity.ai.FishWanderBottomDweller;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.item.entities.ItemBucketGemuendina;
 import net.minecraft.block.material.Material;
+import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,6 +21,7 @@ import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.*;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -27,6 +30,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nullable;
+import java.util.List;
 
 public class EntityPrehistoricFloraGemuendina extends EntityPrehistoricFloraFishBase {
 
@@ -49,6 +53,11 @@ public class EntityPrehistoricFloraGemuendina extends EntityPrehistoricFloraFish
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return true;
 	}
 
 	@Override
@@ -85,7 +94,9 @@ public class EntityPrehistoricFloraGemuendina extends EntityPrehistoricFloraFish
 	public void setBuriedTick(int buryTick) {
 		//Set at the bottom of the blockpos:
 		if (!this.world.isRemote) {
-			if (buryTick > 0) {this.moveToBlockPosAndAngles(this.getPosition(), this.rotationYaw, this.rotationPitch);}
+			if (buryTick > 0) {
+				this.motionY = this.motionY -= 0.08D;
+			}
 			this.dataManager.set(BURYTICK, buryTick);
 		}
 	}
@@ -106,7 +117,7 @@ public class EntityPrehistoricFloraGemuendina extends EntityPrehistoricFloraFish
 		//Set at the bottom of the blockpos:
 		if (!this.world.isRemote) {
 			if (buried) {
-				this.moveToBlockPosAndAngles(this.getPosition(), this.rotationYaw, this.rotationPitch);
+				this.motionY = this.motionY -= 0.08D;
 				this.setSize(0, 0.3F);
 			}
 			else {
@@ -148,6 +159,7 @@ public class EntityPrehistoricFloraGemuendina extends EntityPrehistoricFloraFish
 
 	protected void initEntityAI() {
 		tasks.addTask(0, new FishWanderBottomDweller(this, NO_ANIMATION));
+		this.targetTasks.addTask(0, new EatFishFoodAIFish(this));
 	}
 
 	@Override
@@ -241,6 +253,8 @@ public class EntityPrehistoricFloraGemuendina extends EntityPrehistoricFloraFish
 
 	public void onEntityUpdate() {
 		//AnimationHandler.INSTANCE.updateAnimations(this);
+		//System.err.println("onEntityUpdate Pos: " + this.getPosition().getX() + " " + this.getPosition().getY() + " "  + this.getPosition().getZ());
+
 		super.onEntityUpdate();
 
 		if (!this.world.isRemote) {
@@ -278,6 +292,16 @@ public class EntityPrehistoricFloraGemuendina extends EntityPrehistoricFloraFish
 		return 0;
 	}
 
+	public boolean isBlockEmpty(World world, BlockPos pos) {
+		List<EntityLiving> Entities = world.getEntitiesWithinAABB(EntityLiving.class, new AxisAlignedBB(pos.getX() + 0.25, pos.getY(), pos.getZ() + 0.25, pos.getX() + 0.75, pos.getY() + 0.5,pos.getZ() + 0.75));
+		for (EntityLiving currentEntity : Entities) {
+			if (currentEntity != this) {
+				return false;
+			}
+		}
+		return true;
+	}
+
 	@Override
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
@@ -296,18 +320,21 @@ public class EntityPrehistoricFloraGemuendina extends EntityPrehistoricFloraFish
 						setBuried(false);
 						setBuryCount(0);
 						setSwimCount(-60);
+						setBuriedTick(getBuryTick());
 					}
 				} else { //is in bury position
-					if ((!getBuried()) && getSwimCount() > 800) { //Has swum long enough
+					if ((!getBuried()) && getSwimCount() > 800 && isBlockEmpty(this.world, this.getPosition())) { //Has swum long enough
 						setBuried(true);
 						setBuryCount(-60);
 						setSwimCount(0);
+						setBuriedTick(getBuryTick());
 					} else {
 						if (getBuryCount() > 1600) {
 							if (getBuried()) {
 								setBuried(false);
 								setBuryCount(0);
 								setSwimCount(-60);
+								setBuriedTick(getBuryTick());
 							}
 						}
 					}

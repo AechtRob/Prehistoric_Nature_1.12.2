@@ -70,12 +70,6 @@ public class ItemBoneWand extends ElementsLepidodendronMod.ModElement {
 		}
 
 		@Override
-		@SideOnly(Side.CLIENT)
-		public boolean hasEffect(ItemStack itemstack) {
-			return true;
-		}
-
-		@Override
 		public EnumActionResult onItemUse(EntityPlayer entity, World world, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY,
 				float hitZ) {
 			pos = pos.offset(facing);
@@ -94,7 +88,8 @@ public class ItemBoneWand extends ElementsLepidodendronMod.ModElement {
 						WorldOrdovicianSilurian.portal.portalSpawn(world, pos);
 						WorldDevonian.portal.portalSpawn(world, pos);
 						WorldCarboniferous.portal.portalSpawn(world, pos);
-						//WorldPermian.portal.portalSpawn(world, pos);
+						//WorldPermianGlossopteris.portal.portalSpawn(world, pos);
+						//WorldPermianWetlands.portal.portalSpawn(world, pos);
 						if (!entity.capabilities.isCreativeMode) {
 							itemstack.damageItem(1, entity);
 						}

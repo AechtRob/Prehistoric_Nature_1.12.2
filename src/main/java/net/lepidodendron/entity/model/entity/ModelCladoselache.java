@@ -21,10 +21,14 @@ public class ModelCladoselache extends AdvancedModelBase {
     private final AdvancedModelRenderer gillL_r1;
     private final AdvancedModelRenderer body2;
     private final AdvancedModelRenderer pectoralfinL;
+    private final AdvancedModelRenderer pectoralfinL_r1;
     private final AdvancedModelRenderer pectoralfinR;
+    private final AdvancedModelRenderer pectoralfinR_r1;
     private final AdvancedModelRenderer body3;
     private final AdvancedModelRenderer pelvicfinL;
+    private final AdvancedModelRenderer pelvicfinL_r1;
     private final AdvancedModelRenderer pelvicfinR;
+    private final AdvancedModelRenderer pelvicfinR_r1;
     private final AdvancedModelRenderer body4;
     private final AdvancedModelRenderer body5;
     private final AdvancedModelRenderer body6;
@@ -39,7 +43,7 @@ public class ModelCladoselache extends AdvancedModelBase {
         this.textureHeight = 128;
 
         this.body = new AdvancedModelRenderer(this);
-        this.body.setRotationPoint(0.0F, 24.0F, -3.0F);
+        this.body.setRotationPoint(0.0F, 24.0F, 0.0F);
 
 
         this.jaw = new AdvancedModelRenderer(this);
@@ -97,12 +101,24 @@ public class ModelCladoselache extends AdvancedModelBase {
         this.pectoralfinL = new AdvancedModelRenderer(this);
         this.pectoralfinL.setRotationPoint(3.0F, 2.0F, 2.0F);
         this.body2.addChild(pectoralfinL);
-        this.pectoralfinL.cubeList.add(new ModelBox(pectoralfinL, 16, 34, 0.0F, 0.0F, -3.0F, 7, 0, 6, 0.0F, false));
+
+
+        this.pectoralfinL_r1 = new AdvancedModelRenderer(this);
+        this.pectoralfinL_r1.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.pectoralfinL.addChild(pectoralfinL_r1);
+        this.setRotateAngle(pectoralfinL_r1, 0.0F, 0.0F, 0.4363F);
+        this.pectoralfinL_r1.cubeList.add(new ModelBox(pectoralfinL_r1, 16, 34, 0.0F, 0.0F, -3.0F, 7, 0, 6, 0.0F, false));
 
         this.pectoralfinR = new AdvancedModelRenderer(this);
         this.pectoralfinR.setRotationPoint(-3.0F, 2.0F, 2.0F);
         this.body2.addChild(pectoralfinR);
-        this.pectoralfinR.cubeList.add(new ModelBox(pectoralfinR, 30, 12, -7.0F, 0.0F, -3.0F, 7, 0, 6, 0.0F, false));
+
+
+        this.pectoralfinR_r1 = new AdvancedModelRenderer(this);
+        this.pectoralfinR_r1.setRotationPoint(0.0F, 0.0F, 0.0F);
+        this.pectoralfinR.addChild(pectoralfinR_r1);
+        this.setRotateAngle(pectoralfinR_r1, 0.0F, 0.0F, -0.4363F);
+        this.pectoralfinR_r1.cubeList.add(new ModelBox(pectoralfinR_r1, 30, 12, -7.0F, 0.0F, -3.0F, 7, 0, 6, 0.0F, false));
 
         this.body3 = new AdvancedModelRenderer(this);
         this.body3.setRotationPoint(0.0F, 0.0F, 12.0F);
@@ -113,12 +129,24 @@ public class ModelCladoselache extends AdvancedModelBase {
         this.pelvicfinL = new AdvancedModelRenderer(this);
         this.pelvicfinL.setRotationPoint(3.0F, 2.0F, 7.0F);
         this.body3.addChild(pelvicfinL);
-        this.pelvicfinL.cubeList.add(new ModelBox(pelvicfinL, 0, 17, -0.5F, 0.0F, -1.5F, 3, 0, 4, 0.0F, false));
+
+
+        this.pelvicfinL_r1 = new AdvancedModelRenderer(this);
+        this.pelvicfinL_r1.setRotationPoint(-1.0F, 0.0F, 0.0F);
+        this.pelvicfinL.addChild(pelvicfinL_r1);
+        this.setRotateAngle(pelvicfinL_r1, 0.0F, 0.0F, 0.2618F);
+        this.pelvicfinL_r1.cubeList.add(new ModelBox(pelvicfinL_r1, 0, 17, 0.5F, 0.0F, -1.5F, 3, 0, 4, 0.0F, false));
 
         this.pelvicfinR = new AdvancedModelRenderer(this);
         this.pelvicfinR.setRotationPoint(-3.0F, 2.0F, 7.0F);
         this.body3.addChild(pelvicfinR);
-        this.pelvicfinR.cubeList.add(new ModelBox(pelvicfinR, 0, 0, -2.5F, 0.0F, -1.5F, 3, 0, 4, 0.0F, false));
+
+
+        this.pelvicfinR_r1 = new AdvancedModelRenderer(this);
+        this.pelvicfinR_r1.setRotationPoint(1.0F, 0.0F, 0.0F);
+        this.pelvicfinR.addChild(pelvicfinR_r1);
+        this.setRotateAngle(pelvicfinR_r1, 0.0F, 0.0F, -0.2618F);
+        this.pelvicfinR_r1.cubeList.add(new ModelBox(pelvicfinR_r1, 0, 0, -3.5F, 0.0F, -1.5F, 3, 0, 4, 0.0F, false));
 
         this.body4 = new AdvancedModelRenderer(this);
         this.body4.setRotationPoint(0.0F, 0.0F, 8.0F);
@@ -174,7 +202,7 @@ public class ModelCladoselache extends AdvancedModelBase {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
         this.resetToDefaultPose();
 
-        this.body.offsetY = 0.4F;
+        this.body.offsetY = 0.5F;
 
         AdvancedModelRenderer[] fishTail = {this.body3, this.body4, this.body5, this.body6};
 
@@ -212,7 +240,7 @@ public class ModelCladoselache extends AdvancedModelBase {
 
         if (!e.isInWater()) {
             this.body.rotateAngleZ = (float) Math.toRadians(90);
-            this.body.offsetY = 0.55F;
+            this.body.offsetY = 0.6F;
             this.bob(body, -speed * 1.8F, 2.5F, false, f2, 1);
             this.chainWave(fishTail, speed * 1.5F, 0.02F, -0.2, f2, 0.8F * still);
             this.chainSwing(fishTail, speed * 1.5F, 0.2F, -0.55, f2, 0.4F * still);

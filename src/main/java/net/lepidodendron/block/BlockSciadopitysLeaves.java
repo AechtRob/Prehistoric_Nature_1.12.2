@@ -139,7 +139,7 @@ public class BlockSciadopitysLeaves extends ElementsLepidodendronMod.ModElement 
 		@Override
 		public void breakBlock(World worldIn, BlockPos pos, IBlockState state)  {
 			super.breakBlock(worldIn, pos, state);
-			if ((Math.random() >= 0.8) && (LepidodendronConfig.doFruits)) {
+			if ((Math.random() >= 0.96) && (LepidodendronConfig.doFruits)) {
 				IBlockState _bs = BlockSciadopitysFruit.block.getDefaultState();
 				worldIn.setBlockState(pos, _bs, 3);
 				}
@@ -148,7 +148,7 @@ public class BlockSciadopitysLeaves extends ElementsLepidodendronMod.ModElement 
 		@Override
 		public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
 			super.onBlockHarvested(worldIn, pos, state, player);
-			if ((Math.random() >= 0.8) && (LepidodendronConfig.doFruits)) {
+			if ((Math.random() >= 0.96) && (LepidodendronConfig.doFruits)) {
 				IBlockState _bs = BlockSciadopitysFruit.block.getDefaultState();
 				worldIn.setBlockState(pos, _bs, 3);
 				}

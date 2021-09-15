@@ -3,29 +3,31 @@ package net.lepidodendron.entity.base;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.item.entities.ItemUnknownEgg;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
-import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityCreature;
-import net.minecraft.entity.EnumCreatureAttribute;
-import net.minecraft.entity.SharedMonsterAttributes;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.entity.*;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNavigateClimber;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.Vec3d;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.*;
+import net.minecraft.util.math.*;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -35,14 +37,30 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;
+    private int animationTick;
     private int jumpTicks;
+    private static final DataParameter<Integer> TICKS = EntityDataManager.createKey(EntityPrehistoricFloraInsectClimbingBase.class, DataSerializers.VARINT);
+
+    public Animation ATTACK_ANIMATION;
+    public Animation currentAnimation;
 
     public EntityPrehistoricFloraInsectClimbingBase(World world) {
         super(world);
         if (FMLCommonHandler.instance().getSide().isClient()) {
             this.chainBuffer = new ChainBuffer();
         }
+        ATTACK_ANIMATION = Animation.create(this.getAttackLength());
     }
+
+    public int getAttackLength() {
+        return 20;
+    }
+
+    public abstract boolean dropsEggs();
+
+    public abstract boolean laysEggs();
+
+    public String tagEgg () {return "";}
 
     private static final DataParameter<Byte> CLIMBING = EntityDataManager.<Byte>createKey(EntityPrehistoricFloraInsectClimbingBase.class, DataSerializers.BYTE);
 
@@ -55,6 +73,7 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
     {
         super.entityInit();
         this.dataManager.register(CLIMBING, Byte.valueOf((byte)0));
+        this.dataManager.register(TICKS, 0);
     }
 
     @Override
@@ -65,9 +84,33 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
         return super.attackEntityFrom(ds, f);
     }
 
-    private Animation animation = NO_ANIMATION;
+    @Override
+    public int getAnimationTick() {
+        return animationTick;
+    }
 
-    public static final Animation ANIMATION_WANDER = Animation.create(0);
+    @Override
+    public void setAnimationTick(int tick) {
+        animationTick = tick;
+    }
+
+    @Override
+    public Animation getAnimation() {
+        return currentAnimation == null ? NO_ANIMATION : currentAnimation;
+    }
+
+    @Override
+    public void setAnimation(Animation animation) {
+        if (this.getAnimation() != animation) {
+            this.currentAnimation = animation;
+            setAnimationTick(0);
+        }
+    }
+
+    @Override
+    public Animation[] getAnimations() {
+        return new Animation[]{ATTACK_ANIMATION};
+    }
 
     protected void initEntityAI() {}
 
@@ -77,6 +120,105 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
     }
 
     public abstract String getTexture();
+
+    public int getTicks() {
+       return this.dataManager.get(TICKS);
+    }
+
+    public void setTicks(int ticks) {
+        this.dataManager.set(TICKS, ticks);
+    }
+
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        livingdata = super.onInitialSpawn(difficulty, livingdata);
+        this.setTicks(0);
+        return livingdata;
+    }
+
+    public boolean getCanBreed() {
+        return this.getTicks() > 24000; //If the mob has done not bred for a MC day
+    }
+
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("Ticks", this.getTicks());
+    }
+
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        this.setTicks(compound.getInteger("Ticks"));
+    }
+
+    public void onEntityUpdate() {
+        //AnimationHandler.INSTANCE.updateAnimations(this);
+        super.onEntityUpdate();
+
+        //General ticker (for babies etc.)
+        int ii = this.getTicks();
+        if (this.isEntityAlive()) {
+            ++ii;
+            //limit at 48000 (two MC days) and then reset:
+            if (ii >= 48000) {
+                ii = 0;
+            }
+            this.setTicks(ii);
+        }
+
+        //Drop an egg perhaps:
+        if (!world.isRemote && this.getCanBreed() && this.dropsEggs() && LepidodendronConfig.doMultiplyMobs) {
+            if (Math.random() > 0.5) {
+                ItemStack itemstack = new ItemStack(ItemUnknownEgg.block, (int) (1));
+                if (!itemstack.hasTagCompound()) {
+                    itemstack.setTagCompound(new NBTTagCompound());
+                }
+                String stringEgg = EntityRegistry.getEntry(this.getClass()).getRegistryName().toString();
+                itemstack.getTagCompound().setString("creature", stringEgg);
+                EntityItem entityToSpawn = new EntityItem(world, this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), itemstack);
+                entityToSpawn.setPickupDelay(10);
+                this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+                world.spawnEntity(entityToSpawn);
+            }
+            this.setTicks(0);
+        }
+
+        //Lay eggs perhaps:
+        if (!world.isRemote && this.laysEggs() && LepidodendronConfig.doMultiplyMobs && this.getCanBreed()
+        ) {
+            if ((this.testLay(world, this.getPosition()) || this.testLay(world, this.getPosition().down()))
+            ) {
+                if (Math.random() > 0.5) {
+                    this.setTicks(-50); //Flag this as stationary for egg-laying
+                }
+            }
+            if ((this.testLay(world, this.getPosition()) || this.testLay(world, this.getPosition().down())) && this.getTicks() > -30 && this.getTicks() < 0) {
+                //Is stationary for egg-laying:
+                String stringEgg = LepidodendronMod.MODID + ":" + this.tagEgg();
+                this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+                if (this.testLay(world, this.getPosition())) {
+                    TileEntity te = world.getTileEntity(this.getPosition());
+                    if (te != null) {
+                        te.getTileData().setString("egg", stringEgg);
+                    }
+                    IBlockState state = world.getBlockState(this.getPosition());
+                    world.notifyBlockUpdate(this.getPosition(), state, state, 3);
+                } else if (this.testLay(world, this.getPosition().down())) {
+                    TileEntity te = world.getTileEntity(this.getPosition().down());
+                    if (te != null) {
+                        te.getTileData().setString("egg", stringEgg);
+                    }
+                    IBlockState state = world.getBlockState(this.getPosition().down());
+                    world.notifyBlockUpdate(this.getPosition().down(), state, state, 3);
+                }
+                this.setTicks(-20);
+            }
+        }
+    }
+
+    public boolean testLay(World world, BlockPos pos) {
+        return false;
+    }
 
     public void onUpdate()
     {
@@ -89,15 +231,17 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
             boolean isSolid = false;
 
             Vec3d vec3d = this.getPositionEyes(0);
-            //Vec3d vec3d1 = this.getLook(0);
-            Vec3d vec3d1 = this.getForward();
-            Vec3d vec3d2 = vec3d.add(vec3d1.x * 1, vec3d1.y * 1, vec3d1.z * 1);
-            RayTraceResult rayTrace = world.rayTraceBlocks(vec3d, vec3d2, true);
-            if (rayTrace != null && rayTrace.hitVec != null) {
-                BlockPos sidePos = rayTrace.getBlockPos();
-                if (world.isSideSolid(sidePos, rayTrace.sideHit)) {
-                    isFacing = true;
-                    isSolid = world.getBlockState(sidePos).getBlockFaceShape(world, sidePos, rayTrace.sideHit) == BlockFaceShape.SOLID;
+            Vec3d vec3d1 = this.getLook(0);
+            //Vec3d vec3d1 = this.getForward();
+            if (vec3d1 != null & vec3d != null) {
+                Vec3d vec3d2 = vec3d.add(vec3d1.x * 1, vec3d1.y * 1, vec3d1.z * 1);
+                RayTraceResult rayTrace = world.rayTraceBlocks(vec3d, vec3d2, true);
+                if (rayTrace != null && rayTrace.hitVec != null) {
+                    BlockPos sidePos = rayTrace.getBlockPos();
+                    if (world.isSideSolid(sidePos, rayTrace.sideHit)) {
+                        isFacing = true;
+                        isSolid = world.getBlockState(sidePos).getBlockFaceShape(world, sidePos, rayTrace.sideHit) == BlockFaceShape.SOLID;
+                    }
                 }
             }
 
@@ -167,14 +311,16 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
     public EnumFacing getClimbingFacing() {
         if (getClimbing()) {
             Vec3d vec3d = this.getPositionEyes(0);
-            //Vec3d vec3d1 = this.getLook(0);
-            Vec3d vec3d1 = this.getForward();
-            Vec3d vec3d2 = vec3d.add(vec3d1.x * 1, vec3d1.y * 1, vec3d1.z * 1);
-            RayTraceResult rayTrace = world.rayTraceBlocks(vec3d, vec3d2, true);
-            if (rayTrace != null && rayTrace.hitVec != null) {
-                BlockPos sidePos = rayTrace.getBlockPos();
-                if (world.isSideSolid(sidePos, rayTrace.sideHit)) {
-                    return rayTrace.sideHit.getOpposite();
+            Vec3d vec3d1 = this.getLook(0);
+            //Vec3d vec3d1 = this.getForward();
+            if (vec3d1 != null & vec3d != null) {
+                Vec3d vec3d2 = vec3d.add(vec3d1.x * 1, vec3d1.y * 1, vec3d1.z * 1);
+                RayTraceResult rayTrace = world.rayTraceBlocks(vec3d, vec3d2, true);
+                if (rayTrace != null && rayTrace.hitVec != null) {
+                    BlockPos sidePos = rayTrace.getBlockPos();
+                    if (world.isSideSolid(sidePos, rayTrace.sideHit)) {
+                        return rayTrace.sideHit.getOpposite();
+                    }
                 }
             }
         }
@@ -374,6 +520,28 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
         this.world.profiler.startSection("push");
         this.collideWithNearbyEntities();
         this.world.profiler.endSection();
+    }
+
+    public void eatItem(ItemStack stack) {
+        if (stack != null && stack.getItem() != null) {
+            float itemHealth = 0.5F; //Default minimal nutrition
+            if (stack.getItem() instanceof ItemFood) {
+                itemHealth = ((ItemFood) stack.getItem()).getHealAmount(stack);
+            }
+            this.setHealth(Math.min(this.getHealth() + itemHealth, (float) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue()));
+            stack.shrink(1);
+            if (this.getAnimation() == NO_ANIMATION && !world.isRemote) {
+                //this.setAnimation(ATTACK_ANIMATION);
+                this.setAnimation(ATTACK_ANIMATION);
+                SoundEvent soundevent = SoundEvents.ENTITY_GENERIC_EAT;
+                this.getEntityWorld().playSound(null, this.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
+        }
+    }
+
+    public AxisAlignedBB getAttackBoundingBox() {
+        float size = 1 * 0.25F;
+        return this.getEntityBoundingBox().grow(1.0F + size, 1.0F + size, 1.0F + size);
     }
 
 }

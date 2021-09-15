@@ -66,7 +66,7 @@ public class TmesipterisGenerator extends WorldGenerator
 		            if (BlockTmesipteris.BlockCustom.canPlaceAt(worldIn, new BlockPos(j, k, l), enumfacing)
 		            	&& worldIn.getBlockState(pos).getMaterial() == Material.WOOD)
 		            {
-		                worldIn.setBlockState(new BlockPos(j, k, l), this.state.withProperty(FACING, enumfacing), 2);
+		                worldIn.setBlockState(new BlockPos(j, k, l), this.state.withProperty(FACING, enumfacing), 3);
 		                return true;
 		            }
 		        }

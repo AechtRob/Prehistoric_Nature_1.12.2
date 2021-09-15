@@ -133,7 +133,7 @@ public class ModelAmphibamus extends AdvancedModelBase {
         AdvancedModelRenderer[] Tail = {this.tailbase, this.tail1, this.tail2};
         AdvancedModelRenderer[] Torso = {this.body, this.neck};
 
-        if (!Amphibamus.isActuallyInWater()) {
+        if (!Amphibamus.isReallyInWater()) {
             //Land animation:
             this.chainWave(Tail, speed * (0.1F + f3), 0.05F, -3, f2, 1);
             this.chainSwing(Tail, speed * (0.1F + f3), 0.12F, -3, f2, 0.8F);

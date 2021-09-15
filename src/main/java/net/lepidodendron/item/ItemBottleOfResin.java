@@ -4,18 +4,28 @@ package net.lepidodendron.item;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.block.*;
 import net.lepidodendron.creativetab.TabLepidodendronMisc;
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import java.util.List;
 
@@ -70,5 +80,121 @@ public class ItemBottleOfResin extends ElementsLepidodendronMod.ModElement {
 			}
 			super.addInformation(stack, player, tooltip, advanced);
 		}
+
+		@Override
+		public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+		{
+			ItemStack itemstack = player.getHeldItem(hand);
+
+			if (!player.canPlayerEdit(pos.offset(facing), facing, itemstack))
+			{
+				return EnumActionResult.FAIL;
+			}
+			else
+			{
+				if (applyResin(itemstack, worldIn, pos, player, hand))
+				{
+					return EnumActionResult.SUCCESS;
+				}
+			}
+			return EnumActionResult.PASS;
+		}
+
+		public static boolean applyResin(ItemStack stack, World worldIn, BlockPos target, EntityPlayer player, @javax.annotation.Nullable EnumHand hand)
+		{
+			IBlockState iblockstate = worldIn.getBlockState(target);
+			Block blockTarget = iblockstate.getBlock();
+
+			if (!worldIn.isRemote) {
+				boolean resined = false;
+				if (blockTarget == BlockSandPangaean.block) {
+					worldIn.setBlockState(target, BlockSandPangaeanSticky.block.getDefaultState());
+					resined = true;
+				}
+				if (iblockstate == Blocks.SAND.getStateFromMeta(0)) {
+					worldIn.setBlockState(target, BlockSandSticky.block.getDefaultState());
+					resined = true;
+				}
+				if (iblockstate == Blocks.SAND.getStateFromMeta(1)) {
+					worldIn.setBlockState(target, BlockSandRedSticky.block.getDefaultState());
+					resined = true;
+				}
+				if (blockTarget == Blocks.GRAVEL) {
+					worldIn.setBlockState(target, BlockGravelSticky.block.getDefaultState());
+					resined = true;
+				}
+				if (blockTarget == BlockStromatolite.block) {
+					worldIn.setBlockState(target, BlockStromatoliteSticky.block.getDefaultState());
+					resined = true;
+				}
+				if (blockTarget == BlockCoral.block) {
+					worldIn.setBlockState(target, BlockCoralSticky.block.getDefaultState());
+					resined = true;
+				}
+				if (blockTarget == BlockThrombolite.block) {
+					worldIn.setBlockState(target, BlockThromboliteSticky.block.getDefaultState());
+					resined = true;
+				}
+				if (blockTarget == BlockArchaeocyatha.block) {
+					worldIn.setBlockState(target, BlockArchaeocyathaSticky.block.getDefaultState());
+					resined = true;
+				}
+				if (blockTarget == BlockSandWavy.block) {
+					worldIn.setBlockState(target, BlockSandWavySticky.block.getDefaultState());
+					resined = true;
+				}
+				if (blockTarget == BlockSandRedWavy.block) {
+					worldIn.setBlockState(target, BlockSandRedWavySticky.block.getDefaultState());
+					resined = true;
+				}
+				if (blockTarget == BlockSandPangaeanWavy.block) {
+					worldIn.setBlockState(target, BlockSandPangaeanWavySticky.block.getDefaultState());
+					resined = true;
+				}
+				if (blockTarget == BlockGravelWavy.block) {
+					worldIn.setBlockState(target, BlockGravelWavySticky.block.getDefaultState());
+					resined = true;
+				}
+
+				if (resined) {
+					SoundEvent soundevent = SoundEvents.ITEM_BOTTLE_EMPTY;
+					player.getEntityWorld().playSound(player, player.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+					stack.shrink(1);
+					ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE, (int) (1));
+					if (!player.isCreative()) {
+						if (player.inventory.getFirstEmptyStack() == -1) {
+							//Is there room for this in an exsiting stack?
+							int i = 1;
+							int slotSpace = 0;
+							while (i <= 32 && slotSpace == 0) {
+								if (player.inventory.getStackInSlot(i).getItem() == Items.GLASS_BOTTLE
+										&& player.inventory.getStackInSlot(i).getCount() < bottle.getMaxStackSize()) {
+									bottle.setCount(1);
+									ItemHandlerHelper.giveItemToPlayer(player, bottle);
+									slotSpace=i;
+								}
+								i += 1;
+							}
+							if (slotSpace == 0) { //No slots free in main inventory so just drop the item:
+								//No slots free in main inventory so just drop the item:
+								EntityItem entityToSpawn = new EntityItem(worldIn, target.getX() + 0.5, target.getY(), target.getZ() + 0.5, new ItemStack(Items.GLASS_BOTTLE, (int) (1)));
+								entityToSpawn.setPickupDelay(10);
+								worldIn.spawnEntity(entityToSpawn);
+							}
+						}
+						else {
+							bottle.setCount(1);
+							ItemHandlerHelper.giveItemToPlayer(player, bottle);
+						}
+					}
+
+					return true;
+				}
+			}
+
+			return false;
+		}
+
 	}
+
 }

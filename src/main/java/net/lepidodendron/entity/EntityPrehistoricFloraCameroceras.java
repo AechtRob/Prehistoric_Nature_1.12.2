@@ -4,8 +4,12 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.entity.ai.EatFishFoodAIAgeable;
 import net.lepidodendron.entity.ai.NautiloidWanderBottomFeed;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraNautiloidBase;
+import net.lepidodendron.item.entities.ItemNautiloidEggsCameroceras;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
@@ -40,6 +44,16 @@ public class EntityPrehistoricFloraCameroceras extends EntityPrehistoricFloraNau
 	}
 
 	@Override
+	public boolean dropsEggs() {
+		return false;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return false;
+	}
+
+	@Override
 	public int getAdultAge() {
 		return 72000;
 	}
@@ -50,7 +64,9 @@ public class EntityPrehistoricFloraCameroceras extends EntityPrehistoricFloraNau
 	}
 
 	protected void initEntityAI() {
+
 		tasks.addTask(0, new NautiloidWanderBottomFeed(this, NO_ANIMATION));
+		this.targetTasks.addTask(0, new EatFishFoodAIAgeable(this));
 	}
 
 	@Override
@@ -76,6 +92,20 @@ public class EntityPrehistoricFloraCameroceras extends EntityPrehistoricFloraNau
 	@Override
 	public SoundEvent getDeathSound() {
 		return (SoundEvent) SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.generic.death"));
+	}
+
+	public void onEntityUpdate() {
+		super.onEntityUpdate();
+		//Drop an egg perhaps:
+		if (!world.isRemote && this.isPFAdult() && this.getCanBreed() && LepidodendronConfig.doMultiplyMobs) {
+			if (Math.random() > 0.5) {
+				ItemStack itemstack = new ItemStack(ItemNautiloidEggsCameroceras.block, (int) (1));
+				EntityItem entityToSpawn = new EntityItem(world, this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), itemstack);
+				entityToSpawn.setPickupDelay(10);
+				world.spawnEntity(entityToSpawn);
+			}
+			this.setTicks(0);
+		}
 	}
 
 	@Override
@@ -106,11 +136,7 @@ public class EntityPrehistoricFloraCameroceras extends EntityPrehistoricFloraNau
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		double adult = (double) LepidodendronConfig.adultAge;
-		if (adult > 100) {adult = 100;}
-		if (adult < 0) {adult = 0;}
-		adult = adult/100D;
-		if (getAgeScale() < adult) {
+		if (!this.isPFAdult()) {
 			return LepidodendronMod.CAMEROCERAS_LOOT_YOUNG;
 		}
 		return LepidodendronMod.CAMEROCERAS_LOOT;

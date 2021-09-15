@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "normal": [
+      {"model": "lepidodendron:buriadia"}
+    ],
+    
+    "inventory": {
+      "model": "lepidodendron:buriadia_inventory"
+    }
+  }
+}

@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraWalkingAmphibianBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -13,7 +12,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.Random;
 
 //public class FishWander extends EntityAIBase {
-public class HibbertopterusWander extends AnimationAI<EntityPrehistoricFloraWalkingAmphibianBase> {
+public class HibbertopterusWander extends AnimationAINoAnimation<EntityPrehistoricFloraWalkingAmphibianBase> {
 
     protected float probability;
     protected Animation animation;

@@ -13,14 +13,31 @@ public class EnchantmentTimeReverse extends Enchantment {
         this.setRegistryName(new ResourceLocation(LepidodendronMod.MODID + ":pf_time_reversal"));
     }
 
+    //@Override
+    //public int getMinEnchantability(int enchantmentLevel)
+    //    return 0;
+    //}
+
+    //@Override
+    //public int getMaxEnchantability(int enchantmentLevel)
+    //{
+   //     return 0;
+   //}
+
     @Override
     public int getMinEnchantability(int enchantmentLevel)
     {
-        return 1;
+        return 15;
     }
 
     @Override
     public int getMaxEnchantability(int enchantmentLevel)
+    {
+        return super.getMinEnchantability(enchantmentLevel) + 50;
+    }
+
+    @Override
+    public int getMaxLevel()
     {
         return 1;
     }

@@ -4,10 +4,10 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.entity.ai.EatFishFoodAIFish;
 import net.lepidodendron.entity.ai.FishWanderBottomDweller;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.item.entities.ItemBucketQilinyu;
-import net.minecraft.block.material.Material;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
@@ -38,6 +38,11 @@ public class EntityPrehistoricFloraQilinyu extends EntityPrehistoricFloraFishBas
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return true;
 	}
 
 	@Override
@@ -76,7 +81,8 @@ public class EntityPrehistoricFloraQilinyu extends EntityPrehistoricFloraFishBas
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new FishWanderBottomDweller(this, ANIMATION_FISH_WANDER));
+		tasks.addTask(0, new FishWanderBottomDweller(this, NO_ANIMATION));
+		this.targetTasks.addTask(0, new EatFishFoodAIFish(this));
 	}
 
 	@Override
@@ -138,15 +144,6 @@ public class EntityPrehistoricFloraQilinyu extends EntityPrehistoricFloraFishBas
 
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		boolean isAtBottom = false;
-		if (this.getPosition().getY() - 1 > 1) {
-			BlockPos pos = new BlockPos(this.getPosition().getX(), this.getPosition().getY() - 1, this.getPosition().getZ());
-			isAtBottom = ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
-					&& ((this.world.getBlockState(pos)).getMaterial() != Material.WATER));
-		}
-		//if (isAtBottom && this.world.getBlockState(this.getPosition().up()).getMaterial() == Material.WATER) {
-		//	this.setPositionAndUpdate(this.getPosition().up().getX(), this.getPosition().up().getY(), this.getPosition().up().getZ());
-		//}
 
 		if (source != DamageSource.DROWN) {
 			return super.attackEntityFrom(source, (amount * 0.5F));

@@ -69,7 +69,8 @@ public class BlockGreenFilamentousAlgae extends ElementsLepidodendronMod.ModElem
 		if (matchBiome(biome, LepidodendronConfig.genFilamentousAlgaeOverrideBiomes))
 			biomeCriteria = true;
 		if ((dimID == LepidodendronConfig.dimCarboniferous)
-			|| (dimID == LepidodendronConfig.dimDevonian))
+			|| (dimID == LepidodendronConfig.dimDevonian)
+			)
 		{
 			biomeCriteria = true;
 		}

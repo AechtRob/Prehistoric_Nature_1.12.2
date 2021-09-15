@@ -87,7 +87,7 @@ public class WorldGenCordaitesTree extends WorldGenAbstractTree
                     $_dependencies.put("vines", false);
                     $_dependencies.put("vines2", false);
                     $_dependencies.put("SaplingSpawn", false);
-                    if ((worldIn.provider.getDimension() == LepidodendronConfig.dimPermian)
+                    if ((worldIn.provider.getDimension() != LepidodendronConfig.dimCarboniferous)
                     ){
                         $_dependencies.put("SaplingSpawn", true); // disables Ankyropteris
                         $_dependencies.put("vines", false);

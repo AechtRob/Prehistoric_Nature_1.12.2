@@ -1,5 +1,6 @@
 package net.lepidodendron.palaeobotanist.village;
 
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.palaeobotanist.entity.Villager;
 import net.minecraft.entity.passive.EntityVillager;
@@ -50,6 +51,13 @@ public class GenPalaeobotanistHouse extends WorldGenerator {
     public boolean generate(World worldIn, Random rand, BlockPos position) {
         if (worldIn == null) {
             return false;
+        }
+        double chance = (double) LepidodendronConfig.genPalaeobotanist;
+        if (chance < 0) {chance = 0D;}
+        if (chance > 100) {chance = 100D;}
+        chance = chance/100D;
+        if (Math.random() > chance) {
+            return true;
         }
         MinecraftServer server = worldIn.getMinecraftServer();
         TemplateManager templateManager = worldIn.getSaveHandler().getStructureTemplateManager();

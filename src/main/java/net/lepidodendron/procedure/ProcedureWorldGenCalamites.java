@@ -96,10 +96,11 @@ public class ProcedureWorldGenCalamites extends ElementsLepidodendronMod.ModElem
 					BlockPos _bp = new BlockPos((int) x, (int) y, (int) z);
 					TileEntity _tileEntity = world.getTileEntity(_bp);
 					IBlockState _bs = world.getBlockState(_bp);
-					if (_tileEntity != null)
+					if (_tileEntity != null) {
 						_tileEntity.getTileData().setBoolean("worldgen", worldgen);
 						_tileEntity.getTileData().setDouble("x", x);
 						_tileEntity.getTileData().setDouble("z", z);
+					}
 					world.notifyBlockUpdate(_bp, _bs, _bs, 3);
 					}
 				y = y + 1;
@@ -110,10 +111,11 @@ public class ProcedureWorldGenCalamites extends ElementsLepidodendronMod.ModElem
 					BlockPos _bp = new BlockPos((int) x, (int) y - 2, (int) z);
 					TileEntity _tileEntity = world.getTileEntity(_bp);
 					IBlockState _bs = world.getBlockState(_bp);
-					if (_tileEntity != null)
+					if (_tileEntity != null) {
 						_tileEntity.getTileData().setBoolean("worldgen", worldgen);
 						_tileEntity.getTileData().setDouble("x", x);
 						_tileEntity.getTileData().setDouble("z", z);
+					}
 					world.notifyBlockUpdate(_bp, _bs, _bs, 3);
 					}
 			}

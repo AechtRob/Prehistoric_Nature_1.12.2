@@ -94,20 +94,30 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
         return 20;
     }
 
+    //@Override
+    //public boolean isInWater() { //Is in water if the block above it is also water and it is not on the bottom. i.e. in shallow water it just walks:
+    //    if (this.world.isAirBlock(this.getPosition())) {return false;}
+    //    IBlockState state = this.world.getBlockState(this.getPosition().down());
+    //    return ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
+    //            && (state.getMaterial() == Material.WATER ));
+    //}
+
     @Override
-    public boolean isInWater() { //Is in water if the block UNDER it is also water. i.e. in shallow water it just walks:
+    public boolean isInWater() {
+        //Is in water if the block above it or below it are also water.
+        //i.e. so that in shallow water it thinks it's not in water and so just walks:
         if (this.world.isAirBlock(this.getPosition())) {return false;}
-        IBlockState state = this.world.getBlockState(this.getPosition().down());
-        return ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
-                && (state.getMaterial() == Material.WATER ));
+        IBlockState state = this.world.getBlockState(this.getPosition());
+        IBlockState stateU = this.world.getBlockState(this.getPosition().up());
+        IBlockState stateD = this.world.getBlockState(this.getPosition().down());
+        return ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL) || state.getMaterial() == Material.WATER)
+                && (stateU.getMaterial() == Material.WATER || stateD.getMaterial() == Material.WATER));
     }
 
-    public boolean isActuallyInWater() { //Is in water:
-        //return (this.isInWater() || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL));
-        IBlockState state = this.world.getBlockState(this.getPosition());
-        IBlockState stated = this.world.getBlockState(this.getPosition().down());
-        return ((stated.getMaterial() != Material.WATER) && ((state.getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL)));
+    public boolean isReallyInWater() { //is actually in water at all
+        return (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
     }
+
 
     @Override
     public boolean canBreatheUnderwater() {
@@ -121,8 +131,20 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
 
     @Override
     public int getTalkInterval() {
-        return 120;
+        return 720;
     }
+
+    @Override
+    public void playLivingSound() {
+        if (this.isReallyInWater()) return;
+        if (this.getAnimation() != null) {
+            if (this.getAnimation() == NO_ANIMATION && !world.isRemote) {
+                this.setAnimation(ROAR_ANIMATION);
+            }
+        }
+        super.playLivingSound();
+    }
+
 
     @Override
     protected int getExperiencePoints(EntityPlayer player) {
@@ -132,10 +154,6 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
     @Override
     public boolean isOnLadder() {
         return false;
-    }
-
-    public boolean isReallyInWater() {
-        return (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
     }
 
     public boolean isCollidingRim() {

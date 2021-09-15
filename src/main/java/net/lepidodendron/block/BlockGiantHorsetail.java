@@ -68,7 +68,7 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 		if (!LepidodendronConfig.genHorsetail && !LepidodendronConfig.genAllPlants)
 			dimensionCriteria = false;
 		if ((LepidodendronConfig.dimCarboniferous == dimID)
-			|| (LepidodendronConfig.dimPermian == dimID))
+			)
 			dimensionCriteria = true;
 		if (!dimensionCriteria)
 			return;
@@ -92,7 +92,7 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 		if (matchBiome(biome, LepidodendronConfig.genHorsetailOverrideBiomes))
 			biomeCriteria = true;
 		if ((LepidodendronConfig.dimCarboniferous == dimID)
-			|| (LepidodendronConfig.dimPermian == dimID)
+			
 			)
 			biomeCriteria = true;
 		if (!biomeCriteria)
@@ -110,12 +110,6 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 		
 		if (LepidodendronConfig.dimCarboniferous == dimID) {
 			GenChance = 25;
-		}
-		if (
-			(LepidodendronConfig.dimPermian == dimID)
-		)
-		{
-			GenChance = 16;
 		}
 
 		int maxheight = LepidodendronConfig.maxheightHorsetail;

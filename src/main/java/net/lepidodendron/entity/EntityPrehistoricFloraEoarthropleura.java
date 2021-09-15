@@ -3,18 +3,20 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.lepidodendron.block.BlockAncientMoss;
-import net.lepidodendron.block.BlockDollyphyton;
-import net.lepidodendron.block.BlockEdwardsiphyton;
-import net.lepidodendron.block.BlockSelaginella;
+import net.lepidodendron.block.*;
 import net.lepidodendron.entity.ai.LandWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraLandBase;
+import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.properties.PropertyDirection;
+import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -31,12 +33,36 @@ public class EntityPrehistoricFloraEoarthropleura extends EntityPrehistoricFlora
 
 	public EntityPrehistoricFloraEoarthropleura(World world) {
 		super(world);
-		setSize(0.3F, 0.3F);
+		//setSize(0.3F, 0.3F);
 		experienceValue = 0;
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
+		minWidth = 0.1F;
+		maxWidth = 0.3F;
+		maxHeight = 0.3F;
+		maxHealthAgeable = 0.8D;
 	}
+
+	@Override
+	public boolean dropsEggs() {
+		return false;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return true;
+	}
+
+	@Override
+	public String tagEgg () {
+		return "insect_eggs_eoarthropleura";
+	}
+	
+	@Override
+	public int getAdultAge() {
+		return 1;
+	} //Only adults!
 
 	@Override
 	public int getAnimationTick() {
@@ -106,30 +132,18 @@ public class EntityPrehistoricFloraEoarthropleura extends EntityPrehistoricFlora
 		return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
 				.getObject(new ResourceLocation("lepidodendron:eoarthropleura_idle"));
 	}
-	//@Override
-	//public net.minecraft.util.SoundEvent getAmbientSound() {
-	//	return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY.getObject(new ResourceLocation(""));
-	//}
 
 	@Override
 	public net.minecraft.util.SoundEvent getHurtSound(DamageSource ds) {
 		return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
 				.getObject(new ResourceLocation("lepidodendron:eoarthropleura_hurt"));
 	}
-	//@Override
-	//public net.minecraft.util.SoundEvent getHurtSound(DamageSource ds) {
-	//	return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.generic.hurt"));
-	//}
 
 	@Override
 	public net.minecraft.util.SoundEvent getDeathSound() {
 		return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
 				.getObject(new ResourceLocation("lepidodendron:eoarthropleura_death"));
 	}
-	//@Override
-	//public net.minecraft.util.SoundEvent getDeathSound() {
-	//	return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.generic.death"));
-	//}
 
 	@Override
 	protected float getSoundVolume() {
@@ -155,8 +169,46 @@ public class EntityPrehistoricFloraEoarthropleura extends EntityPrehistoricFlora
 
 	}
 
-	public void onEntityUpdate() {
-		super.onEntityUpdate();
+	public static final PropertyDirection FACING = BlockDirectional.FACING;
+
+	public boolean testLay(World world, BlockPos pos) {
+		if (
+			world.getBlockState(pos).getBlock() == BlockRottenLog.block
+			|| world.getBlockState(pos).getBlock() == BlockAncientMoss.block
+			|| world.getBlockState(pos).getBlock() == BlockDollyphyton.block
+			|| world.getBlockState(pos).getBlock() == BlockEdwardsiphyton.block
+			|| world.getBlockState(pos).getBlock() == BlockSelaginella.block
+		) {
+			String eggRenderType = new Object() {
+				public String getValue(BlockPos pos, String tag) {
+					TileEntity tileEntity = world.getTileEntity(pos);
+					if (tileEntity != null)
+						return tileEntity.getTileData().getString(tag);
+					return "";
+				}
+			}.getValue(new BlockPos(pos), "egg");
+			if (eggRenderType.equals("")) {
+				//There is a space, is the orientation correct?
+				if (world.getBlockState(pos).getBlock() == BlockRottenLog.block) {
+					EnumFacing facing = world.getBlockState(pos).getValue(FACING);
+					BlockFaceShape faceshape = world.getBlockState(pos.down()).getBlockFaceShape(world, pos.down(), EnumFacing.UP);
+					if (!((facing == EnumFacing.NORTH || facing == EnumFacing.SOUTH)
+						&& faceshape != BlockFaceShape.SOLID)) {
+						//This is solid for laying:
+						return true;
+					}
+				}
+				else {
+					//Is it upward-facing?
+					EnumFacing facing = world.getBlockState(pos).getValue(FACING);
+					if (facing == EnumFacing.UP) {
+						//This is OK for laying mosses
+						return true;
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	@Override

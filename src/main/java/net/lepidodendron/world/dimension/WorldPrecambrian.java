@@ -74,7 +74,7 @@ public class WorldPrecambrian extends ElementsLepidodendronMod.ModElement {
 	public void preInit(FMLPreInitializationEvent event) {
 		if (DimensionManager.isDimensionRegistered(DIMID)) {
 			//DIMID = DimensionManager.getNextFreeDimId();
-			System.err.println("Prehistoric Flora loading error! Dimension ID for the Precambrian dimension is already registered by another mod: " + DIMID);
+			System.err.println("Prehistoric Nature loading error! Dimension ID for the Precambrian dimension is already registered by another mod: " + DIMID);
 			return;
 		}
 		dtype = DimensionType.register("precambrian", "_precambrian", DIMID, WorldProviderMod.class, false);
@@ -93,6 +93,8 @@ public class WorldPrecambrian extends ElementsLepidodendronMod.ModElement {
 			this.nether = NETHER_TYPE;
 			this.hasSkyLight = true;
 		}
+
+
 
 		@Override
 		public DimensionType getDimensionType() {
@@ -130,6 +132,9 @@ public class WorldPrecambrian extends ElementsLepidodendronMod.ModElement {
 		@SideOnly(Side.CLIENT)
 		@Override
 		public boolean doesXZShowFog(int par1, int par2) {
+			if (world.isRaining()) {
+				return true;
+			}
 			return false;
 		}
 
@@ -550,12 +555,30 @@ public class WorldPrecambrian extends ElementsLepidodendronMod.ModElement {
 					thePlayer.timeUntilPortal = 10;
 					ReflectionHelper.setPrivateValue(EntityPlayerMP.class, thePlayer, true, "invulnerableDimensionChange", "field_184851_cj");
 					thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, DIMID, getTeleporterForDimension(thePlayer, pos, DIMID));
-					thePlayer.setSpawnPoint(new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ), true);
+					if (thePlayer.dimension == DIMID) {
+						BlockPos spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ).offset(thePlayer.getHorizontalFacing());
+						if (thePlayer.world.getBlockState(spawnPos).isFullBlock()) {
+							spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ).offset(thePlayer.getHorizontalFacing().getOpposite());
+						}
+						if (thePlayer.world.getBlockState(spawnPos).isFullBlock()) {
+							spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ);
+						}
+						thePlayer.setSpawnPoint(spawnPos, true);
+					}
 				} else {
 					thePlayer.timeUntilPortal = 10;
 					ReflectionHelper.setPrivateValue(EntityPlayerMP.class, thePlayer, true, "invulnerableDimensionChange", "field_184851_cj");
 					thePlayer.server.getPlayerList().transferPlayerToDimension(thePlayer, 0, getTeleporterForDimension(thePlayer, pos, 0));
-					thePlayer.setSpawnPoint(new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ), true);
+					if (thePlayer.dimension == 0) {
+						BlockPos spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ).offset(thePlayer.getHorizontalFacing());
+						if (thePlayer.world.getBlockState(spawnPos).isFullBlock()) {
+							spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ).offset(thePlayer.getHorizontalFacing().getOpposite());
+						}
+						if (thePlayer.world.getBlockState(spawnPos).isFullBlock()) {
+							spawnPos = new BlockPos(thePlayer.posX, thePlayer.posY, thePlayer.posZ);
+						}
+						thePlayer.setSpawnPoint(spawnPos, true);
+					}
 				}
 			}
 		}

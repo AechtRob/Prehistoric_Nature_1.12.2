@@ -5,6 +5,7 @@ import com.google.common.base.Predicate;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.block.BlockEurypteridEggsMegarachne;
 import net.lepidodendron.entity.ai.AttackAI;
 import net.lepidodendron.entity.ai.EatFishItemsAI;
 import net.lepidodendron.entity.ai.EurypteridWanderBottomDweller;
@@ -12,6 +13,7 @@ import net.lepidodendron.entity.ai.HuntAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraEurypteridBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -19,7 +21,9 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
@@ -51,6 +55,25 @@ public class EntityPrehistoricFloraMegarachne extends EntityPrehistoricFloraEury
 	}
 
 	@Override
+	public int getRoarLength() {
+		return 0;
+	}
+
+	@Override
+	public void playLivingSound() {
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return false;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return false;
+	}
+
+	@Override
 	public int getAdultAge() {
 		return 24000;
 	}
@@ -61,7 +84,7 @@ public class EntityPrehistoricFloraMegarachne extends EntityPrehistoricFloraEury
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new AttackAI(this, 1.0D, false));
+		tasks.addTask(0, new AttackAI(this, 1.0D, false, this.getAttackLength()));
 		tasks.addTask(1, new EurypteridWanderBottomDweller(this, NO_ANIMATION));
 		tasks.addTask(2, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatFishItemsAI(this));
@@ -104,6 +127,9 @@ public class EntityPrehistoricFloraMegarachne extends EntityPrehistoricFloraEury
 
 	@Override
 	protected float getAISpeedEurypterid() {
+		if (this.getTicks() < 0) {
+			return 0.0F; //Is laying eggs
+		}
 		return (float) Math.min(1F, (this.getAgeScale() * 2F)) * 0.18F;
 	}
 
@@ -114,15 +140,6 @@ public class EntityPrehistoricFloraMegarachne extends EntityPrehistoricFloraEury
 
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		boolean isAtBottom = false;
-		if (this.getPosition().getY() - 1 > 1) {
-			BlockPos pos = new BlockPos(this.getPosition().getX(),this.getPosition().getY() - 1, this.getPosition().getZ());
-			isAtBottom =  ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
-					&& ((this.world.getBlockState(pos)).getMaterial() != Material.WATER));
-		}
-		//if (isAtBottom && this.world.getBlockState(this.getPosition().up()).getMaterial() == Material.WATER) {
-		//	this.setPositionAndUpdate(this.getPosition().up().getX(), this.getPosition().up().getY(), this.getPosition().up().getZ());
-		//}
 
 		return super.attackEntityFrom(source, (amount * 0.7F));
 
@@ -180,6 +197,8 @@ public class EntityPrehistoricFloraMegarachne extends EntityPrehistoricFloraEury
 		}
 	}
 
+
+
 	@Override
 	public boolean attackEntityAsMob(Entity entity) {
 		if (this.getAnimation() == NO_ANIMATION) {
@@ -189,18 +208,38 @@ public class EntityPrehistoricFloraMegarachne extends EntityPrehistoricFloraEury
 		return false;
 	}
 
-	public void onEntityUpdate()
-	{
+	@Override
+	public void onEntityUpdate() {
 		super.onEntityUpdate();
+
+		//Lay eggs perhaps:
+		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getCanBreed() && LepidodendronConfig.doMultiplyMobs
+				&& (BlockEurypteridEggsMegarachne.block.canPlaceBlockOnSide(world, this.getPosition(), EnumFacing.UP)
+				|| BlockEurypteridEggsMegarachne.block.canPlaceBlockOnSide(world, this.getPosition().down(), EnumFacing.UP))
+				&& (BlockEurypteridEggsMegarachne.block.canPlaceBlockAt(world, this.getPosition())
+				|| BlockEurypteridEggsMegarachne.block.canPlaceBlockAt(world, this.getPosition().down()))
+		){
+			if (Math.random() > 0.5) {
+				this.setTicks(-50); //Flag this as stationary for egg-laying
+			}
+		}
+		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getTicks() > -30 && this.getTicks() < 0 && LepidodendronConfig.doMultiplyMobs) {
+			//Is stationary for egg-laying:
+			IBlockState eggs = BlockEurypteridEggsMegarachne.block.getDefaultState();
+			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+			if (BlockEurypteridEggsMegarachne.block.canPlaceBlockOnSide(world, this.getPosition(), EnumFacing.UP) && BlockEurypteridEggsMegarachne.block.canPlaceBlockAt(world, this.getPosition())) {
+				world.setBlockState(this.getPosition(), eggs);
+			}
+			if (BlockEurypteridEggsMegarachne.block.canPlaceBlockOnSide(world, this.getPosition().down(), EnumFacing.UP) && BlockEurypteridEggsMegarachne.block.canPlaceBlockAt(world, this.getPosition().down())) {
+				world.setBlockState(this.getPosition().down(), eggs);
+			}
+			this.setTicks(-20);
+		}
 	}
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		double adult = (double) LepidodendronConfig.adultAge;
-		if (adult > 100) {adult = 100;}
-		if (adult < 0) {adult = 0;}
-		adult = adult/100D;
-		if (getAgeScale() < adult) {
+		 		if (!this.isPFAdult()) {
 			return LepidodendronMod.MEGARACHNE_LOOT_YOUNG;
 		}
 		return LepidodendronMod.MEGARACHNE_LOOT;

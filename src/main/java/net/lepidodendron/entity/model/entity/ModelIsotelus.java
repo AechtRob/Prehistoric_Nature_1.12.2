@@ -284,7 +284,8 @@ public class ModelIsotelus extends AdvancedModelBase {
         if (e.getPosition().getY() - 1 > 1) {
             BlockPos pos = new BlockPos(e.getPosition().getX(), e.getPosition().getY() - 1, e.getPosition().getZ());
             isAtBottom = ((e.isInsideOfMaterial(Material.WATER) || e.isInsideOfMaterial(Material.CORAL))
-                    && ((e.world.getBlockState(pos)).getMaterial() != Material.WATER));
+                    && ((e.world.getBlockState(pos)).getMaterial() != Material.WATER)
+                    && ((double)e.getPosition().getY() + 0.334D) > e.posY);
         }
 
         AdvancedModelRenderer[] legsL = {this.Lleg1, this.Lleg2, this.Lleg3, this.Lleg4, this.Lleg5, this.Lleg6, this.Lleg7, this.Lleg8, this.Lleg9};
@@ -302,16 +303,16 @@ public class ModelIsotelus extends AdvancedModelBase {
             this.flap(Rleg3, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
             this.flap(Lleg4, 0.5F, -0.5F, false, 3.0F, -0.5F, f2, 0.3F);
             this.flap(Rleg4, 0.5F, 0.5F, false, 3.0F, 0.5F, f2, 0.3F);
-            this.flap(Lleg5, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-            this.flap(Rleg5, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
-            this.flap(Lleg6, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-            this.flap(Rleg6, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
-            this.flap(Lleg7, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-            this.flap(Rleg7, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
-            this.flap(Lleg8, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-            this.flap(Rleg8, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
-            this.flap(Lleg9, 0.5F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-            this.flap(Rleg9, 0.5F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
+            this.flap(Lleg5, 0.5F, -0.5F, false, 4.0F, -0.5F, f2, 0.3F);
+            this.flap(Rleg5, 0.5F, 0.5F, false, 4.0F, 0.5F, f2, 0.3F);
+            this.flap(Lleg6, 0.5F, -0.5F, false, 5.0F, -0.5F, f2, 0.3F);
+            this.flap(Rleg6, 0.5F, 0.5F, false, 5.0F, 0.5F, f2, 0.3F);
+            this.flap(Lleg7, 0.5F, -0.5F, false, 6.0F, -0.5F, f2, 0.3F);
+            this.flap(Rleg7, 0.5F, 0.5F, false, 6.0F, 0.5F, f2, 0.3F);
+            this.flap(Lleg8, 0.5F, -0.5F, false, 7.0F, -0.5F, f2, 0.3F);
+            this.flap(Rleg8, 0.5F, 0.5F, false, 7.0F, 0.5F, f2, 0.3F);
+            this.flap(Lleg9, 0.5F, -0.5F, false, 8.0F, -0.5F, f2, 0.3F);
+            this.flap(Rleg9, 0.5F, 0.5F, false, 8.0F, 0.5F, f2, 0.3F);
             this.chainSwing(bodyF, 0.1F, 0.1F, -3, f2, 1.0F);
             this.chainWave(bodyF, 0.1F, 0.0f, -3, f2, 0F);
             this.bob(body, 0.0F, 0.0F, false, f2, 1);
@@ -326,16 +327,16 @@ public class ModelIsotelus extends AdvancedModelBase {
             this.flap(Rleg3, 0.2F, 0.5F, false, 2.0F, 0.5F, f2, 0.3F);
             this.flap(Lleg4, 0.2F, -0.5F, false, 3.0F, -0.5F, f2, 0.3F);
             this.flap(Rleg4, 0.2F, 0.5F, false, 3.0F, 0.5F, f2, 0.3F);
-            this.flap(Lleg5, 0.2F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-            this.flap(Rleg5, 0.2F, 0.5F, false, 3.0F, 0.5F, f2, 0.3F);
-            this.flap(Lleg6, 0.2F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-            this.flap(Rleg6, 0.2F, 0.5F, false, 3.0F, 0.5F, f2, 0.3F);
-            this.flap(Lleg7, 0.2F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-            this.flap(Rleg7, 0.2F, 0.5F, false, 3.0F, 0.5F, f2, 0.3F);
-            this.flap(Lleg8, 0.2F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-            this.flap(Rleg8, 0.2F, 0.5F, false, 3.0F, 0.5F, f2, 0.3F);
-            this.flap(Lleg9, 0.2F, -0.5F, false, 2.0F, -0.5F, f2, 0.3F);
-            this.flap(Rleg9, 0.2F, 0.5F, false, 3.0F, 0.5F, f2, 0.3F);
+            this.flap(Lleg5, 0.2F, -0.5F, false, 4.0F, -0.5F, f2, 0.3F);
+            this.flap(Rleg5, 0.2F, 0.5F, false, 4.0F, 0.5F, f2, 0.3F);
+            this.flap(Lleg6, 0.2F, -0.5F, false, 8.0F, -0.5F, f2, 0.3F);
+            this.flap(Rleg6, 0.2F, 0.5F, false, 8.0F, 0.5F, f2, 0.3F);
+            this.flap(Lleg7, 0.2F, -0.5F, false, 6.0F, -0.5F, f2, 0.3F);
+            this.flap(Rleg7, 0.2F, 0.5F, false, 6.0F, 0.5F, f2, 0.3F);
+            this.flap(Lleg8, 0.2F, -0.5F, false, 7.0F, -0.5F, f2, 0.3F);
+            this.flap(Rleg8, 0.2F, 0.5F, false, 7.0F, 0.5F, f2, 0.3F);
+            this.flap(Lleg9, 0.2F, -0.5F, false, 8.0F, -0.5F, f2, 0.3F);
+            this.flap(Rleg9, 0.2F, 0.5F, false, 8.0F, 0.5F, f2, 0.3F);
             this.chainSwing(bodyF, 0.2F, 0.05F, -3, f2, 0.5F);
             this.chainWave(bodyF, 0.5F, 0.07f, -3, f2, 0.8F);
             this.bob(body, 0.2F, 0.2F, false, f2, 1);

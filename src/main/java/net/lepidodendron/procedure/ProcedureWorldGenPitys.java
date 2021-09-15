@@ -159,6 +159,7 @@ public class ProcedureWorldGenPitys extends ElementsLepidodendronMod.ModElement 
 		}
 
 		ProcedureSpawnAnkyropteris.executeProcedure(x, y, z, world, LepidodendronConfig.genAnkyropterisPitys, SaplingSpawn);
+		ProcedureSpawnLyginopteris.executeProcedure(x, y, z, world, LepidodendronConfig.genLyginopterisPitys, SaplingSpawn);
 
 	}
 

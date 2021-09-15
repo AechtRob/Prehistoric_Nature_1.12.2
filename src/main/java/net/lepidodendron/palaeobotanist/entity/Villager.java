@@ -4,6 +4,7 @@ import net.lepidodendron.block.*;
 import net.lepidodendron.enchantments.Enchantments;
 import net.lepidodendron.item.ItemBottleOfResin;
 import net.lepidodendron.item.ItemFossilHammer;
+import net.lepidodendron.item.ItemHerbicide;
 import net.lepidodendron.item.ItemSporeCollectionEnvelope;
 import net.lepidodendron.palaeobotanist.village.PalaeobotanistHouse;
 import net.lepidodendron.palaeobotanist.village.VillageComponentPalaeobotanistHouse;
@@ -38,6 +39,7 @@ public class Villager {
         palaeoCareer.addTrade(2, new EntityVillager.EmeraldForItems(Item.getItemFromBlock(BlockBalticAmberOre.block), new EntityVillager.PriceInfo(6, 6)));
         palaeoCareer.addTrade(2, new EntityVillager.EmeraldForItems(Item.getItemFromBlock(BlockDominicanAmberOre.block), new EntityVillager.PriceInfo(6, 6)));
         palaeoCareer.addTrade(2, new EntityVillager.EmeraldForItems(Item.getItemFromBlock(BlockAraucarioxylonLogPetrified.block), new EntityVillager.PriceInfo(4, 4)));
+        palaeoCareer.addTrade(2, new EntityVillager.ListItemForEmeralds(new ItemStack(ItemHerbicide.block, 3), new EntityVillager.PriceInfo(1, 1)));
 
         palaeoCareer.addTrade(3, new EntityVillager.ListItemForEmeralds(ItemFossilHammer.block, new EntityVillager.PriceInfo(2, 3)));
         palaeoCareer.addTrade(3, new EntityVillager.ListItemForEmeralds(ItemBottleOfResin.block, new EntityVillager.PriceInfo(1, 1)));

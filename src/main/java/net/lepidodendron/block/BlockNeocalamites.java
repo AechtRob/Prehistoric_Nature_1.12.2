@@ -73,11 +73,6 @@ public class BlockNeocalamites extends ElementsLepidodendronMod.ModElement {
 			dimensionCriteria = true;
 		if (!LepidodendronConfig.genNeocalamites && !LepidodendronConfig.genAllPlants)
 			dimensionCriteria = false;
-		if (
-			(dimID == LepidodendronConfig.dimPermian)
-			){
-			dimensionCriteria = true;
-		}
 		if (!dimensionCriteria)
 			return;
 
@@ -108,10 +103,10 @@ public class BlockNeocalamites extends ElementsLepidodendronMod.ModElement {
 			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
 				GenChance = 15;
 		}
-		if ((dimID == LepidodendronConfig.dimPermian)
-		){
-			GenChance = 15;
-		}
+		//if (((dimID == LepidodendronConfig.dimPermianGlossopteris) || (dimID == LepidodendronConfig.dimPermianWetlands) || (dimID == LepidodendronConfig.dimPermianAridlands) || (dimID == LepidodendronConfig.dimPermianFloodBasalt))
+		//){
+		//	GenChance = 15;
+		//}
 
 		int maxheight = LepidodendronConfig.maxheightNeocalamites;
 		int minheight = LepidodendronConfig.minheightNeocalamites;

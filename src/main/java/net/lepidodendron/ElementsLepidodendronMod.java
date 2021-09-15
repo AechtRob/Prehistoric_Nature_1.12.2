@@ -1,8 +1,6 @@
 package net.lepidodendron;
 
-import net.lepidodendron.gui.GuiResinExtraction;
 import net.minecraft.block.Block;
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -22,7 +20,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartingEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.network.IGuiHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.registry.EntityEntry;
@@ -91,6 +88,21 @@ public class ElementsLepidodendronMod implements IFuelHandler, IWorldGenerator {
 				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "trigonotarbid_hurt")));
 		sounds.put(new ResourceLocation("lepidodendron", "trigonotarbid_death"),
 				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "trigonotarbid_death")));
+
+		sounds.put(new ResourceLocation("lepidodendron", "megalocephalus_idle"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "megalocephalus_idle")));
+		sounds.put(new ResourceLocation("lepidodendron", "megalocephalus_hurt"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "megalocephalus_hurt")));
+		sounds.put(new ResourceLocation("lepidodendron", "megalocephalus_death"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "megalocephalus_death")));
+
+		sounds.put(new ResourceLocation("lepidodendron", "hylonomus_idle"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "hylonomus_idle")));
+		sounds.put(new ResourceLocation("lepidodendron", "hylonomus_hurt"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "hylonomus_hurt")));
+		sounds.put(new ResourceLocation("lepidodendron", "hylonomus_death"),
+				new net.minecraft.util.SoundEvent(new ResourceLocation("lepidodendron", "hylonomus_death")));
+
 
 	}
 
@@ -163,21 +175,7 @@ public class ElementsLepidodendronMod implements IFuelHandler, IWorldGenerator {
 			LepidodendronMod.PACKET_HANDLER.registerMessage(handler, messageClass, messageID, side);
 		messageID++;
 	}
-	public static class GuiHandler implements IGuiHandler {
-		@Override
-		public Object getServerGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-			if (id == GuiResinExtraction.GUIID)
-				return new GuiResinExtraction.GuiContainerMod(world, x, y, z, player);
-			return null;
-		}
 
-		@Override
-		public Object getClientGuiElement(int id, EntityPlayer player, World world, int x, int y, int z) {
-			if (id == GuiResinExtraction.GUIID)
-				return new GuiResinExtraction.GuiWindow(world, x, y, z, player);
-			return null;
-		}
-	}
 	public List<ModElement> getElements() {
 		return elements;
 	}

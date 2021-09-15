@@ -159,10 +159,10 @@ public class ItemBucketTitanichthys extends ElementsLepidodendronMod.ModElement 
 
 						if (MobSpawn == null && !(worldIn.isRemote)) {
 							Entity entity = null;
-							entity = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraTitanichthys.class), (double) posIn.getX() + 0.5D, (double) posIn.getY() + 0.5D, (double) posIn.getZ() + 0.5D);
+							entity = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraTitanichthys.class), (double) posIn.getX() + 0.5D, (double) posIn.getY(), (double) posIn.getZ() + 0.5D);
 							if (entity != null) {
 								EntityPrehistoricFloraAgeableBase e = (EntityPrehistoricFloraAgeableBase) entity;
-								e.setAgeTicks(0);
+								e.setAgeTicks(1);
 							}
 						}
 					}

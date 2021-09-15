@@ -97,6 +97,11 @@ public class ProcedureCalamitesRhizomeUpdateTick extends ElementsLepidodendronMo
 				if (!LepidodendronConfig.spreadUnlimitedCalamites)
 					return;
 			}
+
+			if ((i2 == -1) && (k2 == -1)) {
+				//Ignore this specific coordinate - this is a fudge....
+				return;
+			}
 			
 			//System.err.println("Trying to spawn");
 			//Try to spawn:

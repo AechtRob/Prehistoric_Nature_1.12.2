@@ -4,15 +4,23 @@ import com.google.common.base.Optional;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.block.BlockMobSpawn;
 import net.lepidodendron.entity.util.PathNavigateFlyingNoWater;
+import net.lepidodendron.item.entities.ItemUnknownEgg;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityMoveHelper;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
@@ -24,8 +32,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.common.registry.EntityRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -36,6 +46,7 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;
+    private static final DataParameter<Integer> TICKS = EntityDataManager.createKey(EntityPrehistoricInsectFlyingBase.class, DataSerializers.VARINT);
 
     private static final DataParameter<Boolean> SITTING = EntityDataManager.createKey(EntityPrehistoricInsectFlyingBase.class, DataSerializers.BOOLEAN);
     protected static final DataParameter<Optional<BlockPos>> SIT_BLOCK_POS = EntityDataManager.createKey(EntityPrehistoricInsectFlyingBase.class, DataSerializers.OPTIONAL_BLOCK_POS);
@@ -58,11 +69,25 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         }
     }
 
+    public abstract boolean laysEggs();
+
+    public abstract boolean dropsEggs();
+
+    public abstract IBlockState getEggBlockState();
+
     protected void entityInit() {
         super.entityInit();
         this.dataManager.register(SITTING, false);
         this.dataManager.register(SIT_FACE, EnumFacing.DOWN);
         this.dataManager.register(SIT_BLOCK_POS, Optional.absent());
+        this.dataManager.register(TICKS, 0);
+    }
+
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        livingdata = super.onInitialSpawn(difficulty, livingdata);
+        this.setTicks(0);
+        return livingdata;
     }
 
     @Override
@@ -119,6 +144,18 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         return isMovementBlocked() ;
     }
 
+    public int getTicks() {
+       return this.dataManager.get(TICKS);
+    }
+
+    public void setTicks(int ticks) {
+        this.dataManager.set(TICKS, ticks);
+    }
+
+    public boolean getCanBreed() {
+        return this.getTicks() > 24000; //If the mob has done not bred for a MC day
+    }
+
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.dataManager.set(SIT_FACE, EnumFacing.byIndex(compound.getByte("SitFace")));
@@ -132,6 +169,7 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         } else {
             this.dataManager.set(SIT_BLOCK_POS, Optional.absent());
         }
+        this.setTicks(compound.getInteger("Ticks"));
     }
 
     public void writeEntityToNBT(NBTTagCompound compound) {
@@ -146,6 +184,7 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
             compound.setInteger("PosY", blockpos.getY());
             compound.setInteger("PosZ", blockpos.getZ());
         }
+        compound.setInteger("Ticks", this.getTicks());
     }
 
     public EnumFacing getAttachmentFacing() {
@@ -246,6 +285,99 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
     public void setNavigator() {
         this.moveHelper = new FlightMoveHelper(this);
         this.navigator = new PathNavigateFlyingNoWater(this, world);
+    }
+
+    public boolean spaceCheckEggs() {
+        int xct;
+        int yct;
+        int zct;
+        yct = -4;
+        while (yct <= 4) {
+            xct = -4;
+            while (xct <= 4) {
+                zct = -4;
+                while (zct <= 4) {
+                    if (world.getBlockState(this.getPosition().add(xct, yct, zct)).getBlock() instanceof BlockMobSpawn) {
+                        return false;
+                    }
+                    zct += 1;
+                }
+                xct += 1;
+            }
+            yct += 1;
+        }
+        return true;
+    }
+
+    public void onEntityUpdate()
+    {
+        super.onEntityUpdate();
+        //General ticker (for babies etc.)
+        int ii = this.getTicks();
+        if (this.isEntityAlive())
+        {
+            ++ii;
+            //limit at 48000 (two MC days) and then reset:
+            if (ii >= 48000) {ii = 0;}
+            this.setTicks(ii);
+        }
+
+        //Drop an egg perhaps:
+        if (!world.isRemote && this.getCanBreed() && this.dropsEggs() && LepidodendronConfig.doMultiplyMobs) {
+            if (Math.random() > 0.5) {
+                ItemStack itemstack = new ItemStack(ItemUnknownEgg.block, (int) (1));
+                if (!itemstack.hasTagCompound()) {
+                    itemstack.setTagCompound(new NBTTagCompound());
+                }
+                String stringEgg = EntityRegistry.getEntry(this.getClass()).getRegistryName().toString();
+                itemstack.getTagCompound().setString("creature", stringEgg);
+                EntityItem entityToSpawn = new EntityItem(world, this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), itemstack);
+                entityToSpawn.setPickupDelay(10);
+                this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+                world.spawnEntity(entityToSpawn);
+            }
+            this.setTicks(0);
+        }
+
+        //Lay eggs perhaps:
+        if (!world.isRemote && this.laysEggs() && this.getCanBreed() && LepidodendronConfig.doMultiplyMobs) {
+            if (spaceCheckEggs() && canPlaceSpawn(world, this.getPosition())) {
+                //Is stationary for egg-laying:
+                IBlockState eggs = getEggBlockState();
+                this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+                world.setBlockState(this.getPosition(), eggs);
+                this.setTicks(0);
+            } else {
+                if (spaceCheckEggs() && canPlaceSpawn(world, this.getPosition().down())) {
+                    //Is stationary for egg-laying:
+                    IBlockState eggs = getEggBlockState();
+                    this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+                    world.setBlockState(this.getPosition().down(), eggs);
+                    this.setTicks(0);
+                } else {
+                    if (spaceCheckEggs() && canPlaceSpawn(world, this.getPosition().down(2))) {
+                        //Is stationary for egg-laying:
+                        IBlockState eggs = getEggBlockState();
+                        this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+                        world.setBlockState(this.getPosition().down(2), eggs);
+                        this.setTicks(0);
+                    }
+                }
+            }
+        }
+    }
+
+    public boolean canPlaceSpawn(World worldIn, BlockPos pos) {
+        return (isWaterBlock(worldIn, pos) && isWaterBlock(worldIn, pos.up())
+            && worldIn.getBlockState(pos.down()).getBlockFaceShape(worldIn, pos.down(), EnumFacing.UP) == BlockFaceShape.SOLID
+            && worldIn.getBlockState(pos).getBlock().isReplaceable(worldIn, pos));
+    }
+
+    public boolean isWaterBlock(World world, BlockPos pos) {
+        if (world.getBlockState(pos).getMaterial() == Material.WATER) {
+            return true;
+        }
+        return false;
     }
 
     @Override
@@ -458,7 +590,7 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         public boolean shouldExecute() {
             if(EntityPrehistoricInsectFlyingBase.this.sitCooldown == 0) {
                 for(int i = 0; i < 15; i++){
-                    BlockPos randomPos = new BlockPos(EntityPrehistoricInsectFlyingBase.this).add(rand.nextInt(16) - 8, rand.nextInt(10) - 5, rand.nextInt(16) - 8);
+                    BlockPos randomPos = new BlockPos(EntityPrehistoricInsectFlyingBase.this).add(rand.nextInt(17) - 8, rand.nextInt(11) - 5, rand.nextInt(17) - 8);
                     if ((!world.isAirBlock(randomPos)) && (world.getBlockState(randomPos).getMaterial() != Material.WATER) && (world.getBlockState(randomPos).getMaterial() != Material.LAVA)) {
                         RayTraceResult rayTrace = world.rayTraceBlocks(EntityPrehistoricInsectFlyingBase.this.getPositionVector().add(0, 0.25, 0), new Vec3d(randomPos).add(0.5, 0.5, 0.5), true);
                         if (rayTrace != null && rayTrace.hitVec != null) {
@@ -470,7 +602,8 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
                     }
                 }
             }
-            target = EntityPrehistoricInsectFlyingBase.getPositionRelativetoGround(EntityPrehistoricInsectFlyingBase.this, EntityPrehistoricInsectFlyingBase.this.world, EntityPrehistoricInsectFlyingBase.this.posX + EntityPrehistoricInsectFlyingBase.this.rand.nextInt(16) - 8, EntityPrehistoricInsectFlyingBase.this.posZ + EntityPrehistoricInsectFlyingBase.this.rand.nextInt(16) - 8, EntityPrehistoricInsectFlyingBase.this.rand);
+
+            target = EntityPrehistoricInsectFlyingBase.getPositionRelativetoGround(EntityPrehistoricInsectFlyingBase.this, EntityPrehistoricInsectFlyingBase.this.world, EntityPrehistoricInsectFlyingBase.this.posX + EntityPrehistoricInsectFlyingBase.this.rand.nextInt(17) - 8, EntityPrehistoricInsectFlyingBase.this.posZ + EntityPrehistoricInsectFlyingBase.this.rand.nextInt(17) - 8, EntityPrehistoricInsectFlyingBase.this.rand);
             Material material = world.getBlockState(new BlockPos(target)).getMaterial();
             Material material1 = world.getBlockState(new BlockPos(target).up()).getMaterial();
             return (material1 != Material.LAVA) && (material1 != Material.WATER) && (material != Material.LAVA) && (material != Material.WATER) && !EntityPrehistoricInsectFlyingBase.this.isSitting() && EntityPrehistoricInsectFlyingBase.this.isDirectPathBetweenPoints(new Vec3d(target).add(0.5D, 0.5D, 0.5D)) && EntityPrehistoricInsectFlyingBase.this.rand.nextInt(4) == 0 && EntityPrehistoricInsectFlyingBase.this.getAttachmentPos() == null;

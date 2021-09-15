@@ -87,7 +87,7 @@ public class BlockCrinoidEncrinus extends ElementsLepidodendronMod.ModElement {
 		if (dimID == LepidodendronConfig.dimDevonian
 				|| dimID == LepidodendronConfig.dimOrdovicianSilurian
 				|| dimID == LepidodendronConfig.dimCarboniferous
-				|| dimID == LepidodendronConfig.dimPermian
+				
 		) {
 			dimensionCriteria = true;
 		}
@@ -109,7 +109,7 @@ public class BlockCrinoidEncrinus extends ElementsLepidodendronMod.ModElement {
 		if (dimID == LepidodendronConfig.dimDevonian
 				|| dimID == LepidodendronConfig.dimOrdovicianSilurian
 				|| dimID == LepidodendronConfig.dimCarboniferous
-				|| dimID == LepidodendronConfig.dimPermian
+				
 		) {
 			biomeCriteria = true;
 		}

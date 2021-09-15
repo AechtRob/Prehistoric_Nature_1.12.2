@@ -104,19 +104,6 @@ public class BlockLeclercqia extends ElementsLepidodendronMod.ModElement {
 		public EnumPlantType getPlantType(IBlockAccess world, BlockPos pos) {
 			return EnumPlantType.Plains;
 		}
-
-		//@Override
-		//public BlockFlower.EnumFlowerColor getBlockType() {
-		//	return BlockFlower.EnumFlowerColor.YELLOW;
-		//}
-
-		//@SideOnly(Side.CLIENT)
-		//@Override
-		//public void getSubBlocks(CreativeTabs tab, net.minecraft.util.NonNullList<ItemStack> list) {
-		//	for (BlockFlower.EnumFlowerType blockflower$enumflowertype : BlockFlower.EnumFlowerType.getTypes(this.getBlockType())) {
-		//		list.add(new ItemStack(this, 1, blockflower$enumflowertype.getMeta()));
-		//	}
-		//}
 		
 	    @SideOnly(Side.CLIENT)
 		@Override

@@ -3,12 +3,10 @@ package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.block.BlockTaxodiumSapling;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
-import net.minecraft.item.EnumAction;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemFood;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -33,23 +31,12 @@ public class ItemTaxodiumSeed extends ElementsLepidodendronMod.ModElement {
 	public void registerModels(ModelRegistryEvent event) {
 		ModelLoader.setCustomModelResourceLocation(block, 0, new ModelResourceLocation("lepidodendron:taxodium_seed", "inventory"));
 	}
-	public static class ItemFoodCustom extends ItemFood {
+	public static class ItemFoodCustom extends ItemPrehistoricPlantable {
 		public ItemFoodCustom() {
-			super(1, 0.2f, false);
+			super(BlockTaxodiumSapling.block, 1);
 			setTranslationKey("pf_taxodium_seed");
 			setRegistryName("taxodium_seed");
 			setCreativeTab(TabLepidodendronPlants.tab);
-			setMaxStackSize(64);
-		}
-
-		@Override
-		public int getMaxItemUseDuration(ItemStack stack) {
-			return 16;
-		}
-
-		@Override
-		public EnumAction getItemUseAction(ItemStack par1ItemStack) {
-			return EnumAction.EAT;
 		}
 	}
 }

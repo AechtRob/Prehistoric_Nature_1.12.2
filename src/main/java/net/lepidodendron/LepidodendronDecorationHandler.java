@@ -56,11 +56,9 @@ public class LepidodendronDecorationHandler {
 				event.setResult(Event.Result.DENY);
 			if (LepidodendronConfig.dimCarboniferous == event.getWorld().provider.getDimension() )
 				event.setResult(Event.Result.DENY);
-			if (LepidodendronConfig.dimPermian == event.getWorld().provider.getDimension() )
-				event.setResult(Event.Result.DENY);
         }
 
-        if (((event.getType() == Decorate.EventType.BIG_SHROOM) || (event.getType() == Decorate.EventType.SHROOM)) && !LepidodendronConfig.genTransformBiomesMushrooms)
+        if (((event.getType() == Decorate.EventType.BIG_SHROOM)) && !LepidodendronConfig.genTransformBiomesMushrooms)
         {
         	Biome biome = event.getWorld().getBiome(event.getPos());
         	if (matchBiome(biome, LepidodendronConfig.genTransformBiomes))
@@ -81,11 +79,16 @@ public class LepidodendronDecorationHandler {
 				event.setResult(Event.Result.DENY);
 			if (LepidodendronConfig.dimCambrian == event.getWorld().provider.getDimension() )
 				event.setResult(Event.Result.DENY);
+			if (LepidodendronConfig.dimDevonian == event.getWorld().provider.getDimension() )
+				event.setResult(Event.Result.DENY);
 			if (LepidodendronConfig.dimOrdovicianSilurian == event.getWorld().provider.getDimension() )
 				event.setResult(Event.Result.DENY);
+			if (LepidodendronConfig.dimCarboniferous == event.getWorld().provider.getDimension() )
+				event.setResult(Event.Result.DENY);
+
         }
 
-	if (((event.getType() == Decorate.EventType.BIG_SHROOM) || (event.getType() == Decorate.EventType.SHROOM)) && !LepidodendronConfig.genTransformBiomesMushrooms)
+	if (((event.getType() == Decorate.EventType.SHROOM)) && !LepidodendronConfig.genTransformBiomesMushrooms)
 	{
 		Biome biome = event.getWorld().getBiome(event.getPos());
 		if (matchBiome(biome, LepidodendronConfig.genTransformBiomes))
@@ -137,8 +140,7 @@ public class LepidodendronDecorationHandler {
 				event.setResult(Event.Result.DENY);
 			if (LepidodendronConfig.dimCarboniferous == event.getWorld().provider.getDimension() )
 				event.setResult(Event.Result.DENY);
-			if (LepidodendronConfig.dimPermian == event.getWorld().provider.getDimension() )
-				event.setResult(Event.Result.DENY);
+
         }
 
         if ((event.getType() == Decorate.EventType.PUMPKIN) && !LepidodendronConfig.genTransformBiomesPumpkins)
@@ -168,8 +170,7 @@ public class LepidodendronDecorationHandler {
             	event.setResult(Event.Result.DENY);
             if (LepidodendronConfig.dimCarboniferous == event.getWorld().provider.getDimension() )
             	event.setResult(Event.Result.DENY);
-			if (LepidodendronConfig.dimPermian == event.getWorld().provider.getDimension() )
-				event.setResult(Event.Result.DENY);
+
         }
 
         if ((event.getType() == Decorate.EventType.REED) && !LepidodendronConfig.genTransformBiomesReeds)
@@ -199,8 +200,7 @@ public class LepidodendronDecorationHandler {
             	event.setResult(Event.Result.DENY);
             if (LepidodendronConfig.dimCarboniferous == event.getWorld().provider.getDimension() )
             	event.setResult(Event.Result.DENY);
-			if (LepidodendronConfig.dimPermian == event.getWorld().provider.getDimension() )
-				event.setResult(Event.Result.DENY);
+
         }
     }
 

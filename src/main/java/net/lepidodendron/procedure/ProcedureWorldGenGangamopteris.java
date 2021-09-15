@@ -2573,11 +2573,7 @@ public class ProcedureWorldGenGangamopteris extends ElementsLepidodendronMod.Mod
 				biomeCriteria = true;
 			if (!biomeCriteria)
 				SpawnPalaeognetaleana = false;
-			if (
-				(world.provider.getDimension() == LepidodendronConfig.dimPermian)
-			){
-				SpawnPalaeognetaleana = true;
-			}
+
 
 			BlockPos posVine;
 			Random rand = new Random();

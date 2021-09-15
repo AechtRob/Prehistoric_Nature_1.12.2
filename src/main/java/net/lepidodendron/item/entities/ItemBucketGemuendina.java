@@ -157,7 +157,7 @@ public class ItemBucketGemuendina extends ElementsLepidodendronMod.ModElement {
 						worldIn.setBlockState(posIn, Blocks.FLOWING_WATER.getDefaultState(), 11);
 
 						if (MobSpawn == null && !(worldIn.isRemote)) {
-							ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraGemuendina.class), (double) posIn.getX() + 0.5D, (double) posIn.getY() + 0.5D, (double) posIn.getZ() + 0.5D);
+							ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraGemuendina.class), (double) posIn.getX() + 0.5D, (double) posIn.getY(), (double) posIn.getZ() + 0.5D);
 						}
 					}
 

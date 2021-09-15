@@ -89,6 +89,9 @@ public class BlockYellowSponge extends ElementsLepidodendronMod.ModElement {
 			biomeCriteria = true;
 		if ((dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCambrian)
+				|| (dimID == LepidodendronConfig.dimDevonian)
+				|| (dimID == LepidodendronConfig.dimCarboniferous)
+				
 		) {
 			biomeCriteria = true;
 		}

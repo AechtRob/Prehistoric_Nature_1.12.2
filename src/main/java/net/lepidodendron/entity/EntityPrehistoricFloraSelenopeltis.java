@@ -4,6 +4,7 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.entity.ai.EatFishFoodAITrilobiteBottomBase;
 import net.lepidodendron.entity.ai.TrilobiteWanderBottom;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteBottomBase;
 import net.lepidodendron.item.entities.ItemBucketSelenopeltis;
@@ -41,13 +42,18 @@ public class EntityPrehistoricFloraSelenopeltis extends EntityPrehistoricFloraTr
 	}
 
 	@Override
+	public boolean dropsEggs() {
+		return true;
+	}
+
+	@Override
 	public int getAnimationTick() {
 		return getAnimationTick();
 	}
 
 	@Override
 	protected float getAISpeedTrilobite() {
-		return 0.245f;
+		return 0.225f;
 	}
 
 	@Override
@@ -71,8 +77,9 @@ public class EntityPrehistoricFloraSelenopeltis extends EntityPrehistoricFloraTr
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new TrilobiteWanderBottom(this, ANIMATION_WANDER));
+		tasks.addTask(0, new TrilobiteWanderBottom(this, NO_ANIMATION));
 		tasks.addTask(1, new EntityAILookIdle(this));
+		this.targetTasks.addTask(0, new EatFishFoodAITrilobiteBottomBase(this));
 	}
 
 	@Override

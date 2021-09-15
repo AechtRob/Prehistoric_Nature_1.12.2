@@ -222,7 +222,7 @@ public class ModelLimnoscelis extends AdvancedModelBase {
         AdvancedModelRenderer[] Tail = {this.Tail1, this.Tail2, this.Tail3};
         AdvancedModelRenderer[] Torso = {this.Head, this.Neck, this.Bodyfront, this.Belly, this.Hips};
 
-        if (!Limnoscelis.isActuallyInWater()) {
+        if (!Limnoscelis.isReallyInWater()) {
             if (f3 == 0.0F) {
                 return;
             }
@@ -282,40 +282,40 @@ public class ModelLimnoscelis extends AdvancedModelBase {
             this.Leftthigh.rotateAngleZ= (float) Math.toRadians(30);
             this.Leftshin.rotateAngleZ= (float) Math.toRadians(-40);
             this.Leftthigh.rotateAngleY= (float) Math.toRadians(-40);
-            if (!Limnoscelis.isInWater()) {
-                this.Leftthigh.rotateAngleX= (float) Math.toRadians(10);}
-            else {
+            //if (!Limnoscelis.isInWater()) {
+            //    this.Leftthigh.rotateAngleX= (float) Math.toRadians(10);}
+           // else {
                 this.Leftthigh.rotateAngleX = (float) Math.toRadians(70);
-            }
+           // }
 
             this.Rightthigh.rotateAngleZ= (float) Math.toRadians(-30);
             this.Rightshin.rotateAngleZ= (float) Math.toRadians(40);
             this.Rightthigh.rotateAngleY= (float) Math.toRadians(40);
-            if (!Limnoscelis.isInWater()) {
+            //if (!Limnoscelis.isInWater()) {
                 this.Rightthigh.rotateAngleX = (float) Math.toRadians(10);
-            }
-            else {
-                this.Rightthigh.rotateAngleX= (float) Math.toRadians(70);
-            }
+            //}
+            //else {
+            //    this.Rightthigh.rotateAngleX= (float) Math.toRadians(70);
+            //}
 
             this.Leftfrontfoot.rotateAngleX = (float) Math.toRadians(45);
             this.Rightfrontfoot.rotateAngleX = (float) Math.toRadians(45);
 
             this.Leftupperarm.rotateAngleZ= (float) Math.toRadians(30);
-            if (!Limnoscelis.isInWater()) {
-                this.Leftupperarm.rotateAngleX = (float) Math.toRadians(10);
-            }
-            else {
+            //if (!Limnoscelis.isInWater()) {
+            //    this.Leftupperarm.rotateAngleX = (float) Math.toRadians(10);
+            //}
+            //else {
                 this.Leftupperarm.rotateAngleX = (float) Math.toRadians(70);
-            }
+            //}
 
             this.Rightupperarm.rotateAngleZ= (float) Math.toRadians(-30);
-            if (!Limnoscelis.isInWater()) {
-                this.Rightupperarm.rotateAngleX = (float) Math.toRadians(10);
-            }
-            else {
+            //if (!Limnoscelis.isInWater()) {
+            //    this.Rightupperarm.rotateAngleX = (float) Math.toRadians(10);
+            //}
+            //else {
                 this.Rightupperarm.rotateAngleX = (float) Math.toRadians(70);
-            }
+            //}
 
             this.Leftlowerarm.rotateAngleY= (float) Math.toRadians(25);
             this.Leftlowerarm.rotateAngleZ= (float) Math.toRadians(-25);
@@ -347,7 +347,7 @@ public class ModelLimnoscelis extends AdvancedModelBase {
 
         animator.setAnimation(e.ATTACK_ANIMATION);
         animator.startKeyframe(5);
-        animator.move(this.Head, 0,0,-2F);
+        animator.move(this.Head, 0,0,-1F);
         animator.rotate(this.Head, (float) Math.toRadians(-15), (float) Math.toRadians(0), (float) Math.toRadians(0));
         animator.rotate(this.Lowerjaw1, (float) Math.toRadians(30), (float) Math.toRadians(0), (float) Math.toRadians(0));
         animator.endKeyframe();
@@ -356,7 +356,7 @@ public class ModelLimnoscelis extends AdvancedModelBase {
 
         animator.setAnimation(e.ROAR_ANIMATION);
         animator.startKeyframe(10);
-        animator.move(this.Head, 0,0,-2F);
+        animator.move(this.Head, 0,0,-1F);
         animator.rotate(this.Head, (float) Math.toRadians(-45), (float) Math.toRadians(0), (float) Math.toRadians(0));
         animator.rotate(this.Lowerjaw1, (float) Math.toRadians(35), (float) Math.toRadians(0), (float) Math.toRadians(0));
         animator.endKeyframe();

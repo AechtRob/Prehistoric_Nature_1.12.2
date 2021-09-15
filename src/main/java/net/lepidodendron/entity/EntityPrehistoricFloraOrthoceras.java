@@ -4,8 +4,13 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.entity.ai.EatFishFoodAIAgeable;
 import net.lepidodendron.entity.ai.NautiloidWanderBottomFeed;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraNautiloidBase;
+import net.lepidodendron.item.entities.ItemNautiloidEggsOrthoceras;
+import net.minecraft.block.material.Material;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
@@ -34,9 +39,36 @@ public class EntityPrehistoricFloraOrthoceras extends EntityPrehistoricFloraNaut
 		//minSize = 0.2F;
 		//maxSize = 1.0F;
 		minWidth = 0.1F;
-		maxWidth = 1.0F;
-		maxHeight = 0.99F;
-		maxHealthAgeable = 24.0D;
+		maxWidth = 0.6F;
+		maxHeight = 0.59F;
+		maxHealthAgeable = 16.0D;
+	}
+
+	@Override
+	public boolean isAtBottom() {
+		//Used for giant orthocone feeding animations:
+		if ((this.getPosition().getY() - ((double)this.getAgeScale() * 2)  > 1)
+			&& ((this.posY - (double)this.getPosition().getY()) < ((double)this.getAgeScale() * 0.25D))
+			) {
+			BlockPos pos = new BlockPos(this.getPosition().getX(),this.getPosition().getY() - ((double)this.getAgeScale() * 1.2), this.getPosition().getZ());
+			return ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
+				&& ((this.world.getBlockState(pos)).getMaterial() != Material.WATER)
+				&& ((this.world.getBlockState(pos.north())).getMaterial() != Material.WATER)
+				&& ((this.world.getBlockState(pos.south())).getMaterial() != Material.WATER)
+				&& ((this.world.getBlockState(pos.east())).getMaterial() != Material.WATER)
+				&& ((this.world.getBlockState(pos.west())).getMaterial() != Material.WATER));
+		}
+		return false;
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return false;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return false;
 	}
 
 	@Override
@@ -51,6 +83,7 @@ public class EntityPrehistoricFloraOrthoceras extends EntityPrehistoricFloraNaut
 
 	protected void initEntityAI() {
 		tasks.addTask(0, new NautiloidWanderBottomFeed(this, NO_ANIMATION));
+		this.targetTasks.addTask(0, new EatFishFoodAIAgeable(this));
 	}
 
 	@Override
@@ -76,6 +109,20 @@ public class EntityPrehistoricFloraOrthoceras extends EntityPrehistoricFloraNaut
 	@Override
 	public SoundEvent getDeathSound() {
 		return (SoundEvent) SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.generic.death"));
+	}
+
+	public void onEntityUpdate() {
+		super.onEntityUpdate();
+		//Drop an egg perhaps:
+		if (!world.isRemote && this.isPFAdult() && this.getCanBreed() && LepidodendronConfig.doMultiplyMobs) {
+			if (Math.random() > 0.5) {
+				ItemStack itemstack = new ItemStack(ItemNautiloidEggsOrthoceras.block, (int) (1));
+				EntityItem entityToSpawn = new EntityItem(world, this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), itemstack);
+				entityToSpawn.setPickupDelay(10);
+				world.spawnEntity(entityToSpawn);
+			}
+			this.setTicks(0);
+		}
 	}
 
 	@Override
@@ -106,11 +153,7 @@ public class EntityPrehistoricFloraOrthoceras extends EntityPrehistoricFloraNaut
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		double adult = (double) LepidodendronConfig.adultAge;
-		if (adult > 100) {adult = 100;}
-		if (adult < 0) {adult = 0;}
-		adult = adult/100D;
-		if (getAgeScale() < adult) {
+		if (!this.isPFAdult()) {
 			return LepidodendronMod.ORTHOCERAS_LOOT_YOUNG;
 		}
 		return LepidodendronMod.ORTHOCERAS_LOOT;

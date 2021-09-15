@@ -5,6 +5,7 @@ import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.entity.ai.EatFishFoodAIFish;
 import net.lepidodendron.entity.ai.TullymonsterWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.item.entities.ItemBucketTullimonstrum;
@@ -14,7 +15,12 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -26,13 +32,14 @@ import javax.annotation.Nullable;
 
 public class EntityPrehistoricFloraTullimonstrum extends EntityPrehistoricFloraFishBase {
 
+	private static final DataParameter<Integer> FEEDTICKS = EntityDataManager.createKey(EntityPrehistoricFloraTullimonstrum.class, DataSerializers.VARINT);
 	public BlockPos currentTarget;
 	@SideOnly(Side.CLIENT)
 	public ChainBuffer chainBuffer;
 	private int animationTick;
 	public Animation FEED_ANIMATION;
 	public Animation currentAnimation;
-	private int feedTicks;
+	//private int feedTicks;
 	private boolean isFeeding;
 
 	public EntityPrehistoricFloraTullimonstrum(World world) {
@@ -46,9 +53,48 @@ public class EntityPrehistoricFloraTullimonstrum extends EntityPrehistoricFloraF
 	}
 
 	@Override
+	public void playLivingSound() {
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return true;
+	}
+
+	@Override
 	protected float getAISpeedFish() {
 		if (this.getAnimation() == FEED_ANIMATION) {return 0.00f;}
 		return 0.078f;
+	}
+
+	@Override
+	protected void entityInit() {
+		super.entityInit();
+		this.dataManager.register(FEEDTICKS, 0);
+	}
+
+	public int getFeedTicks() {
+		if (this.dataManager.get(FEEDTICKS) == null) {
+			this.setFeedTicks(0);
+			return 0;
+		}
+		return this.dataManager.get(FEEDTICKS);
+	}
+
+	public void setFeedTicks(int feedticks) {
+		this.dataManager.set(FEEDTICKS, feedticks);
+	}
+
+	public void writeEntityToNBT(NBTTagCompound compound)
+	{
+		super.writeEntityToNBT(compound);
+		compound.setInteger("FeedTicks", this.getFeedTicks());
+	}
+
+	//@Override
+	public void readEntityFromNBT(NBTTagCompound compound) {
+		super.readEntityFromNBT(compound);
+		this.setFeedTicks(compound.getInteger("FeedTicks"));
 	}
 
 	@Override
@@ -72,9 +118,11 @@ public class EntityPrehistoricFloraTullimonstrum extends EntityPrehistoricFloraF
 	}
 
 	@Override
-	public void setAnimation(Animation animation)
-	{
-		currentAnimation = animation;
+	public void setAnimation(Animation animation) {
+		if (this.getAnimation() != animation) {
+			this.currentAnimation = animation;
+			setAnimationTick(0);
+		}
 	}
 
 	@Override
@@ -84,11 +132,12 @@ public class EntityPrehistoricFloraTullimonstrum extends EntityPrehistoricFloraF
 
 	protected void initEntityAI() {
 		tasks.addTask(0, new TullymonsterWander(this, NO_ANIMATION));
+		this.targetTasks.addTask(0, new EatFishFoodAIFish(this));
 	}
 
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		this.feedTicks = 0;
+		this.setFeedTicks(0);
 		this.isFeeding = false;
 		return super.attackEntityFrom(source, amount);
 	}
@@ -151,6 +200,11 @@ public class EntityPrehistoricFloraTullimonstrum extends EntityPrehistoricFloraF
 		super.onLivingUpdate();
 		this.renderYawOffset = this.rotationYaw;
 
+		if (this.getAnimation() != NO_ANIMATION) {
+			if (world.isRemote && animationTick >= currentAnimation.getDuration()) {
+				this.setAnimation(NO_ANIMATION);
+			}
+		}
 		if (this.getAnimation() != FEED_ANIMATION) {
 			setFeeding(false);
 		}
@@ -163,37 +217,28 @@ public class EntityPrehistoricFloraTullimonstrum extends EntityPrehistoricFloraF
 				if ((!getIsFeeding()) && (isHungry()) && isInFeedingPosition()) {
 					if (this.getAnimation() == NO_ANIMATION) {
 						setFeeding(true);
-						this.feedTicks = 0;
+						this.setFeedTicks(0);
 						this.setAnimation(FEED_ANIMATION);
+						//Restore some health:
+						this.setHealth(Math.min(this.getHealth() + 0.5F, (float) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue()));
 						//System.err.println("Set Anim");
 					}
 				}
 			}
 		}
-	}
-
-	@Override
-	public void onEntityUpdate() {
-		super.onEntityUpdate();
 		if (!this.world.isRemote) {
-			if ((!(feedTicks > 0)) || feedTicks > 3000) {
-				feedTicks = 0;
+			if ((!(getFeedTicks() > 0)) || getFeedTicks() > 3000) {
+				setFeedTicks(0);
 			}
-			feedTicks = feedTicks + rand.nextInt(3);
+			setFeedTicks(getFeedTicks() + rand.nextInt(3));
 
-			//System.err.println(feedTicks);
-			//System.err.println("Vector pos: " + this.getPositionVector().y);
-			//System.err.println("Block pos: " + this.getPosition().getY());
-			//System.err.println("Hungry: " + this.isHungry());
-			//System.err.println("Feeding pos: " + this.isInFeedingPosition());
 		}
 
 		AnimationHandler.INSTANCE.updateAnimations(this);
-
 	}
 
 	public boolean isHungry() {
-		return (this.feedTicks > 2000);
+		return (this.getFeedTicks() > 2000);
 	}
 
 	public boolean getIsFeeding() {
@@ -230,6 +275,24 @@ public class EntityPrehistoricFloraTullimonstrum extends EntityPrehistoricFloraF
 		}
 
 		return super.processInteract(player, hand);
+	}
+
+	@Override
+	public void eatItem(ItemStack stack) {
+		if (stack != null && stack.getItem() != null) {
+			float itemHealth = 0.5F; //Default minimal nutrition
+			if (stack.getItem() instanceof ItemFood) {
+				itemHealth = ((ItemFood) stack.getItem()).getHealAmount(stack);
+			}
+			this.setHealth(Math.min(this.getHealth() + itemHealth, (float) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue()));
+			stack.shrink(1);
+			if (this.getAnimation() == FEED_ANIMATION && !world.isRemote) {
+				//this.setAnimation(ATTACK_ANIMATION);
+				this.setAnimation(FEED_ANIMATION);
+				SoundEvent soundevent = SoundEvents.ENTITY_GENERIC_EAT;
+				this.getEntityWorld().playSound(null, this.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+			}
+		}
 	}
 }
 

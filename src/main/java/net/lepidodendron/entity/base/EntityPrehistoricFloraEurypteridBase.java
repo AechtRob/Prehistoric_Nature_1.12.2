@@ -85,7 +85,8 @@ public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehist
         if (this.getPosition().getY() - 1 > 1) {
             BlockPos pos = new BlockPos(this.getPosition().getX(),this.getPosition().getY() - 1, this.getPosition().getZ());
             return ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
-                    && ((this.world.getBlockState(pos)).getMaterial() != Material.WATER));
+                    && ((this.world.getBlockState(pos)).getMaterial() != Material.WATER)
+                    && ((double)this.getPosition().getY() + 0.334D) > this.posY);
         }
         return true;
     }
@@ -274,7 +275,7 @@ public abstract class EntityPrehistoricFloraEurypteridBase extends EntityPrehist
             stack.shrink(1);
             if (this.getAnimation() == NO_ANIMATION && !world.isRemote) {
                 //this.setAnimation(ATTACK_ANIMATION);
-                //AnimationHandler.INSTANCE.sendAnimationMessage(this, ATTACK_ANIMATION);
+                //this.setAnimation(ATTACK_ANIMATION);
                 SoundEvent soundevent = SoundEvents.ENTITY_GENERIC_EAT;
                 this.getEntityWorld().playSound(null, this.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
             }

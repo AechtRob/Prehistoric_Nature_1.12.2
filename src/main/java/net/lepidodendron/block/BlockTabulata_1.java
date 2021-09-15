@@ -76,7 +76,7 @@ public class BlockTabulata_1 extends ElementsLepidodendronMod.ModElement {
 		if ((dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
-				|| (dimID == LepidodendronConfig.dimPermian)
+				
 		) {
 			dimensionCriteria = true;
 		}
@@ -89,7 +89,7 @@ public class BlockTabulata_1 extends ElementsLepidodendronMod.ModElement {
 		if (dimID == LepidodendronConfig.dimDevonian
 				|| dimID == LepidodendronConfig.dimOrdovicianSilurian
 				|| dimID == LepidodendronConfig.dimCarboniferous
-				|| dimID == LepidodendronConfig.dimPermian
+				
 		)
 			weight = 100; //Full scale populations in these dims
 
@@ -112,7 +112,7 @@ public class BlockTabulata_1 extends ElementsLepidodendronMod.ModElement {
 		if (dimID == LepidodendronConfig.dimDevonian
 				|| dimID == LepidodendronConfig.dimOrdovicianSilurian
 				|| dimID == LepidodendronConfig.dimCarboniferous
-				|| dimID == LepidodendronConfig.dimPermian
+				
 		)
 			biomeCriteria = true;
 		if (!biomeCriteria)
@@ -130,7 +130,7 @@ public class BlockTabulata_1 extends ElementsLepidodendronMod.ModElement {
 		}
 		int dimWeight = 1;
 		if ((dimID == LepidodendronConfig.dimCarboniferous)
-				|| (dimID == LepidodendronConfig.dimPermian)) {
+				) {
 			dimWeight = 2;
 		}
 		int minWaterDepth = 4 * dimWeight;
@@ -188,10 +188,10 @@ public class BlockTabulata_1 extends ElementsLepidodendronMod.ModElement {
 										|| (world.getBlockState(pos1).getMaterial() == Material.CORAL)
 										|| (world.getBlockState(pos1).getMaterial() == Material.CLAY))
 										&& (world.getBlockState(pos1).getBlockFaceShape(world, pos1, EnumFacing.UP) == BlockFaceShape.SOLID)) {
-									world.setBlockState(blockpos1, block.getDefaultState().withProperty(BlockFenestella1.BlockCustom.FACING, enumfacing), 2);
+									world.setBlockState(blockpos1, block.getDefaultState().withProperty(BlockTabulata_1.BlockCustom.FACING, enumfacing), 2);
 									return true;
 								} else {
-									for (EnumFacing enumfacing1 : BlockFenestella1.BlockCustom.FACING.getAllowedValues()) {
+									for (EnumFacing enumfacing1 : BlockTabulata_1.BlockCustom.FACING.getAllowedValues()) {
 										pos1 = blockpos1;
 
 										if (enumfacing1 == EnumFacing.NORTH) {
@@ -216,7 +216,7 @@ public class BlockTabulata_1 extends ElementsLepidodendronMod.ModElement {
 														|| (world.getBlockState(pos1).getMaterial() == Material.IRON)
 														|| (world.getBlockState(pos1).getMaterial() == Material.WOOD))
 												&& (world.getBlockState(pos1).getBlockFaceShape(world, pos1, enumfacing1) == BlockFaceShape.SOLID)) {
-											world.setBlockState(blockpos1, block.getDefaultState().withProperty(BlockFenestella1.BlockCustom.FACING, enumfacing1), 2);
+											world.setBlockState(blockpos1, block.getDefaultState().withProperty(BlockTabulata_1.BlockCustom.FACING, enumfacing1), 2);
 											return true;
 										}
 									}

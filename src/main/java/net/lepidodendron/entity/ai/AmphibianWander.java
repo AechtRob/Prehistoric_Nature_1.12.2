@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraSwimmingAmphibianBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -14,18 +13,20 @@ import net.minecraft.util.math.Vec3d;
 import java.util.Random;
 
 //public class FishWander extends EntityAIBase {
-public class AmphibianWander extends AnimationAI<EntityPrehistoricFloraSwimmingAmphibianBase> {
+public class AmphibianWander extends AnimationAINoAnimation<EntityPrehistoricFloraSwimmingAmphibianBase> {
 
     protected float probability;
     protected Animation animation;
+    protected double waterPreference;
     protected EntityPrehistoricFloraSwimmingAmphibianBase PrehistoricFloraAmphibianBase;
 
-    public AmphibianWander(EntityPrehistoricFloraSwimmingAmphibianBase PrehistoricFloraAmphibianBase, Animation animation)
+    public AmphibianWander(EntityPrehistoricFloraSwimmingAmphibianBase PrehistoricFloraAmphibianBase, Animation animation, double waterPreference)
     {
         super(PrehistoricFloraAmphibianBase);
         setMutexBits(1);
         this.PrehistoricFloraAmphibianBase = PrehistoricFloraAmphibianBase;
         this.animation = animation;
+        this.waterPreference = waterPreference;
     }
 
     @Override
@@ -55,7 +56,7 @@ public class AmphibianWander extends AnimationAI<EntityPrehistoricFloraSwimmingA
         if (this.PrehistoricFloraAmphibianBase.getRNG().nextFloat() < 0.3F) {
             Path path = this.PrehistoricFloraAmphibianBase.getNavigator().getPath();
             if (this.PrehistoricFloraAmphibianBase.isInWater()) {
-                if (!this.PrehistoricFloraAmphibianBase.getNavigator().noPath() && !isDirectPathBetweenPoints(this.PrehistoricFloraAmphibianBase, this.PrehistoricFloraAmphibianBase.getPositionVector(), new Vec3d(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z)) || path != null && path.getFinalPathPoint() != null && this.PrehistoricFloraAmphibianBase.getDistanceSq(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z) < 3) {
+                if (!this.PrehistoricFloraAmphibianBase.getNavigator().noPath() && !isDirectPathBetweenPoints(this.PrehistoricFloraAmphibianBase, this.PrehistoricFloraAmphibianBase.getPositionVector(), new Vec3d(path.getFinalPathPoint().x, path.getFinalPathPoint().y, path.getFinalPathPoint().z)) || path != null && path.getFinalPathPoint() != null && this.PrehistoricFloraAmphibianBase.getDistanceSq(path.getFinalPathPoint().x, path.getFinalPathPoint().y + 0.5, path.getFinalPathPoint().z + 0.5) < 3) {
                    this.PrehistoricFloraAmphibianBase.getNavigator().clearPath();
                    //System.err.println("reset path");
                 }
@@ -74,7 +75,7 @@ public class AmphibianWander extends AnimationAI<EntityPrehistoricFloraSwimmingA
                     }
                 }
                 else {
-                    double chooser = 0.5D;
+                    double chooser = this.waterPreference;
                     if (Math.random() > chooser) { //Equal chance of land or water:
                         vec3 = this.findLandTarget();
                     } else {
@@ -108,7 +109,7 @@ public class AmphibianWander extends AnimationAI<EntityPrehistoricFloraSwimmingA
         Random rand = this.PrehistoricFloraAmphibianBase.getRNG();
         if (this.PrehistoricFloraAmphibianBase.getAttackTarget() == null) {
             for (int i = 0; i < 10; i++) {
-                BlockPos randPos = this.PrehistoricFloraAmphibianBase.getPosition().add(rand.nextInt(dist) - (int) (dist/2), rand.nextInt(dist) - (int) (dist/2), rand.nextInt(dist) - (int) (dist/2));
+                BlockPos randPos = this.PrehistoricFloraAmphibianBase.getPosition().add(rand.nextInt(dist+1) - (int) (dist/2), rand.nextInt(dist+1) - (int) (dist/2), rand.nextInt(dist+1) - (int) (dist/2));
                 //System.err.println("Target " + randPos.getX() + " " + this.PrehistoricFloraFishBase.getPosition().getY() + " " + randPos.getZ());
                 if (this.PrehistoricFloraAmphibianBase.world.getBlockState(randPos).getMaterial() == Material.WATER && this.PrehistoricFloraAmphibianBase.isDirectPathBetweenPoints(this.PrehistoricFloraAmphibianBase.getPositionVector(), new Vec3d(randPos.getX() + 0.5, randPos.getY() + 0.5, randPos.getZ() + 0.5))) {
                     return randPos;

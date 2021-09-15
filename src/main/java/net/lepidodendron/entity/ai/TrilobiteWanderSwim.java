@@ -1,7 +1,6 @@
 package net.lepidodendron.entity.ai;
 
 import net.ilexiconn.llibrary.server.animation.Animation;
-import net.ilexiconn.llibrary.server.animation.AnimationAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteSwimBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -13,7 +12,7 @@ import net.minecraft.util.math.Vec3d;
 import java.util.Random;
 
 //public class FishWander extends EntityAIBase {
-public class TrilobiteWanderSwim extends AnimationAI<EntityPrehistoricFloraTrilobiteSwimBase> {
+public class TrilobiteWanderSwim extends AnimationAINoAnimation<EntityPrehistoricFloraTrilobiteSwimBase> {
 
     protected Animation animation;
     protected EntityPrehistoricFloraTrilobiteSwimBase PrehistoricFloraTrilobiteSwimBase;
@@ -96,7 +95,7 @@ public class TrilobiteWanderSwim extends AnimationAI<EntityPrehistoricFloraTrilo
         Random rand = this.PrehistoricFloraTrilobiteSwimBase.getRNG();
         if (this.PrehistoricFloraTrilobiteSwimBase.getAttackTarget() == null) {
             for (int i = 0; i < 10; i++) {
-                BlockPos randPos = this.PrehistoricFloraTrilobiteSwimBase.getPosition().add(rand.nextInt(16) - 8, rand.nextInt(16) - 8, rand.nextInt(16) - 8);
+                BlockPos randPos = this.PrehistoricFloraTrilobiteSwimBase.getPosition().add(rand.nextInt(17) - 8, rand.nextInt(17) - 8, rand.nextInt(17) - 8);
                 //Prefer targets which are on the bottom, or very close to it:
                 BlockPos randPosVar = randPos;
                 if (Math.random() > 0.02) { //Tiny chance of swimming higher!

@@ -4,9 +4,13 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.entity.ai.EatFishFoodAIAgeable;
 import net.lepidodendron.entity.ai.NautiloidWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraNautiloidBase;
+import net.lepidodendron.item.entities.ItemNautiloidEggsAsteroceras;
 import net.minecraft.entity.ai.EntityAILookIdle;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
@@ -40,6 +44,16 @@ public class EntityPrehistoricFloraAmmonite_Asteroceras extends EntityPrehistori
 	}
 
 	@Override
+	public boolean dropsEggs() {
+		return false;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return false;
+	}
+
+	@Override
 	public int getAdultAge() {
 		return 36000;
 	}
@@ -52,6 +66,7 @@ public class EntityPrehistoricFloraAmmonite_Asteroceras extends EntityPrehistori
 	protected void initEntityAI() {
 		tasks.addTask(0, new NautiloidWander(this, NO_ANIMATION));
 		tasks.addTask(1, new EntityAILookIdle(this));
+        this.targetTasks.addTask(0, new EatFishFoodAIAgeable(this));
 	}
 
 	@Override
@@ -74,6 +89,20 @@ public class EntityPrehistoricFloraAmmonite_Asteroceras extends EntityPrehistori
 		return (SoundEvent) SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.generic.hurt"));
 	}
 
+	public void onEntityUpdate() {
+		super.onEntityUpdate();
+		//Drop an egg perhaps:
+		if (!world.isRemote && this.isPFAdult() && this.getCanBreed() && LepidodendronConfig.doMultiplyMobs) {
+			if (Math.random() > 0.5) {
+				ItemStack itemstack = new ItemStack(ItemNautiloidEggsAsteroceras.block, (int) (1));
+				EntityItem entityToSpawn = new EntityItem(world, this.getPosition().getX(), this.getPosition().getY(), this.getPosition().getZ(), itemstack);
+				entityToSpawn.setPickupDelay(10);
+				world.spawnEntity(entityToSpawn);
+			}
+			this.setTicks(0);
+		}
+	}
+
 	@Override
 	public SoundEvent getDeathSound() {
 		return (SoundEvent) SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.generic.death"));
@@ -81,11 +110,7 @@ public class EntityPrehistoricFloraAmmonite_Asteroceras extends EntityPrehistori
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		double adult = (double) LepidodendronConfig.adultAge;
-		if (adult > 100) {adult = 100;}
-		if (adult < 0) {adult = 0;}
-		adult = adult/100D;
-		if (getAgeScale() < adult) {
+		if (!this.isPFAdult()) {
 			return LepidodendronMod.ASTEROCERAS_LOOT_YOUNG;
 		}
 		return LepidodendronMod.ASTEROCERAS_LOOT;

@@ -169,7 +169,7 @@ public class BlockReticulopteris extends ElementsLepidodendronMod.ModElement {
 		public BlockCustomFlower() {
 			setSoundType(SoundType.PLANT);
 			setCreativeTab(TabLepidodendronPlants.tab);
-			setHardness(0.5F);
+			setHardness(1.5F);
 			setResistance(0.5F);
 			setLightLevel(0F);
 			setTranslationKey("pf_reticulopteris");

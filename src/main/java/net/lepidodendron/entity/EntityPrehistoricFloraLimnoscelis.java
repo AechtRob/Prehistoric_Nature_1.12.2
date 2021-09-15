@@ -3,12 +3,15 @@ package net.lepidodendron.entity;
 
 import com.google.common.base.Predicate;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.block.BlockAmphibianSpawnLimnoscelis;
 import net.lepidodendron.entity.ai.*;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraSwimmingAmphibianBase;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -17,8 +20,11 @@ import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -44,18 +50,29 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		//minSize = 0.2F;
-		//maxSize = 1.0F;
 		minWidth = 0.1F;
 		maxWidth = 0.55F;
 		maxHeight = 0.6F;
 		maxHealthAgeable = 24.0D;
 	}
 
+	@Override
+	public boolean dropsEggs() {
+		return false;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return false;
+	}
+
 	protected float getAISpeedSwimmingAmphibian() {
 		float calcSpeed = 0.2F;
-		if (this.isActuallyInWater()) {
+		if (this.isReallyInWater()) {
 			calcSpeed= 0.32f;
+		}
+		if (this.getTicks() < 0) {
+			return 0.0F; //Is laying eggs
 		}
 		return Math.min(1F, (this.getAgeScale() * 2F)) * calcSpeed;
 	}
@@ -79,8 +96,8 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new AttackAI(this, 1.0D, false));
-		tasks.addTask(1, new AmphibianWander(this, NO_ANIMATION));
+		tasks.addTask(0, new AttackAI(this, 1.0D, false, this.getAttackLength()));
+		tasks.addTask(1, new AmphibianWander(this, NO_ANIMATION, 0.6));
 		tasks.addTask(2, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 		tasks.addTask(2, new EntityAIWatchClosest(this, EntityPrehistoricFloraFishBase.class, 8.0F));
 		tasks.addTask(2, new EntityAIWatchClosest(this, EntityPrehistoricFloraAgeableBase.class, 8.0F));
@@ -89,6 +106,7 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 		this.targetTasks.addTask(0, new EatMeatItemsAI(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
 		this.targetTasks.addTask(2, new HuntAI(this, EntityPlayer.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
+		this.targetTasks.addTask(2, new HuntAI(this, EntityVillager.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(2, new HuntAI(this, EntityPrehistoricFloraFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(2, new HuntAI(this, EntitySquid. class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(2, new HuntAI(this, EntityPrehistoricFloraAmphibamus.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
@@ -124,27 +142,9 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 
 	@Override
 	public net.minecraft.util.SoundEvent getAmbientSound() {
-		if (this.isActuallyInWater()) {return null;}
 	    return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
 	            .getObject(new ResourceLocation("lepidodendron:limnoscelis_idle"));
 	}
-
-	//@Override
-	//public SoundEvent getAmbientSound() {
-	//	return (SoundEvent) SoundEvent.REGISTRY.getObject(new ResourceLocation(""));
-	//}
-
-	@Override
-	public void playLivingSound() {
-		if (this.getAnimation() != null) {
-			if (this.getAnimation() == NO_ANIMATION && !world.isRemote) {
-				this.setAnimation(ROAR_ANIMATION);
-				//System.err.println("Ambient");
-			}
-		}
-		super.playLivingSound();
-	}
-
 
 	@Override
 	public net.minecraft.util.SoundEvent getHurtSound(DamageSource ds) {
@@ -152,21 +152,11 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 	            .getObject(new ResourceLocation("lepidodendron:limnoscelis_hurt"));
 	}
 
-	//@Override
-	//public SoundEvent getHurtSound(DamageSource ds) {
-	//	return (SoundEvent) SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.generic.hurt"));
-	//}
-
 	@Override
 	public net.minecraft.util.SoundEvent getDeathSound() {
 	    return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
 	            .getObject(new ResourceLocation("lepidodendron:limnoscelis_death"));
 	}
-
-	//@Override
-	//public SoundEvent getDeathSound() {
-	//	return (SoundEvent) SoundEvent.REGISTRY.getObject(new ResourceLocation("entity.generic.death"));
-	//}
 
 	@Override
 	protected float getSoundVolume() {
@@ -188,11 +178,6 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 	}
 
 	@Override
-	public int getTalkInterval() {
-		return 120;
-	}
-
-	@Override
 	protected int getExperiencePoints(EntityPlayer player) {
 		return 2 + this.world.rand.nextInt(3);
 	}
@@ -206,10 +191,13 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
 		this.renderYawOffset = this.rotationYaw;
-		//System.err.println(this.getAnimationTick());
+
 		if (this.getAnimation() == ATTACK_ANIMATION && this.getAnimationTick() == 5 && this.getAttackTarget() != null) {
 			launchAttack();
 		}
+
+		AnimationHandler.INSTANCE.updateAnimations(this);
+
 	}
 
 	@Override
@@ -226,15 +214,37 @@ public class EntityPrehistoricFloraLimnoscelis extends EntityPrehistoricFloraSwi
 		return movingobjectposition == null || movingobjectposition.typeOfHit != RayTraceResult.Type.BLOCK;
 	}
 
-
+	@Override
+	public void onEntityUpdate() {
+		super.onEntityUpdate();
+		//Lay eggs perhaps:
+		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getCanBreed() && LepidodendronConfig.doMultiplyMobs
+				&& (BlockAmphibianSpawnLimnoscelis.block.canPlaceBlockOnSide(world, this.getPosition(), EnumFacing.UP)
+				|| BlockAmphibianSpawnLimnoscelis.block.canPlaceBlockOnSide(world, this.getPosition().down(), EnumFacing.UP))
+				&& (BlockAmphibianSpawnLimnoscelis.block.canPlaceBlockAt(world, this.getPosition())
+				|| BlockAmphibianSpawnLimnoscelis.block.canPlaceBlockAt(world, this.getPosition().down()))
+			){
+			if (Math.random() > 0.5) {
+				this.setTicks(-50); //Flag this as stationary for egg-laying
+			}
+		}
+		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getTicks() > -30 && this.getTicks() < 0 && LepidodendronConfig.doMultiplyMobs) {
+			//Is stationary for egg-laying:
+			IBlockState eggs = BlockAmphibianSpawnLimnoscelis.block.getDefaultState();
+			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+			if (BlockAmphibianSpawnLimnoscelis.block.canPlaceBlockOnSide(world, this.getPosition(), EnumFacing.UP) && BlockAmphibianSpawnLimnoscelis.block.canPlaceBlockAt(world, this.getPosition())) {
+				world.setBlockState(this.getPosition(), eggs);
+			}
+			if (BlockAmphibianSpawnLimnoscelis.block.canPlaceBlockOnSide(world, this.getPosition().down(), EnumFacing.UP) && BlockAmphibianSpawnLimnoscelis.block.canPlaceBlockAt(world, this.getPosition().down())) {
+				world.setBlockState(this.getPosition().down(), eggs);
+			}
+			this.setTicks(-20);
+		}
+	}
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		double adult = (double) LepidodendronConfig.adultAge;
-		if (adult > 100) {adult = 100;}
-		if (adult < 0) {adult = 0;}
-		adult = adult/100D;
-		if (getAgeScale() < adult) {
+		if (!this.isPFAdult()) {
 			return LepidodendronMod.LIMNOSCELIS_LOOT_YOUNG;
 		}
 		return LepidodendronMod.LIMNOSCELIS_LOOT;

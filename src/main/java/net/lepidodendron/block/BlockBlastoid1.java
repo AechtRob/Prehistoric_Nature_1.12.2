@@ -76,7 +76,7 @@ public class BlockBlastoid1 extends ElementsLepidodendronMod.ModElement {
 		if ((dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
-				|| (dimID == LepidodendronConfig.dimPermian)
+				
 		) {
 			dimensionCriteria = true;
 		}
@@ -92,7 +92,7 @@ public class BlockBlastoid1 extends ElementsLepidodendronMod.ModElement {
 
 		if (dimID == LepidodendronConfig.dimDevonian
 				|| dimID == LepidodendronConfig.dimOrdovicianSilurian
-				|| dimID == LepidodendronConfig.dimPermian
+				
 		)
 			weight = 50; //Full scale populations in these dims
 
@@ -115,7 +115,7 @@ public class BlockBlastoid1 extends ElementsLepidodendronMod.ModElement {
 		if (dimID == LepidodendronConfig.dimDevonian
 				|| dimID == LepidodendronConfig.dimOrdovicianSilurian
 				|| dimID == LepidodendronConfig.dimCarboniferous
-				|| dimID == LepidodendronConfig.dimPermian
+				
 		)
 			biomeCriteria = true;
 		if (!biomeCriteria)
@@ -130,7 +130,7 @@ public class BlockBlastoid1 extends ElementsLepidodendronMod.ModElement {
 		}
 		int dimWeight = 1;
 		if ((dimID == LepidodendronConfig.dimCarboniferous)
-				|| (dimID == LepidodendronConfig.dimPermian)) {
+				) {
 			dimWeight = 2;
 		}
 		int minWaterDepth = 3 * dimWeight;

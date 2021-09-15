@@ -3,17 +3,17 @@ package net.lepidodendron.entity;
 
 import com.google.common.base.Predicate;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
+import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
-import net.lepidodendron.entity.ai.AttackAI;
-import net.lepidodendron.entity.ai.EatFishItemsAI;
-import net.lepidodendron.entity.ai.EurypteridWanderBottomDweller;
-import net.lepidodendron.entity.ai.HuntAI;
+import net.lepidodendron.block.BlockEurypteridEggsAcutiramus;
+import net.lepidodendron.entity.ai.*;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraEurypteridBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteBottomBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteSwimBase;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -21,11 +21,10 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.passive.EntitySquid;
+import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldServer;
@@ -50,11 +49,26 @@ public class EntityPrehistoricFloraAcutiramus extends EntityPrehistoricFloraEury
 		minWidth = 0.2F;
 		maxWidth = 0.75F;
 		maxHeight = 0.56F;
-		//maxWidth = 0.75;
-		//maxHeight = 0.56F;
-		//minSize = 0.2F;
-		//maxSize = 1.0F;
 		maxHealthAgeable = 16D;
+	}
+
+	@Override
+	public int getRoarLength() {
+		return 0;
+	}
+
+	@Override
+	public void playLivingSound() {
+	}
+
+	@Override
+	public boolean dropsEggs() {
+		return false;
+	}
+	
+	@Override
+	public boolean laysEggs() {
+		return false;
 	}
 
 	@Override
@@ -68,12 +82,14 @@ public class EntityPrehistoricFloraAcutiramus extends EntityPrehistoricFloraEury
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new AttackAI(this, 1.0D, false));
-		tasks.addTask(1, new EurypteridWanderBottomDweller(this, NO_ANIMATION));
-		tasks.addTask(2, new EntityAILookIdle(this));
+		tasks.addTask(0, new WaterLeapAtTargetAI(this, 0.1F));
+		tasks.addTask(1, new AttackAI(this, 1.0D, false, this.getAttackLength()));
+		tasks.addTask(2, new EurypteridWanderBottomDweller(this, NO_ANIMATION));
+		tasks.addTask(3, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatFishItemsAI(this));
 		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
 		this.targetTasks.addTask(2, new HuntAI(this, EntityPlayer.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
+		this.targetTasks.addTask(2, new HuntAI(this, EntityVillager.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(2, new HuntAI(this, EntityPrehistoricFloraFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(2, new HuntAI(this, EntitySquid. class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(2, new HuntAI(this, EntityPrehistoricFloraTrilobiteBottomBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
@@ -119,6 +135,9 @@ public class EntityPrehistoricFloraAcutiramus extends EntityPrehistoricFloraEury
 		if (this.getIsFast()) {
 			AIspeed = AIspeed * 1.8F;
 		}
+		if (this.getTicks() < 0) {
+			return 0.0F; //Is laying eggs
+		}
 		return AIspeed;
 	}
 
@@ -129,15 +148,6 @@ public class EntityPrehistoricFloraAcutiramus extends EntityPrehistoricFloraEury
 
 	@Override
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		boolean isAtBottom = false;
-		if (this.getPosition().getY() - 1 > 1) {
-			BlockPos pos = new BlockPos(this.getPosition().getX(),this.getPosition().getY() - 1, this.getPosition().getZ());
-			isAtBottom =  ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL))
-					&& ((this.world.getBlockState(pos)).getMaterial() != Material.WATER));
-		}
-		//if (isAtBottom && this.world.getBlockState(this.getPosition().up()).getMaterial() == Material.WATER) {
-		//	this.setPositionAndUpdate(this.getPosition().up().getX(), this.getPosition().up().getY(), this.getPosition().up().getZ());
-		//}
 
 		return super.attackEntityFrom(source, (amount * 0.7F));
 
@@ -177,6 +187,35 @@ public class EntityPrehistoricFloraAcutiramus extends EntityPrehistoricFloraEury
 	}
 
 	@Override
+	public void onEntityUpdate() {
+		super.onEntityUpdate();
+
+		//Lay eggs perhaps:
+		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getCanBreed() && LepidodendronConfig.doMultiplyMobs
+				&& (BlockEurypteridEggsAcutiramus.block.canPlaceBlockOnSide(world, this.getPosition(), EnumFacing.UP)
+				|| BlockEurypteridEggsAcutiramus.block.canPlaceBlockOnSide(world, this.getPosition().down(), EnumFacing.UP))
+				&& (BlockEurypteridEggsAcutiramus.block.canPlaceBlockAt(world, this.getPosition())
+				|| BlockEurypteridEggsAcutiramus.block.canPlaceBlockAt(world, this.getPosition().down()))
+		){
+			if (Math.random() > 0.5) {
+				this.setTicks(-50); //Flag this as stationary for egg-laying
+			}
+		}
+		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getTicks() > -30 && this.getTicks() < 0 && LepidodendronConfig.doMultiplyMobs) {
+			//Is stationary for egg-laying:
+			IBlockState eggs = BlockEurypteridEggsAcutiramus.block.getDefaultState();
+			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+			if (BlockEurypteridEggsAcutiramus.block.canPlaceBlockOnSide(world, this.getPosition(), EnumFacing.UP) && BlockEurypteridEggsAcutiramus.block.canPlaceBlockAt(world, this.getPosition())) {
+				world.setBlockState(this.getPosition(), eggs);
+			}
+			if (BlockEurypteridEggsAcutiramus.block.canPlaceBlockOnSide(world, this.getPosition().down(), EnumFacing.UP) && BlockEurypteridEggsAcutiramus.block.canPlaceBlockAt(world, this.getPosition().down())) {
+				world.setBlockState(this.getPosition().down(), eggs);
+			}
+			this.setTicks(-20);
+		}
+	}
+
+	@Override
 	protected float getSoundVolume() {
 		return 1.0F;
 	}
@@ -189,7 +228,6 @@ public class EntityPrehistoricFloraAcutiramus extends EntityPrehistoricFloraEury
 	@Override
 	public void onLivingUpdate() {
 		super.onLivingUpdate();
-		//System.err.println(this.getAnimationTick());
 		if (this.getAnimation() == ATTACK_ANIMATION && this.getAnimationTick() == 25 && this.getAttackTarget() != null) {
 			launchAttack();
 			if (this.world instanceof WorldServer) {
@@ -198,6 +236,9 @@ public class EntityPrehistoricFloraAcutiramus extends EntityPrehistoricFloraEury
 				}
 			}
 		}
+
+		AnimationHandler.INSTANCE.updateAnimations(this);
+
 	}
 
 	@Override
@@ -209,18 +250,9 @@ public class EntityPrehistoricFloraAcutiramus extends EntityPrehistoricFloraEury
 		return false;
 	}
 
-	public void onEntityUpdate()
-	{
-		super.onEntityUpdate();
-	}
-
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		double adult = (double) LepidodendronConfig.adultAge;
-		if (adult > 100) {adult = 100;}
-		if (adult < 0) {adult = 0;}
-		adult = adult/100D;
-		if (getAgeScale() < adult) {
+		 		if (!this.isPFAdult()) {
 			return LepidodendronMod.ACUTIRAMUS_LOOT_YOUNG;
 		}
 		return LepidodendronMod.ACUTIRAMUS_LOOT;

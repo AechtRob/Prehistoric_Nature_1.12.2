@@ -391,6 +391,106 @@
         "stream": false
       }
     ]
-  }
+  },
+  
+  "megalocephalus_idle": {
+  "category": "master",
+  "sounds": [
+    {
+      "name": "lepidodendron:megalocephalus_living01",
+      "stream": false
+    },
+    {
+      "name": "lepidodendron:megalocephalus_living02",
+      "stream": false
+    },
+    {
+      "name": "lepidodendron:megalocephalus_living03",
+      "stream": false
+    },
+    {
+      "name": "lepidodendron:megalocephalus_living04",
+      "stream": false
+    }
+  ]
+},
+  "megalocephalus_hurt": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:megalocephalus_hurt01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:megalocephalus_hurt02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:megalocephalus_hurt03",
+        "stream": false
+      }
+    ]
+  },
+  "megalocephalus_death": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:megalocephalus_death",
+        "stream": false
+      }
+    ]
+  },
 
+  "hylonomus_idle": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:hylonomus_living01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:hylonomus_living02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:hylonomus_living03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:hylonomus_living04",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:hylonomus_living05",
+        "stream": false
+      }
+    ]
+  },
+  "hylonomus_hurt": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:hylonomus_hurt01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:hylonomus_hurt02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:hylonomus_hurt03",
+        "stream": false
+      }
+    ]
+  },
+  "hylonomus_death": {
+    "category": "master",
+    "sounds": [
+      {
+        "name": "lepidodendron:hylonomus_death",
+        "stream": false
+      }
+    ]
+  }
+  
 }

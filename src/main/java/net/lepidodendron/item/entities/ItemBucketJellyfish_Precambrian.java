@@ -157,7 +157,7 @@ public class ItemBucketJellyfish_Precambrian extends ElementsLepidodendronMod.Mo
 						worldIn.setBlockState(posIn, Blocks.FLOWING_WATER.getDefaultState(), 11);
 
 						if (MobSpawn == null && !(worldIn.isRemote)) {
-							ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraJellyfish_Precambrian.class), (double) posIn.getX() + 0.5D, (double) posIn.getY() + 0.5D, (double) posIn.getZ() + 0.5D);
+							ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraJellyfish_Precambrian.class), (double) posIn.getX() + 0.5D, (double) posIn.getY(), (double) posIn.getZ() + 0.5D);
 						}
 					}
 
@@ -193,7 +193,7 @@ public class ItemBucketJellyfish_Precambrian extends ElementsLepidodendronMod.Mo
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Jellyfish");
+				tooltip.add("Type: Cnidarian");
 				tooltip.add("Periods: Ediacaran");
 				tooltip.add("Note: Not known conclusively from fossils");
 				super.addInformation(stack, player, tooltip, advanced);

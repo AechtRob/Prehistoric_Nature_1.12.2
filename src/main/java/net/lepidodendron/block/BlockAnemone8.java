@@ -91,6 +91,7 @@ public class BlockAnemone8 extends ElementsLepidodendronMod.ModElement {
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
 				|| (dimID == LepidodendronConfig.dimCambrian)
+				
 		) {
 			biomeCriteria = true;
 		}

@@ -53,7 +53,7 @@ public class AlgaeGenerator extends WorldGenerator
 			|| (dimID == LepidodendronConfig.dimOrdovicianSilurian && (!ediacaran))
 			|| (dimID == LepidodendronConfig.dimCambrian && (!rugosas) && (!cystoids) && (!ediacaran))
 			|| (dimID == LepidodendronConfig.dimPrecambrian && (!rugosas) && (!cystoids) && (!anemones))
-			|| (dimID == LepidodendronConfig.dimCarboniferous && (!cystoids) && (!ediacaran))
+			|| ((dimID == LepidodendronConfig.dimCarboniferous ) &&  (!cystoids) && (!ediacaran))
 			) {
 			dimensionCriteria = true;
 		}
@@ -70,7 +70,8 @@ public class AlgaeGenerator extends WorldGenerator
 			|| (this.algae == BlockBlueSponge.block)
 			|| (this.algae == BlockOrangeSponge.block)
 			|| (this.algae == BlockRedSponge.block)
-			|| (this.algae == BlockBrownSponge.block)) {
+			|| (this.algae == BlockBrownSponge.block)
+			|| (this.algae == BlockBranchedSponge.block)) {
 		bound = 4;
 	}
 
@@ -99,6 +100,7 @@ public class AlgaeGenerator extends WorldGenerator
 					|| (this.algae == BlockOrangeSponge.block)
 					|| (this.algae == BlockRedSponge.block)
 					|| (this.algae == BlockBrownSponge.block)
+					|| (this.algae == BlockBranchedSponge.block)
 				) {
 					int yy = 1;
 					while (yy <= 4 && waterDepthCheckMin) {
