@@ -8,6 +8,7 @@ import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -25,6 +26,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -152,13 +154,18 @@ public class BlockSchizoneura5 extends ElementsLepidodendronMod.ModElement {
 	        return false;
 	    }
 
+		public boolean canBlockStay(World worldIn, BlockPos pos) {
+			Block block2 = worldIn.getBlockState(pos.down()).getBlock();
+			return ((worldIn.getBlockState(pos.down())).getMaterial() == Material.SAND || block2.canSustainPlant(worldIn.getBlockState(pos.down()), worldIn, pos.down(), EnumFacing.UP, (IPlantable) BlockSchizoneuraSapling.block));
+		}
+
 	    @Override
 		public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock, BlockPos fromPos) {
 			
 			super.neighborChanged(state, world, pos, neighborBlock, fromPos);
 
 			Block block = world.getBlockState(pos.down()).getBlock();
-			if (!BlockSchizoneuraSapling.block.canPlaceBlockAt(world, pos))
+			if (!canBlockStay(world, pos))
 			{
 				world.destroyBlock(pos, false);
 			}

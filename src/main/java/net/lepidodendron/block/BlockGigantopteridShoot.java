@@ -194,7 +194,10 @@ public class BlockGigantopteridShoot extends ElementsLepidodendronMod.ModElement
 			if (((Boolean)state.getValue(CHECK_DECAY)).booleanValue() && ((Boolean)state.getValue(DECAYABLE)).booleanValue())
 				{
 					Block block = worldIn.getBlockState(pos.down()).getBlock();
-					if (block != BlockGigantopteridLog.block) {
+					if (block != BlockGigantopteridLog.block
+						&& block != BlockGigantopteridShoot.block
+						&& block != BlockGigantopteridShootPlaceable.block
+						) {
 						worldIn.setBlockToAir(pos);
 
 						//if (Math.random() >= 0.5) {

@@ -5,6 +5,8 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronStatic;
+import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
+import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -103,9 +105,12 @@ public class BlockCrinoidDizygocrinus extends ElementsLepidodendronMod.ModElemen
 		}
 		if (matchBiome(biome, LepidodendronConfig.genCrinoidOverrideBiomes))
 			biomeCriteria = true;
-		if (dimID == LepidodendronConfig.dimCarboniferous
-		) {
-			biomeCriteria = true;
+		if (biome instanceof BiomeCarboniferous)
+		{
+			BiomeCarboniferous biomeCarb = (BiomeCarboniferous) biome;
+			if (biomeCarb.getBiomeType() == EnumBiomeTypeCarboniferous.Ocean) {
+				biomeCriteria = true;
+			}
 		}
 		if (!biomeCriteria)
 			return;

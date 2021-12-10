@@ -6,7 +6,13 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemGreenFilamentousAlgaeItem;
-import net.lepidodendron.world.FilamentousAlgaeGenerator;
+import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
+import net.lepidodendron.util.EnumBiomeTypePermian;
+import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
+import net.lepidodendron.world.biome.permian.BiomePermian;
+import net.lepidodendron.world.biome.permian.BiomePermianLowlandFloodplain;
+import net.lepidodendron.world.biome.permian.BiomePermianLowlandsForest;
+import net.lepidodendron.world.gen.FilamentousAlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLilyPad;
 import net.minecraft.block.IGrowable;
@@ -74,6 +80,22 @@ public class BlockGreenFilamentousAlgae extends ElementsLepidodendronMod.ModElem
 		{
 			biomeCriteria = true;
 		}
+		if (biome instanceof BiomePermian)
+		{
+			BiomePermian biomePermian = (BiomePermian) biome;
+			if (biome == BiomePermianLowlandsForest.biome
+				|| biomePermian.getBiomeType() == EnumBiomeTypePermian.Wetlands
+				|| biome == BiomePermianLowlandFloodplain.biome) {
+				biomeCriteria = true;
+			}
+		}
+		if (biome instanceof BiomeCarboniferous)
+		{
+			BiomeCarboniferous biomeCarb = (BiomeCarboniferous) biome;
+			if (biomeCarb.getBiomeType() == EnumBiomeTypeCarboniferous.Ice) {
+				biomeCriteria = false;
+			}
+		}
 		if (!biomeCriteria)
 			return;
 
@@ -85,6 +107,9 @@ public class BlockGreenFilamentousAlgae extends ElementsLepidodendronMod.ModElem
 		if (LepidodendronDecorationHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
 			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
 			GenChance = Math.min(GenChance * 10, 100);
+		}
+		if (biome == BiomePermianLowlandFloodplain.biome) {
+			GenChance = 156;
 		}
 
 		for (int i = 0; i < (int) GenChance; i++) {

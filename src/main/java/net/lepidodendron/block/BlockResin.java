@@ -3,8 +3,8 @@ package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.util.MaterialResin;
 import net.minecraft.block.Block;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.ItemMeshDefinition;
 import net.minecraft.client.renderer.block.model.ModelBakery;
@@ -42,7 +42,7 @@ public class BlockResin extends ElementsLepidodendronMod.ModElement {
 
 	@Override
 	public void initElements() {
-		elements.blocks.add(() -> new BlockFluidClassic(fluid, Material.WATER) {
+		elements.blocks.add(() -> new BlockFluidClassic(fluid, MaterialResin.RESIN) {
 			@Override
 			public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity) {
 				super.onEntityCollision(world, pos, state, entity);

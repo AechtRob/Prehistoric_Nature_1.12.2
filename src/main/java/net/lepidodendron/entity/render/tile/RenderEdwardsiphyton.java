@@ -21,7 +21,9 @@ public class RenderEdwardsiphyton extends TileEntitySpecialRenderer<BlockEdwards
     private final ModelInsectEggs insect_eggs;
     private static final ResourceLocation TEXTURE_EOARTHROPLEURA_EGGS = new ResourceLocation(LepidodendronMod.MODID + ":textures/entities/insect_eggs_eoarthropleura.png");
     private static final ResourceLocation TEXTURE_PNEUMODESMUS_EGGS = new ResourceLocation(LepidodendronMod.MODID + ":textures/entities/insect_eggs_pneumodesmus.png");
-    private static final ResourceLocation TEXTURE_PULMONOSCORPIUS_EGGS = new ResourceLocation(LepidodendronMod.MODID + ":textures/entities/insect_eggs_pulmonoscorpius.png");
+    private static final ResourceLocation TEXTURE_ARCHOBLATTINA_EGGS = new ResourceLocation(LepidodendronMod.MODID + ":textures/entities/archoblattina_eggs.png");
+    private static final ResourceLocation TEXTURE_ROACHOID_EGGS = new ResourceLocation(LepidodendronMod.MODID + ":textures/entities/roachoid_eggs.png");
+    private static final ResourceLocation TEXTURE_GERARUS_EGGS = new ResourceLocation(LepidodendronMod.MODID + ":textures/entities/gerarus_eggs.png");
     private final ModelTrigonotarbidEggs trigonotarbid_eggs;
     private static final ResourceLocation TEXTURE_TRIGONOTARBID_EGGS_ORDOVICIAN_SILURIAN = new ResourceLocation(LepidodendronMod.MODID + ":textures/entities/trigonotarbid_os_eggs.png");
     private static final ResourceLocation TEXTURE_TRIGONOTARBID_EGGS_CARBONIFEROUS = new ResourceLocation(LepidodendronMod.MODID + ":textures/entities/trigonotarbid_carb_eggs.png");
@@ -108,6 +110,32 @@ public class RenderEdwardsiphyton extends TileEntitySpecialRenderer<BlockEdwards
                 GlStateManager.pushMatrix();
                 GlStateManager.scale(0.5F, 0.5F, 0.5F);
                 Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_ATTERCOPUS_EGGS);
+                this.trigonotarbid_eggs.renderAll(0.075F);
+                GlStateManager.popMatrix();
+            }
+
+            if (eggRenderType.equals(LepidodendronMod.MODID + ":insect_eggs_archoblattina")) {
+                GlStateManager.pushMatrix();
+                GlStateManager.scale(0.5F, 0.5F, 0.5F);
+                Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_ARCHOBLATTINA_EGGS);
+                this.trigonotarbid_eggs.renderAll(0.075F);
+                GlStateManager.popMatrix();
+            }
+
+            if (eggRenderType.equals(LepidodendronMod.MODID + ":insect_eggs_roachoid_arid")
+                    || eggRenderType.equals(LepidodendronMod.MODID + ":insect_eggs_roachoid_forest")
+                    || eggRenderType.equals(LepidodendronMod.MODID + ":insect_eggs_roachoid_swamp")) {
+                GlStateManager.pushMatrix();
+                GlStateManager.scale(0.5F, 0.5F, 0.5F);
+                Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_ROACHOID_EGGS);
+                this.trigonotarbid_eggs.renderAll(0.075F);
+                GlStateManager.popMatrix();
+            }
+
+            if (eggRenderType.equals(LepidodendronMod.MODID + ":insect_eggs_gerarus")) {
+                GlStateManager.pushMatrix();
+                GlStateManager.scale(0.5F, 0.5F, 0.5F);
+                Minecraft.getMinecraft().renderEngine.bindTexture(TEXTURE_GERARUS_EGGS);
                 this.trigonotarbid_eggs.renderAll(0.075F);
                 GlStateManager.popMatrix();
             }

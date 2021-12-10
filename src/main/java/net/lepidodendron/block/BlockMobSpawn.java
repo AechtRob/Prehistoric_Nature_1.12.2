@@ -3,6 +3,7 @@ package net.lepidodendron.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.BlockLiquid;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
@@ -23,6 +24,7 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.BlockFluidBase;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -261,7 +263,9 @@ public class BlockMobSpawn extends Block {
 	//@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
-		if ((isWaterBlock(worldIn, pos)) && (isWaterBlock(worldIn, pos.up()))) {
+		if ((isWaterBlock(worldIn, pos)) && (isWaterBlock(worldIn, pos.up()))
+			&& (worldIn.getBlockState(pos).getBlock() instanceof BlockFluidBase
+			|| worldIn.getBlockState(pos).getBlock() instanceof BlockLiquid)) {
 			return super.canPlaceBlockAt(worldIn, pos);
 		}
 		return false;

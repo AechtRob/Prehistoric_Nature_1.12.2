@@ -7,6 +7,9 @@ import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockFaceShape;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,13 +19,18 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import java.util.Random;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class BlockToxicMud extends ElementsLepidodendronMod.ModElement {
@@ -75,6 +83,23 @@ public class BlockToxicMud extends ElementsLepidodendronMod.ModElement {
 				if (((EntityLivingBase) entityIn).getItemStackFromSlot(EntityEquipmentSlot.FEET).getItem() == Items.AIR)
 					entityIn.attackEntityFrom(DamageSource.HOT_FLOOR, (float) 0.5F);
 			}
+		}
+
+		@SideOnly(Side.CLIENT)
+		@Override
+		public void randomDisplayTick(IBlockState state, World world, BlockPos pos, Random random) {
+			super.randomDisplayTick(state, world, pos, random);
+			EntityPlayer entity = Minecraft.getMinecraft().player;
+			if (world.getBlockState(pos.up()).getMaterial() == Material.AIR && random.nextInt(16) == 0) {
+				for (int l = 0; l < 4; ++l) {
+					world.spawnParticle(EnumParticleTypes.CLOUD, (double) pos.getX() + Math.random(), (double) pos.getY() + 0.95, (double) pos.getZ() + Math.random(), 0, 0.3D, 0);
+				}
+			}
+		}
+
+		@Override
+		public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face) {
+			return BlockFaceShape.UNDEFINED; //stops things generating on it
 		}
 	}
 }

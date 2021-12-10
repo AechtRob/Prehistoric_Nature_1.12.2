@@ -30,9 +30,9 @@ public class StructureSpawnDicroidium extends ElementsLepidodendronMod.ModElemen
 	public void generateWorld(Random random, int i2, int k2, World world, int dimID, IChunkGenerator cg, IChunkProvider cp) {
 		boolean dimensionCriteria = false;
 		boolean isNetherType = false;
-		if (shouldGenerateInDimension(dimID, LepidodendronConfig.dimDicroidium))
+		if (shouldGenerateInDimension(dimID, LepidodendronConfig.dimDicroidiumZuberi))
 			dimensionCriteria = true;
-		if (!LepidodendronConfig.genDicroidium && !LepidodendronConfig.genAllPlants)
+		if (!LepidodendronConfig.genDicroidiumZuberi && !LepidodendronConfig.genAllPlants)
 			dimensionCriteria = false;
 		if (!dimensionCriteria)
 			return;
@@ -56,13 +56,13 @@ public class StructureSpawnDicroidium extends ElementsLepidodendronMod.ModElemen
 			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.MUSHROOM))
 				biomeCriteria = false;
 		}
-		if (matchBiome(biome, LepidodendronConfig.genDicroidiumOverrideBiomes))
+		if (matchBiome(biome, LepidodendronConfig.genDicroidiumZuberiOverrideBiomes))
 			biomeCriteria = true;
 		if (!biomeCriteria)
 			return;
 
 		int GenChance = 20000;
-		double GenMultiplier = LepidodendronConfig.multiplierDicroidium;
+		double GenMultiplier = LepidodendronConfig.multiplierDicroidiumZuberi;
 		if (GenMultiplier < 0) {GenMultiplier = 0;}
 		GenChance = Math.min(300000, (int) Math.round((double) GenChance * GenMultiplier));
 		//Is this a transformed biome?
@@ -115,8 +115,8 @@ public class StructureSpawnDicroidium extends ElementsLepidodendronMod.ModElemen
 					continue;
 
 		
-				int maxheight = LepidodendronConfig.maxheightDicroidium;
-				int minheight = LepidodendronConfig.minheightDicroidium;
+				int maxheight = LepidodendronConfig.maxheightDicroidiumZuberi;
+				int minheight = LepidodendronConfig.minheightDicroidiumZuberi;
 				if (maxheight < 0) {maxheight = 0;}
 				if (maxheight > 250) {maxheight = 250;}
 				if (minheight < 1) {minheight = 1;}
@@ -146,7 +146,7 @@ public class StructureSpawnDicroidium extends ElementsLepidodendronMod.ModElemen
 					if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.MUSHROOM))
 						biomeCriteria = false;
 				}
-				if (matchBiome(biome, LepidodendronConfig.genDicroidiumOverrideBiomes))
+				if (matchBiome(biome, LepidodendronConfig.genDicroidiumZuberiOverrideBiomes))
 					biomeCriteria = true;
 				if (!biomeCriteria)
 					continue;

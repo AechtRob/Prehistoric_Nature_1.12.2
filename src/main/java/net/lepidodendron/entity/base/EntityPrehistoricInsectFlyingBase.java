@@ -95,12 +95,6 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
     }
 
     @Override
-    public net.minecraft.util.SoundEvent getAmbientSound() {
-        return (net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
-                .getObject(new ResourceLocation("lepidodendron:palaeodictyoptera_idle"));
-    }
-
-    @Override
     public EntityAgeable createChild(EntityAgeable entity) {
         return null;
     }
@@ -235,7 +229,7 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         }
         this.sitTickCt = 0;
         sitCooldown = 1500 + rand.nextInt(1200);
-        //this.dataManager.set(SIT_FACE, EnumFacing.DOWN);
+        this.dataManager.set(SIT_FACE, EnumFacing.DOWN);
         this.setAttachmentPos(null);
         //System.err.println("Taken damage from " + ds.getDamageType());
         return super.attackEntityFrom(ds, f);
@@ -317,8 +311,8 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         if (this.isEntityAlive())
         {
             ++ii;
-            //limit at 48000 (two MC days) and then reset:
-            if (ii >= 48000) {ii = 0;}
+            //limit at 24000 + 3600 (one MC day plus 3 minutes) and then reset:
+            if (ii >= 27600) {ii = 0;}
             this.setTicks(ii);
         }
 
@@ -470,9 +464,13 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         }
         if (flying && this.ticksExisted % 20 == 0 && !world.isRemote && this.getAttachmentPos() == null) {
             this.playSound((net.minecraft.util.SoundEvent) net.minecraft.util.SoundEvent.REGISTRY
-                    .getObject(new ResourceLocation("lepidodendron:palaeodictyoptera_flight")), this.getSoundVolume(), 1);
+                    .getObject(this.FlightSound()), this.getSoundVolume(), 1);
         }
 
+    }
+
+    public ResourceLocation FlightSound() {
+        return new ResourceLocation("lepidodendron:palaeodictyoptera_flight");
     }
 
     public boolean isFlying() {

@@ -190,6 +190,8 @@ public class BlockEmplectopterisShoot extends ElementsLepidodendronMod.ModElemen
 				{
 					Block block = worldIn.getBlockState(pos.down()).getBlock();
 					if ((block != BlockEmplectopterisLog.block)
+						&& (block != BlockEmplectopterisShoot.block)
+						&& (block != BlockEmplectopterisShootPlaceable.block)
 						&& (worldIn.getBlockState(pos.down()).getMaterial() != Material.WATER)) {
 						worldIn.setBlockToAir(pos);
 

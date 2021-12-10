@@ -148,7 +148,7 @@ public class ModelAmphibamus extends AdvancedModelBase {
             this.upperjaw1.rotateAngleX = -0.2F;
             this.walk(this.upperjaw1, speed * 0.2F, 2F,true, 0F,0.1F, f2, 0.1F);
 
-            if (f3 == 0.0F) { //Not moving
+            if (f3 == 0.0F || !Amphibamus.getIsMoving()) { //Not moving
                 return;
             }
 

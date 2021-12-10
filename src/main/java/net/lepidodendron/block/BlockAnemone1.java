@@ -5,7 +5,15 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronStatic;
-import net.lepidodendron.world.AlgaeGenerator;
+import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
+import net.lepidodendron.util.EnumBiomeTypeDevonian;
+import net.lepidodendron.util.EnumBiomeTypePermian;
+import net.lepidodendron.util.EnumBiomeTypeTriassic;
+import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
+import net.lepidodendron.world.biome.devonian.BiomeDevonian;
+import net.lepidodendron.world.biome.permian.BiomePermian;
+import net.lepidodendron.world.biome.triassic.BiomeTriassic;
+import net.lepidodendron.world.gen.AlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
@@ -86,9 +94,7 @@ public class BlockAnemone1 extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genAnemoneOverrideBiomes))
 			biomeCriteria = true;
-		if ((dimID == LepidodendronConfig.dimDevonian)
-				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
-				|| (dimID == LepidodendronConfig.dimCarboniferous)
+		if ((dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCambrian)
 				) {
 			biomeCriteria = true;
@@ -96,6 +102,34 @@ public class BlockAnemone1 extends ElementsLepidodendronMod.ModElement {
 		if ((dimID == LepidodendronConfig.dimPrecambrian)
 		) {
 			biomeCriteria = false;
+		}
+		if (biome instanceof BiomePermian)
+		{
+			BiomePermian biomePermian = (BiomePermian) biome;
+			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Ocean) {
+				biomeCriteria = true;
+			}
+		}
+		if (biome instanceof BiomeCarboniferous)
+		{
+			BiomeCarboniferous biomeCarb = (BiomeCarboniferous) biome;
+			if (biomeCarb.getBiomeType() == EnumBiomeTypeCarboniferous.Ocean) {
+				biomeCriteria = true;
+			}
+		}
+		if (biome instanceof BiomeDevonian)
+		{
+			BiomeDevonian biomeDev = (BiomeDevonian) biome;
+			if (biomeDev.getBiomeType() == EnumBiomeTypeDevonian.Ocean) {
+				biomeCriteria = true;
+			}
+		}
+		if (biome instanceof BiomeTriassic)
+		{
+			BiomeTriassic biomeTri = (BiomeTriassic) biome;
+			if (biomeTri.getBiomeType() == EnumBiomeTypeTriassic.Ocean) {
+				biomeCriteria = true;
+			}
 		}
 		if (!biomeCriteria)
 			return;

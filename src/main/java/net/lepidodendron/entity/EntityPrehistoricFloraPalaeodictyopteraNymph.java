@@ -46,6 +46,10 @@ public class EntityPrehistoricFloraPalaeodictyopteraNymph extends EntityPrehisto
 		maxHealthAgeable = 5.0D;
 	}
 
+	public static String getPeriod() {return "mid - late Carboniferous";}
+
+	public static String getHabitat() {return "Terrestrial";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;
@@ -219,7 +223,7 @@ public class EntityPrehistoricFloraPalaeodictyopteraNymph extends EntityPrehisto
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		return LepidodendronMod.PALAEODICTYOPTERA_LOOT;
+		return LepidodendronMod.BUG_LOOT;
 	}
 
 	@Override

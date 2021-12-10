@@ -10,25 +10,10 @@
 			"translate": "advancements.pf_adv_devonian.description"
 		}
 	},
-    "parent": "lepidodendron:pf_base_adv",
+	"parent": "lepidodendron:pf_base_adv",
 	"criteria": {
-		"devonian_floodplain": {
-			"trigger": "minecraft:location",
-			"conditions": {
-				"biome": "lepidodendron:devonian_floodplain"
-			}
-		},
-		"devonian_forest": {
-			"trigger": "minecraft:location",
-			"conditions": {
-				"biome": "lepidodendron:devonian_forest"
-			}
-		},
-		"devonian_forest": {
-			"trigger": "minecraft:location",
-			"conditions": {
-				"biome": "lepidodendron:devonian_hills"
-			}
+		"enter_cambrian": {
+			"trigger": "enter_pf_devonian"
 		}
 	},
   "rewards": {

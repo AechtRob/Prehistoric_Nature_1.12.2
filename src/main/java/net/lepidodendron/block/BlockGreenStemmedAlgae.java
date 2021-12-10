@@ -84,7 +84,8 @@ public class BlockGreenStemmedAlgae extends ElementsLepidodendronMod.ModElement 
 			dimensionCriteria = true;
 		if (
 			(dimID == LepidodendronConfig.dimCarboniferous)
-			
+			|| (dimID == LepidodendronConfig.dimPermian)
+			|| (dimID == LepidodendronConfig.dimTriassic)
 		) {
 			dimensionCriteria = true;
 		}
@@ -105,7 +106,8 @@ public class BlockGreenStemmedAlgae extends ElementsLepidodendronMod.ModElement 
 			biomeCriteria = true;
 		if (
 			(dimID == LepidodendronConfig.dimCarboniferous)
-			
+			|| (dimID == LepidodendronConfig.dimPermian)
+			|| (dimID == LepidodendronConfig.dimTriassic)
 			) {
 			biomeCriteria = true;
 		}
@@ -121,14 +123,16 @@ public class BlockGreenStemmedAlgae extends ElementsLepidodendronMod.ModElement 
 				public boolean generate(World world, Random random, BlockPos pos) {
 					for (int i = 0; i < 40; ++i) {
 						BlockPos blockpos1 = pos.add(random.nextInt(4) - random.nextInt(4), 0, random.nextInt(4) - random.nextInt(4));
-						if (((BlockCustom) block).isWaterBlock(world, blockpos1) && ((BlockCustom) block).isWaterBlock(world, blockpos1.up())) {
-							BlockPos blockpos2 = blockpos1.down();
-							int j = 1 + random.nextInt(random.nextInt(random.nextInt(5) + 1) + 1);
-							j = Math.min(5, j);
-							for (int k = 0; k < j; ++k)
-								if (((BlockCustom) block).canBlockStay(world, blockpos1)
-								&& ((BlockCustom) block).canBlockStay(world, blockpos1.up(k)))
-									world.setBlockState(blockpos1.up(k), block.getDefaultState(), 2);
+						if (blockpos1.getY() >= world.getSeaLevel()-15) {
+							if (((BlockCustom) block).isWaterBlock(world, blockpos1) && ((BlockCustom) block).isWaterBlock(world, blockpos1.up())) {
+								BlockPos blockpos2 = blockpos1.down();
+								int j = 1 + random.nextInt(random.nextInt(random.nextInt(5) + 1) + 1);
+								j = Math.min(5, j);
+								for (int k = 0; k < j; ++k)
+									if (((BlockCustom) block).canBlockStay(world, blockpos1)
+											&& ((BlockCustom) block).canBlockStay(world, blockpos1.up(k)))
+										world.setBlockState(blockpos1.up(k), block.getDefaultState(), 2);
+							}
 						}
 					}
 					return true;

@@ -103,7 +103,7 @@ public class BlockGuangdedendron extends ElementsLepidodendronMod.ModElement {
 		//Is this a transformed biome?
 		if (LepidodendronDecorationHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
 			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
-				GenChance = 15;
+			GenChance = 15;
 		}
 
 		int maxheight = LepidodendronConfig.maxheightGuangdedendron;
@@ -248,12 +248,13 @@ public class BlockGuangdedendron extends ElementsLepidodendronMod.ModElement {
 			boolean waterCheck = false;
             for (EnumFacing enumfacing : EnumFacing.Plane.HORIZONTAL)
             {
-                IBlockState iblockstate = world.getBlockState(blockpos.offset(enumfacing));
-
-                if (iblockstate.getMaterial() == Material.WATER || iblockstate.getBlock() == Blocks.FROSTED_ICE)
-                {
-                    waterCheck = true;
-                }
+                BlockPos iblockstate = (blockpos.offset(enumfacing));
+				for (EnumFacing enumfacing1 : EnumFacing.Plane.HORIZONTAL) {
+					IBlockState iblockstate1 = world.getBlockState(iblockstate.offset(enumfacing1));
+					if (iblockstate1.getMaterial() == Material.WATER || iblockstate1.getBlock() == Blocks.FROSTED_ICE) {
+						waterCheck = true;
+					}
+				}
             }
 
            	if (block == Blocks.GRASS || block == Blocks.DIRT || block == Blocks.SAND)

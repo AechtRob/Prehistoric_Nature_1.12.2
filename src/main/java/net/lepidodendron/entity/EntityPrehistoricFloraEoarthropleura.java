@@ -4,7 +4,7 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.block.*;
-import net.lepidodendron.entity.ai.LandWander;
+import net.lepidodendron.entity.ai.LandEntitySwimmingAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraLandBase;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.properties.PropertyDirection;
@@ -12,7 +12,7 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
@@ -44,6 +44,10 @@ public class EntityPrehistoricFloraEoarthropleura extends EntityPrehistoricFlora
 		maxHealthAgeable = 0.8D;
 	}
 
+	public static String getPeriod() {return "Silurian - Devonian";}
+
+	public static String getHabitat() {return "Terrestrial";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;
@@ -61,7 +65,7 @@ public class EntityPrehistoricFloraEoarthropleura extends EntityPrehistoricFlora
 	
 	@Override
 	public int getAdultAge() {
-		return 1;
+		return 0;
 	} //Only adults!
 
 	@Override
@@ -95,8 +99,8 @@ public class EntityPrehistoricFloraEoarthropleura extends EntityPrehistoricFlora
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new EntityAISwimming(this));
-		tasks.addTask(1, new LandWander(this, NO_ANIMATION));
+		tasks.addTask(0, new LandEntitySwimmingAI(this, 0.75, true));
+		tasks.addTask(1, new EntityAIWanderAvoidWater(this, 1.0D));
 		tasks.addTask(2, new EntityAILookIdle(this));
 	}
 

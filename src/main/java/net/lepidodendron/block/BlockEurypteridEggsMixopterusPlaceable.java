@@ -11,12 +11,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -69,21 +67,10 @@ public class BlockEurypteridEggsMixopterusPlaceable extends ElementsLepidodendro
 		{
 			super.updateTick(worldIn, pos, state, rand);
 
-			if (worldIn.getBlockState(pos).getBlock() == this && !(worldIn.isRemote)) {
-				worldIn.destroyBlock(pos, false);
-				Entity entity1 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraMixopterus.class), (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
-				EntityPrehistoricFloraAgeableBase ee1 = (EntityPrehistoricFloraAgeableBase) entity1;
-				ee1.setAgeTicks(1);
-				Entity entity2 = null;
-				if (Math.random() > 0.75) {
-					entity2 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraMixopterus.class), (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
-					EntityPrehistoricFloraAgeableBase ee2 = (EntityPrehistoricFloraAgeableBase) entity2;
-					ee2.setAgeTicks(1);
-				}
-				if (entity1 != null || entity2 != null) {
-					worldIn.destroyBlock(pos, false);
-				}
+			if (!(worldIn.isRemote)) {
+				EntityPrehistoricFloraAgeableBase.summon(worldIn, EntityList.getKey(EntityPrehistoricFloraMixopterus.class).toString(), "{AgeTicks:0}", (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
 			}
+			worldIn.destroyBlock(pos, false);
 		}
 
 		@SideOnly(Side.CLIENT)

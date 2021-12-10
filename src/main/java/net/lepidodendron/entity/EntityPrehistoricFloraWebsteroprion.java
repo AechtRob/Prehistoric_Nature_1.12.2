@@ -13,7 +13,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
@@ -67,6 +66,10 @@ public class EntityPrehistoricFloraWebsteroprion extends EntityPrehistoricFloraE
 		maxHeight = 0.6F;
 		maxHealthAgeable = 12D;
 	}
+
+	public static String getPeriod() {return "Devonian";}
+
+	public static String getHabitat() {return "Aquatic";}
 
 	public float getMaxTurnDistancePerTick() {
 		return 20;
@@ -189,7 +192,7 @@ public class EntityPrehistoricFloraWebsteroprion extends EntityPrehistoricFloraE
 		tasks.addTask(2, new WebsteroprionWanderBottom(this, NO_ANIMATION));
 		tasks.addTask(3, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new WebsteroprionEatItemsAI(this));
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+		this.targetTasks.addTask(1, new EntityHurtByTargetSmallerThanMeAI(this, false));
 		this.targetTasks.addTask(2, new HuntSmallerThanMeAIAgeable(this, EntityLiving.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 	}
 

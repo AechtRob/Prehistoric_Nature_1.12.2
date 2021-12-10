@@ -40,6 +40,10 @@ public class EntityPrehistoricFloraQilinyu extends EntityPrehistoricFloraFishBas
 		enablePersistence();
 	}
 
+	public static String getPeriod() {return "Silurian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public boolean dropsEggs() {
 		return true;

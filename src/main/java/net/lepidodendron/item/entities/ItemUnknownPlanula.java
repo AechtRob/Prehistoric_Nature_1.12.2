@@ -13,7 +13,6 @@ import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.*;
@@ -94,27 +93,23 @@ public class ItemUnknownPlanula extends ElementsLepidodendronMod.ModElement {
 	                }
 
 	                IBlockState iblockstate = worldIn.getBlockState(blockpos);
-	
-	                if (iblockstate.getMaterial() == Material.WATER )
-	                {
-						if (!(worldIn.isRemote)) {
-							Entity entity = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(getEggClassfromNBT(itemstack)), blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5);
-							if (entity != null) {
-								if (entity instanceof EntityPrehistoricFloraAgeableBase) {
-									EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) entity;
-									ee.setAgeTicks(0);
-								}
-							}
-							if (!playerIn.capabilities.isCreativeMode)
-							{
-								itemstack.shrink(1);
-							}
 
-							playerIn.addStat(StatList.getObjectUseStats(this));
-							worldIn.playSound(playerIn, blockpos, SoundEvents.ENTITY_BOBBER_SPLASH, SoundCategory.BLOCKS, 1.0F, 1.0F);
-							return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+					if (iblockstate.getMaterial() == Material.WATER) {
+						String nbtStr = "";
+						Entity entity = EntityList.createEntityByIDFromName(EntityList.getKey(getEggClassfromNBT(itemstack)), worldIn);
+						if (entity instanceof EntityPrehistoricFloraAgeableBase) {
+							nbtStr = "{AgeTicks:0}";
 						}
-	                }
+						if (!(worldIn.isRemote)) {
+							EntityPrehistoricFloraAgeableBase.summon(worldIn, EntityList.getKey(getEggClassfromNBT(itemstack)).toString(), nbtStr, blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5);
+						}
+						if (!playerIn.capabilities.isCreativeMode) {
+							itemstack.shrink(1);
+						}
+						playerIn.addStat(StatList.getObjectUseStats(this));
+						worldIn.playSound(playerIn, blockpos, SoundEvents.ENTITY_BOBBER_SPLASH, SoundCategory.BLOCKS, 1.0F, 1.0F);
+						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+					}
 	            }
 	
 	            return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);

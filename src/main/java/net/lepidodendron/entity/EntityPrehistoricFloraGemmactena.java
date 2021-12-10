@@ -38,6 +38,10 @@ public class EntityPrehistoricFloraGemmactena extends EntityPrehistoricFloraJell
         enablePersistence();
     }
 
+    public static String getPeriod() {return "Cambrian";}
+
+    public static String getHabitat() {return "Aquatic";}
+
     @Override
     public boolean dropsEggs() {
         return true;

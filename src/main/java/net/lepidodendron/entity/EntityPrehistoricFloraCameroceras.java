@@ -43,6 +43,10 @@ public class EntityPrehistoricFloraCameroceras extends EntityPrehistoricFloraNau
 		maxHealthAgeable = 32;
 	}
 
+	public static String getPeriod() {return "Ordovician - Silurian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;

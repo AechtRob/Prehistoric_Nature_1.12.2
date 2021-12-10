@@ -11,7 +11,7 @@
       "item": "minecraft:water_bucket"
     },
     "1": {
-      "item": "lepidodendron:leclerqia_spores"
+      "item": "lepidodendron:leclercqia_spores"
     },
     "2": {
       "type": "forge:ore_dict",
@@ -19,7 +19,7 @@
     }
   },
   "result": {
-    "item": "lepidodendron:leclerqia",
+    "item": "lepidodendron:leclercqia",
     "count": 1
   }
 }

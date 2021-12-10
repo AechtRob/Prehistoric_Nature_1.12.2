@@ -42,6 +42,10 @@ public class EntityPrehistoricFloraAmmonite_Parapuzosia extends EntityPrehistori
 		maxHealthAgeable = 10;
 	}
 
+	public static String getPeriod() {return "Cretaceous";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;

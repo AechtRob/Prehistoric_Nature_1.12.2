@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "normal": [
+      {"model": "lepidodendron:lesleya"}
+    ],
+    
+    "inventory": {
+      "model": "lepidodendron:lesleya_inventory"
+    }
+  }
+}

@@ -5,6 +5,9 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.util.EnumBiomeTypeDevonian;
+import net.lepidodendron.world.biome.devonian.BiomeDevonian;
+import net.lepidodendron.world.biome.devonian.BiomeDevonianSprings;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -100,8 +103,17 @@ public class BlockProtolepidodendropsis extends ElementsLepidodendronMod.ModElem
 		}
 		if (matchBiome(biome, LepidodendronConfig.genProtolepidodendropsisOverrideBiomes))
 			biomeCriteria = true;
-		if (LepidodendronConfig.dimDevonian == dimID)
-			biomeCriteria = true;
+		if (LepidodendronConfig.dimDevonian == dimID) {
+			if (biome instanceof BiomeDevonian) {
+				BiomeDevonian biomeDevonian = (BiomeDevonian) biome;
+				if (biomeDevonian.getBiomeType() == EnumBiomeTypeDevonian.Springs) {
+					biomeCriteria = false;
+				}
+				else {
+					biomeCriteria = true;
+				}
+			}
+		}
 		if (!biomeCriteria)
 			return;
 
@@ -137,7 +149,7 @@ public class BlockProtolepidodendropsis extends ElementsLepidodendronMod.ModElem
 				public boolean generate(World world, Random random, BlockPos pos) {
 					for (int i = 0; i < 10; ++i) {
 						BlockPos blockpos1 = pos.add(random.nextInt(4) - random.nextInt(4), 0, random.nextInt(4) - random.nextInt(4));
-						if (world.isAirBlock(blockpos1) && world.isAirBlock(blockpos1.up()) && world.isAirBlock(blockpos1.up(2)) && blockpos1.getY() >= minH && (blockpos1.getY() <= maxH || maxH == 0) ) {
+						if (world.isAirBlock(blockpos1) && world.isAirBlock(blockpos1.up()) && world.isAirBlock(blockpos1.up(2)) && blockpos1.getY() >= minH && (blockpos1.getY() <= maxH || maxH == 0)  && world.getBiome(blockpos1) != BiomeDevonianSprings.biome) {
 							if (BlockSapling.block.canPlaceBlockAt(world, blockpos1)) {
 								//Place plant(s)
 								world.setBlockState(blockpos1, block.getDefaultState(), 2);

@@ -42,6 +42,10 @@ public class EntityPrehistoricFloraTrigonotarbid_Palaeocharinus extends EntityPr
 		enablePersistence();
 	}
 
+	public static String getPeriod() {return "Devonian";}
+
+	public static String getHabitat() {return "Terrestrial";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;

@@ -40,6 +40,10 @@ public class EntityPrehistoricFloraAcanthodes extends EntityPrehistoricFloraFish
 		enablePersistence();
 	}
 
+	public static String getPeriod() {return "Devonian - Carboniferous - Permian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public boolean dropsEggs() {
 		return true;

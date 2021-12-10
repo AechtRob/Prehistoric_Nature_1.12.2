@@ -204,7 +204,7 @@ public class ModelTrigonotarbid extends AdvancedModelBase {
 
         //this.body.rotateAngleY = f3 / (180F / (float) Math.PI);
         EntityPrehistoricFloraInsectClimbingBase ee = (EntityPrehistoricFloraInsectClimbingBase) e;
-        if (f3 == 0.0F && !ee.getClimbing()) {
+        if ((f3 == 0.0F || !ee.getIsMoving()) && !ee.getClimbing()) {
             return;
         }
 

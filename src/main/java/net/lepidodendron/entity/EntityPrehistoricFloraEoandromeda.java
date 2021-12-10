@@ -44,6 +44,10 @@ public class EntityPrehistoricFloraEoandromeda extends EntityPrehistoricFloraJel
         enablePersistence();
     }
 
+    public static String getPeriod() {return "Ediacaran";}
+
+    public static String getHabitat() {return "Aquatic";}
+
     @Override
     public boolean dropsEggs() {
         return false;

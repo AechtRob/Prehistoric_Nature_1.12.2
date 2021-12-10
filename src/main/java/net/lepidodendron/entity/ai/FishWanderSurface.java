@@ -111,7 +111,9 @@ public class FishWanderSurface extends AnimationAINoAnimation<EntityPrehistoricF
                 }
 
                 if (this.PrehistoricFloraFishBase.world.getBlockState(randPos).getMaterial() == Material.WATER && this.PrehistoricFloraFishBase.isDirectPathBetweenPoints(this.PrehistoricFloraFishBase.getPositionVector(), new Vec3d(randPos.getX() + 0.5, randPos.getY() + 0.5, randPos.getZ() + 0.5))) {
-                    return randPos;
+                    if (!(randPos.getY() < 1 || randPos.getY() >= 254)) {
+                        return randPos;
+                    }
                 }
             }
         } else {

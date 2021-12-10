@@ -35,7 +35,7 @@ public class ProcedureKomlopterisStrobilusNeighbourBlockChanges extends Elements
 		int y = (int) dependencies.get("y");
 		int z = (int) dependencies.get("z");
 		World world = (World) dependencies.get("world");
-		if (((!((world.getBlockState(new BlockPos((int) x, (int) (y - 1), (int) z))).getBlock() == BlockKomlopterisLeaves.block.getDefaultState()
+		if (((!((world.getBlockState(new BlockPos((int) x, (int) (y + 1), (int) z))).getBlock() == BlockKomlopterisLeaves.block.getDefaultState()
 				.getBlock())) && ((new Object() {
 					public boolean getValue(BlockPos pos, String tag) {
 						TileEntity tileEntity = world.getTileEntity(pos);

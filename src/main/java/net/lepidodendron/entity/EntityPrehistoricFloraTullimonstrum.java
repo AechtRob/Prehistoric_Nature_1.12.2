@@ -49,7 +49,15 @@ public class EntityPrehistoricFloraTullimonstrum extends EntityPrehistoricFloraF
 		this.isImmuneToFire = false;
 		setNoAI(!true);
 		enablePersistence();
-		FEED_ANIMATION = Animation.create(120);
+		FEED_ANIMATION = Animation.create(getFeedLength());
+	}
+
+	public static String getPeriod() {return "late Carboniferous";}
+
+	public static String getHabitat() {return "Aquatic";}
+
+	public int getFeedLength() {
+		return 120;
 	}
 
 	@Override
@@ -286,9 +294,9 @@ public class EntityPrehistoricFloraTullimonstrum extends EntityPrehistoricFloraF
 			}
 			this.setHealth(Math.min(this.getHealth() + itemHealth, (float) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue()));
 			stack.shrink(1);
-			if (this.getAnimation() == FEED_ANIMATION && !world.isRemote) {
+			if (!world.isRemote) {
 				//this.setAnimation(ATTACK_ANIMATION);
-				this.setAnimation(FEED_ANIMATION);
+				//this.setAnimation(FEED_ANIMATION);
 				SoundEvent soundevent = SoundEvents.ENTITY_GENERIC_EAT;
 				this.getEntityWorld().playSound(null, this.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
 			}

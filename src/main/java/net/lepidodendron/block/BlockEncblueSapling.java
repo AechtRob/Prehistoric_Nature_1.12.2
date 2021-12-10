@@ -134,7 +134,6 @@ public class BlockEncblueSapling extends ElementsLepidodendronMod.ModElement {
 			Block block2 = worldIn.getBlockState(pos.down()).getBlock();
 			return ((worldIn.getBlockState(pos.down())).getMaterial() == Material.SAND || block2.canSustainPlant(worldIn.getBlockState(pos.down()), worldIn, pos.down(), EnumFacing.UP, this));
 	    }
-		
 
 		public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
 		{
@@ -168,7 +167,8 @@ public class BlockEncblueSapling extends ElementsLepidodendronMod.ModElement {
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Cycad");
-				tooltip.add("Periods: Neogene - Quaternary [but similar to Jurassic - Cretaceous - Paleogene]");
+				tooltip.add("Periods: [Cretaceous - Paleogene -] Neogene - Quaternary");
+				tooltip.add("Note: Based on Encephalartos cycads");
 				tooltip.add("Propagation: fruit/cone");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }

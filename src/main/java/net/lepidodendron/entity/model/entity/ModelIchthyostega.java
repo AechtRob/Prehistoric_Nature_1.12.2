@@ -205,7 +205,7 @@ public class ModelIchthyostega extends AdvancedModelBase {
             this.leftarm2.rotateAngleY = (float) Math.toRadians(90);
             this.rightarm2.rotateAngleY = (float) Math.toRadians(-90);
 
-            if (f3 == 0.0F) {
+            if (f3 == 0.0F || !Ichthyostega.getIsMoving()) {
                 return;
             }
 

@@ -6,7 +6,7 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
-import net.lepidodendron.world.WorldGenPrototaxites;
+import net.lepidodendron.world.gen.WorldGenPrototaxites;
 import net.minecraft.block.Block;
 import net.minecraft.block.IGrowable;
 import net.minecraft.block.SoundType;
@@ -324,6 +324,7 @@ public class BlockPrototaxites extends ElementsLepidodendronMod.ModElement {
 	    	
 	    	if ((worldIn.getBlockState(pos.down()).getMaterial() != Material.SAND)
     			&& (worldIn.getBlockState(pos.down()).getBlock() != Blocks.MYCELIUM)
+				&& (worldIn.getBlockState(pos.down()).getMaterial() != Material.ROCK)
 	    		&& (worldIn.getBlockState(pos.down()).getMaterial() != Material.GROUND))
 	    	{
 	    		return false;
@@ -339,7 +340,7 @@ public class BlockPrototaxites extends ElementsLepidodendronMod.ModElement {
 	        if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Proto-plant / fungus");
 	        tooltip.add("Periods: mid Ordovician - Silurian - late Devonian");
-	        tooltip.add("Note: requires water proximity and spreads to surrounding mycelium, sand and dirt, eventually putting up fruiting bodies.");
+	        tooltip.add("Note: requires water proximity and spreads to surrounding mycelium, sand, rock and dirt, eventually putting up fruiting bodies.");
 	        tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }

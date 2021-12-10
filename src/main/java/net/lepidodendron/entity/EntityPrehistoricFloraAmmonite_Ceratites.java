@@ -43,6 +43,10 @@ public class EntityPrehistoricFloraAmmonite_Ceratites extends EntityPrehistoricF
 		maxHealthAgeable = 4;
 	}
 
+	public static String getPeriod() {return "Triassic";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;

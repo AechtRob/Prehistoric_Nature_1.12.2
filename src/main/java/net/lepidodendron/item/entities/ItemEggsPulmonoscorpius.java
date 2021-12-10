@@ -6,16 +6,14 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraScorpion_Pulmonoscorpius;
-import net.lepidodendron.entity.base.EntityPrehistoricFloraScorpion;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
@@ -78,21 +76,20 @@ public class ItemEggsPulmonoscorpius extends ElementsLepidodendronMod.ModElement
 
 						blockpos = blockpos.offset(raytraceresult.sideHit);
 
-						Entity entity = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraScorpion_Pulmonoscorpius.class), blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5);
-						if (entity != null) {
-							EntityPrehistoricFloraScorpion ee = (EntityPrehistoricFloraScorpion) entity;
-							ee.setAgeTicks(1);
-							ee.setIsBaby(true);
-							if (Math.random() >= 0.8) {
-								ee.setBabies(true);
-							}
-							if (!playerIn.capabilities.isCreativeMode) {
-								itemstack.shrink(1);
-							}
-							playerIn.addStat(StatList.getObjectUseStats(this));
-							worldIn.playSound(playerIn, blockpos, SoundEvents.BLOCK_SLIME_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
-							return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+						String nbtStr = "{AgeTicks:0,IsBaby:true,Babies:false}";
+						if (Math.random() >= 0.8) {
+							nbtStr = "{AgeTicks:0,IsBaby:true,Babies:true}";
 						}
+						if (worldIn.isRemote) {
+							EntityPrehistoricFloraAgeableBase.summon(worldIn, EntityList.getKey(EntityPrehistoricFloraScorpion_Pulmonoscorpius.class).toString(), nbtStr, blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5);
+						}
+
+						if (!playerIn.capabilities.isCreativeMode) {
+							itemstack.shrink(1);
+						}
+						playerIn.addStat(StatList.getObjectUseStats(this));
+						worldIn.playSound(playerIn, blockpos, SoundEvents.BLOCK_SLIME_BREAK, SoundCategory.BLOCKS, 1.0F, 1.0F);
+						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
 					}
 				}
 			}

@@ -28,6 +28,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -79,6 +80,15 @@ public class BlockPrehistoricGroundSandRed extends ElementsLepidodendronMod.ModE
 	    }
 
 		@Override
+		public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
+
+			net.minecraftforge.common.EnumPlantType plantType = plantable.getPlantType(world, pos.offset(direction));
+			if (canSustainPlantType(world, pos, plantType)) {
+				return true;
+			}
+			return super.canSustainPlant(state, world, pos, direction, plantable);
+		}
+
 		public boolean canSustainPlantType(IBlockAccess world, BlockPos pos, EnumPlantType plantType)
 		{
 
@@ -103,12 +113,6 @@ public class BlockPrehistoricGroundSandRed extends ElementsLepidodendronMod.ModE
 			}
 			// don't support nether plants, water plants, or crops (require farmland), or anything else by default
 			return false;
-		}
-
-		@Override
-		public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
-		{
-			return this.canSustainPlantType(world, pos, plantable.getPlantType(world, pos.offset(direction)));
 		}
 
 	    @Override

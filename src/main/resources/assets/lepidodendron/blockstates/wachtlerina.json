@@ -1,0 +1,11 @@
+{
+  "variants": {
+    "normal": [
+      {"model": "lepidodendron:wachtlerina"}
+    ],
+    
+    "inventory": {
+      "model": "lepidodendron:wachtlerina_inventory"
+    }
+  }
+}

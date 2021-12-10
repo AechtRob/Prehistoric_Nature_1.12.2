@@ -212,6 +212,8 @@ public class ModelBothriolepis extends AdvancedModelBase {
             this.swing(Leftpelvicfin, (float) (speed * 0.75), 0.12F, true, 0, 0, f2, 1);
             this.walk(Rightpelvicfin, (float) (speed * 0.75), 0.12F, true, 0, 0, f2, 1);
             this.swing(Rightpelvicfin, (float) (speed * 0.75), 0.12F, true, 0, 0, f2, 1);
+
+
             if (!e.isInWater()) {
                 //this.Bodyfront.rotateAngleZ = (float) Math.toRadians(90);
                 this.Body.offsetY = 0.95F;

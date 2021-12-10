@@ -64,6 +64,16 @@ public class BlockSandRedWavy extends ElementsLepidodendronMod.ModElement {
 			return MapColor.SAND;
 		}
 
+		@Override
+		public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
+
+			net.minecraftforge.common.EnumPlantType plantType = plantable.getPlantType(world, pos.offset(direction));
+			if (canSustainPlantType(world, pos, plantType)) {
+				return true;
+			}
+			return super.canSustainPlant(state, world, pos, direction, plantable);
+		}
+
 		public boolean canSustainPlantType(IBlockAccess world, BlockPos pos, EnumPlantType plantType)
 		{
 			// support desert, plains and cave plants
@@ -98,12 +108,6 @@ public class BlockSandRedWavy extends ElementsLepidodendronMod.ModElement {
 		@Override
 		public ItemStack getSilkTouchDrop(IBlockState state)  {
 			return new ItemStack(BlockSandRedWavy.block, (int) (1), 0);
-		}
-
-		@Override
-		public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable)
-		{
-			return this.canSustainPlantType(world, pos, plantable.getPlantType(world, pos.offset(direction)));
 		}
 	    
 	}

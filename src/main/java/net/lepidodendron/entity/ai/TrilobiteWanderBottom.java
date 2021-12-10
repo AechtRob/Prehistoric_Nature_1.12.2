@@ -99,7 +99,9 @@ public class TrilobiteWanderBottom extends AnimationAINoAnimation<EntityPrehisto
 
                 //System.err.println("Target " + randPos.getX() + " " + randPos.getY() + " " + randPos.getZ());
                 if (this.PrehistoricFloraTrilobiteBase.world.getBlockState(randPos).getMaterial() == Material.WATER) {
-                    return randPos;
+                    if (!(randPos.getY() < 1 || randPos.getY() >= 254)) {
+                        return randPos;
+                    }
                 }
             }
         } else {

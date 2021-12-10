@@ -51,6 +51,10 @@ public class EntityPrehistoricFloraHallucigenia extends EntityPrehistoricFloraTr
 		LOOK_ANIMATION = Animation.create(170);
 	}
 
+	public static String getPeriod() {return "Cambrian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public void playLivingSound() {
 	}

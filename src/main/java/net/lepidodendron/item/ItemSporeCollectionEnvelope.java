@@ -451,6 +451,41 @@ public class ItemSporeCollectionEnvelope extends ElementsLepidodendronMod.ModEle
 					spores = new ItemStack(ItemSkaaripterisSpores.block, (int) (1));
 					collected = true;
 				}
+				if (blockTarget == BlockScolecopteris.block) {
+					spores = new ItemStack(ItemScolecopterisSpores.block, (int) (1));
+					collected = true;
+				}
+				if (blockTarget == BlockArthropitysLeaves.block) {
+					spores = new ItemStack(ItemArthropitysSpores.block, (int) (1));
+					collected = true;
+				}
+				if (blockTarget == BlockDictyophyllum.block) {
+					spores = new ItemStack(ItemDictyophyllumSpores.block, (int) (1));
+					collected = true;
+				}
+				if (blockTarget == BlockToditesShootPlaceable.block
+						|| blockTarget == BlockToditesShoot.block) {
+					spores = new ItemStack(ItemToditesSpores.block, (int) (1));
+					collected = true;
+				}
+				if (blockTarget == BlockCladophlebis.block) {
+					spores = new ItemStack(ItemCladophlebisSpores.block, (int) (1));
+					collected = true;
+				}
+				if (blockTarget == BlockClathropteris.block) {
+					spores = new ItemStack(ItemClathropterisSpores.block, (int) (1));
+					collected = true;
+				}
+				if (blockTarget == BlockConiopteris.block) {
+					spores = new ItemStack(ItemConiopterisSpores.block, (int) (1));
+					collected = true;
+				}
+				if (blockTarget == BlockXihuphyllum.block
+					|| blockTarget == BlockXihuphyllum2.block
+					|| blockTarget == BlockXihuphyllum3.block) {
+					spores = new ItemStack(ItemXihuphyllumSpores.block, (int) (1));
+					collected = true;
+				}
 
 				if (collected) {
 					stack.shrink(1);

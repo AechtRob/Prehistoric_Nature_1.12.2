@@ -5,7 +5,11 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronStatic;
-import net.lepidodendron.world.AlgaeGenerator;
+import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
+import net.lepidodendron.util.EnumBiomeTypeDevonian;
+import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
+import net.lepidodendron.world.biome.devonian.BiomeDevonian;
+import net.lepidodendron.world.gen.AlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
@@ -89,21 +93,31 @@ public class BlockYellowSponge extends ElementsLepidodendronMod.ModElement {
 			biomeCriteria = true;
 		if ((dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCambrian)
-				|| (dimID == LepidodendronConfig.dimDevonian)
-				|| (dimID == LepidodendronConfig.dimCarboniferous)
 				
 		) {
 			biomeCriteria = true;
 		}
 		if (dimID == LepidodendronConfig.dimPrecambrian){
 			biomeCriteria = false;
+		}if (biome instanceof BiomeCarboniferous)
+		{
+			BiomeCarboniferous biomeCarb = (BiomeCarboniferous) biome;
+			if (biomeCarb.getBiomeType() == EnumBiomeTypeCarboniferous.Ocean) {
+				biomeCriteria = true;
+			}
+		}
+		if (biome instanceof BiomeDevonian)
+		{
+			BiomeDevonian biomeDev = (BiomeDevonian) biome;
+			if (biomeDev.getBiomeType() == EnumBiomeTypeDevonian.Ocean) {
+				biomeCriteria = true;
+			}
 		}
 		if (!biomeCriteria)
 			return;
 
 		int multiplier = 1;
-		if ((dimID == LepidodendronConfig.dimDevonian)
-				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
+		if ((dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
 		) {
 			multiplier = 2;

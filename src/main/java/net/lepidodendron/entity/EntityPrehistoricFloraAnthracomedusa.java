@@ -41,6 +41,10 @@ public class EntityPrehistoricFloraAnthracomedusa extends EntityPrehistoricFlora
         enablePersistence();
     }
 
+    public static String getPeriod() {return "Carboniferous";}
+
+    public static String getHabitat() {return "Aquatic";}
+
     @Override
     public boolean dropsEggs() {
         return true;

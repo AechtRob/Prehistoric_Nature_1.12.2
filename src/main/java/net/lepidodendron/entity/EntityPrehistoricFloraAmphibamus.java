@@ -42,7 +42,6 @@ public class EntityPrehistoricFloraAmphibamus extends EntityPrehistoricFloraSwim
 	@SideOnly(Side.CLIENT)
 	public ChainBuffer chainBuffer;
 	private int isBlinking;
-	//public static final SoundEvent LIMNOSCELIS_ROAR = create("limnoscelis_roar");
 
 	public EntityPrehistoricFloraAmphibamus(World world) {
 		super(world);
@@ -58,6 +57,10 @@ public class EntityPrehistoricFloraAmphibamus extends EntityPrehistoricFloraSwim
 		maxHeight = 0.35F;
 		maxHealthAgeable = 8.0D;
 	}
+
+	public static String getPeriod() {return "Carboniferous";}
+
+	public static String getHabitat() {return "Amphibious";}
 
 	@Override
 	public boolean dropsEggs() {
@@ -101,14 +104,14 @@ public class EntityPrehistoricFloraAmphibamus extends EntityPrehistoricFloraSwim
 
 	protected void initEntityAI() {
 		tasks.addTask(0, new AttackAI(this, 1.0D, false, this.getAttackLength()));
-		tasks.addTask(1, new AmphibianWander(this, NO_ANIMATION, 0.6));
+		tasks.addTask(1, new AmphibianWander(this, NO_ANIMATION, 0.6, 20));
 		tasks.addTask(2, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 		tasks.addTask(2, new EntityAIWatchClosest(this, EntityPrehistoricFloraFishBase.class, 8.0F));
 		tasks.addTask(2, new EntityAIWatchClosest(this, EntityPrehistoricFloraAgeableBase.class, 8.0F));
 		tasks.addTask(3, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatFishItemsAI(this));
 		this.targetTasks.addTask(0, new EatMeatItemsAI(this));
-		//this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+		//this.targetTasks.addTask(1, new EntityHurtByTargetSmallerThanMeAI(this, false));
 		//this.targetTasks.addTask(2, new HuntAI(this, EntityPlayer.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		//this.targetTasks.addTask(2, new HuntAI(this, EntityVillager.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(1, new HuntAI(this, EntityPrehistoricFloraFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
@@ -212,7 +215,7 @@ public class EntityPrehistoricFloraAmphibamus extends EntityPrehistoricFloraSwim
 		isBlinking ++;
 
 		//Lay eggs perhaps:
-		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getCanBreed() && LepidodendronConfig.doMultiplyMobs
+		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getCanBreed() && LepidodendronConfig.doMultiplyMobs && this.getTicks() > 0
 				&& (BlockAmphibianSpawnAmphibamus.block.canPlaceBlockOnSide(world, this.getPosition(), EnumFacing.UP)
 				|| BlockAmphibianSpawnAmphibamus.block.canPlaceBlockOnSide(world, this.getPosition().down(), EnumFacing.UP))
 				&& (BlockAmphibianSpawnAmphibamus.block.canPlaceBlockAt(world, this.getPosition())
@@ -225,14 +228,15 @@ public class EntityPrehistoricFloraAmphibamus extends EntityPrehistoricFloraSwim
 		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getTicks() > -30 && this.getTicks() < 0 && LepidodendronConfig.doMultiplyMobs) {
 			//Is stationary for egg-laying:
 			IBlockState eggs = BlockAmphibianSpawnAmphibamus.block.getDefaultState();
-			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 			if (BlockAmphibianSpawnAmphibamus.block.canPlaceBlockOnSide(world, this.getPosition(), EnumFacing.UP) && BlockAmphibianSpawnAmphibamus.block.canPlaceBlockAt(world, this.getPosition())) {
 				world.setBlockState(this.getPosition(), eggs);
+				this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 			}
 			if (BlockAmphibianSpawnAmphibamus.block.canPlaceBlockOnSide(world, this.getPosition().down(), EnumFacing.UP) && BlockAmphibianSpawnAmphibamus.block.canPlaceBlockAt(world, this.getPosition().down())) {
 				world.setBlockState(this.getPosition().down(), eggs);
+				this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 			}
-			this.setTicks(-20);
+			this.setTicks(0);
 		}
 	}
 

@@ -35,6 +35,10 @@ public class EntityPrehistoricFloraPalaeodictyoptera_Lycocercus extends EntityPr
 		enablePersistence();
 	}
 
+	public static String getPeriod() {return "late Carboniferous";}
+
+	public static String getHabitat() {return "Terrestrial";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;
@@ -134,7 +138,7 @@ public class EntityPrehistoricFloraPalaeodictyoptera_Lycocercus extends EntityPr
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		return LepidodendronMod.PALAEODICTYOPTERA_LOOT;
+		return LepidodendronMod.PALAEODICTYOPTERA_LYCOCERCUS_LOOT;
 	}
 
 }

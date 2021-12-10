@@ -7,6 +7,8 @@ import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.item.ItemEremopterisSeeds;
+import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
+import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockReed;
 import net.minecraft.block.SoundType;
@@ -99,7 +101,16 @@ public class BlockEremopteris extends ElementsLepidodendronMod.ModElement {
 			biomeCriteria = true;
 		if (LepidodendronConfig.dimCarboniferous == dimID)
 			biomeCriteria = true;
-			
+
+
+		if (biome instanceof BiomeCarboniferous) {
+			BiomeCarboniferous biomePermian = (BiomeCarboniferous) biome;
+			if (biomePermian.getBiomeType() == EnumBiomeTypeCarboniferous.Ice
+					|| biomePermian.getBiomeType() == EnumBiomeTypeCarboniferous.Ocean) {
+				biomeCriteria = false;
+			}
+		}
+
 		if (!biomeCriteria)
 			return;
 			

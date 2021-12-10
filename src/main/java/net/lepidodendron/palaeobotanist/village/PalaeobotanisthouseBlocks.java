@@ -38,7 +38,7 @@ public class PalaeobotanisthouseBlocks implements ITemplateProcessor {
         if (blockInfoIn.blockState.getBlock() instanceof BlockChest) {
             Random rand = new Random(worldIn.getSeed() + pos.toLong());
             NBTTagCompound tag = blockInfoIn.tileentityData == null ? new NBTTagCompound() : blockInfoIn.tileentityData;
-            tag.setString("LootTable", "palaeobotanist_chest");
+            tag.setString("LootTable", "lepidodendron:palaeobotanist_chest");
             tag.setLong("LootTableSeed", rand.nextLong());
             Template.BlockInfo newInfo = new Template.BlockInfo(pos, blockInfoIn.blockState, tag);
             return newInfo;

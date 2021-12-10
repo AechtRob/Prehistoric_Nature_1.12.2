@@ -26,7 +26,7 @@ public class ProcedureSpawnAnkyropteris extends ElementsLepidodendronMod.ModElem
 				dimensionCriteria = true;
 			if (!TreeChosen && !LepidodendronConfig.genAllPlants)
 				dimensionCriteria = false;
-			if (dimID == LepidodendronConfig.dimCarboniferous)
+			if (dimID == LepidodendronConfig.dimCarboniferous || dimID == LepidodendronConfig.dimPermian)
 				dimensionCriteria = true;
 			if (dimensionCriteria && !SaplingSpawn) {
 				Biome biome = world.getBiome(new BlockPos(x, y, z));
@@ -45,7 +45,7 @@ public class ProcedureSpawnAnkyropteris extends ElementsLepidodendronMod.ModElem
 				if (matchBiome(biome, LepidodendronConfig.genAnkyropterisOverrideBiomes))
 					biomeCriteria = true;
 				}
-				if (dimID == LepidodendronConfig.dimCarboniferous)
+				if (dimID == LepidodendronConfig.dimCarboniferous || dimID == LepidodendronConfig.dimPermian)
 					biomeCriteria = true;
 				if (biomeCriteria && !SaplingSpawn) {
 					//Try one spot at the foot of the tree:

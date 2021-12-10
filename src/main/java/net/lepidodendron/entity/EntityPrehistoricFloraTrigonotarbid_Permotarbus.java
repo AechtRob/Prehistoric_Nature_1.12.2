@@ -42,6 +42,10 @@ public class EntityPrehistoricFloraTrigonotarbid_Permotarbus extends EntityPrehi
 		enablePersistence();
 	}
 
+	public static String getPeriod() {return "Permian";}
+
+	public static String getHabitat() {return "Terrestrial";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;

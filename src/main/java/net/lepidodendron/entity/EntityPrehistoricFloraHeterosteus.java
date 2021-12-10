@@ -55,6 +55,10 @@ public class EntityPrehistoricFloraHeterosteus extends EntityPrehistoricFloraAge
 		maxHealthAgeable = 36.0D;
 	}
 
+	public static String getPeriod() {return "Devonian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public void playLivingSound() {
 	}

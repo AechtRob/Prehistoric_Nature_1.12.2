@@ -105,7 +105,7 @@ public class ModelPalaeodictyopteraNymph extends AdvancedModelBase {
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         //setRotationAngles(f, f1, f2, f3, f4, f5, entity);
 
-        this.body.render(f5 * 0.18F);
+        this.body.render(f5 * 0.295F);
 
     }
 
@@ -119,7 +119,7 @@ public class ModelPalaeodictyopteraNymph extends AdvancedModelBase {
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
         this.resetToDefaultPose();
-        this.body.offsetY = 1.2F;
+        this.body.offsetY = 0.95F;
 
         //this.Tailfin.setScale(1.1F, 1.1F, 1.1F);
         AdvancedModelRenderer[] body2 = {this.body3, this.body4, this.body5};
@@ -161,12 +161,12 @@ public class ModelPalaeodictyopteraNymph extends AdvancedModelBase {
 
             //this.swing(body, speed, 0.3F, true, 0, 0, f2, 1);
             if (!isAtBottom) {
-                this.bob(body, -speed, 1.5F, false, f2, 2);
+                this.bob(body, -speed, 0.7F, false, f2, 2);
                  }
             if (!e.isInWater()) {
                 //this.Bodyfront.rotateAngleZ = (float) Math.toRadians(90);
                 this.body.offsetY = 1.0F;
-                this.bob(body, -speed, 2F, false, f2, 1);
+                this.bob(body, -speed, 1F, false, f2, 1);
                 this.chainWave(body2, speed, tailHdegree, -3, f2, 1);
                 this.chainSwing(body2, speed, tailVdegree, -3, f2, 1);
             }

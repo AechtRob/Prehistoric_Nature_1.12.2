@@ -5,7 +5,9 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
-import net.lepidodendron.world.AlgaeGenerator;
+import net.lepidodendron.world.biome.ordoviciansilurian.BiomeOrdovicianSilurianSeaIce;
+import net.lepidodendron.world.biome.ordoviciansilurian.BiomeOrdovicianSilurianSeaIcebergs;
+import net.lepidodendron.world.gen.AlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
@@ -97,6 +99,8 @@ public class BlockGreenLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 		if ((dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
+				|| (dimID == LepidodendronConfig.dimPermian)
+				|| (dimID == LepidodendronConfig.dimTriassic)
 				 ) {
 			biomeCriteria = true;
 		}
@@ -106,6 +110,7 @@ public class BlockGreenLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 		int multiplier = 1;
 		if ((dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
+				|| (dimID == LepidodendronConfig.dimPermian)
 		) {
 			multiplier = 2;
 		}
@@ -113,6 +118,11 @@ public class BlockGreenLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 		{
 			multiplier = 5;
 		}
+
+		if (biome == BiomeOrdovicianSilurianSeaIce.biome
+				|| biome == BiomeOrdovicianSilurianSeaIcebergs.biome
+		)
+			multiplier = 24;
 
 		for (int i = 0; i < (int) 10 * multiplier; i++) {
 			int l6 = chunkX + random.nextInt(16) + 8;

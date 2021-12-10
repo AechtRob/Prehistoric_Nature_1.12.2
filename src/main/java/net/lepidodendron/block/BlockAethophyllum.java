@@ -6,6 +6,8 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.lepidodendron.world.biome.triassic.BiomeTriassicWarmLakeland;
+import net.lepidodendron.world.biome.triassic.BiomeTriassicXericScrubland;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockReed;
 import net.minecraft.block.SoundType;
@@ -67,6 +69,10 @@ public class BlockAethophyllum extends ElementsLepidodendronMod.ModElement {
 			dimensionCriteria = true;
 		if (!LepidodendronConfig.genAethophyllum && !LepidodendronConfig.genAllPlants)
 			dimensionCriteria = false;
+		if ((dimID == LepidodendronConfig.dimTriassic)
+		) {
+			dimensionCriteria = true;
+		}
 		if (!dimensionCriteria)
 			return;
 
@@ -89,6 +95,10 @@ public class BlockAethophyllum extends ElementsLepidodendronMod.ModElement {
 				biomeCriteria = false;
 		}
 		if (matchBiome(biome, LepidodendronConfig.genAethophyllumOverrideBiomes))
+			biomeCriteria = true;
+
+		if (biome == BiomeTriassicXericScrubland.biome
+			|| biome == BiomeTriassicWarmLakeland.biome)
 			biomeCriteria = true;
 			
 		if (!biomeCriteria)

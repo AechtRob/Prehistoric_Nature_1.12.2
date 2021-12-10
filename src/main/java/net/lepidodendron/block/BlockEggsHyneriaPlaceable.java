@@ -4,19 +4,17 @@ package net.lepidodendron.block;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
-import net.lepidodendron.entity.EntityPrehistoricFloraHyneria;
+import net.lepidodendron.entity.EntityPrehistoricFloraDracopristis;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -69,15 +67,10 @@ public class BlockEggsHyneriaPlaceable extends ElementsLepidodendronMod.ModEleme
 		{
 			super.updateTick(worldIn, pos, state, rand);
 
-			if (worldIn.getBlockState(pos).getBlock() == this && !(worldIn.isRemote)) {
-				//worldIn.destroyBlock(pos, false);
-				Entity entity1 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraHyneria.class), (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
-				EntityPrehistoricFloraAgeableBase ee1 = (EntityPrehistoricFloraAgeableBase) entity1;
-				ee1.setAgeTicks(1);
-				if (entity1 != null) {
-					worldIn.destroyBlock(pos, false);
-				}
+			if (!(worldIn.isRemote)) {
+				EntityPrehistoricFloraAgeableBase.summon(worldIn, EntityList.getKey(EntityPrehistoricFloraDracopristis.class).toString(), "{AgeTicks:0}", (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
 			}
+			worldIn.destroyBlock(pos, false);
 		}
 
 		@SideOnly(Side.CLIENT)

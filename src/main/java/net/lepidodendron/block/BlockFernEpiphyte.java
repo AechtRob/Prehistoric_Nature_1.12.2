@@ -6,7 +6,9 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
-import net.lepidodendron.world.FernEpiphyteGenerator;
+import net.lepidodendron.util.EnumBiomeTypePermian;
+import net.lepidodendron.world.biome.permian.BiomePermian;
+import net.lepidodendron.world.gen.FernEpiphyteGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
@@ -85,6 +87,14 @@ public class BlockFernEpiphyte extends ElementsLepidodendronMod.ModElement {
 			{
 				biomeCriteria = true;
 			}
+
+		if (biome instanceof BiomePermian)
+		{
+			BiomePermian biomePermian = (BiomePermian) biome;
+			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Wetlands) {
+				biomeCriteria = true;
+			}
+		}
 		if (!biomeCriteria)
 			return;
 

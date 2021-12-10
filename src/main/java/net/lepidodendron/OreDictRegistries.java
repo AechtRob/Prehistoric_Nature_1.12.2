@@ -284,6 +284,10 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("listAllSeed", ItemGinkgoSeed.block);
 		OreDictionary.registerOre("seed", ItemGinkgoSeed.block);
 		OreDictionary.registerOre("seeds", ItemGinkgoSeed.block);
+		OreDictionary.registerOre("listAllseed", ItemSphenobaieraSeed.block);
+		OreDictionary.registerOre("listAllSeed", ItemSphenobaieraSeed.block);
+		OreDictionary.registerOre("seed", ItemSphenobaieraSeed.block);
+		OreDictionary.registerOre("seeds", ItemSphenobaieraSeed.block);
 		OreDictionary.registerOre("listAllseed", ItemGlossopterisSeeds.block);
 		OreDictionary.registerOre("listAllSeed", ItemGlossopterisSeeds.block);
 		OreDictionary.registerOre("seed", ItemGlossopterisSeeds.block);
@@ -428,6 +432,10 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("listAllSeed", ItemSpinyCycadSeed.block);
 		OreDictionary.registerOre("seed", ItemSpinyCycadSeed.block);
 		OreDictionary.registerOre("seeds", ItemSpinyCycadSeed.block);
+		OreDictionary.registerOre("listAllseed", ItemStiffCycadSeed.block);
+		OreDictionary.registerOre("listAllSeed", ItemStiffCycadSeed.block);
+		OreDictionary.registerOre("seed", ItemStiffCycadSeed.block);
+		OreDictionary.registerOre("seeds", ItemStiffCycadSeed.block);
 		OreDictionary.registerOre("listAllseed", ItemTaxodiumSeed.block);
 		OreDictionary.registerOre("listAllSeed", ItemTaxodiumSeed.block);
 		OreDictionary.registerOre("seed", ItemTaxodiumSeed.block);
@@ -452,6 +460,10 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("listAllSeed", ItemWalchiaSeed.block);
 		OreDictionary.registerOre("seed", ItemWalchiaSeed.block);
 		OreDictionary.registerOre("seeds", ItemWalchiaSeed.block);
+		OreDictionary.registerOre("listAllseed", ItemTelemachusSeed.block);
+		OreDictionary.registerOre("listAllSeed", ItemTelemachusSeed.block);
+		OreDictionary.registerOre("seed", ItemTelemachusSeed.block);
+		OreDictionary.registerOre("seeds", ItemTelemachusSeed.block);
 		OreDictionary.registerOre("listAllseed", ItemWielandiellaSeeds.block);
 		OreDictionary.registerOre("listAllSeed", ItemWielandiellaSeeds.block);
 		OreDictionary.registerOre("seed", ItemWielandiellaSeeds.block);
@@ -464,10 +476,22 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("listAllSeed", ItemWollemiSeed.block);
 		OreDictionary.registerOre("seed", ItemWollemiSeed.block);
 		OreDictionary.registerOre("seeds", ItemWollemiSeed.block);
-		OreDictionary.registerOre("listAllseed", ItemZamitesSeeds.block);
-		OreDictionary.registerOre("listAllSeed", ItemZamitesSeeds.block);
-		OreDictionary.registerOre("seed", ItemZamitesSeeds.block);
-		OreDictionary.registerOre("seeds", ItemZamitesSeeds.block);
+		OreDictionary.registerOre("listAllseed", ItemPtilophyllumSeeds.block);
+		OreDictionary.registerOre("listAllSeed", ItemPtilophyllumSeeds.block);
+		OreDictionary.registerOre("seed", ItemPtilophyllumSeeds.block);
+		OreDictionary.registerOre("seeds", ItemPtilophyllumSeeds.block);
+		OreDictionary.registerOre("listAllseed", ItemPtilophyllumSeeds.block);
+		OreDictionary.registerOre("listAllSeed", ItemPtilophyllumSeeds.block);
+		OreDictionary.registerOre("seed", ItemPtilophyllumSeeds.block);
+		OreDictionary.registerOre("seeds", ItemPtilophyllumSeeds.block);
+		OreDictionary.registerOre("listAllseed", ItemAnomozamitesSeeds.block);
+		OreDictionary.registerOre("listAllSeed", ItemAnomozamitesSeeds.block);
+		OreDictionary.registerOre("seed", ItemAnomozamitesSeeds.block);
+		OreDictionary.registerOre("seeds", ItemAnomozamitesSeeds.block);
+		OreDictionary.registerOre("listAllseed", ItemOtozamitesSeeds.block);
+		OreDictionary.registerOre("listAllSeed", ItemOtozamitesSeeds.block);
+		OreDictionary.registerOre("seed", ItemOtozamitesSeeds.block);
+		OreDictionary.registerOre("seeds", ItemOtozamitesSeeds.block);
 		OreDictionary.registerOre("listAllseed", ItemEremopterisSeeds.block);
 		OreDictionary.registerOre("listAllSeed", ItemEremopterisSeeds.block);
 		OreDictionary.registerOre("seed", ItemEremopterisSeeds.block);
@@ -516,6 +540,58 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("listAllSeed", ItemMacroneuropterisSeeds.block);
 		OreDictionary.registerOre("seed", ItemMacroneuropterisSeeds.block);
 		OreDictionary.registerOre("seeds", ItemMacroneuropterisSeeds.block);
+		OreDictionary.registerOre("listAllseed", ItemPhasmatocycasSeed.block);
+		OreDictionary.registerOre("listAllSeed", ItemPhasmatocycasSeed.block);
+		OreDictionary.registerOre("seed", ItemPhasmatocycasSeed.block);
+		OreDictionary.registerOre("seeds", ItemPhasmatocycasSeed.block);
+		OreDictionary.registerOre("listAllseed", ItemLesleyaSeed.block);
+		OreDictionary.registerOre("listAllSeed", ItemLesleyaSeed.block);
+		OreDictionary.registerOre("seed", ItemLesleyaSeed.block);
+		OreDictionary.registerOre("seeds", ItemLesleyaSeed.block);
+		OreDictionary.registerOre("listAllseed", ItemDicroidiumFSeeds.block);
+		OreDictionary.registerOre("listAllSeed", ItemDicroidiumFSeeds.block);
+		OreDictionary.registerOre("seed", ItemDicroidiumFSeeds.block);
+		OreDictionary.registerOre("seeds", ItemDicroidiumFSeeds.block);
+		OreDictionary.registerOre("listAllseed", ItemWachtlerinaSeed.block);
+		OreDictionary.registerOre("listAllSeed", ItemWachtlerinaSeed.block);
+		OreDictionary.registerOre("seed", ItemWachtlerinaSeed.block);
+		OreDictionary.registerOre("seeds", ItemWachtlerinaSeed.block);
+		OreDictionary.registerOre("listAllseed", ItemThucydiaSeed.block);
+		OreDictionary.registerOre("listAllSeed", ItemThucydiaSeed.block);
+		OreDictionary.registerOre("seed", ItemThucydiaSeed.block);
+		OreDictionary.registerOre("seeds", ItemThucydiaSeed.block);
+		OreDictionary.registerOre("listAllseed", ItemOrtiseiaSeed.block);
+		OreDictionary.registerOre("listAllSeed", ItemOrtiseiaSeed.block);
+		OreDictionary.registerOre("seed", ItemOrtiseiaSeed.block);
+		OreDictionary.registerOre("seeds", ItemOrtiseiaSeed.block);
+		OreDictionary.registerOre("listAllseed", ItemTongchuanophyllumSeeds.block);
+		OreDictionary.registerOre("listAllSeed", ItemTongchuanophyllumSeeds.block);
+		OreDictionary.registerOre("seed", ItemTongchuanophyllumSeeds.block);
+		OreDictionary.registerOre("seeds", ItemTongchuanophyllumSeeds.block);
+		OreDictionary.registerOre("listAllseed", ItemBeechSeeds.block);
+		OreDictionary.registerOre("listAllSeed", ItemBeechSeeds.block);
+		OreDictionary.registerOre("seed", ItemBeechSeeds.block);
+		OreDictionary.registerOre("seeds", ItemBeechSeeds.block);
+		OreDictionary.registerOre("listAllseed", ItemPlaneSeeds.block);
+		OreDictionary.registerOre("listAllSeed", ItemPlaneSeeds.block);
+		OreDictionary.registerOre("seed", ItemPlaneSeeds.block);
+		OreDictionary.registerOre("seeds", ItemPlaneSeeds.block);
+		OreDictionary.registerOre("listAllseed", ItemSycamoreSeeds.block);
+		OreDictionary.registerOre("listAllSeed", ItemSycamoreSeeds.block);
+		OreDictionary.registerOre("seed", ItemSycamoreSeeds.block);
+		OreDictionary.registerOre("seeds", ItemSycamoreSeeds.block);
+		OreDictionary.registerOre("listAllseed", ItemPetriellalesSeeds.block);
+		OreDictionary.registerOre("listAllSeed", ItemPetriellalesSeeds.block);
+		OreDictionary.registerOre("seed", ItemPetriellalesSeeds.block);
+		OreDictionary.registerOre("seeds", ItemPetriellalesSeeds.block);
+		OreDictionary.registerOre("listAllseed", ItemFurculaSeeds.block);
+		OreDictionary.registerOre("listAllSeed", ItemFurculaSeeds.block);
+		OreDictionary.registerOre("seed", ItemFurculaSeeds.block);
+		OreDictionary.registerOre("seeds", ItemFurculaSeeds.block);
+		OreDictionary.registerOre("listAllseed", ItemSanmigueliaSeeds.block);
+		OreDictionary.registerOre("listAllSeed", ItemSanmigueliaSeeds.block);
+		OreDictionary.registerOre("seed", ItemSanmigueliaSeeds.block);
+		OreDictionary.registerOre("seeds", ItemSanmigueliaSeeds.block);
 
 		//Meat + fish:
 		OreDictionary.registerOre("listAllfishraw", Items.FISH);
@@ -642,6 +718,12 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("listAllfishraw", ItemOrthocerasRaw.block);
 		OreDictionary.registerOre("listAllmeatraw", ItemOrthocerasRaw.block);
 		OreDictionary.registerOre("foodMeat", ItemOrthocerasRaw.block);
+		OreDictionary.registerOre("listAllfishraw", ItemMooreocerasRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemMooreocerasRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemMooreocerasRaw.block);
+		OreDictionary.registerOre("listAllfishraw", ItemRayonnocerasRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemRayonnocerasRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemRayonnocerasRaw.block);
 		OreDictionary.registerOre("listAllfishraw", ItemAmmoniteRaw.block);
 		OreDictionary.registerOre("listAllmeatraw", ItemAmmoniteRaw.block);
 		OreDictionary.registerOre("foodMeat", ItemAmmoniteRaw.block);
@@ -1434,10 +1516,430 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("foodMeat", ItemHeterosteusCooked.block);
 		OreDictionary.registerOre("listAllmeatcooked", ItemHeterosteusCooked.block);
 
+		OreDictionary.registerOre("listAllfishraw", ItemAcrolepisRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemAcrolepisRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemAcrolepisRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemAcrolepisCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemAcrolepisCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemAcrolepisCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemAcrolepisCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemCoelacanthusRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemCoelacanthusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemCoelacanthusRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemCoelacanthusCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemCoelacanthusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemCoelacanthusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemCoelacanthusCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemHelicoprionRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemHelicoprionRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemHelicoprionRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemHelicoprionCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemHelicoprionCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemHelicoprionCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemHelicoprionCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemMoschopsRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemMoschopsRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemMoschopsCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemMoschopsCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemMoschopsCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemEryopsRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemEryopsRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemEryopsCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemEryopsCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemEryopsCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemCotylorhynchusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemCotylorhynchusRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemCotylorhynchusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemCotylorhynchusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemCotylorhynchusCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemOphiacodonRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemOphiacodonRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemOphiacodonCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemOphiacodonCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemOphiacodonCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemPederpesRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemPederpesRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemPederpesCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemPederpesCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemPederpesCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemDimetrodonRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemDimetrodonRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemDimetrodonCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemDimetrodonCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemDimetrodonCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemGorgonopsRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemGorgonopsRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemGorgonopsCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemGorgonopsCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemGorgonopsCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemInostranceviaRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemInostranceviaRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemInostranceviaCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemInostranceviaCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemInostranceviaCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemAcanthostegaRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemAcanthostegaRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemAcanthostegaCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemAcanthostegaCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemAcanthostegaCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemSphenacodonRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemSphenacodonRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemSphenacodonCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemSphenacodonCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemSphenacodonCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemPlatyhystrixRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemPlatyhystrixRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemPlatyhystrixCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemPlatyhystrixCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemPlatyhystrixCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemVivaxosaurusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemVivaxosaurusRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemVivaxosaurusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemVivaxosaurusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemVivaxosaurusCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemScutosaurusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemScutosaurusRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemScutosaurusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemScutosaurusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemScutosaurusCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemEstemmenosuchusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemEstemmenosuchusRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemEstemmenosuchusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemEstemmenosuchusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemEstemmenosuchusCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemDunkleosteusRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemDunkleosteusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemDunkleosteusRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemDunkleosteusCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemDunkleosteusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemDunkleosteusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemDunkleosteusCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemTraquairiusRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemTraquairiusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemTraquairiusRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemTraquairiusCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemTraquairiusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemTraquairiusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemTraquairiusCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemDiictodonRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemDiictodonRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemDiictodonRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemDiictodonCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemDiictodonCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemEosimopsRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemEosimopsRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemEosimopsRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemEosimopsCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemEosimopsCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemProsictodonRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemProsictodonRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemProsictodonCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemProsictodonCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemProsictodonCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemRobertiaRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemRobertiaRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemRobertiaCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemRobertiaCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemRobertiaCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemBushizheiaRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemBushizheiaRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemBushizheiaRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemBushizheiaCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemBushizheiaCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemBushizheiaCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemBushizheiaCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemPhantaspisRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemPhantaspisRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemPhantaspisRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemPhantaspisCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemPhantaspisCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemPhantaspisCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemPhantaspisCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemSidneyiaRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemSidneyiaRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemSidneyiaRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemSidneyiaCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemSidneyiaCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemSidneyiaCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemSidneyiaCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemPharyngolepisRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemPharyngolepisRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemPharyngolepisRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemPharyngolepisCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemPharyngolepisCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemPharyngolepisCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemPharyngolepisCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemPlatycaraspisRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemPlatycaraspisRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemPlatycaraspisRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemPlatycaraspisCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemPlatycaraspisCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemPlatycaraspisCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemPlatycaraspisCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemCrotalocephalusRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemCrotalocephalusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemCrotalocephalusRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemCrotalocephalusCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemCrotalocephalusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemCrotalocephalusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemCrotalocephalusCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemDalmanitesRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemDalmanitesRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemDalmanitesRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemDalmanitesCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemDalmanitesCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemDalmanitesCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemDalmanitesCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemDrepanaspisRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemDrepanaspisRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemDrepanaspisRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemDrepanaspisCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemDrepanaspisCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemDrepanaspisCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemDrepanaspisCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemEusthenopteronRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemEusthenopteronRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemEusthenopteronRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemEusthenopteronCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemEusthenopteronCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemEusthenopteronCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemEusthenopteronCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemLunaspisRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemLunaspisRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemLunaspisRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemLunaspisCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemLunaspisCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemLunaspisCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemLunaspisCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemLungmenshanaspisRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemLungmenshanaspisRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemLungmenshanaspisRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemLungmenshanaspisCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemLungmenshanaspisCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemLungmenshanaspisCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemLungmenshanaspisCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemPanderichthysRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemPanderichthysRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemPanderichthysRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemPanderichthysCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemPanderichthysCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemPanderichthysCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemPanderichthysCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemPlatylomaspisRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemPlatylomaspisRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemPlatylomaspisRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemPlatylomaspisCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemPlatylomaspisCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemPlatylomaspisCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemPlatylomaspisCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemBugRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemBugRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemBugCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemBugCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemBugCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemBandringaRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemBandringaRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemBandringaRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemBandringaCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemBandringaCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemBandringaCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemBandringaCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemGyracanthidesRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemGyracanthidesRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemGyracanthidesRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemGyracanthidesCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemGyracanthidesCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemGyracanthidesCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemGyracanthidesCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemJanassaRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemJanassaRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemJanassaRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemJanassaCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemJanassaCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemJanassaCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemJanassaCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemProterogyrinusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemProterogyrinusRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemProterogyrinusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemProterogyrinusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemProterogyrinusCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemListracanthusRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemListracanthusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemListracanthusRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemListracanthusCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemListracanthusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemListracanthusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemListracanthusCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemPrionosuchusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemPrionosuchusRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemPrionosuchusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemPrionosuchusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemPrionosuchusCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemRemigiomontanusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemRemigiomontanusRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemRemigiomontanusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemRemigiomontanusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemRemigiomontanusCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemEdestusRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemEdestusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemEdestusRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemEdestusCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemEdestusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemEdestusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemEdestusCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemPholiderpetonRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemPholiderpetonRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemPholiderpetonCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemPholiderpetonCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemPholiderpetonCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemIniopteryxRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemIniopteryxRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemIniopteryxRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemIniopteryxCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemIniopteryxCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemIniopteryxCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemIniopteryxCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemMenaspisRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemMenaspisRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemMenaspisRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemMenaspisCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemMenaspisCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemMenaspisCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemMenaspisCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemGnathorhizaRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemGnathorhizaRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemGnathorhizaRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemGnathorhizaCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemGnathorhizaCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemGnathorhizaCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemGnathorhizaCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemClaudiosaurusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemClaudiosaurusRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemClaudiosaurusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemClaudiosaurusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemClaudiosaurusCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemMesosaurusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemMesosaurusRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemMesosaurusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemMesosaurusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemMesosaurusCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemAcanthostomatopsRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemAcanthostomatopsRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemAcanthostomatopsCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemAcanthostomatopsCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemAcanthostomatopsCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemDiadectesRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemDiadectesRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemDiadectesCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemDiadectesCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemDiadectesCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemDviniaRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemDviniaRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemDviniaCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemDviniaCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemDviniaCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemLabidosaurusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemLabidosaurusRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemLabidosaurusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemLabidosaurusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemLabidosaurusCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemProcynosuchusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemProcynosuchusRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemProcynosuchusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemProcynosuchusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemProcynosuchusCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemTapinocephalusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemTapinocephalusRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemTapinocephalusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemTapinocephalusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemTapinocephalusCooked.block);
+
+		OreDictionary.registerOre("listAllmeatraw", ItemAnteosaurusRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemAnteosaurusRaw.block);
+		OreDictionary.registerOre("foodCooked", ItemAnteosaurusCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemAnteosaurusCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemAnteosaurusCooked.block);
+
+		OreDictionary.registerOre("listAllfishraw", ItemAlbertoniaRaw.block);
+		OreDictionary.registerOre("listAllmeatraw", ItemAlbertoniaRaw.block);
+		OreDictionary.registerOre("foodMeat", ItemAlbertoniaRaw.block);
+		OreDictionary.registerOre("listAllfishcooked", ItemAlbertoniaCooked.block);
+		OreDictionary.registerOre("foodCooked", ItemAlbertoniaCooked.block);
+		OreDictionary.registerOre("foodMeat", ItemAlbertoniaCooked.block);
+		OreDictionary.registerOre("listAllmeatcooked", ItemAlbertoniaCooked.block);
+
+
 
 		//========================================
 		//Plants and blocks:
 		//========================================
+
+		OreDictionary.registerOre("wingInsect", ItemWingGerarus.block);
+		OreDictionary.registerOre("wingInsect", ItemWingMeganeuropsis.block);
+		OreDictionary.registerOre("wingInsect", ItemWingPalaeodictyoptera_Delitzschala.block);
+		OreDictionary.registerOre("wingInsect", ItemWingPalaeodictyoptera_Dunbaria.block);
+		OreDictionary.registerOre("wingInsect", ItemWingPalaeodictyoptera_Homaloneura.block);
+		OreDictionary.registerOre("wingInsect", ItemWingPalaeodictyoptera_Homoioptera.block);
+		OreDictionary.registerOre("wingInsect", ItemWingPalaeodictyoptera_Lithomantis.block);
+		OreDictionary.registerOre("wingInsect", ItemWingPalaeodictyoptera_Lycocercus.block);
+		OreDictionary.registerOre("wingInsect", ItemWingPalaeodictyoptera_Sinodunbaria.block);
+		OreDictionary.registerOre("wingInsect", ItemWingPalaeodictyoptera_Stenodictya.block);
 
 		OreDictionary.registerOre("dirt", BlockPrehistoricGroundLush.block);
 		OreDictionary.registerOre("dirt", BlockPrehistoricGroundBasic.block);
@@ -1448,6 +1950,8 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 
 		OreDictionary.registerOre("blockSulphur", BlockSulphur.block);
 		OreDictionary.registerOre("blockSulfur", BlockSulphur.block);
+		OreDictionary.registerOre("oreSulphur", BlockSulphurOre.block);
+		OreDictionary.registerOre("oreSulfur", BlockSulphurOre.block);
 
 		OreDictionary.registerOre("stone", BlockPrehistoricGroundMossy.block);
 		OreDictionary.registerOre("stone", BlockLavaRock.block);
@@ -1537,6 +2041,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("stemHorsetail", ItemNeocalamitesItem.block);
 		OreDictionary.registerOre("stemHorsetail", BlockPseudobornia.block);
 		OreDictionary.registerOre("stemHorsetail", ItemPhyllothecaItem.block);
+		OreDictionary.registerOre("stemHorsetail", BlockXihuphyllum.block);
 
 		//OreDictionary.registerOre("leavesHay", new ItemStack(Blocks.REEDS, 1));
 		OreDictionary.registerOre("leavesHay", new ItemStack(Blocks.TALLGRASS, 1, 1));
@@ -1544,6 +2049,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("leavesHay", ItemPrimevalGrassItem.block);
 
 		OreDictionary.registerOre("slabWood", BlockWoodenSlab.block);
+		OreDictionary.registerOre("slabWood", BlockAlpiaSlab.block);
 		OreDictionary.registerOre("slabWood", BlockGlossopterisSlab.block);
 		OreDictionary.registerOre("slabWood", BlockGangamopterisSlab.block);
 		OreDictionary.registerOre("slabWood", BlockLiriodendronSlab.block);
@@ -1553,6 +2059,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("slabWood", BlockBothrodendronSlab.block);
 		OreDictionary.registerOre("slabWood", BlockDiaphorodendronSlab.block);
 		OreDictionary.registerOre("slabWood", BlockGinkgoSlab.block);
+		OreDictionary.registerOre("slabWood", BlockSphenobaieraSlab.block);
 		OreDictionary.registerOre("slabWood", BlockAgathisSlab.block);
 		OreDictionary.registerOre("slabWood", BlockMonkeyPuzzleSlab.block);
 		OreDictionary.registerOre("slabWood", BlockSigillariaSlab.block);
@@ -1561,6 +2068,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("slabWood", BlockCordaitesSlab.block);
 		OreDictionary.registerOre("slabWood", BlockPodozamitesSlab.block);
 		OreDictionary.registerOre("slabWood", BlockWalchiaSlab.block);
+		OreDictionary.registerOre("slabWood", BlockTelemachusSlab.block);
 		OreDictionary.registerOre("slabWood", BlockHymenaeaSlab.block);
 		OreDictionary.registerOre("slabWood", BlockKomlopterisSlab.block);
 		OreDictionary.registerOre("slabWood", BlockBristleconeSlab.block);
@@ -1577,8 +2085,16 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("slabWood", BlockPitysSlab.block);
 		OreDictionary.registerOre("slabWood", BlockCzekanowskiaSlab.block);
 		OreDictionary.registerOre("slabWood", BlockMacroneuropterisSlab.block);
+		OreDictionary.registerOre("slabWood", BlockDeadSlab.block);
+		OreDictionary.registerOre("slabWood", BlockArthropitysSlab.block);
+		OreDictionary.registerOre("slabWood", BlockDicroidiumFSlab.block);
+		OreDictionary.registerOre("slabWood", BlockBeechSlab.block);
+		OreDictionary.registerOre("slabWood", BlockPlaneSlab.block);
+		OreDictionary.registerOre("slabWood", BlockSycamoreSlab.block);
+		OreDictionary.registerOre("slabWood", BlockFurculaSlab.block);
 
 		OreDictionary.registerOre("fenceWood", BlockWoodenFence.block);
+		OreDictionary.registerOre("fenceWood", BlockAlpiaFence.block);
 		OreDictionary.registerOre("fenceWood", BlockGlossopterisFence.block);
 		OreDictionary.registerOre("fenceWood", BlockGangamopterisFence.block);
 		OreDictionary.registerOre("fenceWood", BlockLiriodendronFence.block);
@@ -1588,6 +2104,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("fenceWood", BlockBothrodendronFence.block);
 		OreDictionary.registerOre("fenceWood", BlockDiaphorodendronFence.block);
 		OreDictionary.registerOre("fenceWood", BlockGinkgoFence.block);
+		OreDictionary.registerOre("fenceWood", BlockSphenobaieraFence.block);
 		OreDictionary.registerOre("fenceWood", BlockAgathisFence.block);
 		OreDictionary.registerOre("fenceWood", BlockAraucariaFence.block);
 		OreDictionary.registerOre("fenceWood", BlockSigillariaFence.block);
@@ -1596,6 +2113,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("fenceWood", BlockCordaitesFence.block);
 		OreDictionary.registerOre("fenceWood", BlockPodozamitesFence.block);
 		OreDictionary.registerOre("fenceWood", BlockWalchiaFence.block);
+		OreDictionary.registerOre("fenceWood", BlockTelemachusFence.block);
 		OreDictionary.registerOre("fenceWood", BlockHymenaeaFence.block);
 		OreDictionary.registerOre("fenceWood", BlockKomlopterisFence.block);
 		OreDictionary.registerOre("fenceWood", BlockBristleconeFence.block);
@@ -1612,6 +2130,13 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("fenceWood", BlockPitysFence.block);
 		OreDictionary.registerOre("fenceWood", BlockCzekanowskiaFence.block);
 		OreDictionary.registerOre("fenceWood", BlockMacroneuropterisFence.block);
+		OreDictionary.registerOre("fenceWood", BlockDeadFence.block);
+		OreDictionary.registerOre("fenceWood", BlockArthropitysFence.block);
+		OreDictionary.registerOre("fenceWood", BlockDicroidiumFFence.block);
+		OreDictionary.registerOre("fenceWood", BlockBeechFence.block);
+		OreDictionary.registerOre("fenceWood", BlockPlaneFence.block);
+		OreDictionary.registerOre("fenceWood", BlockSycamoreFence.block);
+		OreDictionary.registerOre("fenceWood", BlockFurculaFence.block);
 
 		//Thin fences:
 		OreDictionary.registerOre("fenceWood", BlockSigillariaThinFence.block);
@@ -1629,8 +2154,10 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("fenceWood", BlockCalamophytonFence.block);
 		OreDictionary.registerOre("fenceWood", BlockRufloriaFence.block);
 		OreDictionary.registerOre("fenceWood", BlockAneurophytonFence.block);
+		OreDictionary.registerOre("fenceWood", BlockPhasmatocycasFence.block);
 
 		OreDictionary.registerOre("fenceGateWood", BlockWoodenFenceGate.block);
+		OreDictionary.registerOre("fenceGateWood", BlockAlpiaFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockGlossopterisFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockGangamopterisFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockLiriodendronFenceGate.block);
@@ -1640,6 +2167,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("fenceGateWood", BlockBothrodendronFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockDiaphorodendronFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockGinkgoFenceGate.block);
+		OreDictionary.registerOre("fenceGateWood", BlockSphenobaieraFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockAgathisFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockAraucariaFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockSigillariaFenceGate.block);
@@ -1648,6 +2176,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("fenceGateWood", BlockCordaitesFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockPodozamitesFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockWalchiaFenceGate.block);
+		OreDictionary.registerOre("fenceGateWood", BlockTelemachusFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockHymenaeaFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockKomlopterisFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockBristleconeFenceGate.block);
@@ -1664,6 +2193,13 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("fenceGateWood", BlockPitysFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockCzekanowskiaFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockMacroneuropterisFenceGate.block);
+		OreDictionary.registerOre("fenceGateWood", BlockDeadFenceGate.block);
+		OreDictionary.registerOre("fenceGateWood", BlockArthropitysFenceGate.block);
+		OreDictionary.registerOre("fenceGateWood", BlockDicroidiumFFenceGate.block);
+		OreDictionary.registerOre("fenceGateWood", BlockBeechFenceGate.block);
+		OreDictionary.registerOre("fenceGateWood", BlockPlaneFenceGate.block);
+		OreDictionary.registerOre("fenceGateWood", BlockSycamoreFenceGate.block);
+		OreDictionary.registerOre("fenceGateWood", BlockFurculaFenceGate.block);
 
 		//Thin fences:
 		OreDictionary.registerOre("fenceGateWood", BlockSigillariaThinFenceGate.block);
@@ -1680,6 +2216,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("fenceGateWood", BlockPterophyllumFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockCalamophytonFenceGate.block);
 		OreDictionary.registerOre("fenceGateWood", BlockAneurophytonFenceGate.block);
+		OreDictionary.registerOre("fenceGateWood", BlockPhasmatocycasFenceGate.block);
 
 		OreDictionary.registerOre("doorWood", ItemLepidodendronDoorItem.block);
 		OreDictionary.registerOre("doorWood", ItemGlossopterisDoorItem.block);
@@ -1697,9 +2234,11 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("doorWood", ItemRedwoodDoorItem.block);
 		OreDictionary.registerOre("doorWood", ItemSciadopitysDoorItem.block);
 		OreDictionary.registerOre("doorWood", ItemWalchiaDoorItem.block);
+		OreDictionary.registerOre("doorWood", ItemTelemachusDoorItem.block);
 		OreDictionary.registerOre("doorWood", ItemWollemiDoorItem.block);
 		OreDictionary.registerOre("doorWood", ItemBristleconeDoorItem.block);
 		OreDictionary.registerOre("doorWood", ItemGinkgoDoorItem.block);
+		OreDictionary.registerOre("doorWood", ItemSphenobaieraDoorItem.block);
 		OreDictionary.registerOre("doorWood", ItemBrachyphyllumDoorItem.block);
 		OreDictionary.registerOre("doorWood", ItemMagnoliaDoorItem.block);
 		OreDictionary.registerOre("doorWood", ItemBothrodendronDoorItem.block);
@@ -1713,6 +2252,13 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("doorWood", ItemPitysDoorItem.block);
 		OreDictionary.registerOre("doorWood", ItemCzekanowskiaDoorItem.block);
 		OreDictionary.registerOre("doorWood", ItemMacroneuropterisDoorItem.block);
+		OreDictionary.registerOre("doorWood", ItemDeadDoorItem.block);
+		OreDictionary.registerOre("doorWood", ItemArthropitysDoorItem.block);
+		OreDictionary.registerOre("doorWood", ItemDicroidiumFDoorItem.block);
+		OreDictionary.registerOre("doorWood", ItemBeechDoorItem.block);
+		OreDictionary.registerOre("doorWood", ItemPlaneDoorItem.block);
+		OreDictionary.registerOre("doorWood", ItemSycamoreDoorItem.block);
+		OreDictionary.registerOre("doorWood", ItemFurculaDoorItem.block);
 
 		//Compat for Calamites:
 		OreDictionary.registerOre("listAllfiber", ItemCalamitesDoorItem.block);
@@ -1723,6 +2269,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("listAllfiber", BlockCalamitesTrapdoor.block);
 
 		OreDictionary.registerOre("logWood", BlockWoodenLog.block);
+		OreDictionary.registerOre("logWood", BlockAlpiaLog.block);
 		OreDictionary.registerOre("logWood", BlockGlossopterisLog.block);
 		OreDictionary.registerOre("logWood", BlockGangamopterisLog.block);
 		OreDictionary.registerOre("logWood", BlockLiriodendronLog.block);
@@ -1732,6 +2279,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("logWood", BlockBothrodendronLog.block);
 		OreDictionary.registerOre("logWood", BlockDiaphorodendronLog.block);
 		OreDictionary.registerOre("logWood", BlockGinkgoLog.block);
+		OreDictionary.registerOre("logWood", BlockSphenobaieraLog.block);
 		OreDictionary.registerOre("logWood", BlockAgathisLog.block);
 		OreDictionary.registerOre("logWood", BlockMonkeypuzzleLog.block);
 		OreDictionary.registerOre("logWood", BlockColumnarisLog.block);
@@ -1739,7 +2287,9 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("logWood", BlockTempskyaLog.block);
 		OreDictionary.registerOre("logWood", BlockWilliamsoniaLog.block);
 		OreDictionary.registerOre("logWood", BlockCycadeoideaLog.block);
+		OreDictionary.registerOre("logWood", BlockPtilophyllumLog.block);
 		OreDictionary.registerOre("logWood", BlockZamitesLog.block);
+		OreDictionary.registerOre("logWood", BlockAnomozamitesLog.block);
 		OreDictionary.registerOre("logWood", BlockSahnioxylonLog.block);
 		OreDictionary.registerOre("logWood", BlockSigillariaLog.block);
 		OreDictionary.registerOre("logWood", BlockSigillariaStem.block);
@@ -1752,6 +2302,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("logWood", BlockLeptocycasLog.block);
 		OreDictionary.registerOre("logWood", BlockDioonLog.block);
 		OreDictionary.registerOre("logWood", BlockSpinyCycadLog.block);
+		OreDictionary.registerOre("logWood", BlockStiffCycadLog.block);
 		OreDictionary.registerOre("logWood", BlockPsaroniusLog.block);
 		OreDictionary.registerOre("logWood", BlockTieteaLog.block);
 		OreDictionary.registerOre("logWood", BlockDicksoniaLog.block);
@@ -1761,6 +2312,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("logWood", BlockPodozamitesLog.block);
 		OreDictionary.registerOre("logWood", BlockValmeyerodendronLog.block);
 		OreDictionary.registerOre("logWood", BlockWalchiaLog.block);
+		OreDictionary.registerOre("logWood", BlockTelemachusLog.block);
 		OreDictionary.registerOre("logWood", BlockHymenaeaLog.block);
 		OreDictionary.registerOre("logWood", BlockKomlopterisLog.block);
 		OreDictionary.registerOre("logWood", BlockMedullosalesLog.block);
@@ -1793,14 +2345,24 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("logWood", BlockCtenisLog.block);
 		OreDictionary.registerOre("logWood", BlockRufloriaLog.block);
 		OreDictionary.registerOre("logWood", BlockZygopterisLog.block);
+		OreDictionary.registerOre("logWood", BlockToditesLog.block);
 		OreDictionary.registerOre("logWood", BlockRufloriaLog.block);
 		OreDictionary.registerOre("logWood", BlockCzekanowskiaLog.block);
 		OreDictionary.registerOre("logWood", BlockAneurophytonLog.block);
 		OreDictionary.registerOre("logWood", BlockLyginopterisStem.block);
 		OreDictionary.registerOre("logWood", BlockLyginopterisStemNE.block);
 		OreDictionary.registerOre("logWood", BlockMacroneuropterisLog.block);
+		OreDictionary.registerOre("logWood", BlockPhasmatocycasLog.block);
+		OreDictionary.registerOre("logWood", BlockDeadLog.block);
+		OreDictionary.registerOre("logWood", BlockArthropitysLog.block);
+		OreDictionary.registerOre("logWood", BlockDicroidiumFLog.block);
+		OreDictionary.registerOre("logWood", BlockBeechLog.block);
+		OreDictionary.registerOre("logWood", BlockPlaneLog.block);
+		OreDictionary.registerOre("logWood", BlockSycamoreLog.block);
+		OreDictionary.registerOre("logWood", BlockFurculaLog.block);
 
 		OreDictionary.registerOre("plankWood", BlockWoodenPlanks.block);
+		OreDictionary.registerOre("plankWood", BlockAlpiaPlanks.block);
 		OreDictionary.registerOre("plankWood", BlockGlossopterisPlanks.block);
 		OreDictionary.registerOre("plankWood", BlockGangamopterisPlanks.block);
 		OreDictionary.registerOre("plankWood", BlockLiriodendronPlanks.block);
@@ -1810,6 +2372,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plankWood", BlockBothrodendronPlanks.block);
 		OreDictionary.registerOre("plankWood", BlockDiaphorodendronPlanks.block);
 		OreDictionary.registerOre("plankWood", BlockGinkgoPlanks.block);
+		OreDictionary.registerOre("plankWood", BlockSphenobaieraPlanks.block);
 		OreDictionary.registerOre("plankWood", BlockAgathisPlanks.block);
 		OreDictionary.registerOre("plankWood", BlockMonkeyPuzzlePlanks.block);
 		OreDictionary.registerOre("plankWood", BlockSigillariaPlanks.block);
@@ -1818,6 +2381,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plankWood", BlockCordaitesPlanks.block);
 		OreDictionary.registerOre("plankWood", BlockPodozamitesPlanks.block);
 		OreDictionary.registerOre("plankWood", BlockWalchiaPlanks.block);
+		OreDictionary.registerOre("plankWood", BlockTelemachusPlanks.block);
 		OreDictionary.registerOre("plankWood", BlockHymenaeaPlanks.block);
 		OreDictionary.registerOre("plankWood", BlockKomlopterisPlanks.block);
 		OreDictionary.registerOre("plankWood", BlockBristleconePlanks.block);
@@ -1834,8 +2398,16 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plankWood", BlockPitysPlanks.block);
 		OreDictionary.registerOre("plankWood", BlockCzekanowskiaPlanks.block);
 		OreDictionary.registerOre("plankWood", BlockMacroneuropterisPlanks.block);
+		OreDictionary.registerOre("plankWood", BlockDeadPlanks.block);
+		OreDictionary.registerOre("plankWood", BlockArthropitysPlanks.block);
+		OreDictionary.registerOre("plankWood", BlockDicroidiumFPlanks.block);
+		OreDictionary.registerOre("plankWood", BlockBeechPlanks.block);
+		OreDictionary.registerOre("plankWood", BlockPlanePlanks.block);
+		OreDictionary.registerOre("plankWood", BlockSycamorePlanks.block);
+		OreDictionary.registerOre("plankWood", BlockFurculaPlanks.block);
 
 		OreDictionary.registerOre("treeSapling", BlockSapling.block);
+		OreDictionary.registerOre("treeSapling", BlockAlpiaSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockGlossopterisSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockGangamopterisSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockLiriodendronSapling.block);
@@ -1845,6 +2417,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("treeSapling", BlockBothrodendronSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockDiaphorodendronSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockGinkgoSapling.block);
+		OreDictionary.registerOre("treeSapling", BlockSphenobaieraSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockAgathisSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockMonkeypuzzleSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockColumnarisSapling.block);
@@ -1852,7 +2425,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("treeSapling", BlockTempskyaSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockWilliamsoniaSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockCycadeoideaSapling.block);
-		OreDictionary.registerOre("treeSapling", BlockZamitesSapling.block);
+		OreDictionary.registerOre("treeSapling", BlockPtilophyllumSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockSahnioxylonSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockSigillariaSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockCalamitesSapling.block);
@@ -1865,6 +2438,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("treeSapling", BlockLeptocycasSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockDioonSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockSpinyCycadSapling.block);
+		OreDictionary.registerOre("treeSapling", BlockStiffCycadSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockPsaroniusSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockTieteaSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockDicksoniaSapling.block);
@@ -1873,6 +2447,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("treeSapling", BlockWattiezaSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockPodozamitesSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockWalchiaSapling.block);
+		OreDictionary.registerOre("treeSapling", BlockTelemachusSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockProteaSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockProteaSapling1.block);
 		OreDictionary.registerOre("treeSapling", BlockHymenaeaSapling.block);
@@ -1910,12 +2485,21 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("treeSapling", BlockRufloriaSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockXenocladiaSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockZygopterisSapling.block);
+		OreDictionary.registerOre("treeSapling", BlockToditesSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockCzekanowskiaSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockAneurophytonSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockLyginopterisSapling.block);
 		OreDictionary.registerOre("treeSapling", BlockMacroneuropterisSapling.block);
+		OreDictionary.registerOre("treeSapling", BlockPhasmatocycasSapling.block);
+		OreDictionary.registerOre("treeSapling", BlockArthropitysSapling.block);
+		OreDictionary.registerOre("treeSapling", BlockDicroidiumFSapling.block);
+		OreDictionary.registerOre("treeSapling", BlockBeechSapling.block);
+		OreDictionary.registerOre("treeSapling", BlockPlaneSapling.block);
+		OreDictionary.registerOre("treeSapling", BlockSycamoreSapling.block);
+		OreDictionary.registerOre("treeSapling", BlockFurculaSapling.block);
 
 		OreDictionary.registerOre("stairWood", BlockWoodenStairs.block);
+		OreDictionary.registerOre("stairWood", BlockAlpiaStairs.block);
 		OreDictionary.registerOre("stairWood", BlockGlossopterisStairs.block);
 		OreDictionary.registerOre("stairWood", BlockGangamopterisStairs.block);
 		OreDictionary.registerOre("stairWood", BlockLiriodendronStairs.block);
@@ -1925,6 +2509,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("stairWood", BlockBothrodendronStairs.block);
 		OreDictionary.registerOre("stairWood", BlockDiaphorodendronStairs.block);
 		OreDictionary.registerOre("stairWood", BlockGinkgoStairs.block);
+		OreDictionary.registerOre("stairWood", BlockSphenobaieraStairs.block);
 		OreDictionary.registerOre("stairWood", BlockAgathisStairs.block);
 		OreDictionary.registerOre("stairWood", BlockMonkeyPuzzleStairs.block);
 		OreDictionary.registerOre("stairWood", BlockSigillariaStairs.block);
@@ -1933,6 +2518,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("stairWood", BlockCordaitesStairs.block);
 		OreDictionary.registerOre("stairWood", BlockPodozamitesStairs.block);
 		OreDictionary.registerOre("stairWood", BlockWalchiaStairs.block);
+		OreDictionary.registerOre("stairWood", BlockTelemachusStairs.block);
 		OreDictionary.registerOre("stairWood", BlockHymenaeaStairs.block);
 		OreDictionary.registerOre("stairWood", BlockKomlopterisStairs.block);
 		OreDictionary.registerOre("stairWood", BlockBristleconeStairs.block);
@@ -1949,8 +2535,16 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("stairWood", BlockPitysStairs.block);
 		OreDictionary.registerOre("stairWood", BlockCzekanowskiaStairs.block);
 		OreDictionary.registerOre("stairWood", BlockMacroneuropterisStairs.block);
+		OreDictionary.registerOre("stairWood", BlockDeadStairs.block);
+		OreDictionary.registerOre("stairWood", BlockArthropitysStairs.block);
+		OreDictionary.registerOre("stairWood", BlockDicroidiumFStairs.block);
+		OreDictionary.registerOre("stairWood", BlockBeechStairs.block);
+		OreDictionary.registerOre("stairWood", BlockPlaneStairs.block);
+		OreDictionary.registerOre("stairWood", BlockSycamoreStairs.block);
+		OreDictionary.registerOre("stairWood", BlockFurculaStairs.block);
 
 		OreDictionary.registerOre("treeLeaves", BlockTreeLeaves.block);
+		OreDictionary.registerOre("treeLeaves", BlockAlpiaLeaves.block);
 		OreDictionary.registerOre("treeLeaves", BlockGlossopterisTreeLeaves.block);
 		OreDictionary.registerOre("treeLeaves", BlockGangamopterisLeaves.block);
 		OreDictionary.registerOre("treeLeaves", BlockLiriodendronLeaves.block);
@@ -1960,6 +2554,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("treeLeaves", BlockBothrodendronLeaves.block);
 		OreDictionary.registerOre("treeLeaves", BlockDiaphorodendronLeaves.block);
 		OreDictionary.registerOre("treeLeaves", BlockGinkgoLeaves.block);
+		OreDictionary.registerOre("treeLeaves", BlockSphenobaieraLeaves.block);
 		OreDictionary.registerOre("treeLeaves", BlockAgathisLeaves.block);
 		OreDictionary.registerOre("treeLeaves", BlockMonkeypuzzleLeaves.block);
 		OreDictionary.registerOre("treeLeaves", BlockColumnarisLeaves.block);
@@ -1968,8 +2563,12 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("treeLeaves", BlockWilliamsoniaShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockWilliamsoniaLeavesPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockCycadeoideaLeavesPlaceable.block);
+		OreDictionary.registerOre("treeLeaves", BlockPtilophyllumShootPlaceable.block);
+		OreDictionary.registerOre("treeLeaves", BlockPtilophyllumLeavesPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockZamitesShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockZamitesLeavesPlaceable.block);
+		OreDictionary.registerOre("treeLeaves", BlockAnomozamitesShootPlaceable.block);
+		OreDictionary.registerOre("treeLeaves", BlockAnomozamitesLeavesPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockSahnioxylonShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockSahnioxylonFlowerPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockSigillariaShootPlaceable.block);
@@ -1980,10 +2579,12 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("treeLeaves", BlockPleuromeiaShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockEncblueShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockCycasShootPlaceable.block);
+		OreDictionary.registerOre("treeLeaves", BlockCtenisShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockBjuviaShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockLeptocycasShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockDioonShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockSpinyCycadShootPlaceable.block);
+		OreDictionary.registerOre("treeLeaves", BlockStiffCycadShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockPsaroniusLeavesPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockPsaroniusLeavesSmallPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockTieteaLeavesPlaceable.block);
@@ -1996,6 +2597,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("treeLeaves", BlockProteaLeaves.block);
 		OreDictionary.registerOre("treeLeaves", BlockProteaLeaves1.block);
 		OreDictionary.registerOre("treeLeaves", BlockWalchiaLeaves.block);
+		OreDictionary.registerOre("treeLeaves", BlockTelemachusLeaves.block);
 		OreDictionary.registerOre("treeLeaves", BlockHymenaeaLeaves.block);
 		OreDictionary.registerOre("treeLeaves", BlockKomlopterisLeaves.block);
 		OreDictionary.registerOre("treeLeaves", BlockMedullosalesShootPlaceable.block);
@@ -2021,14 +2623,23 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("treeLeaves", BlockPitysLeaves.block);
 		OreDictionary.registerOre("treeLeaves", BlockRufloriaShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockZygopterisShootPlaceable.block);
+		OreDictionary.registerOre("treeLeaves", BlockToditesShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockXenocladiaShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockCalamophytonShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockCzekanowskiaLeaves.block);
 		OreDictionary.registerOre("treeLeaves", BlockAneurophytonShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockLyginopterisShootPlaceable.block);
 		OreDictionary.registerOre("treeLeaves", BlockMacroneuropterisLeaves.block);
+		OreDictionary.registerOre("treeLeaves", BlockPhasmatocycasShootPlaceable.block);
+		OreDictionary.registerOre("treeLeaves", BlockArthropitysLeaves.block);
+		OreDictionary.registerOre("treeLeaves", BlockDicroidiumFLeaves.block);
+		OreDictionary.registerOre("treeLeaves", BlockBeechLeaves.block);
+		OreDictionary.registerOre("treeLeaves", BlockPlaneLeaves.block);
+		OreDictionary.registerOre("treeLeaves", BlockSycamoreLeaves.block);
+		OreDictionary.registerOre("treeLeaves", BlockFurculaLeaves.block);
 
 		OreDictionary.registerOre("trapdoorWood", BlockWoodenTrapdoor.block);
+		OreDictionary.registerOre("trapdoorWood", BlockAlpiaTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockGlossopterisTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockGangamopterisTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockLiriodendronTrapdoor.block);
@@ -2038,6 +2649,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("trapdoorWood", BlockBothrodendronTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockDiaphorodendronTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockGinkgoTrapdoor.block);
+		OreDictionary.registerOre("trapdoorWood", BlockSphenobaieraTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockAgathisTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockMonkeyPuzzleTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockSigillariaTrapdoor.block);
@@ -2046,6 +2658,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("trapdoorWood", BlockCordaitesTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockPodozamitesTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockWalchiaTrapdoor.block);
+		OreDictionary.registerOre("trapdoorWood", BlockTelemachusTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockHymenaeaTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockKomlopterisTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockBristleconeTrapdoor.block);
@@ -2062,8 +2675,16 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("trapdoorWood", BlockPitysTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockCzekanowskiaTrapdoor.block);
 		OreDictionary.registerOre("trapdoorWood", BlockMacroneuropterisTrapdoor.block);
+		OreDictionary.registerOre("trapdoorWood", BlockDeadTrapdoor.block);
+		OreDictionary.registerOre("trapdoorWood", BlockArthropitysTrapdoor.block);
+		OreDictionary.registerOre("trapdoorWood", BlockDicroidiumFTrapdoor.block);
+		OreDictionary.registerOre("trapdoorWood", BlockBeechTrapdoor.block);
+		OreDictionary.registerOre("trapdoorWood", BlockPlaneTrapdoor.block);
+		OreDictionary.registerOre("trapdoorWood", BlockSycamoreTrapdoor.block);
+		OreDictionary.registerOre("trapdoorWood", BlockFurculaTrapdoor.block);
 
 		OreDictionary.registerOre("plantPrehistoric", BlockSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockAlpiaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockGlossopterisSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockGangamopterisSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockLiriodendronSapling.block);
@@ -2073,6 +2694,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", BlockBothrodendronSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockDiaphorodendronSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockGinkgoSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockSphenobaieraSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockAgathisSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockMonkeypuzzleSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockColumnarisSapling.block);
@@ -2080,7 +2702,9 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", BlockTempskyaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockWilliamsoniaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockCycadeoideaSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockPtilophyllumSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockZamitesSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockAnomozamitesSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockSahnioxylonSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockSigillariaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockCalamitesSapling.block);
@@ -2093,6 +2717,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", BlockLeptocycasSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockDioonSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockSpinyCycadSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockStiffCycadSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockPsaroniusSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockTieteaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockDicksoniaSapling.block);
@@ -2104,6 +2729,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", BlockProteaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockProteaSapling1.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockWalchiaSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockTelemachusSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockHymenaeaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockKomlopterisSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockMedullosalesSapling.block);
@@ -2137,11 +2763,20 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", BlockRufloriaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockXenocladiaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockZygopterisSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockToditesSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockCzekanowskiaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockAneurophytonSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockMacroneuropterisSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockPhasmatocycasSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockArthropitysSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockDicroidiumFSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockBeechSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockPlaneSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockSycamoreSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockFurculaSapling.block);
 
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedAlpiaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedGlossopterisSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedGangamopterisSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedLiriodendronSapling.block);
@@ -2151,6 +2786,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedBothrodendronSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedDiaphorodendronSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedGinkgoSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedSphenobaieraSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedAgathisSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedMonkeypuzzleSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedColumnarisSapling.block);
@@ -2158,7 +2794,9 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedTempskyaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedWilliamsoniaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedCycadeoideaSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedPtilophyllumSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedZamitesSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedAnomozamitesSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedSahnioxylonSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedSigillariaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedCalamitesSapling.block);
@@ -2171,6 +2809,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedLeptocycasSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedDioonSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedSpinyCycadSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedStiffCycadSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedAntarcticycas.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedPsaroniusSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedTieteaSapling.block);
@@ -2193,6 +2832,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedProteaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedProteaSapling1.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedWalchiaSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedTelemachusSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedHymenaeaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedKomlopterisSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedMedullosalesSapling.block);
@@ -2228,12 +2868,22 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedTaxodiumSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedXenocladiaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedZygopterisSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedToditesSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedCzekanowskiaSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedAneurophytonSapling.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedLyginopteris.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedMacroneuropterisSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedPhasmatocycasSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedLesleya.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedArthropitysSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedDicroidiumFSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedBeechSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedPlaneSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedSycamoreSapling.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedFurculaSapling.block);
 
 		OreDictionary.registerOre("plantPrehistoric", BlockTreeLeaves.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockAlpiaLeaves.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockGlossopterisTreeLeaves.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockGangamopterisLeaves.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockLiriodendronLeaves.block);
@@ -2243,6 +2893,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", BlockBothrodendronLeaves.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockDiaphorodendronLeaves.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockGinkgoLeaves.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockSphenobaieraLeaves.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockAgathisLeaves.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockMonkeypuzzleLeaves.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockColumnarisLeaves.block);
@@ -2251,8 +2902,12 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", BlockWilliamsoniaShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockWilliamsoniaLeavesPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockCycadeoideaLeavesPlaceable.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockPtilophyllumShootPlaceable.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockPtilophyllumLeavesPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockZamitesShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockZamitesLeavesPlaceable.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockAnomozamitesShootPlaceable.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockAnomozamitesLeavesPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockSahnioxylonShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockSahnioxylonFlowerPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockSigillariaShootPlaceable.block);
@@ -2264,10 +2919,12 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", BlockPleuromeiaShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockEncblueShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockCycasShootPlaceable.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockCtenisShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockBjuviaShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockLeptocycasShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockDioonShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockSpinyCycadShootPlaceable.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockStiffCycadShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockPsaroniusLeavesPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockPsaroniusLeavesSmallPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockTieteaLeavesPlaceable.block);
@@ -2280,6 +2937,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", BlockProteaLeaves.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockProteaLeaves1.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockWalchiaLeaves.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockTelemachusLeaves.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockHymenaeaLeaves.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockKomlopterisLeaves.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockMedullosalesShootPlaceable.block);
@@ -2308,12 +2966,20 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", BlockPitysLeaves.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockRufloriaShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockZygopterisShootPlaceable.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockToditesShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockXenocladiaShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockCalamophytonShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockCzekanowskiaLeaves.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockAneurophytonShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockLyginopterisShootPlaceable.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockMacroneuropterisLeaves.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockPhasmatocycasShootPlaceable.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockArthropitysLeaves.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockDicroidiumFLeaves.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockBeechLeaves.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockPlaneLeaves.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockSycamoreLeaves.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockFurculaLeaves.block);
 
 		OreDictionary.registerOre("plantPrehistoric", BlockAntarcticycas.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockCaytoniales.block);
@@ -2344,6 +3010,8 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedSphenophyllales1.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockClaytosmunda.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedClaytosmunda.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockDictyophyllum.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedDictyophyllum.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockWachtleria.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedWachtleria.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockScytophyllum.block);
@@ -2373,10 +3041,16 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", BlockOsmunda.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedRhacophyton.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockRhacophyton.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedCladophlebis.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockCladophlebis.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedClathropteris.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockClathropteris.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockCinnamonFern.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedCinnamonFern.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockMarattia.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedMarattia.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockTongchuanophyllum.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedTongchuanophyllum.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockGuangdedendron.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedGuangdedendron.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockEdwardsiphyton.block);
@@ -2399,6 +3073,8 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedTyrmia.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockWielandiella.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedWielandiella.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockOtozamites.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedOtozamites.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemNathorstianaItem.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedNathorstiana.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemNeocalamitesItem.block);
@@ -2473,6 +3149,12 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedCyclodendron.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockPseudovoltzia.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedPseudovoltzia.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockWachtlerina.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedWachtlerina.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockThucydia.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedThucydia.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockOrtiseia.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedOrtiseia.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockQuadrocladus.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedQuadrocladus.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockAridHorsetail.block);
@@ -2485,8 +3167,23 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedSkaaripteris.block);
 		OreDictionary.registerOre("plantPrehistoric", BlockGlenopteris.block);
 		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedGlenopteris.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockScolecopteris.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedScolecopteris.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockLesleya.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedLesleya.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockPetriellales.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedPetriellales.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockSanmiguelia.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedSanmiguelia.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockConiopteris.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedConiopteris.block);
+		OreDictionary.registerOre("plantPrehistoric", BlockXihuphyllum.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedXihuphyllum.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemMacrotaeniopterisItem.block);
+		OreDictionary.registerOre("plantPrehistoric", ItemPetrifiedMacrotaeniopteris.block);
 
 		OreDictionary.registerOre("plant", BlockSapling.block);
+		OreDictionary.registerOre("plant", BlockAlpiaSapling.block);
 		OreDictionary.registerOre("plant", BlockGlossopterisSapling.block);
 		OreDictionary.registerOre("plant", BlockGangamopterisSapling.block);
 		OreDictionary.registerOre("plant", BlockLiriodendronSapling.block);
@@ -2496,6 +3193,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plant", BlockBothrodendronSapling.block);
 		OreDictionary.registerOre("plant", BlockDiaphorodendronSapling.block);
 		OreDictionary.registerOre("plant", BlockGinkgoSapling.block);
+		OreDictionary.registerOre("plant", BlockSphenobaieraSapling.block);
 		OreDictionary.registerOre("plant", BlockAgathisSapling.block);
 		OreDictionary.registerOre("plant", BlockMonkeypuzzleSapling.block);
 		OreDictionary.registerOre("plant", BlockColumnarisSapling.block);
@@ -2503,7 +3201,9 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plant", BlockTempskyaSapling.block);
 		OreDictionary.registerOre("plant", BlockWilliamsoniaSapling.block);
 		OreDictionary.registerOre("plant", BlockCycadeoideaSapling.block);
+		OreDictionary.registerOre("plant", BlockPtilophyllumSapling.block);
 		OreDictionary.registerOre("plant", BlockZamitesSapling.block);
+		OreDictionary.registerOre("plant", BlockAnomozamitesSapling.block);
 		OreDictionary.registerOre("plant", BlockSahnioxylonSapling.block);
 		OreDictionary.registerOre("plant", BlockSigillariaSapling.block);
 		OreDictionary.registerOre("plant", BlockCalamitesSapling.block);
@@ -2516,6 +3216,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plant", BlockLeptocycasSapling.block);
 		OreDictionary.registerOre("plant", BlockDioonSapling.block);
 		OreDictionary.registerOre("plant", BlockSpinyCycadSapling.block);
+		OreDictionary.registerOre("plant", BlockStiffCycadSapling.block);
 		OreDictionary.registerOre("plant", BlockPsaroniusSapling.block);
 		OreDictionary.registerOre("plant", BlockTieteaSapling.block);
 		OreDictionary.registerOre("plant", BlockDicksoniaSapling.block);
@@ -2527,6 +3228,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plant", BlockProteaSapling.block);
 		OreDictionary.registerOre("plant", BlockProteaSapling1.block);
 		OreDictionary.registerOre("plant", BlockWalchiaSapling.block);
+		OreDictionary.registerOre("plant", BlockTelemachusSapling.block);
 		OreDictionary.registerOre("plant", BlockHymenaeaSapling.block);
 		OreDictionary.registerOre("plant", BlockKomlopterisSapling.block);
 		OreDictionary.registerOre("plant", BlockMedullosalesSapling.block);
@@ -2560,11 +3262,20 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plant", BlockRufloriaSapling.block);
 		OreDictionary.registerOre("plant", BlockXenocladiaSapling.block);
 		OreDictionary.registerOre("plant", BlockZygopterisSapling.block);
+		OreDictionary.registerOre("plant", BlockToditesSapling.block);
 		OreDictionary.registerOre("plant", BlockCzekanowskiaSapling.block);
 		OreDictionary.registerOre("plant", BlockAneurophytonSapling.block);
 		OreDictionary.registerOre("plant", BlockMacroneuropterisSapling.block);
+		OreDictionary.registerOre("plant", BlockPhasmatocycasSapling.block);
+		OreDictionary.registerOre("plant", BlockArthropitysSapling.block);
+		OreDictionary.registerOre("plant", BlockDicroidiumFSapling.block);
+		OreDictionary.registerOre("plant", BlockBeechSapling.block);
+		OreDictionary.registerOre("plant", BlockPlaneSapling.block);
+		OreDictionary.registerOre("plant", BlockSycamoreSapling.block);
+		OreDictionary.registerOre("plant", BlockFurculaSapling.block);
 
 		OreDictionary.registerOre("plant", BlockTreeLeaves.block);
+		OreDictionary.registerOre("plant", BlockAlpiaLeaves.block);
 		OreDictionary.registerOre("plant", BlockGlossopterisTreeLeaves.block);
 		OreDictionary.registerOre("plant", BlockGangamopterisLeaves.block);
 		OreDictionary.registerOre("plant", BlockLiriodendronLeaves.block);
@@ -2574,6 +3285,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plant", BlockBothrodendronLeaves.block);
 		OreDictionary.registerOre("plant", BlockDiaphorodendronLeaves.block);
 		OreDictionary.registerOre("plant", BlockGinkgoLeaves.block);
+		OreDictionary.registerOre("plant", BlockSphenobaieraLeaves.block);
 		OreDictionary.registerOre("plant", BlockAgathisLeaves.block);
 		OreDictionary.registerOre("plant", BlockMonkeypuzzleLeaves.block);
 		OreDictionary.registerOre("plant", BlockColumnarisLeaves.block);
@@ -2582,8 +3294,12 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plant", BlockWilliamsoniaShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockWilliamsoniaLeavesPlaceable.block);
 		OreDictionary.registerOre("plant", BlockCycadeoideaLeavesPlaceable.block);
+		OreDictionary.registerOre("plant", BlockPtilophyllumShootPlaceable.block);
+		OreDictionary.registerOre("plant", BlockPtilophyllumLeavesPlaceable.block);
 		OreDictionary.registerOre("plant", BlockZamitesShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockZamitesLeavesPlaceable.block);
+		OreDictionary.registerOre("plant", BlockAnomozamitesShootPlaceable.block);
+		OreDictionary.registerOre("plant", BlockAnomozamitesLeavesPlaceable.block);
 		OreDictionary.registerOre("plant", BlockSahnioxylonShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockSahnioxylonFlowerPlaceable.block);
 		OreDictionary.registerOre("plant", BlockSigillariaShootPlaceable.block);
@@ -2595,10 +3311,12 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plant", BlockPleuromeiaShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockEncblueShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockCycasShootPlaceable.block);
+		OreDictionary.registerOre("plant", BlockCtenisShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockBjuviaShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockLeptocycasShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockDioonShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockSpinyCycadShootPlaceable.block);
+		OreDictionary.registerOre("plant", BlockStiffCycadShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockPsaroniusLeavesPlaceable.block);
 		OreDictionary.registerOre("plant", BlockPsaroniusLeavesSmallPlaceable.block);
 		OreDictionary.registerOre("plant", BlockTieteaLeavesPlaceable.block);
@@ -2611,6 +3329,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plant", BlockProteaLeaves.block);
 		OreDictionary.registerOre("plant", BlockProteaLeaves1.block);
 		OreDictionary.registerOre("plant", BlockWalchiaLeaves.block);
+		OreDictionary.registerOre("plant", BlockTelemachusLeaves.block);
 		OreDictionary.registerOre("plant", BlockHymenaeaLeaves.block);
 		OreDictionary.registerOre("plant", BlockKomlopterisLeaves.block);
 		OreDictionary.registerOre("plant", BlockMedullosalesShootPlaceable.block);
@@ -2639,12 +3358,20 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plant", BlockPitysLeaves.block);
 		OreDictionary.registerOre("plant", BlockRufloriaShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockZygopterisShootPlaceable.block);
+		OreDictionary.registerOre("plant", BlockToditesShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockXenocladiaShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockCalamophytonShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockCzekanowskiaLeaves.block);
 		OreDictionary.registerOre("plant", BlockAneurophytonShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockLyginopterisShootPlaceable.block);
 		OreDictionary.registerOre("plant", BlockMacroneuropterisLeaves.block);
+		OreDictionary.registerOre("plant", BlockPhasmatocycasShootPlaceable.block);
+		OreDictionary.registerOre("plant", BlockArthropitysLeaves.block);
+		OreDictionary.registerOre("plant", BlockDicroidiumFLeaves.block);
+		OreDictionary.registerOre("plant", BlockBeechLeaves.block);
+		OreDictionary.registerOre("plant", BlockPlaneLeaves.block);
+		OreDictionary.registerOre("plant", BlockSycamoreLeaves.block);
+		OreDictionary.registerOre("plant", BlockFurculaLeaves.block);
 
 		OreDictionary.registerOre("plant", BlockAntarcticycas.block);
 		OreDictionary.registerOre("plant", BlockCaytoniales.block);
@@ -2666,6 +3393,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plant", ItemIsoetesItem.block);
 		OreDictionary.registerOre("plant", BlockSphenophyllales1.block);
 		OreDictionary.registerOre("plant", BlockClaytosmunda.block);
+		OreDictionary.registerOre("plant", BlockDictyophyllum.block);
 		OreDictionary.registerOre("plant", BlockWachtleria.block);
 		OreDictionary.registerOre("plant", BlockScytophyllum.block);
 		OreDictionary.registerOre("plant", BlockAethophyllum.block);
@@ -2682,8 +3410,11 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plant", BlockStauropteris.block);
 		OreDictionary.registerOre("plant", BlockOsmunda.block);
 		OreDictionary.registerOre("plant", BlockRhacophyton.block);
+		OreDictionary.registerOre("plant", BlockCladophlebis.block);
+		OreDictionary.registerOre("plant", BlockClathropteris.block);
 		OreDictionary.registerOre("plant", BlockCinnamonFern.block);
 		OreDictionary.registerOre("plant", BlockMarattia.block);
+		OreDictionary.registerOre("plant", BlockTongchuanophyllum.block);
 		OreDictionary.registerOre("plant", BlockGuangdedendron.block);
 		OreDictionary.registerOre("plant", BlockEdwardsiphyton.block);
 		OreDictionary.registerOre("plant", BlockEphedra.block);
@@ -2695,6 +3426,7 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plant", BlockSphenopteris.block);
 		OreDictionary.registerOre("plant", BlockTyrmia.block);
 		OreDictionary.registerOre("plant", BlockWielandiella.block);
+		OreDictionary.registerOre("plant", BlockOtozamites.block);
 		OreDictionary.registerOre("plant", ItemNathorstianaItem.block);
 		OreDictionary.registerOre("plant", ItemNeocalamitesItem.block);
 		OreDictionary.registerOre("plant", BlockSelaginella.block);
@@ -2738,6 +3470,18 @@ public class OreDictRegistries extends ElementsLepidodendronMod.ModElement {
 		OreDictionary.registerOre("plant", BlockDicranophyllum.block);
 		OreDictionary.registerOre("plant", BlockSkaaripteris.block);
 		OreDictionary.registerOre("plant", BlockGlenopteris.block);
+		OreDictionary.registerOre("plant", BlockScolecopteris.block);
+		OreDictionary.registerOre("plant", BlockLesleya.block);
+		OreDictionary.registerOre("plant", BlockWachtlerina.block);
+		OreDictionary.registerOre("plant", BlockThucydia.block);
+		OreDictionary.registerOre("plant", BlockOrtiseia.block);
+		OreDictionary.registerOre("plant", Blocks.TALLGRASS.getStateFromMeta(2).getBlock());
+		OreDictionary.registerOre("plant", Blocks.DOUBLE_PLANT.getStateFromMeta(3).getBlock());
+		OreDictionary.registerOre("plant", BlockPetriellales.block);
+		OreDictionary.registerOre("plant", BlockSanmiguelia.block);
+		OreDictionary.registerOre("plant", BlockConiopteris.block);
+		OreDictionary.registerOre("plant", BlockXihuphyllum.block);
+		OreDictionary.registerOre("plant", ItemMacrotaeniopterisItem.block);
 	}
 
 }

@@ -35,6 +35,10 @@ public class EntityPrehistoricFloraPalaeodictyoptera_Dunbaria extends EntityPreh
 		enablePersistence();
 	}
 
+	public static String getPeriod() {return "Permian";}
+
+	public static String getHabitat() {return "Terrestrial";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;
@@ -134,7 +138,7 @@ public class EntityPrehistoricFloraPalaeodictyoptera_Dunbaria extends EntityPreh
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		return LepidodendronMod.PALAEODICTYOPTERA_LOOT;
+		return LepidodendronMod.PALAEODICTYOPTERA_DUNBARIA_LOOT;
 	}
 
 }

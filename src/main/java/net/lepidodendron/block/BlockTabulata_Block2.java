@@ -5,6 +5,14 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronMisc;
+import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
+import net.lepidodendron.util.EnumBiomeTypeDevonian;
+import net.lepidodendron.util.EnumBiomeTypePermian;
+import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
+import net.lepidodendron.world.biome.devonian.BiomeDevonian;
+import net.lepidodendron.world.biome.ordoviciansilurian.BiomeOrdovicianSilurianSeaIce;
+import net.lepidodendron.world.biome.ordoviciansilurian.BiomeOrdovicianSilurianSeaIcebergs;
+import net.lepidodendron.world.biome.permian.BiomePermian;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
@@ -73,7 +81,7 @@ public class BlockTabulata_Block2 extends ElementsLepidodendronMod.ModElement {
 		if ((dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
-				
+				|| (dimID == LepidodendronConfig.dimPermian)
 		) {
 			dimensionCriteria = true;
 		}
@@ -106,12 +114,35 @@ public class BlockTabulata_Block2 extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genTabulataOverrideBiomes))
 			biomeCriteria = true;
-		if (dimID == LepidodendronConfig.dimDevonian
-				|| dimID == LepidodendronConfig.dimOrdovicianSilurian
-				|| dimID == LepidodendronConfig.dimCarboniferous
-				
+		if (dimID == LepidodendronConfig.dimOrdovicianSilurian
 		)
 			biomeCriteria = true;
+		if (biome == BiomeOrdovicianSilurianSeaIce.biome
+				|| biome == BiomeOrdovicianSilurianSeaIcebergs.biome
+		)
+			biomeCriteria = false;
+
+		if (biome instanceof BiomePermian)
+		{
+			BiomePermian biomePermian = (BiomePermian) biome;
+			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Ocean) {
+				biomeCriteria = true;
+			}
+		}
+		if (biome instanceof BiomeCarboniferous)
+		{
+			BiomeCarboniferous biomeCarb = (BiomeCarboniferous) biome;
+			if (biomeCarb.getBiomeType() == EnumBiomeTypeCarboniferous.Ocean) {
+				biomeCriteria = true;
+			}
+		}
+		if (biome instanceof BiomeDevonian)
+		{
+			BiomeDevonian biomeDev = (BiomeDevonian) biome;
+			if (biomeDev.getBiomeType() == EnumBiomeTypeDevonian.Ocean) {
+				biomeCriteria = true;
+			}
+		}
 		if (!biomeCriteria)
 			return;
 
@@ -131,7 +162,7 @@ public class BlockTabulata_Block2 extends ElementsLepidodendronMod.ModElement {
 			dimWeight = 2;
 		}
 		int minWaterDepth = 2 * dimWeight;
-		int maxWaterDepth = 20 * dimWeight;
+		int maxWaterDepth = 20;
 		int startHeight = world.getSeaLevel() - maxWaterDepth;
 
 		for (int i = 0; i < (12 * multiplier); i++) {

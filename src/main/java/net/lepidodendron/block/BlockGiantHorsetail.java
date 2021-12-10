@@ -6,9 +6,16 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
+import net.lepidodendron.util.EnumBiomeTypePermian;
+import net.lepidodendron.util.EnumBiomeTypeTriassic;
+import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
+import net.lepidodendron.world.biome.permian.*;
+import net.lepidodendron.world.biome.triassic.BiomeTriassic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockReed;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
@@ -67,9 +74,12 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 			dimensionCriteria = true;
 		if (!LepidodendronConfig.genHorsetail && !LepidodendronConfig.genAllPlants)
 			dimensionCriteria = false;
-		if ((LepidodendronConfig.dimCarboniferous == dimID)
+		if ((LepidodendronConfig.dimCarboniferous == dimID
+		|| dimID == LepidodendronConfig.dimPermian
+		|| dimID == LepidodendronConfig.dimTriassic)
 			)
 			dimensionCriteria = true;
+
 		if (!dimensionCriteria)
 			return;
 
@@ -91,10 +101,41 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genHorsetailOverrideBiomes))
 			biomeCriteria = true;
-		if ((LepidodendronConfig.dimCarboniferous == dimID)
-			
-			)
+		if (LepidodendronConfig.dimCarboniferous == dimID)
 			biomeCriteria = true;
+
+		if (biome instanceof BiomePermian) {
+			BiomePermian biomePermian = (BiomePermian) biome;
+			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Wetlands
+				|| biomePermian.getBiomeType() == EnumBiomeTypePermian.Ocean) {
+				biomeCriteria = true;
+			}
+			if (biome == BiomePermianLowlandsForest.biome
+				|| biome == BiomePermianLowlands.biome
+					|| biome == BiomePermianLowlandFloodplain.biome
+					|| biome == BiomePermianHighlands.biome) {
+				biomeCriteria = true;
+			}
+		}
+
+		if (biome instanceof BiomeCarboniferous) {
+			BiomeCarboniferous biomePermian = (BiomeCarboniferous) biome;
+			if (biomePermian.getBiomeType() == EnumBiomeTypeCarboniferous.Ice
+				|| biomePermian.getBiomeType() == EnumBiomeTypeCarboniferous.Ocean) {
+				biomeCriteria = false;
+			}
+		}
+
+		if (biome instanceof BiomeTriassic) {
+			BiomeTriassic biomeTriassic = (BiomeTriassic) biome;
+			if (biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Cool
+				|| biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Ocean
+				|| biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.River
+				|| biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Warm) {
+				biomeCriteria = true;
+			}
+		}
+
 		if (!biomeCriteria)
 			return;
 			
@@ -108,8 +149,19 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 				GenChance = 15;
 		}
 		
-		if (LepidodendronConfig.dimCarboniferous == dimID) {
+		if (LepidodendronConfig.dimCarboniferous == dimID
+				|| dimID == LepidodendronConfig.dimPermian
+				|| dimID == LepidodendronConfig.dimTriassic) {
 			GenChance = 25;
+		}
+		if (biome == BiomePermianLowlands.biome) {
+			GenChance = 92;
+		}
+		if (biome == BiomePermianLowlandFloodplain.biome) {
+			GenChance = 156;
+		}
+		if (biome == BiomePermianHighlands.biome) {
+			GenChance = 64;
 		}
 
 		int maxheight = LepidodendronConfig.maxheightHorsetail;
@@ -147,7 +199,7 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 							j = heightCheck;
 							for (int k = 0; k <= j; ++k)
  {
-								if (((BlockCustomFlower) block).canBlockStay(world, blockpos1))
+								if (((BlockCustomFlower) block).canBlockStay(world, blockpos1) && ((BlockCustomFlower) block).hasWater(world, blockpos1))
  {
 									if (k <= (j - 1)) {world.setBlockState(blockpos1.up(k), block.getDefaultState(), 2);
 }
@@ -193,6 +245,33 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 		@Override
 		public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 			return new ItemStack(Item.getItemFromBlock(this), 1, this.damageDropped(state));
+		}
+
+		public boolean hasWater(IBlockAccess world, BlockPos pos) {
+			Biome biome = world.getBiome(pos);
+			if (biome == BiomePermianLowlands.biome || biome == BiomePermianHighlands.biome) {
+				boolean waterCriteria = false;
+				//Is there water nearby?
+				int xct = -3;
+				int yct;
+				int zct;
+				while ((xct < 4) && (!waterCriteria)) {
+					yct = -6;
+					while ((yct <= 1) && (!waterCriteria)) {
+						zct = -3;
+						while ((zct < 4) && (!waterCriteria)) {
+							if ((world.getBlockState(pos.add(xct, yct, zct))).getMaterial() == Material.WATER) {
+								waterCriteria = true;
+							}
+							zct = zct + 1;
+						}
+						yct = yct + 1;
+					}
+					xct = xct + 1;
+				}
+				return waterCriteria;
+			}
+			return true;
 		}
 
 		@Override

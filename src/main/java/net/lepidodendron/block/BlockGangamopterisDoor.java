@@ -81,13 +81,13 @@ public class BlockGangamopterisDoor extends ElementsLepidodendronMod.ModElement 
 		@Override
 	    public String getTranslationKey()
 	    {
-	        return "tile.Gangamopteris_door.name";
+	        return "tile.gangamopteris_door.name";
 	    }
 
 		@Override
 	    public String getLocalizedName()
    	 	{
-        	return I18n.translateToLocal("item.Gangamopteris_door_item.name");
+        	return I18n.translateToLocal("item.gangamopteris_door_item.name");
     	}
     	
 		@Override

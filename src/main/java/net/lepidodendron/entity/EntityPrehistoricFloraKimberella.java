@@ -39,6 +39,10 @@ public class EntityPrehistoricFloraKimberella extends EntityPrehistoricFloraSlit
 		setSize(0.3F, 0.25F);
 	}
 
+	public static String getPeriod() {return "Ediacaran";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;

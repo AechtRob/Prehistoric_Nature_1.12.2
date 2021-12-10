@@ -85,6 +85,7 @@ public class BlockMacrocystisKelp extends ElementsLepidodendronMod.ModElement {
 		if (!dimensionCriteria || dimID == LepidodendronConfig.dimDevonian 
 			|| dimID == LepidodendronConfig.dimOrdovicianSilurian
 			|| dimID == LepidodendronConfig.dimCarboniferous
+				|| (dimID == LepidodendronConfig.dimPermian)
 			)
 			return;
 

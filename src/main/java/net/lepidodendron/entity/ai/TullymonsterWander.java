@@ -101,7 +101,9 @@ public class TullymonsterWander extends AnimationAINoAnimation<EntityPrehistoric
                         }
                         randPos = randPosVar;
                     }
-                    return randPos;
+                    if (!(randPos.getY() < 1 || randPos.getY() >= 254)) {
+                        return randPos;
+                    }
                 }
             }
         } else {

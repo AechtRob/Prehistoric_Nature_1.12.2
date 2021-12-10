@@ -53,6 +53,10 @@ public class EntityPrehistoricFloraCladoselache extends EntityPrehistoricFloraAg
 		maxHealthAgeable = 22.0D;
 	}
 
+	public static String getPeriod() {return "Devonian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public void playLivingSound() {
 	}
@@ -96,7 +100,7 @@ public class EntityPrehistoricFloraCladoselache extends EntityPrehistoricFloraAg
 
 	protected void initEntityAI() {
 		tasks.addTask(0, new AttackAI(this, 1.0D, false, this.getAttackLength()));
-		tasks.addTask(1, new AgeableFishWander(this, NO_ANIMATION, 1D, 0.5D));
+		tasks.addTask(1, new AgeableFishWander(this, NO_ANIMATION, 1D, 0));
 		this.targetTasks.addTask(0, new EatFishItemsAI(this));
 		this.targetTasks.addTask(0, new EatMeatItemsAI(this));
 		this.targetTasks.addTask(1, new HuntAI(this, EntityPrehistoricFloraTrilobiteBottomBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
@@ -193,7 +197,7 @@ public class EntityPrehistoricFloraCladoselache extends EntityPrehistoricFloraAg
 	public void onEntityUpdate() {
 		super.onEntityUpdate();
 		//Lay eggs perhaps:
-		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getCanBreed() && LepidodendronConfig.doMultiplyMobs
+		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getCanBreed() && LepidodendronConfig.doMultiplyMobs && this.getTicks() > 0
 				&& (BlockEggsCladoselache.block.canPlaceBlockOnSide(world, this.getPosition(), EnumFacing.UP)
 				|| BlockEggsCladoselache.block.canPlaceBlockOnSide(world, this.getPosition().down(), EnumFacing.UP))
 				&& (BlockEggsCladoselache.block.canPlaceBlockAt(world, this.getPosition())
@@ -206,14 +210,15 @@ public class EntityPrehistoricFloraCladoselache extends EntityPrehistoricFloraAg
 		if (!world.isRemote && spaceCheckEggs() && this.isInWater() && this.isPFAdult() && this.getTicks() > -30 && this.getTicks() < 0 && LepidodendronConfig.doMultiplyMobs) {
 			//Is stationary for egg-laying:
 			IBlockState eggs = BlockEggsCladoselache.block.getDefaultState();
-			this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 			if (BlockEggsCladoselache.block.canPlaceBlockOnSide(world, this.getPosition(), EnumFacing.UP) && BlockEggsCladoselache.block.canPlaceBlockAt(world, this.getPosition())) {
 				world.setBlockState(this.getPosition(), eggs);
+				this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 			}
 			if (BlockEggsCladoselache.block.canPlaceBlockOnSide(world, this.getPosition().down(), EnumFacing.UP) && BlockEggsCladoselache.block.canPlaceBlockAt(world, this.getPosition().down())) {
 				world.setBlockState(this.getPosition().down(), eggs);
+				this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
 			}
-			this.setTicks(-20);
+			this.setTicks(0);
 		}
 	}
 

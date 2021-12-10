@@ -179,11 +179,15 @@ public class ModelHylonomus extends AdvancedModelBase {
         AdvancedModelRenderer[] Tail = {this.tail1, this.tail2, this.tail3};
         AdvancedModelRenderer[] Torso = {this.neck, this.body, this.pelvis};
 
-        if (f3 == 0.0F) { //Not moving
-            //return;
+        float speed = 0.85F;
+
+        //EntityPrehistoricFloraHylonomus Hylonomus = (EntityPrehistoricFloraHylonomus) e;
+        if (f3 == 0.0F || !Hylonomus.getIsMoving()) { //Not moving
+            this.chainWave(Tail, speed * 0.33F, 0.025F, -1.5, f2, 1);
+            this.chainSwing(Tail, speed * 0.2F, 0.08F, -1.8, f2, 0.8F);
+            return;
         }
 
-        float speed = 0.85F;
         this.flap(leftrearleg1, speed, 0.45F, false, -3, -0.35F, f2, 0.5F);
         this.swing(leftrearleg1, speed, -0.5F, true, -1, 1F, f2, 0.5F);
         this.walk(leftrearleg2, speed, -0.6F, true, -3, 0.0F, f2, 0.8F);

@@ -6,6 +6,9 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.lepidodendron.util.EnumBiomeTypeDevonian;
+import net.lepidodendron.world.biome.devonian.BiomeDevonian;
+import net.lepidodendron.world.biome.devonian.BiomeDevonianSprings;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockReed;
 import net.minecraft.block.SoundType;
@@ -93,9 +96,17 @@ public class BlockPseudobornia extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genPseudoborniaOverrideBiomes))
 			biomeCriteria = true;
-		if (LepidodendronConfig.dimDevonian == dimID)
-			biomeCriteria = true;
-			
+		if (LepidodendronConfig.dimDevonian == dimID) {
+			if (biome instanceof BiomeDevonian) {
+				BiomeDevonian biomeDevonian = (BiomeDevonian) biome;
+				if (biomeDevonian.getBiomeType() == EnumBiomeTypeDevonian.Springs) {
+					biomeCriteria = false;
+				}
+				else {
+					biomeCriteria = true;
+				}
+			}
+		}
 		if (!biomeCriteria)
 			return;
 			
@@ -131,7 +142,7 @@ public class BlockPseudobornia extends ElementsLepidodendronMod.ModElement {
 				public boolean generate(World world, Random random, BlockPos pos) {
 					for (int i = 0; i < 10; ++i) {
 						BlockPos blockpos1 = pos.add(random.nextInt(4) - random.nextInt(4), 0, random.nextInt(4) - random.nextInt(4));
-						if (world.isAirBlock(blockpos1) && world.isAirBlock(blockpos1.up()) && world.isAirBlock(blockpos1.up(2)) && blockpos1.getY() >= minH && (blockpos1.getY() <= maxH || maxH == 0) ) {
+						if (world.isAirBlock(blockpos1) && world.isAirBlock(blockpos1.up()) && world.isAirBlock(blockpos1.up(2)) && blockpos1.getY() >= minH && (blockpos1.getY() <= maxH || maxH == 0)  && world.getBiome(blockpos1) != BiomeDevonianSprings.biome ) {
 							int j = 1 + random.nextInt(random.nextInt(18) + 2);
 							j = Math.max(3, j);
 							int heightCheck = 3;

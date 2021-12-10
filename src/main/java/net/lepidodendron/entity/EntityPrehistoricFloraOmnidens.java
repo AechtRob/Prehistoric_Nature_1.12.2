@@ -13,7 +13,6 @@ import net.lepidodendron.entity.util.PathNavigateWaterBottom;
 import net.lepidodendron.item.entities.ItemEggsOmnidens;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.item.EntityItem;
@@ -67,6 +66,10 @@ public class EntityPrehistoricFloraOmnidens extends EntityPrehistoricFloraAgeabl
 		maxHealthAgeable = 30.0D;
 		LOOK_ANIMATION = Animation.create(120);
 	}
+
+	public static String getPeriod() {return "Cambrian";}
+
+	public static String getHabitat() {return "Aquatic";}
 
 	@Override
 	public int getAttackLength() {
@@ -178,7 +181,7 @@ public class EntityPrehistoricFloraOmnidens extends EntityPrehistoricFloraAgeabl
 		tasks.addTask(2, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatFishItemsAI(this));
 		this.targetTasks.addTask(0, new EatMeatItemsAI(this));
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+		this.targetTasks.addTask(1, new EntityHurtByTargetSmallerThanMeAI(this, false));
 		this.targetTasks.addTask(2, new HuntAI(this, EntityPrehistoricFloraFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(2, new HuntSmallerThanMeAIAgeable(this, EntityPrehistoricFloraAgeableFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(2, new HuntAI(this, EntityPrehistoricFloraTrilobiteBottomBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
@@ -241,6 +244,16 @@ public class EntityPrehistoricFloraOmnidens extends EntityPrehistoricFloraAgeabl
 	public void onLivingUpdate() {
 
 		if (!world.isRemote) {
+			if (this.getAttackTarget() != null) {
+				if (this.getAttackTarget().isDead) {
+					this.setAttackTarget(null);
+				}
+			}
+			if (this.getEatTarget() != null) {
+				if (this.getEatTarget().isDead) {
+					this.setEatTarget(null);
+				}
+			}
 			this.setIsFast(this.getAttackTarget() != null);
 			//System.err.println("Entity side isFast: " + this.getIsFast());
 		}

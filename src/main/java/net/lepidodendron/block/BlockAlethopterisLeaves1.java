@@ -21,6 +21,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -70,7 +71,17 @@ public class BlockAlethopterisLeaves1 extends ElementsLepidodendronMod.ModElemen
 
 		@Override
 		public NonNullList<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
-			return NonNullList.withSize(1, new ItemStack(this, 1));
+			return NonNullList.withSize(1, new ItemStack(BlockAlethopterisLeaves.block, 1));
+		}
+
+		@Override
+		protected ItemStack getSilkTouchDrop(IBlockState state) {
+			return new ItemStack(BlockAlethopterisLeaves.block, 1);
+		}
+
+		@Override
+		public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
+			return new ItemStack(BlockAlethopterisLeaves.block, (int) (1));
 		}
 
 		@Override
@@ -93,7 +104,7 @@ public class BlockAlethopterisLeaves1 extends ElementsLepidodendronMod.ModElemen
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

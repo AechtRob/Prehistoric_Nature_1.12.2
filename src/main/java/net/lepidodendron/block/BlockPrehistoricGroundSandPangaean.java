@@ -80,6 +80,15 @@ public class BlockPrehistoricGroundSandPangaean extends ElementsLepidodendronMod
 	    }
 
 		@Override
+		public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
+
+			net.minecraftforge.common.EnumPlantType plantType = plantable.getPlantType(world, pos.offset(direction));
+			if (canSustainPlantType(world, pos, plantType)) {
+				return true;
+			}
+			return super.canSustainPlant(state, world, pos, direction, plantable);
+		}
+
 		public boolean canSustainPlantType(IBlockAccess world, BlockPos pos, EnumPlantType plantType)
 		{
 
@@ -104,12 +113,6 @@ public class BlockPrehistoricGroundSandPangaean extends ElementsLepidodendronMod
 			}
 			// don't support nether plants, water plants, or crops (require farmland), or anything else by default
 			return false;
-		}
-
-		@Override
-		public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable)
-		{
-			return this.canSustainPlantType(world, pos, plantable.getPlantType(world, pos.offset(direction)));
 		}
 
 	    @Override

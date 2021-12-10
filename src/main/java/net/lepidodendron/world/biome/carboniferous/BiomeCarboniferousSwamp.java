@@ -4,22 +4,18 @@ package net.lepidodendron.world.biome.carboniferous;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.*;
-import net.lepidodendron.world.*;
+import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
 import net.lepidodendron.world.biome.ChunkGenSpawner;
+import net.lepidodendron.world.gen.*;
 import net.minecraft.block.BlockDoublePlant;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -47,13 +43,14 @@ public class BiomeCarboniferousSwamp extends ElementsLepidodendronMod.ModElement
 		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.JUNGLE);
 		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.LUSH);
 	}
-	static class BiomeGenCustom extends Biome {
+	static class BiomeGenCustom extends BiomeCarboniferous {
 		public BiomeGenCustom() {
-			super(new Biome.BiomeProperties("The Carboniferous Period").setRainfall(0.5F).setBaseHeight(-0.2F).setHeightVariation(0.15F).setTemperature(0.95F).setRainfall(0.9F).setWaterColor(8186044));
+			//super(new Biome.BiomeProperties("Carboniferous Swamp").setRainfall(0.5F).setBaseHeight(-0.08F).setHeightVariation(0.09F).setTemperature(0.95F).setRainfall(0.9F).setWaterColor(8186044));
+			super(new Biome.BiomeProperties("Carboniferous Swamp").setRainfall(0.5F).setBaseHeight(-0.08F).setHeightVariation(0.09F).setTemperature(0.95F).setRainfall(0.9F).setWaterColor(3906905));
 			setRegistryName("carboniferous_swamp");
 			topBlock = BlockPrehistoricGroundLush.block.getDefaultState();
 			fillerBlock = Blocks.DIRT.getStateFromMeta(1);
-			decorator.treesPerChunk = 30;
+			decorator.treesPerChunk = 40;
 			decorator.flowersPerChunk = 0;
 			decorator.grassPerChunk = 0;
 			decorator.mushroomsPerChunk = 20;
@@ -97,6 +94,7 @@ public class BiomeCarboniferousSwamp extends ElementsLepidodendronMod.ModElement
 
 		protected static final WorldGenLepidodendronTree LEPIDODENDRON_TREE = new WorldGenLepidodendronTree(false);
 		protected static final WorldGenSigillaria SIGILLARIA_TREE = new WorldGenSigillaria(false);
+		protected static final WorldGenCordaites CORDAITES = new WorldGenCordaites(false);
 		protected static final WorldGenBothrodendronTree BOTHRODENDRON_TREE = new WorldGenBothrodendronTree(false);
 		protected static final WorldGenDiaphorodendronTree DIAPHORODENDRON_TREE = new WorldGenDiaphorodendronTree(false);
 		protected static final WorldGenValmeyerodendronTree VALMEYERODENDRON_TREE = new WorldGenValmeyerodendronTree(false);
@@ -125,27 +123,32 @@ public class BiomeCarboniferousSwamp extends ElementsLepidodendronMod.ModElement
 		protected static final WorldGenFern FERN_GENERATOR = new WorldGenFern();
 		protected static final WorldGenMud MUD_GENERATOR = new WorldGenMud();
 		public static final PropertyEnum<BlockDoublePlant.EnumPlantType> VARIANT = PropertyEnum.<BlockDoublePlant.EnumPlantType>create("variant", BlockDoublePlant.EnumPlantType.class);
-		protected static final WorldGenReef REEF_GENERATOR = new WorldGenReef();
 
 		public WorldGenAbstractTree getRandomTreeFeature(Random rand)
 	    {
-	    	int selector = rand.nextInt(7);
+	    	int selector = rand.nextInt(10);
 	    	switch (selector) {
-	    		case 0 :
-	    			return LEPIDODENDRON_TREE;
-	       		case 1 :
-	    			return SIGILLARIA_TREE;
-	       		case 2 :
-	    			return BOTHRODENDRON_TREE;
-	       		case 3 :
-	    			return DIAPHORODENDRON_TREE;
-	       		case 4 :
-	    			return VALMEYERODENDRON_TREE;
-	       		case 5 :
-	    			return CALAMITES;
-				case 6 :
+				case 0:
+					return LEPIDODENDRON_TREE;
+				case 1:
+					return CORDAITES;
+				case 2:
+					return BOTHRODENDRON_TREE;
+				case 3:
+					return DIAPHORODENDRON_TREE;
+				case 4:
+					return VALMEYERODENDRON_TREE;
+				case 5:
+					return CALAMITES;
+				case 6:
 					return MACRONEUROPTERIS_TREE;
-	    	}
+				case 7:
+					return MACRONEUROPTERIS_TREE;
+				case 8:
+					return SIGILLARIA_TREE;
+				case 9:
+					return LEPIDODENDRON_TREE;
+			}
 	    	return LEPIDODENDRON_TREE;
 	    }
 
@@ -157,15 +160,15 @@ public class BiomeCarboniferousSwamp extends ElementsLepidodendronMod.ModElement
 			//Spawns forcefully borrow the bush event - why not?
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.DEAD_BUSH))
 			{
-				String[] MobString = LepidodendronConfig.dimCarboniferousMobsBespoke;
+				String[] MobString = LepidodendronConfig.dimCarboniferousMobsSwampBespoke;
 				if (LepidodendronConfig.doSpawnsPrehistoricFloraDefault) {
-					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsPF);
+					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsSwampPF);
 				}
 				if (LepidodendronConfig.doSpawnsFossilsArcheology) {
-					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsFA);
+					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsSwampFA);
 				}
 				if (LepidodendronConfig.doSpawnsReborn) {
-					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsReborn);
+					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsSwampReborn);
 				}
 				ChunkGenSpawner.executeProcedure(false, MobString, worldIn, topBlock, pos, rand);
 			}
@@ -249,7 +252,7 @@ public class BiomeCarboniferousSwamp extends ElementsLepidodendronMod.ModElement
 	        }
 
 	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
-			for (int i = 0; i < 25; ++i)
+			for (int i = 0; i < 48; ++i)
 			{
 				int j = rand.nextInt(16) + 8;
 				int k = rand.nextInt(16) + 8;
@@ -378,47 +381,14 @@ public class BiomeCarboniferousSwamp extends ElementsLepidodendronMod.ModElement
 	            WATER_HORSETAIL_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
 
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.ROCK))
-				for (int i = 0; i < 8; ++i)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
-					BlockPos pos1 = pos.add(j, l, k);
-					if (
-							(pos1.getY() < worldIn.getSeaLevel() - 5)
-									&& (worldIn.getBlockState(pos1).getMaterial() == Material.WATER)
-									&& (worldIn.getBlockState(pos1.up()).getMaterial() == Material.WATER)
-									&& (worldIn.getBlockState(pos1.up(2)).getMaterial() == Material.WATER)
-					) {
-						REEF_GENERATOR.generate(worldIn, rand, pos1, 3);
-					}
-				}
 
 	        super.decorate(worldIn, rand, pos);
 	    }
-	}
-	
-	private static Class<? extends Entity> findEntity(String entity) {
-        Class<? extends Entity> entityClass;
-        EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(entity));
-        entityClass = ee == null ? null : ee.getEntityClass();
-        if (entityClass == null) {
-            System.err.println("Unknown mob requested for spawn: '" + entity + "'!");
-            return null;
-        }
-        return entityClass;
-    }		
 
-	public static boolean isNumeric(String strNum) {
-	    if (strNum == null) {
-	        return false;
-	    }
-	    try {
-	        double d = Double.parseDouble(strNum);
-	    } catch (NumberFormatException nfe) {
-	        return false;
-	    }
-	    return true;
+		@Override
+		public EnumBiomeTypeCarboniferous getBiomeType() {
+			return EnumBiomeTypeCarboniferous.Swamp;
+		}
+
 	}
 }

@@ -40,6 +40,10 @@ public class EntityPrehistoricFloraHibernaspis extends EntityPrehistoricFloraFis
 		enablePersistence();
 	}
 
+	public static String getPeriod() {return "Devonian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public boolean dropsEggs() {
 		return true;

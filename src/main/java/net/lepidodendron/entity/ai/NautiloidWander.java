@@ -87,7 +87,9 @@ public class NautiloidWander extends AnimationAINoAnimation<EntityPrehistoricFlo
                 BlockPos randPos = this.PrehistoricFloraNautiloidBase.getPosition().add(rand.nextInt(17) - 8, rand.nextInt(9) - 4, rand.nextInt(17) - 8);
                 //System.err.println("Target " + randPos.getX() + " " + this.PrehistoricFloraFishBase.getPosition().getY() + " " + randPos.getZ());
                 if (this.PrehistoricFloraNautiloidBase.world.getBlockState(randPos).getMaterial() == Material.WATER && this.PrehistoricFloraNautiloidBase.isDirectPathBetweenPoints(this.PrehistoricFloraNautiloidBase.getPositionVector(), new Vec3d(randPos.getX() + 0.5, randPos.getY() + 0.5, randPos.getZ() + 0.5))) {
-                    return randPos;
+                    if (!(randPos.getY() < 1 || randPos.getY() >= 254)) {
+                        return randPos;
+                    }
                 }
             }
         } else {

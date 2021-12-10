@@ -4,7 +4,11 @@ package net.lepidodendron.block;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
-import net.lepidodendron.world.MobSpawnGenerator;
+import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
+import net.lepidodendron.util.EnumBiomeTypeDevonian;
+import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
+import net.lepidodendron.world.biome.devonian.BiomeDevonian;
+import net.lepidodendron.world.gen.MobSpawnGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -13,6 +17,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -57,14 +62,26 @@ public class BlockEggsXenacanthus extends ElementsLepidodendronMod.ModElement {
 		{
 			return;
 		}
-		int minWaterDepth = 2;
-		int waterDepthCheckMax = 6;
+		int minWaterDepth = 1;
+		int waterDepthCheckMax = 10;
 		int startHeight = world.getSeaLevel() - waterDepthCheckMax;
 		for (int i = 0; i < (int) 3; i++) {
 			int l6 = chunkX + random.nextInt(16) + 8;
 			int i11 = random.nextInt(128 - startHeight) + startHeight;
 			int l14 = chunkZ + random.nextInt(16) + 8;
-			(new MobSpawnGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14), minWaterDepth, waterDepthCheckMax);
+			Biome biome = world.getBiome(new BlockPos(l6, i11, l14));
+			if (biome instanceof BiomeCarboniferous) {
+				BiomeCarboniferous biomeC = (BiomeCarboniferous) biome;
+				if (biomeC.getBiomeType() == EnumBiomeTypeCarboniferous.Swamp) {
+					(new MobSpawnGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14), minWaterDepth, waterDepthCheckMax);
+				}
+			}
+			if (biome instanceof BiomeDevonian) {
+				BiomeDevonian biomeD = (BiomeDevonian) biome;
+				if (biomeD.getBiomeType() != EnumBiomeTypeDevonian.Ocean) {
+					(new MobSpawnGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14), minWaterDepth, waterDepthCheckMax);
+				}
+			}
 		}
 	}
 

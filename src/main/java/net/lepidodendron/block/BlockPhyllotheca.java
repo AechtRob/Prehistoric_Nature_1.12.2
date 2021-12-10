@@ -7,6 +7,9 @@ import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.item.ItemPhyllothecaItem;
+import net.lepidodendron.util.EnumBiomeTypePermian;
+import net.lepidodendron.world.biome.permian.BiomePermian;
+import net.lepidodendron.world.biome.permian.BiomePermianLowlandFloodplain;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockReed;
 import net.minecraft.block.SoundType;
@@ -66,6 +69,8 @@ public class BlockPhyllotheca extends ElementsLepidodendronMod.ModElement {
 			dimensionCriteria = true;
 		if (!LepidodendronConfig.genPhyllotheca && !LepidodendronConfig.genAllPlants)
 			dimensionCriteria = false;
+		if (dimID == LepidodendronConfig.dimPermian)
+			dimensionCriteria = true;
 
 		if (!dimensionCriteria)
 			return;
@@ -84,6 +89,15 @@ public class BlockPhyllotheca extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genPhyllothecaOverrideBiomes))
 			biomeCriteria = true;
+
+		if (biome instanceof BiomePermian) {
+			BiomePermian biomePermian = (BiomePermian) biome;
+			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Wetlands
+				|| biome == BiomePermianLowlandFloodplain.biome
+				|| biomePermian.getBiomeType() == EnumBiomeTypePermian.Glossopteris) {
+				biomeCriteria = true;
+			}
+		}
 			
 		if (!biomeCriteria)
 			return;
@@ -97,10 +111,16 @@ public class BlockPhyllotheca extends ElementsLepidodendronMod.ModElement {
 			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
 				GenChance = 15;
 		}
-		//if (((dimID == LepidodendronConfig.dimPermianGlossopteris) || (dimID == LepidodendronConfig.dimPermianWetlands) || (dimID == LepidodendronConfig.dimPermianAridlands) || (dimID == LepidodendronConfig.dimPermianFloodBasalt))
-		//){
-		//	GenChance = 15;
-		//}
+		if (dimID == LepidodendronConfig.dimPermian)
+		{
+			GenChance = 35;
+		}
+		if (biome instanceof BiomePermian) {
+			BiomePermian biomePermian = (BiomePermian) biome;
+			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Glossopteris) {
+				GenChance = 20;
+			}
+		}
 
 		int maxheight = LepidodendronConfig.maxheightPhyllotheca;
 		int minheight = LepidodendronConfig.minheightPhyllotheca;
@@ -131,7 +151,9 @@ public class BlockPhyllotheca extends ElementsLepidodendronMod.ModElement {
 					    		//Build the stem:
 					    		int counter = 2;
 					    		while (counter <= colWater) {
-									world.setBlockState(blockpos1.down(counter), BlockPhyllothecaStem.block.getDefaultState(), 2);
+									if (world.getBlockState(blockpos1.down(counter)).getMaterial() == Material.WATER) {
+										world.setBlockState(blockpos1.down(counter), BlockPhyllothecaStem.block.getDefaultState(), 2);
+									}
 					    			counter = counter + 1;
 					    		}
 					    	}
@@ -353,7 +375,7 @@ public class BlockPhyllotheca extends ElementsLepidodendronMod.ModElement {
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Horsetail shrub");
-				tooltip.add("Periods: Permian - Triassic");
+				tooltip.add("Periods: Permian");
 				tooltip.add("Note: Can be planted in water or on land");
 				tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);

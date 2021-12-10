@@ -35,6 +35,10 @@ public class EntityPrehistoricFloraPalaeodictyoptera_Stenodictya extends EntityP
 		enablePersistence();
 	}
 
+	public static String getPeriod() {return "late Carboniferous";}
+
+	public static String getHabitat() {return "Terrestrial";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;
@@ -133,7 +137,7 @@ public class EntityPrehistoricFloraPalaeodictyoptera_Stenodictya extends EntityP
 
 	@Nullable
 	protected ResourceLocation getLootTable() {
-		return LepidodendronMod.PALAEODICTYOPTERA_LOOT;
+		return LepidodendronMod.PALAEODICTYOPTERA_STENODICTYA_LOOT;
 	}
 
 }

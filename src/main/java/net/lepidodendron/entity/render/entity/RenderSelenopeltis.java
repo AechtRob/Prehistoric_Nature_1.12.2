@@ -11,7 +11,7 @@ public class RenderSelenopeltis extends RenderLiving<EntityPrehistoricFloraSelen
     private static final ResourceLocation TEXTURE = new ResourceLocation(LepidodendronMod.MODID + ":textures/entities/Selenopeltis.png");
 
     public RenderSelenopeltis(RenderManager mgr) {
-        super(mgr, new ModelSelenopeltis(), 0.2f);
+        super(mgr, new ModelSelenopeltis(), 0.08f);
     }
 
     @Override

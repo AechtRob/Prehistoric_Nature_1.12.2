@@ -7,6 +7,12 @@ import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.item.ItemNeocalamitesItem;
+import net.lepidodendron.util.EnumBiomeTypePermian;
+import net.lepidodendron.util.EnumBiomeTypeTriassic;
+import net.lepidodendron.world.biome.permian.BiomePermian;
+import net.lepidodendron.world.biome.permian.BiomePermianLowlandFloodplain;
+import net.lepidodendron.world.biome.permian.BiomePermianLowlands;
+import net.lepidodendron.world.biome.triassic.BiomeTriassic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockReed;
 import net.minecraft.block.SoundType;
@@ -73,6 +79,9 @@ public class BlockNeocalamites extends ElementsLepidodendronMod.ModElement {
 			dimensionCriteria = true;
 		if (!LepidodendronConfig.genNeocalamites && !LepidodendronConfig.genAllPlants)
 			dimensionCriteria = false;
+		if (dimID == LepidodendronConfig.dimPermian || dimID == LepidodendronConfig.dimTriassic)
+			dimensionCriteria = true;
+
 		if (!dimensionCriteria)
 			return;
 
@@ -90,6 +99,24 @@ public class BlockNeocalamites extends ElementsLepidodendronMod.ModElement {
 		}
 		if (matchBiome(biome, LepidodendronConfig.genNeocalamitesOverrideBiomes))
 			biomeCriteria = true;
+
+		if (biome instanceof BiomePermian) {
+			BiomePermian biomePermian = (BiomePermian) biome;
+			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Wetlands
+				|| biome == BiomePermianLowlands.biome
+				|| biome == BiomePermianLowlandFloodplain.biome) {
+				biomeCriteria = true;
+			}
+		}
+
+		if (biome instanceof BiomeTriassic) {
+			BiomeTriassic biomeTriassic = (BiomeTriassic) biome;
+			if (biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Cool
+				|| biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.River
+				|| biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Warm) {
+				biomeCriteria = true;
+			}
+		}
 			
 		if (!biomeCriteria)
 			return;
@@ -103,10 +130,16 @@ public class BlockNeocalamites extends ElementsLepidodendronMod.ModElement {
 			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
 				GenChance = 15;
 		}
-		//if (((dimID == LepidodendronConfig.dimPermianGlossopteris) || (dimID == LepidodendronConfig.dimPermianWetlands) || (dimID == LepidodendronConfig.dimPermianAridlands) || (dimID == LepidodendronConfig.dimPermianFloodBasalt))
-		//){
-		//	GenChance = 15;
-		//}
+		if (dimID == LepidodendronConfig.dimPermian || dimID == LepidodendronConfig.dimTriassic
+		){
+			GenChance = 28;
+		}
+		if (biome == BiomePermianLowlands.biome) {
+			GenChance = 42;
+		}
+		if (biome == BiomePermianLowlandFloodplain.biome) {
+			GenChance = 64;
+		}
 
 		int maxheight = LepidodendronConfig.maxheightNeocalamites;
 		int minheight = LepidodendronConfig.minheightNeocalamites;
@@ -137,7 +170,9 @@ public class BlockNeocalamites extends ElementsLepidodendronMod.ModElement {
 					    		//Build the stem:
 					    		int counter = 2;
 					    		while (counter <= colWater) {
-									world.setBlockState(blockpos1.down(counter), BlockNeocalamitesStem.block.getDefaultState(), 2); 
+									if (world.getBlockState(blockpos1.down(counter)).getMaterial() == Material.WATER) {
+										world.setBlockState(blockpos1.down(counter), BlockNeocalamitesStem.block.getDefaultState(), 2);
+									}
 					    			counter = counter + 1;
 					    		}
 					    	}

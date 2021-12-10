@@ -5,21 +5,19 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockCoarseSandyDirtPangaean;
 import net.lepidodendron.block.BlockCordaitesLog;
-import net.lepidodendron.block.BlockGlossopterisLeafLitter;
 import net.lepidodendron.block.BlockGlossopterisLog;
-import net.lepidodendron.world.*;
+import net.lepidodendron.block.BlockLeafLitter;
+import net.lepidodendron.util.EnumBiomeTypePermian;
+import net.lepidodendron.world.biome.ChunkGenSpawner;
+import net.lepidodendron.world.gen.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Random;
 
@@ -41,11 +39,11 @@ public class BiomePermianColdGlossopterisForestOcean extends ElementsLepidodendr
 		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
 		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.COLD);
 	}
-	static class BiomeGenCustom extends Biome {
+	static class BiomeGenCustom extends BiomePermian {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Permian Cold Glossopteris Forest").setRainfall(0.4F).setBaseHeight(-0.5F).setHeightVariation(0.06F).setTemperature(-0.1F).setWaterColor(-5317633).setSnowEnabled());
 			setRegistryName("permian_cold_glossopteris_forest_ocean");
-			topBlock = BlockGlossopterisLeafLitter.block.getDefaultState();
+			topBlock = BlockLeafLitter.block.getDefaultState();
 			fillerBlock = BlockCoarseSandyDirtPangaean.block.getDefaultState();
 			decorator.treesPerChunk = 20;
 			decorator.flowersPerChunk = 0;
@@ -86,7 +84,7 @@ public class BiomePermianColdGlossopterisForestOcean extends ElementsLepidodendr
 		protected static final WorldGenPodzol PODZOL_GENERATOR = new WorldGenPodzol();
 		protected static final WorldGenPangeanDirt DIRT_GENERATOR = new WorldGenPangeanDirt();
 		protected static final WorldGenSnow SNOW_GENERATOR = new WorldGenSnow();
-		protected static final WorldGenReef REEF_GENERATOR = new WorldGenReef();
+		//protected static final WorldGenReef REEF_GENERATOR = new WorldGenReef();
 		protected static final WorldGenIceOnSea ICE_GENERATOR = new WorldGenIceOnSea();
 		
 	public WorldGenAbstractTree getRandomTreeFeature(Random rand)
@@ -107,17 +105,17 @@ public class BiomePermianColdGlossopterisForestOcean extends ElementsLepidodendr
 			//Spawns forcefully borrow the bush event - why not?
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.DEAD_BUSH))
 			{
-				//String[] MobString = LepidodendronConfig.dimPermianGlossopterisMobsBespoke;
+				String[] MobString = LepidodendronConfig.dimPermianMobsGlossopterisBespoke;
 				if (LepidodendronConfig.doSpawnsPrehistoricFloraDefault) {
-					//MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianGlossopterisMobsPF);
+					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianMobsGlossopterisPF);
 				}
 				if (LepidodendronConfig.doSpawnsFossilsArcheology) {
-					//MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianGlossopterisMobsFA);
+					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianMobsGlossopterisFA);
 				}
 				if (LepidodendronConfig.doSpawnsReborn) {
-					//MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianGlossopterisMobsReborn);
+					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianMobsGlossopterisReborn);
 				}
-				//ChunkGenSpawner.executeProcedure(false, MobString, worldIn, topBlock, pos, rand);
+				ChunkGenSpawner.executeProcedure(false, MobString, worldIn, topBlock, pos, rand);
 			}
 
 			if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.ICE)) {
@@ -128,7 +126,7 @@ public class BiomePermianColdGlossopterisForestOcean extends ElementsLepidodendr
 						int k = rand.nextInt(16) + 8;
 						int l = rand.nextInt(16) + 8;
 						BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
-						if (worldIn.getBlockState(blockpos.down()).getMaterial() != Material.WATER) {ICE_GENERATOR.generate(worldIn, rand, blockpos);}
+						if (worldIn.getBlockState(blockpos.down()).getMaterial() != Material.WATER) {ICE_GENERATOR.generate(worldIn, rand, blockpos,0);}
 					}
 
 					i = rand.nextInt(32);
@@ -138,7 +136,7 @@ public class BiomePermianColdGlossopterisForestOcean extends ElementsLepidodendr
 						int k = rand.nextInt(16) + 8;
 						int l = rand.nextInt(16) + 8;
 						BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
-						SNOW_GENERATOR.generate(worldIn, rand, blockpos);
+						SNOW_GENERATOR.generate(worldIn, rand, blockpos, 0);
 					}
 				}
 			}
@@ -293,47 +291,14 @@ public class BiomePermianColdGlossopterisForestOcean extends ElementsLepidodendr
 	            ISOETES_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
 
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.ROCK))
-				for (int i = 0; i < 8; ++i)
-				{
-					int j = rand.nextInt(16) + 8;
-					int k = rand.nextInt(16) + 8;
-					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
-					BlockPos pos1 = pos.add(j, l, k);
-					if (
-							(pos1.getY() < worldIn.getSeaLevel() - 5)
-									&& (worldIn.getBlockState(pos1).getMaterial() == Material.WATER)
-									&& (worldIn.getBlockState(pos1.up()).getMaterial() == Material.WATER)
-									&& (worldIn.getBlockState(pos1.up(2)).getMaterial() == Material.WATER)
-					) {
-						REEF_GENERATOR.generate(worldIn, rand, pos1, 3);
-					}
-				}
-
 	        super.decorate(worldIn, rand, pos);
 	    }
-	}
-	
-	private static Class<? extends Entity> findEntity(String entity) {
-        Class<? extends Entity> entityClass;
-        EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(entity));
-        entityClass = ee == null ? null : ee.getEntityClass();
-        if (entityClass == null) {
-            System.err.println("Unknown mob requested for spawn: '" + entity + "'!");
-            return null;
-        }
-        return entityClass;
-    }		
 
-	public static boolean isNumeric(String strNum) {
-	    if (strNum == null) {
-	        return false;
-	    }
-	    try {
-	        double d = Double.parseDouble(strNum);
-	    } catch (NumberFormatException nfe) {
-	        return false;
-	    }
-	    return true;
+		@Override
+		public EnumBiomeTypePermian getBiomeType() {
+			return EnumBiomeTypePermian.Glossopteris;
+		}
+
 	}
+
 }

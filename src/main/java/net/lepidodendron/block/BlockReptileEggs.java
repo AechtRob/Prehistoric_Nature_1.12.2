@@ -21,12 +21,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
-import java.util.Random;
 
 public class BlockReptileEggs extends Block {
 
 	public BlockReptileEggs() {
-		super(Material.PLANTS);
+		super(Material.CIRCUITS);
 		setSoundType(SoundType.SLIME);
 		setHardness(1.0F);
 		setResistance(0.0F);
@@ -81,38 +80,17 @@ public class BlockReptileEggs extends Block {
 
 	@Override
 	public int getFlammability(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		return 60;
+		return 0;
 	}
 
 	@Override
 	public int getFireSpreadSpeed(IBlockAccess world, BlockPos pos, EnumFacing face) {
-		return 30;
+		return 0;
 	}
 
 	@Override
 	public MapColor getMapColor(IBlockState state, IBlockAccess blockAccess, BlockPos pos) {
 		return MapColor.FOLIAGE;
-	}
-
-	@Override
-	protected boolean canSilkHarvest()
-	{
-		return false;
-	}
-
-	@Override
-	public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock, BlockPos fromPos) {
-		Random rand = new Random();
-		super.neighborChanged(state, world, pos, neighborBlock, fromPos);
-		super.updateTick(world, pos, state, rand);
-	}
-
-	@Override
-	public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)
-	{
-		if (!canPlaceBlockAt(worldIn, pos)) {
-			worldIn.setBlockToAir(pos);
-		}
 	}
 
 	@Override
@@ -130,38 +108,11 @@ public class BlockReptileEggs extends Block {
 	@Override
 	public boolean canPlaceBlockAt(World worldIn, BlockPos pos)
 	{
-		if ((worldIn.getBlockState(pos).getMaterial() != Material.WATER) && (worldIn.getBlockState(pos).getMaterial() != Material.LAVA)) {
+		if ((worldIn.getBlockState(pos).getMaterial() != Material.WATER) && (worldIn.getBlockState(pos).getMaterial() != Material.LAVA)
+			&& worldIn.getBlockState(pos.down()).getBlockFaceShape(worldIn, pos.down(), EnumFacing.UP) == BlockFaceShape.SOLID) {
 			return super.canPlaceBlockAt(worldIn, pos);
 		}
 		return false;
-	}
-
-	@Override
-	public boolean canPlaceBlockOnSide(World worldIn, BlockPos pos, EnumFacing side)
-	{
-		boolean blockface  = true;
-		if (side == EnumFacing.NORTH) {
-			blockface = false;
-		}
-		if (side == EnumFacing.SOUTH) {
-			blockface = false;
-		}
-		if (side == EnumFacing.EAST) {
-			blockface = false;
-		}
-		if (side == EnumFacing.WEST) {
-			blockface = false;
-		}
-		if (side == EnumFacing.UP) {
-			if (worldIn.getBlockState(pos.down()).getBlockFaceShape(worldIn, pos.down(), side) != BlockFaceShape.SOLID)
-				blockface = false;
-		}
-		if (side == EnumFacing.DOWN) {
-			blockface = false;
-		}
-
-		return (blockface && canPlaceBlockAt(worldIn, pos));
-
 	}
 
 	@Override

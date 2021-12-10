@@ -5,7 +5,7 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
-import net.lepidodendron.world.AlgaeGenerator;
+import net.lepidodendron.world.gen.AlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
@@ -96,6 +96,8 @@ public class BlockGreenSproutingAlgae extends ElementsLepidodendronMod.ModElemen
 			|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 			|| (dimID == LepidodendronConfig.dimDevonian)
 			|| (dimID == LepidodendronConfig.dimCarboniferous)
+			|| (dimID == LepidodendronConfig.dimPermian)
+			|| (dimID == LepidodendronConfig.dimTriassic)
 			 ) {
 			biomeCriteria = true;
 		}
@@ -110,6 +112,7 @@ public class BlockGreenSproutingAlgae extends ElementsLepidodendronMod.ModElemen
 			multiplier = 2;
 		}
 		if ((dimID == LepidodendronConfig.dimCarboniferous)
+			|| (dimID == LepidodendronConfig.dimPermian)
 		) {
 			multiplier = 5;
 		}

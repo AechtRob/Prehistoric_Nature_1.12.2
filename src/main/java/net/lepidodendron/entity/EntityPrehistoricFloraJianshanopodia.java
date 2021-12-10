@@ -50,6 +50,10 @@ public class EntityPrehistoricFloraJianshanopodia extends EntityPrehistoricFlora
 		enablePersistence();
 	}
 
+	public static String getPeriod() {return "Cambrian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public void playLivingSound() {
 	}

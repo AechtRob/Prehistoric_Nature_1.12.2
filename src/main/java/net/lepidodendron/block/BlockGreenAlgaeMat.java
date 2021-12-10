@@ -5,7 +5,9 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
-import net.lepidodendron.world.AlgaeGenerator;
+import net.lepidodendron.world.biome.ordoviciansilurian.BiomeOrdovicianSilurianSeaIce;
+import net.lepidodendron.world.biome.ordoviciansilurian.BiomeOrdovicianSilurianSeaIcebergs;
+import net.lepidodendron.world.gen.AlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
@@ -77,8 +79,7 @@ public class BlockGreenAlgaeMat extends ElementsLepidodendronMod.ModElement {
 		if (Math.random() < ((double) (100 - (double) weight)/100)) {
 			return;
 		}
-		
-		
+
 		boolean biomeCriteria = false;
 		Biome biome = world.getBiome(new BlockPos(chunkX, world.getSeaLevel(), chunkZ));
 		if (!matchBiome(biome, LepidodendronConfig.genGreenAlgaeMatBlacklistBiomes)) {
@@ -93,7 +94,8 @@ public class BlockGreenAlgaeMat extends ElementsLepidodendronMod.ModElement {
 			|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 			|| (dimID == LepidodendronConfig.dimDevonian)
 			|| (dimID == LepidodendronConfig.dimCarboniferous)
-			
+			|| (dimID == LepidodendronConfig.dimPermian)
+			|| (dimID == LepidodendronConfig.dimTriassic)
 		) {
 			biomeCriteria = true;
 		}
@@ -103,11 +105,13 @@ public class BlockGreenAlgaeMat extends ElementsLepidodendronMod.ModElement {
 		int multiplier = 1;
 		if ((dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
+				|| (dimID == LepidodendronConfig.dimPermian)
 		) {
 			multiplier = 2;
 		}
 		if ((dimID == LepidodendronConfig.dimCambrian)
-			|| (dimID == LepidodendronConfig.dimPrecambrian))
+			|| (dimID == LepidodendronConfig.dimPrecambrian)
+			|| (dimID == LepidodendronConfig.dimTriassic))
 		{
 			multiplier = 3;
 		}
@@ -115,6 +119,11 @@ public class BlockGreenAlgaeMat extends ElementsLepidodendronMod.ModElement {
 		{
 			multiplier = 5;
 		}
+
+		if (biome == BiomeOrdovicianSilurianSeaIce.biome
+				|| biome == BiomeOrdovicianSilurianSeaIcebergs.biome
+		)
+			multiplier = 24;
 
 		for (int i = 0; i < (int) 10 * multiplier; i++) {
 			int l6 = chunkX + random.nextInt(16) + 8;

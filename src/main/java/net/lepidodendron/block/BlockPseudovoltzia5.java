@@ -171,7 +171,7 @@ public class BlockPseudovoltzia5 extends ElementsLepidodendronMod.ModElement {
 			super.neighborChanged(state, world, pos, neighborBlock, fromPos);
 			
 			Block block = world.getBlockState(pos.down()).getBlock();
-			if (block != BlockPseudovoltzia3.block) {
+			if (block != BlockPseudovoltzia4.block) {
 				world.setBlockToAir(pos);
 				if (Math.random() > 0.66) {
 					if (!LepidodendronConfig.doFruits) {

@@ -2,7 +2,11 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
+import net.lepidodendron.util.EnumBiomeTypePermian;
+import net.lepidodendron.world.biome.permian.BiomePermian;
+import net.lepidodendron.world.gen.MobSpawnGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.statemap.StateMap;
@@ -11,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.event.ModelRegistryEvent;
@@ -47,9 +52,9 @@ public class BlockInsectEggsPalaeodictyopteraPerm extends ElementsLepidodendronM
 	@Override
 	public void generateWorld(Random random, int chunkX, int chunkZ, World world, int dimID, IChunkGenerator cg, IChunkProvider cp) {
 
-		//if (dimID != LepidodendronConfig.dimPermianWetlands) {
-			//return;
-		//}
+		if (dimID != LepidodendronConfig.dimPermian) {
+			return;
+		}
 
 		int minWaterDepth = 2;
 		int waterDepthCheckMax = 4;
@@ -58,7 +63,14 @@ public class BlockInsectEggsPalaeodictyopteraPerm extends ElementsLepidodendronM
 			int l6 = chunkX + random.nextInt(16) + 8;
 			int i11 = random.nextInt(128 - startHeight) + startHeight;
 			int l14 = chunkZ + random.nextInt(16) + 8;
-			//(new MobSpawnGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14), minWaterDepth, waterDepthCheckMax);
+			Biome biome = world.getBiome(new BlockPos(l6, i11, l14));
+			if (biome instanceof BiomePermian) {
+				BiomePermian biomeP = (BiomePermian) biome;
+				if (biomeP.getBiomeType() == EnumBiomeTypePermian.Wetlands
+					|| biomeP.getBiomeType() == EnumBiomeTypePermian.Lowlands) {
+					(new MobSpawnGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14), minWaterDepth, waterDepthCheckMax);
+				}
+			}
 		}
 	}
 

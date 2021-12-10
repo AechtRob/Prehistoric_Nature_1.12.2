@@ -22,6 +22,11 @@ public class TabLepidodendronMobile extends ElementsLepidodendronMod.ModElement 
 			public ItemStack createIcon() {
 				return new ItemStack(BlockNautiloidShellAmmonite_Dactylioceras.block, (int) (1));
 			}
+
+			@SideOnly(Side.CLIENT)
+			public boolean hasSearchBar() {
+				return true;
+			}
 		};
 	}
 	public static CreativeTabs tab;

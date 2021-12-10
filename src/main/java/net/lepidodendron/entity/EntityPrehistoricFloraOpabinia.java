@@ -50,6 +50,10 @@ public class EntityPrehistoricFloraOpabinia extends EntityPrehistoricFloraFishBa
 		FEED_ANIMATION = Animation.create(80);
 	}
 
+	public static String getPeriod() {return "Cambrian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public void playLivingSound() {
 	}

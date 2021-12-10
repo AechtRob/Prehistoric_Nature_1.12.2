@@ -10,19 +10,10 @@
 			"translate": "advancements.pf_adv_precambrian.description"
 		}
 	},
-    "parent": "lepidodendron:pf_base_adv",
+	"parent": "lepidodendron:pf_base_adv",
 	"criteria": {
-		"precambrian_biome": {
-			"trigger": "minecraft:location",
-			"conditions": {
-				"biome": "lepidodendron:precambrian_biome"
-			}
-		},
-		"precambrian_sea": {
-			"trigger": "minecraft:location",
-			"conditions": {
-				"biome": "lepidodendron:precambrian_sea"
-			}
+		"enter_cambrian": {
+			"trigger": "enter_pf_precambrian"
 		}
 	},
   "rewards": {

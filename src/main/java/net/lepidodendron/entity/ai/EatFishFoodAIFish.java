@@ -41,6 +41,7 @@ public class EatFishFoodAIFish extends EntityAIBase {
     @Override
     public void updateTask() {
         double distance = Math.sqrt(Math.pow(this.entity.posX - this.targetItem.posX, 2.0D) + Math.pow(this.entity.posZ - this.targetItem.posZ, 2.0D));
+        //this.entity.setEatTarget(this.targetItem);
         this.entity.getNavigator().tryMoveToXYZ(this.targetItem.posX, this.targetItem.posY, this.targetItem.posZ, 2D);
         if (distance < Math.max(this.entity.getEntityBoundingBox().getAverageEdgeLength(), 1D)) {
             if (this.targetItem != null) {

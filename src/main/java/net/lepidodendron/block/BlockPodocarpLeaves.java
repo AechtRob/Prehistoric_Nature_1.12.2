@@ -2,8 +2,10 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.lepidodendron.item.ItemPodocarpBerries;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -92,7 +94,7 @@ public class BlockPodocarpLeaves extends ElementsLepidodendronMod.ModElement {
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
@@ -116,41 +118,27 @@ public class BlockPodocarpLeaves extends ElementsLepidodendronMod.ModElement {
 		public MapColor getMapColor(IBlockState state, IBlockAccess blockAccess, BlockPos pos) {
 			return MapColor.FOLIAGE;
 		}
-		
-		
+
 		@Override
 		protected int getSaplingDropChance(IBlockState state) {
-			return 20;
+			if (LepidodendronConfig.doFruits) {
+				return 2;
+			}
+			else {
+				return 20;
+			}
 		}
 
-		//@Override
-		//public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		//	if (LepidodendronConfig.doFruits) {
-		//		// Drop air and use the fruit method instead:
-		//		return new ItemStack(Blocks.AIR, (int) (1)).getItem();
-		//	}
-		//	else {
-		//		return Item.getItemFromBlock(BlockpodocarpSapling.block);
-		//	}
-		//}
-
-		//@Override
-		//public void breakBlock(World worldIn, BlockPos pos, IBlockState state)  {
-		//	super.breakBlock(worldIn, pos, state);
-		//	if ((Math.random() >= 0.95) && (LepidodendronConfig.doFruits)) {
-		//		IBlockState _bs = BlockpodocarpFruitBlock.block.getDefaultState();
-		//		worldIn.setBlockState(pos, _bs, 3);
-		//		}
-		//}
-
-		///@Override
-		//public void onBlockHarvested(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player) {
-		//	super.onBlockHarvested(worldIn, pos, state, player);
-		//	if ((Math.random() >= 0.9) && (LepidodendronConfig.doFruits)) {
-		//		IBlockState _bs = BlockpodocarpFruitBlock.block.getDefaultState();
-		//		worldIn.setBlockState(pos, _bs, 3);
-		//		}
-		//}
+		@Override
+		public Item getItemDropped(IBlockState state, java.util.Random rand, int fortune) {
+			if (LepidodendronConfig.doFruits) {
+				// Use the seeds method instead:
+				return new ItemStack(ItemPodocarpBerries.block, (int) (1)).getItem();
+			}
+			else {
+				return Item.getItemFromBlock(BlockPodocarpSapling.block);
+			}
+		}
 
 		@Override
 		@SideOnly(Side.CLIENT)

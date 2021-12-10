@@ -85,7 +85,7 @@ public class LepidodendronHoeHandler {
             }
         }
 
-        if (((block == BlockPrehistoricGroundLush.block)
+        if ((block == BlockPrehistoricGroundLush.block)
                 || (block == BlockPrehistoricGroundBasic.block)
                 || (block == BlockPrehistoricGroundSand.block)
                 || (block == BlockPrehistoricGroundSandRed.block)
@@ -93,17 +93,40 @@ public class LepidodendronHoeHandler {
                 || (block == BlockCoarseSandyDirtPangaean.block)
                 || (block == BlockCoarseSandyDirt.block)
                 || (block == BlockCoarseSandyDirtRed.block)
-            )
-                && world.isAirBlock(pos.up()))
+                || (block == BlockCoarseSiltyDirt.block)
+        )
         {
+            if (block == BlockCoarseSandyDirtPangaean.block)
+            {
+                result = true;
+                world.setBlockState(pos, BlockSandyDirtPangaean.block.getDefaultState());
+            }
+            if (block == BlockCoarseSandyDirt.block)
+            {
+                result = true;
+                world.setBlockState(pos, BlockSandyDirt.block.getDefaultState());
+            }
+            if (block == BlockCoarseSandyDirtRed.block)
+            {
+                result = true;
+                world.setBlockState(pos, BlockSandyDirtRed.block.getDefaultState());
+            }
+            if  (block == BlockCoarseSiltyDirt.block)
+            {
+                result = true;
+                world.setBlockState(pos, BlockSiltyDirt.block.getDefaultState());
+            }
+
+            //else if (((block == BlockPrehistoricGroundLush.block)
+            //    || (block == BlockPrehistoricGroundBasic.block)
+            //    || (block == BlockPrehistoricGroundSand.block)
+            //    || (block == BlockPrehistoricGroundSandRed.block)
+            //    || (block == BlockPrehistoricGroundSandPangaean.block)
+            //)
+            //    && world.isAirBlock(pos.up()))
+            //{
             //result = true;
-            //if () //Is Coarse
-            //{
-            //    world.setBlockState(pos, non-coarse-dirt-type); //Change to non-coarse
-            //} else
-            //{
-                //world.setBlockState(pos, farmland-type); //Change to farmland
-            //}
+            //world.setBlockState(pos, farmland-type); //Change to farmland
         }
 
         if (result)

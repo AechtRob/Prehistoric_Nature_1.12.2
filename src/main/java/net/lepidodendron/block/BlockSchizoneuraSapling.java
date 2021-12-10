@@ -155,6 +155,12 @@ public class BlockSchizoneuraSapling extends ElementsLepidodendronMod.ModElement
 			return (((world.getBlockState(pos.down())).getMaterial() == Material.SAND && isReplaceable(world, pos)) || block2.canSustainPlant(world.getBlockState(pos.down()), world, pos.down(), EnumFacing.UP, this) || block2 == null);
 		}
 
+		@Override
+		public boolean canBlockStay(World worldIn, BlockPos pos, IBlockState state) {
+			Block block2 = worldIn.getBlockState(pos.down()).getBlock();
+			return ((worldIn.getBlockState(pos.down())).getMaterial() == Material.SAND || block2.canSustainPlant(worldIn.getBlockState(pos.down()), worldIn, pos.down(), EnumFacing.UP, this));
+		}
+
 		public boolean canGrow(World worldIn, BlockPos pos, IBlockState state, boolean isClient)
 		{
 		    return true;

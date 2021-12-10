@@ -20,6 +20,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -63,6 +64,16 @@ public class BlockSandyDirt extends ElementsLepidodendronMod.ModElement {
 			return MapColor.DIRT;
 		}
 
+		@Override
+		public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
+
+			net.minecraftforge.common.EnumPlantType plantType = plantable.getPlantType(world, pos.offset(direction));
+			if (canSustainPlantType(world, pos, plantType)) {
+				return true;
+			}
+			return super.canSustainPlant(state, world, pos, direction, plantable);
+		}
+
 		public boolean canSustainPlantType(IBlockAccess world, BlockPos pos, EnumPlantType plantType)
 		{
 			// support desert, plains and cave plants
@@ -81,12 +92,6 @@ public class BlockSandyDirt extends ElementsLepidodendronMod.ModElement {
 				);
 			}
 			return false;
-		}
-
-		@Override
-		public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
-		{
-			return this.canSustainPlantType(world, pos, plantable.getPlantType(world, pos.offset(direction)));
 		}
 
 		@Override

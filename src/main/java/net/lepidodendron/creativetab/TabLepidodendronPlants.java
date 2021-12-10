@@ -22,6 +22,11 @@ public class TabLepidodendronPlants extends ElementsLepidodendronMod.ModElement 
 			public ItemStack createIcon() {
 				return new ItemStack(BlockAntarcticycas.block, (int) (1));
 			}
+
+			@SideOnly(Side.CLIENT)
+			public boolean hasSearchBar() {
+				return true;
+			}
 		};
 	}
 	public static CreativeTabs tab;

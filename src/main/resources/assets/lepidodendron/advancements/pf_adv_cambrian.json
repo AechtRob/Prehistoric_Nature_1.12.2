@@ -12,17 +12,8 @@
 	},
     "parent": "lepidodendron:pf_base_adv",
 	"criteria": {
-		"cambrian_biome": {
-			"trigger": "minecraft:location",
-			"conditions": {
-				"biome": "lepidodendron:cambrian_biome"
-			}
-		},
-		"cambrian_sea": {
-			"trigger": "minecraft:location",
-			"conditions": {
-				"biome": "lepidodendron:cambrian_sea"
-			}
+		"enter_cambrian": {
+			"trigger": "enter_pf_cambrian"
 		}
 	},
   "rewards": {

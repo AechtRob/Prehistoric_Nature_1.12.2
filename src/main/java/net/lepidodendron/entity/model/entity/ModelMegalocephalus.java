@@ -298,7 +298,7 @@ public class ModelMegalocephalus extends AdvancedModelBase {
         AdvancedModelRenderer[] Torso = {this.Head, this.Neck, this.Bodyfront, this.Bodymiddle, this.Hips};
 
         if (!Megalocephalus.isReallyInWater()) { //walk on land
-            if (f3 == 0.0F) {
+            if (f3 == 0.0F || !Megalocephalus.getIsMoving()) {
                 return;
             }
             ////this.flap(Leftthigh, speed, 0.65F, false, -3, -0.35F, f2, 0.5F);

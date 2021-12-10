@@ -53,6 +53,8 @@ public class LepidodendronOreHandler {
 				|| LepidodendronConfig.dimCambrian == (int) event.getWorld().provider.getDimension()
 				|| LepidodendronConfig.dimPrecambrian == (int) event.getWorld().provider.getDimension()
 				|| LepidodendronConfig.dimCarboniferous == (int) event.getWorld().provider.getDimension()
+				|| LepidodendronConfig.dimPermian == (int) event.getWorld().provider.getDimension()
+				|| LepidodendronConfig.dimTriassic == (int) event.getWorld().provider.getDimension()
 			)
 				event.setResult(Event.Result.DENY);
 		}

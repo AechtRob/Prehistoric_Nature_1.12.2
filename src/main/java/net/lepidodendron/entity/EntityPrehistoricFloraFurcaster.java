@@ -35,6 +35,10 @@ public class EntityPrehistoricFloraFurcaster extends EntityPrehistoricFloraSlith
 		setSize(0.5F, 0.3F);
 	}
 
+	public static String getPeriod() {return "Silurian - Devonian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;

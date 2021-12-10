@@ -42,6 +42,10 @@ public class EntityPrehistoricFloraAmmonite_Titanites extends EntityPrehistoricF
 		maxHealthAgeable = 10;
 	}
 
+	public static String getPeriod() {return "Jurassic";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;

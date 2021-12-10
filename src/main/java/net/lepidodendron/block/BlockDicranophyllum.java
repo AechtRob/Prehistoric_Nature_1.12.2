@@ -7,6 +7,8 @@ import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.item.ItemDicranophyllumFruit;
+import net.lepidodendron.world.biome.permian.BiomePermianLowlands;
+import net.lepidodendron.world.biome.permian.BiomePermianWetlandsUnwooded;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockReed;
 import net.minecraft.block.SoundType;
@@ -68,6 +70,7 @@ public class BlockDicranophyllum extends ElementsLepidodendronMod.ModElement {
 		if (!LepidodendronConfig.genDicranophyllum && !LepidodendronConfig.genAllPlants)
 			dimensionCriteria = false;
 		if ((LepidodendronConfig.dimCarboniferous == dimID)
+				|| (LepidodendronConfig.dimPermian == dimID)
 		)
 			dimensionCriteria = true;
 		if (!dimensionCriteria)
@@ -98,7 +101,10 @@ public class BlockDicranophyllum extends ElementsLepidodendronMod.ModElement {
 		if ((LepidodendronConfig.dimCarboniferous == dimID)
 		)
 			biomeCriteria = true;
-			
+		if ((biome == BiomePermianWetlandsUnwooded.biome)
+			|| (biome == BiomePermianLowlands.biome)
+		)
+			biomeCriteria = true;
 		if (!biomeCriteria)
 			return;
 			

@@ -5,15 +5,14 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.entity.EntityPrehistoricFloraEoarthropleura;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.math.BlockPos;
@@ -94,17 +93,10 @@ public class BlockInsectEggsEoarthropleura extends ElementsLepidodendronMod.ModE
 		{
 			super.updateTick(worldIn, pos, state, rand);
 
-			if (worldIn.getBlockState(pos).getBlock() == this && !(worldIn.isRemote)) {
-				//worldIn.destroyBlock(pos, false);
-				Entity entity1 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraEoarthropleura.class), (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
-				Entity entity2 = null;
-				if (Math.random() > 0.75) {
-					entity2 = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraEoarthropleura.class), (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
-				}
-				if (entity1 != null || entity2 != null) {
-					worldIn.destroyBlock(pos, false);
-				}
+			if (!(worldIn.isRemote)) {
+				EntityPrehistoricFloraAgeableBase.summon(worldIn, EntityList.getKey(EntityPrehistoricFloraEoarthropleura.class).toString(), "", (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
 			}
+			worldIn.destroyBlock(pos, false);
 		}
 
 		@SideOnly(Side.CLIENT)

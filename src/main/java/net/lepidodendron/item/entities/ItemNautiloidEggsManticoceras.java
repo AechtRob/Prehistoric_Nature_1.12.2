@@ -6,17 +6,14 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraAmmonite_Manticoceras;
-import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.StatList;
 import net.minecraft.util.ActionResult;
@@ -81,26 +78,19 @@ public class ItemNautiloidEggsManticoceras extends ElementsLepidodendronMod.ModE
 	                }
 
 	                IBlockState iblockstate = worldIn.getBlockState(blockpos);
-	
-	                if (iblockstate.getMaterial() == Material.WATER )
-	                {
-						if (!(worldIn.isRemote)) {
-							Entity entity = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraAmmonite_Manticoceras.class), blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5);
-							if (entity != null) {
-								EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) entity;
-								ee.setAgeTicks(0);
-								if (!playerIn.capabilities.isCreativeMode)
-								{
-									itemstack.shrink(1);
-								}
 
-								playerIn.addStat(StatList.getObjectUseStats(this));
-								worldIn.playSound(playerIn, blockpos, SoundEvents.ENTITY_BOBBER_SPLASH, SoundCategory.BLOCKS, 1.0F, 1.0F);
-								return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
-							}
+					if (iblockstate.getMaterial() == Material.WATER) {
+						if (!(worldIn.isRemote)) {
+							EntityPrehistoricFloraAmmonite_Manticoceras.summon(worldIn, EntityList.getKey(EntityPrehistoricFloraAmmonite_Manticoceras.class).toString(), "{AgeTicks:0}", blockpos.getX() + 0.5, blockpos.getY() + 0.5, blockpos.getZ() + 0.5);
 						}
-	                }
-	            }
+						if (!playerIn.capabilities.isCreativeMode) {
+							itemstack.shrink(1);
+						}
+						playerIn.addStat(StatList.getObjectUseStats(this));
+						worldIn.playSound(playerIn, blockpos, SoundEvents.ENTITY_BOBBER_SPLASH, SoundCategory.BLOCKS, 1.0F, 1.0F);
+						return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
+					}
+				}
 	
 	            return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
 	        }

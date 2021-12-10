@@ -29,6 +29,10 @@ public class RecipeCharcoalFromLepidodendron extends ElementsLepidodendronMod.Mo
 
 		GameRegistry.addSmelting(new ItemStack(BlockRedClay.block, (int) (1)), new ItemStack(Blocks.HARDENED_CLAY, (int) (1)), 0.35F);
 
+		GameRegistry.addSmelting(new ItemStack(BlockCarboniferousMud.block, (int) (1)), new ItemStack(BlockDriedMud.block, (int) (1)), 0.15F);
+
+		GameRegistry.addSmelting(new ItemStack(BlockDriedMud.block, (int) (1)), new ItemStack(BlockBrownstone.block, (int) (1)), 0.15F);
+		
 		GameRegistry.addSmelting(new ItemStack(BlockOrangeSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockRedSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockWhiteSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
@@ -39,6 +43,7 @@ public class RecipeCharcoalFromLepidodendron extends ElementsLepidodendronMod.Mo
 		GameRegistry.addSmelting(new ItemStack(BlockYellowSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockBlueSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockBranchedSponge.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockGigantospongia.block, (int) (1)), new ItemStack(Blocks.SPONGE, 1,0), 0.15F);
 
 		GameRegistry.addSmelting(new ItemStack(BlockWoodenLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockPodozamitesLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
@@ -123,6 +128,19 @@ public class RecipeCharcoalFromLepidodendron extends ElementsLepidodendronMod.Mo
 		GameRegistry.addSmelting(new ItemStack(BlockAneurophytonLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockLyginopterisStem.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(BlockLyginopterisStemNE.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockPhasmatocycasLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockArthropitysLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockDicroidiumFLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockTelemachusLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockSphenobaieraLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockAnomozamitesLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockPtilophyllumLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockBeechLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockSycamoreLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockPlaneLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockFurculaLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockToditesLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(BlockStiffCycadLog.block, (int) (1)), new ItemStack(Items.COAL, (int) (1), 1), 0.15F);
 
 	}
 }

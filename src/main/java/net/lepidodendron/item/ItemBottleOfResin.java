@@ -76,7 +76,7 @@ public class ItemBottleOfResin extends ElementsLepidodendronMod.ModElement {
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Really sticky, gluey stuff!");
+				tooltip.add("Can be used to hold falling blocks in place");
 			}
 			super.addInformation(stack, player, tooltip, advanced);
 		}
@@ -104,94 +104,90 @@ public class ItemBottleOfResin extends ElementsLepidodendronMod.ModElement {
 		{
 			IBlockState iblockstate = worldIn.getBlockState(target);
 			Block blockTarget = iblockstate.getBlock();
+			boolean resined = false;
 
-			if (!worldIn.isRemote) {
-				boolean resined = false;
-				if (blockTarget == BlockSandPangaean.block) {
-					worldIn.setBlockState(target, BlockSandPangaeanSticky.block.getDefaultState());
-					resined = true;
-				}
-				if (iblockstate == Blocks.SAND.getStateFromMeta(0)) {
-					worldIn.setBlockState(target, BlockSandSticky.block.getDefaultState());
-					resined = true;
-				}
-				if (iblockstate == Blocks.SAND.getStateFromMeta(1)) {
-					worldIn.setBlockState(target, BlockSandRedSticky.block.getDefaultState());
-					resined = true;
-				}
-				if (blockTarget == Blocks.GRAVEL) {
-					worldIn.setBlockState(target, BlockGravelSticky.block.getDefaultState());
-					resined = true;
-				}
-				if (blockTarget == BlockStromatolite.block) {
-					worldIn.setBlockState(target, BlockStromatoliteSticky.block.getDefaultState());
-					resined = true;
-				}
-				if (blockTarget == BlockCoral.block) {
-					worldIn.setBlockState(target, BlockCoralSticky.block.getDefaultState());
-					resined = true;
-				}
-				if (blockTarget == BlockThrombolite.block) {
-					worldIn.setBlockState(target, BlockThromboliteSticky.block.getDefaultState());
-					resined = true;
-				}
-				if (blockTarget == BlockArchaeocyatha.block) {
-					worldIn.setBlockState(target, BlockArchaeocyathaSticky.block.getDefaultState());
-					resined = true;
-				}
-				if (blockTarget == BlockSandWavy.block) {
-					worldIn.setBlockState(target, BlockSandWavySticky.block.getDefaultState());
-					resined = true;
-				}
-				if (blockTarget == BlockSandRedWavy.block) {
-					worldIn.setBlockState(target, BlockSandRedWavySticky.block.getDefaultState());
-					resined = true;
-				}
-				if (blockTarget == BlockSandPangaeanWavy.block) {
-					worldIn.setBlockState(target, BlockSandPangaeanWavySticky.block.getDefaultState());
-					resined = true;
-				}
-				if (blockTarget == BlockGravelWavy.block) {
-					worldIn.setBlockState(target, BlockGravelWavySticky.block.getDefaultState());
-					resined = true;
-				}
-
-				if (resined) {
-					SoundEvent soundevent = SoundEvents.ITEM_BOTTLE_EMPTY;
-					player.getEntityWorld().playSound(player, player.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
-					stack.shrink(1);
-					ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE, (int) (1));
-					if (!player.isCreative()) {
-						if (player.inventory.getFirstEmptyStack() == -1) {
-							//Is there room for this in an exsiting stack?
-							int i = 1;
-							int slotSpace = 0;
-							while (i <= 32 && slotSpace == 0) {
-								if (player.inventory.getStackInSlot(i).getItem() == Items.GLASS_BOTTLE
-										&& player.inventory.getStackInSlot(i).getCount() < bottle.getMaxStackSize()) {
-									bottle.setCount(1);
-									ItemHandlerHelper.giveItemToPlayer(player, bottle);
-									slotSpace=i;
-								}
-								i += 1;
-							}
-							if (slotSpace == 0) { //No slots free in main inventory so just drop the item:
-								//No slots free in main inventory so just drop the item:
-								EntityItem entityToSpawn = new EntityItem(worldIn, target.getX() + 0.5, target.getY(), target.getZ() + 0.5, new ItemStack(Items.GLASS_BOTTLE, (int) (1)));
-								entityToSpawn.setPickupDelay(10);
-								worldIn.spawnEntity(entityToSpawn);
-							}
-						}
-						else {
-							bottle.setCount(1);
-							ItemHandlerHelper.giveItemToPlayer(player, bottle);
-						}
-					}
-
-					return true;
-				}
+			if (blockTarget == BlockSandPangaean.block) {
+				if (!worldIn.isRemote) {worldIn.setBlockState(target, BlockSandPangaeanSticky.block.getDefaultState());}
+				resined = true;
+			}
+			if (iblockstate == Blocks.SAND.getStateFromMeta(0)) {
+				if (!worldIn.isRemote) {worldIn.setBlockState(target, BlockSandSticky.block.getDefaultState());}
+				resined = true;
+			}
+			if (iblockstate == Blocks.SAND.getStateFromMeta(1)) {
+				if (!worldIn.isRemote) {worldIn.setBlockState(target, BlockSandRedSticky.block.getDefaultState());}
+				resined = true;
+			}
+			if (blockTarget == Blocks.GRAVEL) {
+				if (!worldIn.isRemote) {worldIn.setBlockState(target, BlockGravelSticky.block.getDefaultState());}
+				resined = true;
+			}
+			if (blockTarget == BlockStromatolite.block) {
+				if (!worldIn.isRemote) {worldIn.setBlockState(target, BlockStromatoliteSticky.block.getDefaultState());}
+				resined = true;
+			}
+			if (blockTarget == BlockCoral.block) {
+				if (!worldIn.isRemote) {worldIn.setBlockState(target, BlockCoralSticky.block.getDefaultState());}
+				resined = true;
+			}
+			if (blockTarget == BlockThrombolite.block) {
+				if (!worldIn.isRemote) {worldIn.setBlockState(target, BlockThromboliteSticky.block.getDefaultState());}
+				resined = true;
+			}
+			if (blockTarget == BlockArchaeocyatha.block) {
+				if (!worldIn.isRemote) {worldIn.setBlockState(target, BlockArchaeocyathaSticky.block.getDefaultState());}
+				resined = true;
+			}
+			if (blockTarget == BlockSandWavy.block) {
+				if (!worldIn.isRemote) {worldIn.setBlockState(target, BlockSandWavySticky.block.getDefaultState());}
+				resined = true;
+			}
+			if (blockTarget == BlockSandRedWavy.block) {
+				if (!worldIn.isRemote) {worldIn.setBlockState(target, BlockSandRedWavySticky.block.getDefaultState());}
+				resined = true;
+			}
+			if (blockTarget == BlockSandPangaeanWavy.block) {
+				if (!worldIn.isRemote) {worldIn.setBlockState(target, BlockSandPangaeanWavySticky.block.getDefaultState());}
+				resined = true;
+			}
+			if (blockTarget == BlockGravelWavy.block) {
+				if (!worldIn.isRemote) {worldIn.setBlockState(target, BlockGravelWavySticky.block.getDefaultState());}
+				resined = true;
 			}
 
+			if (resined) {
+				SoundEvent soundevent = SoundEvents.BLOCK_SLIME_PLACE;
+				player.getEntityWorld().playSound(player, player.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+				stack.shrink(1);
+				ItemStack bottle = new ItemStack(Items.GLASS_BOTTLE, (int) (1));
+				if (!player.isCreative() && !worldIn.isRemote) {
+					if (player.inventory.getFirstEmptyStack() == -1) {
+						//Is there room for this in an exsiting stack?
+						int i = 1;
+						int slotSpace = 0;
+						while (i <= 32 && slotSpace == 0) {
+							if (player.inventory.getStackInSlot(i).getItem() == Items.GLASS_BOTTLE
+									&& player.inventory.getStackInSlot(i).getCount() < bottle.getMaxStackSize()) {
+								bottle.setCount(1);
+								ItemHandlerHelper.giveItemToPlayer(player, bottle);
+								slotSpace=i;
+							}
+							i += 1;
+						}
+						if (slotSpace == 0) { //No slots free in main inventory so just drop the item:
+							//No slots free in main inventory so just drop the item:
+							EntityItem entityToSpawn = new EntityItem(worldIn, target.getX() + 0.5, target.getY(), target.getZ() + 0.5, new ItemStack(Items.GLASS_BOTTLE, (int) (1)));
+							entityToSpawn.setPickupDelay(10);
+							worldIn.spawnEntity(entityToSpawn);
+						}
+					}
+					else {
+						bottle.setCount(1);
+						ItemHandlerHelper.giveItemToPlayer(player, bottle);
+					}
+				}
+				return true;
+			}
 			return false;
 		}
 

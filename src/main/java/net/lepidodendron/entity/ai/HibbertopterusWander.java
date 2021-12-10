@@ -120,7 +120,9 @@ public class HibbertopterusWander extends AnimationAINoAnimation<EntityPrehistor
                 //System.err.println("Target " + randPos.getX() + " " + randPos.getY() + " " + randPos.getZ());
                 if (this.PrehistoricFloraHibbertopterusBase.world.getBlockState(randPos).getMaterial() == Material.WATER) {
                     //System.err.println("Target :" + randPos.getX() + " " + randPos.getY() + " " + randPos.getZ());
-                    return randPos;
+                    if (!(randPos.getY() < 1 || randPos.getY() >= 254)) {
+                        return randPos;
+                    }
                 }
             }
         } else { //allow attacks only under water:
@@ -145,7 +147,9 @@ public class HibbertopterusWander extends AnimationAINoAnimation<EntityPrehistor
                             || (isNearWater(this.entity, blockpos1, this.PrehistoricFloraHibbertopterusBase.WaterDist()))
                     ) {
                         //System.err.println("Target :" + vec3d.x + " " + vec3d.y + " " + vec3d.z);
-                        return blockpos1;
+                        if (!(blockpos1.getY() < 1 || blockpos1.getY() >= 254)) {
+                            return blockpos1;
+                        }
                     }
                 }
             }
@@ -168,7 +172,9 @@ public class HibbertopterusWander extends AnimationAINoAnimation<EntityPrehistor
                 if (vec3d != null) {
                     blockpos1 = new BlockPos(vec3d.x, vec3d.y, vec3d.z);
                     //System.err.println("Target :" + vec3d.x + " " + vec3d.y + " " + vec3d.z);
-                    return blockpos1;
+                    if (!(blockpos1.getY() < 1 || blockpos1.getY() >= 254)) {
+                        return blockpos1;
+                    }
                 }
             }
         }

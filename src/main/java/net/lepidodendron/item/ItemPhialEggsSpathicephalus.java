@@ -4,9 +4,11 @@ package net.lepidodendron.item;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.block.BlockAmphibianSpawnSpathicephalusPlaceable;
+import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
@@ -19,6 +21,7 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ItemPhialEggsSpathicephalus extends ElementsLepidodendronMod.ModElement {
@@ -44,7 +47,7 @@ public class ItemPhialEggsSpathicephalus extends ElementsLepidodendronMod.ModEle
 			maxStackSize = 8;
 			setTranslationKey("pf_phial_eggs_spathicephalus");
 			setRegistryName("phial_eggs_spathicephalus");
-			setCreativeTab(null);
+			setCreativeTab(TabLepidodendronMobile.tab);
 		}
 
 		@Override
@@ -74,6 +77,34 @@ public class ItemPhialEggsSpathicephalus extends ElementsLepidodendronMod.ModEle
 						worldIn.setBlockState(pos.offset(facing), BlockAmphibianSpawnSpathicephalusPlaceable.block.getStateForPlacement(worldIn, pos.offset(facing), facing, hitX, hitY, hitZ, 0, (EntityLivingBase) player));
 						SoundEvent soundevent = SoundEvents.ITEM_BOTTLE_EMPTY;
 						worldIn.playSound(player, pos.offset(facing), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+						itemstack.shrink(1);
+						ItemStack phial = new ItemStack(ItemPhial.block, (int) (1));
+						if (!player.isCreative()) {
+							if (player.inventory.getFirstEmptyStack() == -1) {
+								//Is there room for this in an exsiting stack?
+								int i = 1;
+								int slotSpace = 0;
+								while (i <= 32 && slotSpace == 0) {
+									if (player.inventory.getStackInSlot(i).getItem() == ItemPhial.block
+											&& player.inventory.getStackInSlot(i).getCount() < phial.getMaxStackSize()) {
+										phial.setCount(1);
+										ItemHandlerHelper.giveItemToPlayer(player, phial);
+										slotSpace=i;
+									}
+									i += 1;
+								}
+								if (slotSpace == 0) { //No slots free in main inventory so just drop the item:
+									//No slots free in main inventory so just drop the item:
+									EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, new ItemStack(ItemPhial.block, (int) (1)));
+									entityToSpawn.setPickupDelay(10);
+									worldIn.spawnEntity(entityToSpawn);
+								}
+							}
+							else {
+								phial.setCount(1);
+								ItemHandlerHelper.giveItemToPlayer(player, phial);
+							}
+						}
 						return EnumActionResult.SUCCESS;
 					}
 				}

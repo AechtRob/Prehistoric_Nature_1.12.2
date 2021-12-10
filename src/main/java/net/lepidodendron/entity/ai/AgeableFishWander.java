@@ -18,16 +18,16 @@ public class AgeableFishWander extends AnimationAINoAnimation<EntityPrehistoricF
     protected Animation animation;
     protected EntityPrehistoricFloraAgeableFishBase PrehistoricFloraAgeableFishBase;
     protected double straightness;
-    protected double surfacelove;
+    protected int surfacelove;
 
-    public AgeableFishWander(EntityPrehistoricFloraAgeableFishBase PrehistoricFloraAgeableFishBase, Animation animation, double straightness, double surfacelove)
+    public AgeableFishWander(EntityPrehistoricFloraAgeableFishBase PrehistoricFloraAgeableFishBase, Animation animation, double straightness, int surfacelove)
     {
         super(PrehistoricFloraAgeableFishBase);
         setMutexBits(4);
         this.PrehistoricFloraAgeableFishBase = PrehistoricFloraAgeableFishBase;
         this.animation = animation;
         this.straightness = straightness;
-        this.surfacelove = surfacelove;
+        this.surfacelove = surfacelove; //-10 to +10
     }
 
     @Override
@@ -119,8 +119,20 @@ public class AgeableFishWander extends AnimationAINoAnimation<EntityPrehistoricF
     }
 
     public boolean canTarget(BlockPos pos) {
-        if (Math.random() > surfacelove && this.PrehistoricFloraAgeableFishBase.world.getBlockState(pos.up(2)).getMaterial() != Material.WATER) {
+        if (pos.getY() < 1 || pos.getY() >= 254) {
             return false;
+        }
+        if ((entity.getRNG().nextInt(10) + 1 < Math.abs(surfacelove)) && (pos.getY() + surfacelove > 0)) { //It has a preference
+            if (surfacelove <= -1) {
+                if (this.PrehistoricFloraAgeableFishBase.world.getBlockState(pos.down(10 + surfacelove)).getMaterial() == Material.WATER) {
+                    return false;
+                }
+            }
+            if (surfacelove >= 1) {
+                if (this.PrehistoricFloraAgeableFishBase.world.getBlockState(pos.up(10 - surfacelove)).getMaterial() == Material.WATER) {
+                    return false;
+                }
+            }
         }
         //Target to the front and prefer not to be at the surface:
         EnumFacing EntityFacing = this.PrehistoricFloraAgeableFishBase.getHorizontalFacing();

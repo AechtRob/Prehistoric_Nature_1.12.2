@@ -3,6 +3,7 @@ package net.lepidodendron.entity.base;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.lepidodendron.entity.util.PathNavigateAmphibian;
 import net.lepidodendron.entity.util.PathNavigateAmphibianFindWater;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
@@ -73,6 +74,8 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
         }
     }
 
+
+
     @Override
     public boolean isAIDisabled() {
         return false;
@@ -118,6 +121,13 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
         return (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
     }
 
+    @Override
+    protected void playStepSound(BlockPos pos, Block blockIn) {
+        if (this.isReallyInWater()) {
+            return; //Do not play footsteps when in one-block deep water - we animate this as swimming there
+        }
+        super.playStepSound(pos, blockIn);
+    }
 
     @Override
     public boolean canBreatheUnderwater() {
@@ -179,6 +189,20 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
 
     @Override
     public void onLivingUpdate() {
+
+        if (!world.isRemote) {
+            if (this.getAttackTarget() != null) {
+                if (this.getAttackTarget().isDead) {
+                    this.setAttackTarget(null);
+                }
+            }
+            if (this.getEatTarget() != null) {
+                if (this.getEatTarget().isDead) {
+                    this.setEatTarget(null);
+                }
+            }
+            this.setIsFast(this.getAttackTarget() != null || this.getEatTarget() != null);
+        }
 
         if (!this.world.isRemote) {selectNavigator();}
         if (this.isInWater()) {
@@ -294,6 +318,13 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
                 }
                 this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
 
+                if (this.motionX != 0 || this.motionZ != 0) {
+                    this.setIsMoving(true);
+                }
+                else {
+                    this.setIsMoving(false);
+                }
+
                 if (this.collidedHorizontally && this.isCollidingRim())
                 {
                     this.motionY = 0.05D;
@@ -306,7 +337,6 @@ public abstract class EntityPrehistoricFloraSwimmingAmphibianBase extends Entity
                 this.motionZ *= 0.9;
                 this.motionZ *= f4;
             } else {
-                //System.err.println("Vanilla travel hander");
                 super.travel(strafe, vertical, forward);
             }
         }

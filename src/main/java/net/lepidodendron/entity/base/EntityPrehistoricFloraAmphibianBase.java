@@ -56,13 +56,14 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityPrehisto
 
     }
 
+    public boolean breathesAir() {
+        return false;
+    }
 
     @Override
     public boolean isAIDisabled() {
         return false;
     }
-
-    //public abstract String getTexture();
 
     @Override
     protected void applyEntityAttributes() {
@@ -71,37 +72,14 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityPrehisto
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
     }
 
-    // @Nullable
-    // protected ResourceLocation getLootTable() {
-    //     return PrehistoricEntityType.FISH_LOOT;
-    // }
-
     @Override
     protected boolean canTriggerWalking() {
         return false;
     }
 
-    //public void swimTowardsTarget() {
-    //    if (currentTarget != null && isTargetInWater() && this.inWater) {
-    //        double targetX = currentTarget.getX() + 0.5D - posX;
-    //        double targetY = currentTarget.getY() + 1D - posY;
-    //        double targetZ = currentTarget.getZ() + 0.5D - posZ;
-    //        motionX += (Math.signum(targetX) * 0.5D - motionX) * 0.100000000372529 * getSwimSpeed(); // 0.10000000149011612D
-    //        motionY += (Math.signum(targetY) * 0.5D - motionY) * 0.100000000372529 * getSwimSpeed();// 0.10000000149011612D
-    //        motionZ += (Math.signum(targetZ) * 0.5D - motionZ) * 0.100000000372529 * getSwimSpeed(); // 0.10000000149011612D
-    //       float angle = (float) (Math.atan2(motionZ, motionX) * 180.0D / Math.PI) - 90.0F;
-    //        float rotation = MathHelper.wrapDegrees(angle - rotationYaw);
-    //        moveForward = 0.5F;
-    //        rotationYaw += rotation;
-     //   }
-    //}
-
-    //protected abstract double getSwimSpeed();
-
     public float getMaxTurnDistancePerTick() {
         return 20;
     }
-
 
     public boolean isPushedByWater()
     {
@@ -146,7 +124,7 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityPrehisto
         super.onEntityUpdate();
 
         if ((this.isEntityAlive() && !isInWater())
-                && (!isNearWater(this, this.getPosition())) //Is not NEAR water
+                && (!isNearWater(this, this.getPosition()) && !this.breathesAir()) //Is not NEAR water
         )
         {
             --i;

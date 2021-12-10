@@ -199,7 +199,7 @@ public class ModelLimnoscelis extends AdvancedModelBase {
     @Override
     public void render(Entity entity, float f, float f1, float f2, float f3, float f4, float f5) {
         animate((IAnimatedEntity) entity, f, f1, f2, f3, f4, f5);
-        this.Hips.render(f5 * 0.5f);
+        this.Hips.render(f5 * 0.37f);
     }
 
     public void setRotateAngle(ModelRenderer modelRenderer, float x, float y, float z) {
@@ -212,7 +212,7 @@ public class ModelLimnoscelis extends AdvancedModelBase {
     public void setRotationAngles(float f, float f1, float f2, float f3, float f4, float f5, Entity e) {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
         this.resetToDefaultPose();
-        this.Hips.offsetY = 0.73F; //72
+        this.Hips.offsetY = 0.93F; //72
 
         EntityPrehistoricFloraLimnoscelis Limnoscelis = (EntityPrehistoricFloraLimnoscelis) e;
 
@@ -223,7 +223,7 @@ public class ModelLimnoscelis extends AdvancedModelBase {
         AdvancedModelRenderer[] Torso = {this.Head, this.Neck, this.Bodyfront, this.Belly, this.Hips};
 
         if (!Limnoscelis.isReallyInWater()) {
-            if (f3 == 0.0F) {
+            if (f3 == 0.0F || !Limnoscelis.getIsMoving()) {
                 return;
             }
             ////this.flap(Leftthigh, speed, 0.65F, false, -3, -0.35F, f2, 0.5F);

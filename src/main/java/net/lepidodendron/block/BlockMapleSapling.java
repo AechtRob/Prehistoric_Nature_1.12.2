@@ -101,7 +101,7 @@ public class BlockMapleSapling extends ElementsLepidodendronMod.ModElement {
 	        {
 	           	int TreeHeight = 6 + rand.nextInt(12);
 				if (TreeHeight > 8 && Math.random() > 0.5) {
-					TreeHeight = TreeHeight = 5 + rand.nextInt(6);
+					TreeHeight = 5 + rand.nextInt(6);
 				}
 				ProcedureWorldGenMaple.executeProcedure(world, pos, TreeHeight);
 				//}
@@ -157,7 +157,7 @@ public class BlockMapleSapling extends ElementsLepidodendronMod.ModElement {
 	        if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Flowering tree");
 				tooltip.add("Periods: late Cretaceous - Paleogene - Neogene - Quaternary");
-				tooltip.add("Propagation: flowers");}
+				tooltip.add("Propagation: seeds drop from leaves");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 	}

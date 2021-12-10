@@ -493,7 +493,6 @@ public class ModelVestinautilus extends AdvancedModelBase {
         this.chainWave(tentacle17, speed, greaterFloat, 1.5F, f2, 0.8F);
         this.chainFlap(tentacle17, speed, -lesserFloat, 1.5F, f2, 0.8F);
 
-
         //bottom set:
         this.chainWave(tentacle5, speed, -greaterFloat, -1.5F, f2, 0.8F);
         this.chainFlap(tentacle5, speed, lesserFloat, -1.5F, f2, 0.8F);

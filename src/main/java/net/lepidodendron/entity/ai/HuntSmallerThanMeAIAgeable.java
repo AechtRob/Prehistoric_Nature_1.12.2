@@ -18,14 +18,26 @@ public class HuntSmallerThanMeAIAgeable<T extends EntityLivingBase> extends Enti
         //System.err.println("Testing AI");
         boolean preliminaryTarget = super.shouldExecute();
         if (!this.entity.getWillHunt()) {
-            //System.err.println(this.entity.getWillAttack());
+            this.entity.setIsFast(false);
             return false;
         }
         if (this.targetEntity != null) {
-           if (this.entity.getEntityBoundingBox().getAverageEdgeLength() <= this.targetEntity.getEntityBoundingBox().getAverageEdgeLength()) {
-                return false;
+           if ((this.entity.getEntityBoundingBox().getAverageEdgeLength() <= this.targetEntity.getEntityBoundingBox().getAverageEdgeLength())
+                || (this.entity.getMaxHealth() * 1.5 <= this.targetEntity.getMaxHealth())
+                ) {
+               this.entity.setIsFast(false);
+               return false;
             }
         }
+        if (preliminaryTarget) {
+            this.entity.setIsFast(true);
+        }
+        else {
+            this.entity.setIsFast(false);
+        }
+
+        //System.err.println("Target " + this.entity.getAttackTarget());
+
         return preliminaryTarget;
     }
 

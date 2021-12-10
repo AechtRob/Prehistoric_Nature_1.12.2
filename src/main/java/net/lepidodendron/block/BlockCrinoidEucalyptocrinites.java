@@ -5,6 +5,8 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronStatic;
+import net.lepidodendron.util.EnumBiomeTypeDevonian;
+import net.lepidodendron.world.biome.devonian.BiomeDevonian;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -89,6 +91,7 @@ public class BlockCrinoidEucalyptocrinites extends ElementsLepidodendronMod.ModE
 		) {
 			dimensionCriteria = true;
 		}
+
 		if (!dimensionCriteria)
 			return;
 
@@ -104,10 +107,16 @@ public class BlockCrinoidEucalyptocrinites extends ElementsLepidodendronMod.ModE
 		}
 		if (matchBiome(biome, LepidodendronConfig.genCrinoidOverrideBiomes))
 			biomeCriteria = true;
-		if (dimID == LepidodendronConfig.dimDevonian
-				|| dimID == LepidodendronConfig.dimOrdovicianSilurian
+		if (dimID == LepidodendronConfig.dimOrdovicianSilurian
 		) {
 			biomeCriteria = true;
+		}
+		if (biome instanceof BiomeDevonian)
+		{
+			BiomeDevonian biomeDev = (BiomeDevonian) biome;
+			if (biomeDev.getBiomeType() == EnumBiomeTypeDevonian.Ocean) {
+				biomeCriteria = true;
+			}
 		}
 		if (!biomeCriteria)
 			return;

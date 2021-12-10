@@ -42,6 +42,10 @@ public class EntityPrehistoricFloraAsaphus extends EntityPrehistoricFloraTrilobi
 		enablePersistence();
 	}
 
+	public static String getPeriod() {return "Ordovician";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public boolean dropsEggs() {
 		return true;

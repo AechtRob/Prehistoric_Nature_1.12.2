@@ -40,6 +40,10 @@ public class EntityPrehistoricFloraCephalaspis extends EntityPrehistoricFloraFis
 		enablePersistence();
 	}
 
+	public static String getPeriod() {return "Silurian - Devonian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public boolean dropsEggs() {
 		return true;
@@ -47,7 +51,7 @@ public class EntityPrehistoricFloraCephalaspis extends EntityPrehistoricFloraFis
 
 	@Override
 	protected float getAISpeedFish() {
-		return 0.525f;
+		return 0.485f;
 	}
 
 	@Override

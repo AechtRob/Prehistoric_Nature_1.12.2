@@ -27,7 +27,7 @@ public class RenderHylonomus extends RenderLiving<EntityPrehistoricFloraHylonomu
 
     @Override
     protected void preRenderCallback(EntityPrehistoricFloraHylonomus entity, float f) {
-        float scale = entity.getAgeScale();
+        float scale = entity.getAgeScale() * 1.125F;
         GlStateManager.scale(scale, scale, scale);
         this.shadowSize = entity.width * scale * 0.1F;
     }

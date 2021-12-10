@@ -15,7 +15,6 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.passive.EntitySquid;
 import net.minecraft.entity.player.EntityPlayer;
@@ -52,6 +51,10 @@ public class EntityPrehistoricFloraKokomopterus extends EntityPrehistoricFloraEu
 		maxHealthAgeable = 6D;
 	}
 
+	public static String getPeriod() {return "Silrian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public int getRoarLength() {
 		return 0;
@@ -87,7 +90,7 @@ public class EntityPrehistoricFloraKokomopterus extends EntityPrehistoricFloraEu
 		tasks.addTask(3, new EurypteridWanderBottomDweller(this, NO_ANIMATION));
 		tasks.addTask(4, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatFishItemsAI(this));
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+		this.targetTasks.addTask(1, new EntityHurtByTargetSmallerThanMeAI(this, false));
 		this.targetTasks.addTask(2, new HuntAI(this, EntityPrehistoricFloraFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(2, new HuntAI(this, EntitySquid. class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(2, new HuntAI(this, EntityPrehistoricFloraTrilobiteBottomBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));

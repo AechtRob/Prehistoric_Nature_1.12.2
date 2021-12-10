@@ -22,6 +22,7 @@ import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
@@ -88,7 +89,7 @@ public class BlockFacivermis extends ElementsLepidodendronMod.ModElement {
 		if ((dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
-				
+				|| (dimID == LepidodendronConfig.dimPermian)
 				|| (dimID == LepidodendronConfig.dimPrecambrian)
 		) {
 			dimensionCriteria = false;
@@ -282,7 +283,9 @@ public class BlockFacivermis extends ElementsLepidodendronMod.ModElement {
 		@Override
 		public void onEntityCollision(World world, BlockPos pos, IBlockState state, Entity entity) {
 			super.onEntityCollision(world, pos, state, entity);
-			hideFacivermis(world, pos);
+			if (!(entity instanceof EntityItem)) {
+				hideFacivermis(world, pos);
+			}
 		}
 
 		public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)

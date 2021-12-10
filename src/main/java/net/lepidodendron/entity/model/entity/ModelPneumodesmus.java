@@ -2,6 +2,7 @@ package net.lepidodendron.entity.model.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelBase;
 import net.ilexiconn.llibrary.client.model.tools.AdvancedModelRenderer;
+import net.lepidodendron.entity.EntityPrehistoricFloraPneumodesmus;
 import net.minecraft.client.model.ModelBox;
 import net.minecraft.client.model.ModelRenderer;
 import net.minecraft.entity.Entity;
@@ -331,6 +332,13 @@ public class ModelPneumodesmus extends AdvancedModelBase {
         AdvancedModelRenderer[] Body12 = {this.body12};
 
         AdvancedModelRenderer[] BodyHead = {this.body1, this.body};
+
+        EntityPrehistoricFloraPneumodesmus Pneumodesmus = (EntityPrehistoricFloraPneumodesmus) e;
+        if (f3 == 0.0F || !Pneumodesmus.getIsMoving()) { //Not moving
+            this.head.rotateAngleY += f3 / (180F / (float) Math.PI) * 0.4;
+            this.body4.rotateAngleY += f3 / (180F / (float) Math.PI) * 0.3;
+            return;
+        }
 
         if (e instanceof EntityLiving && !((EntityLiving) e).isAIDisabled()) {
             this.head.rotateAngleY += f3 / (180F / (float) Math.PI) * 0.4;

@@ -6,10 +6,7 @@ import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.block.BlockRottenLog;
-import net.lepidodendron.entity.ai.AttackAI;
-import net.lepidodendron.entity.ai.EatMeatItemsAI;
-import net.lepidodendron.entity.ai.HuntAI;
-import net.lepidodendron.entity.ai.LandWander;
+import net.lepidodendron.entity.ai.*;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraInsectClimbingBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraLandBase;
@@ -22,7 +19,7 @@ import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -59,6 +56,10 @@ public class EntityPrehistoricFloraHylonomus extends EntityPrehistoricFloraLandB
 		maxHealthAgeable = 6.0D;
 	}
 
+	public static String getPeriod() {return "Carboniferous";}
+
+	public static String getHabitat() {return "Terrestrial";}
+
     @Override
 	public String getTexture() {
 		return this.getTexture();
@@ -76,7 +77,7 @@ public class EntityPrehistoricFloraHylonomus extends EntityPrehistoricFloraLandB
 
 	@Override
 	public String tagEgg() {
-		return "hylonomus_eggs";
+		return "eggs_hylonomus";
 	}
 
 	protected float getAISpeedLand() {
@@ -103,12 +104,13 @@ public class EntityPrehistoricFloraHylonomus extends EntityPrehistoricFloraLandB
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new EntityAISwimming(this));
+		tasks.addTask(0, new LandEntitySwimmingAI(this, 0.75, true));
 		tasks.addTask(1, new AttackAI(this, 1.0D, false, this.getAttackLength()));
-		tasks.addTask(2, new LandWander(this, NO_ANIMATION));
-		tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-		tasks.addTask(3, new EntityAIWatchClosest(this, EntityPrehistoricFloraAgeableBase.class, 8.0F));
-		tasks.addTask(4, new EntityAILookIdle(this));
+		tasks.addTask(2, new LandWanderFindNestAI(this, BlockRottenLog.block));
+		tasks.addTask(3, new EntityAIWanderAvoidWater(this, 1.0D));
+		tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+		tasks.addTask(5, new EntityAIWatchClosest(this, EntityPrehistoricFloraAgeableBase.class, 8.0F));
+		tasks.addTask(6, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatMeatItemsAI(this));
 		this.targetTasks.addTask(1, new HuntAI(this, EntityPrehistoricFloraInsectClimbingBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(2, new HuntAI(this, EntityPrehistoricInsectFlyingBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));

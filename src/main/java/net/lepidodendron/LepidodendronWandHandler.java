@@ -3,10 +3,12 @@ package net.lepidodendron;
 import net.lepidodendron.enchantments.Enchantments;
 import net.lepidodendron.item.ItemBoneWand;
 import net.lepidodendron.item.ItemPetrified;
+import net.lepidodendron.util.ModTriggers;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.effect.EntityLightningBolt;
 import net.minecraft.entity.item.EntityItemFrame;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumHand;
@@ -50,6 +52,7 @@ public class LepidodendronWandHandler {
                             if (!player.capabilities.isCreativeMode) {
                                 wandstack.damageItem(1, player);
                             }
+                            ModTriggers.REJUVENATE.trigger((EntityPlayerMP)player);
                         }
                     }
                 }

@@ -35,6 +35,10 @@ public class EntityPrehistoricFloraPalaeodictyoptera_Delitzschala extends Entity
 		enablePersistence();
 	}
 
+	public static String getPeriod() {return "mid Carboniferous";}
+
+	public static String getHabitat() {return "Terrestrial";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;
@@ -132,7 +136,7 @@ public class EntityPrehistoricFloraPalaeodictyoptera_Delitzschala extends Entity
 	}
 
 	@Nullable
-	protected ResourceLocation getLootTable() { return LepidodendronMod.PALAEODICTYOPTERA_LOOT;}
+	protected ResourceLocation getLootTable() { return LepidodendronMod.PALAEODICTYOPTERA_DELITZSCHALA_LOOT;}
 
 }
 

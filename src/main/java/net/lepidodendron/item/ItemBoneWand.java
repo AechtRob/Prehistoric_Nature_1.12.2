@@ -6,7 +6,13 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.lepidodendron.enchantments.Enchantments;
-import net.lepidodendron.world.dimension.*;
+import net.lepidodendron.world.dimension.cambrian.WorldCambrian;
+import net.lepidodendron.world.dimension.carboniferous.WorldCarboniferous;
+import net.lepidodendron.world.dimension.devonian.WorldDevonian;
+import net.lepidodendron.world.dimension.ordoviciansilurian.WorldOrdovicianSilurian;
+import net.lepidodendron.world.dimension.permian.WorldPermian;
+import net.lepidodendron.world.dimension.precambrian.WorldPrecambrian;
+import net.lepidodendron.world.dimension.triassic.WorldTriassic;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
@@ -88,8 +94,8 @@ public class ItemBoneWand extends ElementsLepidodendronMod.ModElement {
 						WorldOrdovicianSilurian.portal.portalSpawn(world, pos);
 						WorldDevonian.portal.portalSpawn(world, pos);
 						WorldCarboniferous.portal.portalSpawn(world, pos);
-						//WorldPermianGlossopteris.portal.portalSpawn(world, pos);
-						//WorldPermianWetlands.portal.portalSpawn(world, pos);
+						WorldPermian.portal.portalSpawn(world, pos);
+						WorldTriassic.portal.portalSpawn(world, pos);
 						if (!entity.capabilities.isCreativeMode) {
 							itemstack.damageItem(1, entity);
 						}

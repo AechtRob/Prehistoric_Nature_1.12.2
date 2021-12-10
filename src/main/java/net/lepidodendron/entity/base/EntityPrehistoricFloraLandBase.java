@@ -2,13 +2,26 @@ package net.lepidodendron.entity.base;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
+import net.lepidodendron.entity.util.PathNavigateGroundNoWater;
+import net.lepidodendron.entity.util.PathNavigateSwimmerTopLayer;
+import net.lepidodendron.util.MaterialResin;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.MobEffects;
+import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemFood;
+import net.minecraft.item.ItemStack;
 import net.minecraft.pathfinding.NodeProcessor;
 import net.minecraft.pathfinding.PathNavigate;
-import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -18,29 +31,133 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
+
 public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFloraAgeableBase {
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;
     private int jumpTicks;
+    public Animation EAT_ANIMATION;
+    private int inPFLove;
 
     public EntityPrehistoricFloraLandBase(World world) {
         super(world);
-        this.setPathPriority(PathNodeType.WATER, -1.0F);
-        this.moveHelper = new EntityPrehistoricFloraLandBase.WanderMoveHelper();
-        this.navigator = new PathNavigateGround(this, world);
+        //this.setPathPriority(PathNodeType.WATER, -1.0F);
+        this.selectNavigator();
         if (FMLCommonHandler.instance().getSide().isClient()) {
             this.chainBuffer = new ChainBuffer();
         }
+        EAT_ANIMATION = Animation.create(this.getEatLength());
     }
 
+    public boolean canSwim() {
+        return true;
+    }
+
+    public float getSwimHeight() {
+        return getEyeHeight();
+    }
+
+    public boolean homesToNest() {
+        return false;
+    }
+
+    @Override
+    public void selectNavigator () {
+        if (this.isSwimmingInWater() && this.canSwim()) {
+            if ((!(this.moveHelper instanceof EntityPrehistoricFloraLandBase.SwimmingMoveHelper))
+                || (!(this.navigator instanceof PathNavigateSwimmerTopLayer))) {
+                this.moveHelper = new EntityPrehistoricFloraLandBase.SwimmingMoveHelper();
+                this.navigator = new PathNavigateSwimmerTopLayer(this, world);
+
+                //System.err.println(this.getClass() + " Navigator changed to " + this.navigator);
+            }
+        }
+       // else if ((this.isReallyInWater() && (!this.isInWater())) || (world.getBlockState(this.getPosition().down()).getMaterial() == Material.WATER)) {
+       //     if (!(this.moveHelper instanceof EntityPrehistoricFloraLandBase.WanderMoveHelper)
+       //         || !(this.navigator instanceof PathNavigateGround)) {
+       //         this.moveHelper = new EntityPrehistoricFloraLandBase.WanderMoveHelper();
+       //         this.navigator = new PathNavigateGround(this, world);
+       //         System.err.println(this.getClass() + "Navigator changed to " + this.navigator);
+       //     }
+       // }
+        else if ((!this.isSwimmingInWater()) || (!this.canSwim())) {
+            if ((!(this.moveHelper instanceof EntityPrehistoricFloraLandBase.WanderMoveHelper))
+                || (!(this.navigator instanceof PathNavigateGroundNoWater))) {
+                this.moveHelper = new EntityPrehistoricFloraLandBase.WanderMoveHelper();
+                this.navigator = new PathNavigateGroundNoWater(this, world);
+                //System.err.println(this.getClass() + "Navigator changed to " + this.navigator);
+            }
+        }
+    }
+
+    public int getEatLength() {
+        return 10;
+    }
+
+    @Override
+    public Animation[] getAnimations() {
+        return new Animation[]{ATTACK_ANIMATION,ROAR_ANIMATION, LAY_ANIMATION, EAT_ANIMATION};
+    }
+    
     @Override
     public float getEyeHeight()
     {
         return this.height * 0.85F;
     }
 
+    public float getTravelSpeed() {
+        return this.getAISpeedLand();
+    }
+
     protected abstract float getAISpeedLand();
+
+    protected float getAISpeedSwimmingLand() {
+        return getAISpeedLand();
+    }
+
+    //@Override
+    //public boolean isInWater() {
+        //Is in water if the block above it or below it are also water.
+        //i.e. so that in shallow water it thinks it's not in water and so just walks:
+    //    if (this.world.isAirBlock(this.getPosition())) {return false;}
+   //     IBlockState state = this.world.getBlockState(this.getPosition());
+    //    IBlockState stateU = this.world.getBlockState(this.getPosition().up());
+    //    IBlockState stateD = this.world.getBlockState(this.getPosition().down());
+    //    return ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL) || state.getMaterial() == Material.WATER)
+    //            && (stateU.getMaterial() == Material.WATER || stateD.getMaterial() == Material.WATER));
+    //}
+
+    public boolean isReallyInWater() { //is actually in water at all
+        //return (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
+        return this.isInWater();
+    }
+
+    public boolean isSwimmingInWater() { //is actually in water at all
+        return (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL)
+            || (this.world.getBlockState(this.getPosition().down()).getMaterial() == Material.WATER
+                && !this.onGround)
+        );
+    }
+
+    @Override
+    protected void playStepSound(BlockPos pos, Block blockIn) {
+        if (this.isInWater()) {
+            return; //Do not play footsteps when in water
+        }
+        super.playStepSound(pos, blockIn);
+    }
+
+    @Override
+    public boolean canBreatheUnderwater() {
+        return this.canSwim();
+    }
+
+    @Nullable
+    public Block getNestBlock() {
+        return null;
+    }
 
     private Animation animation = NO_ANIMATION;
 
@@ -87,6 +204,7 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
 
     @Override
     public boolean isOnLadder() {
+
         return false;
     }
 
@@ -97,56 +215,53 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
 
     public void onLivingUpdate()
     {
-        if (this.jumpTicks > 0)
-        {
+
+        if (!this.world.isRemote) {
+            selectNavigator();
+        }
+
+
+        //Updated from vanilla to allow underwater jumping:
+        if (this.jumpTicks > 0) {
             --this.jumpTicks;
         }
 
-        if (this.newPosRotationIncrements > 0 && !this.canPassengerSteer())
-        {
-            double d0 = this.posX + (this.interpTargetX - this.posX) / (double)this.newPosRotationIncrements;
-            double d1 = this.posY + (this.interpTargetY - this.posY) / (double)this.newPosRotationIncrements;
-            double d2 = this.posZ + (this.interpTargetZ - this.posZ) / (double)this.newPosRotationIncrements;
-            double d3 = MathHelper.wrapDegrees(this.interpTargetYaw - (double)this.rotationYaw);
-            this.rotationYaw = (float)((double)this.rotationYaw + d3 / (double)this.newPosRotationIncrements);
-            this.rotationPitch = (float)((double)this.rotationPitch + (this.interpTargetPitch - (double)this.rotationPitch) / (double)this.newPosRotationIncrements);
+        if (this.newPosRotationIncrements > 0 && !this.canPassengerSteer()) {
+            double d0 = this.posX + (this.interpTargetX - this.posX) / (double) this.newPosRotationIncrements;
+            double d1 = this.posY + (this.interpTargetY - this.posY) / (double) this.newPosRotationIncrements;
+            double d2 = this.posZ + (this.interpTargetZ - this.posZ) / (double) this.newPosRotationIncrements;
+            double d3 = MathHelper.wrapDegrees(this.interpTargetYaw - (double) this.rotationYaw);
+            this.rotationYaw = (float) ((double) this.rotationYaw + d3 / (double) this.newPosRotationIncrements);
+            this.rotationPitch = (float) ((double) this.rotationPitch + (this.interpTargetPitch - (double) this.rotationPitch) / (double) this.newPosRotationIncrements);
             --this.newPosRotationIncrements;
             this.setPosition(d0, d1, d2);
             this.setRotation(this.rotationYaw, this.rotationPitch);
-        }
-        else if (!this.isServerWorld())
-        {
+        } else if (!this.isServerWorld()) {
             this.motionX *= 0.98D;
             this.motionY *= 0.98D;
             this.motionZ *= 0.98D;
         }
 
-        if (Math.abs(this.motionX) < 0.003D)
-        {
+        if (Math.abs(this.motionX) < 0.003D) {
             this.motionX = 0.0D;
         }
 
-        if (Math.abs(this.motionY) < 0.003D)
-        {
+        if (Math.abs(this.motionY) < 0.003D) {
             this.motionY = 0.0D;
         }
 
-        if (Math.abs(this.motionZ) < 0.003D)
-        {
+        if (Math.abs(this.motionZ) < 0.003D) {
             this.motionZ = 0.0D;
         }
 
         this.world.profiler.startSection("ai");
 
-        if (this.isMovementBlocked())
-        {
+        if (this.isMovementBlocked()) {
             this.isJumping = false;
             this.moveStrafing = 0.0F;
             this.moveForward = 0.0F;
             this.randomYawVelocity = 0.0F;
-        }
-        else if (this.isServerWorld())
-        {
+        } else if (this.isServerWorld()) {
             this.world.profiler.startSection("newAi");
             this.updateEntityActionState();
             this.world.profiler.endSection();
@@ -155,25 +270,17 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
         this.world.profiler.endSection();
         this.world.profiler.startSection("jump");
 
-        if (this.isJumping)
-        {
-            if (this.isInWater() && this.jumpTicks == 0)
-            {
+        if (this.isJumping) {
+            if (this.isReallyInWater() && this.jumpTicks == 0) {
                 this.jump();
                 this.jumpTicks = 10;
-            }
-            else if (this.isInLava())
-            {
+            } else if (this.isInLava()) {
                 this.handleJumpLava();
-            }
-            else if (this.onGround && this.jumpTicks == 0)
-            {
+            } else if (this.onGround && this.jumpTicks == 0) {
                 this.jump();
                 this.jumpTicks = 10;
             }
-        }
-        else
-        {
+        } else {
             this.jumpTicks = 0;
         }
 
@@ -188,6 +295,226 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
         this.world.profiler.startSection("push");
         this.collideWithNearbyEntities();
         this.world.profiler.endSection();
+
+        //Additional:
+        if (!world.isRemote) {
+            if (this.getAttackTarget() != null) {
+                if (this.getAttackTarget().isDead) {
+                    this.setAttackTarget(null);
+                }
+            }
+            if (this.getEatTarget() != null) {
+                if (this.getEatTarget().isDead) {
+                    this.setEatTarget(null);
+                }
+            }
+            this.setIsFast(this.getAttackTarget() != null || this.getEatTarget() != null);
+        }
+
+        if (!this.isPFAdult())
+        {
+            this.inPFLove = 0;
+        }
+
+        if (this.inPFLove > 0)
+        {
+            --this.inPFLove;
+        }
+
+        //Grapple with mates?
+        if (rand.nextInt(1000) == 0) {
+            //Are there any nearby to grapple with?
+            this.findGrappleTarget();
+        }
+
+        if (this.willGrapple && this.getAnimation() == this.getGrappleAnimation() && this.getAnimationTick() == this.headbutTick() && this.getGrappleTarget() != null) {
+            this.faceEntity(this.getGrappleTarget(), 100F, 100F);
+            launchGrapple();
+            if (this.getOneHit()) {
+                this.setGrappleTarget(null);
+            }
+        }
+
+    }
+
+    public int headbutTick() {
+        return 10;
+    }
+
+    @Override
+    public void travel(float strafe, float vertical, float forward) {
+        float f4;
+        if (this.isServerWorld()) {
+
+            double yy = this.posY + Math.max((this.getSwimHeight() - 0.2), 0.1);
+            BlockPos posEyes = new BlockPos(this.posX, yy, this.posZ);
+
+            if (this.isReallyInWater() &&
+                    (world.getBlockState(posEyes).getMaterial() == Material.WATER
+                        || world.getBlockState(posEyes).getMaterial() == Material.LAVA
+                        || world.getBlockState(posEyes).getMaterial() == MaterialResin.RESIN)
+            ) {
+                this.motionY = 0.2D;
+            }
+
+
+            if (this.isReallyInWater()) { //Is in water
+                //System.err.println("Is in water");
+                this.moveRelative(strafe, vertical, forward, 0.1F);
+                f4 = 0.8F;
+                float speedModifier = (float) EnchantmentHelper.getDepthStriderModifier(this);
+                if (speedModifier > 3.0F) {
+                    speedModifier = 3.0F;
+                }
+
+                BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos = BlockPos.PooledMutableBlockPos.retain(this.posX, this.getEntityBoundingBox().minY - 1.0D, this.posZ);
+
+                if (!this.onGround) {
+                    speedModifier *= 0.5F;
+                }
+                if (speedModifier > 0.0F) {
+                    f4 += (0.54600006F - f4) * speedModifier / 3.0F;
+                }
+                this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+
+                if (this.motionX != 0 || this.motionZ != 0) {
+                    this.setIsMoving(true);
+                }
+                else {
+                    this.setIsMoving(false);
+                }
+
+                this.motionX *= f4;
+                this.motionX *= 0.9;
+                this.motionY *= 0.9;
+                this.motionY *= f4;
+                this.motionZ *= 0.9;
+                this.motionZ *= f4;
+            }
+            else { //is not in water:
+                if (!this.isInLava())
+                {
+                    float f6 = 0.91F;
+                    BlockPos.PooledMutableBlockPos blockpos$pooledmutableblockpos = BlockPos.PooledMutableBlockPos.retain(this.posX, this.getEntityBoundingBox().minY - 1.0D, this.posZ);
+
+                    if (this.onGround)
+                    {
+                        IBlockState underState = this.world.getBlockState(blockpos$pooledmutableblockpos);
+                        f6 = underState.getBlock().getSlipperiness(underState, this.world, blockpos$pooledmutableblockpos, this) * 0.91F;
+                    }
+
+                    float f7 = 0.16277136F / (f6 * f6 * f6);
+                    float f8;
+
+                    if (this.onGround)
+                    {
+                        f8 = this.getAIMoveSpeed() * f7;
+                    }
+                    else
+                    {
+                        f8 = this.jumpMovementFactor;
+                    }
+
+                    this.moveRelative(strafe, vertical, forward, f8);
+                    f6 = 0.91F;
+
+                    if (this.onGround)
+                    {
+                        IBlockState underState = this.world.getBlockState(blockpos$pooledmutableblockpos.setPos(this.posX, this.getEntityBoundingBox().minY - 1.0D, this.posZ));
+                        f6 = underState.getBlock().getSlipperiness(underState, this.world, blockpos$pooledmutableblockpos, this) * 0.91F;
+                    }
+
+                    if (this.isOnLadder())
+                    {
+                        float f9 = 0.15F;
+                        this.motionX = MathHelper.clamp(this.motionX, -0.15000000596046448D, 0.15000000596046448D);
+                        this.motionZ = MathHelper.clamp(this.motionZ, -0.15000000596046448D, 0.15000000596046448D);
+                        this.fallDistance = 0.0F;
+
+                        if (this.motionY < -0.15D)
+                        {
+                            this.motionY = -0.15D;
+                        }
+
+                    }
+
+                    this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+
+                    if (this.motionX != 0 || this.motionZ != 0) {
+                        this.setIsMoving(true);
+                    }
+                    else {
+                        this.setIsMoving(false);
+                    }
+
+                    if (this.collidedHorizontally && this.isOnLadder())
+                    {
+                        this.motionY = 0.2D;
+                    }
+
+                    if (this.isPotionActive(MobEffects.LEVITATION))
+                    {
+                        this.motionY += (0.05D * (double)(this.getActivePotionEffect(MobEffects.LEVITATION).getAmplifier() + 1) - this.motionY) * 0.2D;
+                    }
+                    else
+                    {
+                        blockpos$pooledmutableblockpos.setPos(this.posX, 0.0D, this.posZ);
+
+                        if (!this.world.isRemote || this.world.isBlockLoaded(blockpos$pooledmutableblockpos) && this.world.getChunk(blockpos$pooledmutableblockpos).isLoaded())
+                        {
+                            if (!this.hasNoGravity())
+                            {
+                                this.motionY -= 0.08D;
+                            }
+                        }
+                        else if (this.posY > 0.0D)
+                        {
+                            this.motionY = -0.1D;
+                        }
+                        else
+                        {
+                            this.motionY = 0.0D;
+                        }
+                    }
+
+                    this.motionY *= 0.9800000190734863D;
+                    this.motionX *= (double)f6;
+                    this.motionZ *= (double)f6;
+                    blockpos$pooledmutableblockpos.release();
+
+                }
+                else //is in Lava
+                {
+                    double d4 = this.posY;
+                    this.moveRelative(strafe, vertical, forward, 0.02F);
+                    this.move(MoverType.SELF, this.motionX, this.motionY, this.motionZ);
+
+                    this.motionX *= 0.5D;
+                    this.motionY *= 0.5D;
+                    this.motionZ *= 0.5D;
+
+                    if (!this.hasNoGravity())
+                    {
+                        this.motionY -= 0.02D;
+                    }
+
+                    if (this.collidedHorizontally && this.isOffsetPositionInLiquid(this.motionX, this.motionY + 0.6000000238418579D - this.posY + d4, this.motionZ))
+                    {
+                        this.motionY = 0.30000001192092896D;
+                    }
+                }
+            }
+        }
+        this.prevLimbSwingAmount = this.limbSwingAmount;
+        double deltaX = this.posX - this.prevPosX;
+        double deltaZ = this.posZ - this.prevPosZ;
+        double deltaY = this.posY - this.prevPosY;
+        float delta = MathHelper.sqrt(deltaX * deltaX + deltaY * deltaY + deltaZ * deltaZ) * 4.0F;
+        if (delta > 1.0F) {
+            delta = 1.0F;
+        }
+        this.limbSwingAmount += (delta - this.limbSwingAmount) * 0.4F;
+        this.limbSwing += this.limbSwingAmount;
     }
 
     public class WanderMoveHelper extends EntityMoveHelper {
@@ -199,6 +526,7 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
         }
 
         public void onUpdateMoveHelper() {
+
             if (this.action == Action.STRAFE) {
                 //float f = (float) this.EntityBase.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).getAttributeValue();
                 float f = getAISpeedLand();
@@ -222,7 +550,6 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
 
                 if (pathnavigate != null) {
                     NodeProcessor nodeprocessor = pathnavigate.getNodeProcessor();
-
 
                     if (nodeprocessor != null && nodeprocessor.getPathNodeType(this.EntityBase.world, MathHelper.floor(this.EntityBase.posX + (double) f7), MathHelper.floor(this.EntityBase.posY), MathHelper.floor(this.EntityBase.posZ + (double) f8)) != PathNodeType.WALKABLE) {
                         this.moveForward = 1.0F;
@@ -276,6 +603,73 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
                 }
             } else {
                 this.EntityBase.setMoveForward(0.0F);
+            }
+        }
+    }
+
+    @Override
+    public void eatItem(ItemStack stack) {
+        if (stack != null && stack.getItem() != null) {
+            float itemHealth = 0.5F; //Default minimal nutrition
+            if (stack.getItem() instanceof ItemFood) {
+                itemHealth = ((ItemFood) stack.getItem()).getHealAmount(stack);
+            }
+            this.setHealth(Math.min(this.getHealth() + itemHealth, (float) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue()));
+            stack.shrink(1);
+            if (this.getAnimation() == NO_ANIMATION && !world.isRemote) {
+                this.setAnimation(EAT_ANIMATION);
+                SoundEvent soundevent = SoundEvents.ENTITY_GENERIC_EAT;
+                this.getEntityWorld().playSound(null, this.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
+        }
+    }
+
+    public class SwimmingMoveHelper extends EntityMoveHelper {
+        private final EntityPrehistoricFloraLandBase EntityBase = EntityPrehistoricFloraLandBase.this;
+
+        public SwimmingMoveHelper() {
+            super(EntityPrehistoricFloraLandBase.this);
+        }
+
+        @Override
+        public void onUpdateMoveHelper() {
+            //System.err.println("Action " + this.action);
+            //System.err.println("NoPath " + this.EntityBase.getNavigator().noPath());
+            if (this.action == EntityMoveHelper.Action.MOVE_TO && !this.EntityBase.getNavigator().noPath()) {
+                double distanceX = this.posX - this.EntityBase.posX;
+                double distanceY = this.posY - this.EntityBase.posY;
+                double distanceZ = this.posZ - this.EntityBase.posZ;
+                double distance = Math.abs(distanceX * distanceX + distanceY * distanceY + distanceZ * distanceZ);
+                distance = MathHelper.sqrt(distance);
+                distanceY /= distance;
+                float angle = (float) (Math.atan2(distanceZ, distanceX) * 180.0D / Math.PI) - 90.0F;
+
+                this.EntityBase.rotationYaw = this.limitAngle(this.EntityBase.rotationYaw, angle, 20.0F);
+                float speed = getAISpeedSwimmingLand();
+                this.EntityBase.setAIMoveSpeed(speed);
+
+                this.EntityBase.motionY += (double) this.EntityBase.getAIMoveSpeed() * distanceY * 0.1D;
+
+
+                //System.err.println("Testing jump");
+                if (
+                    (this.EntityBase.collidedHorizontally)
+                        //&& (distanceY > (double) this.EntityBase.stepHeight && distanceX * distanceX + distanceZ * distanceZ < (double) Math.max(1.0F, this.EntityBase.width))
+                ) {
+                    this.EntityBase.getJumpHelper().setJumping();
+                    this.action = Action.JUMPING;
+                    //System.err.println("Set jump?");
+                }
+            } else if (this.action == Action.JUMPING) {
+                this.EntityBase.setAIMoveSpeed((float) (this.speed * getAISpeedSwimmingLand()));
+                this.EntityBase.motionY += 0.04D;
+                //System.err.println("Is jumping");
+                if (this.EntityBase.onGround) {
+                    this.action = Action.WAIT;
+                }
+
+            } else {
+                this.EntityBase.setAIMoveSpeed(0.0F);
             }
         }
     }

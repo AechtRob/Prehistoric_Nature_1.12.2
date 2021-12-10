@@ -3,26 +3,24 @@ package net.lepidodendron.world.biome.permian;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.block.BlockCordaitesLog;
-import net.lepidodendron.block.BlockPrehistoricGroundLush;
-import net.lepidodendron.block.BlockWalchiaLog;
-import net.lepidodendron.world.*;
+import net.lepidodendron.block.*;
+import net.lepidodendron.util.EnumBiomeTypePermian;
+import net.lepidodendron.world.biome.ChunkGenSpawner;
+import net.lepidodendron.world.gen.*;
+import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Random;
 
@@ -46,9 +44,9 @@ public class BiomePermianWetlands extends ElementsLepidodendronMod.ModElement {
 		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.JUNGLE);
 		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.LUSH);
 	}
-	static class BiomeGenCustom extends Biome {
+	static class BiomeGenCustom extends BiomePermian {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("Permian Wetlands").setRainfall(0.5F).setBaseHeight(-0.2F).setHeightVariation(0.05F).setTemperature(0.95F).setRainfall(0.9F).setWaterColor(8186044));
+			super(new BiomeProperties("Permian Wetlands").setRainfall(0.5F).setBaseHeight(-0.05F).setHeightVariation(0.02F).setTemperature(0.95F).setRainfall(0.9F).setWaterColor(3906905));
 			setRegistryName("permian_wetlands");
 			topBlock = BlockPrehistoricGroundLush.block.getDefaultState();
 			fillerBlock = Blocks.DIRT.getStateFromMeta(1);
@@ -96,24 +94,27 @@ public class BiomePermianWetlands extends ElementsLepidodendronMod.ModElement {
 		protected static final WorldGenLepidodendronTree LEPIDODENDRON_TREE = new WorldGenLepidodendronTree(false);
 		protected static final WorldGenSigillaria SIGILLARIA_TREE = new WorldGenSigillaria(false);
 		protected static final WorldGenWalchiaTree WALCHIA_TREE = new WorldGenWalchiaTree(false);
+		protected static final WorldGenArthropitysTree ARTHROPITYS_TREE = new WorldGenArthropitysTree(false);
 		protected static final WorldGenZygopterisTree ZYGOPTERIS_TREE = new WorldGenZygopterisTree(false);
-		protected static final WorldGenUtrechtia UTRECHTIA_GENERATOR = new WorldGenUtrechtia();
 		protected static final WorldGenTietea TIETEA = new WorldGenTietea(false);
 		protected static final WorldGenCordaitesTree CORDAITES_TREE = new WorldGenCordaitesTree(false);
 		protected static final WorldGenPuddles PUDDLES_GENERATOR = new WorldGenPuddles();
 		protected static final WorldGenGigantopterid GIGANTOPTERID_GENERATOR = new WorldGenGigantopterid();
 		protected static final WorldGenEmplectopteris EMPLECTOPTERIS_GENERATOR = new WorldGenEmplectopteris();
+		protected static final WorldGenSwampHorsetail SWAMP_HORSETAIL_GENERATOR = new WorldGenSwampHorsetail();
 		protected static final WorldGenAncientMoss ANCIENT_MOSS_GENERATOR = new WorldGenAncientMoss();
 		protected static final WorldGenSelaginella SELAGINELLA_GENERATOR = new WorldGenSelaginella();
 		protected static final WorldGenTreeRottenLog ROTTEN_LOG_GENERATOR = new WorldGenTreeRottenLog();
 		protected static final WorldGenIsoetes ISOETES_GENERATOR = new WorldGenIsoetes();
 		protected static final WorldGenPalaeostachya PALAEOSTACHYA_GENERATOR = new WorldGenPalaeostachya();
 		protected static final WorldGenWaterHorsetail WATER_HORSETAIL_GENERATOR = new WorldGenWaterHorsetail();
-		protected static final WorldGenPrehistoricGroundCoverPlants GROUNDCOVER_GENERATOR = new WorldGenPrehistoricGroundCoverPlants();
+		protected static final WorldGenPrehistoricGroundCover GROUNDCOVER_GENERATOR = new WorldGenPrehistoricGroundCover();
 		protected static final WorldGenTreeLog CORDAITES_LOG_GENERATOR = new WorldGenTreeLog(BlockCordaitesLog.block);
     	protected static final WorldGenTreeLog WALCHIA_LOG_GENERATOR = new WorldGenTreeLog(BlockWalchiaLog.block);
     	protected static final WorldGenFern FERN_GENERATOR = new WorldGenFern();
 		protected static final WorldGenMud MUD_GENERATOR = new WorldGenMud();
+		protected static final WorldGenPodzol PODZOL_GENERATOR = new WorldGenPodzol();
+		protected static final WorldGenLeafblock LEAFBLOCK_GENERATOR = new WorldGenLeafblock();
 		public static final PropertyEnum<BlockDoublePlant.EnumPlantType> VARIANT = PropertyEnum.<BlockDoublePlant.EnumPlantType>create("variant", BlockDoublePlant.EnumPlantType.class);
 		
 		public WorldGenAbstractTree getRandomTreeFeature(Random rand)
@@ -121,9 +122,11 @@ public class BiomePermianWetlands extends ElementsLepidodendronMod.ModElement {
 	    	int selector = rand.nextInt(10);
 	    	switch (selector) {
 	    		case 0 :
-	    			return WALCHIA_TREE;
+	    			//return WALCHIA_TREE;
+					return ZYGOPTERIS_TREE;
 	       		case 1 :
-	    			return WALCHIA_TREE;
+	    			//	return WALCHIA_TREE;
+					return TIETEA;
 	       		case 2 :
 	    			return TIETEA;
 	       		case 3 :
@@ -135,7 +138,7 @@ public class BiomePermianWetlands extends ElementsLepidodendronMod.ModElement {
 				case 6 :
 					return SIGILLARIA_TREE;
 				case 7 :
-					return TIETEA;
+					return ARTHROPITYS_TREE;
 				case 8 :
 					return CORDAITES_TREE;
 				case 9 :
@@ -151,17 +154,17 @@ public class BiomePermianWetlands extends ElementsLepidodendronMod.ModElement {
 			//Spawns forcefully borrow the bush event - why not?
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.DEAD_BUSH))
 			{
-				//String[] MobString = LepidodendronConfig.dimPermianWetlandsMobsBespoke;
+				String[] MobString = LepidodendronConfig.dimPermianMobsWetlandsBespoke;
 				if (LepidodendronConfig.doSpawnsPrehistoricFloraDefault) {
-					//MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianWetlandsMobsPF);
+					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianMobsWetlandsPF);
 				}
 				if (LepidodendronConfig.doSpawnsFossilsArcheology) {
-					//MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianWetlandsMobsFA);
+					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianMobsWetlandsFA);
 				}
 				if (LepidodendronConfig.doSpawnsReborn) {
-					//MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianWetlandsMobsReborn);
+					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianMobsWetlandsReborn);
 				}
-				//ChunkGenSpawner.executeProcedure(false, MobString, worldIn, topBlock, pos, rand);
+				ChunkGenSpawner.executeProcedure(false, MobString, worldIn, topBlock, pos, rand);
 			}
 
 	        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS)) {
@@ -199,6 +202,15 @@ public class BiomePermianWetlands extends ElementsLepidodendronMod.ModElement {
 
 			}
 
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int i = 0; i < 18; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					LEAFBLOCK_GENERATOR.generate((BlockBush) BlockCordaitesSapling.block, BlockCordaitesLeaves.block.getDefaultState(), BlockCordaitesLog.block.getDefaultState().withProperty(BlockCordaitesLog.BlockCustom.FACING, EnumFacing.NORTH), worldIn, rand, pos.add(j, l, k), 0, 95);
+				}
+
 	        DOUBLE_PLANT_GENERATOR.setPlantType(BlockDoublePlant.EnumPlantType.FERN);
 	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
 	        for (int i1 = 0; i1 < 20; ++i1)
@@ -228,22 +240,31 @@ public class BiomePermianWetlands extends ElementsLepidodendronMod.ModElement {
 			}
 	        
 	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
-	        for (int i = 0; i < 10; ++i)
+	        for (int i = 0; i < 18; ++i)
 	        {
 	            int j = rand.nextInt(16) + 8;
 	            int k = rand.nextInt(16) + 8;
 	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
 	            MUD_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
+
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int i = 0; i < 18; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					PODZOL_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+				}
 	        
-	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
-	        for (int i = 0; i < 15; ++i)
-	        {
-	            int j = rand.nextInt(16) + 8;
-	            int k = rand.nextInt(16) + 8;
-	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
-	            UTRECHTIA_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
-	        }
+	        //if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+	        //for (int i = 0; i < 15; ++i)
+	        //{
+	        //    int j = rand.nextInt(16) + 8;
+	        //    int k = rand.nextInt(16) + 8;
+	        //    int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+	            //UTRECHTIA_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+	        //}
 	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
 	        for (int i = 0; i < 32; ++i)
 	        {
@@ -309,31 +330,23 @@ public class BiomePermianWetlands extends ElementsLepidodendronMod.ModElement {
 	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
 	            WATER_HORSETAIL_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int i = 0; i < 80; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					SWAMP_HORSETAIL_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+				}
 
 	        super.decorate(worldIn, rand, pos);
 	    }
-	}
-	
-	private static Class<? extends Entity> findEntity(String entity) {
-        Class<? extends Entity> entityClass;
-        EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(entity));
-        entityClass = ee == null ? null : ee.getEntityClass();
-        if (entityClass == null) {
-            System.err.println("Unknown mob requested for spawn: '" + entity + "'!");
-            return null;
-        }
-        return entityClass;
-    }		
 
-	public static boolean isNumeric(String strNum) {
-	    if (strNum == null) {
-	        return false;
-	    }
-	    try {
-	        double d = Double.parseDouble(strNum);
-	    } catch (NumberFormatException nfe) {
-	        return false;
-	    }
-	    return true;
+		@Override
+		public EnumBiomeTypePermian getBiomeType() {
+			return EnumBiomeTypePermian.Wetlands;
+		}
+
 	}
+
 }

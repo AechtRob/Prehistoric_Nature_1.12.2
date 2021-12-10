@@ -17,6 +17,7 @@ import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
@@ -379,7 +380,9 @@ public class BlockPrototaxitesStem extends ElementsLepidodendronMod.ModElement {
     	if (!waterCriteria) return false;
     	
     	if ((worldIn.getBlockState(pos.down()).getMaterial() != Material.SAND) &&
-	    		(worldIn.getBlockState(pos.down()).getMaterial() != Material.GROUND))
+			(worldIn.getBlockState(pos.down()).getBlock() != Blocks.MYCELIUM) &&
+			(worldIn.getBlockState(pos.down()).getMaterial() != Material.ROCK) &&
+			(worldIn.getBlockState(pos.down()).getMaterial() != Material.GROUND))
     	{
     		return false;
     	}

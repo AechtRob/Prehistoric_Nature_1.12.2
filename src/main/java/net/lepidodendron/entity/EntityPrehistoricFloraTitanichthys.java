@@ -43,8 +43,12 @@ public class EntityPrehistoricFloraTitanichthys extends EntityPrehistoricFloraAg
 		minWidth = 0.2F;
 		maxWidth = 1.5F;
 		maxHeight = 2F;
-		maxHealthAgeable = 30.0D;
+		maxHealthAgeable = 46.0D;
 	}
+
+	public static String getPeriod() {return "Devonian";}
+
+	public static String getHabitat() {return "Aquatic";}
 
 	@Override
 	public boolean dropsEggs() {
@@ -105,7 +109,7 @@ public class EntityPrehistoricFloraTitanichthys extends EntityPrehistoricFloraAg
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new AgeableFishWander(this, NO_ANIMATION, 0.03/(double)this.getAgeScale(), 0.01));
+		tasks.addTask(0, new AgeableFishWander(this, NO_ANIMATION, 0.03/(double)this.getAgeScale(), -2));
 		this.targetTasks.addTask(0, new EatFishFoodAIAgeable(this));
 	}
 

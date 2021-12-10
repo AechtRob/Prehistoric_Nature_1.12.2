@@ -16,14 +16,12 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
-import net.minecraft.world.storage.loot.LootTableList;
 
 import java.util.Random;
 
 public class GenPalaeobotanistHouse extends WorldGenerator {
 
     private static final ResourceLocation HOUSE = new ResourceLocation(LepidodendronMod.MODID, "palaeobotanisthouse");
-    private static final ResourceLocation CHEST = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "palaeobotanist_chest"));
     private VillageComponentPalaeobotanistHouse component;
     private Rotation rotation;
     private EnumFacing facing;
@@ -33,16 +31,16 @@ public class GenPalaeobotanistHouse extends WorldGenerator {
         this.facing = facing;
         switch (facing) {
             case SOUTH:
-                rotation = Rotation.CLOCKWISE_180;
-                break;
-            case EAST:
-                rotation = Rotation.CLOCKWISE_90;
-                break;
-            case WEST:
                 rotation = Rotation.COUNTERCLOCKWISE_90;
                 break;
-            default:
+            case EAST:
+                rotation = Rotation.CLOCKWISE_180;
+                break;
+            case WEST:
                 rotation = Rotation.NONE;
+                break;
+            default:
+                rotation = Rotation.CLOCKWISE_90;
                 break;
         }
     }
@@ -64,36 +62,40 @@ public class GenPalaeobotanistHouse extends WorldGenerator {
         PlacementSettings settings = new PlacementSettings().setRotation(rotation).setMirror(Mirror.NONE);
         Template template = templateManager.getTemplate(server, HOUSE);
         Biome biome = worldIn.getBiome(position);
-        int xSize = template.getSize().getX() / 2;
-        int zSize = template.getSize().getZ() / 2;
 
-        //System.err.println("Spawn house");
+        if (rotation == Rotation.NONE) {
+            template.addBlocksToWorld(worldIn, position.up(3).north(template.getSize().getZ()), new PalaeobotanisthouseBlocks(position.up(3), settings, LepidodendronMod.PALAEOBOTANIST_LOOT, biome, facing.getOpposite()), settings, 2);
+        }
+        if (rotation == Rotation.CLOCKWISE_90) {
+            template.addBlocksToWorld(worldIn, position.up(3).east(template.getSize().getZ()), new PalaeobotanisthouseBlocks(position.up(3), settings, LepidodendronMod.PALAEOBOTANIST_LOOT, biome, facing.getOpposite()), settings, 2);
+        }
+        if (rotation == Rotation.CLOCKWISE_180) {
+            template.addBlocksToWorld(worldIn, position.up(3).south(template.getSize().getZ()), new PalaeobotanisthouseBlocks(position.up(3), settings, LepidodendronMod.PALAEOBOTANIST_LOOT, biome, facing.getOpposite()), settings, 2);
+        }
+        if (rotation == Rotation.COUNTERCLOCKWISE_90) {
+            template.addBlocksToWorld(worldIn, position.up(3).west(template.getSize().getZ()-1), new PalaeobotanisthouseBlocks(position.up(3), settings, LepidodendronMod.PALAEOBOTANIST_LOOT, biome, facing.getOpposite()), settings, 2);
+        }
 
-        template.addBlocksToWorld(worldIn, position.up(3).offset(EnumFacing.NORTH, xSize).offset(EnumFacing.SOUTH, zSize), new PalaeobotanisthouseBlocks(position.up(3), settings, CHEST, biome, facing.getOpposite()), settings, 2);
-
-        BlockPos center = position.add(-template.getSize().getX() / 2, 4, -template.getSize().getZ() / 2);
+        //System.err.println("Spawn " + rotation + " house at " + position.getX() + " " + position.getZ());
 
         if (component.villagerCount < 1) {
             EntityVillager villager = new EntityVillager(worldIn);
             villager.setProfession(Villager.PALAEOBOTANIST_PROFESSION);
-            BlockPos villagerPos = center;
-
+            BlockPos villagerPos = position;
             if (rotation == Rotation.NONE) {
-                villagerPos = villagerPos.south(4);
-            }
-            if (rotation == Rotation.CLOCKWISE_180) {
-                villagerPos = villagerPos.north(4);
+                villagerPos = position.up(4).north(5).east(4);
             }
             if (rotation == Rotation.CLOCKWISE_90) {
-                villagerPos = villagerPos.west(4);
+                villagerPos = position.up(4).east(5).south(4);
             }
             if (rotation == Rotation.CLOCKWISE_180) {
-                villagerPos = villagerPos.east(4);
+                villagerPos = position.up(4).south(5).west(4);
             }
-
+            if (rotation == Rotation.COUNTERCLOCKWISE_90) {
+                villagerPos = position.up(4).west(5).north(4);
+            }
             villager.setLocationAndAngles(villagerPos.getX() + 0.5D, villagerPos.getY() + 0.5D, villagerPos.getZ() + 0.5D, 0, 0);
             worldIn.spawnEntity(villager);
-            //System.err.println("Spawn villager: " + villagerPos.getX() + " " + villagerPos.getY() + " " + villagerPos.getZ());
             component.villagerCount++;
         }
         return true;

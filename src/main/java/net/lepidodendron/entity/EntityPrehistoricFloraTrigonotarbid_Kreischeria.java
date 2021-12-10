@@ -42,6 +42,10 @@ public class EntityPrehistoricFloraTrigonotarbid_Kreischeria extends EntityPrehi
 		enablePersistence();
 	}
 
+	public static String getPeriod() {return "late Carboniferous";}
+
+	public static String getHabitat() {return "Terrestrial";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;

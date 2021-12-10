@@ -27,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -61,7 +62,7 @@ public class BlockPrehistoricGroundLush extends ElementsLepidodendronMod.ModElem
 	public static class BlockCustom extends Block implements IGrowable, ISustainsPlantType {
 		public BlockCustom() {
 			super(Material.GROUND);
-			setTranslationKey("pf_lush_prehistoric_ground_cover");
+			setTranslationKey("pf_dirt_lush_prehistoric_ground_cover");
 			setSoundType(SoundType.PLANT);
         	setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
         	setTickRandomly(true);
@@ -80,6 +81,18 @@ public class BlockPrehistoricGroundLush extends ElementsLepidodendronMod.ModElem
 	    }
 
 		@Override
+		public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
+			if (plantable == Blocks.MELON_STEM || plantable == Blocks.PUMPKIN_STEM)
+			{
+				return true;
+			}
+			net.minecraftforge.common.EnumPlantType plantType = plantable.getPlantType(world, pos.offset(direction));
+			if (canSustainPlantType(world, pos, plantType)) {
+				return true;
+			}
+			return super.canSustainPlant(state, world, pos, direction, plantable);
+		}
+
 		public boolean canSustainPlantType(IBlockAccess world, BlockPos pos, EnumPlantType plantType)
 		{
 
@@ -106,16 +119,6 @@ public class BlockPrehistoricGroundLush extends ElementsLepidodendronMod.ModElem
 			return false;
 		}
 
-		@Override
-		public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
-		{
-			if (plantable == Blocks.MELON_STEM || plantable == Blocks.PUMPKIN_STEM)
-			{
-				return true;
-			}
-
-			return this.canSustainPlantType(world, pos, plantable.getPlantType(world, pos.offset(direction)));
-		}
 
 	    @Override
 	    public void updateTick(World worldIn, BlockPos pos, IBlockState state, Random rand)

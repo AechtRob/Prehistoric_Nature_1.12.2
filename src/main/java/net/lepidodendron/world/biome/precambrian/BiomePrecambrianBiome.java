@@ -4,8 +4,8 @@ package net.lepidodendron.world.biome.precambrian;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockLavaRock;
-import net.lepidodendron.world.*;
 import net.lepidodendron.world.biome.ChunkGenSpawner;
+import net.lepidodendron.world.gen.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -68,6 +68,7 @@ public class BiomePrecambrianBiome extends ElementsLepidodendronMod.ModElement {
 		protected static final WorldGenIceOnSea ICE_GENERATOR = new WorldGenIceOnSea();
 		protected static final WorldGenSnow SNOW_GENERATOR = new WorldGenSnow();
 		protected static final WorldGenStromatoliteReefPrecambrian REEF_GENERATOR = new WorldGenStromatoliteReefPrecambrian();
+		protected static final WorldGenBacterialCrust CRUST_GENERATOR = new WorldGenBacterialCrust();
 
 		public WorldGenAbstractTree getRandomTreeFeature(Random rand)
 	    {
@@ -126,6 +127,15 @@ public class BiomePrecambrianBiome extends ElementsLepidodendronMod.ModElement {
 	            TOXIC_MUD_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 	        }
 
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
+				for (int i = 0; i < 30; ++i)
+				{
+					int j = rand.nextInt(16) + 8;
+					int k = rand.nextInt(16) + 8;
+					int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
+					CRUST_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
+				}
+
 			if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.ICE)) {
 				{
 					int i = rand.nextInt(32);
@@ -134,7 +144,7 @@ public class BiomePrecambrianBiome extends ElementsLepidodendronMod.ModElement {
 						int k = rand.nextInt(16) + 8;
 						int l = rand.nextInt(16) + 8;
 						BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
-						SNOW_GENERATOR.generate(worldIn, rand, blockpos);
+						SNOW_GENERATOR.generate(worldIn, rand, blockpos, 0);
 					}
 					//}
 
@@ -145,7 +155,7 @@ public class BiomePrecambrianBiome extends ElementsLepidodendronMod.ModElement {
 						int k = rand.nextInt(16) + 8;
 						int l = rand.nextInt(16) + 8;
 						BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
-						ICE_GENERATOR.generate(worldIn, rand, blockpos);
+						ICE_GENERATOR.generate(worldIn, rand, blockpos,0);
 					}
 				}
 			}

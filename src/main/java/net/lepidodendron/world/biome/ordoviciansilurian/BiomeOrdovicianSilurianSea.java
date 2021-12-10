@@ -3,20 +3,17 @@ package net.lepidodendron.world.biome.ordoviciansilurian;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.world.*;
+import net.lepidodendron.util.EnumBiomeTypeOrdovicianSilurian;
 import net.lepidodendron.world.biome.ChunkGenSpawner;
+import net.lepidodendron.world.gen.*;
 import net.minecraft.block.material.Material;
-import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
-import net.minecraftforge.fml.common.registry.EntityEntry;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.apache.commons.lang3.ArrayUtils;
 
@@ -41,7 +38,7 @@ public class BiomeOrdovicianSilurianSea extends ElementsLepidodendronMod.ModElem
 		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.OCEAN);
 	}
 
-	static class BiomeGenCustom extends Biome {
+	static class BiomeGenCustom extends BiomeOrdovicianSilurian {
 		public BiomeGenCustom() {
 			super(new Biome.BiomeProperties("The Ordovician and Silurian Periods").setRainfall(0.5F).setBaseHeight(-0.8F).setHeightVariation(0.05F).setTemperature(0.5F));
 			setRegistryName("ordovician_silurian_sea");
@@ -64,10 +61,7 @@ public class BiomeOrdovicianSilurianSea extends ElementsLepidodendronMod.ModElem
 		
 		protected static final WorldGenArchaeopterisTree ARCHAEOPTERIS_TREE = new WorldGenArchaeopterisTree(false);
 		protected static final WorldGenRockPiles ROCK_PILES_GENERATOR = new WorldGenRockPiles();
-    	protected static final WorldGenPrototaxites PROTOTAXITES_GENERATOR = new WorldGenPrototaxites();
-		protected static final WorldGenCooksonia COOKSONIA_GENERATOR = new WorldGenCooksonia();
-		protected static final WorldGenZosterophyllum ZOSTEROPHYLLUM_GENERATOR = new WorldGenZosterophyllum();
-		protected static final WorldGenDollyphyton DOLLYPHYTON_GENERATOR = new WorldGenDollyphyton();
+    	protected static final WorldGenDollyphyton DOLLYPHYTON_GENERATOR = new WorldGenDollyphyton();
 		protected static final WorldGenEdwardsiphyton EDWARDSIPHYTON_GENERATOR = new WorldGenEdwardsiphyton();
 		protected static final WorldGenNematophyta NEMATOPHYTA_GENERATOR = new WorldGenNematophyta();
 		protected static final WorldGenAncientMoss ANCIENT_MOSS_GENERATOR = new WorldGenAncientMoss();
@@ -87,9 +81,9 @@ public class BiomeOrdovicianSilurianSea extends ElementsLepidodendronMod.ModElem
 			//Spawns forcefully borrow the bush event - why not?
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.DEAD_BUSH))
 			{
-				String[] MobString = LepidodendronConfig.dimOrdovicianSilurianMobsBespoke;
+				String[] MobString = LepidodendronConfig.dimOrdovicianSilurianMobsOceanBespoke;
 				if (LepidodendronConfig.doSpawnsPrehistoricFloraDefault) {
-					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimOrdovicianSilurianMobsPF);
+					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimOrdovicianSilurianMobsOceanPF);
 				}
 				if (LepidodendronConfig.doSpawnsFossilsArcheology) {
 					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimOrdovicianSilurianMobsFA);
@@ -140,33 +134,6 @@ public class BiomeOrdovicianSilurianSea extends ElementsLepidodendronMod.ModElem
 				}
 
 	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
-	        for (int i = 0; i < 20; ++i)
-	        {
-	            int j = rand.nextInt(16) + 8;
-	            int k = rand.nextInt(16) + 8;
-	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
-	            COOKSONIA_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
-	        }
-
-	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
-	        for (int i = 0; i < 15; ++i)
-	        {
-	            int j = rand.nextInt(16) + 8;
-	            int k = rand.nextInt(16) + 8;
-	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
-	            ZOSTEROPHYLLUM_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
-	        }
-
-	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
-	        for (int i = 0; i < 40; ++i)
-	        {
-	            int j = rand.nextInt(16) + 8;
-	            int k = rand.nextInt(16) + 8;
-	            int l = rand.nextInt(worldIn.getHeight(pos.add(j, 0, k)).getY() + 32);
-	            PROTOTAXITES_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
-	        }
-
-	        if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
 	        for (int i = 0; i < 30; ++i)
 	        {
 	            int j = rand.nextInt(16) + 8;
@@ -200,29 +167,12 @@ public class BiomeOrdovicianSilurianSea extends ElementsLepidodendronMod.ModElem
 					}
 				}
 	        super.decorate(worldIn, rand, pos);
-	    }
-	}
-	
-	private static Class<? extends Entity> findEntity(String entity) {
-        Class<? extends Entity> entityClass;
-        EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(entity));
-        entityClass = ee == null ? null : ee.getEntityClass();
-        if (entityClass == null) {
-            System.err.println("Unknown mob requested for spawn: '" + entity + "'!");
-            return null;
-        }
-        return entityClass;
-    }	
+		}
 
-	public static boolean isNumeric(String strNum) {
-	    if (strNum == null) {
-	        return false;
-	    }
-	    try {
-	        double d = Double.parseDouble(strNum);
-	    } catch (NumberFormatException nfe) {
-	        return false;
-	    }
-	    return true;
+		@Override
+		public EnumBiomeTypeOrdovicianSilurian getBiomeType() {
+			return EnumBiomeTypeOrdovicianSilurian.Ocean;
+		}
 	}
+
 }

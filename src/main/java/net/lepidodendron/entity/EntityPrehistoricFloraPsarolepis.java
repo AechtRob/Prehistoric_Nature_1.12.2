@@ -51,6 +51,10 @@ public class EntityPrehistoricFloraPsarolepis extends EntityPrehistoricFloraAgea
 		maxHealthAgeable = 7.0D;
 	}
 
+	public static String getPeriod() {return "Silurian - Devonian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public void playLivingSound() {
 	}
@@ -67,12 +71,16 @@ public class EntityPrehistoricFloraPsarolepis extends EntityPrehistoricFloraAgea
 
 	@Override
 	public int getAdultAge() {
-		return 1;
+		return 0;
 	} //Only adults!
 
 	@Override
 	protected float getAISpeedFish() {
-		return 0.32f;
+		float AIspeed = 0.32f;
+		if (this.getIsFast()) {
+			AIspeed = AIspeed * 1.85F;
+		}
+		return AIspeed;
 	}
 
 	@Override
@@ -90,7 +98,7 @@ public class EntityPrehistoricFloraPsarolepis extends EntityPrehistoricFloraAgea
 
 	protected void initEntityAI() {
 		tasks.addTask(0, new AttackAI(this, 1.0D, false, this.getAttackLength()));
-		tasks.addTask(1, new AgeableFishWander(this, NO_ANIMATION, 1D, 0.5D));
+		tasks.addTask(1, new AgeableFishWander(this, NO_ANIMATION, 1D, 0));
 		this.targetTasks.addTask(0, new EatFishItemsAI(this));
 		this.targetTasks.addTask(1, new HuntAI(this, EntityPrehistoricFloraFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
 		this.targetTasks.addTask(1, new HuntAI(this, EntitySquid. class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));

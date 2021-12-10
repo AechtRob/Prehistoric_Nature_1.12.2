@@ -6,11 +6,11 @@ import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.AttackAIClimbingBase;
 import net.lepidodendron.entity.ai.AvoidWaterWanderAI;
 import net.lepidodendron.entity.ai.EatMeatItemsAIClimbingBase;
+import net.lepidodendron.entity.ai.EntityHurtByTargetSmallerThanMeAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraScorpion;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.ai.EntityAIHurtByTarget;
 import net.minecraft.entity.ai.EntityAILeapAtTarget;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
@@ -35,6 +35,10 @@ public class EntityPrehistoricFloraScorpion_Pulmonoscorpius extends EntityPrehis
 		super(world);
 	}
 
+	public static String getPeriod() {return "early Carboniferous";}
+
+	public static String getHabitat() {return "Terrestrial";}
+
 	@Override
 	public int getAdultAge() {
 		return 12000;
@@ -56,7 +60,7 @@ public class EntityPrehistoricFloraScorpion_Pulmonoscorpius extends EntityPrehis
 		tasks.addTask(3, new AvoidWaterWanderAI(this, 0.8D));
 		tasks.addTask(4, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatMeatItemsAIClimbingBase(this));
-		this.targetTasks.addTask(1, new EntityAIHurtByTarget(this, false));
+		this.targetTasks.addTask(1, new EntityHurtByTargetSmallerThanMeAI(this, false));
 		}
 
 	@Override

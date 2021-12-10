@@ -42,6 +42,9 @@ public class EntityPrehistoricFloraAmmonite_Manticoceras extends EntityPrehistor
 		maxHeight = 0.3F;
 		maxHealthAgeable = 4;
 	}
+	public static String getPeriod() {return "Devonian";}
+
+	public static String getHabitat() {return "Aquatic";}
 
 	@Override
 	public boolean dropsEggs() {

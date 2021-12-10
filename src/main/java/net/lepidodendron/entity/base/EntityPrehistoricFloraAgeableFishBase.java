@@ -3,6 +3,7 @@ package net.lepidodendron.entity.base;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityMoveHelper;
@@ -190,8 +191,42 @@ public abstract class EntityPrehistoricFloraAgeableFishBase extends EntityPrehis
                 this.motionY *= f4;
                 this.motionZ *= 0.9;
                 this.motionZ *= f4;
-            } else {
+
+                int body = (int) Math.floor(this.posY + (this.height/2D) + 0.1);
+                if (this.getAttackTarget() != null) {
+                    EntityLivingBase target = this.getAttackTarget();
+                    if ((world.getBlockState(target.getPosition()).getMaterial() == Material.WATER
+                        || world.getBlockState(target.getPosition().down()).getMaterial() == Material.WATER)
+                        && target.posY > this.posY
+                        && this.getDistance(target) <= (this.getAttackBoundingBox().getAverageEdgeLength() + target.getEntityBoundingBox().getAverageEdgeLength())
+                        && isDirectPathBetweenPoints(this.getPositionVector(), target.getPositionVector())
+                        && (world.getBlockState(new BlockPos(this.getPosition().getX(), body, this.getPosition().getZ())).getMaterial() == Material.WATER)
+                    ) {
+                        this.motionY = 0.125;
+                    }
+                    //Also descend if need to swim further to re-hit the target:
+                    int eyes = (int) Math.floor(this.posY + this.getEyeHeight());
+                    if (this.getDistance(target) > (this.getAttackBoundingBox().getAverageEdgeLength() + target.getEntityBoundingBox().getAverageEdgeLength())
+                        && world.getBlockState(new BlockPos(this.getPosition().getX(), eyes, this.getPosition().getZ())).getMaterial() != Material.WATER
+                        && world.getBlockState(this.getPosition().down()).getMaterial() == Material.WATER
+                    ) {
+                        this.motionY = -0.075;
+                    }
+                }
+                else { //descend if there is no target
+                    int eyes = (int) Math.floor(this.posY + this.getEyeHeight());
+                    if (world.getBlockState(new BlockPos(this.getPosition().getX(), eyes, this.getPosition().getZ())).getMaterial() != Material.WATER
+                            && (world.getBlockState(this.getPosition().down()).getMaterial() == Material.WATER)) {
+                        this.motionY = -0.075;
+                    }
+                }
+
+            } else { //is not in water:
                 super.travel(strafe, vertical, forward);
+                //Make fish sink properly if it is somehow "beached" at the top (which should be impossible in theory)
+                if (world.getBlockState(this.getPosition().down()).getMaterial() == Material.WATER) {
+                    this.motionY = -0.075;
+                }
             }
         }
         this.prevLimbSwingAmount = this.limbSwingAmount;

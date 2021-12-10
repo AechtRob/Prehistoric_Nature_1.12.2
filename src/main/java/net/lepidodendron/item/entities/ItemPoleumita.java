@@ -6,12 +6,12 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.EntityPrehistoricFloraPoleumita;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -57,12 +57,13 @@ public class ItemPoleumita extends ElementsLepidodendronMod.ModElement {
 
 		public static boolean placeEntity(ItemStack stack, World worldIn, BlockPos target, EntityPlayer player, @javax.annotation.Nullable EnumHand hand)
 		{
+			//Place it here:
+			player.swingArm(hand);
+			stack.shrink(1);
 			if (!worldIn.isRemote)
 			{
 				//Place it here:
-				player.swingArm(hand);
-				ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraPoleumita.class), (double) target.getX() + 0.5D, (double) target.getY(), (double) target.getZ() + 0.5D);
-				stack.shrink(1);
+				EntityPrehistoricFloraAgeableBase.summon(worldIn, EntityList.getKey(EntityPrehistoricFloraPoleumita.class).toString(), "", (double) target.getX() + 0.5D, (double) target.getY(), (double) target.getZ() + 0.5D);
 				return true;
 			}
 			return false;

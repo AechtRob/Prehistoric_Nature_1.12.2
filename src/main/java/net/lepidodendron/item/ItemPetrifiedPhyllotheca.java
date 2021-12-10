@@ -3,9 +3,9 @@ package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronSorter;
-import net.lepidodendron.block.BlockPhyllotheca;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -32,9 +32,15 @@ public class ItemPetrifiedPhyllotheca extends ElementsLepidodendronMod.ModElemen
 	}
 	public static class ItemCustom extends ItemPetrified {
 		public ItemCustom() {
-			super(BlockPhyllotheca.block);
+			super(null);
 			setTranslationKey("pf_petrified_phyllotheca");
 			setRegistryName("petrified_phyllotheca");
 		}
+
+		@Override
+		public ItemStack getPlantStack() {
+			return new ItemStack(ItemPhyllothecaItem.block, 1);
+		}
+
 	}
 }

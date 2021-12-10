@@ -12,12 +12,10 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemMonsterPlacer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -72,13 +70,9 @@ public class BlockAmphibianSpawnSpathicephalusPlaceable extends ElementsLepidode
 		{
 			super.updateTick(worldIn, pos, state, rand);
 			if (!(worldIn.isRemote)) {
-				Entity entity = ItemMonsterPlacer.spawnCreature(worldIn, EntityList.getKey(EntityPrehistoricFloraSpathicephalus.class), pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5);
-				if (entity != null) {
-					EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) entity;
-					ee.setAgeTicks(1);
-					worldIn.destroyBlock(pos, false);
-				}
+				EntityPrehistoricFloraAgeableBase.summon(worldIn, EntityList.getKey(EntityPrehistoricFloraSpathicephalus.class).toString(), "{AgeTicks:0}", (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
 			}
+			worldIn.destroyBlock(pos, false);
 		}
 
 		@SideOnly(Side.CLIENT)

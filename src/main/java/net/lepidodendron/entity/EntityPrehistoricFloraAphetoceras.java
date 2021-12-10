@@ -42,6 +42,10 @@ public class EntityPrehistoricFloraAphetoceras extends EntityPrehistoricFloraNau
 		maxHealthAgeable = 6.0D;
 	}
 
+	public static String getPeriod() {return "Ordovician";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public boolean dropsEggs() {
 		return false;

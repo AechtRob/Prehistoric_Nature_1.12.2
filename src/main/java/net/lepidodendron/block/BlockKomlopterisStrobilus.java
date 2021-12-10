@@ -78,7 +78,7 @@ public class BlockKomlopterisStrobilus extends ElementsLepidodendronMod.ModEleme
 			setLightLevel(0F);
 			setLightOpacity(0);
 			setCreativeTab(TabLepidodendronPlants.tab);
-			this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.UP));
+			this.setDefaultState(this.blockState.getBaseState().withProperty(FACING, EnumFacing.DOWN));
 			setTickRandomly(true);
 		}
 

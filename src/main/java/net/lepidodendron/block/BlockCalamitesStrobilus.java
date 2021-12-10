@@ -192,8 +192,6 @@ public class BlockCalamitesStrobilus extends ElementsLepidodendronMod.ModElement
 			super.breakBlock(world, pos, state);
 		}
 
-		
-
 		@Override
 		public void neighborChanged(IBlockState state, World world, BlockPos pos, Block neighborBlock, BlockPos fromPos) {
 			super.neighborChanged(state, world, pos, neighborBlock, fromPos);

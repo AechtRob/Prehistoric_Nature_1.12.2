@@ -7,6 +7,8 @@ import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.entity.EntityPrehistoricFloraWebsteroprion;
 import net.lepidodendron.entity.EntityPrehistoricFloraWebsteroprionHole;
 import net.lepidodendron.item.entities.ItemEggsWebsteroprion;
+import net.lepidodendron.util.EnumBiomeTypeDevonian;
+import net.lepidodendron.world.biome.devonian.BiomeDevonian;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.MapColor;
@@ -126,9 +128,14 @@ public class BlockWebsteroprionBurrow extends ElementsLepidodendronMod.ModElemen
 		}
 		if (matchBiome(biome, LepidodendronConfig.genWebsteroprionOverrideBiomes))
 			biomeCriteria = true;
-		if (dimID == LepidodendronConfig.dimDevonian
-		)
-			biomeCriteria = true;
+
+		if (biome instanceof BiomeDevonian)
+		{
+			BiomeDevonian biomeDev = (BiomeDevonian) biome;
+			if (biomeDev.getBiomeType() == EnumBiomeTypeDevonian.Ocean) {
+				biomeCriteria = true;
+			}
+		}
 		if (!biomeCriteria)
 			return;
 

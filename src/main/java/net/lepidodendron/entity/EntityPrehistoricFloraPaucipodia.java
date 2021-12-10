@@ -51,6 +51,10 @@ public class EntityPrehistoricFloraPaucipodia extends EntityPrehistoricFloraTril
 		LOOK_ANIMATION = Animation.create(285);
 	}
 
+	public static String getPeriod() {return "Cambrian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public void playLivingSound() {
 	}

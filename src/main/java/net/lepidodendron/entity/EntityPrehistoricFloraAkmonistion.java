@@ -50,6 +50,10 @@ public class EntityPrehistoricFloraAkmonistion extends EntityPrehistoricFloraAge
 		maxHealthAgeable = 9.0D;
 	}
 
+	public static String getPeriod() {return "Carboniferous";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public void playLivingSound() {
 	}
@@ -66,7 +70,7 @@ public class EntityPrehistoricFloraAkmonistion extends EntityPrehistoricFloraAge
 
 	@Override
 	public int getAdultAge() {
-		return 1;
+		return 0;
 	} //Only adults!
 
 	@Override
@@ -85,7 +89,7 @@ public class EntityPrehistoricFloraAkmonistion extends EntityPrehistoricFloraAge
 
 	protected void initEntityAI() {
 		tasks.addTask(0, new AttackAI(this, 1.0D, false, this.getAttackLength()));
-		tasks.addTask(1, new AgeableFishWander(this, NO_ANIMATION, 1D, 0.5D));
+		tasks.addTask(1, new AgeableFishWander(this, NO_ANIMATION, 1D, 0));
 		this.targetTasks.addTask(0, new EatFishItemsAI(this));
 		this.targetTasks.addTask(0, new EatMeatItemsAI(this));
 		this.targetTasks.addTask(1, new HuntAI(this, EntityPrehistoricFloraFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));

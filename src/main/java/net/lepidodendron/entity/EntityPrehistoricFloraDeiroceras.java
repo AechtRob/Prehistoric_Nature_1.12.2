@@ -44,6 +44,10 @@ public class EntityPrehistoricFloraDeiroceras extends EntityPrehistoricFloraNaut
 		maxHealthAgeable = 24.0D;
 	}
 
+	public static String getPeriod() {return "Ordovician - [Silurian] - Devonian";}
+
+	public static String getHabitat() {return "Aquatic";}
+
 	@Override
 	public boolean isAtBottom() {
 		//Used for giant orthocone feeding animations:

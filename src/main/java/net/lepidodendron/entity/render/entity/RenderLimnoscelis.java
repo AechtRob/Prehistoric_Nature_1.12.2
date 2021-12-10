@@ -29,7 +29,7 @@ public class RenderLimnoscelis extends RenderLiving<EntityPrehistoricFloraLimnos
     protected void preRenderCallback(EntityPrehistoricFloraLimnoscelis entity, float f) {
         float scale = entity.getAgeScale();
         GlStateManager.scale(scale, scale, scale);
-        this.shadowSize = entity.width * scale * 0.45F;
+        this.shadowSize = entity.width * scale * 0.35F;
     }
 
 }

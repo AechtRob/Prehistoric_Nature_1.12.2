@@ -27,6 +27,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.common.EnumPlantType;
+import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
@@ -60,7 +61,7 @@ public class BlockPrehistoricGroundBasic extends ElementsLepidodendronMod.ModEle
 	public static class BlockCustom extends Block implements IGrowable, ISustainsPlantType {
 		public BlockCustom() {
 			super(Material.GROUND);
-			setTranslationKey("pf_prehistoric_ground_cover");
+			setTranslationKey("pf_dirt_prehistoric_ground_cover");
 			setSoundType(SoundType.PLANT);
         	setDefaultState(this.blockState.getBaseState().withProperty(SNOWY, Boolean.valueOf(false)));
         	setTickRandomly(true);
@@ -79,6 +80,18 @@ public class BlockPrehistoricGroundBasic extends ElementsLepidodendronMod.ModEle
 	    }
 
 		@Override
+		public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, IPlantable plantable) {
+			if (plantable == Blocks.MELON_STEM || plantable == Blocks.PUMPKIN_STEM)
+			{
+				return true;
+			}
+			net.minecraftforge.common.EnumPlantType plantType = plantable.getPlantType(world, pos.offset(direction));
+			if (canSustainPlantType(world, pos, plantType)) {
+				return true;
+			}
+			return super.canSustainPlant(state, world, pos, direction, plantable);
+		}
+
 		public boolean canSustainPlantType(IBlockAccess world, BlockPos pos, EnumPlantType plantType)
 		{
 
@@ -103,17 +116,6 @@ public class BlockPrehistoricGroundBasic extends ElementsLepidodendronMod.ModEle
 			}
 			// don't support nether plants, water plants, or crops (require farmland), or anything else by default
 			return false;
-		}
-
-		@Override
-		public boolean canSustainPlant(IBlockState state, IBlockAccess world, BlockPos pos, EnumFacing direction, net.minecraftforge.common.IPlantable plantable)
-		{
-			if (plantable == Blocks.MELON_STEM || plantable == Blocks.PUMPKIN_STEM)
-			{
-				return true;
-			}
-
-			return this.canSustainPlantType(world, pos, plantable.getPlantType(world, pos.offset(direction)));
 		}
 
 	    @Override

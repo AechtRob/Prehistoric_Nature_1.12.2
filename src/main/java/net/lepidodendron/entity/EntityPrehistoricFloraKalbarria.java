@@ -33,7 +33,6 @@ public class EntityPrehistoricFloraKalbarria extends EntityPrehistoricFloraSwimm
 	public BlockPos currentTarget;
 	@SideOnly(Side.CLIENT)
 	public ChainBuffer chainBuffer;
-	//public static final SoundEvent LIMNOSCELIS_ROAR = create("limnoscelis_roar");
 
 	public EntityPrehistoricFloraKalbarria(World world) {
 		super(world);
@@ -47,6 +46,10 @@ public class EntityPrehistoricFloraKalbarria extends EntityPrehistoricFloraSwimm
 		maxHeight = 0.3F;
 		maxHealthAgeable = 3.0D;
 	}
+
+	public static String getPeriod() {return "Silurian";}
+
+	public static String getHabitat() {return "Amphibious";}
 
 	@Override
 	public boolean dropsEggs() {
@@ -64,7 +67,7 @@ public class EntityPrehistoricFloraKalbarria extends EntityPrehistoricFloraSwimm
 
 	@Override
 	public int getAdultAge() {
-		return 1;
+		return 0;
 	} //Only adults!
 
 	@Override
@@ -92,7 +95,7 @@ public class EntityPrehistoricFloraKalbarria extends EntityPrehistoricFloraSwimm
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(1, new AmphibianWander(this, NO_ANIMATION, 0.6));
+		tasks.addTask(1, new AmphibianWander(this, NO_ANIMATION, 0.95, 20));
 		tasks.addTask(2, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatFishFoodAIAgeable(this));
 

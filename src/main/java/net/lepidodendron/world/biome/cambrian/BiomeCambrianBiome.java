@@ -4,8 +4,8 @@ package net.lepidodendron.world.biome.cambrian;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockLavaRock;
-import net.lepidodendron.world.*;
 import net.lepidodendron.world.biome.ChunkGenSpawner;
+import net.lepidodendron.world.gen.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -94,7 +94,7 @@ public class BiomeCambrianBiome extends ElementsLepidodendronMod.ModElement {
 				if (LepidodendronConfig.doSpawnsReborn) {
 					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCambrianMobsReborn);
 				}
-				ChunkGenSpawner.executeProcedure(true, MobString, worldIn, topBlock, pos, rand);
+				ChunkGenSpawner.executeProcedure(false, MobString, worldIn, topBlock, pos, rand);
 			}
 
 			if (Math.random() > 0.8 && net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.ROCK))

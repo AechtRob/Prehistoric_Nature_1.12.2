@@ -10,25 +10,10 @@
 			"translate": "advancements.pf_adv_ordovician_silurian.description"
 		}
 	},
-    "parent": "lepidodendron:pf_base_adv",
+	"parent": "lepidodendron:pf_base_adv",
 	"criteria": {
-		"ordovician_silurian_biome": {
-			"trigger": "minecraft:location",
-			"conditions": {
-				"biome": "lepidodendron:ordovician_silurian_biome"
-			}
-		},
-		"ordovician_silurian_sea": {
-			"trigger": "minecraft:location",
-			"conditions": {
-				"biome": "lepidodendron:ordovician_silurian_sea"
-			}
-		},
-		"ordovician_silurian_land": {
-			"trigger": "minecraft:location",
-			"conditions": {
-				"biome": "lepidodendron:ordovician_silurian_land"
-			}
+		"enter_cambrian": {
+			"trigger": "enter_pf_ordovician_silurian"
 		}
 	},
   "rewards": {

@@ -2,23 +2,23 @@ package net.lepidodendron.entity.render.tile;
 
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.block.BlockEggsHylonomus;
-import net.lepidodendron.entity.model.tile.ModelHylonomusEggs;
+import net.lepidodendron.entity.model.tile.ModelRottenLogEggs;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.util.ResourceLocation;
 
-public class RenderEggsHylonomus extends TileEntitySpecialRenderer<BlockEggsHylonomus.TileEntityCustom> {
+public class RenderEggsHylonomus extends TileEntitySpecialRenderer<BlockEggsHylonomus.TileEntityEggsHylonomus> {
 
-    private final ModelHylonomusEggs hylonomus_eggs;
+    private final ModelRottenLogEggs hylonomus_eggs;
     private static final ResourceLocation TEXTURE_HYLONOMUS_EGGS = new ResourceLocation(LepidodendronMod.MODID + ":textures/entities/hylonomus_eggs.png");
 
     public RenderEggsHylonomus() {
-        this.hylonomus_eggs = new ModelHylonomusEggs();
+        this.hylonomus_eggs = new ModelRottenLogEggs();
     }
 
     @Override
-    public void render(BlockEggsHylonomus.TileEntityCustom entity, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+    public void render(BlockEggsHylonomus.TileEntityEggsHylonomus entity, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
         //EnumFacing facing = EnumFacing.NORTH;
         if (entity != null && entity.hasWorld()) {
             GlStateManager.pushMatrix();

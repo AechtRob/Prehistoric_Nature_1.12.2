@@ -116,7 +116,9 @@ public class EurypteridWanderBottomDweller extends AnimationAINoAnimation<Entity
                 //System.err.println("Target " + randPos.getX() + " " + randPos.getY() + " " + randPos.getZ());
                 if (this.PrehistoricFloraEurypteridBase.world.getBlockState(randPos).getMaterial() == Material.WATER && this.PrehistoricFloraEurypteridBase.isDirectPathBetweenPoints(this.PrehistoricFloraEurypteridBase.getPositionVector(), new Vec3d(randPos.getX() + 0.5, randPos.getY() + 0.5, randPos.getZ() + 0.5))) {
                     //System.err.println("Movetotarget1: " + randPos.getX() + " " + randPos.getY() + " " + randPos.getZ());
-                    return randPos;
+                    if (!(randPos.getY() < 1 || randPos.getY() >= 254)) {
+                        return randPos;
+                    }
                 }
             }
         } else {

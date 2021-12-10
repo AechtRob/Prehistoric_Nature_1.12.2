@@ -1,6 +1,7 @@
 package net.lepidodendron.entity.ai;
 
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraLandBase;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.player.EntityPlayer;
@@ -26,8 +27,16 @@ public class AttackAI extends EntityAIBase {
     public boolean shouldExecute() {
         EntityLivingBase target = this.entity.getAttackTarget();
         if (target == null || !target.isEntityAlive()) {
+            //if ((this.entity instanceof EntityPrehistoricFloraLandBase)) {
+                EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) this.entity;
+                //ee.setIsFast(false);
+            //}
             return false;
         } else if (this.entity.world.getDifficulty() == EnumDifficulty.PEACEFUL && target instanceof EntityPlayer) {
+            //if ((this.entity instanceof EntityPrehistoricFloraLandBase)) {
+                EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) this.entity;
+                //ee.setIsFast(false);
+            //}
             return false;
         }
         this.currentPath = this.entity.getNavigator().getPathToEntityLiving(target);
@@ -60,6 +69,10 @@ public class AttackAI extends EntityAIBase {
             return;
         }
         if (this.entity.getControllingPassenger() == null) {
+            //if (!(this.entity instanceof EntityPrehistoricFloraLandBase)) {
+                EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) this.entity;
+                //ee.setIsFast(true);
+           // }
             this.entity.getNavigator().tryMoveToEntityLiving(target, this.speed);
         }
         if (this.entity.getAttackBoundingBox().intersects(target.getEntityBoundingBox())) {
@@ -76,7 +89,9 @@ public class AttackAI extends EntityAIBase {
                 }
             }
         } else {
-            this.entity.getLookHelper().setLookPositionWithEntity(target, 30.0F, 30.0F);
+            if (!(this.entity instanceof EntityPrehistoricFloraLandBase)) {
+                this.entity.getLookHelper().setLookPositionWithEntity(target, 30.0F, 30.0F);
+            }
         }
     }
 }

@@ -90,12 +90,12 @@ public class ProcedureWorldGenKomlopteris extends ElementsLepidodendronMod.ModEl
 				while (xct <= 2) {
 					zct = -2;
 					while (zct <= 2) {
-						if (world.isAirBlock(new BlockPos((int) x + xct, (int) y + counter + 1, (int) z + zct))
+						if (world.isAirBlock(new BlockPos((int) x + xct, (int) y + counter - 1, (int) z + zct))
 							&& ((world.getBlockState(new BlockPos((int) x + xct, (int) y + counter, (int) z + zct))).getBlock() == BlockKomlopterisLeaves.block)
-							&& Math.random() > 0.4) {	
-							world.setBlockState(new BlockPos((int) x + xct, (int) y + counter + 1, (int) z + zct), BlockKomlopterisStrobilus.block.getDefaultState(), 3);
+							&& Math.random() > 0.65) {
+							world.setBlockState(new BlockPos((int) x + xct, (int) y + counter - 1, (int) z + zct), BlockKomlopterisStrobilus.block.getDefaultState(), 3);
 								if (!world.isRemote) {
-									BlockPos _bp = new BlockPos((int) x + xct, (int) y + counter + 1, (int) z + zct);
+									BlockPos _bp = new BlockPos((int) x + xct, (int) y + counter - 1, (int) z + zct);
 									TileEntity _tileEntity = world.getTileEntity(_bp);
 									IBlockState _bs = world.getBlockState(_bp);
 									if (_tileEntity != null)

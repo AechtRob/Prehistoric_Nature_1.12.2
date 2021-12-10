@@ -3,10 +3,7 @@ package net.lepidodendron.world.structure;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
-import net.lepidodendron.block.BlockLavaRock;
-import net.lepidodendron.block.BlockVolcanicAsh;
-import net.lepidodendron.block.BlockVolcanicAshDark;
-import net.lepidodendron.block.BlockVolcanicAshLight;
+import net.lepidodendron.block.*;
 import net.lepidodendron.world.biome.cambrian.BiomeCambrianBiome;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -33,7 +30,8 @@ public class StructureSpawnCambrianVolcano extends ElementsLepidodendronMod.ModE
 		if (biome != BiomeCambrianBiome.biome)
 			return;
 
-		int GenChance = 4000;
+		//int GenChance = 4000;
+		int GenChance = 3000;
 
 		if ((random.nextInt(1000000) + 1) <= GenChance) {
 			int count = random.nextInt(1) + 1;
@@ -122,13 +120,18 @@ public class StructureSpawnCambrianVolcano extends ElementsLepidodendronMod.ModE
 													world.setBlockState(bp, BlockLavaRock.block.getDefaultState(), 2);
 												} else { //Ashes:
 													double randomiser = Math.random();
-													if (randomiser > 0.66) {
+													if (randomiser > 0.70) {
 														world.setBlockState(bp, BlockVolcanicAsh.block.getDefaultState(), 2);
 													} else {
-														if (Math.random() > 0.33) {
+														if (Math.random() > 0.40) {
 															world.setBlockState(bp, BlockVolcanicAshLight.block.getDefaultState(), 2);
 														} else {
-															world.setBlockState(bp, BlockVolcanicAshDark.block.getDefaultState(), 2);
+															if (Math.random() > 0.10) {
+																world.setBlockState(bp, BlockVolcanicAshDark.block.getDefaultState(), 2);
+															}
+															else {
+																world.setBlockState(bp, BlockSulphurOre.block.getDefaultState(), 2);
+															}
 														}
 													}
 												}
