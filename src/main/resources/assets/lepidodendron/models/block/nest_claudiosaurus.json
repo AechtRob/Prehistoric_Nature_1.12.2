@@ -1,0 +1,8 @@
+{
+	"parent": "lepidodendron:block/nest",
+	"textures": {
+		"bottom_right": "lepidodendron:blocks/nest_claudiosaurus",
+		"top_right": "lepidodendron:blocks/empty_texture",
+		"centre": "lepidodendron:blocks/empty_texture"
+	}
+}
