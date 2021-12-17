@@ -20,19 +20,19 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
+import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.datasync.DataParameter;
 import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.EnumDifficulty;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
@@ -57,6 +57,8 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
     public float sitProgress;
     public int ticksSitted;
     protected boolean isSitting;
+    private EntityItem eatTarget;
+    public Animation ATTACK_ANIMATION;
 
     public EntityPrehistoricInsectFlyingBase(World world) {
         super(world);
@@ -67,6 +69,11 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         if (FMLCommonHandler.instance().getSide().isClient()) {
             this.chainBuffer = new ChainBuffer();
         }
+        ATTACK_ANIMATION = Animation.create(this.getAttackLength());
+    }
+
+    public int getAttackLength() {
+        return 0;
     }
 
     public abstract boolean laysEggs();
@@ -219,6 +226,8 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25D);
     }
 
+
+
     @Override
     public boolean attackEntityFrom(DamageSource ds, float f) {
         if (ds == DamageSource.IN_WALL) {
@@ -231,7 +240,6 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         sitCooldown = 1500 + rand.nextInt(1200);
         this.dataManager.set(SIT_FACE, EnumFacing.DOWN);
         this.setAttachmentPos(null);
-        //System.err.println("Taken damage from " + ds.getDamageType());
         return super.attackEntityFrom(ds, f);
     }
 
@@ -306,6 +314,16 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
     public void onEntityUpdate()
     {
         super.onEntityUpdate();
+
+        if (this.getAttackTarget() != null) {
+            if (this.getAttackTarget() instanceof EntityPlayer) {
+                EntityPlayer player = (EntityPlayer) this.getAttackTarget();
+                if (this.world.getDifficulty() == EnumDifficulty.PEACEFUL || player.isCreative()) {
+                    this.setAttackTarget(null);
+                }
+            }
+        }
+
         //General ticker (for babies etc.)
         int ii = this.getTicks();
         if (this.isEntityAlive())
@@ -359,6 +377,12 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
                 }
             }
         }
+
+        if (this.getHealth() <= 0) {
+            this.motionX = 0;
+            this.motionY = 0;
+            this.motionZ = 0;
+        }
     }
 
     public boolean canPlaceSpawn(World worldIn, BlockPos pos) {
@@ -374,9 +398,30 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         return false;
     }
 
+    public void eatItem(ItemStack stack) {
+        if (stack != null && stack.getItem() != null) {
+            float itemHealth = 0.5F; //Default minimal nutrition
+            if (stack.getItem() instanceof ItemFood) {
+                itemHealth = ((ItemFood) stack.getItem()).getHealAmount(stack);
+            }
+            this.setHealth(Math.min(this.getHealth() + itemHealth, (float) this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue()));
+            stack.shrink(1);
+            if (this.getAnimation() == NO_ANIMATION && !world.isRemote) {
+                //this.setAnimation(ATTACK_ANIMATION);
+                this.setAnimation(ATTACK_ANIMATION);
+                SoundEvent soundevent = SoundEvents.ENTITY_GENERIC_EAT;
+                this.getEntityWorld().playSound(null, this.getPosition(), soundevent, SoundCategory.BLOCKS, 1.0F, 1.0F);
+            }
+        }
+    }
+
     @Override
     public void onLivingUpdate() {
         super.onLivingUpdate();
+
+        if (!this.world.isRemote) {
+            this.fallDistance = 0;
+        }
 
         if (this.isSitting()) {
             ticksSitted++;
@@ -441,7 +486,7 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
                 this.setAttachmentPos(null);
             }
         }
-        if(sitTickCt > 1150 && rand.nextInt(123) == 0 || this.getAttachmentPos() != null && this.getAttackTarget() != null){
+        if(sitTickCt > 1150 && rand.nextInt(123) == 0 || this.getAttachmentPos() != null && (this.getAttackTarget() != null || this.getEatTarget() != null)) {
             this.sitTickCt = 0;
             sitCooldown = 1000 + rand.nextInt(1500);
             this.dataManager.set(SIT_FACE, EnumFacing.DOWN);
@@ -458,7 +503,15 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         }
 
         if (!this.isMovementBlockedSoft() && this.getAttachmentPos() == null) {
-            this.motionY += 0.08D;
+            //Entity eatTarget = this.getEatTarget();
+            //if (eatTarget != null) {
+            //    if (eatTarget.posY > this.posZ) {
+            //        this.motionY += 0.08D;
+            //    }
+            //}
+            //else {
+                this.motionY += 0.08D;
+            //}
         } else {
             this.moveHelper.action = EntityMoveHelper.Action.WAIT;
         }
@@ -467,6 +520,16 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
                     .getObject(this.FlightSound()), this.getSoundVolume(), 1);
         }
 
+    }
+
+    @Nullable
+    public EntityItem getEatTarget() {
+        return this.eatTarget;
+    }
+
+    public void setEatTarget(@Nullable EntityItem entityItem) {
+        this.eatTarget = entityItem;
+        //net.minecraftforge.common.ForgeHooks.onLivingSetAttackTarget(this, entityItem);
     }
 
     public ResourceLocation FlightSound() {
@@ -563,14 +626,22 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
                     EntityPrehistoricInsectFlyingBase.this.motionY += d1 / d3 * 0.1D * this.speed;
                     EntityPrehistoricInsectFlyingBase.this.motionZ += d2 / d3 * 0.1D * this.speed;
 
-                    if (EntityPrehistoricInsectFlyingBase.this.getAttackTarget() == null) {
+                    if (EntityPrehistoricInsectFlyingBase.this.getAttackTarget() == null && EntityPrehistoricInsectFlyingBase.this.getEatTarget() == null) {
                         EntityPrehistoricInsectFlyingBase.this.rotationYaw = -((float) MathHelper.atan2(EntityPrehistoricInsectFlyingBase.this.motionX, EntityPrehistoricInsectFlyingBase.this.motionZ)) * (180F / (float) Math.PI);
                         EntityPrehistoricInsectFlyingBase.this.renderYawOffset = EntityPrehistoricInsectFlyingBase.this.rotationYaw;
                     } else {
-                        double d4 = EntityPrehistoricInsectFlyingBase.this.getAttackTarget().posX - EntityPrehistoricInsectFlyingBase.this.posX;
-                        double d5 = EntityPrehistoricInsectFlyingBase.this.getAttackTarget().posZ - EntityPrehistoricInsectFlyingBase.this.posZ;
-                        EntityPrehistoricInsectFlyingBase.this.rotationYaw = -((float) MathHelper.atan2(d4, d5)) * (180F / (float) Math.PI);
-                        EntityPrehistoricInsectFlyingBase.this.renderYawOffset = EntityPrehistoricInsectFlyingBase.this.rotationYaw;
+                        if (EntityPrehistoricInsectFlyingBase.this.getEatTarget() != null) {
+                            double d4 = EntityPrehistoricInsectFlyingBase.this.getEatTarget().posX - EntityPrehistoricInsectFlyingBase.this.posX;
+                            double d5 = EntityPrehistoricInsectFlyingBase.this.getEatTarget().posZ - EntityPrehistoricInsectFlyingBase.this.posZ;
+                            EntityPrehistoricInsectFlyingBase.this.rotationYaw = -((float) MathHelper.atan2(d4, d5)) * (180F / (float) Math.PI);
+                            EntityPrehistoricInsectFlyingBase.this.renderYawOffset = EntityPrehistoricInsectFlyingBase.this.rotationYaw;
+                        }
+                        else {
+                            double d4 = EntityPrehistoricInsectFlyingBase.this.getAttackTarget().posX - EntityPrehistoricInsectFlyingBase.this.posX;
+                            double d5 = EntityPrehistoricInsectFlyingBase.this.getAttackTarget().posZ - EntityPrehistoricInsectFlyingBase.this.posZ;
+                            EntityPrehistoricInsectFlyingBase.this.rotationYaw = -((float) MathHelper.atan2(d4, d5)) * (180F / (float) Math.PI);
+                            EntityPrehistoricInsectFlyingBase.this.renderYawOffset = EntityPrehistoricInsectFlyingBase.this.rotationYaw;
+                        }
                     }
                 }
             }

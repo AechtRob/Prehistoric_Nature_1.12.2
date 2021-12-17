@@ -34,13 +34,13 @@ public class BiomeOrdovicianSilurianSea extends ElementsLepidodendronMod.ModElem
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.OCEAN);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.OCEAN);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.WATER);
 	}
 
 	static class BiomeGenCustom extends BiomeOrdovicianSilurian {
 		public BiomeGenCustom() {
-			super(new Biome.BiomeProperties("The Ordovician and Silurian Periods").setRainfall(0.5F).setBaseHeight(-0.8F).setHeightVariation(0.05F).setTemperature(0.5F));
+			super(new Biome.BiomeProperties("Ordovician and Silurian Sea").setRainfall(0.5F).setBaseHeight(-0.8F).setHeightVariation(0.05F).setTemperature(0.5F));
 			setRegistryName("ordovician_silurian_sea");
 			topBlock = Blocks.GRAVEL.getDefaultState();
 			fillerBlock = Blocks.STONE.getStateFromMeta(0);

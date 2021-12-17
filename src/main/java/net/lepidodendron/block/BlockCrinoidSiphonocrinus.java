@@ -5,6 +5,7 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronStatic;
+import net.lepidodendron.world.biome.ordoviciansilurian.BiomeSilurianLushPatch;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -107,6 +108,9 @@ public class BlockCrinoidSiphonocrinus extends ElementsLepidodendronMod.ModEleme
 		) {
 			biomeCriteria = true;
 		}
+		if (biome == BiomeSilurianLushPatch.biome
+		)
+			biomeCriteria = false;
 		if (!biomeCriteria)
 			return;
 

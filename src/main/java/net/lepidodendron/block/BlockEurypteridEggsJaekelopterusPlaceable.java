@@ -77,9 +77,8 @@ public class BlockEurypteridEggsJaekelopterusPlaceable extends ElementsLepidoden
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Eurypterid");
-				tooltip.add("Periods: Devonian");
-				tooltip.add("Habitat: Marine");
+				tooltip.add("Type: " + EntityPrehistoricFloraJaekelopterus.getHabitat() + " Eurypterid");
+				tooltip.add("Periods: " + EntityPrehistoricFloraJaekelopterus.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

@@ -39,6 +39,7 @@ public class BiomeCambrianBiome extends ElementsLepidodendronMod.ModElement {
 
 	@Override
 	public void init(FMLInitializationEvent event) {
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.WASTELAND);
 		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
 	}
 

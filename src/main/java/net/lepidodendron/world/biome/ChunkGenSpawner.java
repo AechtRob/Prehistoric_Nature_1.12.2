@@ -8,17 +8,14 @@ import net.lepidodendron.world.biome.cambrian.BiomeCambrianBiome;
 import net.lepidodendron.world.biome.cambrian.BiomeCambrianSea;
 import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
 import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferousOcean;
-import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferousOceanShore;
 import net.lepidodendron.world.biome.devonian.BiomeDevonian;
-import net.lepidodendron.world.biome.devonian.BiomeDevonianOcean;
 import net.lepidodendron.world.biome.devonian.BiomeDevonianOceanDeep;
 import net.lepidodendron.world.biome.ordoviciansilurian.BiomeOrdovicianSilurian;
+import net.lepidodendron.world.biome.ordoviciansilurian.BiomeSilurianLushPatch;
 import net.lepidodendron.world.biome.permian.BiomePermian;
 import net.lepidodendron.world.biome.permian.BiomePermianOcean;
-import net.lepidodendron.world.biome.permian.BiomePermianOceanShore;
 import net.lepidodendron.world.biome.triassic.BiomeTriassic;
 import net.lepidodendron.world.biome.triassic.BiomeTriassicOcean;
-import net.lepidodendron.world.biome.triassic.BiomeTriassicOceanShore;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.command.ICommandSender;
@@ -304,7 +301,7 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                                         //First check if we are in an ocean biome with distinct shallow and deep parts:
                                                                         Biome biome = world.getBiome(pos1);
                                                                         if (biome instanceof BiomeDevonian || biome instanceof BiomeCarboniferous || biome instanceof BiomePermian || biome instanceof BiomeTriassic) {
-                                                                            if (biome == BiomeDevonianOcean.biome || biome == BiomeCarboniferousOceanShore.biome || biome == BiomePermianOceanShore.biome || biome == BiomeTriassicOceanShore.biome) {
+                                                                            if (biome != BiomeDevonianOceanDeep.biome && biome != BiomeCarboniferousOcean.biome && biome != BiomePermianOcean.biome && biome != BiomeTriassicOcean.biome) {
                                                                                 if ((world.getBlockState(pos1).getMaterial() == Material.WATER)
                                                                                     && (pos1.getY() > world.getSeaLevel() - 12)) {
                                                                                     EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
@@ -326,9 +323,20 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                                         }
                                                                         else if (biome instanceof BiomeOrdovicianSilurian) {
                                                                             BiomeOrdovicianSilurian biomeOS = (BiomeOrdovicianSilurian) biome;
-                                                                            if (biomeOS.getBiomeType() == EnumBiomeTypeOrdovicianSilurian.Ocean) {
+                                                                            if (biome == BiomeSilurianLushPatch.biome) {
                                                                                 if ((world.getBlockState(pos1).getMaterial() == Material.WATER)
-                                                                                        && (!world.isAirBlock(pos1.up()))
+                                                                                        && (pos1.getY() > world.getSeaLevel() - 5)) {
+                                                                                    EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
+                                                                                    EntityLiving entity = (EntityLiving) ee.newInstance(world);
+                                                                                    if (entity.height < 0.9) {
+                                                                                        posCheck = true;
+                                                                                    } else if (world.getBlockState(pos1.up()).getMaterial() == Material.WATER) {
+                                                                                        posCheck = true;
+                                                                                    }
+                                                                                }
+                                                                            }
+                                                                            else if (biomeOS.getBiomeType() == EnumBiomeTypeOrdovicianSilurian.Ocean) {
+                                                                                if ((world.getBlockState(pos1).getMaterial() == Material.WATER)
                                                                                         && (pos1.getY() > world.getSeaLevel() - 25)) {
                                                                                     EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
                                                                                     EntityLiving entity = (EntityLiving) ee.newInstance(world);
@@ -349,8 +357,7 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                                         }
                                                                         else if (biome == BiomeCambrianSea.biome || biome == BiomeCambrianBiome.biome) {
                                                                             if ((world.getBlockState(pos1).getMaterial() == Material.WATER)
-                                                                                    && (!world.isAirBlock(pos1.up()))
-                                                                                    && (pos1.getY() > world.getSeaLevel() - 25)) {
+                                                                                    && (pos1.getY() > world.getSeaLevel() - 50)) {
                                                                                 EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
                                                                                 EntityLiving entity = (EntityLiving) ee.newInstance(world);
                                                                                 if (entity.height < 0.9) {
@@ -367,7 +374,6 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                                         ) {
                                                                             posCheck = true;
                                                                         }
-
 
                                                                         int xx = -1;
                                                                         while (xx <= 1 && posCheck) {

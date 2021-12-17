@@ -36,14 +36,15 @@ public class BiomeCarboniferousIceEdge extends ElementsLepidodendronMod.ModEleme
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.SWAMP);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.JUNGLE);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.LUSH);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.WASTELAND);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.COLD);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.PLAINS);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.SNOWY);
 	}
+
 	static class BiomeGenCustom extends BiomeCarboniferous {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("Carboniferous Polar Desert Edge").setRainfall(0.1F).setBaseHeight(0.06F).setHeightVariation(0.08F).setTemperature(-1.5F).setSnowEnabled());
+			super(new BiomeProperties("Carboniferous Polar Desert").setRainfall(0.1F).setBaseHeight(0.06F).setHeightVariation(0.08F).setTemperature(-1.5F).setSnowEnabled());
 			setRegistryName("carboniferous_polar_desert_edge");
 			topBlock = Blocks.STONE.getDefaultState();
 			fillerBlock = Blocks.DIRT.getStateFromMeta(1);

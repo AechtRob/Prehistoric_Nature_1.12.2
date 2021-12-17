@@ -103,9 +103,8 @@ public class BlockInsectEggsPneumodesmus extends ElementsLepidodendronMod.ModEle
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Arthropod");
-				tooltip.add("Periods: Devonian");
-				tooltip.add("Habitat: Land");
+				tooltip.add("Type: " + EntityPrehistoricFloraPneumodesmus.getHabitat() + " Arthropod");
+				tooltip.add("Periods: " + EntityPrehistoricFloraPneumodesmus.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

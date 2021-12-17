@@ -8,10 +8,12 @@ import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemGreenFilamentousAlgaeItem;
 import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
 import net.lepidodendron.util.EnumBiomeTypePermian;
+import net.lepidodendron.util.EnumBiomeTypeTriassic;
 import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
 import net.lepidodendron.world.biome.permian.BiomePermian;
 import net.lepidodendron.world.biome.permian.BiomePermianLowlandFloodplain;
 import net.lepidodendron.world.biome.permian.BiomePermianLowlandsForest;
+import net.lepidodendron.world.biome.triassic.BiomeTriassic;
 import net.lepidodendron.world.gen.FilamentousAlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLilyPad;
@@ -94,6 +96,13 @@ public class BlockGreenFilamentousAlgae extends ElementsLepidodendronMod.ModElem
 			BiomeCarboniferous biomeCarb = (BiomeCarboniferous) biome;
 			if (biomeCarb.getBiomeType() == EnumBiomeTypeCarboniferous.Ice) {
 				biomeCriteria = false;
+			}
+		}
+		if (biome instanceof BiomeTriassic)
+		{
+			BiomeTriassic biomeTriassic = (BiomeTriassic) biome;
+			if (biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Warm) {
+				biomeCriteria = true;
 			}
 		}
 		if (!biomeCriteria)

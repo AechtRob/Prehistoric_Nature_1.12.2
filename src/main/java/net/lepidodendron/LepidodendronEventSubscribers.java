@@ -1340,6 +1340,30 @@ private int tickIndex = 0;
 				tt.add("Type: " + EntityPrehistoricFloraAnteosaurus.getHabitat());
 			}
 
+			if (resourceLocation.toString().equalsIgnoreCase(LepidodendronMod.MODID + ":prehistoric_flora_vivaxosaurus")) {
+				List<String> tt = event.getToolTip();
+				tt.add("Periods: " + EntityPrehistoricFloraVivaxosaurus.getPeriod());
+				tt.add("Type: " + EntityPrehistoricFloraVivaxosaurus.getHabitat());
+			}
+
+			if (resourceLocation.toString().equalsIgnoreCase(LepidodendronMod.MODID + ":prehistoric_flora_albertonia")) {
+				List<String> tt = event.getToolTip();
+				tt.add("Periods: " + EntityPrehistoricFloraAlbertonia.getPeriod());
+				tt.add("Type: " + EntityPrehistoricFloraAlbertonia.getHabitat());
+			}
+
+			if (resourceLocation.toString().equalsIgnoreCase(LepidodendronMod.MODID + ":prehistoric_flora_scutosaurus")) {
+				List<String> tt = event.getToolTip();
+				tt.add("Periods: " + EntityPrehistoricFloraScutosaurus.getPeriod());
+				tt.add("Type: " + EntityPrehistoricFloraScutosaurus.getHabitat());
+			}
+
+			if (resourceLocation.toString().equalsIgnoreCase(LepidodendronMod.MODID + ":prehistoric_flora_labidosaurus")) {
+				List<String> tt = event.getToolTip();
+				tt.add("Periods: " + EntityPrehistoricFloraLabidosaurus.getPeriod());
+				tt.add("Type: " + EntityPrehistoricFloraLabidosaurus.getHabitat());
+			}
+
 		}
 
 	}

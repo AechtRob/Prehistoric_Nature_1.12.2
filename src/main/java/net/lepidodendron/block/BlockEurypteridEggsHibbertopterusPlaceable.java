@@ -77,9 +77,8 @@ public class BlockEurypteridEggsHibbertopterusPlaceable extends ElementsLepidode
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Eurypterid");
-				tooltip.add("Periods: Devonian - Carboniferous");
-				tooltip.add("Habitat: Swamps, rivers");
+				tooltip.add("Type: " + EntityPrehistoricFloraHibbertopterus.getHabitat() + " Eurypterid");
+				tooltip.add("Periods: " + EntityPrehistoricFloraHibbertopterus.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

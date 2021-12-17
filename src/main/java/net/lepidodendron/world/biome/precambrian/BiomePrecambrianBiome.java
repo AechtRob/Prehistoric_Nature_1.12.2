@@ -4,7 +4,6 @@ package net.lepidodendron.world.biome.precambrian;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockLavaRock;
-import net.lepidodendron.world.biome.ChunkGenSpawner;
 import net.lepidodendron.world.gen.*;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
@@ -37,8 +36,10 @@ public class BiomePrecambrianBiome extends ElementsLepidodendronMod.ModElement {
 
 	@Override
 	public void init(FMLInitializationEvent event) {
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.WASTELAND);
 		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.registerBiomeType(theBiome, Type.MOUNTAIN, Type.WASTELAND);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.SNOWY);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.COLD);
 	}
 
 	static class BiomeGenCustom extends Biome {
@@ -92,7 +93,7 @@ public class BiomePrecambrianBiome extends ElementsLepidodendronMod.ModElement {
 				if (LepidodendronConfig.doSpawnsReborn) {
 					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPrecambrianMobsReborn);
 				}
-				ChunkGenSpawner.executeProcedure(true, MobString, worldIn, topBlock, pos, rand);
+				//ChunkGenSpawner.executeProcedure(true, MobString, worldIn, topBlock, pos, rand);
 			}
 
 	        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.ROCK))

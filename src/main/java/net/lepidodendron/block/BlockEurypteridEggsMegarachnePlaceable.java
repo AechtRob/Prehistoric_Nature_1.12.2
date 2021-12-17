@@ -77,12 +77,10 @@ public class BlockEurypteridEggsMegarachnePlaceable extends ElementsLepidodendro
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Eurypterid");
-				tooltip.add("Periods: Carboniferous");
-				tooltip.add("Habitat: Swamps, rivers, estuaries");
+				tooltip.add("Type: " + EntityPrehistoricFloraMegarachne.getHabitat() + " Eurypterid");
+				tooltip.add("Periods: " + EntityPrehistoricFloraMegarachne.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}
-
 	}
 }

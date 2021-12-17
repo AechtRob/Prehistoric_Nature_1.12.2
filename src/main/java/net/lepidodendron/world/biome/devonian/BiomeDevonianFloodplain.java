@@ -34,9 +34,11 @@ public class BiomeDevonianFloodplain extends ElementsLepidodendronMod.ModElement
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.BEACH);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.SANDY);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.WET);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.PLAINS);
 	}
+
 	static class BiomeGenCustom extends BiomeDevonian {
 		public BiomeGenCustom() {
 			super(new Biome.BiomeProperties("Devonian Floodplain").setRainfall(0.5F).setBaseHeight(-0.2F).setHeightVariation(0.1F).setTemperature(0.5F).setWaterColor(14745518));

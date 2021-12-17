@@ -37,9 +37,10 @@ public class BiomePrecambrianSea extends ElementsLepidodendronMod.ModElement {
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.OCEAN);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.COLD);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.OCEAN);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.WATER);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.SNOWY);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.COLD);
 	}
 
 	static class BiomeGenCustom extends Biome {

@@ -193,7 +193,7 @@ public class EntityPrehistoricFloraWebsteroprion extends EntityPrehistoricFloraE
 		tasks.addTask(3, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new WebsteroprionEatItemsAI(this));
 		this.targetTasks.addTask(1, new EntityHurtByTargetSmallerThanMeAI(this, false));
-		this.targetTasks.addTask(2, new HuntSmallerThanMeAIAgeable(this, EntityLiving.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
+		this.targetTasks.addTask(2, new HuntSmallerThanMeAIAgeable(this, EntityLiving.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase, 0));
 	}
 
 	@Override

@@ -29,10 +29,9 @@ public class BiomeDevonianSpikes extends ElementsLepidodendronMod.ModElement {
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.HILLS);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.FOREST);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.MOUNTAIN);
 	}
+
 	static class BiomeGenCustom extends BiomeDevonian {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Devonian Plateau").setRainfall(0.5F).setBaseHeight(7.5F).setHeightVariation(0.005F).setTemperature(0.2F).setRainDisabled().setWaterColor(14745518));

@@ -194,7 +194,7 @@ public class ItemBucketCephalaspis extends ElementsLepidodendronMod.ModElement {
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Jawless armoured fish");
-				tooltip.add("Periods: late Silurian - early Devonian");
+				tooltip.add("Periods: [late Silurian? -] early Devonian");
 				tooltip.add("Habitat: Water, bottom-feeder");
 				super.addInformation(stack, player, tooltip, advanced);
 			}

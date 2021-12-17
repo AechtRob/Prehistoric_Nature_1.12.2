@@ -232,7 +232,7 @@ public class BlockPolyspermophyllum extends ElementsLepidodendronMod.ModElement 
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Ginkgo shrub");
+				tooltip.add("Type: Ginkgoale shrub");
 				tooltip.add("Periods: Permian");
 				tooltip.add("Propagation: fruit/cone");}
 	        super.addInformation(stack, player, tooltip, advanced);

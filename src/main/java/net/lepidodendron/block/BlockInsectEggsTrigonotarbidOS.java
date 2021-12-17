@@ -104,8 +104,8 @@ public class BlockInsectEggsTrigonotarbidOS extends ElementsLepidodendronMod.Mod
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Arachnid");
-				tooltip.add("Periods: Silurian");
+				tooltip.add("Type: " + EntityPrehistoricFloraTrigonotarbid_Palaeotarbus.getHabitat() + " Arachnid");
+				tooltip.add("Periods: " + EntityPrehistoricFloraTrigonotarbid_Palaeotarbus.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

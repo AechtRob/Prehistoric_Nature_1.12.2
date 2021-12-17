@@ -132,6 +132,9 @@ public class BlockRugosa3 extends ElementsLepidodendronMod.ModElement {
 			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Ocean) {
 				biomeCriteria = true;
 			}
+			else {
+				biomeCriteria = false;
+			}
 		}
 		if (biome instanceof BiomeCarboniferous)
 		{
@@ -139,12 +142,18 @@ public class BlockRugosa3 extends ElementsLepidodendronMod.ModElement {
 			if (biomeCarb.getBiomeType() == EnumBiomeTypeCarboniferous.Ocean) {
 				biomeCriteria = true;
 			}
+			else {
+				biomeCriteria = false;
+			}
 		}
 		if (biome instanceof BiomeDevonian)
 		{
 			BiomeDevonian biomeDev = (BiomeDevonian) biome;
 			if (biomeDev.getBiomeType() == EnumBiomeTypeDevonian.Ocean) {
 				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
 			}
 		}
 		if (!biomeCriteria)

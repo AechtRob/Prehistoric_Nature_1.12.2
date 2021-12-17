@@ -39,11 +39,11 @@ public class BiomePermianWetlands extends ElementsLepidodendronMod.ModElement {
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.SWAMP);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.JUNGLE);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.LUSH);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.SWAMP);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.LUSH);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.JUNGLE);
 	}
+
 	static class BiomeGenCustom extends BiomePermian {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Permian Wetlands").setRainfall(0.5F).setBaseHeight(-0.05F).setHeightVariation(0.02F).setTemperature(0.95F).setRainfall(0.9F).setWaterColor(3906905));

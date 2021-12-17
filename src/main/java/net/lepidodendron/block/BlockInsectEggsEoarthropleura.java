@@ -103,9 +103,8 @@ public class BlockInsectEggsEoarthropleura extends ElementsLepidodendronMod.ModE
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Arthropod");
-				tooltip.add("Periods: Silurian - Devonian");
-				tooltip.add("Habitat: Land");
+				tooltip.add("Type: " + EntityPrehistoricFloraEoarthropleura.getHabitat() + " Arthropod");
+				tooltip.add("Periods: " + EntityPrehistoricFloraEoarthropleura.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

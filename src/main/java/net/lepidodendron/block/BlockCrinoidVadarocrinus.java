@@ -105,6 +105,9 @@ public class BlockCrinoidVadarocrinus extends ElementsLepidodendronMod.ModElemen
 			if (biomeDev.getBiomeType() == EnumBiomeTypeDevonian.Ocean) {
 				biomeCriteria = true;
 			}
+			else {
+				biomeCriteria = false;
+			}
 		}
 		if (!biomeCriteria)
 			return;

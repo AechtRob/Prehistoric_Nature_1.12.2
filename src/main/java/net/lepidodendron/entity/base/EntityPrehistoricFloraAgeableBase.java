@@ -12,6 +12,7 @@ import net.minecraft.command.ICommandSender;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
+import net.minecraft.entity.item.EntityBoat;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
@@ -164,10 +165,22 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
         return false;
     }
 
+    public boolean breaksBoat() {
+        return false;
+    }
+
     public void launchAttack() {
         IAttributeInstance iattributeinstance = this.getEntityAttribute(SharedMonsterAttributes.ATTACK_DAMAGE);
         if (getAttackTarget() != null) {
             boolean b = this.getAttackTarget().attackEntityFrom(DamageSource.causeMobDamage(this), (float) iattributeinstance.getAttributeValue());
+            EntityLivingBase ee = this.getAttackTarget();
+            if (ee.isRiding() && this.breaksBoat()) {
+                Entity boat = ee.getRidingEntity();
+                if (boat instanceof EntityBoat) {
+                    boat.setDead();
+                    this.playSound(SoundEvents.ENTITY_ZOMBIE_BREAK_DOOR_WOOD, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
+                }
+            }
         }
     }
 
@@ -363,9 +376,9 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
 
     @Override
     public boolean attackEntityFrom(DamageSource ds, float i) {
-        //if (ds == DamageSource.IN_WALL) {
-        //    return false;
-        //}
+        if (ds == DamageSource.IN_WALL) {
+            return false;
+        }
         if (this.getHurtSound(DamageSource.GENERIC) != null && i >= 1 && ds != DamageSource.IN_WALL) {
             if (this.getAnimation() != null) {
                 if (this.getAnimation() == NO_ANIMATION) {
@@ -532,7 +545,18 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
         if (aHealth > 100) {aHealth = 100;}
         if (aHealth < 0) {aHealth = 0;}
         aHealth = aHealth/100D;
-        this.setWillHunt(oldHealthRatio < (float) aHealth);
+        EntityLivingBase attackTarget = this.getAttackTarget();
+        if (attackTarget != null ) {
+            if (attackTarget instanceof EntityPlayer && LepidodendronConfig.attackPlayerAlways) {
+                this.setWillHunt(true);
+            }
+            else {
+                this.setWillHunt(oldHealthRatio < (float) aHealth);
+            }
+        }
+        else {
+            this.setWillHunt(oldHealthRatio < (float) aHealth);
+        }
         double adult = (double) LepidodendronConfig.adultAge;
         if (adult > 100) {adult = 100;}
         if (adult < 0) {adult = 0;}

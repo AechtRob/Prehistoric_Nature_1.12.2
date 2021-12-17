@@ -36,9 +36,10 @@ public class BiomePermianLowlandFloodplain extends ElementsLepidodendronMod.ModE
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.COLD);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.WET);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.PLAINS);
 	}
+
 	static class BiomeGenCustom extends BiomePermian {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Permian Lowland Floodplain").setBaseHeight(-0.120F).setHeightVariation(0.110F).setTemperature(0.8F).setRainfall(0.4F));

@@ -33,15 +33,17 @@ public class BiomePermianFloodbasalt extends ElementsLepidodendronMod.ModElement
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.COLD);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DRY);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.HOT);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.NETHER);
 	}
+
 	static class BiomeGenCustom extends BiomePermian {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Permian Flood Basalt").setBaseHeight(0.275F).setHeightVariation(0.03F).setTemperature(0.8F).setRainfall(0.4F).setWaterColor(4670783));
 			setRegistryName("permian_floodbasalt");
 			topBlock = BlockLavaRock.block.getDefaultState();
-			fillerBlock = Blocks.FLOWING_LAVA.getDefaultState();
+			fillerBlock = Blocks.LAVA.getDefaultState();
 			decorator.treesPerChunk = 1;
 			decorator.flowersPerChunk = 0;
 			decorator.grassPerChunk = 0;

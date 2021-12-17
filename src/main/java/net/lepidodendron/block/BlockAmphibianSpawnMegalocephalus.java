@@ -12,6 +12,8 @@ import net.minecraft.block.properties.PropertyInteger;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
@@ -80,6 +82,11 @@ public class BlockAmphibianSpawnMegalocephalus extends ElementsLepidodendronMod.
 			setTranslationKey("pf_amphibian_spawn_megalocephalus_worldgen");
 			//this.setTickRandomly(true);
 			setCreativeTab(null);
+		}
+
+		@Override
+		public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+			return new ItemStack(Items.SLIME_BALL, (int) (1)).getItem();
 		}
 
 		@Override

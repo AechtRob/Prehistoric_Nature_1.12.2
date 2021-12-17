@@ -25,8 +25,17 @@ public class EatMeatItemsAIClimbingBase extends EntityAIBase {
 
     @Override
     public boolean shouldExecute() {
+        if (this.entity.getHealth() <= 0) {
+            return false;
+        }
         this.targetItem = this.getNearestItem(16);
         return this.targetItem != null;
+    }
+
+    @Override
+    public void resetTask()
+    {
+        this.targetItem = null;
     }
 
     @Override

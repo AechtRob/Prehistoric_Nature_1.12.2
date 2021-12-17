@@ -31,13 +31,13 @@ public class BiomeOrdovicianSilurianLand extends ElementsLepidodendronMod.ModEle
 
 	@Override
 	public void init(FMLInitializationEvent event) {
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.WASTELAND);
 		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.HILLS);
 	}
 
 	static class BiomeGenCustom extends BiomeOrdovicianSilurian {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("The Ordovician and Silurian Periods").setRainfall(0.5F).setBaseHeight(0.6F).setHeightVariation(0.2F).setTemperature(0.5F));
+			super(new BiomeProperties("Ordovician and Silurian Barren Land").setRainfall(0.5F).setBaseHeight(0.6F).setHeightVariation(0.2F).setTemperature(0.5F));
 			setRegistryName("ordovician_silurian_land");
 			topBlock = Blocks.GRAVEL.getStateFromMeta(0);
 			fillerBlock = Blocks.STONE.getStateFromMeta(0);

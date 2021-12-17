@@ -10,6 +10,7 @@ import net.lepidodendron.util.EnumBiomeTypeDevonian;
 import net.lepidodendron.util.EnumBiomeTypePermian;
 import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
 import net.lepidodendron.world.biome.devonian.BiomeDevonian;
+import net.lepidodendron.world.biome.ordoviciansilurian.BiomeSilurianLushPatch;
 import net.lepidodendron.world.biome.permian.BiomePermian;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
@@ -120,11 +121,17 @@ public class BlockFenestella2 extends ElementsLepidodendronMod.ModElement {
 		if (dimID == LepidodendronConfig.dimOrdovicianSilurian
 		)
 			biomeCriteria = true;
+		if (biome == BiomeSilurianLushPatch.biome
+		)
+			biomeCriteria = false;
 		if (biome instanceof BiomePermian)
 		{
 			BiomePermian biomePermian = (BiomePermian) biome;
 			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Ocean) {
 				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
 			}
 		}
 		if (biome instanceof BiomeCarboniferous)
@@ -133,12 +140,18 @@ public class BlockFenestella2 extends ElementsLepidodendronMod.ModElement {
 			if (biomeCarb.getBiomeType() == EnumBiomeTypeCarboniferous.Ocean) {
 				biomeCriteria = true;
 			}
+			else {
+				biomeCriteria = false;
+			}
 		}
 		if (biome instanceof BiomeDevonian)
 		{
 			BiomeDevonian biomeDev = (BiomeDevonian) biome;
 			if (biomeDev.getBiomeType() == EnumBiomeTypeDevonian.Ocean) {
 				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
 			}
 		}
 		if (!biomeCriteria)

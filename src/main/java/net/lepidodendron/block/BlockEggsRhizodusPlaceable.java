@@ -77,9 +77,8 @@ public class BlockEggsRhizodusPlaceable extends ElementsLepidodendronMod.ModElem
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Lobe-finned fish");
-				tooltip.add("Periods: Carboniferous");
-				tooltip.add("Habitat: Swamps");
+				tooltip.add("Type: " + EntityPrehistoricFloraRhizodus.getHabitat() + " Carnivorous lobe-finned fish");
+				tooltip.add("Periods: " + EntityPrehistoricFloraRhizodus.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

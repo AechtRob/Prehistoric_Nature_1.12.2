@@ -39,9 +39,10 @@ public class BiomePermianHighlands extends ElementsLepidodendronMod.ModElement {
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.COLD);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.HILLS);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.COLD);
 	}
+
 	static class BiomeGenCustom extends BiomePermian {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Permian Highlands").setBaseHeight(1.15F).setHeightVariation(0.5F).setTemperature(0.2F).setRainfall(0.3F));

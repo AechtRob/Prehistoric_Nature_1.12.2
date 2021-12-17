@@ -40,7 +40,7 @@ public class EntityPrehistoricFloraCephalaspis extends EntityPrehistoricFloraFis
 		enablePersistence();
 	}
 
-	public static String getPeriod() {return "Silurian - Devonian";}
+	public static String getPeriod() {return "[late Silurian? -] early Devonian";}
 
 	public static String getHabitat() {return "Aquatic";}
 

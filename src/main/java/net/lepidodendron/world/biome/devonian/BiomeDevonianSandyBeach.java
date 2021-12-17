@@ -34,9 +34,10 @@ public class BiomeDevonianSandyBeach extends ElementsLepidodendronMod.ModElement
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.BEACH);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.BEACH);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.SANDY);
 	}
+
 	static class BiomeGenCustom extends BiomeDevonian {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Devonian Beach").setRainfall(0.5F).setBaseHeight(0.0F).setHeightVariation(0.007F).setTemperature(0.5F).setWaterColor(14745518));

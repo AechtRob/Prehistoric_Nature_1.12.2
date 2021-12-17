@@ -95,6 +95,8 @@ public class BlockWebsteroprionBurrow extends ElementsLepidodendronMod.ModElemen
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimCarboniferous)
 				|| (dimID == LepidodendronConfig.dimPrecambrian)
+				|| (dimID == LepidodendronConfig.dimPermian)
+				|| (dimID == LepidodendronConfig.dimTriassic)
 		) {
 			dimensionCriteria = false;
 		}
@@ -135,6 +137,9 @@ public class BlockWebsteroprionBurrow extends ElementsLepidodendronMod.ModElemen
 			if (biomeDev.getBiomeType() == EnumBiomeTypeDevonian.Ocean) {
 				biomeCriteria = true;
 			}
+			else {
+				biomeCriteria = false;
+			}
 		}
 		if (!biomeCriteria)
 			return;
@@ -152,7 +157,7 @@ public class BlockWebsteroprionBurrow extends ElementsLepidodendronMod.ModElemen
 		int maxWaterDepth = 25 * dimWeight;
 		int startHeight = world.getSeaLevel() - maxWaterDepth;
 
-		for (int i = 0; i < (4 * multiplier); i++) {
+		for (int i = 0; i < (56 * multiplier); i++) {
 			int l6 = chunkX + random.nextInt(16) + 8;
 			int i11 = random.nextInt(world.getSeaLevel() - startHeight) + startHeight;
 			int l14 = chunkZ + random.nextInt(16) + 8;

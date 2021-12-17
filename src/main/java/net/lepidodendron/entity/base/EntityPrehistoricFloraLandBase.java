@@ -308,6 +308,10 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
                     this.setEatTarget(null);
                 }
             }
+            if (this.isSwimmingInWater()) {
+                this.setAttackTarget(null);
+                this.setEatTarget(null);
+            }
             this.setIsFast(this.getAttackTarget() != null || this.getEatTarget() != null);
         }
 

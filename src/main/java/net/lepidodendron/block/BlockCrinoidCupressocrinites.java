@@ -112,6 +112,9 @@ public class BlockCrinoidCupressocrinites extends ElementsLepidodendronMod.ModEl
 			if (biomeDev.getBiomeType() == EnumBiomeTypeDevonian.Ocean) {
 				biomeCriteria = true;
 			}
+			else {
+				biomeCriteria = false;
+			}
 		}
 		if (!biomeCriteria)
 			return;

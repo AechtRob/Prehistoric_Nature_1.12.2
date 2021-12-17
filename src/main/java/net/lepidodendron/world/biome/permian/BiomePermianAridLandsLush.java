@@ -34,9 +34,10 @@ public class BiomePermianAridLandsLush extends ElementsLepidodendronMod.ModEleme
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.COLD);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DRY);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.LUSH);
 	}
+
 	static class BiomeGenCustom extends BiomePermian {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Permian Lush Arid Lands").setRainfall(0.0F).setBaseHeight(0.09F).setHeightVariation(0.2F).setTemperature(2.0F).setRainDisabled());

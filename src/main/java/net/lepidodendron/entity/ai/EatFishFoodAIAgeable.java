@@ -1,6 +1,7 @@
 package net.lepidodendron.entity.ai;
 
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraLandBase;
 import net.lepidodendron.item.ItemFishFood;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIBase;
@@ -74,6 +75,12 @@ public class EatFishFoodAIAgeable extends EntityAIBase {
     }
 
     public boolean cantReachItem(Entity item) {
+        if (this.entity instanceof EntityPrehistoricFloraLandBase) {
+            EntityPrehistoricFloraLandBase ee = (EntityPrehistoricFloraLandBase) this.entity;
+            if (item.isInWater()) {
+                return true;
+            }
+        }
         RayTraceResult rayTrace = this.entity.world.rayTraceBlocks(this.entity.getPositionVector().add(0, this.entity.height / 2, 0), item.getPositionVector().add(0, item.height / 2, 0), false);
         if (rayTrace != null && rayTrace.hitVec != null) {
             BlockPos sidePos = rayTrace.getBlockPos();

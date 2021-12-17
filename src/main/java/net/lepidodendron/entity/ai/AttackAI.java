@@ -27,16 +27,10 @@ public class AttackAI extends EntityAIBase {
     public boolean shouldExecute() {
         EntityLivingBase target = this.entity.getAttackTarget();
         if (target == null || !target.isEntityAlive()) {
-            //if ((this.entity instanceof EntityPrehistoricFloraLandBase)) {
-                EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) this.entity;
-                //ee.setIsFast(false);
-            //}
+
             return false;
         } else if (this.entity.world.getDifficulty() == EnumDifficulty.PEACEFUL && target instanceof EntityPlayer) {
-            //if ((this.entity instanceof EntityPrehistoricFloraLandBase)) {
-                EntityPrehistoricFloraAgeableBase ee = (EntityPrehistoricFloraAgeableBase) this.entity;
-                //ee.setIsFast(false);
-            //}
+
             return false;
         }
         this.currentPath = this.entity.getNavigator().getPathToEntityLiving(target);

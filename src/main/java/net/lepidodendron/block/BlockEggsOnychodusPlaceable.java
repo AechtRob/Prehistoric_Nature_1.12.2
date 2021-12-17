@@ -77,9 +77,8 @@ public class BlockEggsOnychodusPlaceable extends ElementsLepidodendronMod.ModEle
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Lobe-finned fish");
-				tooltip.add("Periods: Devonian");
-				tooltip.add("Habitat: Marine");
+				tooltip.add("Type: " + EntityPrehistoricFloraOnychodus.getHabitat() + " Carnivorous Lobe-finned fish");
+				tooltip.add("Periods: " + EntityPrehistoricFloraOnychodus.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

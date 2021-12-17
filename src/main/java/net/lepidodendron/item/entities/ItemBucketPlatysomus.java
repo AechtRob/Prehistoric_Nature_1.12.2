@@ -194,7 +194,7 @@ public class ItemBucketPlatysomus extends ElementsLepidodendronMod.ModElement {
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Ray-finned fish");
-				tooltip.add("Periods: Carboniferous - Permian");
+				tooltip.add("Periods: Carboniferous - Permian [- Triassic?]");
 				tooltip.add("Habitat: Freshwater and marine");
 				super.addInformation(stack, player, tooltip, advanced);
 			}

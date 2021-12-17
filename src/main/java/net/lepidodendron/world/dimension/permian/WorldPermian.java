@@ -87,6 +87,9 @@ public class WorldPermian extends ElementsLepidodendronMod.ModElement {
 		@Override
 		@SideOnly(Side.CLIENT)
 		public Vec3d getFogColor(float par1, float par2) {
+			if (!LepidodendronConfig.doFog) {
+				return super.getFogColor(par1, par2);
+			}
 			//return new Vec3d(0.752941176471, 0.847058823529, 1);
 			//return new Vec3d(0.852941176471, 1, 0.933333333333);
 
@@ -138,6 +141,9 @@ public class WorldPermian extends ElementsLepidodendronMod.ModElement {
 		@SideOnly(Side.CLIENT)
 		@Override
 		public boolean doesXZShowFog(int par1, int par2) {
+			if (!LepidodendronConfig.doFog) {
+				return super.doesXZShowFog(par1, par2);
+			}
 			Biome biome = this.world.getBiome(new BlockPos(par1, this.world.getSeaLevel(), par2));
 			if (biome instanceof BiomePermian) {
 				BiomePermian biomePermian = (BiomePermian) biome;

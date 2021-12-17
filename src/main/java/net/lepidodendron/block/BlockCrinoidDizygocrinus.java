@@ -111,6 +111,9 @@ public class BlockCrinoidDizygocrinus extends ElementsLepidodendronMod.ModElemen
 			if (biomeCarb.getBiomeType() == EnumBiomeTypeCarboniferous.Ocean) {
 				biomeCriteria = true;
 			}
+			else {
+				biomeCriteria = false;
+			}
 		}
 		if (!biomeCriteria)
 			return;

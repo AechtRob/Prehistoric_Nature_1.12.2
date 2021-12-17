@@ -4,7 +4,7 @@ package net.lepidodendron.block;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
-import net.lepidodendron.entity.EntityPrehistoricFloraDracopristis;
+import net.lepidodendron.entity.EntityPrehistoricFloraHyneria;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -68,7 +68,7 @@ public class BlockEggsHyneriaPlaceable extends ElementsLepidodendronMod.ModEleme
 			super.updateTick(worldIn, pos, state, rand);
 
 			if (!(worldIn.isRemote)) {
-				EntityPrehistoricFloraAgeableBase.summon(worldIn, EntityList.getKey(EntityPrehistoricFloraDracopristis.class).toString(), "{AgeTicks:0}", (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
+				EntityPrehistoricFloraAgeableBase.summon(worldIn, EntityList.getKey(EntityPrehistoricFloraHyneria.class).toString(), "{AgeTicks:0}", (double)pos.getX() + 0.5D, (double)pos.getY() + 0.5D, (double)pos.getZ() + 0.5D);
 			}
 			worldIn.destroyBlock(pos, false);
 		}
@@ -77,9 +77,8 @@ public class BlockEggsHyneriaPlaceable extends ElementsLepidodendronMod.ModEleme
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Lobe-finned fish");
-				tooltip.add("Periods: Devonian");
-				tooltip.add("Habitat: Freshwater");
+				tooltip.add("Type: " + EntityPrehistoricFloraHyneria.getHabitat() + " Carnivorous Lobe-finned fish");
+				tooltip.add("Periods: " + EntityPrehistoricFloraHyneria.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

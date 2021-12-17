@@ -77,9 +77,8 @@ public class BlockEurypteridEggsAcutiramusPlaceable extends ElementsLepidodendro
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Eurypterid");
-				tooltip.add("Periods: late Silurian - early Devonian");
-				tooltip.add("Habitat: Marine");
+				tooltip.add("Type: " + EntityPrehistoricFloraAcutiramus.getHabitat() + " Eurypterid");
+				tooltip.add("Periods: " + EntityPrehistoricFloraAcutiramus.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

@@ -103,9 +103,8 @@ public class BlockInsectEggsAttercopus extends ElementsLepidodendronMod.ModEleme
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Arachnid");
-				tooltip.add("Periods: Devonian");
-				tooltip.add("Habitat: Land");
+				tooltip.add("Type: " + EntityPrehistoricFloraAttercopus.getHabitat() + " Arachnid");
+				tooltip.add("Periods: " + EntityPrehistoricFloraAttercopus.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

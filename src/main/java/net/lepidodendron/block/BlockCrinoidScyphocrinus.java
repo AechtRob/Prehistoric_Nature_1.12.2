@@ -7,6 +7,7 @@ import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemCrinoidScyphocrinusItem;
 import net.lepidodendron.util.EnumBiomeTypeDevonian;
 import net.lepidodendron.world.biome.devonian.BiomeDevonian;
+import net.lepidodendron.world.biome.ordoviciansilurian.BiomeSilurianLushPatch;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -104,11 +105,17 @@ public class BlockCrinoidScyphocrinus extends ElementsLepidodendronMod.ModElemen
 		}
 		if (matchBiome(biome, LepidodendronConfig.genCrinoidOverrideBiomes))
 			biomeCriteria = true;
+		if (biome == BiomeSilurianLushPatch.biome
+		)
+			biomeCriteria = false;
 		if (biome instanceof BiomeDevonian)
 		{
 			BiomeDevonian biomeDev = (BiomeDevonian) biome;
 			if (biomeDev.getBiomeType() == EnumBiomeTypeDevonian.Ocean) {
 				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
 			}
 		}
 		if (!biomeCriteria)

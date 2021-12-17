@@ -247,7 +247,7 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 			return new ItemStack(Item.getItemFromBlock(this), 1, this.damageDropped(state));
 		}
 
-		public boolean hasWater(IBlockAccess world, BlockPos pos) {
+		public boolean hasWater(World world, BlockPos pos) {
 			Biome biome = world.getBiome(pos);
 			if (biome == BiomePermianLowlands.biome || biome == BiomePermianHighlands.biome) {
 				boolean waterCriteria = false;

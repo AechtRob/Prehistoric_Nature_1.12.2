@@ -6,6 +6,7 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.block.BlockEggsXenacanthusPlaceable;
 import net.lepidodendron.creativetab.TabLepidodendronMobile;
+import net.lepidodendron.entity.EntityPrehistoricFloraXenacanthus;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.util.ITooltipFlag;
@@ -120,9 +121,8 @@ public class ItemPhialEggsXenacanthus extends ElementsLepidodendronMod.ModElemen
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Carnivorous shark-like fish");
-				tooltip.add("Periods: late Devonian - Carboniferous - Permian - Triassic");
-				tooltip.add("Habitat: Freshwater");
+				tooltip.add("Type: " + EntityPrehistoricFloraXenacanthus.getHabitat() + " Carnivorous cartilaginous fish");
+				tooltip.add("Periods: " + EntityPrehistoricFloraXenacanthus.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

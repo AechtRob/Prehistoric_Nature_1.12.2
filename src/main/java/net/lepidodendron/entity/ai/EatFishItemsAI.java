@@ -1,6 +1,7 @@
 package net.lepidodendron.entity.ai;
 
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraLandBase;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.item.EntityItem;
@@ -24,7 +25,17 @@ public class EatFishItemsAI extends EntityAIBase {
     }
 
     @Override
+    public void resetTask()
+    {
+        this.entity.setEatTarget(null);
+        this.targetItem = null;
+    }
+
+    @Override
     public boolean shouldExecute() {
+        if (this.entity.getHealth() <= 0) {
+            return false;
+        }
         this.targetItem = this.getNearestItem(16);
         //if (this.targetItem == null) {
         //    this.entity.setIsFast(false);
@@ -73,6 +84,12 @@ public class EatFishItemsAI extends EntityAIBase {
     }
 
     public boolean cantReachItem(Entity item) {
+        if (this.entity instanceof EntityPrehistoricFloraLandBase) {
+            EntityPrehistoricFloraLandBase ee = (EntityPrehistoricFloraLandBase) this.entity;
+            if (item.isInWater()) {
+                return true;
+            }
+        }
         RayTraceResult rayTrace = this.entity.world.rayTraceBlocks(this.entity.getPositionVector().add(0, this.entity.height / 2, 0), item.getPositionVector().add(0, item.height / 2, 0), false);
         if (rayTrace != null && rayTrace.hitVec != null) {
             BlockPos sidePos = rayTrace.getBlockPos();

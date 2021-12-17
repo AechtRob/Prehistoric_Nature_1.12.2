@@ -77,9 +77,8 @@ public class BlockEurypteridEggsKokomopterusPlaceable extends ElementsLepidodend
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Eurypterid");
-				tooltip.add("Periods: Silurian");
-				tooltip.add("Habitat: Marine");
+				tooltip.add("Type: " + EntityPrehistoricFloraKokomopterus.getHabitat() + " Eurypterid");
+				tooltip.add("Periods: " + EntityPrehistoricFloraKokomopterus.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

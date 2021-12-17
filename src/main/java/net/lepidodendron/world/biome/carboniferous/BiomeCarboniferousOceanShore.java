@@ -36,12 +36,10 @@ public class BiomeCarboniferousOceanShore extends ElementsLepidodendronMod.ModEl
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.OCEAN);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.SWAMP);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.JUNGLE);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.LUSH);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.OCEAN);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.WATER);
 	}
+
 	static class BiomeGenCustom extends BiomeCarboniferous {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Carboniferous Shallow Ocean").setRainfall(0.5F).setBaseHeight(-0.50F).setHeightVariation(0.01F).setWaterColor(13038245));

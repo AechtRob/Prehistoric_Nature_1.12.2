@@ -38,11 +38,13 @@ public class BiomeCarboniferousSwampHills extends ElementsLepidodendronMod.ModEl
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.SWAMP);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.JUNGLE);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.LUSH);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.SWAMP);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.JUNGLE);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DENSE);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.HILLS);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.LUSH);
 	}
+
 	static class BiomeGenCustom extends BiomeCarboniferous {
 		public BiomeGenCustom() {
 			//super(new Biome.BiomeProperties("Carboniferous Swamp Hills").setRainfall(0.5F).setBaseBiome("lepidodendron:carboniferous_swamp").setBaseHeight(-0.06F).setHeightVariation(0.36F).setTemperature(0.8F).setRainfall(0.9F).setWaterColor(8186044));

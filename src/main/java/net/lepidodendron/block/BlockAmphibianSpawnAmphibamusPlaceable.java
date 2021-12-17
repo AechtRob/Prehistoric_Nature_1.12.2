@@ -14,6 +14,7 @@ import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -61,6 +62,11 @@ public class BlockAmphibianSpawnAmphibamusPlaceable extends ElementsLepidodendro
 		}
 
 		@Override
+		public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+			return new ItemStack(Items.SLIME_BALL, (int) (1)).getItem();
+		}
+
+		@Override
 		public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 			return new ItemStack(BlockAmphibianSpawnAmphibamusPlaceable.block, (int) (1));
 		}
@@ -82,8 +88,7 @@ public class BlockAmphibianSpawnAmphibamusPlaceable extends ElementsLepidodendro
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Amphibian");
-				tooltip.add("Periods: Carboniferous");
-				tooltip.add("Habitat: Swamps, rivers");
+				tooltip.add("Periods: " + EntityPrehistoricFloraAmphibamus.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

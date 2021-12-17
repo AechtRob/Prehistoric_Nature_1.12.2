@@ -119,6 +119,9 @@ public class BlockEscumasia extends ElementsLepidodendronMod.ModElement {
 			if (biomeCarb.getBiomeType() == EnumBiomeTypeCarboniferous.Swamp) {
 				biomeCriteria = true;
 			}
+			else {
+				biomeCriteria = false;
+			}
 		}
 		if (!biomeCriteria)
 			return;

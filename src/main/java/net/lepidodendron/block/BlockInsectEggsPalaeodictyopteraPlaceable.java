@@ -77,8 +77,8 @@ public class BlockInsectEggsPalaeodictyopteraPlaceable extends ElementsLepidoden
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Insect");
-				tooltip.add("Periods: Carboniferous");
+				tooltip.add("Type: " + EntityPrehistoricFloraPalaeodictyopteraNymph.getHabitat() + " Insect");
+				tooltip.add("Periods: " + EntityPrehistoricFloraPalaeodictyopteraNymph.getPeriod());
 				tooltip.add("Habitat: Eggs and nymphs in water; adults fly");
 				super.addInformation(stack, player, tooltip, advanced);
 			}

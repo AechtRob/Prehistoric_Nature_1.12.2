@@ -2,11 +2,14 @@
 package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.block.BlockInsectEggsTrigonotarbidDev;
 import net.lepidodendron.creativetab.TabLepidodendronMobile;
+import net.lepidodendron.entity.EntityPrehistoricFloraTrigonotarbid_Palaeocharinus;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
@@ -22,6 +25,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.ItemHandlerHelper;
+
+import java.util.List;
 
 @ElementsLepidodendronMod.ModElement.Tag
 public class ItemPhialEggsTrigonotarbidDev extends ElementsLepidodendronMod.ModElement {
@@ -109,6 +114,16 @@ public class ItemPhialEggsTrigonotarbidDev extends ElementsLepidodendronMod.ModE
 					}
 				}
 				return EnumActionResult.PASS;
+			}
+		}
+
+		@SideOnly(Side.CLIENT)
+		@Override
+		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
+			if (LepidodendronConfig.showTooltips) {
+				tooltip.add("Type: " + EntityPrehistoricFloraTrigonotarbid_Palaeocharinus.getHabitat() + " Arachnid");
+				tooltip.add("Periods: " + EntityPrehistoricFloraTrigonotarbid_Palaeocharinus.getPeriod());
+				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}
 	}

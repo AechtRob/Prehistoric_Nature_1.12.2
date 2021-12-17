@@ -36,12 +36,15 @@ public class BiomePermianColdGlossopterisForestOcean extends ElementsLepidodendr
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.COLD);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.FOREST);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.COLD);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.SNOWY);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.WET);
 	}
+
 	static class BiomeGenCustom extends BiomePermian {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("Permian Cold Glossopteris Forest").setRainfall(0.4F).setBaseHeight(-0.5F).setHeightVariation(0.06F).setTemperature(-0.1F).setWaterColor(-5317633).setSnowEnabled());
+			super(new BiomeProperties("Permian Cold Glossopteris Forest Lakes").setRainfall(0.4F).setBaseHeight(-0.5F).setHeightVariation(0.06F).setTemperature(-0.1F).setWaterColor(-5317633).setSnowEnabled());
 			setRegistryName("permian_cold_glossopteris_forest_ocean");
 			topBlock = BlockLeafLitter.block.getDefaultState();
 			fillerBlock = BlockCoarseSandyDirtPangaean.block.getDefaultState();

@@ -11,6 +11,7 @@ import net.lepidodendron.util.EnumBiomeTypePermian;
 import net.lepidodendron.util.EnumBiomeTypeTriassic;
 import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
 import net.lepidodendron.world.biome.devonian.BiomeDevonian;
+import net.lepidodendron.world.biome.ordoviciansilurian.BiomeSilurianLushPatch;
 import net.lepidodendron.world.biome.permian.BiomePermian;
 import net.lepidodendron.world.biome.triassic.BiomeTriassic;
 import net.lepidodendron.world.gen.AlgaeGenerator;
@@ -105,6 +106,9 @@ public class BlockAnemone9 extends ElementsLepidodendronMod.ModElement {
 		) {
 			biomeCriteria = false;
 		}
+		if (biome == BiomeSilurianLushPatch.biome
+		)
+			biomeCriteria = false;
 		if (biome instanceof BiomePermian)
 		{
 			BiomePermian biomePermian = (BiomePermian) biome;

@@ -5,6 +5,7 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.entity.EntityPrehistoricFloraTrigonotarbid_Palaeotarbus;
+import net.lepidodendron.entity.EntityPrehistoricFloraTrigonotarbid_Permotarbus;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -104,8 +105,8 @@ public class BlockInsectEggsTrigonotarbidPerm extends ElementsLepidodendronMod.M
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Arachnid");
-				tooltip.add("Periods: Permian");
+				tooltip.add("Type: " + EntityPrehistoricFloraTrigonotarbid_Permotarbus.getHabitat() + " Arachnid");
+				tooltip.add("Periods: " + EntityPrehistoricFloraTrigonotarbid_Permotarbus.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

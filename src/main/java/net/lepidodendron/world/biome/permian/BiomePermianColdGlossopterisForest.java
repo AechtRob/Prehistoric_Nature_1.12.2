@@ -36,9 +36,11 @@ public class BiomePermianColdGlossopterisForest extends ElementsLepidodendronMod
 
 	@Override
 	public void init(FMLInitializationEvent event) {
-		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.DEAD);
-		//BiomeDictionary.addTypes(biome, BiomeDictionary.Type.FOREST, BiomeDictionary.Type.COLD);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.FOREST);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.COLD);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.SNOWY);
 	}
+
 	static class BiomeGenCustom extends BiomePermian {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Permian Cold Glossopteris Forest").setRainfall(0.4F).setBaseHeight(0.06F).setHeightVariation(0.23F).setTemperature(-0.1F).setWaterColor(-5317633).setSnowEnabled());

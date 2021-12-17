@@ -77,9 +77,8 @@ public class BlockEurypteridEggsCarcinosomaPlaceable extends ElementsLepidodendr
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Eurypterid");
-				tooltip.add("Periods: Late Silurian");
-				tooltip.add("Habitat: Marine");
+				tooltip.add("Type: " + EntityPrehistoricFloraCarcinosoma.getHabitat() + " Eurypterid");
+				tooltip.add("Periods: " + EntityPrehistoricFloraCarcinosoma.getPeriod());
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}
