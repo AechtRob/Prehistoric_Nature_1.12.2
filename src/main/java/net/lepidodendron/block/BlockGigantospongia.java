@@ -77,13 +77,13 @@ public class BlockGigantospongia extends ElementsLepidodendronMod.ModElement {
 			return;
 		}
 
-		if (
-			dimID == LepidodendronConfig.dimPrecambrian
+		if (dimID == LepidodendronConfig.dimPrecambrian
 			|| dimID == LepidodendronConfig.dimCambrian
 			|| dimID == LepidodendronConfig.dimOrdovicianSilurian
 			|| dimID == LepidodendronConfig.dimDevonian
 			|| dimID == LepidodendronConfig.dimCarboniferous
 			|| dimID == LepidodendronConfig.dimTriassic
+			|| dimID == LepidodendronConfig.dimJurassic
 		) {
 			return;
 		}
@@ -98,6 +98,9 @@ public class BlockGigantospongia extends ElementsLepidodendronMod.ModElement {
 			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.DEAD))
 				biomeCriteria = false;
 		}
+		if (dimID == 0) {
+			biomeCriteria = false;
+		}
 		if (matchBiome(biome, LepidodendronConfig.genGigantospongiaOverrideBiomes))
 			biomeCriteria = true;
 		if (biome instanceof BiomePermian)
@@ -105,6 +108,9 @@ public class BlockGigantospongia extends ElementsLepidodendronMod.ModElement {
 			BiomePermian biomePermian = (BiomePermian) biome;
 			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Ocean) {
 				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
 			}
 		}
 		if (!biomeCriteria)

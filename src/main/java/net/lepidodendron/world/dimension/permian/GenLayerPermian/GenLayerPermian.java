@@ -32,8 +32,10 @@ public class GenLayerPermian {
         biomes = new GenLayerSmooth(705L, biomes);
         biomes = new GenLayerFuzzyZoom(1001L, biomes);
         biomes = new GenLayerPermianGlossopterisBeach(1150L, biomes);
+        biomes = new GenLayerPermianRiverBorder(325L, biomes);
         biomes = new GenLayerSmooth(706L, biomes);
         biomes = new GenLayerFuzzyZoom(1002L, biomes);
+        biomes = new GenLayerPermianRiverBorder(326L, biomes);
         biomes = new GenLayerZoom(1006L, biomes);
         GenLayer genlayervoronoizoom = new GenLayerVoronoiZoom(10L, biomes);
         biomes.initWorldGenSeed(seed);

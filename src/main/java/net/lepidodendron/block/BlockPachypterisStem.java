@@ -59,7 +59,7 @@ public class BlockPachypterisStem extends ElementsLepidodendronMod.ModElement {
 			setLightLevel(0F);
 			setLightOpacity(0);
 			setCreativeTab(null);
-			setTranslationKey("pf_pachypteris_stem");
+			setTranslationKey("pf_weichselia_stem");
 			setRegistryName("pachypteris_stem");
 		}
 
@@ -108,7 +108,7 @@ public class BlockPachypterisStem extends ElementsLepidodendronMod.ModElement {
 
 		@Override
 		public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-			if (LepidodendronConfig.doSeeds) {
+			if (LepidodendronConfig.doSpores) {
 				drops.add(new ItemStack(Blocks.AIR, (int) (1)));
 			}
 			else {

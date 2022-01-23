@@ -162,9 +162,9 @@ public class BlockArthropitysSapling extends ElementsLepidodendronMod.ModElement
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Flowering tree");
-				tooltip.add("Periods: Cretaceous - Paleogene - Neogene - Quaternary");
-				tooltip.add("Propagation: fruit/cone");}
+				tooltip.add("Type: Horsetail tree");
+				tooltip.add("Periods: [Carboniferous? -] Permian");
+				tooltip.add("Propagation: Spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 	}

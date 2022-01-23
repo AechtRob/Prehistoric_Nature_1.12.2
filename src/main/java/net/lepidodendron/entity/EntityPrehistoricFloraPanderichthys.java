@@ -6,6 +6,7 @@ import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.EatFishFoodAIFish;
+import net.lepidodendron.entity.ai.EntityMateAIFishBase;
 import net.lepidodendron.entity.ai.FishWanderSurface;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.item.entities.ItemBucketPanderichthys;
@@ -140,7 +141,8 @@ public class EntityPrehistoricFloraPanderichthys extends EntityPrehistoricFloraF
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new FishWanderSurface(this, NO_ANIMATION));
+		tasks.addTask(0, new EntityMateAIFishBase(this, 1));
+		tasks.addTask(1, new FishWanderSurface(this, NO_ANIMATION));
 		this.targetTasks.addTask(0, new EatFishFoodAIFish(this));
 	}
 

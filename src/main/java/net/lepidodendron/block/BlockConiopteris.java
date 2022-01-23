@@ -72,7 +72,7 @@ public class BlockConiopteris extends ElementsLepidodendronMod.ModElement {
 			setLightLevel(0F);
 			setLightOpacity(0);
 			setCreativeTab(TabLepidodendronPlants.tab);
-			this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, true).withProperty(DECAYABLE, true));
+			this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, false));
 		}
 
 		@Override
@@ -215,7 +215,6 @@ public class BlockConiopteris extends ElementsLepidodendronMod.ModElement {
 				return;
 			}
 		}
-
 
 		@Override
 		public boolean canPlaceBlockAt(World worldIn, BlockPos pos) {

@@ -50,7 +50,15 @@ public class ProcedureWorldGenLiriodendron extends ElementsLepidodendronMod.ModE
 		double LayerCounter = 0;
 		double TopCount = 0;
 		world.setBlockToAir(new BlockPos((int) x, (int) y, (int) z));
-		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))) {
+		Material material = world.getBlockState(new BlockPos((int) x, (int) y, (int) z)).getMaterial();
+		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))
+			&& material != Material.GRASS
+			&& material != Material.GROUND
+			&& material != Material.GLASS
+			&& material != Material.IRON
+			&& material != Material.ROCK
+			&& material != Material.SAND
+			&& material != Material.WOOD) {
 			BareTrunkHeight = (double) (2) + Math.round((Math.random() * 100) / 25);
 			counter = (double) 0;
 			while (counter <= BareTrunkHeight) {

@@ -96,6 +96,7 @@ public class BlockGreenAlgaeMat extends ElementsLepidodendronMod.ModElement {
 			|| (dimID == LepidodendronConfig.dimCarboniferous)
 			|| (dimID == LepidodendronConfig.dimPermian)
 			|| (dimID == LepidodendronConfig.dimTriassic)
+			|| (dimID == LepidodendronConfig.dimJurassic)
 		) {
 			biomeCriteria = true;
 		}
@@ -106,6 +107,7 @@ public class BlockGreenAlgaeMat extends ElementsLepidodendronMod.ModElement {
 		if ((dimID == LepidodendronConfig.dimDevonian)
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimPermian)
+				|| (dimID == LepidodendronConfig.dimJurassic)
 		) {
 			multiplier = 2;
 		}

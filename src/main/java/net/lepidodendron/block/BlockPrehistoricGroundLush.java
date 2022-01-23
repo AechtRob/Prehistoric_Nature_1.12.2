@@ -153,6 +153,7 @@ public class BlockPrehistoricGroundLush extends ElementsLepidodendronMod.ModElem
 								|| (iblockstate1.getBlock() == BlockSandyDirt.block)
 								|| (iblockstate1.getBlock() == BlockSandyDirtPangaean.block)
 								|| (iblockstate1.getBlock() == BlockSandyDirtRed.block)
+								|| (iblockstate1.getBlock() == BlockSiltyDirt.block)
 								)
 								&& (worldIn.getLightFromNeighbors(blockpos.up()) >= 4 && iblockstate.getLightOpacity(worldIn, pos.up()) <= 2)
 								)

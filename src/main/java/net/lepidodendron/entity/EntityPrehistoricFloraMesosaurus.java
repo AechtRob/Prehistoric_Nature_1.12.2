@@ -115,12 +115,13 @@ public class EntityPrehistoricFloraMesosaurus extends EntityPrehistoricFloraSwim
 
 	protected void initEntityAI() {
 		tasks.addTask(0, new EntityMateAI(this, 1));
-		tasks.addTask(1, new AttackAI(this, 1.0D, false, this.getAttackLength()));
-		tasks.addTask(2, new AmphibianWander(this, NO_ANIMATION, 0.93, 80));
-		tasks.addTask(3, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-		tasks.addTask(3, new EntityAIWatchClosest(this, EntityPrehistoricFloraFishBase.class, 8.0F));
-		tasks.addTask(3, new EntityAIWatchClosest(this, EntityPrehistoricFloraAgeableBase.class, 8.0F));
-		tasks.addTask(4, new EntityAILookIdle(this));
+		tasks.addTask(1, new EntityTemptAI(this, 1, false, true, 0));
+		tasks.addTask(2, new AttackAI(this, 1.0D, false, this.getAttackLength()));
+		tasks.addTask(3, new AmphibianWander(this, NO_ANIMATION, 0.93, 80));
+		tasks.addTask(4, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+		tasks.addTask(4, new EntityAIWatchClosest(this, EntityPrehistoricFloraFishBase.class, 8.0F));
+		tasks.addTask(4, new EntityAIWatchClosest(this, EntityPrehistoricFloraAgeableBase.class, 8.0F));
+		tasks.addTask(5, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatFishItemsAI(this));
 		this.targetTasks.addTask(1, new EntityHurtByTargetSmallerThanMeAI(this, false));
 		this.targetTasks.addTask(3, new HuntAI(this, EntityPrehistoricFloraFishBase.class, true, (Predicate<Entity>) entity -> entity instanceof EntityLivingBase));
@@ -260,9 +261,10 @@ public class EntityPrehistoricFloraMesosaurus extends EntityPrehistoricFloraSwim
 	@Override
 	public boolean isBreedingItem(ItemStack stack)
 	{
-		return ((OreDictionary.containsMatch(false, OreDictionary.getOres("listAllfishraw"), stack))
-			|| (OreDictionary.containsMatch(false, OreDictionary.getOres("listAllfishcooked"), stack)));
-		//return stack.getItem() == ItemFishFood.block;
+		return (
+				(OreDictionary.containsMatch(false, OreDictionary.getOres("listAllfishraw"), stack))
+					//	|| (OreDictionary.containsMatch(false, OreDictionary.getOres("listAllmeatraw"), stack))
+		);
 	}
 
 	@Override

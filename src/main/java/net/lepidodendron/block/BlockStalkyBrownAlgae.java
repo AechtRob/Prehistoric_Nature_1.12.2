@@ -5,6 +5,8 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.lepidodendron.util.EnumBiomeTypeJurassic;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassic;
 import net.lepidodendron.world.gen.AlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
@@ -98,6 +100,17 @@ public class BlockStalkyBrownAlgae extends ElementsLepidodendronMod.ModElement {
 				|| (dimID == LepidodendronConfig.dimTriassic)
 		) {
 			biomeCriteria = false;
+		}
+
+		if (biome instanceof BiomeJurassic)
+		{
+			BiomeJurassic biomeJurassic = (BiomeJurassic) biome;
+			if (biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Ocean) {
+				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
+			}
 		}
 		if (!biomeCriteria)
 			return;

@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityMoveHelper;
@@ -17,15 +18,19 @@ import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemFood;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.pathfinding.NodeProcessor;
 import net.minecraft.pathfinding.PathNavigate;
 import net.minecraft.pathfinding.PathNodeType;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
@@ -39,7 +44,9 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
     public ChainBuffer chainBuffer;
     private int jumpTicks;
     public Animation EAT_ANIMATION;
+    public Animation DRINK_ANIMATION;
     private int inPFLove;
+    private int PFdrinking;
 
     public EntityPrehistoricFloraLandBase(World world) {
         super(world);
@@ -49,6 +56,14 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
             this.chainBuffer = new ChainBuffer();
         }
         EAT_ANIMATION = Animation.create(this.getEatLength());
+        DRINK_ANIMATION = Animation.create(this.getDrinkLength());
+    }
+
+    @Override
+    public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
+        livingdata = super.onInitialSpawn(difficulty, livingdata);
+        this.setIsDrinking(rand.nextInt(1000));
+        return livingdata;
     }
 
     public boolean canSwim() {
@@ -63,6 +78,50 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
         return false;
     }
 
+    public void writeEntityToNBT(NBTTagCompound compound)
+    {
+        super.writeEntityToNBT(compound);
+        compound.setInteger("drinking", this.PFdrinking);
+    }
+
+    public void readEntityFromNBT(NBTTagCompound compound) {
+        super.readEntityFromNBT(compound);
+        this.PFdrinking = compound.getInteger("drinking");
+    }
+
+    public boolean isDrinking()
+    {
+        EnumFacing facing = this.getAdjustedHorizontalFacing();
+        boolean test1 = (this.PFdrinking < 100
+            && !world.isRemote
+            && this.DRINK_ANIMATION.getDuration() > 0
+            && this.getAnimation() == NO_ANIMATION
+            && !this.isReallyInWater()
+            && this.world.getBlockState(this.getPosition().offset(facing).down()).getMaterial() == Material.WATER
+        );
+        boolean test2 = false;
+        if (facing == EnumFacing.NORTH && test1) {
+            test2 = (this.posZ - (double)this.getPosition().getZ() <= 0.6D);
+        }
+        if (facing == EnumFacing.SOUTH && test1) {
+            test2 = (this.posZ - (double)this.getPosition().getZ() >= 0.6D);
+        }
+        if (facing == EnumFacing.WEST && test1) {
+            test2 = (this.posX - (double)this.getPosition().getX() <= 0.6D);
+        }
+        if (facing == EnumFacing.EAST && test1) {
+            test2 = (this.posX - (double)this.getPosition().getX() >= 0.6D);
+        }
+
+        return (test1 && test2);
+
+    }
+
+    public void setIsDrinking(int val)
+    {
+        this.PFdrinking = val;
+    }
+
     @Override
     public void selectNavigator () {
         if (this.isSwimmingInWater() && this.canSwim()) {
@@ -74,14 +133,7 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
                 //System.err.println(this.getClass() + " Navigator changed to " + this.navigator);
             }
         }
-       // else if ((this.isReallyInWater() && (!this.isInWater())) || (world.getBlockState(this.getPosition().down()).getMaterial() == Material.WATER)) {
-       //     if (!(this.moveHelper instanceof EntityPrehistoricFloraLandBase.WanderMoveHelper)
-       //         || !(this.navigator instanceof PathNavigateGround)) {
-       //         this.moveHelper = new EntityPrehistoricFloraLandBase.WanderMoveHelper();
-       //         this.navigator = new PathNavigateGround(this, world);
-       //         System.err.println(this.getClass() + "Navigator changed to " + this.navigator);
-       //     }
-       // }
+
         else if ((!this.isSwimmingInWater()) || (!this.canSwim())) {
             if ((!(this.moveHelper instanceof EntityPrehistoricFloraLandBase.WanderMoveHelper))
                 || (!(this.navigator instanceof PathNavigateGroundNoWater))) {
@@ -96,11 +148,22 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
         return 10;
     }
 
+    public int getDrinkLength() {
+        return 0;
+    }
+
     @Override
     public Animation[] getAnimations() {
-        return new Animation[]{ATTACK_ANIMATION,ROAR_ANIMATION, LAY_ANIMATION, EAT_ANIMATION};
+        return new Animation[]{DRINK_ANIMATION, ATTACK_ANIMATION, ROAR_ANIMATION, LAY_ANIMATION, EAT_ANIMATION};
     }
-    
+
+    @Override
+    public boolean attackEntityFrom(DamageSource ds, float i) {
+        this.setIsDrinking(1000);
+        this.setAnimation(NO_ANIMATION);
+        return super.attackEntityFrom(ds, i);
+    }
+
     @Override
     public float getEyeHeight()
     {
@@ -116,18 +179,6 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
     protected float getAISpeedSwimmingLand() {
         return getAISpeedLand();
     }
-
-    //@Override
-    //public boolean isInWater() {
-        //Is in water if the block above it or below it are also water.
-        //i.e. so that in shallow water it thinks it's not in water and so just walks:
-    //    if (this.world.isAirBlock(this.getPosition())) {return false;}
-   //     IBlockState state = this.world.getBlockState(this.getPosition());
-    //    IBlockState stateU = this.world.getBlockState(this.getPosition().up());
-    //    IBlockState stateD = this.world.getBlockState(this.getPosition().down());
-    //    return ((this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL) || state.getMaterial() == Material.WATER)
-    //            && (stateU.getMaterial() == Material.WATER || stateD.getMaterial() == Material.WATER));
-    //}
 
     public boolean isReallyInWater() { //is actually in water at all
         //return (this.world.getBlockState(this.getPosition()).getMaterial() == Material.WATER) || this.isInsideOfMaterial(Material.WATER) || this.isInsideOfMaterial(Material.CORAL);
@@ -213,13 +264,22 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
         return movingobjectposition == null || movingobjectposition.typeOfHit != RayTraceResult.Type.BLOCK;
     }
 
+    @Override
+    public void onEntityUpdate() {
+        super.onEntityUpdate();
+        if (this.isDrinking()) {
+            //System.err.println("Is drinking");
+            this.setAnimation(DRINK_ANIMATION);
+            this.setIsDrinking(rand.nextInt(800) + 700);
+        }
+    }
+
     public void onLivingUpdate()
     {
 
         if (!this.world.isRemote) {
             selectNavigator();
         }
-
 
         //Updated from vanilla to allow underwater jumping:
         if (this.jumpTicks > 0) {
@@ -323,6 +383,11 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
         if (this.inPFLove > 0)
         {
             --this.inPFLove;
+        }
+
+        if (this.PFdrinking > 0)
+        {
+            --this.PFdrinking;
         }
 
         //Grapple with mates?

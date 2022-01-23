@@ -4,6 +4,7 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.entity.ai.EntityMateAIJellyfishBase;
 import net.lepidodendron.entity.ai.JellyfishWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraJellyfishBase;
 import net.lepidodendron.item.entities.ItemBucketEoandromeda;
@@ -49,6 +50,11 @@ public class EntityPrehistoricFloraEoandromeda extends EntityPrehistoricFloraJel
     public static String getHabitat() {return "Aquatic";}
 
     @Override
+    public ItemStack getPropagule() {
+        return new ItemStack(ItemUnknownEdiacaranBlob.block, (int) (1));
+    }
+
+    @Override
     public boolean dropsEggs() {
         return false;
     }
@@ -57,7 +63,8 @@ public class EntityPrehistoricFloraEoandromeda extends EntityPrehistoricFloraJel
     public static final Animation ANIMATION_JELLYFISH_WANDER = Animation.create(0);
 
     protected void initEntityAI() {
-        tasks.addTask(0, new JellyfishWander(this, NO_ANIMATION));
+        tasks.addTask(0, new EntityMateAIJellyfishBase(this, 1));
+        tasks.addTask(1, new JellyfishWander(this, ANIMATION_JELLYFISH_WANDER));
     }
 
     @Override

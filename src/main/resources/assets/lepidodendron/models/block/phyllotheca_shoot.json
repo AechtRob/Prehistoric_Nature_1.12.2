@@ -2,6 +2,6 @@
 	"parent": "block/cross",
 	"textures": {
 		"cross": "lepidodendron:blocks/phyllotheca_shoot",
-		"particle": "lepidodendron:items/phyllotheca_inventory"
+		"particle": "lepidodendron:blocks/phyllotheca_shoot"
 	}
 }

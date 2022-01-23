@@ -6,7 +6,10 @@ import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.AgeableFishWander;
 import net.lepidodendron.entity.ai.EatFishFoodAIAgeable;
+import net.lepidodendron.entity.ai.EntityMateAIAgeableBase;
+import net.lepidodendron.entity.ai.EntityTemptAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableFishBase;
+import net.lepidodendron.item.ItemFishFood;
 import net.lepidodendron.item.entities.ItemBucketTitanichthys;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -109,8 +112,16 @@ public class EntityPrehistoricFloraTitanichthys extends EntityPrehistoricFloraAg
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new AgeableFishWander(this, NO_ANIMATION, 0.03/(double)this.getAgeScale(), -2));
+		tasks.addTask(0, new EntityMateAIAgeableBase(this, 1.0D));
+		tasks.addTask(1, new EntityTemptAI(this, 1, false, true, 0));
+		tasks.addTask(1, new AgeableFishWander(this, NO_ANIMATION, 0.03/(double)this.getAgeScale(), -2));
 		this.targetTasks.addTask(0, new EatFishFoodAIAgeable(this));
+	}
+
+	@Override
+	public boolean isBreedingItem(ItemStack stack)
+	{
+		return stack.getItem() == ItemFishFood.block;
 	}
 
 	@Override

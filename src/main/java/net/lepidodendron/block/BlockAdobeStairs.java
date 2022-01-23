@@ -43,7 +43,7 @@ public class BlockAdobeStairs extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class BlockCustom extends BlockStairs {
 		public BlockCustom() {
-			super(new Block(Material.ROCK).getDefaultState());
+			super(new Block(Material.ROCK, MapColor.ADOBE).getDefaultState());
 			setTranslationKey("pf_adobe_stairs");
 			setSoundType(SoundType.STONE);
 			setHarvestLevel("pickaxe", 1);

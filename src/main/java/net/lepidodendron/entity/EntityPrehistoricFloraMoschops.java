@@ -18,6 +18,7 @@ import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.ai.attributes.IAttributeInstance;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -29,6 +30,7 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
 
 import javax.annotation.Nullable;
 
@@ -118,16 +120,27 @@ public class EntityPrehistoricFloraMoschops extends EntityPrehistoricFloraLandBa
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new LandEntitySwimmingAI(this, 0.75, false));
-		tasks.addTask(1, new AttackAI(this, 1.0D, false, this.getAttackLength()));
-		tasks.addTask(2, new PanicAI(this, 1.6D));
-		tasks.addTask(3, new LandWanderFindNestAI(this, this.getNestBlock()));
-		tasks.addTask(4, new LandWanderAvoidWaterAI(this, 1.0D));
-		tasks.addTask(5, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
-		tasks.addTask(6, new EntityAIWatchClosest(this, EntityPrehistoricFloraAgeableBase.class, 8.0F));
-		tasks.addTask(7, new EntityAILookIdle(this));
+		tasks.addTask(0, new EntityMateAIAgeableBase(this, 1.0D));
+		tasks.addTask(1, new EntityTemptAI(this, 1, false, true, 0));
+		tasks.addTask(2, new LandEntitySwimmingAI(this, 0.75, false));
+		tasks.addTask(3, new AttackAI(this, 1.0D, false, this.getAttackLength()));
+		tasks.addTask(4, new PanicAI(this, 1.6D));
+		tasks.addTask(5, new LandWanderFindNestAI(this, this.getNestBlock()));
+		tasks.addTask(6, new LandWanderAvoidWaterAI(this, 1.0D));
+		tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
+		tasks.addTask(8, new EntityAIWatchClosest(this, EntityPrehistoricFloraAgeableBase.class, 8.0F));
+		tasks.addTask(9, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatPlantItemsAI(this, 1D));
 		this.targetTasks.addTask(1, new EntityHurtByTargetSmallerThanMeAI(this, false));
+	}
+
+	@Override
+	public boolean isBreedingItem(ItemStack stack)
+	{
+		return (
+				(OreDictionary.containsMatch(false, OreDictionary.getOres("plant"), stack))
+					//	|| (OreDictionary.containsMatch(false, OreDictionary.getOres("listAllmeatraw"), stack))
+		);
 	}
 	
 	@Override

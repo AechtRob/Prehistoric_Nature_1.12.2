@@ -5,6 +5,7 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockPitysLeaves;
 import net.lepidodendron.block.BlockPitysLog;
 import net.lepidodendron.block.BlockPitysStrobilus;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
@@ -47,7 +48,15 @@ public class ProcedureWorldGenPitys extends ElementsLepidodendronMod.ModElement 
 		int counter = 0;
 		int yy = y;
 
+		Material material = world.getBlockState(new BlockPos((int) x, (int) y, (int) z)).getMaterial();
 		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))
+			&& material != Material.GRASS
+			&& material != Material.GROUND
+			&& material != Material.GLASS
+			&& material != Material.IRON
+			&& material != Material.ROCK
+			&& material != Material.SAND
+			&& material != Material.WOOD
 			) {
 			world.setBlockToAir(new BlockPos((int) x, (int) y, (int) z));
 

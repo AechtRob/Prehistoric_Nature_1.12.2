@@ -5,6 +5,8 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronMisc;
+import net.lepidodendron.util.EnumBiomeTypeTriassic;
+import net.lepidodendron.world.biome.triassic.BiomeTriassic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.SoundType;
@@ -69,7 +71,8 @@ public class BlockStromatolite extends ElementsLepidodendronMod.ModElement {
 		if (shouldGenerateInDimension(dimID, LepidodendronConfig.dimStromatolite))
 			dimensionCriteria = true;
 		if (dimID == LepidodendronConfig.dimOrdovicianSilurian
-			|| dimID == LepidodendronConfig.dimCambrian) {
+			|| dimID == LepidodendronConfig.dimCambrian
+			|| dimID == LepidodendronConfig.dimTriassic) {
 			dimensionCriteria = true;
 		}
 		if (!dimensionCriteria)
@@ -94,6 +97,15 @@ public class BlockStromatolite extends ElementsLepidodendronMod.ModElement {
 		if (dimID == LepidodendronConfig.dimCambrian) {
 			biomeCriteria = true;
 		}
+		if (biome instanceof BiomeTriassic) {
+			BiomeTriassic biomeTriassic = (BiomeTriassic) biome;
+			if (biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Ocean) {
+				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
+			}
+		}
 
 		if (!biomeCriteria)
 			return;
@@ -101,6 +113,7 @@ public class BlockStromatolite extends ElementsLepidodendronMod.ModElement {
 		double genChance = 0.99;
 		if (dimID == LepidodendronConfig.dimOrdovicianSilurian) {genChance = 0.65;}
 		if (dimID == LepidodendronConfig.dimCambrian) {genChance = 0.8;}
+		if (dimID == LepidodendronConfig.dimTriassic) {genChance = 0.15;}
 		
 		if (Math.random() > genChance) {
 			for (int i = 0; i < 10; i++) {

@@ -3,7 +3,9 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
+import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.block.*;
+import net.lepidodendron.entity.ai.EntityMateAIAgeableBase;
 import net.lepidodendron.entity.ai.LandEntitySwimmingAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraLandBase;
 import net.minecraft.block.BlockDirectional;
@@ -13,7 +15,7 @@ import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWanderAvoidWater;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
@@ -22,6 +24,9 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.oredict.OreDictionary;
+
+import javax.annotation.Nullable;
 
 
 public class EntityPrehistoricFloraPneumodesmus extends EntityPrehistoricFloraLandBase {
@@ -100,9 +105,19 @@ public class EntityPrehistoricFloraPneumodesmus extends EntityPrehistoricFloraLa
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new LandEntitySwimmingAI(this, 0.75, true));
-		tasks.addTask(1, new EntityAIWanderAvoidWater(this, 1.0D));
-		tasks.addTask(2, new EntityAILookIdle(this));
+		tasks.addTask(0, new EntityMateAIAgeableBase(this, 1));
+		tasks.addTask(1, new LandEntitySwimmingAI(this, 0.75, true));
+		tasks.addTask(2, new EntityAIWanderAvoidWater(this, 1.0D));
+		tasks.addTask(3, new EntityAILookIdle(this));
+	}
+
+	@Override
+	public boolean isBreedingItem(ItemStack stack)
+	{
+		return (
+				(OreDictionary.containsMatch(false, OreDictionary.getOres("plant"), stack))
+						//|| (OreDictionary.containsMatch(false, OreDictionary.getOres("listAllmeatraw"), stack))
+		);
 	}
 
 	@Override
@@ -216,10 +231,9 @@ public class EntityPrehistoricFloraPneumodesmus extends EntityPrehistoricFloraLa
 		return false;
 	}
 
-	@Override
-	protected Item getDropItem() {
-		return null;
-		//return new ItemStack(ItemAcanthodesMeat.block, (int) (1)).getItem();
+	@Nullable
+	protected ResourceLocation getLootTable() {
+		return LepidodendronMod.BUG_LOOT;
 	}
 
 }

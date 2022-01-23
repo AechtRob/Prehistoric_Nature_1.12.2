@@ -9,6 +9,7 @@ import net.lepidodendron.enchantments.Enchantments;
 import net.lepidodendron.world.dimension.cambrian.WorldCambrian;
 import net.lepidodendron.world.dimension.carboniferous.WorldCarboniferous;
 import net.lepidodendron.world.dimension.devonian.WorldDevonian;
+import net.lepidodendron.world.dimension.jurassic.WorldJurassic;
 import net.lepidodendron.world.dimension.ordoviciansilurian.WorldOrdovicianSilurian;
 import net.lepidodendron.world.dimension.permian.WorldPermian;
 import net.lepidodendron.world.dimension.precambrian.WorldPrecambrian;
@@ -66,6 +67,12 @@ public class ItemBoneWand extends ElementsLepidodendronMod.ModElement {
 		}
 
 		@Override
+		public boolean canApplyAtEnchantingTable(ItemStack stack, net.minecraft.enchantment.Enchantment enchantment)
+		{
+			return false;
+		}
+
+		@Override
 		public int getMaxItemUseDuration(ItemStack itemstack) {
 			return 0;
 		}
@@ -96,6 +103,7 @@ public class ItemBoneWand extends ElementsLepidodendronMod.ModElement {
 						WorldCarboniferous.portal.portalSpawn(world, pos);
 						WorldPermian.portal.portalSpawn(world, pos);
 						WorldTriassic.portal.portalSpawn(world, pos);
+						WorldJurassic.portal.portalSpawn(world, pos);
 						if (!entity.capabilities.isCreativeMode) {
 							itemstack.damageItem(1, entity);
 						}

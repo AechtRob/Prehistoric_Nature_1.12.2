@@ -11,7 +11,7 @@ public class GenLayerDiversifyRiverbankTriassic extends GenLayer {
     public  int TRIASSIC_RIVERBANK_ID =  Biome.getIdForBiome(TRIASSIC_RIVERBANK);
     public  Biome TRIASSIC_RIVERBANK_FOREST = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_riverbank_forest"));
     public  int TRIASSIC_RIVERBANK_FOREST_ID =  Biome.getIdForBiome(TRIASSIC_RIVERBANK_FOREST);
-    public  Biome TRIASSIC_RIVER = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_river"));
+    public  Biome TRIASSIC_RIVER = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_creek"));
     public  int TRIASSIC_RIVER_ID =  Biome.getIdForBiome(TRIASSIC_RIVER);
 
     private final int RiverbankBiomes[] = new int[] {

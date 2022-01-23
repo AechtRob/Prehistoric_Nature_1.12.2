@@ -3,7 +3,7 @@ package net.lepidodendron.item;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronSorter;
-import net.lepidodendron.block.BlockPachypteris;
+import net.lepidodendron.block.BlockPachypterisSapling;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -33,7 +33,7 @@ public class ItemPachypterisSeeds extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class ItemCustom extends ItemPrehistoricPlantable {
 		public ItemCustom() {
-			super(BlockPachypteris.block,1);
+			super(BlockPachypterisSapling.block,1);
 			setTranslationKey("pf_pachypteris_seeds");
 			setRegistryName("pachypteris_seeds");
 			setCreativeTab(TabLepidodendronPlants.tab);

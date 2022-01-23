@@ -6,9 +6,11 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
+import net.lepidodendron.util.EnumBiomeTypeJurassic;
 import net.lepidodendron.util.EnumBiomeTypePermian;
 import net.lepidodendron.util.EnumBiomeTypeTriassic;
 import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassic;
 import net.lepidodendron.world.biome.ordoviciansilurian.BiomeOrdovicianSilurianSeaIce;
 import net.lepidodendron.world.biome.ordoviciansilurian.BiomeOrdovicianSilurianSeaIcebergs;
 import net.lepidodendron.world.biome.permian.BiomePermian;
@@ -113,6 +115,9 @@ public class BlockRedLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Ocean) {
 				biomeCriteria = true;
 			}
+			else {
+				biomeCriteria = false;
+			}
 		}
 		if (biome instanceof BiomeCarboniferous)
 		{
@@ -120,12 +125,28 @@ public class BlockRedLeafyAlgae extends ElementsLepidodendronMod.ModElement {
 			if (biomeCarb.getBiomeType() == EnumBiomeTypeCarboniferous.Ocean) {
 				biomeCriteria = true;
 			}
+			else {
+				biomeCriteria = false;
+			}
 		}
 		if (biome instanceof BiomeTriassic)
 		{
-			BiomeTriassic biomeTri = (BiomeTriassic) biome;
-			if (biomeTri.getBiomeType() == EnumBiomeTypeTriassic.Ocean) {
+			BiomeTriassic biomeTriassic = (BiomeTriassic) biome;
+			if (biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Ocean) {
 				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
+			}
+		}
+		if (biome instanceof BiomeJurassic)
+		{
+			BiomeJurassic biomeJurassic = (BiomeJurassic) biome;
+			if (biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Ocean) {
+				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
 			}
 		}
 		if (!biomeCriteria)

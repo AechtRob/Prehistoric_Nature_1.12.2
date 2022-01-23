@@ -6,6 +6,7 @@ import net.lepidodendron.block.BlockMirabilisLeaves;
 import net.lepidodendron.block.BlockMirabilisLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -52,13 +53,21 @@ public class ProcedureWorldGenMirabilis extends ElementsLepidodendronMod.ModElem
 		int LateralPosH = 0;
 		int BranchLatCount = 0;
 		
+		Material material = world.getBlockState(new BlockPos((int) x, (int) y, (int) z)).getMaterial();
 		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))
+			&& material != Material.GRASS
+			&& material != Material.GROUND
+			&& material != Material.GLASS
+			&& material != Material.IRON
+			&& material != Material.ROCK
+			&& material != Material.SAND
+			&& material != Material.WOOD
 			) {			
 			world.setBlockToAir(new BlockPos((int) x, (int) y, (int) z));
 			
 			//Trunk:
 			TrunkHeight = 30 + (int) (Math.random() * 15) + (int) (Math.random() * 15);
-			if (Math.random() < 0.2) { //Add a vaiation in how we calculate the trunk and also allow to be very tall sometimes:
+			if (Math.random() < 0.2) { //Add a variation in how we calculate the trunk and also allow to be very tall sometimes:
 				TrunkHeight = 30 + (int) Math.round((Math.random() * 100) / 2);
 			}
 

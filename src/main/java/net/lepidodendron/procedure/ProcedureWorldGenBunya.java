@@ -4,6 +4,7 @@ package net.lepidodendron.procedure;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockBunyaLeaves;
 import net.lepidodendron.block.BlockBunyaLog;
+import net.minecraft.block.material.Material;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -42,7 +43,15 @@ public class ProcedureWorldGenBunya extends ElementsLepidodendronMod.ModElement 
 		double TrunkHeight = 0;
 		double counter = 0;
 		
+		Material material = world.getBlockState(new BlockPos((int) x, (int) y, (int) z)).getMaterial();
 		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))
+			&& material != Material.GRASS
+			&& material != Material.GROUND
+			&& material != Material.GLASS
+			&& material != Material.IRON
+			&& material != Material.ROCK
+			&& material != Material.SAND
+			&& material != Material.WOOD
 			) {			
 			world.setBlockToAir(new BlockPos((int) x, (int) y, (int) z));
 			

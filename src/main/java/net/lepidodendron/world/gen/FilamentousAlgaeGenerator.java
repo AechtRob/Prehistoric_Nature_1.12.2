@@ -34,7 +34,9 @@ public class FilamentousAlgaeGenerator extends WorldGenerator
 			dimensionCriteria = true;
 		if ((dimID == LepidodendronConfig.dimCarboniferous)
 			|| (dimID == LepidodendronConfig.dimDevonian)
-			|| (dimID == LepidodendronConfig.dimPermian))
+			|| (dimID == LepidodendronConfig.dimPermian)
+			|| (dimID == LepidodendronConfig.dimTriassic)
+			|| (dimID == LepidodendronConfig.dimJurassic))
 			{
 				dimensionCriteria = true;
 			}
@@ -45,7 +47,8 @@ public class FilamentousAlgaeGenerator extends WorldGenerator
 		int multiplier = 1;
 		if (dimID == LepidodendronConfig.dimDevonian) {multiplier = 2;}
 		if (dimID == LepidodendronConfig.dimCarboniferous
-				|| dimID == LepidodendronConfig.dimPermian
+			|| dimID == LepidodendronConfig.dimPermian
+			|| dimID == LepidodendronConfig.dimJurassic
 		) {multiplier = 4;}
 
         for (int i = 0; i < (32 * multiplier); ++i)

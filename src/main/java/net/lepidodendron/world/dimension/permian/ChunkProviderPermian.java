@@ -1,9 +1,6 @@
 package net.lepidodendron.world.dimension.permian;
 
-import net.lepidodendron.block.BlockCoarseSandyDirtPangaean;
-import net.lepidodendron.block.BlockSandPangaean;
-import net.lepidodendron.block.BlockSandPangaeanWavy;
-import net.lepidodendron.block.BlockSandstonePangaean;
+import net.lepidodendron.block.*;
 import net.lepidodendron.world.biome.permian.*;
 import net.lepidodendron.world.gen.WorldGenPangaeanDryLakes;
 import net.lepidodendron.world.gen.WorldGenPermianLakes;
@@ -276,10 +273,10 @@ public class ChunkProviderPermian implements IChunkGenerator {
                         Biome biome1 = this.biomesForGeneration[k + j1 + 2 + (l + k1 + 2) * 10];
                         float f5 = 0 + biome1.getBaseHeight() * 1;
                         float f6 = 0 + biome1.getHeightVariation() * 1;
-                        if (this.terrainType == WorldType.AMPLIFIED && f5 > 0.0F) {
-                            f5 = 1.0F + f5 * 2.0F;
-                            f6 = 1.0F + f6 * 4.0F;
-                        }
+                        //if (this.terrainType == WorldType.AMPLIFIED && f5 > 0.0F) {
+                        //    f5 = 1.0F + f5 * 2.0F;
+                        //    f6 = 1.0F + f6 * 4.0F;
+                        //}
                         float f7 = this.biomeWeights[j1 + 2 + (k1 + 2) * 5] / (f5 + 2.0F);
                         if (biome1.getBaseHeight() > biome.getBaseHeight()) {
                             f7 /= 2.0F;
@@ -507,6 +504,19 @@ public class ChunkProviderPermian implements IChunkGenerator {
                                     }
                                 }
                             }
+                        }
+
+                        //Add moss in the Wetlands
+                        if (iblockstate == BlockPrehistoricGroundLush.block.getDefaultState()
+                                && (biome == BiomePermianWetlands.biome || biome == BiomePermianWetlandsUnwooded.biome)
+                                && rand.nextInt(15) == 0) {
+                            iblockstate = BlockPrehistoricGroundMossy.block.getDefaultState();
+                        }
+
+                        //Add moss in the Forest:
+                        if (iblockstate == BlockPrehistoricGroundBasic.block.getDefaultState()
+                                && biome == BiomePermianLowlandsForest.biome && rand.nextInt(20) == 0) {
+                            iblockstate = BlockPrehistoricGroundMossy.block.getDefaultState();
                         }
 
                         j = k;

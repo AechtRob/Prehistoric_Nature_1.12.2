@@ -2299,9 +2299,171 @@
         "stream": false
       }
     ]
+  },
+
+
+
+  "coelophysis_idle": {
+    "sounds": [
+      {
+        "name": "lepidodendron:coelophysis_living01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_living02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_living03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_living04",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_living05",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_living06",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_living07",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_living08",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_living09",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_living10",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_living11",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_living12",
+        "stream": false
+      }
+    ]
+  },
+  "coelophysis_hurt": {
+    "sounds": [
+      {
+        "name": "lepidodendron:coelophysis_hurt01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_hurt02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_hurt03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_hurt04",
+        "stream": false
+      }
+    ]
+  },
+  "coelophysis_death": {
+    "sounds": [
+      {
+        "name": "lepidodendron:coelophysis_death",
+        "stream": false
+      }
+    ]
+  },
+  "coelophysis_roar": {
+    "sounds": [
+      {
+        "name": "lepidodendron:coelophysis_roar01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_roar02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_roar03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:coelophysis_roar04",
+        "stream": false
+      }
+    ]
+  },
+
+  "lystrosaurus_idle": {
+    "sounds": [
+      {
+        "name": "lepidodendron:lystrosaurus_living01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lystrosaurus_living02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lystrosaurus_living03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lystrosaurus_living04",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lystrosaurus_living05",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lystrosaurus_living06",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lystrosaurus_living07",
+        "stream": false
+      }
+    ]
+  },
+  "lystrosaurus_hurt": {
+    "sounds": [
+      {
+        "name": "lepidodendron:lystrosaurus_hurt01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lystrosaurus_hurt02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lystrosaurus_hurt03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lystrosaurus_hurt04",
+        "stream": false
+      }
+    ]
+  },
+  "lystrosaurus_death": {
+    "sounds": [
+      {
+        "name": "lepidodendron:lystrosaurus_death",
+        "stream": false
+      }
+    ]
   }
-
-
 
 
 

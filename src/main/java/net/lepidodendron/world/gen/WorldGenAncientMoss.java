@@ -28,11 +28,11 @@ public class WorldGenAncientMoss extends WorldGenerator
 		for (int i = 0; i < 32; ++i)
 		{
 			BlockPos blockpos = position.add(rand.nextInt(3) - rand.nextInt(3), rand.nextInt(3) - rand.nextInt(3), rand.nextInt(3) - rand.nextInt(3));
+			int orientation = rand.nextInt(6);
 
 			if (blockpos.getY() >= worldIn.getSeaLevel()-4 && worldIn.isAirBlock(blockpos) && ((worldIn.getLight(blockpos) > 3) || (worldIn.canSeeSky(blockpos)))
 					&& (!worldIn.provider.isNether() || blockpos.getY() < 254) && BlockAncientMoss.block.canPlaceBlockAt(worldIn, blockpos))
 			{
-				int orientation = rand.nextInt(6);
 				if (orientation == 0) { //North
 					if (BlockAncientMoss.block.canPlaceBlockOnSide(worldIn, blockpos, EnumFacing.NORTH)) {
 						worldIn.setBlockState(blockpos, BlockAncientMoss.block.getDefaultState().withProperty(FACING, EnumFacing.NORTH), 2);
@@ -172,7 +172,7 @@ public class WorldGenAncientMoss extends WorldGenerator
 			}
 
 			if (dimID == LepidodendronConfig.dimCarboniferous) {
-				i = rand.nextInt(5); //Trigonotarbid
+				i = rand.nextInt(5); //Trigonotarbids etc
 				if (i == 0) {stringEgg = LepidodendronMod.MODID + ":insect_eggs_trigonotarbid_carb";}
 				if (i == 1) {stringEgg = LepidodendronMod.MODID + ":insect_eggs_trigonotarbid_carb";}
 				if (i == 2) {stringEgg = LepidodendronMod.MODID + ":insect_eggs_gerarus";}

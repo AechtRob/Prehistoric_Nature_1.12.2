@@ -6,6 +6,7 @@ import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.util.PathNavigateClimberNoWater;
+import net.lepidodendron.item.entities.ItemBugRaw;
 import net.lepidodendron.item.entities.ItemUnknownEgg;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.BlockFaceShape;
@@ -13,6 +14,7 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.entity.*;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.MobEffects;
 import net.minecraft.init.SoundEvents;
@@ -35,7 +37,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCreature implements IAnimatedEntity {
+public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityTameable implements IAnimatedEntity {
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;
@@ -43,6 +45,9 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
     private int jumpTicks;
     private static final DataParameter<Integer> TICKS = EntityDataManager.createKey(EntityPrehistoricFloraInsectClimbingBase.class, DataSerializers.VARINT);
     private static final DataParameter<Boolean> ISMOVING = EntityDataManager.createKey(EntityPrehistoricFloraInsectClimbingBase.class, DataSerializers.BOOLEAN);
+    private static final DataParameter<Integer> MATEABLE = EntityDataManager.createKey(EntityPrehistoricFloraInsectClimbingBase.class, DataSerializers.VARINT);
+    private int inPFLove;
+    private boolean laying;
 
     public Animation ATTACK_ANIMATION;
     public Animation currentAnimation;
@@ -53,6 +58,20 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
             this.chainBuffer = new ChainBuffer();
         }
         ATTACK_ANIMATION = Animation.create(this.getAttackLength());
+    }
+
+    @Nullable
+    @Override
+    public EntityAgeable createChild(EntityAgeable ageable) {
+        return null;
+    }
+
+    @Override
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return (
+            stack.getItem() == new ItemStack(ItemBugRaw.block, (int) (1)).getItem()
+        );
     }
 
     public boolean getIsMoving() {
@@ -84,8 +103,17 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
     {
         super.entityInit();
         this.dataManager.register(CLIMBING, Byte.valueOf((byte)0));
-        this.dataManager.register(TICKS, 0);
+        this.dataManager.register(MATEABLE, 0);
+        this.dataManager.register(TICKS, rand.nextInt(24000));
         this.dataManager.register(ISMOVING, false);
+    }
+
+    public int getMateable() {
+        return this.dataManager.get(MATEABLE);
+    }
+
+    public void setMateable(int ticks) {
+        this.dataManager.set(MATEABLE, ticks);
     }
 
     @Override
@@ -93,6 +121,7 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
         if (ds == DamageSource.FALL) {
             return false;
         }
+        this.inPFLove = 0;
         return super.attackEntityFrom(ds, f);
     }
 
@@ -145,6 +174,7 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         livingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setTicks(0);
+        this.setMateable(0);
         return livingdata;
     }
 
@@ -156,11 +186,17 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
     {
         super.writeEntityToNBT(compound);
         compound.setInteger("Ticks", this.getTicks());
+        compound.setInteger("InPFLove", this.inPFLove);
+        compound.setBoolean("laying", this.laying);
+        compound.setInteger("mateable", this.getMateable());
     }
 
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setTicks(compound.getInteger("Ticks"));
+        this.inPFLove = compound.getInteger("InPFLove");
+        this.laying = compound.getBoolean("laying");
+        this.setMateable(compound.getInteger("mateable"));
     }
 
     public void onEntityUpdate() {
@@ -171,15 +207,22 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
         int ii = this.getTicks();
         if (this.isEntityAlive()) {
             ++ii;
-            //limit at 48000 (two MC days) and then reset:
-            if (ii >= 48000) {
+            if (!LepidodendronConfig.doMultiplyMobs) {
+                if (ii <= 10) {
+                    //Don't use this ticker if multiplication is off, unless we are over breeding limit:
+                    //this ticker is set to 24000 by some AI, so we do want it to run up at that level sometimes
+                    ii = 0;
+                }
+            }
+            //limit at 24000 + 6000 (one MC day plus 5 minutes) and then reset:
+            if (ii >= 30000) {
                 ii = 0;
             }
             this.setTicks(ii);
         }
 
         //Drop an egg perhaps:
-        if (!world.isRemote && this.getCanBreed() && this.dropsEggs() && LepidodendronConfig.doMultiplyMobs) {
+        if (!world.isRemote && this.getCanBreed() && this.dropsEggs() && (LepidodendronConfig.doMultiplyMobs || this.getLaying())) {
             if (Math.random() > 0.5) {
                 ItemStack itemstack = new ItemStack(ItemUnknownEgg.block, (int) (1));
                 if (!itemstack.hasTagCompound()) {
@@ -191,12 +234,13 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
                 entityToSpawn.setPickupDelay(10);
                 this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
                 world.spawnEntity(entityToSpawn);
+                this.setLaying(false);
             }
             this.setTicks(0);
         }
 
         //Lay eggs perhaps:
-        if (!world.isRemote && this.laysEggs() && LepidodendronConfig.doMultiplyMobs && this.getCanBreed()
+        if (!world.isRemote && this.laysEggs() && (LepidodendronConfig.doMultiplyMobs || this.getLaying()) && this.getCanBreed()
         ) {
             if (((this.testLay(world, this.getPosition()) || this.testLay(world, this.getPosition().down())) && this.getTicks() > 0)
             ) {
@@ -215,6 +259,7 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
                     }
                     IBlockState state = world.getBlockState(this.getPosition());
                     world.notifyBlockUpdate(this.getPosition(), state, state, 3);
+                    this.setLaying(false);
                 } else if (this.testLay(world, this.getPosition().down())) {
                     this.playSound(SoundEvents.ENTITY_CHICKEN_EGG, 1.0F, (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F);
                     TileEntity te = world.getTileEntity(this.getPosition().down());
@@ -223,6 +268,7 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
                     }
                     IBlockState state = world.getBlockState(this.getPosition().down());
                     world.notifyBlockUpdate(this.getPosition().down(), state, state, 3);
+                    this.setLaying(false);
                 }
                 this.setTicks(-20);
             }
@@ -533,6 +579,15 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
         this.world.profiler.startSection("push");
         this.collideWithNearbyEntities();
         this.world.profiler.endSection();
+
+        if (this.inPFLove > 0)
+        {
+            --this.inPFLove;
+        }
+
+        if (this.getMateable() < 0) {
+            this.setMateable(this.getMateable() + 1);
+        }
     }
 
     public void eatItem(ItemStack stack) {
@@ -794,4 +849,49 @@ public abstract class EntityPrehistoricFloraInsectClimbingBase extends EntityCre
         this.limbSwing += this.limbSwingAmount;
     }
 
+    @Override
+    public boolean processInteract(EntityPlayer player, EnumHand hand)
+    {
+        ItemStack itemstack = player.getHeldItem(hand);
+
+        if (!itemstack.isEmpty())
+        {
+            if (this.isBreedingItem(itemstack) && this.inPFLove <= 0 && this.getMateable() == 0)
+            {
+                this.consumeItemFromStack(player, itemstack);
+                this.inPFLove = 600;
+                this.world.setEntityState(this, (byte)18);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean isInLove()
+    {
+        return this.inPFLove > 0;
+    }
+
+    public void setNotMateable()
+    {
+        this.setMateable(-6000);
+    }
+
+    @Override
+    public void resetInLove()
+    {
+        this.inPFLove = 0;
+    }
+
+    public void setLaying(boolean bool)
+    {
+        this.laying = bool;
+    }
+
+    public boolean getLaying()
+    {
+        return this.laying;
+    }
 }

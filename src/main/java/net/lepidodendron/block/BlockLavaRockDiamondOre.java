@@ -8,6 +8,7 @@ import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockOre;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.init.Items;
@@ -76,6 +77,7 @@ public class BlockLavaRockDiamondOre extends ElementsLepidodendronMod.ModElement
 
 	public static class BlockCustom extends BlockOre {
 		public BlockCustom() {
+			super(MapColor.BLACK);
 			setHardness(3.0F);
 			setResistance(5.0F);
 			setSoundType(SoundType.STONE);

@@ -52,7 +52,15 @@ public class ProcedureWorldGenAgathisNoCheck extends ElementsLepidodendronMod.Mo
 		double TrunkHeight = 0;
 		double counter = 0;
 		Random random = new Random();
+		Material material = world.getBlockState(new BlockPos((int) x, (int) y, (int) z)).getMaterial();
 		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))
+			&& material != Material.GRASS
+			&& material != Material.GROUND
+			&& material != Material.GLASS
+			&& material != Material.IRON
+			&& material != Material.ROCK
+			&& material != Material.SAND
+			&& material != Material.WOOD
 			) {			
 			world.setBlockToAir(new BlockPos((int) x, (int) y, (int) z));
 			ProcedureTreeLog.executeProcedure((int) (x + 1), (int) (y - 1), (int) (z - 1), world, BlockAgathisLog.block, EnumFacing.NORTH);

@@ -1,6 +1,7 @@
 package net.lepidodendron.world.gen;
 
 import net.lepidodendron.block.BlockPrehistoricGroundSand;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassicSandbanks;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -124,7 +125,9 @@ public class WorldGenPrehistoricLakes extends WorldGenerator
 								//	worldIn.setBlockState(blockpos, BlockPrehistoricGroundCoverBasic.block.getDefaultState(), 2);
                                 //}
                                 //else {
-                                	worldIn.setBlockState(blockpos, BlockPrehistoricGroundSand.block.getDefaultState(), 2);
+                                if (worldIn.getBiome(blockpos) != BiomeJurassicSandbanks.biome) {
+                                    worldIn.setBlockState(blockpos, BlockPrehistoricGroundSand.block.getDefaultState(), 2);
+                                }
                                 //}
                             }
                         }

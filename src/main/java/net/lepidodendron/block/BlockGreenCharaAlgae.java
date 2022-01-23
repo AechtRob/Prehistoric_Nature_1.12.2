@@ -5,8 +5,12 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
-import net.lepidodendron.util.EnumBiomeTypeDevonian;
+import net.lepidodendron.util.*;
+import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
 import net.lepidodendron.world.biome.devonian.BiomeDevonian;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassic;
+import net.lepidodendron.world.biome.permian.BiomePermian;
+import net.lepidodendron.world.biome.triassic.BiomeTriassic;
 import net.lepidodendron.world.gen.AlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
@@ -97,13 +101,58 @@ public class BlockGreenCharaAlgae extends ElementsLepidodendronMod.ModElement {
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian) ){
 			biomeCriteria = false;
 		}
-		if ((dimID == LepidodendronConfig.dimDevonian)
-			|| (dimID == LepidodendronConfig.dimCarboniferous)
-				|| (dimID == LepidodendronConfig.dimPermian)
-				|| (dimID == LepidodendronConfig.dimTriassic)
-			 ){
-			biomeCriteria = true;
+
+		if (biome instanceof BiomeDevonian)
+		{
+			BiomeDevonian biomeDevonian = (BiomeDevonian) biome;
+			if (biomeDevonian.getBiomeType() == EnumBiomeTypeDevonian.Ocean) {
+				biomeCriteria = false;
+			}
+			else {
+				biomeCriteria = true;
+			}
 		}
+		if (biome instanceof BiomeCarboniferous)
+		{
+			BiomeCarboniferous biomeCarboniferous = (BiomeCarboniferous) biome;
+			if (biomeCarboniferous.getBiomeType() == EnumBiomeTypeCarboniferous.Ocean) {
+				biomeCriteria = false;
+			}
+			else {
+				biomeCriteria = true;
+			}
+		}
+		if (biome instanceof BiomePermian)
+		{
+			BiomePermian biomePermian = (BiomePermian) biome;
+			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Ocean) {
+				biomeCriteria = false;
+			}
+			else {
+				biomeCriteria = true;
+			}
+		}
+		if (biome instanceof BiomeTriassic)
+		{
+			BiomeTriassic biomeTriassic = (BiomeTriassic) biome;
+			if (biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Ocean) {
+				biomeCriteria = false;
+			}
+			else {
+				biomeCriteria = true;
+			}
+		}
+		if (biome instanceof BiomeJurassic)
+		{
+			BiomeJurassic biomeJurassic = (BiomeJurassic) biome;
+			if (biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Ocean) {
+				biomeCriteria = false;
+			}
+			else {
+				biomeCriteria = true;
+			}
+		}
+
 		if (!biomeCriteria)
 			return;
 
@@ -112,6 +161,7 @@ public class BlockGreenCharaAlgae extends ElementsLepidodendronMod.ModElement {
 				|| (dimID == LepidodendronConfig.dimOrdovicianSilurian)
 				|| (dimID == LepidodendronConfig.dimPermian)
 				|| (dimID == LepidodendronConfig.dimTriassic)
+				|| (dimID == LepidodendronConfig.dimJurassic)
 		) {
 			multiplier = 2;
 		}
@@ -123,10 +173,7 @@ public class BlockGreenCharaAlgae extends ElementsLepidodendronMod.ModElement {
 
 		if (biome instanceof BiomeDevonian)
 		{
-			BiomeDevonian biomeDev = (BiomeDevonian) biome;
-			if (biomeDev.getBiomeType() != EnumBiomeTypeDevonian.Ocean) {
-				multiplier = 12;
-			}
+			multiplier = 12;
 		}
 
 		for (int i = 0; i < (int) 10 * multiplier; i++) {
@@ -451,8 +498,8 @@ public class BlockGreenCharaAlgae extends ElementsLepidodendronMod.ModElement {
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
 				tooltip.add("Type: Freshwater Algae");
-	        tooltip.add("Periods: Silurian - Devonian - Carboniferous - Permian - Triassic - Jurassic - Cretaceous - Paleogene - Neogene - Quaternary");
-	        tooltip.add("Propagation: water");}
+	        	tooltip.add("Periods: [Silurian -] Devonian - Carboniferous - Permian - Triassic - Jurassic - Cretaceous - Paleogene - Neogene - Quaternary");
+	        	tooltip.add("Propagation: water");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

@@ -21,13 +21,13 @@ import java.util.Random;
 
 public class BiomeProviderTriassic extends BiomeProvider {
     public static List<Biome> allowedBiomes = Lists.newArrayList(
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_ocean")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_ocean_shore")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_beach")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_gondwanan_forest")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_gondwanan_forest_hills")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_gondwanan_forest_crags")),
-            Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_gondwanan_plains"))
+        Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_ocean")),
+        Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_ocean_shore")),
+        Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_beach")),
+        Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_gondwanan_forest")),
+        Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_gondwanan_forest_hills")),
+        Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_gondwanan_forest_crags")),
+        Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_gondwanan_plains"))
     );
     public GenLayer genBiomes;
     /** A GenLayer containing the indices into BiomeGenBase.biomeList[] */
@@ -79,7 +79,7 @@ public class BiomeProviderTriassic extends BiomeProvider {
         {
             for (int i = 0; i < width * height; ++i)
             {
-                biomes[i] = Biome.getBiome(aint[i], Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:Triassic_ocean")));
+                biomes[i] = Biome.getBiome(aint[i], Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_ocean")));
             }
 
             return biomes;
@@ -119,7 +119,7 @@ public class BiomeProviderTriassic extends BiomeProvider {
 
             for (int i = 0; i < width * length; ++i)
             {
-                listToReuse[i] = Biome.getBiome(aint[i], Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:Triassic_ocean")));
+                listToReuse[i] = Biome.getBiome(aint[i], Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_ocean")));
             }
 
             return listToReuse;

@@ -17,6 +17,7 @@ public class ModTriggers
     public static final CustomTrigger ENTER_CARBONIFEROUS = new CustomTrigger("enter_pf_carboniferous");
     public static final CustomTrigger ENTER_PERMIAN = new CustomTrigger("enter_pf_permian");
     public static final CustomTrigger ENTER_TRIASSIC = new CustomTrigger("enter_pf_triassic");
+    public static final CustomTrigger ENTER_JURASSIC = new CustomTrigger("enter_pf_jurassic");
     public static final CustomTrigger REJUVENATE = new CustomTrigger("pf_rejuvenate");
 
     /*
@@ -30,6 +31,7 @@ public class ModTriggers
             ENTER_CARBONIFEROUS,
             ENTER_PERMIAN,
             ENTER_TRIASSIC,
+            ENTER_JURASSIC,
             REJUVENATE
     };
 

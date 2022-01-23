@@ -85,10 +85,15 @@ public class BlockLiriodendronFlower extends ElementsLepidodendronMod.ModElement
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+  	  	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
+
+		@Override
+		public EnumBlockRenderType getRenderType(IBlockState state) {
+			return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+		}
 
 		@Override
 		public boolean isFullCube(IBlockState state) {
@@ -183,11 +188,6 @@ public class BlockLiriodendronFlower extends ElementsLepidodendronMod.ModElement
 			super.eventReceived(state, worldIn, pos, eventID, eventParam);
 			TileEntity tileentity = worldIn.getTileEntity(pos);
 			return tileentity == null ? false : tileentity.receiveClientEvent(eventID, eventParam);
-		}
-
-		@Override
-		public EnumBlockRenderType getRenderType(IBlockState state) {
-			return EnumBlockRenderType.MODEL;
 		}
 
 		@Override

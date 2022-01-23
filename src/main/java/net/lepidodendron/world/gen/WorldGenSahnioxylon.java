@@ -16,7 +16,7 @@ public class WorldGenSahnioxylon extends WorldGenerator
 
     public boolean generate(World worldIn, Random rand, BlockPos position)
     {
-        return true;
+        return generate(worldIn, rand, position, false);
     }
 
     public boolean generate(World worldIn, Random rand, BlockPos position, boolean needsWater)

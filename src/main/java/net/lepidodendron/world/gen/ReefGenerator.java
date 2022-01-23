@@ -29,7 +29,7 @@ public class ReefGenerator extends WorldGenerator
         this.state = reefIn.getDefaultState();
     }
 
-    //marine int: -1  = non-marine, 0 = bothk 1 = marine only
+    //marine int: -1  = non-marine, 0 = both 1 = marine only
     public boolean generate(World worldIn, Random rand, BlockPos position)
     {
 		int dimID = worldIn.provider.getDimension();

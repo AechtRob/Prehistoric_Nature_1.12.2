@@ -160,8 +160,8 @@ public class BlockCzekanowskiaSapling extends ElementsLepidodendronMod.ModElemen
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Ginkgoale (?) tree");
-				tooltip.add("Periods: Triassic - Jurassic - Cretaceous");
+				tooltip.add("Type: Czekanowskiale / Ginkgoale (?) tree");
+				tooltip.add("Periods: late Triassic - Jurassic - Cretaceous");
 				tooltip.add("Propagation: fruit/cone");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }

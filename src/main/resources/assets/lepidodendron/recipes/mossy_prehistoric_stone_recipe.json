@@ -8,40 +8,40 @@
   ],
   "key": {
   	"0": {
-      "type": "forge:ore_dict",
-      "ore": "stone"
+      "item": "minecraft:dirt",
+      "data": 3
     },
     "1": {
-      "type": "forge:ore_dict",
-      "ore": "stone"
+      "item": "minecraft:dirt",
+      "data": 3
     },
     "2": {
-      "type": "forge:ore_dict",
-      "ore": "stone"
+      "item": "minecraft:dirt",
+      "data": 3
     },
     "3": {
-      "type": "forge:ore_dict",
-      "ore": "stone"
+      "item": "minecraft:dirt",
+      "data": 3
     },
     "4": {
       "type": "forge:ore_dict",
       "ore": "plantPrehistoric"
     },
     "5": {
-      "type": "forge:ore_dict",
-      "ore": "stone"
+      "item": "minecraft:dirt",
+      "data": 3
     },
     "6": {
-      "type": "forge:ore_dict",
-      "ore": "stone"
+      "item": "minecraft:dirt",
+      "data": 3
     },
     "7": {
-      "type": "forge:ore_dict",
-      "ore": "stone"
+      "item": "minecraft:dirt",
+      "data": 3
     },
     "8": {
-      "type": "forge:ore_dict",
-      "ore": "stone"
+      "item": "minecraft:dirt",
+      "data": 3
     }
   },
   "result": {

@@ -47,7 +47,15 @@ public class ProcedureWorldGenAlethopteris extends ElementsLepidodendronMod.ModE
 		double counter = 0;
 		double randomiser = 0;
 		
+		Material material = world.getBlockState(new BlockPos((int) x, (int) y, (int) z)).getMaterial();
 		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))
+			&& material != Material.GRASS
+			&& material != Material.GROUND
+			&& material != Material.GLASS
+			&& material != Material.IRON
+			&& material != Material.ROCK
+			&& material != Material.SAND
+			&& material != Material.WOOD
 			) {			
 			world.setBlockToAir(new BlockPos((int) x, (int) y, (int) z));
 			

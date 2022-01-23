@@ -207,6 +207,8 @@ public class BlockAlethopterisLeaves1 extends ElementsLepidodendronMod.ModElemen
 	        }
 		}
 
+
+
 		@Override
 		@SideOnly(Side.CLIENT)
 	    public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)

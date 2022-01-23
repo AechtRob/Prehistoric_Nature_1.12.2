@@ -30,7 +30,7 @@ public class StructureSpawnMatonia extends ElementsLepidodendronMod.ModElement {
 		boolean isNetherType = false;
 		if (shouldGenerateInDimension(dimID, LepidodendronConfig.dimMatonia))
 			dimensionCriteria = true;
-		if (!LepidodendronConfig.genAlpia && !LepidodendronConfig.genAllPlants)
+		if (!LepidodendronConfig.genMatonia && !LepidodendronConfig.genAllPlants)
 			dimensionCriteria = false;
 		if (!dimensionCriteria)
 			return;

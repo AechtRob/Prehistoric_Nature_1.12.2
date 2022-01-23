@@ -7,9 +7,12 @@ import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.item.ItemGreenFilamentousAlgaeItem;
 import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
+import net.lepidodendron.util.EnumBiomeTypeJurassic;
 import net.lepidodendron.util.EnumBiomeTypePermian;
 import net.lepidodendron.util.EnumBiomeTypeTriassic;
 import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassic;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassicFloodplainForested;
 import net.lepidodendron.world.biome.permian.BiomePermian;
 import net.lepidodendron.world.biome.permian.BiomePermianLowlandFloodplain;
 import net.lepidodendron.world.biome.permian.BiomePermianLowlandsForest;
@@ -90,6 +93,9 @@ public class BlockGreenFilamentousAlgae extends ElementsLepidodendronMod.ModElem
 				|| biome == BiomePermianLowlandFloodplain.biome) {
 				biomeCriteria = true;
 			}
+			else {
+				biomeCriteria = false;
+			}
 		}
 		if (biome instanceof BiomeCarboniferous)
 		{
@@ -103,6 +109,20 @@ public class BlockGreenFilamentousAlgae extends ElementsLepidodendronMod.ModElem
 			BiomeTriassic biomeTriassic = (BiomeTriassic) biome;
 			if (biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Warm) {
 				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
+			}
+		}
+		if (biome instanceof BiomeJurassic)
+		{
+			BiomeJurassic biomeJurassic = (BiomeJurassic) biome;
+			if (biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Floodplain
+				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Forest) {
+				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
 			}
 		}
 		if (!biomeCriteria)
@@ -119,6 +139,9 @@ public class BlockGreenFilamentousAlgae extends ElementsLepidodendronMod.ModElem
 		}
 		if (biome == BiomePermianLowlandFloodplain.biome) {
 			GenChance = 156;
+		}
+		if (biome == BiomeJurassicFloodplainForested.biome) {
+			GenChance = 92;
 		}
 
 		for (int i = 0; i < (int) GenChance; i++) {

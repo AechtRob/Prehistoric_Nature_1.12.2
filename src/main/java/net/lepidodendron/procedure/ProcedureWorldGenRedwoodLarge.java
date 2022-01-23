@@ -1,6 +1,7 @@
 package net.lepidodendron.procedure;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -38,7 +39,15 @@ public class ProcedureWorldGenRedwoodLarge extends ElementsLepidodendronMod.ModE
 		World world = (World) dependencies.get("world");
 		boolean SaplingSpawn = (boolean) dependencies.get("SaplingSpawn");
 		
+		Material material = world.getBlockState(new BlockPos((int) x, (int) y, (int) z)).getMaterial();
 		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))
+			&& material != Material.GRASS
+			&& material != Material.GROUND
+			&& material != Material.GLASS
+			&& material != Material.IRON
+			&& material != Material.ROCK
+			&& material != Material.SAND
+			&& material != Material.WOOD
 			&& (world.canSeeSky(new BlockPos((int) x, (int) (y + 1), (int) (z - 1))))
 			&& (world.canSeeSky(new BlockPos((int) x, (int) (y + 1), (int) (z + 1))))
 			&& (world.canSeeSky(new BlockPos((int) (x + 1), (int) (y + 1), (int) (z - 1))))

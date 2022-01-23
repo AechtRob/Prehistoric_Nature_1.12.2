@@ -32,13 +32,18 @@ public class GenLayerDiversifyTriassic extends GenLayer {
     public int TRIASSIC_WARM_LAKELAND_ID =  Biome.getIdForBiome(TRIASSIC_WARM_LAKELAND);
     public Biome TRIASSIC_WARM_VOLCANIC_HILLS = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_warm_volcanic_hills"));
     public int TRIASSIC_WARM_VOLCANIC_HILLS_ID =  Biome.getIdForBiome(TRIASSIC_WARM_VOLCANIC_HILLS);
-    
+    public Biome TRIASSIC_GONDWANAN_PLAIN = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_gondwanan_plain"));
+    public int TRIASSIC_GONDWANAN_PLAIN_ID =  Biome.getIdForBiome(TRIASSIC_GONDWANAN_PLAIN);
+
+
     private final int CoolBiomes[] = new int[] {
         TRIASSIC_GONDWANAN_FOREST_ID,
         TRIASSIC_GONDWANAN_FOREST_ID,
         TRIASSIC_GONDWANAN_FOREST_HILLS_ID,
         TRIASSIC_GONDWANAN_FOREST_HILLS_ID,
-        TRIASSIC_GONDWANAN_FOREST_CRAGS_ID
+        TRIASSIC_GONDWANAN_FOREST_CRAGS_ID,
+        TRIASSIC_GONDWANAN_PLAIN_ID,
+        TRIASSIC_GONDWANAN_PLAIN_ID
     };
 
      private final int DesertBiomes[] = new int[] {

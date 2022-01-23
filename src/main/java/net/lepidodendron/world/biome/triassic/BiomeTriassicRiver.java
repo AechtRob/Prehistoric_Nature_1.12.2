@@ -9,6 +9,7 @@ import net.lepidodendron.world.gen.*;
 import net.minecraft.block.BlockBush;
 import net.minecraft.block.BlockDoublePlant;
 import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -26,9 +27,8 @@ import java.util.Random;
 public class BiomeTriassicRiver extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:triassic_river")
 	public static final BiomeGenCustom biome = null;
-
 	public BiomeTriassicRiver(ElementsLepidodendronMod instance) {
-		super(instance, 1591);
+		super(instance, 1589);
 	}
 
 	@Override
@@ -39,26 +39,26 @@ public class BiomeTriassicRiver extends ElementsLepidodendronMod.ModElement {
 	@Override
 	public void init(FMLInitializationEvent event) {
 		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.RIVER);
+		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.WET);
 		BiomeDictionary.addTypes(biome, BiomeDictionary.Type.LUSH);
 	}
 
 	static class BiomeGenCustom extends BiomeTriassic {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("Triassic Creek").setRainfall(0.5F).setBaseHeight(-0.50F).setHeightVariation(0.01F).setWaterColor(13038245));
+			//was height 0.001
+			super(new BiomeProperties("Triassic River").setBaseHeight(-0.525F).setHeightVariation(0.0F).setTemperature(1.0F).setRainfall(0.5F));
 			setRegistryName("triassic_river");
-
-			topBlock = BlockSandRedWavy.block.getDefaultState();
+			topBlock = Blocks.SAND.getStateFromMeta(1);
 			fillerBlock = BlockSandyDirtRed.block.getDefaultState();
 			decorator.treesPerChunk = -999;
 			decorator.flowersPerChunk = 0;
 			decorator.grassPerChunk = 0;
-			decorator.mushroomsPerChunk = 20;
+			decorator.mushroomsPerChunk = 0;
 			decorator.bigMushroomsPerChunk = 0;
 			decorator.reedsPerChunk = 0;
 			decorator.cactiPerChunk = 0;
-			decorator.sandPatchesPerChunk = 0;
-			decorator.gravelPatchesPerChunk = 0;
-			decorator.clayPerChunk = 0;
+			decorator.sandPatchesPerChunk = 10;
+			decorator.gravelPatchesPerChunk = 10;
 			this.spawnableMonsterList.clear();
 			this.spawnableCreatureList.clear();
 			this.spawnableWaterCreatureList.clear();
@@ -120,10 +120,12 @@ public class BiomeTriassicRiver extends ElementsLepidodendronMod.ModElement {
 		}
 
 		@Override
-		public void decorate(World worldIn, Random rand, BlockPos pos) {
+		public void decorate(World worldIn, Random rand, BlockPos pos)
+		{
 
 			//Spawns forcefully borrow the bush event - why not?
-			if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.DEAD_BUSH)) {
+			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.DEAD_BUSH))
+			{
 				String[] MobString = LepidodendronConfig.dimPermianMobsOceanBespoke;
 				if (LepidodendronConfig.doSpawnsPrehistoricFloraDefault) {
 					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianMobsOceanPF);
@@ -136,6 +138,8 @@ public class BiomeTriassicRiver extends ElementsLepidodendronMod.ModElement {
 				}
 				//ChunkGenSpawner.executeProcedure(false, MobString, worldIn, topBlock, pos, rand);
 			}
+
+
 
 			if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
 				for (int i = 0; i < 2; ++i) {
@@ -319,7 +323,6 @@ public class BiomeTriassicRiver extends ElementsLepidodendronMod.ModElement {
 					SANDY_GROUNDCOVER_GENERATOR.generate(worldIn, rand, pos.add(j, l, k));
 				}
 
-
 			super.decorate(worldIn, rand, pos);
 		}
 
@@ -329,4 +332,5 @@ public class BiomeTriassicRiver extends ElementsLepidodendronMod.ModElement {
 		}
 
 	}
+
 }

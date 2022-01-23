@@ -87,7 +87,7 @@ public abstract class EntityPrehistoricInsectFlyingBase extends EntityTameable i
         this.dataManager.register(SITTING, false);
         this.dataManager.register(SIT_FACE, EnumFacing.DOWN);
         this.dataManager.register(SIT_BLOCK_POS, Optional.absent());
-        this.dataManager.register(TICKS, 0);
+        this.dataManager.register(TICKS, rand.nextInt(24000));
     }
 
     @Override

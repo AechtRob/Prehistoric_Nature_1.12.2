@@ -507,7 +507,10 @@ public class BlockNematophyta extends ElementsLepidodendronMod.ModElement {
 				IBlockState iblockstate = world.getBlockState(pos.south());
 				if (world.isAirBlock(pos.south()) || 
 					(
-						(iblockstate.getBlockFaceShape(world, pos.south(), EnumFacing.NORTH) != BlockFaceShape.SOLID)
+						(iblockstate.getBlockFaceShape(world, pos.south(), EnumFacing.NORTH) != BlockFaceShape.SOLID
+						|| iblockstate.getMaterial() == Material.ICE
+						|| iblockstate.getMaterial() == Material.PACKED_ICE
+						|| iblockstate.getMaterial() == Material.GLASS)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, world, pos.south()))
 					)	
 				)
@@ -522,7 +525,10 @@ public class BlockNematophyta extends ElementsLepidodendronMod.ModElement {
 				IBlockState iblockstate = world.getBlockState(pos.north());
 				if (world.isAirBlock(pos.north()) || 
 					(
-						(iblockstate.getBlockFaceShape(world, pos.north(), EnumFacing.SOUTH) != BlockFaceShape.SOLID)
+						(iblockstate.getBlockFaceShape(world, pos.north(), EnumFacing.SOUTH) != BlockFaceShape.SOLID
+							|| iblockstate.getMaterial() == Material.ICE
+								|| iblockstate.getMaterial() == Material.PACKED_ICE
+								|| iblockstate.getMaterial() == Material.GLASS)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, world, pos.north()))
 					)	
 				)
@@ -537,7 +543,10 @@ public class BlockNematophyta extends ElementsLepidodendronMod.ModElement {
 				IBlockState iblockstate = world.getBlockState(pos.west());
 				if (world.isAirBlock(pos.west()) || 
 					(
-						(iblockstate.getBlockFaceShape(world, pos.west(), EnumFacing.EAST) != BlockFaceShape.SOLID)
+						(iblockstate.getBlockFaceShape(world, pos.west(), EnumFacing.EAST) != BlockFaceShape.SOLID
+								|| iblockstate.getMaterial() == Material.ICE
+								|| iblockstate.getMaterial() == Material.PACKED_ICE
+								|| iblockstate.getMaterial() == Material.GLASS)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, world, pos.west()))
 					)	
 				)
@@ -552,7 +561,10 @@ public class BlockNematophyta extends ElementsLepidodendronMod.ModElement {
 				IBlockState iblockstate = world.getBlockState(pos.east());
 				if (world.isAirBlock(pos.east()) || 
 					(
-						(iblockstate.getBlockFaceShape(world, pos.east(), EnumFacing.WEST) != BlockFaceShape.SOLID)
+						(iblockstate.getBlockFaceShape(world, pos.east(), EnumFacing.WEST) != BlockFaceShape.SOLID
+								|| iblockstate.getMaterial() == Material.ICE
+								|| iblockstate.getMaterial() == Material.PACKED_ICE
+								|| iblockstate.getMaterial() == Material.GLASS)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, world, pos.east()))
 					)	
 				)
@@ -567,7 +579,10 @@ public class BlockNematophyta extends ElementsLepidodendronMod.ModElement {
 				IBlockState iblockstate = world.getBlockState(pos.down());
 				if (world.isAirBlock(pos.down()) || 
 					(
-						(iblockstate.getBlockFaceShape(world, pos.down(), EnumFacing.UP) != BlockFaceShape.SOLID)
+						(iblockstate.getBlockFaceShape(world, pos.down(), EnumFacing.UP) != BlockFaceShape.SOLID
+								|| iblockstate.getMaterial() == Material.ICE
+								|| iblockstate.getMaterial() == Material.PACKED_ICE
+								|| iblockstate.getMaterial() == Material.GLASS)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, world, pos.down()))
 						&& (iblockstate.getMaterial() != Material.WATER)
 					)	
@@ -583,7 +598,10 @@ public class BlockNematophyta extends ElementsLepidodendronMod.ModElement {
 				IBlockState iblockstate = world.getBlockState(pos.up());
 				if (world.isAirBlock(pos.up()) || 
 					(
-						(iblockstate.getBlockFaceShape(world, pos.up(), EnumFacing.DOWN) != BlockFaceShape.SOLID)
+						(iblockstate.getBlockFaceShape(world, pos.up(), EnumFacing.DOWN) != BlockFaceShape.SOLID
+								|| iblockstate.getMaterial() == Material.ICE
+								|| iblockstate.getMaterial() == Material.PACKED_ICE
+								|| iblockstate.getMaterial() == Material.GLASS)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, world, pos.up()))
 					)	
 				)
@@ -604,7 +622,10 @@ public class BlockNematophyta extends ElementsLepidodendronMod.ModElement {
 				IBlockState iblockstate = worldIn.getBlockState(pos.south());
 				if (worldIn.isAirBlock(pos.south()) || 
 					(
-						(iblockstate.getBlockFaceShape(worldIn, pos.south(), EnumFacing.NORTH) != BlockFaceShape.SOLID)
+						(iblockstate.getBlockFaceShape(worldIn, pos.south(), EnumFacing.NORTH) != BlockFaceShape.SOLID
+								|| iblockstate.getMaterial() == Material.ICE
+								|| iblockstate.getMaterial() == Material.PACKED_ICE
+								|| iblockstate.getMaterial() == Material.GLASS)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.south()))
 					)	
 				)
@@ -619,7 +640,10 @@ public class BlockNematophyta extends ElementsLepidodendronMod.ModElement {
 				IBlockState iblockstate = worldIn.getBlockState(pos.north());
 				if (worldIn.isAirBlock(pos.north()) || 
 					(
-						(iblockstate.getBlockFaceShape(worldIn, pos.north(), EnumFacing.SOUTH) != BlockFaceShape.SOLID)
+						(iblockstate.getBlockFaceShape(worldIn, pos.north(), EnumFacing.SOUTH) != BlockFaceShape.SOLID
+								|| iblockstate.getMaterial() == Material.ICE
+								|| iblockstate.getMaterial() == Material.PACKED_ICE
+								|| iblockstate.getMaterial() == Material.GLASS)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.north()))
 					)	
 				)
@@ -634,7 +658,10 @@ public class BlockNematophyta extends ElementsLepidodendronMod.ModElement {
 				IBlockState iblockstate = worldIn.getBlockState(pos.west());
 				if (worldIn.isAirBlock(pos.west()) || 
 					(
-						(iblockstate.getBlockFaceShape(worldIn, pos.west(), EnumFacing.EAST) != BlockFaceShape.SOLID)
+						(iblockstate.getBlockFaceShape(worldIn, pos.west(), EnumFacing.EAST) != BlockFaceShape.SOLID
+								|| iblockstate.getMaterial() == Material.ICE
+								|| iblockstate.getMaterial() == Material.PACKED_ICE
+								|| iblockstate.getMaterial() == Material.GLASS)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.west()))
 					)	
 				)
@@ -649,7 +676,10 @@ public class BlockNematophyta extends ElementsLepidodendronMod.ModElement {
 				IBlockState iblockstate = worldIn.getBlockState(pos.east());
 				if (worldIn.isAirBlock(pos.east()) || 
 					(
-						(iblockstate.getBlockFaceShape(worldIn, pos.east(), EnumFacing.WEST) != BlockFaceShape.SOLID)
+						(iblockstate.getBlockFaceShape(worldIn, pos.east(), EnumFacing.WEST) != BlockFaceShape.SOLID
+								|| iblockstate.getMaterial() == Material.ICE
+								|| iblockstate.getMaterial() == Material.PACKED_ICE
+								|| iblockstate.getMaterial() == Material.GLASS)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.east()))
 					)	
 				)
@@ -664,7 +694,10 @@ public class BlockNematophyta extends ElementsLepidodendronMod.ModElement {
 				IBlockState iblockstate = worldIn.getBlockState(pos.down());
 				if (worldIn.isAirBlock(pos.down()) || 
 					(
-						(iblockstate.getBlockFaceShape(worldIn, pos.down(), EnumFacing.UP) != BlockFaceShape.SOLID)
+						(iblockstate.getBlockFaceShape(worldIn, pos.down(), EnumFacing.UP) != BlockFaceShape.SOLID
+								|| iblockstate.getMaterial() == Material.ICE
+								|| iblockstate.getMaterial() == Material.PACKED_ICE
+								|| iblockstate.getMaterial() == Material.GLASS)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.down()))
 						&& (iblockstate.getMaterial() != Material.WATER)
 					)	
@@ -680,7 +713,10 @@ public class BlockNematophyta extends ElementsLepidodendronMod.ModElement {
 				IBlockState iblockstate = worldIn.getBlockState(pos.up());
 				if (worldIn.isAirBlock(pos.up()) || 
 					(
-						(iblockstate.getBlockFaceShape(worldIn, pos.up(), EnumFacing.DOWN) != BlockFaceShape.SOLID)
+						(iblockstate.getBlockFaceShape(worldIn, pos.up(), EnumFacing.DOWN) != BlockFaceShape.SOLID
+								|| iblockstate.getMaterial() == Material.ICE
+								|| iblockstate.getMaterial() == Material.PACKED_ICE
+								|| iblockstate.getMaterial() == Material.GLASS)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.up()))
 					)	
 				)
@@ -1240,7 +1276,10 @@ public class BlockNematophyta extends ElementsLepidodendronMod.ModElement {
 	        		blockface = false;
 			}
 			if (side == EnumFacing.UP) {
-	        	if (worldIn.getBlockState(pos.down()).getBlockFaceShape(worldIn, pos.down(), side) != BlockFaceShape.SOLID)
+	        	if (worldIn.getBlockState(pos.down()).getBlockFaceShape(worldIn, pos.down(), side) != BlockFaceShape.SOLID
+						|| worldIn.getBlockState(pos.down()).getMaterial() == Material.ICE
+						|| worldIn.getBlockState(pos.down()).getMaterial() == Material.PACKED_ICE
+						|| worldIn.getBlockState(pos.down()).getMaterial() == Material.GLASS)
 	        		blockface = false;
 			}
 			if (side == EnumFacing.DOWN) {

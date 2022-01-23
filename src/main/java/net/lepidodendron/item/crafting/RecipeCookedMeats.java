@@ -192,6 +192,7 @@ public class RecipeCookedMeats extends ElementsLepidodendronMod.ModElement {
 		GameRegistry.addSmelting(new ItemStack(ItemSaivodusRaw.block, (int) (1)), new ItemStack(ItemSaivodusCooked.block, (int) (1)), 0.35F);
 		GameRegistry.addSmelting(new ItemStack(ItemTapinocephalusRaw.block, (int) (1)), new ItemStack(ItemTapinocephalusCooked.block, (int) (1)), 0.35F);
 		GameRegistry.addSmelting(new ItemStack(ItemProcynosuchusRaw.block, (int) (1)), new ItemStack(ItemProcynosuchusCooked.block, (int) (1)), 0.35F);
+		GameRegistry.addSmelting(new ItemStack(ItemDimetrodonRaw.block, (int) (1)), new ItemStack(ItemDimetrodonCooked.block, (int) (1)), 0.35F);
 
 
 		GameRegistry.addSmelting(new ItemStack(ItemMonkeyPuzzleNuts.block, (int) (1)), new ItemStack(ItemRoastedPineNuts.block, (int) (1)), 0.15F);
@@ -217,6 +218,7 @@ public class RecipeCookedMeats extends ElementsLepidodendronMod.ModElement {
 		GameRegistry.addSmelting(new ItemStack(ItemUtrechtiaSeed.block, (int) (1)), new ItemStack(ItemRoastedPineNuts.block, (int) (1)), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(ItemWalchiaSeed.block, (int) (1)), new ItemStack(ItemRoastedPineNuts.block, (int) (1)), 0.15F);
 		GameRegistry.addSmelting(new ItemStack(ItemCordaitesSeeds.block, (int) (1)), new ItemStack(ItemRoastedPineNuts.block, (int) (1)), 0.15F);
+		GameRegistry.addSmelting(new ItemStack(ItemPararaucariaNuts.block, (int) (1)), new ItemStack(ItemRoastedPineNuts.block, (int) (1)), 0.15F);
 
 	}
 }

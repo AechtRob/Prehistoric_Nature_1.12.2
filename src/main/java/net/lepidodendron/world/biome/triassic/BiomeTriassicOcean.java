@@ -8,6 +8,7 @@ import net.lepidodendron.block.BlockSandyDirtPangaean;
 import net.lepidodendron.util.EnumBiomeTypeTriassic;
 import net.lepidodendron.world.gen.WorldGenBrachyphyllumTree;
 import net.lepidodendron.world.gen.WorldGenReef;
+import net.lepidodendron.world.gen.WorldGenThrombolite;
 import net.minecraft.block.material.Material;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -42,7 +43,7 @@ public class BiomeTriassicOcean extends ElementsLepidodendronMod.ModElement {
 
 	static class BiomeGenCustom extends BiomeTriassic {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("Triassic Deep Ocean").setBaseHeight(-1.85F).setHeightVariation(0.21F));
+			super(new BiomeProperties("Triassic Deep Ocean").setBaseHeight(-1.15F).setHeightVariation(0.21F));
 			setRegistryName("triassic_ocean");
 			topBlock = BlockSandPangaean.block.getDefaultState();
 			fillerBlock = BlockSandyDirtPangaean.block.getDefaultState();
@@ -90,6 +91,7 @@ public class BiomeTriassicOcean extends ElementsLepidodendronMod.ModElement {
 
 		protected static final WorldGenBrachyphyllumTree BRACHYPHYLLUM = new WorldGenBrachyphyllumTree(false);
 		protected static final WorldGenReef REEF_GENERATOR = new WorldGenReef();
+		protected static final WorldGenThrombolite THROMBOLITE_GENERATOR = new WorldGenThrombolite();
 
 		public WorldGenAbstractTree getRandomTreeFeature(Random rand)
 	    {
@@ -130,7 +132,20 @@ public class BiomeTriassicOcean extends ElementsLepidodendronMod.ModElement {
 					) {
 						REEF_GENERATOR.generate(worldIn, rand, pos1, 3);
 					}
+
 				}
+
+			if (Math.random() > 0.88 && net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.ROCK))
+			{
+				//int i = rand.nextInt(2);
+				//for (int j = 0; j < i; ++j)
+				//{
+				int k = rand.nextInt(16) + 8;
+				int l = rand.nextInt(16) + 8;
+				BlockPos blockpos = worldIn.getHeight(pos.add(k, 0, l));
+				THROMBOLITE_GENERATOR.generate(worldIn, rand, blockpos);
+				//}
+			}
 
 	        super.decorate(worldIn, rand, pos);
 	    }

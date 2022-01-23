@@ -91,6 +91,11 @@ public class BlockMagnoliaFlower extends ElementsLepidodendronMod.ModElement {
 		}
 
 		@Override
+		public EnumBlockRenderType getRenderType(IBlockState state) {
+			return EnumBlockRenderType.ENTITYBLOCK_ANIMATED;
+		}
+
+		@Override
 		public boolean isFullCube(IBlockState state) {
 			return false;
 		}
@@ -183,11 +188,6 @@ public class BlockMagnoliaFlower extends ElementsLepidodendronMod.ModElement {
 			super.eventReceived(state, worldIn, pos, eventID, eventParam);
 			TileEntity tileentity = worldIn.getTileEntity(pos);
 			return tileentity == null ? false : tileentity.receiveClientEvent(eventID, eventParam);
-		}
-
-		@Override
-		public EnumBlockRenderType getRenderType(IBlockState state) {
-			return EnumBlockRenderType.MODEL;
 		}
 
 		@Override

@@ -25,6 +25,7 @@ import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
@@ -200,6 +201,12 @@ public class BlockAntarcticycas extends ElementsLepidodendronMod.ModElement {
 				tooltip.add("Periods: Triassic");
 				tooltip.add("Propagation: fruit/cone");}
 			super.addInformation(stack, player, tooltip, advanced);
+		}
+
+		@Override
+		public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+		{
+			return new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.75D, 1.0D);
 		}
 
 

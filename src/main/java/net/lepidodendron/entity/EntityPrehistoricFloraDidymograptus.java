@@ -3,6 +3,7 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
+import net.lepidodendron.entity.ai.EntityMateAIJellyfishBase;
 import net.lepidodendron.entity.ai.JellyfishWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraJellyfishBase;
 import net.lepidodendron.item.entities.ItemBucketDidymograptus;
@@ -51,9 +52,9 @@ public class EntityPrehistoricFloraDidymograptus extends EntityPrehistoricFloraJ
     public static final Animation ANIMATION_JELLYFISH_WANDER = Animation.create(0);
 
     protected void initEntityAI() {
-        tasks.addTask(0, new JellyfishWander(this, ANIMATION_JELLYFISH_WANDER));
+        tasks.addTask(0, new EntityMateAIJellyfishBase(this, 1));
+        tasks.addTask(1, new JellyfishWander(this, ANIMATION_JELLYFISH_WANDER));
     }
-
     @Override
     public String getTexture() {
         return this.getTexture();

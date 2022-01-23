@@ -7,6 +7,7 @@ import net.lepidodendron.entity.ai.AgeableFishWander;
 import net.lepidodendron.entity.ai.EatFishFoodAIAgeable;
 import net.lepidodendron.entity.ai.EntityMateAI;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableFishBase;
+import net.lepidodendron.item.ItemFishFood;
 import net.lepidodendron.item.entities.ItemBucketCoelacanthus;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
@@ -44,6 +45,12 @@ public class EntityPrehistoricFloraCoelacanthus extends EntityPrehistoricFloraAg
 		maxWidth = 0.45F;
 		maxHeight = 0.22F;
 		maxHealthAgeable = 12.0D;
+	}
+
+	@Override
+	public boolean isBreedingItem(ItemStack stack)
+	{
+		return stack.getItem() == ItemFishFood.block;
 	}
 
 	public static String getPeriod() {return "Devonian - Carboniferous - Permian - Triassic";}

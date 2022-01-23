@@ -9,6 +9,7 @@ public enum EnumBiomeTypePermian implements IStringSerializable {
     Desert("desert"),
     Wetlands("wetlands"),
     Lowlands("lowlands"),
+    River("river"),
     Highlands("highlands"),
     Floodbasalt("floodbasalt"),
     Forest("forest"),

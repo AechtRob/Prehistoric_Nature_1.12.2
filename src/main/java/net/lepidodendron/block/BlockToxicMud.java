@@ -6,6 +6,7 @@ import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronMisc;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
+import net.minecraft.block.material.MapColor;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -54,7 +55,7 @@ public class BlockToxicMud extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class BlockCustom extends Block {
 		public BlockCustom() {
-			super(Material.CLAY);
+			super(Material.CLAY, MapColor.CLAY);
 			setTranslationKey("pf_toxic_mud");
 			setSoundType(SoundType.SLIME);
 			setHarvestLevel("shovel", 1);

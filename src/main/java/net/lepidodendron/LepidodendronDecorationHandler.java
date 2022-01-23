@@ -60,6 +60,8 @@ public class LepidodendronDecorationHandler {
 				event.setResult(Event.Result.DENY);
 			if (LepidodendronConfig.dimTriassic == event.getWorld().provider.getDimension() )
 				event.setResult(Event.Result.DENY);
+			if (LepidodendronConfig.dimJurassic == event.getWorld().provider.getDimension() )
+				event.setResult(Event.Result.DENY);
         }
 
         if (((event.getType() == Decorate.EventType.BIG_SHROOM)) && !LepidodendronConfig.genTransformBiomesMushrooms)
@@ -93,6 +95,8 @@ public class LepidodendronDecorationHandler {
 				event.setResult(Event.Result.DENY);
 			if (LepidodendronConfig.dimTriassic == event.getWorld().provider.getDimension() )
 				event.setResult(Event.Result.DENY);
+			if (LepidodendronConfig.dimJurassic == event.getWorld().provider.getDimension() )
+				event.setResult(Event.Result.DENY);
 
         }
 
@@ -122,6 +126,8 @@ public class LepidodendronDecorationHandler {
 		if (LepidodendronConfig.dimPermian == event.getWorld().provider.getDimension() )
 			event.setResult(Event.Result.DENY);
 		if (LepidodendronConfig.dimTriassic == event.getWorld().provider.getDimension() )
+			event.setResult(Event.Result.DENY);
+		if (LepidodendronConfig.dimJurassic == event.getWorld().provider.getDimension() )
 			event.setResult(Event.Result.DENY);
 	}
 
@@ -155,6 +161,8 @@ public class LepidodendronDecorationHandler {
 			if (LepidodendronConfig.dimPermian == event.getWorld().provider.getDimension() )
 				event.setResult(Event.Result.DENY);
 			if (LepidodendronConfig.dimTriassic == event.getWorld().provider.getDimension() )
+				event.setResult(Event.Result.DENY);
+			if (LepidodendronConfig.dimJurassic == event.getWorld().provider.getDimension() )
 				event.setResult(Event.Result.DENY);
 
         }
@@ -190,6 +198,8 @@ public class LepidodendronDecorationHandler {
 				event.setResult(Event.Result.DENY);
 			if (LepidodendronConfig.dimTriassic == event.getWorld().provider.getDimension() )
 				event.setResult(Event.Result.DENY);
+			if (LepidodendronConfig.dimJurassic == event.getWorld().provider.getDimension() )
+				event.setResult(Event.Result.DENY);
 
         }
 
@@ -223,6 +233,8 @@ public class LepidodendronDecorationHandler {
 			if (LepidodendronConfig.dimPermian == event.getWorld().provider.getDimension() )
 				event.setResult(Event.Result.DENY);
 			if (LepidodendronConfig.dimTriassic == event.getWorld().provider.getDimension() )
+				event.setResult(Event.Result.DENY);
+			if (LepidodendronConfig.dimJurassic == event.getWorld().provider.getDimension() )
 				event.setResult(Event.Result.DENY);
 
         }

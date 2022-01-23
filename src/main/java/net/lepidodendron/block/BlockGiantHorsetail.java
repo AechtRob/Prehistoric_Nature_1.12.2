@@ -7,9 +7,11 @@ import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
+import net.lepidodendron.util.EnumBiomeTypeJurassic;
 import net.lepidodendron.util.EnumBiomeTypePermian;
 import net.lepidodendron.util.EnumBiomeTypeTriassic;
 import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
+import net.lepidodendron.world.biome.jurassic.*;
 import net.lepidodendron.world.biome.permian.*;
 import net.lepidodendron.world.biome.triassic.BiomeTriassic;
 import net.minecraft.block.Block;
@@ -75,8 +77,9 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 		if (!LepidodendronConfig.genHorsetail && !LepidodendronConfig.genAllPlants)
 			dimensionCriteria = false;
 		if ((LepidodendronConfig.dimCarboniferous == dimID
-		|| dimID == LepidodendronConfig.dimPermian
-		|| dimID == LepidodendronConfig.dimTriassic)
+			|| dimID == LepidodendronConfig.dimPermian
+			|| dimID == LepidodendronConfig.dimTriassic
+			|| dimID == LepidodendronConfig.dimJurassic)
 			)
 			dimensionCriteria = true;
 
@@ -110,11 +113,14 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 				|| biomePermian.getBiomeType() == EnumBiomeTypePermian.Ocean) {
 				biomeCriteria = true;
 			}
-			if (biome == BiomePermianLowlandsForest.biome
+			else if (biome == BiomePermianLowlandsForest.biome
 				|| biome == BiomePermianLowlands.biome
 					|| biome == BiomePermianLowlandFloodplain.biome
 					|| biome == BiomePermianHighlands.biome) {
 				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
 			}
 		}
 
@@ -134,6 +140,23 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 				|| biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Warm) {
 				biomeCriteria = true;
 			}
+			else {
+				biomeCriteria = false;
+			}
+		}
+
+		if (biome instanceof BiomeJurassic) {
+			BiomeJurassic biomeJurassic = (BiomeJurassic) biome;
+			if (biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Floodplain
+				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Forest
+				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.River
+                || biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Sandbanks
+				|| biome == BiomeJurassicRoughHills.biome) {
+				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
+			}
 		}
 
 		if (!biomeCriteria)
@@ -151,7 +174,8 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 		
 		if (LepidodendronConfig.dimCarboniferous == dimID
 				|| dimID == LepidodendronConfig.dimPermian
-				|| dimID == LepidodendronConfig.dimTriassic) {
+				|| dimID == LepidodendronConfig.dimTriassic
+				|| dimID == LepidodendronConfig.dimJurassic) {
 			GenChance = 25;
 		}
 		if (biome == BiomePermianLowlands.biome) {
@@ -160,8 +184,11 @@ public class BlockGiantHorsetail extends ElementsLepidodendronMod.ModElement {
 		if (biome == BiomePermianLowlandFloodplain.biome) {
 			GenChance = 156;
 		}
-		if (biome == BiomePermianHighlands.biome) {
+		if (biome == BiomePermianHighlands.biome || biome == BiomeJurassicFloodplainForested.biome) {
 			GenChance = 64;
+		}
+		if (biome == BiomeJurassicRiverbank.biome || biome == BiomeJurassicRiver.biome) {
+			GenChance = 156;
 		}
 
 		int maxheight = LepidodendronConfig.maxheightHorsetail;

@@ -39,7 +39,7 @@ import java.util.function.Supplier;
 public class LepidodendronMod {
 	public static final String MODID = "lepidodendron";
 	public static final String NAME = "Prehistoric Nature";
-	public static final String VERSION = "50.0";
+	public static final String VERSION = "51.0-ALPHA";
 	public static final SimpleNetworkWrapper PACKET_HANDLER = NetworkRegistry.INSTANCE.newSimpleChannel("lepidodendron:a");
 	@SidedProxy(clientSide = "net.lepidodendron.ClientProxyLepidodendronMod", serverSide = "net.lepidodendron.ServerProxyLepidodendronMod")
 	public static IProxyLepidodendronMod proxy;
@@ -590,6 +590,19 @@ public class LepidodendronMod {
 	public static final ResourceLocation ANTEOSAURUS_LOOT_YOUNG = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/anteosaurus_young"));
 	public static final int ENTITY_ALBERTONIA = 249;
 	public static final ResourceLocation ALBERTONIA_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/albertonia"));
+	public static final int ENTITY_COELOPHYSIS = 250;
+	public static final ResourceLocation COELOPHYSIS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/coelophysis"));
+	public static final ResourceLocation COELOPHYSIS_LOOT_YOUNG = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/coelophysis_young"));
+	public static final int ENTITY_EBENAQUA = 251;
+	public static final ResourceLocation EBENAQUA_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/ebenaqua"));
+	public static final int ENTITY_COOPEROCERAS = 252;
+	public static final ResourceLocation COOPEROCERAS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/cooperoceras"));
+	public static final int ENTITY_DORYPTERUS = 253;
+	public static final ResourceLocation DORYPTERUS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/dorypterus"));
+	public static final int ENTITY_LYSTROSAURUS = 254;
+	public static final ResourceLocation LYSTROSAURUS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/lystrosaurus"));
+	public static final ResourceLocation LYSTROSAURUS_LOOT_YOUNG = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/lystrosaurus_young"));
+
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {

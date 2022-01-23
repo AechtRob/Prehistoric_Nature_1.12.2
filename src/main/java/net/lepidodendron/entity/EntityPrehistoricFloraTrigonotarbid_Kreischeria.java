@@ -6,13 +6,16 @@ import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.block.*;
 import net.lepidodendron.entity.ai.AvoidWaterWanderAI;
+import net.lepidodendron.entity.ai.EntityMateAIInsectClimbingBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraInsectClimbingBase;
+import net.lepidodendron.item.entities.ItemBugRaw;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
+import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumFacing;
@@ -85,9 +88,16 @@ public class EntityPrehistoricFloraTrigonotarbid_Kreischeria extends EntityPrehi
 	}
 
 	protected void initEntityAI() {
+		tasks.addTask(0, new EntityMateAIInsectClimbingBase(this, 1));
 		tasks.addTask(1, new EntityAISwimming(this));
 		tasks.addTask(2, new AvoidWaterWanderAI(this, 0.8D));
 		tasks.addTask(3, new EntityAILookIdle(this));
+	}
+
+	@Override
+	public boolean isBreedingItem(ItemStack stack)
+	{
+		return stack.getItem() == ItemBugRaw.block;
 	}
 
 	@Override

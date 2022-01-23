@@ -253,10 +253,10 @@ public class ChunkProviderPrecambrian implements IChunkGenerator {
                         Biome biome1 = this.biomesForGeneration[k + j1 + 2 + (l + k1 + 2) * 10];
                         float f5 = 0 + biome1.getBaseHeight() * 1;
                         float f6 = 0 + biome1.getHeightVariation() * 1;
-                        if (this.terrainType == WorldType.AMPLIFIED && f5 > 0.0F) {
-                            f5 = 1.0F + f5 * 2.0F;
-                            f6 = 1.0F + f6 * 4.0F;
-                        }
+                        //if (this.terrainType == WorldType.AMPLIFIED && f5 > 0.0F) {
+                         //   f5 = 1.0F + f5 * 2.0F;
+                         //   f6 = 1.0F + f6 * 4.0F;
+                        //}
                         float f7 = this.biomeWeights[j1 + 2 + (k1 + 2) * 5] / (f5 + 2.0F);
                         if (biome1.getBaseHeight() > biome.getBaseHeight()) {
                             f7 /= 2.0F;

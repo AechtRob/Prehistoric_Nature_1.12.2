@@ -112,7 +112,7 @@ public abstract class EntityPrehistoricInsectFlyingWalkingBase extends EntityTam
         super.entityInit();
         this.dataManager.register(FLYING, false);
         this.dataManager.register(ISMOVING, false);
-        this.dataManager.register(TICKS, 0);
+        this.dataManager.register(TICKS, rand.nextInt(24000));
         this.dataManager.register(FLYCOOLDOWN, 0);
         this.dataManager.register(WANDERCOOLDOWN, 0);
     }

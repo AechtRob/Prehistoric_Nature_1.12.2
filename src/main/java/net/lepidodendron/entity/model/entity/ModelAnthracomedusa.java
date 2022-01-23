@@ -830,7 +830,7 @@ public class ModelAnthracomedusa extends AdvancedModelBase {
         GlStateManager.blendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE_MINUS_SRC_ALPHA);
         GlStateManager.color(1.0F, 1.0F, 1.0F, 0.9F);
 
-        this.body.render(f5 * 0.85F);
+        this.body.render(f5 * 0.45F);
         GlStateManager.disableBlend();
     }
 
@@ -845,7 +845,7 @@ public class ModelAnthracomedusa extends AdvancedModelBase {
         super.setRotationAngles(f, f1, f2, f3, f4, f5, e);
         this.resetToDefaultPose();
 
-        this.body.offsetY = 0.8F;
+        this.body.offsetY = 1.1F;
         this.body.setScaleX(1.0F);
         this.body.setScaleZ(1.0F);
         this.body.scaleChildren = false;
@@ -928,7 +928,7 @@ public class ModelAnthracomedusa extends AdvancedModelBase {
             if (!e.isInWater()) {
                 this.resetToDefaultPose();
                 this.body.rotateAngleZ = (float) Math.toRadians(90);
-                this.body.offsetY = 0.2F;
+                this.body.offsetY = 0.4F;
                 this.body.offsetX = -0.8F;
                 this.body.offsetZ = -0.1F;
                 this.body.scaleChildren = true;

@@ -4,6 +4,7 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockRedwoodLeaves;
 import net.lepidodendron.block.BlockRedwoodLog;
+import net.minecraft.block.material.Material;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -52,7 +53,15 @@ public class ProcedureWorldGenRedwoodSmall extends ElementsLepidodendronMod.ModE
 		double layer = 0;
 		double branchskip = 0;
 		boolean try2 = false;
+		Material material = world.getBlockState(new BlockPos((int) x, (int) y, (int) z)).getMaterial();
 		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))
+			&& material != Material.GRASS
+			&& material != Material.GROUND
+			&& material != Material.GLASS
+			&& material != Material.IRON
+			&& material != Material.ROCK
+			&& material != Material.SAND
+			&& material != Material.WOOD
 			) {			
 			world.setBlockToAir(new BlockPos((int) x, (int) y, (int) z));
 			

@@ -486,6 +486,20 @@ public class ItemSporeCollectionEnvelope extends ElementsLepidodendronMod.ModEle
 					spores = new ItemStack(ItemXihuphyllumSpores.block, (int) (1));
 					collected = true;
 				}
+				if (blockTarget == BlockLygodium.block) {
+					spores = new ItemStack(ItemLygodiumSpores.block, (int) (1));
+					collected = true;
+				}
+				if (blockTarget == BlockGrassyHorsetail.block) {
+					spores = new ItemStack(ItemGrassyHorsetailSpores.block, (int) (1));
+					collected = true;
+				}
+				if (blockTarget == BlockPachypteris.block
+						|| blockTarget == BlockPachypterisTop.block
+						|| blockTarget == BlockPachypterisStem.block) {
+					spores = new ItemStack(ItemWeichseliaSpores.block, (int) (1));
+					collected = true;
+				}
 
 				if (collected) {
 					stack.shrink(1);

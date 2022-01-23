@@ -3,6 +3,7 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
+import net.lepidodendron.entity.ai.EntityMateAITrilobiteBottomBase;
 import net.lepidodendron.entity.ai.TrilobiteWanderBottom;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteBottomBase;
 import net.lepidodendron.item.entities.ItemPhanerotinus;
@@ -82,8 +83,9 @@ public class EntityPrehistoricFloraPhanerotinus extends EntityPrehistoricFloraTr
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new TrilobiteWanderBottom(this, NO_ANIMATION));
-		tasks.addTask(1, new EntityAILookIdle(this));
+		tasks.addTask(0, new EntityMateAITrilobiteBottomBase(this, 1));
+		tasks.addTask(1, new TrilobiteWanderBottom(this, NO_ANIMATION));
+		tasks.addTask(2, new EntityAILookIdle(this));
 	}
 
 	@Override

@@ -14,7 +14,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
+import net.minecraft.inventory.Container;
+import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -22,10 +26,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.NonNullList;
+import net.minecraft.tileentity.TileEntityLockableLoot;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -37,6 +39,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -142,6 +145,67 @@ public class BlockNestMoschops extends ElementsLepidodendronMod.ModElement {
 		}
 
 		@Override
+		public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn) {
+			if (!worldIn.isRemote) {
+				ItemStack stack = playerIn.getHeldItemMainhand();
+				if (stack.getItem() == Items.SHEARS) {
+					//This will harvest:
+					if (!playerIn.capabilities.isCreativeMode) {
+						List<EntityPrehistoricFloraMoschops> Moschops = worldIn.getEntitiesWithinAABB(EntityPrehistoricFloraMoschops.class, new AxisAlignedBB(pos.add(-16, -8, -16), pos.add(16, 8, 16)));
+						for (EntityPrehistoricFloraMoschops currentMoschops : Moschops) {
+							if (currentMoschops.isPFAdult()) {
+								currentMoschops.setAttackTarget(playerIn);
+								currentMoschops.setOneHit(true);
+							}
+						}
+					}
+				}
+			}
+			super.onBlockClicked(worldIn, pos, playerIn);
+		}
+
+		public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+		{
+			String eggRenderType = "";
+			eggRenderType = new Object() {
+				public String getValue(BlockPos pos, String tag) {
+					TileEntity tileEntity = world.getTileEntity(pos);
+					if (tileEntity != null)
+						return tileEntity.getTileData().getString(tag);
+					return "";
+				}
+			}.getValue(new BlockPos(pos), "egg");
+
+			if ((!player.capabilities.allowEdit) || (!player.getHeldItemMainhand().isEmpty()) || eggRenderType.equals(""))
+			{
+				return super.onBlockActivated(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+			}
+			else {
+				if (!((hand != player.getActiveHand()) && (hand == EnumHand.MAIN_HAND))) {
+					ItemStack stackSeed = new ItemStack(BlockEggsMoschops.block, (int) (1));
+					stackSeed.setCount(1);
+					ItemHandlerHelper.giveItemToPlayer(player, stackSeed);
+					TileEntity te = world.getTileEntity(pos);
+					if (te != null) {
+						te.getTileData().setString("egg", "");
+					}
+					IBlockState bstate = world.getBlockState(pos);
+					world.notifyBlockUpdate(pos, bstate, bstate, 3);
+					if (!player.capabilities.isCreativeMode) {
+						List<EntityPrehistoricFloraMoschops> Moschops = world.getEntitiesWithinAABB(EntityPrehistoricFloraMoschops.class, new AxisAlignedBB(pos.add(-16, -8, -16), pos.add(16, 8, 16)));
+						for (EntityPrehistoricFloraMoschops currentMoschops : Moschops) {
+							if (currentMoschops.isPFAdult()) {
+								currentMoschops.setAttackTarget(player);
+								currentMoschops.setOneHit(true);
+							}
+						}
+					}
+					return true;
+				}
+				return true;
+			}
+		}
+
 		public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
 			//Aggro nearby adults:
 			if (!player.capabilities.isCreativeMode) {
@@ -242,8 +306,9 @@ public class BlockNestMoschops extends ElementsLepidodendronMod.ModElement {
 
 	}
 
-	public static class TileEntityCustom extends TileEntity {
+	public static class TileEntityCustom extends TileEntityLockableLoot {
 
+		private NonNullList<ItemStack> stacks = NonNullList.<ItemStack>withSize(1, ItemStack.EMPTY);
 		private String egg;
 
 		@Override
@@ -275,6 +340,9 @@ public class BlockNestMoschops extends ElementsLepidodendronMod.ModElement {
 			if (compound.hasKey("egg")) {
 				this.egg = compound.getString("egg");
 			}
+			this.stacks = NonNullList.<ItemStack>withSize(this.getSizeInventory(), ItemStack.EMPTY);
+			if (!this.checkLootAndRead(compound))
+				ItemStackHelper.loadAllItems(compound, this.stacks);
 		}
 
 		@Override
@@ -285,12 +353,65 @@ public class BlockNestMoschops extends ElementsLepidodendronMod.ModElement {
 			{
 				compound.setString("egg", this.egg);
 			}
+			if (!this.checkLootAndWrite(compound))
+				ItemStackHelper.saveAllItems(compound, this.stacks);
 			return compound;
+
 		}
 
 		public boolean hasEgg()
 		{
 			return this.egg != null;
+		}
+
+
+
+		@Override
+		protected NonNullList<ItemStack> getItems() {
+			return this.stacks;
+		}
+
+		@Override
+		public int getSizeInventory() {
+			return 1;
+		}
+
+		@Override
+		public boolean isEmpty() {
+			for (ItemStack itemstack : this.stacks)
+				if (!itemstack.isEmpty())
+					return false;
+			return true;
+		}
+
+		@Override
+		public boolean isItemValidForSlot(int index, ItemStack stack) {
+			return true;
+		}
+
+		@Override
+		public ItemStack getStackInSlot(int slot) {
+			return stacks.get(slot);
+		}
+
+		@Override
+		public int getInventoryStackLimit() {
+			return 1;
+		}
+
+		@Override
+		public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
+			return null;
+		}
+
+		@Override
+		public String getGuiID() {
+			return null;
+		}
+
+		@Override
+		public String getName() {
+			return null;
 		}
 
 	}

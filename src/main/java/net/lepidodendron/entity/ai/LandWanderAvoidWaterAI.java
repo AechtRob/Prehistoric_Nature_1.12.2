@@ -38,6 +38,10 @@ public class LandWanderAvoidWaterAI extends EntityAIBase
     public boolean shouldExecute()
     {
 
+        if (entity.getAnimation() == entity.DRINK_ANIMATION) {
+            return false;
+        }
+
         if (!this.mustUpdate)
         {
             if (this.entity.getIdleTime() >= 100 && !this.entity.isReallyInWater())

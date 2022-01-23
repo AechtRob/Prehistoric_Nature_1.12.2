@@ -11,13 +11,21 @@ import java.util.Random;
 public class WorldGenMud extends WorldGenerator
 {
 
-    public boolean generate(World worldIn, Random rand, BlockPos position)
+	public boolean generate(World worldIn, Random rand, BlockPos position) {
+		return generate(worldIn, rand, position, false);
+	}
+
+    public boolean generate(World worldIn, Random rand, BlockPos position, boolean nearSea)
     {
         boolean flag = false;
 
         for (int i = 0; i < 64; ++i)
         {
             BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
+
+            if (nearSea && (blockpos.getY() - rand.nextInt(3)) > worldIn.getSeaLevel()) {
+				continue;
+			}
 
             if ((!worldIn.provider.isNether() || blockpos.getY() < 254) && worldIn.isAirBlock(blockpos)
             	&& (
@@ -29,7 +37,8 @@ public class WorldGenMud extends WorldGenerator
             )
             {
                 worldIn.setBlockState(blockpos.down(), BlockCarboniferousMud.block.getDefaultState(), 2);
-                flag = true;
+				worldIn.setBlockToAir(blockpos);
+				flag = true;
             }
             
             if (Math.random() > 0.75) {
@@ -45,7 +54,8 @@ public class WorldGenMud extends WorldGenerator
 	            )
 	            {
 	                worldIn.setBlockState(blockpos.down(), BlockCarboniferousMud.block.getDefaultState(), 2);
-	                flag = true;
+					worldIn.setBlockToAir(blockpos);
+					flag = true;
 	            }
 
 	            blockpos1 = blockpos.south();
@@ -59,7 +69,8 @@ public class WorldGenMud extends WorldGenerator
 	            )
 	            {
 	                worldIn.setBlockState(blockpos.down(), BlockCarboniferousMud.block.getDefaultState(), 2);
-	                flag = true;
+					worldIn.setBlockToAir(blockpos);
+					flag = true;
 	            }
 
 	            blockpos1 = blockpos.east();
@@ -73,7 +84,8 @@ public class WorldGenMud extends WorldGenerator
 	            )
 	            {
 	                worldIn.setBlockState(blockpos.down(), BlockCarboniferousMud.block.getDefaultState(), 2);
-	                flag = true;
+					worldIn.setBlockToAir(blockpos);
+					flag = true;
 	            }
 
 	            blockpos1 = blockpos.west();
@@ -87,7 +99,8 @@ public class WorldGenMud extends WorldGenerator
 	            )
 	            {
 	                worldIn.setBlockState(blockpos.down(), BlockCarboniferousMud.block.getDefaultState(), 2);
-	                flag = true;
+					worldIn.setBlockToAir(blockpos);
+					flag = true;
 	            }
 
             }

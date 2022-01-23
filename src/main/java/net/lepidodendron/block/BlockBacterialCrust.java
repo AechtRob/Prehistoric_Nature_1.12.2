@@ -74,7 +74,7 @@ public class BlockBacterialCrust extends ElementsLepidodendronMod.ModElement {
 	    public static final PropertyBool SPREADABLE = PropertyBool.create("spreadable");
     
 		public BlockCustom() {
-			super(Material.VINE);
+			super(Material.VINE, MapColor.ADOBE);
 			setTranslationKey("pf_bacterial_crust");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.2F);

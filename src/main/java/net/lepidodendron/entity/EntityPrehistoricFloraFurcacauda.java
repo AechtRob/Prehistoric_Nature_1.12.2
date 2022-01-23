@@ -5,6 +5,7 @@ import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.EatFishFoodAIFish;
+import net.lepidodendron.entity.ai.EntityMateAIFishBase;
 import net.lepidodendron.entity.ai.FishWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.item.entities.ItemBucketFurcacauda;
@@ -33,7 +34,7 @@ public class EntityPrehistoricFloraFurcacauda extends EntityPrehistoricFloraFish
 
 	public EntityPrehistoricFloraFurcacauda(World world) {
 		super(world);
-		setSize(0.5F, 0.3F);
+		setSize(0.3F, 0.25F);
 		experienceValue = 0;
 		this.isImmuneToFire = false;
 		setNoAI(!true);
@@ -85,7 +86,8 @@ public class EntityPrehistoricFloraFurcacauda extends EntityPrehistoricFloraFish
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new FishWander(this, NO_ANIMATION));
+		tasks.addTask(0, new EntityMateAIFishBase(this, 1));
+		tasks.addTask(1, new FishWander(this, NO_ANIMATION));
 		this.targetTasks.addTask(0, new EatFishFoodAIFish(this));
 	}
 

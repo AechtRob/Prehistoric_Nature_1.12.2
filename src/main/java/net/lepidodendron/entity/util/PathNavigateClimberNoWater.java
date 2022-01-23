@@ -3,6 +3,7 @@ package net.lepidodendron.entity.util;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLiving;
 import net.minecraft.pathfinding.Path;
+import net.minecraft.pathfinding.PathFinder;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -14,6 +15,13 @@ public class PathNavigateClimberNoWater extends PathNavigateGroundNoWater
     public PathNavigateClimberNoWater(EntityLiving entityLivingIn, World worldIn)
     {
         super(entityLivingIn, worldIn);
+    }
+
+    protected PathFinder getPathFinder()
+    {
+        this.nodeProcessor = new WalkNodeProcessorNoWater();
+        this.nodeProcessor.setCanEnterDoors(true);
+        return new PathFinder(this.nodeProcessor);
     }
 
     public Path getPathToPos(BlockPos pos)

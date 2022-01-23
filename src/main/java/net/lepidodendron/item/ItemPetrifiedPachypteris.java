@@ -34,7 +34,7 @@ public class ItemPetrifiedPachypteris extends ElementsLepidodendronMod.ModElemen
 	public static class ItemCustom extends ItemPetrified {
 		public ItemCustom() {
 			super(BlockPachypteris.block);
-			setTranslationKey("pf_petrified_pachypteris");
+			setTranslationKey("pf_petrified_weichselia");
 			setRegistryName("petrified_pachypteris");
 			setCreativeTab(TabLepidodendronPlants.tab);
 		}

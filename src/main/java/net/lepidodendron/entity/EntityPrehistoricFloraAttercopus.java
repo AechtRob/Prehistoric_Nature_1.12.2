@@ -6,6 +6,7 @@ import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.block.*;
 import net.lepidodendron.entity.ai.AvoidWaterWanderAI;
+import net.lepidodendron.entity.ai.EntityMateAIInsectClimbingBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraInsectClimbingBase;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.properties.PropertyDirection;
@@ -86,6 +87,7 @@ public class EntityPrehistoricFloraAttercopus extends EntityPrehistoricFloraInse
 	}
 
 	protected void initEntityAI() {
+		tasks.addTask(0, new EntityMateAIInsectClimbingBase(this, 1));
 		tasks.addTask(1, new EntityAISwimming(this));
 		tasks.addTask(2, new AvoidWaterWanderAI(this, 0.8D));
 		tasks.addTask(3, new EntityAILookIdle(this));

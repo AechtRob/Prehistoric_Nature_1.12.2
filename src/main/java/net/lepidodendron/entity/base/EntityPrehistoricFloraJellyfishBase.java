@@ -4,15 +4,17 @@ import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.IAnimatedEntity;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.item.ItemFishFood;
 import net.lepidodendron.item.entities.ItemUnknownPlanula;
 import net.minecraft.block.material.Material;
 import net.minecraft.enchantment.EnchantmentHelper;
+import net.minecraft.entity.EntityAgeable;
 import net.minecraft.entity.IEntityLivingData;
 import net.minecraft.entity.MoverType;
 import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityMoveHelper;
 import net.minecraft.entity.item.EntityItem;
-import net.minecraft.entity.passive.EntityWaterMob;
+import net.minecraft.entity.passive.EntityTameable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -22,6 +24,7 @@ import net.minecraft.network.datasync.DataSerializers;
 import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.PathNavigateSwimmer;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.RayTraceResult;
@@ -35,13 +38,15 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import javax.annotation.Nullable;
 
-public abstract class EntityPrehistoricFloraJellyfishBase extends EntityWaterMob implements IAnimatedEntity {
+public abstract class EntityPrehistoricFloraJellyfishBase extends EntityTameable implements IAnimatedEntity {
     public BlockPos currentTarget;
     @SideOnly(Side.CLIENT)
     public ChainBuffer chainBuffer;
     private int rotationStage;
     private int jumpTicks;
     private static final DataParameter<Integer> TICKS = EntityDataManager.createKey(EntityPrehistoricFloraJellyfishBase.class, DataSerializers.VARINT);
+    private static final DataParameter<Integer> MATEABLE = EntityDataManager.createKey(EntityPrehistoricFloraJellyfishBase.class, DataSerializers.VARINT);
+    private int inPFLove;
 
     public EntityPrehistoricFloraJellyfishBase(World world) {
         super(world);
@@ -51,6 +56,27 @@ public abstract class EntityPrehistoricFloraJellyfishBase extends EntityWaterMob
         if (FMLCommonHandler.instance().getSide().isClient()) {
             this.chainBuffer = new ChainBuffer();
         }
+    }
+    @Nullable
+    @Override
+    public EntityAgeable createChild(EntityAgeable ageable) {
+        return null;
+    }
+
+    public ItemStack getPropagule() {
+        return new ItemStack(ItemUnknownPlanula.block, (int) (1));
+    }
+
+    @Override
+    public boolean isBreedingItem(ItemStack stack)
+    {
+        return (stack.getItem() == new ItemStack(ItemFishFood.block, (int) (1)).getItem());
+    }
+
+    @Override
+    public boolean isPushedByWater()
+    {
+        return false;
     }
 
     public abstract boolean dropsEggs();
@@ -78,7 +104,8 @@ public abstract class EntityPrehistoricFloraJellyfishBase extends EntityWaterMob
     @Override
     protected void entityInit() {
         super.entityInit();
-        this.dataManager.register(TICKS, 0);
+        this.dataManager.register(TICKS, rand.nextInt(24000));
+        this.dataManager.register(MATEABLE, 0);
     }
 
     public int getTicks() {
@@ -89,10 +116,19 @@ public abstract class EntityPrehistoricFloraJellyfishBase extends EntityWaterMob
         this.dataManager.set(TICKS, ticks);
     }
 
+    public int getMateable() {
+        return this.dataManager.get(MATEABLE);
+    }
+
+    public void setMateable(int ticks) {
+        this.dataManager.set(MATEABLE, ticks);
+    }
+
     @Override
     public IEntityLivingData onInitialSpawn(DifficultyInstance difficulty, @Nullable IEntityLivingData livingdata) {
         livingdata = super.onInitialSpawn(difficulty, livingdata);
         this.setTicks(0);
+        this.setMateable(0);
         return livingdata;
     }
 
@@ -104,12 +140,32 @@ public abstract class EntityPrehistoricFloraJellyfishBase extends EntityWaterMob
     {
         super.writeEntityToNBT(compound);
         compound.setInteger("Ticks", this.getTicks());
+        compound.setInteger("InPFLove", this.inPFLove);
+        compound.setInteger("mateable", this.getMateable());
     }
 
     //@Override
     public void readEntityFromNBT(NBTTagCompound compound) {
         super.readEntityFromNBT(compound);
         this.setTicks(compound.getInteger("Ticks"));
+        this.inPFLove = compound.getInteger("InPFLove");
+        this.setMateable(compound.getInteger("mateable"));
+    }
+
+    @Override
+    public boolean attackEntityFrom(DamageSource ds, float i) {
+        if (ds == DamageSource.IN_WALL) {
+            return false;
+        }
+        if (this.isEntityInvulnerable(ds))
+        {
+            return false;
+        }
+        else
+        {
+            this.inPFLove = 0;
+            return super.attackEntityFrom(ds, i);
+        }
     }
 
     @Override
@@ -232,6 +288,15 @@ public abstract class EntityPrehistoricFloraJellyfishBase extends EntityWaterMob
         this.world.profiler.startSection("push");
         this.collideWithNearbyEntities();
         this.world.profiler.endSection();
+
+        if (this.inPFLove > 0)
+        {
+            --this.inPFLove;
+        }
+
+        if (this.getMateable() < 0) {
+            this.setMateable(this.getMateable() + 1);
+        }
     }
 
     public void onEntityUpdate()
@@ -370,4 +435,41 @@ public abstract class EntityPrehistoricFloraJellyfishBase extends EntityWaterMob
             }
         }
     }
+
+    @Override
+    public boolean processInteract(EntityPlayer player, EnumHand hand)
+    {
+        ItemStack itemstack = player.getHeldItem(hand);
+
+        if (!itemstack.isEmpty())
+        {
+            if (this.isBreedingItem(itemstack) && this.inPFLove <= 0 && this.getMateable() == 0)
+            {
+                this.consumeItemFromStack(player, itemstack);
+                this.inPFLove = 600;
+                this.world.setEntityState(this, (byte)18);
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    @Override
+    public boolean isInLove()
+    {
+        return this.inPFLove > 0;
+    }
+
+    public void setNotMateable()
+    {
+        this.setMateable(-6000);
+    }
+
+    @Override
+    public void resetInLove()
+    {
+        this.inPFLove = 0;
+    }
+
 }

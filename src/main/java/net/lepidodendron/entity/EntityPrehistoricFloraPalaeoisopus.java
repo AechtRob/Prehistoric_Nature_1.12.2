@@ -5,6 +5,7 @@ import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.EatFishFoodAITrilobiteSwimBase;
+import net.lepidodendron.entity.ai.EntityMateAITrilobiteSwimBase;
 import net.lepidodendron.entity.ai.TrilobiteWanderSwimWaterColumn;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteSwimBase;
 import net.lepidodendron.item.entities.ItemBucketPalaeoisopus;
@@ -81,8 +82,9 @@ public class EntityPrehistoricFloraPalaeoisopus extends EntityPrehistoricFloraTr
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new TrilobiteWanderSwimWaterColumn(this, NO_ANIMATION));
-		tasks.addTask(1, new EntityAILookIdle(this));
+		tasks.addTask(0, new EntityMateAITrilobiteSwimBase(this, 1));
+		tasks.addTask(1, new TrilobiteWanderSwimWaterColumn(this, NO_ANIMATION));
+		tasks.addTask(2, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatFishFoodAITrilobiteSwimBase(this));
 	}
 

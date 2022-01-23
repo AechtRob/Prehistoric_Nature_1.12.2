@@ -6,8 +6,13 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.lepidodendron.util.EnumBiomeTypeJurassic;
 import net.lepidodendron.util.EnumBiomeTypePermian;
+import net.lepidodendron.util.EnumBiomeTypeTriassic;
+import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferousSwampBurnt;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassic;
 import net.lepidodendron.world.biome.permian.BiomePermian;
+import net.lepidodendron.world.biome.triassic.BiomeTriassic;
 import net.lepidodendron.world.gen.TmesipterisGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
@@ -80,7 +85,8 @@ public class BlockTmesipteris extends ElementsLepidodendronMod.ModElement {
 			biomeCriteria = true;
 		if (!LepidodendronConfig.genTmesipteris && !LepidodendronConfig.genAllPlants)
 			biomeCriteria = false;
-		if (dimID == LepidodendronConfig.dimCarboniferous)
+		if (dimID == LepidodendronConfig.dimCarboniferous
+			&& biome != BiomeCarboniferousSwampBurnt.biome)
 			{
 				biomeCriteria = true;
 			}
@@ -92,6 +98,31 @@ public class BlockTmesipteris extends ElementsLepidodendronMod.ModElement {
 				|| biomePermian.getBiomeType() == EnumBiomeTypePermian.Lowlands
 				|| biomePermian.getBiomeType() == EnumBiomeTypePermian.Forest) {
 				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
+			}
+		}
+		if (biome instanceof BiomeTriassic)
+		{
+			BiomeTriassic biomeTriassic = (BiomeTriassic) biome;
+			if (biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Warm
+				|| biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.River) {
+				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
+			}
+		}
+		if (biome instanceof BiomeJurassic)
+		{
+			BiomeJurassic biomeJurassic = (BiomeJurassic) biome;
+			if (biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Floodplain
+				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Forest) {
+				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
 			}
 		}
 		if (!biomeCriteria)

@@ -41,7 +41,7 @@ public class BiomeTriassicOceanShore extends ElementsLepidodendronMod.ModElement
 
 	static class BiomeGenCustom extends BiomeTriassic {
 		public BiomeGenCustom() {
-			super(new BiomeProperties("Triassic Shallow Ocean").setRainfall(0.5F).setBaseHeight(-0.50F).setHeightVariation(0.01F));
+			super(new BiomeProperties("Triassic Shallow Ocean").setRainfall(0.5F).setBaseHeight(-0.375F).setHeightVariation(0.01F));
 			setRegistryName("triassic_ocean_shore");
 
 			topBlock = BlockSandPangaean.block.getDefaultState();

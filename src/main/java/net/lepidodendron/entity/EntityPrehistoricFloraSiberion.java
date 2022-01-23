@@ -6,6 +6,7 @@ import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.EatFishFoodAITrilobiteBottomBase;
+import net.lepidodendron.entity.ai.EntityMateAITrilobiteBottomBase;
 import net.lepidodendron.entity.ai.TrilobiteWanderBottom;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteBottomBase;
 import net.lepidodendron.item.entities.ItemBucketSiberion;
@@ -127,8 +128,9 @@ public class EntityPrehistoricFloraSiberion extends EntityPrehistoricFloraTrilob
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new TrilobiteWanderBottom(this, NO_ANIMATION));
-		tasks.addTask(1, new EntityAILookIdle(this));
+		tasks.addTask(0, new EntityMateAITrilobiteBottomBase(this, 1));
+		tasks.addTask(1, new TrilobiteWanderBottom(this, NO_ANIMATION));
+		tasks.addTask(2, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatFishFoodAITrilobiteBottomBase(this));
 	}
 

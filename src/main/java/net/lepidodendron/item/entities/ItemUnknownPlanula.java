@@ -2,6 +2,7 @@
 package net.lepidodendron.item.entities;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronMobile;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
@@ -51,6 +52,16 @@ public class ItemUnknownPlanula extends ElementsLepidodendronMod.ModElement {
 			setRegistryName("planula_unknown");
 			setCreativeTab(TabLepidodendronMobile.tab);
 			setMaxStackSize(1);
+		}
+
+		public String getTranslationKey(ItemStack stack)
+		{
+			String stringEgg = ((stack).hasTagCompound() ? (stack).getTagCompound().getString("creature") : null);
+			if (stringEgg != null) {
+				stringEgg = stringEgg.replace(LepidodendronMod.MODID.toString() + ":", "planula_");
+				return "item." + stringEgg;
+			}
+			return super.getTranslationKey(stack);
 		}
 
 		public Class getEggClassfromNBT(ItemStack itemstack) {

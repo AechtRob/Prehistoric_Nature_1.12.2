@@ -6,8 +6,13 @@ import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.lepidodendron.util.EnumBiomeTypeJurassic;
 import net.lepidodendron.util.EnumBiomeTypePermian;
+import net.lepidodendron.util.EnumBiomeTypeTriassic;
+import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferousSwampBurnt;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassic;
 import net.lepidodendron.world.biome.permian.BiomePermian;
+import net.lepidodendron.world.biome.triassic.BiomeTriassic;
 import net.lepidodendron.world.gen.FernEpiphyteGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
@@ -81,8 +86,8 @@ public class BlockFernEpiphyte extends ElementsLepidodendronMod.ModElement {
 		if (!LepidodendronConfig.genFernEpiphyte && !LepidodendronConfig.genAllPlants)
 			biomeCriteria = false;
 		if (
-			(dimID == LepidodendronConfig.dimCarboniferous)
-			
+			(dimID == LepidodendronConfig.dimCarboniferous
+			&& biome != BiomeCarboniferousSwampBurnt.biome)
 			)
 			{
 				biomeCriteria = true;
@@ -93,6 +98,32 @@ public class BlockFernEpiphyte extends ElementsLepidodendronMod.ModElement {
 			BiomePermian biomePermian = (BiomePermian) biome;
 			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Wetlands) {
 				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
+			}
+		}
+		if (biome instanceof BiomeTriassic)
+		{
+			BiomeTriassic biomeTriassic = (BiomeTriassic) biome;
+			if (biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Cool) {
+				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
+			}
+		}
+		if (biome instanceof BiomeJurassic)
+		{
+			BiomeJurassic biomeJurassic = (BiomeJurassic) biome;
+			if (biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Floodplain
+				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Forest
+				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Ginkgo
+				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Redwood) {
+				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
 			}
 		}
 		if (!biomeCriteria)

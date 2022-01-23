@@ -4,6 +4,7 @@ package net.lepidodendron.entity;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.entity.ai.EntityMateAISlitheringWaterBase;
 import net.lepidodendron.entity.ai.SlitheringWanderBottom;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraSlitheringWaterBase;
 import net.lepidodendron.item.entities.ItemBucketDickinsonia;
@@ -44,6 +45,11 @@ public class EntityPrehistoricFloraDickinsonia extends EntityPrehistoricFloraSli
 	public static String getHabitat() {return "Aquatic";}
 
 	@Override
+	public ItemStack getPropagule() {
+		return new ItemStack(ItemUnknownEdiacaranBlob.block, (int) (1));
+	}
+
+	@Override
 	public boolean dropsEggs() {
 		return false;
 	}
@@ -53,8 +59,9 @@ public class EntityPrehistoricFloraDickinsonia extends EntityPrehistoricFloraSli
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new SlitheringWanderBottom(this, NO_ANIMATION));
-		tasks.addTask(1, new EntityAILookIdle(this));
+		tasks.addTask(0, new EntityMateAISlitheringWaterBase(this, 1));
+		tasks.addTask(1, new SlitheringWanderBottom(this, NO_ANIMATION));
+		tasks.addTask(2, new EntityAILookIdle(this));
 	}
 
 	@Override

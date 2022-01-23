@@ -6,6 +6,7 @@ import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.block.BlockBacterialLayer;
 import net.lepidodendron.entity.ai.EatFishFoodAITrilobiteBottomBase;
+import net.lepidodendron.entity.ai.EntityMateAITrilobiteBottomBase;
 import net.lepidodendron.entity.ai.TrilobiteWanderBottom;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraTrilobiteBottomBase;
 import net.lepidodendron.item.entities.ItemBucketOttoia;
@@ -154,7 +155,8 @@ public class EntityPrehistoricFloraOttoia extends EntityPrehistoricFloraTrilobit
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new TrilobiteWanderBottom(this, NO_ANIMATION));
+		tasks.addTask(0, new EntityMateAITrilobiteBottomBase(this, 1));
+		tasks.addTask(1, new TrilobiteWanderBottom(this, NO_ANIMATION));
 		this.targetTasks.addTask(0, new EatFishFoodAITrilobiteBottomBase(this));
 	}
 
@@ -245,6 +247,12 @@ public class EntityPrehistoricFloraOttoia extends EntityPrehistoricFloraTrilobit
 		super.onEntityUpdate();
 
 		if (!this.world.isRemote) {
+
+			if (this.isInLove()) {
+				setBuried(false);
+				setBuryCount(0);
+			}
+
 			if (getBuried()) {
 				setBuryCount(getBuryCount() + rand.nextInt(3));
 			}
@@ -286,6 +294,12 @@ public class EntityPrehistoricFloraOttoia extends EntityPrehistoricFloraTrilobit
 		if (!getBuried()) {this.renderYawOffset = this.rotationYaw;}
 
 		if (!this.world.isRemote) {
+
+			if (this.isInLove()) {
+				setBuried(false);
+				setBuryCount(0);
+			}
+
 			if (!matchBlock(this.world.getBlockState(this.getPosition().down()))) {
 				setBuried(false);
 				setBuryCount(0);

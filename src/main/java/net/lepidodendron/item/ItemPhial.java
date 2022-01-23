@@ -355,6 +355,12 @@ public class ItemPhial extends ElementsLepidodendronMod.ModElement {
 					removed = true;
 				}
 
+				if (blockTarget == BlockEggsHelicoprion.block || blockTarget == BlockEggsHelicoprionPlaceable.block) {
+					phial = new ItemStack(ItemPhialEggsHelicoprion.block, (int) (1));
+					collected = true;
+					removed = true;
+				}
+
 
 				if (blockTarget == BlockRottenLog.block
 					|| blockTarget == BlockAncientMoss.block
@@ -396,10 +402,6 @@ public class ItemPhial extends ElementsLepidodendronMod.ModElement {
 					}
 					if (eggRenderType.equals(LepidodendronMod.MODID + ":insect_eggs_eoarthropleura")) {
 						phial = new ItemStack(ItemPhialEggsEoarthropleura.block, (int) (1));
-						collected = true;
-					}
-					if (eggRenderType.equals(LepidodendronMod.MODID + ":insect_eggs_eoarthropleura")) {
-						phial = new ItemStack(ItemPhialEggsArchoblattina.block, (int) (1));
 						collected = true;
 					}
 					if (eggRenderType.equals(LepidodendronMod.MODID + ":insect_eggs_archoblattina")) {

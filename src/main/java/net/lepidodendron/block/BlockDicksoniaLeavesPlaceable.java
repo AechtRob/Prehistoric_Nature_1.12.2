@@ -110,9 +110,9 @@ public class BlockDicksoniaLeavesPlaceable extends ElementsLepidodendronMod.ModE
 				case EAST :
 					return new AxisAlignedBB(0.0D, 0.4D, 0.4D, 1D, 0.6D, 0.6D);
 				case UP :
-					return new AxisAlignedBB(0D, 0D, 0.0D, 1D, 1D, 1D);
+					return new AxisAlignedBB(0D, 0D, 0.0D, 1D, 0.3D, 1D);
 				case DOWN :
-					return new AxisAlignedBB(0D, 0D, 0.0, 1D, 1D, 1D);
+					return new AxisAlignedBB(0D, 0.7D, 0.0, 1D, 1D, 1D);
 			}
 		}
 

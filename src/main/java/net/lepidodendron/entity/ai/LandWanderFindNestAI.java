@@ -58,6 +58,9 @@ public class LandWanderFindNestAI extends AnimationAINoAnimation<EntityPrehistor
             return false;
         }
 
+        if (PrehistoricFloraLandBase.getAnimation() == PrehistoricFloraLandBase.DRINK_ANIMATION) {
+            return false;
+        }
         //System.err.println("Ticks: " + this.PrehistoricFloraLandBase.getTicks());
 
         int xx;

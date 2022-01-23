@@ -2,6 +2,7 @@ package net.lepidodendron.world.gen;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenerator;
@@ -39,7 +40,8 @@ public class WorldGenGravelPatch extends WorldGenerator
                             BlockPos blockpos = new BlockPos(k, k1, l);
                             Material material = worldIn.getBlockState(blockpos).getMaterial();
 
-                            if (material == Material.SAND || material == Material.ROCK || material == Material.GROUND)
+                            if ((material == Material.SAND || material == Material.ROCK || material == Material.GROUND)
+                                && worldIn.getBlockState(blockpos) != Blocks.BEDROCK.getDefaultState())
                             {
                                 worldIn.setBlockState(blockpos, this.block.getDefaultState(), 2);
                             }

@@ -4,6 +4,7 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.block.BlockMagnoliaLeaves;
 import net.lepidodendron.block.BlockMagnoliaLog;
 import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.state.IBlockState;
@@ -48,7 +49,15 @@ public class ProcedureWorldGenMagnolia extends ElementsLepidodendronMod.ModEleme
 		double layer = 0;
 		double branchskip = 0;
 		boolean try2 = false;
-		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))) {
+		Material material = world.getBlockState(new BlockPos((int) x, (int) y, (int) z)).getMaterial();
+		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))
+			&& material != Material.GRASS
+			&& material != Material.GROUND
+			&& material != Material.GLASS
+			&& material != Material.IRON
+			&& material != Material.ROCK
+			&& material != Material.SAND
+			&& material != Material.WOOD) {
 			world.setBlockToAir(new BlockPos((int) x, (int) y, (int) z));
 			//Trunk up to 15 blocks, and always at least 8:
 			MainTrunkHeight = (double) (8);

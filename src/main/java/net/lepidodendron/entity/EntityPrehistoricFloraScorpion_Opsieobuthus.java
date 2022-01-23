@@ -3,11 +3,9 @@ package net.lepidodendron.entity;
 
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.lepidodendron.LepidodendronMod;
-import net.lepidodendron.entity.ai.AttackAIClimbingBase;
-import net.lepidodendron.entity.ai.AvoidWaterWanderAI;
-import net.lepidodendron.entity.ai.EatMeatItemsAIClimbingBase;
-import net.lepidodendron.entity.ai.EntityHurtByTargetSmallerThanMeAI;
+import net.lepidodendron.entity.ai.*;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraScorpion;
+import net.lepidodendron.item.entities.ItemBugRaw;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EntityLivingBase;
@@ -16,6 +14,7 @@ import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAISwimming;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemMonsterPlacer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -54,14 +53,21 @@ public class EntityPrehistoricFloraScorpion_Opsieobuthus extends EntityPrehistor
 
 	@Override
 	protected void initEntityAI() {
-		tasks.addTask(0, new EntityAILeapAtTarget(this, 0.16F));
-		tasks.addTask(1, new AttackAIClimbingBase(this, 1.0D, false, this.getAttackLength()));
-		tasks.addTask(2, new EntityAISwimming(this));
-		tasks.addTask(3, new AvoidWaterWanderAI(this, 0.8D));
-		tasks.addTask(4, new EntityAILookIdle(this));
+		tasks.addTask(0, new EntityMateAIInsectClimbingBase(this, 1.0D));
+		tasks.addTask(1, new EntityAILeapAtTarget(this, 0.16F));
+		tasks.addTask(2, new AttackAIClimbingBase(this, 1.0D, false, this.getAttackLength()));
+		tasks.addTask(3, new EntityAISwimming(this));
+		tasks.addTask(4, new AvoidWaterWanderAI(this, 0.8D));
+		tasks.addTask(5, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatMeatItemsAIClimbingBase(this));
 		this.targetTasks.addTask(1, new EntityHurtByTargetSmallerThanMeAI(this, false));
 		}
+
+	@Override
+	public boolean isBreedingItem(ItemStack stack)
+	{
+		return stack.getItem() == ItemBugRaw.block;
+	}
 
 	@Override
 	public void onDeath(DamageSource cause) {

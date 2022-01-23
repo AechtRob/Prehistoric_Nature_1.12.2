@@ -6,6 +6,7 @@ import net.ilexiconn.llibrary.server.animation.Animation;
 import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.EatFishFoodAIFish;
+import net.lepidodendron.entity.ai.EntityMateAIFishBase;
 import net.lepidodendron.entity.ai.OpabiniaWander;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.item.entities.ItemBucketOpabinia;
@@ -133,7 +134,8 @@ public class EntityPrehistoricFloraOpabinia extends EntityPrehistoricFloraFishBa
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new OpabiniaWander(this, NO_ANIMATION));
+		tasks.addTask(0, new EntityMateAIFishBase(this, 1));
+		tasks.addTask(1, new OpabiniaWander(this, NO_ANIMATION));
 		this.targetTasks.addTask(0, new EatFishFoodAIFish(this));
 	}
 

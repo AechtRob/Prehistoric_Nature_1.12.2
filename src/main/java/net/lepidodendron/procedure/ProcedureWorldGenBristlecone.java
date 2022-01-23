@@ -42,7 +42,15 @@ public class ProcedureWorldGenBristlecone extends ElementsLepidodendronMod.ModEl
 		boolean extended;
 		int yy;
 		
+		Material material = world.getBlockState(new BlockPos((int) x, (int) y, (int) z)).getMaterial();
 		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))
+			&& material != Material.GRASS
+			&& material != Material.GROUND
+			&& material != Material.GLASS
+			&& material != Material.IRON
+			&& material != Material.ROCK
+			&& material != Material.SAND
+			&& material != Material.WOOD
 			) {			
 
 			//Tree height: 5-10 blocks

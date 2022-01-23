@@ -68,7 +68,7 @@ public class BlockPachypteris extends ElementsLepidodendronMod.ModElement {
 	    
 		public BlockCustom() {
 			super(Material.WATER);
-			setTranslationKey("pf_pachypteris");
+			setTranslationKey("pf_weichselia");
 			setSoundType(SoundType.PLANT);
 			setHardness(0.5F);
 			setResistance(0F);
@@ -86,7 +86,7 @@ public class BlockPachypteris extends ElementsLepidodendronMod.ModElement {
 
 	    @Override
 		public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-			if (LepidodendronConfig.doSeeds) {
+			if (LepidodendronConfig.doSpores) {
 				drops.add(new ItemStack(Blocks.AIR, (int) (1)));
 			}
 			else {
@@ -249,7 +249,7 @@ public class BlockPachypteris extends ElementsLepidodendronMod.ModElement {
 				worldIn.destroyBlock(pos.up(3), false);
 			}
 			//Chance of a second drop:
-			if (Math.random() >= 0.7 && !LepidodendronConfig.doSeeds) {
+			if (Math.random() >= 0.7 && !LepidodendronConfig.doSpores) {
 				if (!worldIn.isRemote) {
 					EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(this, (int) (1)));
 					entityToSpawn.setPickupDelay(10);
@@ -315,10 +315,10 @@ public class BlockPachypteris extends ElementsLepidodendronMod.ModElement {
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Water Seed-Plant");
-	        	tooltip.add("Periods: [late Triassic -] Jurassic - early Cretaceous");
+				tooltip.add("Type: Water Tree-Fern");
+	        	tooltip.add("Periods: Jurassic - Cretaceous");
 	        	tooltip.add("Note: planted under water");
-	        	tooltip.add("Propagation: seeds");}
+	        	tooltip.add("Propagation: spores");}
 	        super.addInformation(stack, player, tooltip, advanced);
 	    }
 

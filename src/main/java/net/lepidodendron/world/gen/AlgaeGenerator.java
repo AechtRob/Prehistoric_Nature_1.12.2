@@ -57,6 +57,7 @@ public class AlgaeGenerator extends WorldGenerator
 			|| ((dimID == LepidodendronConfig.dimCarboniferous ) && (!cystoids) && (!ediacaran))
 			|| ((dimID == LepidodendronConfig.dimPermian ) && (!cystoids) && (!ediacaran))
 			|| ((dimID == LepidodendronConfig.dimTriassic ) && (!cystoids) && (!ediacaran) && (!rugosas))
+			|| ((dimID == LepidodendronConfig.dimJurassic ) && (!cystoids) && (!ediacaran) && (!rugosas))
 			) {
 			dimensionCriteria = true;
 		}

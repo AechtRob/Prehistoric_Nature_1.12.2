@@ -5,6 +5,7 @@ import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.Animation;
 import net.lepidodendron.LepidodendronMod;
 import net.lepidodendron.entity.ai.EatFishFoodAIFish;
+import net.lepidodendron.entity.ai.EntityMateAIFishBase;
 import net.lepidodendron.entity.ai.FishWanderBottomDweller;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraFishBase;
 import net.lepidodendron.item.entities.ItemBucketGemuendina;
@@ -162,7 +163,8 @@ public class EntityPrehistoricFloraGemuendina extends EntityPrehistoricFloraFish
 	}
 
 	protected void initEntityAI() {
-		tasks.addTask(0, new FishWanderBottomDweller(this, NO_ANIMATION));
+		tasks.addTask(0, new EntityMateAIFishBase(this, 1));
+		tasks.addTask(1, new FishWanderBottomDweller(this, NO_ANIMATION));
 		this.targetTasks.addTask(0, new EatFishFoodAIFish(this));
 	}
 
@@ -262,6 +264,11 @@ public class EntityPrehistoricFloraGemuendina extends EntityPrehistoricFloraFish
 		super.onEntityUpdate();
 
 		if (!this.world.isRemote) {
+
+			if (this.isInLove()) {
+				setBuried(false);
+				setBuryCount(0);
+			}
 			if (getBuried()) {
 				setBuryCount(getBuryCount() + rand.nextInt(3));
 			}
@@ -313,6 +320,11 @@ public class EntityPrehistoricFloraGemuendina extends EntityPrehistoricFloraFish
 		if (!getBuried()) {this.renderYawOffset = this.rotationYaw;}
 
 		if (!this.world.isRemote) {
+
+			if (this.isInLove()) {
+				setBuried(false);
+				setBuryCount(0);
+			}
 			if (this.world.getBlockState(this.getPosition().down()).getMaterial() != Material.SAND) {
 				setBuried(false);
 				setBuryCount(0);

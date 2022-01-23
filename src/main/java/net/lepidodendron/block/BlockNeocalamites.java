@@ -12,6 +12,7 @@ import net.lepidodendron.util.EnumBiomeTypeTriassic;
 import net.lepidodendron.world.biome.permian.BiomePermian;
 import net.lepidodendron.world.biome.permian.BiomePermianLowlandFloodplain;
 import net.lepidodendron.world.biome.permian.BiomePermianLowlands;
+import net.lepidodendron.world.biome.permian.BiomePermianRiver;
 import net.lepidodendron.world.biome.triassic.BiomeTriassic;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockReed;
@@ -104,7 +105,8 @@ public class BlockNeocalamites extends ElementsLepidodendronMod.ModElement {
 			BiomePermian biomePermian = (BiomePermian) biome;
 			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Wetlands
 				|| biome == BiomePermianLowlands.biome
-				|| biome == BiomePermianLowlandFloodplain.biome) {
+				|| biome == BiomePermianLowlandFloodplain.biome
+				|| biome == BiomePermianRiver.biome) {
 				biomeCriteria = true;
 			}
 		}

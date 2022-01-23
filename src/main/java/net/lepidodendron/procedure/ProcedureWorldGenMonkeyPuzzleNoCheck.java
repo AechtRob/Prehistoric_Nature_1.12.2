@@ -3,11 +3,19 @@ package net.lepidodendron.procedure;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.block.BlockLygodium;
 import net.lepidodendron.block.BlockMonkeypuzzleLeaves;
 import net.lepidodendron.block.BlockMonkeypuzzleLog;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassicFloodplainForested;
+import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
+
+import java.util.Random;
 
 
 @ElementsLepidodendronMod.ModElement.Tag
@@ -15,6 +23,12 @@ public class ProcedureWorldGenMonkeyPuzzleNoCheck extends ElementsLepidodendronM
 	public ProcedureWorldGenMonkeyPuzzleNoCheck(ElementsLepidodendronMod instance) {
 		super(instance, 42);
 	}
+
+	public static final PropertyBool UP = PropertyBool.create("up");
+	public static final PropertyBool NORTH = PropertyBool.create("north");
+	public static final PropertyBool EAST = PropertyBool.create("east");
+	public static final PropertyBool SOUTH = PropertyBool.create("south");
+	public static final PropertyBool WEST = PropertyBool.create("west");
 
 	public static void executeProcedure(java.util.HashMap<String, Object> dependencies) {
 		if (dependencies.get("x") == null) {
@@ -61,7 +75,15 @@ public class ProcedureWorldGenMonkeyPuzzleNoCheck extends ElementsLepidodendronM
 		}
 		if (largeAraucariaAraucana == 0) {smalltree=false;}
 		
+		Material material = world.getBlockState(new BlockPos((int) x, (int) y, (int) z)).getMaterial();
 		if ((world.canSeeSky(new BlockPos((int) x, (int) y, (int) z)))
+			&& material != Material.GRASS
+			&& material != Material.GROUND
+			&& material != Material.GLASS
+			&& material != Material.IRON
+			&& material != Material.ROCK
+			&& material != Material.SAND
+			&& material != Material.WOOD
 			) {			
 			world.setBlockToAir(new BlockPos((int) x, (int) y, (int) z));
 			if (!smalltree) {
@@ -249,8 +271,157 @@ public class ProcedureWorldGenMonkeyPuzzleNoCheck extends ElementsLepidodendronM
 
 			}
 
+
+
+			//Random placement of lygodium:
+			boolean SpawnLygodium = true;
+
+			boolean dimensionCriteria = false;
+			if (shouldGenerateInDimension(world.provider.getDimension(), LepidodendronConfig.dimLygodium))
+				dimensionCriteria = true;
+			if (!LepidodendronConfig.genLygodiumMonkeypuzzle && !LepidodendronConfig.genAllPlants)
+				dimensionCriteria = false;
+			if (!dimensionCriteria)
+				SpawnLygodium = false;
+
+			boolean biomeCriteria = false;
+			Biome biome = world.getBiome(new BlockPos(x, y, z));
+			if ((!matchBiome(biome, LepidodendronConfig.genGlobalBlacklist)) && (!matchBiome(biome, LepidodendronConfig.genLygodiumBlacklistBiomes))) {
+				biomeCriteria = true;
+				if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.DEAD))
+					biomeCriteria = false;
+				if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.MUSHROOM))
+					biomeCriteria = false;
+			}
+			if (matchBiome(biome, LepidodendronConfig.genLygodiumOverrideBiomes))
+				biomeCriteria = true;
+			if (!biomeCriteria)
+				SpawnLygodium = false;
+			if ((world.provider.getDimension() == LepidodendronConfig.dimJurassic)
+			){
+				if (biome == BiomeJurassicFloodplainForested.biome) {
+					SpawnLygodium = true;
+				}
+				else {
+					SpawnLygodium = false;
+				}
+			}
+
+			BlockPos posVine;
+			Random rand = new Random();
+			int vineLength;
+			int vineCount;
+			counter = y;
+			int xct = -5;
+			int zct = -5;
+			while (counter <= (y + TrunkHeight + 4)) {
+				xct = -10;
+				while (xct <= 10) {
+					zct = -10;
+					while (zct <= 10) {
+
+						if ((world.getBlockState(new BlockPos((int) x + xct, (int) TrunkHeight + counter, (int) z + zct))).getBlock() == BlockMonkeypuzzleLeaves.block) {
+							//Lygodium:
+							if ((!SaplingSpawn) & (SpawnLygodium)) {
+								//System.err.println("Trying to spawn vines");
+								//North
+								if ((Math.random() > 0.88)
+										&& (world.isAirBlock(new BlockPos(x + xct, (int) TrunkHeight + counter, (int) z + zct + 1)))) {
+									posVine = new BlockPos(x + xct, (int) TrunkHeight + counter, (int) z + zct + 1);
+									world.setBlockState(posVine, BlockLygodium.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, true).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false));
+									vineLength = rand.nextInt((int)TrunkHeight) + 1;
+									vineCount = 1;
+									while (world.isAirBlock(posVine.down(vineCount)) && vineCount <= vineLength) {
+										world.setBlockState(posVine.down(vineCount), BlockLygodium.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, true).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, false));
+										vineCount += 1;
+									}
+								}
+								//South
+								if ((Math.random() > 0.88)
+										&& (world.isAirBlock(new BlockPos(x + xct, (int) TrunkHeight + counter, (int) z + zct - 1)))) {
+									posVine = new BlockPos(x + xct, (int) TrunkHeight + counter, (int) z + zct - 1);
+									world.setBlockState(posVine, BlockLygodium.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, true).withProperty(WEST, false));
+									vineLength = rand.nextInt((int)TrunkHeight) + 1;
+									vineCount = 1;
+									while (world.isAirBlock(posVine.down(vineCount)) && vineCount <= vineLength) {
+										world.setBlockState(posVine.down(vineCount), BlockLygodium.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, true).withProperty(WEST, false));
+										vineCount += 1;
+									}
+								}
+								//East
+								if ((Math.random() > 0.88)
+										&& (world.isAirBlock(new BlockPos(x + xct - 1, (int) TrunkHeight + counter, (int) z + zct)))) {
+									posVine = new BlockPos(x + xct - 1, (int) TrunkHeight + counter, (int) z + zct);
+									world.setBlockState(posVine, BlockLygodium.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, true).withProperty(SOUTH, false).withProperty(WEST, false));
+									vineLength = rand.nextInt((int)TrunkHeight) + 1;
+									vineCount = 1;
+									while (world.isAirBlock(posVine.down(vineCount)) && vineCount <= vineLength) {
+										world.setBlockState(posVine.down(vineCount), BlockLygodium.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, true).withProperty(SOUTH, false).withProperty(WEST, false));
+										vineCount += 1;
+									}
+								}
+								//West
+								if ((Math.random() > 0.88)
+										&& (world.isAirBlock(new BlockPos(x + xct + 1, (int) TrunkHeight + counter, (int) z + zct)))) {
+									posVine = new BlockPos(x + xct + 1, (int) TrunkHeight + counter, (int) z + zct);
+									world.setBlockState(posVine, BlockLygodium.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, true));
+									vineLength = rand.nextInt((int)TrunkHeight) + 1;
+									vineCount = 1;
+									while (world.isAirBlock(posVine.down(vineCount)) && vineCount <= vineLength) {
+										world.setBlockState(posVine.down(vineCount), BlockLygodium.block.getDefaultState().withProperty(UP, false).withProperty(NORTH, false).withProperty(EAST, false).withProperty(SOUTH, false).withProperty(WEST, true));
+										vineCount += 1;
+									}
+								}
+							}
+						}
+
+						zct = zct + 1;
+					}
+					xct = xct + 1;
+				}
+				counter = counter + 1;
+			}
+
+
 			ProcedureSpawnNilssoniocladus.executeProcedure(x, y, z, world, LepidodendronConfig.genNilssoniocladusAraucariaAraucana, SaplingSpawn);
 
 		}
+	}
+
+	public static boolean shouldGenerateInDimension(int id, int[] dims) {
+		int[] var2 = dims;
+		int var3 = dims.length;
+		for (int var4 = 0; var4 < var3; ++var4) {
+			int dim = var2[var4];
+			if (dim == id) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static boolean matchBiome(Biome biome, String[] biomesList) {
+
+		//String regName = biome.getRegistryName().toString();
+
+		String[] var2 = biomesList;
+		int var3 = biomesList.length;
+
+		for (int var4 = 0; var4 < var3; ++var4) {
+			String checkBiome = var2[var4];
+			if (!checkBiome.contains(":")) {
+				//System.err.println("modid test: " + biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":") - 1));
+				if (checkBiome.equalsIgnoreCase(
+						biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":"))
+				)) {
+					return true;
+				}
+			}
+			if (checkBiome.equalsIgnoreCase(biome.getRegistryName().toString())) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

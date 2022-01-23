@@ -1313,11 +1313,11 @@ public class BlockDollyphyton extends ElementsLepidodendronMod.ModElement {
 													gen = true;
 												}
 											}
-												if (gen) {
-													//Place the moss:
-													worldIn.setBlockState(pos1.down(), this.blockState.getBaseState().withProperty(FACING, EnumFacing.DOWN).withProperty(NORTH, false).withProperty(SOUTH, false).withProperty(EAST, false).withProperty(WEST, false).withProperty(UP, false).withProperty(DOWN, false).withProperty(SPREADABLE, false), 3);
-												}
+											if (gen) {
+												//Place the moss:
+												worldIn.setBlockState(pos1.down(), this.blockState.getBaseState().withProperty(FACING, EnumFacing.DOWN).withProperty(NORTH, false).withProperty(SOUTH, false).withProperty(EAST, false).withProperty(WEST, false).withProperty(UP, false).withProperty(DOWN, false).withProperty(SPREADABLE, false), 3);
 											}
+										}
 										
 									}
 								}

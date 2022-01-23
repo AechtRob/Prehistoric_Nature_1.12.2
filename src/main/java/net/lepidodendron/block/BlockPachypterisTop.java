@@ -4,7 +4,6 @@ package net.lepidodendron.block;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
-import net.lepidodendron.item.ItemPachypterisSeeds;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -17,7 +16,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -27,7 +25,6 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nullable;
 import java.util.List;
@@ -66,7 +63,7 @@ public class BlockPachypterisTop extends ElementsLepidodendronMod.ModElement {
 			setLightLevel(0F);
 			setLightOpacity(0);
 			setCreativeTab(null);
-			setTranslationKey("pf_pachypteris_top");
+			setTranslationKey("pf_weichselia_top");
 			setRegistryName("pachypteris_top");
 		}
 
@@ -126,7 +123,7 @@ public class BlockPachypterisTop extends ElementsLepidodendronMod.ModElement {
 
 		@Override
 		public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
-			if (LepidodendronConfig.doSeeds) {
+			if (LepidodendronConfig.doSpores) {
 				drops.add(new ItemStack(Blocks.AIR, (int) (1)));
 			}
 			else {
@@ -190,7 +187,7 @@ public class BlockPachypterisTop extends ElementsLepidodendronMod.ModElement {
 				worldIn.destroyBlock(pos.down(), false);
 			}
 			//Chance of a second drop:
-			if (Math.random() >= 0.7 && !LepidodendronConfig.doSeeds) {
+			if (Math.random() >= 0.7 && !LepidodendronConfig.doSpores) {
 				if (!worldIn.isRemote) {
 					EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(BlockPachypteris.block, (int) (1)));
 					entityToSpawn.setPickupDelay(10);
@@ -198,34 +195,6 @@ public class BlockPachypterisTop extends ElementsLepidodendronMod.ModElement {
 				}
 			}
 	    	super.breakBlock(worldIn, pos, state);
-	    }
-
-	    public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	    {
-        if ((!player.capabilities.allowEdit) || (!player.getHeldItemMainhand().isEmpty()) || !LepidodendronConfig.doSeeds)
-	        {
-	            return super.onBlockActivated(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
-	        }
-	        else {
-	        	if (!((hand != player.getActiveHand()) && (hand == EnumHand.MAIN_HAND))) {
-					if (Math.random() > 0.5) {
-						ItemStack stackSeed = new ItemStack(ItemPachypterisSeeds.block, (int) (1));
-						stackSeed.setCount(1);
-						ItemHandlerHelper.giveItemToPlayer(player, stackSeed);
-						if (Math.random() > 0.75) {
-							world.destroyBlock(pos, false);
-						}
-						return true;
-					}
-					else {
-						if (Math.random() > 0.75) {
-							world.destroyBlock(pos, false);
-		    				return true;
-						}
-					}		
-				}
-	        	return true;
-	        }
 	    }
 
 	}

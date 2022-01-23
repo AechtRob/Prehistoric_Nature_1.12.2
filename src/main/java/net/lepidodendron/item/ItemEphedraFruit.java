@@ -61,7 +61,6 @@ public class ItemEphedraFruit extends ElementsLepidodendronMod.ModElement {
 				((EntityLivingBase) entity).addPotionEffect(new PotionEffect(MobEffects.SPEED, (int) 300, (int) 3));
 				entity.attackEntityFrom(DamageSource.GENERIC, (float) 5);
 			}
-
 		}
 
 	}

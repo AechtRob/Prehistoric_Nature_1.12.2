@@ -63,7 +63,7 @@ public class BiomeTriassicWarmVolcanicHills extends ElementsLepidodendronMod.Mod
 		}
 
 		protected static final WorldGenAlpiaTree ALPIA_TREE = new WorldGenAlpiaTree(false);
-		protected static final WorldGenGinkgoTree GINKGO_TREE = new WorldGenGinkgoTree(false);
+		protected static final WorldGenGinkgoitesTree GINKGO_TREE = new WorldGenGinkgoitesTree(false);
 
 		protected static final WorldGenTreeLog ALPIA_LOG_GENERATOR = new WorldGenTreeLog(BlockDicroidiumFLog.block);
 

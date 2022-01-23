@@ -15,6 +15,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -22,10 +23,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.BlockRenderLayer;
-import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
@@ -37,6 +35,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -142,6 +141,67 @@ public class BlockNestDimetrodon extends ElementsLepidodendronMod.ModElement {
 		}
 
 		@Override
+		public void onBlockClicked(World worldIn, BlockPos pos, EntityPlayer playerIn) {
+			if (!worldIn.isRemote) {
+				ItemStack stack = playerIn.getHeldItemMainhand();
+				if (stack.getItem() == Items.SHEARS) {
+					//This will harvest:
+					if (!playerIn.capabilities.isCreativeMode) {
+						List<EntityPrehistoricFloraDimetrodon> Dimetrodon = worldIn.getEntitiesWithinAABB(EntityPrehistoricFloraDimetrodon.class, new AxisAlignedBB(pos.add(-16, -8, -16), pos.add(16, 8, 16)));
+						for (EntityPrehistoricFloraDimetrodon currentDimetrodon : Dimetrodon) {
+							if (currentDimetrodon.isPFAdult()) {
+								currentDimetrodon.setAttackTarget(playerIn);
+								currentDimetrodon.setOneHit(true);
+							}
+						}
+					}
+				}
+			}
+			super.onBlockClicked(worldIn, pos, playerIn);
+		}
+
+		public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+		{
+			String eggRenderType = "";
+			eggRenderType = new Object() {
+				public String getValue(BlockPos pos, String tag) {
+					TileEntity tileEntity = world.getTileEntity(pos);
+					if (tileEntity != null)
+						return tileEntity.getTileData().getString(tag);
+					return "";
+				}
+			}.getValue(new BlockPos(pos), "egg");
+
+			if ((!player.capabilities.allowEdit) || (!player.getHeldItemMainhand().isEmpty()) || eggRenderType.equals(""))
+			{
+				return super.onBlockActivated(world, pos, state, player, hand, facing, hitX, hitY, hitZ);
+			}
+			else {
+				if (!((hand != player.getActiveHand()) && (hand == EnumHand.MAIN_HAND))) {
+					ItemStack stackSeed = new ItemStack(BlockEggsDimetrodon.block, (int) (1));
+					stackSeed.setCount(1);
+					ItemHandlerHelper.giveItemToPlayer(player, stackSeed);
+					TileEntity te = world.getTileEntity(pos);
+					if (te != null) {
+						te.getTileData().setString("egg", "");
+					}
+					IBlockState bstate = world.getBlockState(pos);
+					world.notifyBlockUpdate(pos, bstate, bstate, 3);
+					if (!player.capabilities.isCreativeMode) {
+						List<EntityPrehistoricFloraDimetrodon> Dimetrodon = world.getEntitiesWithinAABB(EntityPrehistoricFloraDimetrodon.class, new AxisAlignedBB(pos.add(-16, -8, -16), pos.add(16, 8, 16)));
+						for (EntityPrehistoricFloraDimetrodon currentDimetrodon : Dimetrodon) {
+							if (currentDimetrodon.isPFAdult()) {
+								currentDimetrodon.setAttackTarget(player);
+								currentDimetrodon.setOneHit(true);
+							}
+						}
+					}
+					return true;
+				}
+				return true;
+			}
+		}
+
 		public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest) {
 			//Aggro nearby adults:
 			if (!player.capabilities.isCreativeMode) {

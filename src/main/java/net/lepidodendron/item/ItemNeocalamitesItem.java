@@ -91,7 +91,7 @@ public class ItemNeocalamitesItem extends ElementsLepidodendronMod.ModElement {
 				    		}
 				    		colWater = colWater + 1;
 				    	}
-						System.err.println("colWater:" + colWater);
+						//System.err.println("colWater:" + colWater);
 				    	if (BlockNeocalamites.block.canPlaceBlockAt(worldIn, pos.up(colWater)) && worldIn.isAirBlock(pos.up(colWater)))
 		                {
 			                worldIn.setBlockState(pos.up(colWater), BlockNeocalamites.block.getDefaultState(), 3);

@@ -2,8 +2,18 @@
 package net.lepidodendron.block;
 
 import net.lepidodendron.ElementsLepidodendronMod;
+import net.lepidodendron.LepidodendronConfig;
+import net.lepidodendron.LepidodendronDecorationHandler;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.lepidodendron.util.EnumBiomeTypeJurassic;
+import net.lepidodendron.util.EnumBiomeTypePermian;
+import net.lepidodendron.util.EnumBiomeTypeTriassic;
+import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferousSwampBurnt;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassic;
+import net.lepidodendron.world.biome.permian.BiomePermian;
+import net.lepidodendron.world.biome.triassic.BiomeTriassic;
+import net.lepidodendron.world.gen.MossWoodGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
 import net.minecraft.block.SoundType;
@@ -30,8 +40,12 @@ import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.IChunkProvider;
+import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -66,6 +80,111 @@ public class BlockAncientMoss extends ElementsLepidodendronMod.ModElement {
 		ModelLoader.setCustomModelResourceLocation(Item.getItemFromBlock(block), 0,
 				new ModelResourceLocation("lepidodendron:ancient_moss", "inventory"));
 	}
+
+	@Override
+	public void generateWorld(Random random, int chunkX, int chunkZ, World world, int dimID, IChunkGenerator cg, IChunkProvider cp) {
+
+		boolean biomeCriteria = false;
+		Biome biome = world.getBiome(new BlockPos(chunkX, world.getSeaLevel(), chunkZ));
+		if (!matchBiome(biome, LepidodendronConfig.genMossWoodBlacklistBiomes)) {
+			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.FOREST))
+				biomeCriteria = true;
+			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.MUSHROOM))
+				biomeCriteria = false;
+			if (BiomeDictionary.hasType(biome, BiomeDictionary.Type.DEAD))
+				biomeCriteria = false;
+		}
+		if (matchBiome(biome, LepidodendronConfig.genMossWoodOverrideBiomes))
+			biomeCriteria = true;
+		if (!LepidodendronConfig.genFernEpiphyte && !LepidodendronConfig.genAllPlants)
+			biomeCriteria = false;
+		if (
+				(dimID == LepidodendronConfig.dimCarboniferous)
+				&& biome != BiomeCarboniferousSwampBurnt.biome
+		)
+		{
+			biomeCriteria = true;
+		}
+
+		if (biome instanceof BiomePermian)
+		{
+			BiomePermian biomePermian = (BiomePermian) biome;
+			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Forest) {
+				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
+			}
+		}
+		if (biome instanceof BiomeTriassic)
+		{
+			BiomeTriassic biomeTriassic = (BiomeTriassic) biome;
+			if (biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Cool) {
+				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
+			}
+		}
+		if (biome instanceof BiomeJurassic)
+		{
+			BiomeJurassic biomeJurassic = (BiomeJurassic) biome;
+			if (biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Floodplain
+					|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Forest
+					|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Ginkgo
+					|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Redwood) {
+				biomeCriteria = true;
+			}
+			else {
+				biomeCriteria = false;
+			}
+		}
+		if (!biomeCriteria)
+			return;
+
+		int GenChance = 64;
+		double GenMultiplier = LepidodendronConfig.multiplierMossWood;
+		if (GenMultiplier < 0) {GenMultiplier = 0;}
+		GenChance = Math.min(256, (int) Math.round((double) GenChance * GenMultiplier));
+		//Is this a transformed biome?
+		if (LepidodendronDecorationHandler.matchBiome(biome, LepidodendronConfig.genTransformBiomes)) {
+			//if (biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":")).equalsIgnoreCase("minecraft"))
+			GenChance = Math.min(GenChance * 10, 256);
+		}
+
+		for (int i = 0; i < (int) GenChance; i++) {
+			int l6 = chunkX + random.nextInt(16) + 8;
+			int i11 = random.nextInt(128);
+			int l14 = chunkZ + random.nextInt(16) + 8;
+			(new MossWoodGenerator((Block) block)).generate(world, random, new BlockPos(l6, i11, l14));
+		}
+	}
+
+	public static boolean matchBiome(Biome biome, String[] biomesList) {
+
+		//String regName = biome.getRegistryName().toString();
+
+		String[] var2 = biomesList;
+		int var3 = biomesList.length;
+
+		for(int var4 = 0; var4 < var3; ++var4) {
+			String checkBiome = var2[var4];
+			if (!checkBiome.contains(":")) {
+				//System.err.println("modid test: " + biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":") - 1));
+				if (checkBiome.equalsIgnoreCase(
+						biome.getRegistryName().toString().substring(0, biome.getRegistryName().toString().indexOf(":"))
+				)) {
+					return true;
+				}
+			}
+			if (checkBiome.equalsIgnoreCase(biome.getRegistryName().toString())) {
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public static class BlockCustom extends Block implements net.minecraftforge.common.IShearable  {
 		
 		public static final PropertyDirection FACING = BlockDirectional.FACING;

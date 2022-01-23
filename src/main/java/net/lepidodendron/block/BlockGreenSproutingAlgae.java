@@ -98,6 +98,7 @@ public class BlockGreenSproutingAlgae extends ElementsLepidodendronMod.ModElemen
 			|| (dimID == LepidodendronConfig.dimCarboniferous)
 			|| (dimID == LepidodendronConfig.dimPermian)
 			|| (dimID == LepidodendronConfig.dimTriassic)
+			|| (dimID == LepidodendronConfig.dimJurassic)
 			 ) {
 			biomeCriteria = true;
 		}
@@ -439,7 +440,7 @@ public class BlockGreenSproutingAlgae extends ElementsLepidodendronMod.ModElemen
 		@Override
 	    public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 	        if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Marine Algae");
+				tooltip.add("Type: Freshwater or Marine Algae");
 				tooltip.add("Periods: Cambrian - Silurian - Devonian - Carboniferous - Permian - Triassic - Jurassic - Cretaceous - Paleogene - Neogene - Quaternary");
 				tooltip.add("Propagation: water");}
 	        super.addInformation(stack, player, tooltip, advanced);

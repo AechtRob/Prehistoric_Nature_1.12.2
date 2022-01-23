@@ -16,14 +16,22 @@ public class WorldGenPtilophyllum extends WorldGenerator
 {
 
     public boolean generate(World worldIn, Random rand, BlockPos position) {
-        return generate(worldIn, rand, position, false);
+        return generate(worldIn, rand, position, false, 0, 255);
     }
 
-    public boolean generate(World worldIn, Random rand, BlockPos position, boolean needsWater)
+    public boolean generate(World worldIn, Random rand, BlockPos position, int minHeight, int maxHeight) {
+        return generate(worldIn, rand, position, false, minHeight, maxHeight);
+    }
+    
+    public boolean generate(World worldIn, Random rand, BlockPos position, boolean needsWater) {
+        return generate(worldIn, rand, position, needsWater, 0, 255);
+    }
+    
+    public boolean generate(World worldIn, Random rand, BlockPos position, boolean needsWater, int minHeight, int maxHeight)
     {
         boolean flag = false;
 
-        for (int i = 0; i < 18; ++i) {
+        for (int i = 0; i < 24; ++i) {
             BlockPos blockpos = position.add(rand.nextInt(8) - rand.nextInt(8), rand.nextInt(4) - rand.nextInt(4), rand.nextInt(8) - rand.nextInt(8));
 
             if (!needsWater) {
@@ -41,6 +49,8 @@ public class WorldGenPtilophyllum extends WorldGenerator
                         && (worldIn.getBlockState(blockpos.west().up(2)).getBlock() != BlockPtilophyllumLog.block)
                         && (worldIn.getBlockState(blockpos.north().up(2)).getBlock() != BlockPtilophyllumLog.block)
                         && (worldIn.getBlockState(blockpos.south().up(2)).getBlock() != BlockPtilophyllumLog.block)
+                        && (blockpos.getY() > minHeight + (rand.nextInt(5) - 2))
+                        && (blockpos.getY() < maxHeight + (rand.nextInt(5) - 2))
                 ) {
                     HashMap<String, Object> $_dependencies = new HashMap<>();
                     $_dependencies.put("x", blockpos.getX());
@@ -76,6 +86,8 @@ public class WorldGenPtilophyllum extends WorldGenerator
                             && (worldIn.getBlockState(blockpos.west()).getBlock() != BlockPtilophyllumLog.block)
                             && (worldIn.getBlockState(blockpos.north()).getBlock() != BlockPtilophyllumLog.block)
                             && (worldIn.getBlockState(blockpos.south()).getBlock() != BlockPtilophyllumLog.block)
+                            && (blockpos.getY() > minHeight + (rand.nextInt(5) - 2))
+                            && (blockpos.getY() < maxHeight + (rand.nextInt(5) - 2))
                     ) {
                         HashMap<String, Object> $_dependencies = new HashMap<>();
                         $_dependencies.put("x", blockpos.getX());

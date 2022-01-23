@@ -79,7 +79,7 @@ public class BlockDicksoniaLeaves extends ElementsLepidodendronMod.ModElement {
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
@@ -113,9 +113,9 @@ public class BlockDicksoniaLeaves extends ElementsLepidodendronMod.ModElement {
 				case EAST :
 					return new AxisAlignedBB(0.0D, 0.4D, 0.4D, 1D, 0.6D, 0.6D);
 				case UP :
-					return new AxisAlignedBB(0D, 0D, 0.0D, 1D, 1D, 1D);
+					return new AxisAlignedBB(0D, 0D, 0.0D, 1D, 0.30D, 1D);
 				case DOWN :
-					return new AxisAlignedBB(0D, 0D, 0.0, 1D, 1D, 1D);
+					return new AxisAlignedBB(0D, 0.70D, 0.0, 1D, 1D, 1D);
 			}
 		}
 

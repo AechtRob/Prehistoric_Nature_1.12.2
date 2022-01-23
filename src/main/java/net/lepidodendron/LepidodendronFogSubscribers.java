@@ -1,9 +1,11 @@
 package net.lepidodendron;
 
 import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
+import net.lepidodendron.util.EnumBiomeTypeJurassic;
 import net.lepidodendron.util.EnumBiomeTypePermian;
 import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferous;
 import net.lepidodendron.world.biome.devonian.BiomeDevonianSpikes;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassic;
 import net.lepidodendron.world.biome.permian.BiomePermian;
 import net.lepidodendron.world.biome.permian.BiomePermianHighlands;
 import net.lepidodendron.world.biome.permian.BiomePermianMountains;
@@ -52,6 +54,7 @@ public class LepidodendronFogSubscribers {
 						|| event.getEntity().world.provider.getDimension() == LepidodendronConfig.dimCarboniferous
 						|| event.getEntity().world.provider.getDimension() == LepidodendronConfig.dimPermian
 						|| event.getEntity().world.provider.getDimension() == LepidodendronConfig.dimTriassic
+						|| event.getEntity().world.provider.getDimension() == LepidodendronConfig.dimJurassic
 				) {
 					if (!(player instanceof EntityLivingBase && ((EntityLivingBase) player).isPotionActive(MobEffects.BLINDNESS))) {
 						if (!((b instanceof BlockLiquid) || (b instanceof BlockFluidBase) || event.getState().getMaterial() == Material.WATER)) {
@@ -82,6 +85,12 @@ public class LepidodendronFogSubscribers {
 								BiomeCarboniferous biomeCarboniferous = (BiomeCarboniferous) biome;
 								if (biomeCarboniferous.getBiomeType() == EnumBiomeTypeCarboniferous.Swamp) {
 									fog = backgroundFog * 7F;
+								}
+							} else if ((!(b instanceof BlockLiquid)) && (!(b instanceof BlockFluidBase)) && event.getState().getMaterial() != Material.WATER
+									&& biome instanceof BiomeJurassic && player.posY >= player.world.getSeaLevel() - 4) {
+								BiomeJurassic biomeJurassic = (BiomeJurassic) biome;
+								if (biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Redwood) {
+									fog = backgroundFog * 4F;
 								}
 							}
 

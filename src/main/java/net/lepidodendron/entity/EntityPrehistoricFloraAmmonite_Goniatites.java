@@ -116,6 +116,7 @@ public class EntityPrehistoricFloraAmmonite_Goniatites extends EntityPrehistoric
 	protected ResourceLocation getLootTable() {
 		if (!this.isPFAdult()) {
 			return LepidodendronMod.GONIATITES_LOOT_YOUNG;
-		}return LepidodendronMod.GONIATITES_LOOT;
+		}
+		return LepidodendronMod.GONIATITES_LOOT;
 	}
 }

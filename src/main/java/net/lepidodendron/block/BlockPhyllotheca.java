@@ -10,6 +10,7 @@ import net.lepidodendron.item.ItemPhyllothecaItem;
 import net.lepidodendron.util.EnumBiomeTypePermian;
 import net.lepidodendron.world.biome.permian.BiomePermian;
 import net.lepidodendron.world.biome.permian.BiomePermianLowlandFloodplain;
+import net.lepidodendron.world.biome.permian.BiomePermianRiver;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockReed;
 import net.minecraft.block.SoundType;
@@ -94,6 +95,7 @@ public class BlockPhyllotheca extends ElementsLepidodendronMod.ModElement {
 			BiomePermian biomePermian = (BiomePermian) biome;
 			if (biomePermian.getBiomeType() == EnumBiomeTypePermian.Wetlands
 				|| biome == BiomePermianLowlandFloodplain.biome
+				|| biome == BiomePermianRiver.biome
 				|| biomePermian.getBiomeType() == EnumBiomeTypePermian.Glossopteris) {
 				biomeCriteria = true;
 			}

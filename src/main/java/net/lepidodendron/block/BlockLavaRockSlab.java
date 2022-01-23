@@ -54,7 +54,7 @@ public class BlockLavaRockSlab extends ElementsLepidodendronMod.ModElement {
 	}
 	public static class BlockCustom extends BlockSlab {
 		public BlockCustom() {
-			super(Material.ROCK);
+			super(Material.ROCK, MapColor.BLACK);
 			setTranslationKey("pf_lava_rock_slab");
 			setSoundType(SoundType.STONE);
 			setHarvestLevel("pickaxe", 1);
