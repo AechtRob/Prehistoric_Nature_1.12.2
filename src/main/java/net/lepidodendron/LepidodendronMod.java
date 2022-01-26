@@ -1,17 +1,25 @@
 package net.lepidodendron;
 
 import net.lepidodendron.block.BlockFirePF;
+import net.lepidodendron.block.BlockZirconGlass;
 import net.lepidodendron.enchantments.Enchantments;
 import net.lepidodendron.palaeobotanist.entity.Villager;
 import net.lepidodendron.util.ModTriggers;
 import net.lepidodendron.util.Summoner;
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.renderer.color.BlockColors;
+import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.potion.Potion;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraft.world.storage.loot.LootTableList;
 import net.minecraftforge.client.event.ModelRegistryEvent;
 import net.minecraftforge.common.MinecraftForge;
@@ -32,6 +40,7 @@ import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.Objects;
 import java.util.function.Supplier;
 
@@ -603,6 +612,10 @@ public class LepidodendronMod {
 	public static final ResourceLocation LYSTROSAURUS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/lystrosaurus"));
 	public static final ResourceLocation LYSTROSAURUS_LOOT_YOUNG = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/lystrosaurus_young"));
 
+	public static final int ENTITY_LISOWICIA = 266;
+	public static final ResourceLocation LISOWICIA_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/lisowicia"));
+	public static final ResourceLocation LISOWICIA_LOOT_YOUNG = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/lisowicia_young"));
+
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
@@ -659,9 +672,10 @@ public class LepidodendronMod {
 	public void registerBlocks(RegistryEvent.Register<Block> event) {
 		event.getRegistry().registerAll(elements.getBlocks().stream().map(Supplier::get).toArray(Block[]::new));
 
-		BlockFirePF newFire = (BlockFirePF) (new BlockFirePF()).setHardness(0.0F).setLightLevel(1.0F).setTranslationKey("fire").setRegistryName(Objects.requireNonNull(Blocks.FIRE.getRegistryName()));
-
-		event.getRegistry().register(newFire);
+		if (LepidodendronConfig.modFire) {
+			BlockFirePF newFire = (BlockFirePF) (new BlockFirePF()).setHardness(0.0F).setLightLevel(1.0F).setTranslationKey("fire").setRegistryName(Objects.requireNonNull(Blocks.FIRE.getRegistryName()));
+			event.getRegistry().register(newFire);
+		}
 
 	}
 

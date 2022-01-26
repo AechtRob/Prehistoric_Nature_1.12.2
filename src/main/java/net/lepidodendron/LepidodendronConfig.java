@@ -22,10 +22,12 @@ public class LepidodendronConfig {
     public static int waterPangaeanVertical = 0;
 
     public static boolean genFossil = true;
+    public static boolean modFire = true;
     public static int genPalaeobotanist = 50;
     public static boolean renderAnimations = true;
 
     public static boolean doFog = true;
+    public static boolean fixZirconGlass = true;
 
     public static int attackHealth = 90;
     public static int adultAge = 75;
@@ -1845,37 +1847,24 @@ public class LepidodendronConfig {
     public static void load(FMLPreInitializationEvent event) {
         cfg = new Configuration(event.getSuggestedConfigurationFile(), "1.0", false);
         MinecraftForge.EVENT_BUS.register(instance);
-        syncConfig();
+        syncConfigPlants();
+        syncConfigGeneral();
     }
 
     @SubscribeEvent
     public void update(OnConfigChangedEvent event) {
         if (event.getModID().equals("lepidodendron")) {
-            syncConfig();
+            syncConfigPlants();
+            syncConfigGeneral();
         }
 
     }
 
-    public static boolean syncConfig() {
+    public static boolean syncConfigPlants() {
         List<String> propOrder = Lists.newArrayList();
         Property prop = cfg.get("Global World-Gen", "genGlobalBlacklist", genGlobalBlacklist);
         prop.setComment("List of biomes all plants are blacklisted from, in the format: modid:biomeid [default: empty]");
         genGlobalBlacklist = prop.getStringList();
-        propOrder.add(prop.getName());
-
-        prop = cfg.get("Global World-Gen", "showTooltips", showTooltips);
-        prop.setComment("Shows useful, searchable tooltips on relevant items [default: true]");
-        showTooltips = prop.getBoolean();
-        propOrder.add(prop.getName());
-
-        prop = cfg.get("Global Mobs", "doLowRes", doLowRes);
-        prop.setComment("User lower-resolution textures for some of the smaller mobs so that their style fits in better [default: false]");
-        doLowRes = prop.getBoolean();
-        propOrder.add(prop.getName());
-
-        prop = cfg.get("Global Mobs", "attackPlayerAlways", attackPlayerAlways);
-        prop.setComment("For mobs which can attack players, always attack players, regardless of the mob's health [default: false]");
-        attackPlayerAlways = prop.getBoolean();
         propOrder.add(prop.getName());
 
         prop = cfg.get("Global World-Gen", "doSpores", doSpores);
@@ -1895,190 +1884,14 @@ public class LepidodendronConfig {
         doFlowers = prop.getBoolean();
         propOrder.add(prop.getName());
 
-        prop = cfg.get("Global Mobs", "attackHealth", attackHealth);
-        prop.setComment("Mobs which can hunt will only hunt prey if their health is under this percentage of full (0-100) [default: 90]");
-        attackHealth = prop.getInt();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "adultAge", adultAge);
-        prop.setComment("Ageable mobs will behave as adults once they are at least this percentage of full age (hunting, dropping eggs, etc.). This does nto affect models/textures. [default: 75]");
-        adultAge = prop.getInt();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "doMultiplyMobs", doMultiplyMobs);
-        prop.setComment("Mobs will try to multiply every 1-2 days even without breeding them [default: false]");
-        doMultiplyMobs = prop.getBoolean();
-        propOrder.add(prop.getName());
-
         prop = cfg.get("Global World-Gen", "genAllPlants", genAllPlants);
         prop.setComment("If set to true then all plants from this mod will generate, no matter how you set them below. You can still block them from biomes and dimensions in their individual settings. This setting does not affect algae. [default: false]");
         genAllPlants = prop.getBoolean();
         propOrder.add(prop.getName());
 
-        prop = cfg.get("Global Mobs", "spreadPlants", spreadPlants);
+        prop = cfg.get("Global World-Gen", "spreadPlants", spreadPlants);
         prop.setComment("Percentage chance that a spreadable plant tries to spread when it receives a random tick (or is bonemealed). Does not affect other growth, only spread. (1 to 100) [default: 70]");
         spreadPlants = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = cfg.get("Global World-Gen", "dimCambrian", dimCambrian);
-        prop.setComment("Dimension number of the Cambrian dimension. Do not change this unless you get errors [default: -79]");
-        dimCambrian = prop.getInt();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimCambrianMobsBespoke", dimCambrianMobsBespoke);
-        prop.setComment("List of additional mobs which can be found in the seas of the Cambrian dimension. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimCambrianMobsBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-
-        prop = cfg.get("Global World-Gen", "dimPrecambrian", dimPrecambrian);
-        prop.setComment("Dimension number of the Precambrian dimension. Do not change this unless you get errors [default: -78]");
-        dimPrecambrian = prop.getInt();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimPrecambrianMobsBespoke", dimPrecambrianMobsBespoke);
-        prop.setComment("List of additional mobs which can be found in the Precambrian dimension. In the format: modid:mobid:maxspawn:weight [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn) [default: empty]");
-        dimPrecambrianMobsBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-
-        prop = cfg.get("Global World-Gen", "dimOrdovicianSilurian", dimOrdovicianSilurian);
-        prop.setComment("Dimension number of the Ordovician and Silurian dimension. Do not change this unless you get errors [default: -80]");
-        dimOrdovicianSilurian = prop.getInt();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimOrdovicianSilurianMobsOceanBespoke", dimOrdovicianSilurianMobsOceanBespoke);
-        prop.setComment("List of additional mobs which can be found in the Ordovician and Silurian dimension ocean. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimOrdovicianSilurianMobsOceanBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimOrdovicianSilurianMobsOceanIceBespoke", dimOrdovicianSilurianMobsOceanIceBespoke);
-        prop.setComment("List of additional mobs which can be found in the Ordovician and Silurian dimension ice ocean. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimOrdovicianSilurianMobsOceanIceBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimOrdovicianSilurianMobsLandBespoke", dimOrdovicianSilurianMobsLandBespoke);
-        prop.setComment("List of additional mobs which can be found in the Ordovician and Silurian dimension on land. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimOrdovicianSilurianMobsLandBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-
-        prop = cfg.get("Global World-Gen", "dimDevonian", dimDevonian);
-        prop.setComment("Dimension number of the Devonian dimension. Do not change this unless you get errors [default: -81]");
-        dimDevonian = prop.getInt();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimDevonianMobsForestBespoke", dimDevonianMobsForestBespoke);
-        prop.setComment("List of additional mobs which can be found in the Devonian dimension forests and floodplains. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimDevonianMobsForestBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimDevonianMobsOceanBespoke", dimDevonianMobsOceanBespoke);
-        prop.setComment("List of additional mobs which can be found in the Devonian dimension oceans. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimDevonianMobsOceanBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-
-        prop = cfg.get("Global World-Gen", "dimCarboniferous", dimCarboniferous);
-        prop.setComment("Dimension number of the Carboniferous dimension. Do not change this unless you get errors [default: -82]");
-        dimCarboniferous = prop.getInt();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimCarboniferousMobsSwampBespoke", dimCarboniferousMobsSwampBespoke);
-        prop.setComment("List of mobs which can be found in the Carboniferous dimension swamps. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimCarboniferousMobsSwampBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimCarboniferousMobsOceanBespoke", dimCarboniferousMobsOceanBespoke);
-        prop.setComment("List of mobs which can be found in the Carboniferous dimension oceans. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimCarboniferousMobsOceanBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimCarboniferousMobsIceBespoke", dimCarboniferousMobsIceBespoke);
-        prop.setComment("List of mobs which can be found in the Carboniferous dimension polar desert. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimCarboniferousMobsIceBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-
-        prop = cfg.get("Global World-Gen", "dimPermian", dimPermian);
-        prop.setComment("Dimension number of the Permian dimension. Do not change this unless you get errors [default: -83]");
-        dimPermian = prop.getInt();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimPermianMobsGlossopterisBespoke", dimPermianMobsGlossopterisBespoke);
-        prop.setComment("List of mobs which can be found in the Permian dimension Glossopteris forests. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimPermianMobsGlossopterisBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimPermianMobsWetlandsBespoke", dimPermianMobsWetlandsBespoke);
-        prop.setComment("List of mobs which can be found in the Permian dimension swamps. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimPermianMobsWetlandsBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimPermianMobsOceanBespoke", dimPermianMobsOceanBespoke);
-        prop.setComment("List of mobs which can be found in the Permian dimension oceans. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimPermianMobsOceanBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimPermianMobsAridLandsBespoke", dimPermianMobsAridLandsBespoke);
-        prop.setComment("List of mobs which can be found in the Permian dimension arid lands. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimPermianMobsAridLandsBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimPermianMobsRiverBespoke", dimPermianMobsRiverBespoke);
-        prop.setComment("List of mobs which can be found in the Permian dimension rivers. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimPermianMobsRiverBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimPermianMobsLowlandsBespoke", dimPermianMobsLowlandsBespoke);
-        prop.setComment("List of mobs which can be found in the Permian dimension lowlands. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimPermianMobsLowlandsBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimPermianMobsLowlandForestBespoke", dimPermianMobsLowlandForestBespoke);
-        prop.setComment("List of mobs which can be found in the Permian dimension lowland forests. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimPermianMobsLowlandForestBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimPermianMobsFloodbasaltBespoke", dimPermianMobsFloodbasaltBespoke);
-        prop.setComment("List of mobs which can be found in the Permian dimension flood basalt. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimPermianMobsFloodbasaltBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimPermianMobsHighlandsBespoke", dimPermianMobsHighlandsBespoke);
-        prop.setComment("List of mobs which can be found in the Permian dimension highlands. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimPermianMobsHighlandsBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimPermianMobsDesertBespoke", dimPermianMobsDesertBespoke);
-        prop.setComment("List of mobs which can be found in the Permian dimension desert. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimPermianMobsDesertBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "dimPermianMobsMountainsBespoke", dimPermianMobsMountainsBespoke);
-        prop.setComment("List of mobs which can be found in the Permian dimension mountains. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
-        dimPermianMobsMountainsBespoke = prop.getStringList();
-        propOrder.add(prop.getName());
-
-
-        prop = cfg.get("Global World-Gen", "dimDimensionScaler", dimDimensionScaler);
-        prop.setComment("This value controls how many blocks you move in a Prehistoric dimension when you move 1 block in the overworld (0.01 to 100) [default: 10]");
-        dimDimensionScaler = prop.getDouble();
-        propOrder.add(prop.getName());
-        
-        prop = cfg.get("Global World-Gen", "dimTriassic", dimTriassic);
-        prop.setComment("Dimension number of the Triassic dimension. Do not change this unless you get errors [default: -84]");
-        dimTriassic = prop.getInt();
-        propOrder.add(prop.getName());
-        
-        prop = cfg.get("Global World-Gen", "dimJurassic", dimJurassic);
-        prop.setComment("Dimension number of the Jurassic dimension. Do not change this unless you get errors [default: -84]");
-        dimJurassic = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = cfg.get("Global World-Gen", "genFossil", genFossil);
-        prop.setComment("Set to false to disable the world-gen of this mod's fossil blocks. [default: true]");
-        genFossil = prop.getBoolean();
-        propOrder.add(prop.getName());
-
-        prop = cfg.get("Global World-Gen", "genPalaeobotanist", genPalaeobotanist);
-        prop.setComment("Percentage chance that a Palaeobotanist house will generate in a village. [default: 50]");
-        genPalaeobotanist = prop.getInt();
-        propOrder.add(prop.getName());
-
-        prop = cfg.get("Global Mobs", "doSpawnsPrehistoricFloraDefault", doSpawnsPrehistoricFloraDefault);
-        prop.setComment("Set to false to disable the default mob-spawns from this mod. [default: true]");
-        doSpawnsPrehistoricFloraDefault = prop.getBoolean();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "doSpawnsFossilsArcheology", doSpawnsFossilsArcheology);
-        prop.setComment("Set to true add in appropriate mob-spawns from the mod Fossils and Archeology Revival [v.8.05]. [default: false]");
-        doSpawnsFossilsArcheology = prop.getBoolean();
-        propOrder.add(prop.getName());
-        prop = cfg.get("Global Mobs", "doSpawnsReborn", doSpawnsReborn);
-        prop.setComment("Set to true add in appropriate mob-spawns from the mod Jurassic World Reborn [v.1.1.1]. [default: false]");
-        doSpawnsReborn = prop.getBoolean();
-        propOrder.add(prop.getName());
-
-        prop = cfg.get("Global Mobs", "renderAnimations", renderAnimations);
-        prop.setComment("Set to true to animate block-like mobs fully, or to false to render them as static blocks (useful for low performance graphics cards or for conflicts with Optifine). [default: true]");
-        renderAnimations = prop.getBoolean();
-        propOrder.add(prop.getName());
-
-        prop = cfg.get("Global World-Gen", "doFog", doFog);
-        prop.setComment("Set to true to render custom fog effects in the Prehistoric dimensions. [default: true]");
-        doFog = prop.getBoolean();
         propOrder.add(prop.getName());
 
         prop = cfg.get("Global World-Gen", "radiusBacterialCrust", radiusBacterialCrust);
@@ -8449,6 +8262,219 @@ public class LepidodendronConfig {
         prop = cfg.get("WorldGen Zygopteris", "multiplierZygopteris", multiplierZygopteris);
         prop.setComment("Number to multiply the spawn chance by (eg. 0.5 will halve the chance, and 2 will double it, etc., up to some fixed internal values) [default: 1]");
         multiplierZygopteris = prop.getDouble();
+        propOrder.add(prop.getName());
+
+
+        boolean changed = false;
+        if (cfg.hasChanged()) {
+            cfg.save();
+            changed = true;
+        }
+
+        return changed;
+    }
+
+    public static boolean syncConfigGeneral() {
+        List<String> propOrder = Lists.newArrayList();
+        Property prop = cfg.get("Global World-Gen", "showTooltips", showTooltips);
+        prop.setComment("Shows useful, searchable tooltips on relevant items [default: true]");
+        showTooltips = prop.getBoolean();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global Mobs", "doLowRes", doLowRes);
+        prop.setComment("User lower-resolution textures for some of the smaller mobs so that their style fits in better [default: false]");
+        doLowRes = prop.getBoolean();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global Mobs", "attackPlayerAlways", attackPlayerAlways);
+        prop.setComment("For mobs which can attack players, always attack players, regardless of the mob's health [default: false]");
+        attackPlayerAlways = prop.getBoolean();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global Mobs", "attackHealth", attackHealth);
+        prop.setComment("Mobs which can hunt will only hunt prey if their health is under this percentage of full (0-100) [default: 90]");
+        attackHealth = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "adultAge", adultAge);
+        prop.setComment("Ageable mobs will behave as adults once they are at least this percentage of full age (hunting, dropping eggs, etc.). This does nto affect models/textures. [default: 75]");
+        adultAge = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "doMultiplyMobs", doMultiplyMobs);
+        prop.setComment("Mobs will try to multiply every 1-2 days even without breeding them [default: false]");
+        doMultiplyMobs = prop.getBoolean();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global World-Gen", "dimCambrian", dimCambrian);
+        prop.setComment("Dimension number of the Cambrian dimension. Do not change this unless you get errors [default: -79]");
+        dimCambrian = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimCambrianMobsBespoke", dimCambrianMobsBespoke);
+        prop.setComment("List of additional mobs which can be found in the seas of the Cambrian dimension. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimCambrianMobsBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global World-Gen", "dimPrecambrian", dimPrecambrian);
+        prop.setComment("Dimension number of the Precambrian dimension. Do not change this unless you get errors [default: -78]");
+        dimPrecambrian = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimPrecambrianMobsBespoke", dimPrecambrianMobsBespoke);
+        prop.setComment("List of additional mobs which can be found in the Precambrian dimension. In the format: modid:mobid:maxspawn:weight [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn) [default: empty]");
+        dimPrecambrianMobsBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global World-Gen", "dimOrdovicianSilurian", dimOrdovicianSilurian);
+        prop.setComment("Dimension number of the Ordovician and Silurian dimension. Do not change this unless you get errors [default: -80]");
+        dimOrdovicianSilurian = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimOrdovicianSilurianMobsOceanBespoke", dimOrdovicianSilurianMobsOceanBespoke);
+        prop.setComment("List of additional mobs which can be found in the Ordovician and Silurian dimension ocean. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimOrdovicianSilurianMobsOceanBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimOrdovicianSilurianMobsOceanIceBespoke", dimOrdovicianSilurianMobsOceanIceBespoke);
+        prop.setComment("List of additional mobs which can be found in the Ordovician and Silurian dimension ice ocean. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimOrdovicianSilurianMobsOceanIceBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimOrdovicianSilurianMobsLandBespoke", dimOrdovicianSilurianMobsLandBespoke);
+        prop.setComment("List of additional mobs which can be found in the Ordovician and Silurian dimension on land. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimOrdovicianSilurianMobsLandBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global World-Gen", "dimDevonian", dimDevonian);
+        prop.setComment("Dimension number of the Devonian dimension. Do not change this unless you get errors [default: -81]");
+        dimDevonian = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimDevonianMobsForestBespoke", dimDevonianMobsForestBespoke);
+        prop.setComment("List of additional mobs which can be found in the Devonian dimension forests and floodplains. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimDevonianMobsForestBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimDevonianMobsOceanBespoke", dimDevonianMobsOceanBespoke);
+        prop.setComment("List of additional mobs which can be found in the Devonian dimension oceans. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimDevonianMobsOceanBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global World-Gen", "dimCarboniferous", dimCarboniferous);
+        prop.setComment("Dimension number of the Carboniferous dimension. Do not change this unless you get errors [default: -82]");
+        dimCarboniferous = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimCarboniferousMobsSwampBespoke", dimCarboniferousMobsSwampBespoke);
+        prop.setComment("List of mobs which can be found in the Carboniferous dimension swamps. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimCarboniferousMobsSwampBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimCarboniferousMobsOceanBespoke", dimCarboniferousMobsOceanBespoke);
+        prop.setComment("List of mobs which can be found in the Carboniferous dimension oceans. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimCarboniferousMobsOceanBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimCarboniferousMobsIceBespoke", dimCarboniferousMobsIceBespoke);
+        prop.setComment("List of mobs which can be found in the Carboniferous dimension polar desert. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimCarboniferousMobsIceBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global World-Gen", "dimPermian", dimPermian);
+        prop.setComment("Dimension number of the Permian dimension. Do not change this unless you get errors [default: -83]");
+        dimPermian = prop.getInt();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimPermianMobsGlossopterisBespoke", dimPermianMobsGlossopterisBespoke);
+        prop.setComment("List of mobs which can be found in the Permian dimension Glossopteris forests. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimPermianMobsGlossopterisBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimPermianMobsWetlandsBespoke", dimPermianMobsWetlandsBespoke);
+        prop.setComment("List of mobs which can be found in the Permian dimension swamps. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimPermianMobsWetlandsBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimPermianMobsOceanBespoke", dimPermianMobsOceanBespoke);
+        prop.setComment("List of mobs which can be found in the Permian dimension oceans. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimPermianMobsOceanBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimPermianMobsAridLandsBespoke", dimPermianMobsAridLandsBespoke);
+        prop.setComment("List of mobs which can be found in the Permian dimension arid lands. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimPermianMobsAridLandsBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimPermianMobsRiverBespoke", dimPermianMobsRiverBespoke);
+        prop.setComment("List of mobs which can be found in the Permian dimension rivers. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimPermianMobsRiverBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimPermianMobsLowlandsBespoke", dimPermianMobsLowlandsBespoke);
+        prop.setComment("List of mobs which can be found in the Permian dimension lowlands. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimPermianMobsLowlandsBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimPermianMobsLowlandForestBespoke", dimPermianMobsLowlandForestBespoke);
+        prop.setComment("List of mobs which can be found in the Permian dimension lowland forests. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimPermianMobsLowlandForestBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimPermianMobsFloodbasaltBespoke", dimPermianMobsFloodbasaltBespoke);
+        prop.setComment("List of mobs which can be found in the Permian dimension flood basalt. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimPermianMobsFloodbasaltBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimPermianMobsHighlandsBespoke", dimPermianMobsHighlandsBespoke);
+        prop.setComment("List of mobs which can be found in the Permian dimension highlands. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimPermianMobsHighlandsBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimPermianMobsDesertBespoke", dimPermianMobsDesertBespoke);
+        prop.setComment("List of mobs which can be found in the Permian dimension desert. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimPermianMobsDesertBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "dimPermianMobsMountainsBespoke", dimPermianMobsMountainsBespoke);
+        prop.setComment("List of mobs which can be found in the Permian dimension mountains. In the format: modid:mobid:maxspawn:weight:locationid (maxspawn [1-20] is the maximum number which can spawn as a group in the same chunk; weight [0-100] is how likely a group is to spawn; locationid can be either 1, 2 or 3 as these three location options for spawns: 1 = land, 2 = deep water [>4 blocks]; 3 = shallow water [<4 blocks]) [default: empty]");
+        dimPermianMobsMountainsBespoke = prop.getStringList();
+        propOrder.add(prop.getName());
+
+
+        prop = cfg.get("Global World-Gen", "dimDimensionScaler", dimDimensionScaler);
+        prop.setComment("This value controls how many blocks you move in a Prehistoric dimension when you move 1 block in the overworld (0.01 to 100) [default: 10]");
+        dimDimensionScaler = prop.getDouble();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global World-Gen", "dimTriassic", dimTriassic);
+        prop.setComment("Dimension number of the Triassic dimension. Do not change this unless you get errors [default: -84]");
+        dimTriassic = prop.getInt();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global World-Gen", "dimJurassic", dimJurassic);
+        prop.setComment("Dimension number of the Jurassic dimension. Do not change this unless you get errors [default: -84]");
+        dimJurassic = prop.getInt();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global World-Gen", "genFossil", genFossil);
+        prop.setComment("Set to false to disable the world-gen of this mod's fossil blocks. [default: true]");
+        genFossil = prop.getBoolean();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global World-Gen", "modFire", modFire);
+        prop.setComment("Set to false to disable this mod's custom Carboniferous fire (in case it is causing issues with other mods). [default: true]");
+        modFire = prop.getBoolean();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global World-Gen", "genPalaeobotanist", genPalaeobotanist);
+        prop.setComment("Percentage chance that a Palaeobotanist house will generate in a village. [default: 50]");
+        genPalaeobotanist = prop.getInt();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global Mobs", "doSpawnsPrehistoricFloraDefault", doSpawnsPrehistoricFloraDefault);
+        prop.setComment("Set to false to disable the default mob-spawns from this mod. [default: true]");
+        doSpawnsPrehistoricFloraDefault = prop.getBoolean();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "doSpawnsFossilsArcheology", doSpawnsFossilsArcheology);
+        prop.setComment("Set to true add in appropriate mob-spawns from the mod Fossils and Archeology Revival [v.8.05]. [default: false]");
+        doSpawnsFossilsArcheology = prop.getBoolean();
+        propOrder.add(prop.getName());
+        prop = cfg.get("Global Mobs", "doSpawnsReborn", doSpawnsReborn);
+        prop.setComment("Set to true add in appropriate mob-spawns from the mod Jurassic World Reborn [v.1.1.1]. [default: false]");
+        doSpawnsReborn = prop.getBoolean();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global Mobs", "renderAnimations", renderAnimations);
+        prop.setComment("Set to true to animate block-like mobs fully, or to false to render them as static blocks (useful for low performance graphics cards or for conflicts with Optifine). [default: true]");
+        renderAnimations = prop.getBoolean();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global World-Gen", "doFog", doFog);
+        prop.setComment("Set to true to render custom fog effects in the Prehistoric dimensions. [default: true]");
+        doFog = prop.getBoolean();
+        propOrder.add(prop.getName());
+
+        prop = cfg.get("Global World-Gen", "fixZirconGlass", fixZirconGlass);
+        prop.setComment("Set to false to disable the mod's zircon glass attempting to fix water rendering textures when a water plant is placed against it. [default: true]");
+        fixZirconGlass = prop.getBoolean();
         propOrder.add(prop.getName());
 
         prop = cfg.get("Mobs", "waterHibbertopterus", waterHibbertopterus);

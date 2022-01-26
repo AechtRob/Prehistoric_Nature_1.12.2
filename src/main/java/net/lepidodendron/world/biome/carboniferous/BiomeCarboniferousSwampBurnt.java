@@ -94,6 +94,7 @@ public class BiomeCarboniferousSwampBurnt extends ElementsLepidodendronMod.ModEl
 		}
 
 		protected static final WorldGenLepidodendronTreeBurnt BURNT_TREE = new WorldGenLepidodendronTreeBurnt(false);
+		protected static final WorldGenBurntBush BURNT_BUSH = new WorldGenBurntBush(false);
 
 		protected static final WorldGenMacroneuropterisTree MACRONEUROPTERIS_TREE = new WorldGenMacroneuropterisTree(false);
 		protected static final WorldGenPuddles PUDDLES_GENERATOR = new WorldGenPuddles();
@@ -124,15 +125,15 @@ public class BiomeCarboniferousSwampBurnt extends ElementsLepidodendronMod.ModEl
 				case 4:
 					return BURNT_TREE;
 				case 5:
-					return BURNT_TREE;
+					return BURNT_BUSH;
 				case 6:
 					return MACRONEUROPTERIS_TREE;
 				case 7:
 					return MACRONEUROPTERIS_TREE;
 				case 8:
-					return BURNT_TREE;
+					return BURNT_BUSH;
 				case 9:
-					return BURNT_TREE;
+					return BURNT_BUSH;
 			}
 	    	return BURNT_TREE;
 	    }

@@ -45,7 +45,7 @@ public class RenderPrionosuchus extends RenderLiving<EntityPrehistoricFloraPrion
 
             if (s != null && ("Gary".equalsIgnoreCase(s)))
             {
-                GlStateManager.scale(2.5,2.5,2.5);
+                GlStateManager.scale(3.0,3.0,3.0);
             }
         }
     }

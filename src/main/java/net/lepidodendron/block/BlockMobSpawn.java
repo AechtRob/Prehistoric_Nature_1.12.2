@@ -169,7 +169,7 @@ public class BlockMobSpawn extends Block {
 			//Test the orientation of this block and then check if it is still connected:
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.NORTH) {
 				IBlockState iblockstate = worldIn.getBlockState(pos.south());
-				if (worldIn.isAirBlock(pos.south()) ||
+				if (worldIn.isAirBlock(pos.south()) || worldIn.getBlockState(pos.south()).getMaterial() == Material.GLASS ||
 					(
 						(iblockstate.getBlockFaceShape(worldIn, pos.south(), EnumFacing.NORTH) != BlockFaceShape.SOLID)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.south()))
@@ -182,7 +182,7 @@ public class BlockMobSpawn extends Block {
 				}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.SOUTH) {
 				IBlockState iblockstate = worldIn.getBlockState(pos.north());
-				if (worldIn.isAirBlock(pos.north()) ||
+				if (worldIn.isAirBlock(pos.north()) ||  worldIn.getBlockState(pos.north()).getMaterial() == Material.GLASS ||
 					(
 						(iblockstate.getBlockFaceShape(worldIn, pos.north(), EnumFacing.SOUTH) != BlockFaceShape.SOLID)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.north()))
@@ -195,7 +195,7 @@ public class BlockMobSpawn extends Block {
 				}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.EAST) {
 				IBlockState iblockstate = worldIn.getBlockState(pos.west());
-				if (worldIn.isAirBlock(pos.west()) ||
+				if (worldIn.isAirBlock(pos.west()) || worldIn.getBlockState(pos.west()).getMaterial() == Material.GLASS ||
 					(
 						(iblockstate.getBlockFaceShape(worldIn, pos.west(), EnumFacing.EAST) != BlockFaceShape.SOLID)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.west()))
@@ -208,7 +208,7 @@ public class BlockMobSpawn extends Block {
 				}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.WEST) {
 				IBlockState iblockstate = worldIn.getBlockState(pos.east());
-				if (worldIn.isAirBlock(pos.east()) ||
+				if (worldIn.isAirBlock(pos.east()) || worldIn.getBlockState(pos.east()).getMaterial() == Material.GLASS ||
 					(
 						(iblockstate.getBlockFaceShape(worldIn, pos.east(), EnumFacing.WEST) != BlockFaceShape.SOLID)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.east()))
@@ -221,7 +221,7 @@ public class BlockMobSpawn extends Block {
 				}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.UP) {
 				IBlockState iblockstate = worldIn.getBlockState(pos.down());
-				if (worldIn.isAirBlock(pos.down()) ||
+				if (worldIn.isAirBlock(pos.down()) || worldIn.getBlockState(pos.down()).getMaterial() == Material.GLASS ||
 					(
 						(iblockstate.getBlockFaceShape(worldIn, pos.down(), EnumFacing.UP) != BlockFaceShape.SOLID)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.down()))
@@ -234,7 +234,7 @@ public class BlockMobSpawn extends Block {
 				}
 			if ((EnumFacing) state.getValue(BlockDirectional.FACING) == EnumFacing.DOWN) {
 				IBlockState iblockstate = worldIn.getBlockState(pos.up());
-				if (worldIn.isAirBlock(pos.up()) ||
+				if (worldIn.isAirBlock(pos.up()) || worldIn.getBlockState(pos.up()).getMaterial() == Material.GLASS ||
 					(
 						(iblockstate.getBlockFaceShape(worldIn, pos.up(), EnumFacing.DOWN) != BlockFaceShape.SOLID)
 						&& (!iblockstate.getBlock().isLeaves(iblockstate, worldIn, pos.up()))
@@ -276,27 +276,33 @@ public class BlockMobSpawn extends Block {
 	{
 		boolean blockface  = true;
 		if (side == EnumFacing.NORTH) {
-			if (worldIn.getBlockState(pos.south()).getBlockFaceShape(worldIn, pos.south(), side) != BlockFaceShape.SOLID)
+			if (worldIn.getBlockState(pos.south()).getBlockFaceShape(worldIn, pos.south(), side) != BlockFaceShape.SOLID
+				|| worldIn.getBlockState(pos.south()).getMaterial() == Material.GLASS )
 				blockface = false;
 		}
 		if (side == EnumFacing.SOUTH) {
-			if (worldIn.getBlockState(pos.north()).getBlockFaceShape(worldIn, pos.north(), side) != BlockFaceShape.SOLID)
+			if (worldIn.getBlockState(pos.north()).getBlockFaceShape(worldIn, pos.north(), side) != BlockFaceShape.SOLID
+					|| worldIn.getBlockState(pos.north()).getMaterial() == Material.GLASS )
 				blockface = false;
 		}
 		if (side == EnumFacing.EAST) {
-			if (worldIn.getBlockState(pos.west()).getBlockFaceShape(worldIn, pos.west(), side) != BlockFaceShape.SOLID)
+			if (worldIn.getBlockState(pos.west()).getBlockFaceShape(worldIn, pos.west(), side) != BlockFaceShape.SOLID
+					|| worldIn.getBlockState(pos.west()).getMaterial() == Material.GLASS )
 				blockface = false;
 		}
 		if (side == EnumFacing.WEST) {
-			if (worldIn.getBlockState(pos.east()).getBlockFaceShape(worldIn, pos.east(), side) != BlockFaceShape.SOLID)
+			if (worldIn.getBlockState(pos.east()).getBlockFaceShape(worldIn, pos.east(), side) != BlockFaceShape.SOLID
+					|| worldIn.getBlockState(pos.east()).getMaterial() == Material.GLASS )
 				blockface = false;
 		}
 		if (side == EnumFacing.UP) {
-			if (worldIn.getBlockState(pos.down()).getBlockFaceShape(worldIn, pos.down(), side) != BlockFaceShape.SOLID)
+			if (worldIn.getBlockState(pos.down()).getBlockFaceShape(worldIn, pos.down(), side) != BlockFaceShape.SOLID
+					|| worldIn.getBlockState(pos.down()).getMaterial() == Material.GLASS )
 				blockface = false;
 		}
 		if (side == EnumFacing.DOWN) {
-			if (worldIn.getBlockState(pos.up()).getBlockFaceShape(worldIn, pos.up(), side) != BlockFaceShape.SOLID)
+			if (worldIn.getBlockState(pos.up()).getBlockFaceShape(worldIn, pos.up(), side) != BlockFaceShape.SOLID
+					|| worldIn.getBlockState(pos.up()).getMaterial() == Material.GLASS )
 				blockface = false;
 		}
 

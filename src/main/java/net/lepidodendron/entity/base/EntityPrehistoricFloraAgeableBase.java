@@ -548,8 +548,8 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
         if (this.isEntityAlive())
         {
             ++i;
-            //throttle at 100k
-            if (i >= 100000) {i = 100000;}
+            //throttle at limit:
+            if (i > this.getAdultAge()) {i = this.getAdultAge();}
             this.setAgeTicks(i);
         }
 

@@ -51,7 +51,7 @@ public class RenderTitanichthys extends RenderLiving<EntityPrehistoricFloraTitan
 
             if (s != null && ("Keith".equalsIgnoreCase(s)))
             {
-                GlStateManager.scale(2.5,2.5,2.5);
+                GlStateManager.scale(3.0,3.0,3.0);
             }
         }
     }

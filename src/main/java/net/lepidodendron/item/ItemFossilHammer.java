@@ -73,6 +73,8 @@ public class ItemFossilHammer extends ElementsLepidodendronMod.ModElement {
             return multimap;
         }
 
+
+
         @Override
         public boolean onBlockDestroyed(ItemStack stack, World worldIn, IBlockState state, BlockPos pos, EntityLivingBase entityLiving) {
             if (!worldIn.isRemote)

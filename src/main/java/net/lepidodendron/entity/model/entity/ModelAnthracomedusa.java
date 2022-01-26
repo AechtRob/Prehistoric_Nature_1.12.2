@@ -928,9 +928,9 @@ public class ModelAnthracomedusa extends AdvancedModelBase {
             if (!e.isInWater()) {
                 this.resetToDefaultPose();
                 this.body.rotateAngleZ = (float) Math.toRadians(90);
-                this.body.offsetY = 0.4F;
-                this.body.offsetX = -0.8F;
-                this.body.offsetZ = -0.1F;
+                this.body.offsetY = 0.6F;
+                this.body.offsetX = -0.7F;
+                this.body.offsetZ = -0.3F;
                 this.body.scaleChildren = true;
                 this.body.setScaleX(0.2F);
                 this.body.setScaleZ(1.2F);

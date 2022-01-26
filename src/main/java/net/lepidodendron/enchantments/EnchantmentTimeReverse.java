@@ -1,8 +1,11 @@
 package net.lepidodendron.enchantments;
 
 import net.lepidodendron.LepidodendronMod;
+import net.lepidodendron.item.ItemFishFood;
+import net.lepidodendron.item.ItemFossilHammer;
 import net.minecraft.enchantment.Enchantment;
 import net.minecraft.inventory.EntityEquipmentSlot;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 
 public class EnchantmentTimeReverse extends Enchantment {

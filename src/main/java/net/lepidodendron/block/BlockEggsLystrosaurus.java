@@ -5,7 +5,7 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronMobile;
-import net.lepidodendron.entity.EntityPrehistoricFloraDiictodon;
+import net.lepidodendron.entity.EntityPrehistoricFloraLystrosaurus;
 import net.lepidodendron.entity.EntityPrehistoricFloraLystrosaurus;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.minecraft.block.Block;
@@ -168,8 +168,8 @@ public class BlockEggsLystrosaurus extends ElementsLepidodendronMod.ModElement {
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Periods: " + EntityPrehistoricFloraDiictodon.getPeriod());
-				tooltip.add("Type: " + EntityPrehistoricFloraDiictodon.getHabitat() + " Dicynodont");
+				tooltip.add("Periods: " + EntityPrehistoricFloraLystrosaurus.getPeriod());
+				tooltip.add("Type: " + EntityPrehistoricFloraLystrosaurus.getHabitat() + " Dicynodont");
 				super.addInformation(stack, player, tooltip, advanced);
 			}
 		}

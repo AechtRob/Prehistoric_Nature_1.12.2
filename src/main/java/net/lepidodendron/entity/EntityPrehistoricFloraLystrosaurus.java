@@ -53,7 +53,7 @@ public class EntityPrehistoricFloraLystrosaurus extends EntityPrehistoricFloraLa
 		maxHealthAgeable = 18.0D;
 	}
 
-	public static String getPeriod() {return "Permian";}
+	public static String getPeriod() {return "late Permian - early Triassic";}
 
 	public static String getHabitat() {return "Terrestrial";}
 
@@ -116,7 +116,7 @@ public class EntityPrehistoricFloraLystrosaurus extends EntityPrehistoricFloraLa
 	@Override
 	public float getEyeHeight()
 	{
-		return this.height * 1.05F;
+		return this.height * 0.9F;
 	}
 
 	protected void initEntityAI() {

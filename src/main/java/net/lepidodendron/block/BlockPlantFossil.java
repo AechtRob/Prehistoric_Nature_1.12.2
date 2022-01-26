@@ -116,8 +116,11 @@ public class BlockPlantFossil extends ElementsLepidodendronMod.ModElement {
 		}
 
 		@Override
-		protected boolean canSilkHarvest()
+		public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
 		{
+			if (player.getHeldItemMainhand().getItem() == new ItemStack(ItemFossilHammer.block, (int) (1)).getItem()) {
+				return false;
+			}
 			return true;
 		}
 
