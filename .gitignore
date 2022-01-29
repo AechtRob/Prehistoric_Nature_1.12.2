@@ -25,3 +25,5 @@ run
 forge*changelog.txt
 /src/test/
 /src/test/
+/src/main/java/net/lepidodendron/entity/model/entity/
+/src/main/java/net/lepidodendron/entity/model/tile/
