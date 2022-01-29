@@ -611,6 +611,13 @@ public class LepidodendronMod {
 	public static final int ENTITY_LYSTROSAURUS = 254;
 	public static final ResourceLocation LYSTROSAURUS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/lystrosaurus"));
 	public static final ResourceLocation LYSTROSAURUS_LOOT_YOUNG = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/lystrosaurus_young"));
+	public static final int ENTITY_ANTINEOSTEUS = 255;
+	public static final ResourceLocation ANTINEOSTEUS_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/antineosteus"));
+	public static final ResourceLocation ANTINEOSTEUS_LOOT_YOUNG = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/antineosteus_young"));
+
+	public static final int ENTITY_SUMINIA = 262;
+	public static final ResourceLocation SUMINIA_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/suminia"));
+	public static final ResourceLocation SUMINIA_LOOT_YOUNG = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/suminia_young"));
 
 	public static final int ENTITY_LISOWICIA = 266;
 	public static final ResourceLocation LISOWICIA_LOOT = LootTableList.register(new ResourceLocation(LepidodendronMod.MODID, "entity/lisowicia"));

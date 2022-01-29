@@ -1905,7 +1905,7 @@ public class LepidodendronConfig {
         propOrder.add(prop.getName());
 
         prop = cfg.get("Global World-Gen", "genLogResin", genLogResin);
-        prop.setComment("List of log blocks which produce resin, in the format: modid:blockid:meta [default: \"minecraft:log:1\", \"lepidodendron:hymenaea_log\", \"lepidodendron:agathis_log\", \"lepidodendron:araucarioxylon_log\", \"lepidodendron:bunya_log\", \"lepidodendron:columnaris_log\", \"lepidodendron:monkeypuzzle_log\", \"lepidodendron:sciadopitys_log\", \"lepidodendron:wollemi_log\", \"biomesoplenty:log_2:6\", \"biomesoplenty:log_0:7\", \"jurassicraft:araucaria_log\", \"wildnature:cedar_log\", \"wildnature:fir_log\", \"wildnature:pine_log\"]");
+        prop.setComment("List of log blocks which produce resin, in the format: modid:blockid:meta [default: \"minecraft:log:1\", \"lepidodendron:hymenaea_log\", \"lepidodendron:agathis_log\", \"lepidodendron:araucarioxylon_log\", \"lepidodendron:bunya_log\", \"lepidodendron:columnaris_log\", \"lepidodendron:monkeypuzzle_log\", \"lepidodendron:sciadopitys_log\", \"lepidodendron:walchia_log\", \"lepidodendron:wollemi_log\", \"biomesoplenty:log_2:6\", \"biomesoplenty:log_0:7\", \"jurassicraft:araucaria_log\", \"wildnature:cedar_log\", \"wildnature:fir_log\", \"wildnature:pine_log\"]");
         genLogResin = prop.getStringList();
         propOrder.add(prop.getName());
         prop = cfg.get("Prehistoric Ground Cover", "genPlantPrehistoric", genPlantPrehistoric);

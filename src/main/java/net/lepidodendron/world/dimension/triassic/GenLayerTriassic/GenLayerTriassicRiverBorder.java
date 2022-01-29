@@ -56,6 +56,12 @@ public class GenLayerTriassicRiverBorder extends GenLayer
     public  Biome TRIASSIC_FOREST_CRAGS = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_gondwanan_forest_hills"));
     public  int TRIASSIC_FOREST_CRAGS_ID =  Biome.getIdForBiome(TRIASSIC_FOREST_CRAGS);
 
+    public Biome TRIASSIC_FLOODED_FOREST = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_flooded_forest"));
+    public int TRIASSIC_FLOODED_FOREST_ID =  Biome.getIdForBiome(TRIASSIC_FLOODED_FOREST);
+
+    public Biome TRIASSIC_MOUNTAINS = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_mountains"));
+    public int TRIASSIC_MOUNTAINS_ID =  Biome.getIdForBiome(TRIASSIC_MOUNTAINS);
+
     public GenLayerTriassicRiverBorder(long seed, GenLayer genLayer)
     {
         super(seed);
@@ -158,7 +164,9 @@ public class GenLayerTriassicRiverBorder extends GenLayer
             || biomeID == TRIASSIC_FOREST_CRAGS_ID
             || biomeID == TRIASSIC_FOREST_HILLS_ID
             || biomeID == TRIASSIC_WARM_LAKELAND_ID
-            || biomeID == TRIASSIC_WARM_VOLCANIC_HILLS_ID) {
+            || biomeID == TRIASSIC_WARM_VOLCANIC_HILLS_ID
+            || biomeID == TRIASSIC_FLOODED_FOREST_ID
+            || biomeID == TRIASSIC_MOUNTAINS_ID) {
             return true;
         }
         return false;
@@ -173,7 +181,8 @@ public class GenLayerTriassicRiverBorder extends GenLayer
             || biomeID == TRIASSIC_WARM_LAKELAND_ID
             || biomeID == TRIASSIC_WARM_VOLCANIC_HILLS_ID
             || biomeID == TRIASSIC_XERIC_FOREST_ID
-            || biomeID == TRIASSIC_XERIC_SCRUBLAND_ID) {
+            || biomeID == TRIASSIC_XERIC_SCRUBLAND_ID
+            || biomeID == TRIASSIC_MOUNTAINS_ID) {
             return true;
         }
         return false;

@@ -9,6 +9,8 @@ public enum EnumBiomeTypeTriassic implements IStringSerializable {
     River("river"),
     Xeric("xeric"),
     Warm("warm"),
+    Mountain("mountains"),
+    Swamp("swamp"),
     Ocean("ocean"),
     Island("island");
 

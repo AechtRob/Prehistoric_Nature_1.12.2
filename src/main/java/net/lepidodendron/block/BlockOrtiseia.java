@@ -18,9 +18,11 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMap;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.NonNullList;
@@ -34,6 +36,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nullable;
 import java.util.List;
 
 @ElementsLepidodendronMod.ModElement.Tag
@@ -149,7 +152,17 @@ public class BlockOrtiseia extends ElementsLepidodendronMod.ModElement {
 				return Item.getItemFromBlock(BlockOrtiseia.block);
 			}
 		}
-		
+
+		@Override
+		public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+			if (LepidodendronConfig.doFruits && Math.random() > 0.4) {
+				EntityItem entityToSpawn = new EntityItem(worldIn, pos.getX(), pos.getY(), pos.getZ(), new ItemStack(ItemOrtiseiaFruit.block, (int) (1)));
+				entityToSpawn.setPickupDelay(10);
+				worldIn.spawnEntity(entityToSpawn);
+			}
+			super.harvestBlock(worldIn, player, pos, state, te, stack);
+		}
+
 		public boolean isLeaves(IBlockState state, IBlockAccess world, BlockPos pos) {
         	return false;
     	}

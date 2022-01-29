@@ -141,6 +141,7 @@ public class EntityPrehistoricFloraDiictodon extends EntityPrehistoricFloraLandB
 			List<EntityPrehistoricFloraDiictodon> Diictodon = this.world.getEntitiesWithinAABB(EntityPrehistoricFloraDiictodon.class, new AxisAlignedBB(this.getPosition().add(-8, -4, -8), this.getPosition().add(8, 4, 8)));
 			for (EntityPrehistoricFloraDiictodon currentDiictodon : Diictodon) {
 				currentDiictodon.setRevengeTarget(ee);
+				currentDiictodon.alarmCooldown = rand.nextInt(20);
 			}
 		}
 		return super.attackEntityFrom(ds, i);

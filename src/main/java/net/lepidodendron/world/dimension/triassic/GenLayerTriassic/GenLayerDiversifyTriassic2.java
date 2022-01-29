@@ -35,6 +35,10 @@ public class GenLayerDiversifyTriassic2 extends GenLayer {
     public  int TRIASSIC_VOLCANIC_ISLANDS_ID =  Biome.getIdForBiome(TRIASSIC_VOLCANIC_ISLANDS);
     public Biome TRIASSIC_GONDWANAN_PLAIN = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_gondwanan_plain"));
     public int TRIASSIC_GONDWANAN_PLAIN_ID =  Biome.getIdForBiome(TRIASSIC_GONDWANAN_PLAIN);
+    public Biome TRIASSIC_FLOODED_FOREST = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_flooded_forest"));
+    public int TRIASSIC_FLOODED_FOREST_ID =  Biome.getIdForBiome(TRIASSIC_FLOODED_FOREST);
+    public Biome TRIASSIC_MOUNTAINS = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_mountains"));
+    public int TRIASSIC_MOUNTAINS_ID =  Biome.getIdForBiome(TRIASSIC_MOUNTAINS);
 
 
     private final int CoolBiomes[] = new int[] {
@@ -76,6 +80,16 @@ public class GenLayerDiversifyTriassic2 extends GenLayer {
         TRIASSIC_OCEAN_SHORE_ID
     };
 
+    private final int SwampBiomes[] = new int[] {
+        TRIASSIC_FLOODED_FOREST_ID,
+        TRIASSIC_FLOODED_FOREST_ID,
+        TRIASSIC_FLOODED_FOREST_ID,
+        TRIASSIC_FLOODED_FOREST_ID,
+        TRIASSIC_MOUNTAINS_ID,
+        TRIASSIC_MOUNTAINS_ID,
+        TRIASSIC_MOUNTAINS_ID
+    };
+
     public GenLayerDiversifyTriassic2(long seed, GenLayer genlayer) {
         super(seed);
         this.parent = genlayer;
@@ -106,6 +120,9 @@ public class GenLayerDiversifyTriassic2 extends GenLayer {
                         output[i] = WarmBiomes[nextInt(WarmBiomes.length)];
                     else if (Biome.getBiome(center) == BiomeTriassicOceanShore.biome)
                         output[i] = OceanBiomes[nextInt(OceanBiomes.length)];
+                    else if (Biome.getBiome(center) == BiomeTriassicFloodedForest.biome
+                        || Biome.getBiome(center) == BiomeTriassicMountains.biome)
+                        output[i] = SwampBiomes[nextInt(SwampBiomes.length)];
 
                     else output[i] = center;
                 } else output[i] = center;

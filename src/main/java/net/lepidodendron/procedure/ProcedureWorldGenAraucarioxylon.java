@@ -56,8 +56,12 @@ public class ProcedureWorldGenAraucarioxylon extends ElementsLepidodendronMod.Mo
 			&& material != Material.ROCK
 			&& material != Material.SAND
 			&& material != Material.WOOD
+				|| world.canSeeSky(new BlockPos((int) x, (int) y + 1, (int) z))
+				|| world.canSeeSky(new BlockPos((int) x, (int) y + 2, (int) z))
 			) {			
 			world.setBlockToAir(new BlockPos((int) x, (int) y, (int) z));
+			world.setBlockToAir(new BlockPos((int) x, (int) y + 1, (int) z));
+			world.setBlockToAir(new BlockPos((int) x, (int) y + 2, (int) z));
 			
 			//Trunk:
 			TrunkHeight = 40 + (Math.random() * 10) + (Math.random() * 10);

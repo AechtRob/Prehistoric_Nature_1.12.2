@@ -270,6 +270,8 @@ public class EntityRegistries {
         registerEntity("prehistoric_flora_dorypterus", EntityPrehistoricFloraDorypterus.class, LepidodendronMod.ENTITY_DORYPTERUS, 32,-1541368,-16410907);
         registerEntity("prehistoric_flora_lystrosaurus", EntityPrehistoricFloraLystrosaurus.class, LepidodendronMod.ENTITY_LYSTROSAURUS, 32,-7504539,-10256042);
         registerEntity("prehistoric_flora_lisowicia", EntityPrehistoricFloraLisowicia.class, LepidodendronMod.ENTITY_LISOWICIA, 32,-5923957,-11382967);
+        registerEntity("prehistoric_flora_antineosteus", EntityPrehistoricFloraAntineosteus.class, LepidodendronMod.ENTITY_ANTINEOSTEUS, 32,-8764403,-4363758);
+        registerEntity("prehistoric_flora_suminia ", EntityPrehistoricFloraSuminia .class, LepidodendronMod.ENTITY_SUMINIA , 32,-8311764,-5074836);
 
     }
 

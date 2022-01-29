@@ -10,6 +10,7 @@ import net.lepidodendron.item.ItemEquisetitesReedItem;
 import net.lepidodendron.util.EnumBiomeTypeJurassic;
 import net.lepidodendron.world.biome.jurassic.BiomeJurassic;
 import net.lepidodendron.world.biome.triassic.BiomeTriassic;
+import net.lepidodendron.world.biome.triassic.BiomeTriassicFloodedForest;
 import net.lepidodendron.world.biome.triassic.BiomeTriassicRiver;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockReed;
@@ -93,7 +94,8 @@ public class BlockEquisetitesReed extends ElementsLepidodendronMod.ModElement {
 			biomeCriteria = true;
 
 		if (biome instanceof BiomeTriassic) {
-			if (biome == BiomeTriassicRiver.biome) {
+			if (biome == BiomeTriassicRiver.biome
+				|| biome == BiomeTriassicFloodedForest.biome) {
 				biomeCriteria = true;
 			}
 		}
@@ -123,6 +125,10 @@ public class BlockEquisetitesReed extends ElementsLepidodendronMod.ModElement {
 			|| dimID == LepidodendronConfig.dimJurassic)
 		{
 			GenChance = 35;
+		}
+
+		if (biome == BiomeTriassicFloodedForest.biome) {
+			GenChance = 64;
 		}
 
 		int maxheight = LepidodendronConfig.maxheightEquisetitesReed;

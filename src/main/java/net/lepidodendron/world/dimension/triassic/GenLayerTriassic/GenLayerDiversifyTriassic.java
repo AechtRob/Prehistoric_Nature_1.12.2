@@ -1,10 +1,7 @@
 package net.lepidodendron.world.dimension.triassic.GenLayerTriassic;
 
 import net.lepidodendron.util.EnumBiomeTypePermian;
-import net.lepidodendron.world.biome.triassic.BiomeTriassicDesertRocky;
-import net.lepidodendron.world.biome.triassic.BiomeTriassicGondwananForest;
-import net.lepidodendron.world.biome.triassic.BiomeTriassicWarmLakeland;
-import net.lepidodendron.world.biome.triassic.BiomeTriassicXericForest;
+import net.lepidodendron.world.biome.triassic.*;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
@@ -34,7 +31,10 @@ public class GenLayerDiversifyTriassic extends GenLayer {
     public int TRIASSIC_WARM_VOLCANIC_HILLS_ID =  Biome.getIdForBiome(TRIASSIC_WARM_VOLCANIC_HILLS);
     public Biome TRIASSIC_GONDWANAN_PLAIN = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_gondwanan_plain"));
     public int TRIASSIC_GONDWANAN_PLAIN_ID =  Biome.getIdForBiome(TRIASSIC_GONDWANAN_PLAIN);
-
+    public Biome TRIASSIC_FLOODED_FOREST = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_flooded_forest"));
+    public int TRIASSIC_FLOODED_FOREST_ID =  Biome.getIdForBiome(TRIASSIC_FLOODED_FOREST);
+    public Biome TRIASSIC_MOUNTAINS = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:triassic_mountains"));
+    public int TRIASSIC_MOUNTAINS_ID =  Biome.getIdForBiome(TRIASSIC_MOUNTAINS);
 
     private final int CoolBiomes[] = new int[] {
         TRIASSIC_GONDWANAN_FOREST_ID,
@@ -66,6 +66,16 @@ public class GenLayerDiversifyTriassic extends GenLayer {
         //TRIASSIC_GLOSSOPTERIS_WET_ID
     };
 
+    private final int SwampBiomes[] = new int[] {
+        TRIASSIC_FLOODED_FOREST_ID,
+        TRIASSIC_FLOODED_FOREST_ID,
+        TRIASSIC_FLOODED_FOREST_ID,
+        TRIASSIC_FLOODED_FOREST_ID,
+        TRIASSIC_MOUNTAINS_ID,
+        TRIASSIC_MOUNTAINS_ID,
+        TRIASSIC_MOUNTAINS_ID
+    };
+
     public GenLayerDiversifyTriassic(long seed, GenLayer genlayer) {
         super(seed);
         this.parent = genlayer;
@@ -94,7 +104,8 @@ public class GenLayerDiversifyTriassic extends GenLayer {
                         output[i] = XericBiomes[nextInt(XericBiomes.length)];
                     else if (Biome.getBiome(center) == BiomeTriassicWarmLakeland.biome)
                         output[i] = WarmBiomes[nextInt(WarmBiomes.length)];
-
+                    else if (Biome.getBiome(center) == BiomeTriassicFloodedForest.biome)
+                        output[i] = SwampBiomes[nextInt(SwampBiomes.length)];
                     else output[i] = center;
                 } else output[i] = center;
             }

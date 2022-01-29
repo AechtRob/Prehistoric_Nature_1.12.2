@@ -4,6 +4,8 @@ package net.lepidodendron.world.biome.permian;
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockPrehistoricGroundLush;
+import net.lepidodendron.block.BlockSandPangaean;
+import net.lepidodendron.block.BlockSandyDirtPangaean;
 import net.lepidodendron.util.EnumBiomeTypePermian;
 import net.lepidodendron.world.biome.ChunkGenSpawner;
 import net.lepidodendron.world.gen.WorldGenCordaites;
@@ -45,9 +47,9 @@ public class BiomePermianOcean extends ElementsLepidodendronMod.ModElement {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Permian Deep Ocean").setBaseHeight(-1.85F).setHeightVariation(0.21F).setWaterColor(13038245));
 			setRegistryName("permian_ocean");
-			topBlock = BlockPrehistoricGroundLush.block.getDefaultState();
-			fillerBlock = Blocks.SAND.getStateFromMeta(0);
-			decorator.treesPerChunk = 2;
+			topBlock = BlockSandPangaean.block.getDefaultState();
+			fillerBlock = BlockSandyDirtPangaean.block.getDefaultState();
+			decorator.treesPerChunk = -999;
 			decorator.flowersPerChunk = 0;
 			decorator.grassPerChunk = 0;
 			decorator.mushroomsPerChunk = 20;

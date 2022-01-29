@@ -1587,6 +1587,18 @@ public class RenderHandler {
                 return new RenderLisowicia(manager);
             }
         });
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrehistoricFloraAntineosteus.class, new IRenderFactory<EntityPrehistoricFloraAntineosteus>() {
+        @Override
+        public Render<? super EntityPrehistoricFloraAntineosteus> createRenderFor(RenderManager manager) {
+                return new RenderAntineosteus(manager);
+            }
+        });
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrehistoricFloraSuminia .class, new IRenderFactory<EntityPrehistoricFloraSuminia >() {
+        @Override
+        public Render<? super EntityPrehistoricFloraSuminia > createRenderFor(RenderManager manager) {
+                return new RenderSuminia (manager);
+            }
+        });
 
 
         //Tile Entities Ediacaran (etc):

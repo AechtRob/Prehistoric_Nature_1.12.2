@@ -2463,9 +2463,152 @@
         "stream": false
       }
     ]
+  },
+
+
+  "suminia_idle": {
+    "sounds": [
+      {
+        "name": "lepidodendron:suminia_living01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:suminia_living02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:suminia_living03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:suminia_living04",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:suminia_living05",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:suminia_living06",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:suminia_living07",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:suminia_living08",
+        "stream": false
+      }
+    ]
+  },
+  "suminia_hurt": {
+    "sounds": [
+      {
+        "name": "lepidodendron:suminia_hurt01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:suminia_hurt02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:suminia_hurt03",
+        "stream": false
+      }
+    ]
+  },
+  "suminia_death": {
+    "sounds": [
+      {
+        "name": "lepidodendron:suminia_death",
+        "stream": false
+      }
+    ]
+  },
+  "suminia_alarm": {
+    "sounds": [
+      {
+        "name": "lepidodendron:suminia_alarm01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:suminia_alarm02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:suminia_alarm03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:suminia_alarm04",
+        "stream": false
+      }
+    ]
+  },
+
+
+  "lisowicia_idle": {
+    "sounds": [
+      {
+        "name": "lepidodendron:lisowicia_living01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lisowicia_living02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lisowicia_living03",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lisowicia_living04",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lisowicia_living05",
+        "stream": false
+      }
+    ]
+  },
+  "lisowicia_hurt": {
+    "sounds": [
+      {
+        "name": "lepidodendron:lisowicia_hurt01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lisowicia_hurt02",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lisowicia_hurt03",
+        "stream": false
+      }
+    ]
+  },
+  "lisowicia_death": {
+    "sounds": [
+      {
+        "name": "lepidodendron:lisowicia_death",
+        "stream": false
+      }
+    ]
+  },
+  "lisowicia_roar": {
+    "sounds": [
+      {
+        "name": "lepidodendron:lisowicia_roar01",
+        "stream": false
+      },
+      {
+        "name": "lepidodendron:lisowicia_roar02",
+        "stream": false
+      }
+    ]
   }
-
-
-
-
+  
+  
+  
 }

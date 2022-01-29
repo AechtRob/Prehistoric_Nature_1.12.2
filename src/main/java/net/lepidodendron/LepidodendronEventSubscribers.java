@@ -4,6 +4,7 @@ import net.lepidodendron.entity.*;
 import net.lepidodendron.world.biome.devonian.BiomeDevonianSprings;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -12,7 +13,10 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
+import net.minecraftforge.common.DimensionManager;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
+import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.relauncher.Side;
@@ -20,10 +24,87 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class LepidodendronEventSubscribers {
 
 private int tickIndex = 0;
+
+	@SubscribeEvent
+	public void onWorldTick(TickEvent.WorldTickEvent event) {
+		if (event.phase == TickEvent.Phase.START) {
+			WorldServer precambrian = DimensionManager.getWorld(LepidodendronConfig.dimPrecambrian);
+			if (getAllPlayersSleepingFlag(precambrian))
+			{
+				if (precambrian.getGameRules().getBoolean("doDaylightCycle"))
+				{
+					long i = precambrian.getWorldTime() + 24000L;
+					precambrian.setWorldTime(i - i % 24000L);
+				}
+
+				wakeAllPlayers(precambrian);
+			}
+		}
+	}
+
+	public boolean getAllPlayersSleepingFlag(WorldServer world)
+	{
+		if (!world.playerEntities.isEmpty())
+		{
+			int i = 0;
+			int j = 0;
+
+			for (EntityPlayer entityplayer : world.playerEntities)
+			{
+				if (entityplayer.isSpectator())
+				{
+					++i;
+				}
+				else if (entityplayer.isPlayerSleeping())
+				{
+					++j;
+				}
+			}
+
+			return j > 0 && j >= world.playerEntities.size() - i;
+		}
+		return false;
+	}
+
+	public boolean areAllPlayersAsleep(WorldServer world)
+	{
+		if (getAllPlayersSleepingFlag(world) && !world.isRemote)
+		{
+			for (EntityPlayer entityplayer : world.playerEntities)
+			{
+				if (!entityplayer.isSpectator() && !entityplayer.isPlayerFullyAsleep())
+				{
+					return false;
+				}
+			}
+
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	protected void wakeAllPlayers(WorldServer world)
+	{
+		//world.allPlayersSleeping = false;
+
+		for (EntityPlayer entityplayer : world.playerEntities.stream().filter(EntityPlayer::isPlayerSleeping).collect(Collectors.toList()))
+		{
+			entityplayer.wakeUpPlayer(false, false, true);
+		}
+
+		if (world.getGameRules().getBoolean("doWeatherCycle"))
+		{
+			world.provider.resetRainAndThunder();
+		}
+	}
 
 
 	@SubscribeEvent

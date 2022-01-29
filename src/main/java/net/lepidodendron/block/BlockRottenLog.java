@@ -316,7 +316,7 @@ public class BlockRottenLog extends ElementsLepidodendronMod.ModElement {
 		protected static final AxisAlignedBB AABBE = new AxisAlignedBB(0.95D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D);
 		protected static final AxisAlignedBB AABBW = new AxisAlignedBB(0.00D, 0.0D, 0.0D, 0.05D, 1.0D, 1.0D);
 		protected static final AxisAlignedBB AABBU = new AxisAlignedBB(0.0D, 0.95D, 0.0D, 1.0D, 1.0D, 1.0D);
-		protected static final AxisAlignedBB AABBD = new AxisAlignedBB(0.0D, 0.00D, 0.0D, 0.05D, 1.0D, 1.0D);
+		protected static final AxisAlignedBB AABBD = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.05D, 1.0D);
 
 		@Override
 		public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean isActualState) {

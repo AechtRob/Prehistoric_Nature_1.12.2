@@ -13,6 +13,7 @@ import net.lepidodendron.world.biome.carboniferous.BiomeCarboniferousSwampBurnt;
 import net.lepidodendron.world.biome.jurassic.BiomeJurassic;
 import net.lepidodendron.world.biome.permian.BiomePermian;
 import net.lepidodendron.world.biome.triassic.BiomeTriassic;
+import net.lepidodendron.world.biome.triassic.BiomeTriassicFloodedForest;
 import net.lepidodendron.world.gen.FernEpiphyteGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
@@ -106,7 +107,8 @@ public class BlockFernEpiphyte extends ElementsLepidodendronMod.ModElement {
 		if (biome instanceof BiomeTriassic)
 		{
 			BiomeTriassic biomeTriassic = (BiomeTriassic) biome;
-			if (biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Cool) {
+			if (biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Cool
+				|| biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Swamp) {
 				biomeCriteria = true;
 			}
 			else {
@@ -130,6 +132,11 @@ public class BlockFernEpiphyte extends ElementsLepidodendronMod.ModElement {
 			return;
 
 		int GenChance = 32;
+
+		if (biome == BiomeTriassicFloodedForest.biome) {
+			GenChance = 64;
+		}
+
 		double GenMultiplier = LepidodendronConfig.multiplierFernEpiphyte;
 		if (GenMultiplier < 0) {GenMultiplier = 0;}
 		GenChance = Math.min(100, (int) Math.round((double) GenChance * GenMultiplier));

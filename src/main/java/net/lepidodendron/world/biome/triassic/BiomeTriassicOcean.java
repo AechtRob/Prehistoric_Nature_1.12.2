@@ -5,11 +5,13 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.BlockSandPangaean;
 import net.lepidodendron.block.BlockSandyDirtPangaean;
+import net.lepidodendron.block.BlockSandyDirtRed;
 import net.lepidodendron.util.EnumBiomeTypeTriassic;
 import net.lepidodendron.world.gen.WorldGenBrachyphyllumTree;
 import net.lepidodendron.world.gen.WorldGenReef;
 import net.lepidodendron.world.gen.WorldGenThrombolite;
 import net.minecraft.block.material.Material;
+import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
@@ -45,8 +47,8 @@ public class BiomeTriassicOcean extends ElementsLepidodendronMod.ModElement {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Triassic Deep Ocean").setBaseHeight(-1.15F).setHeightVariation(0.21F));
 			setRegistryName("triassic_ocean");
-			topBlock = BlockSandPangaean.block.getDefaultState();
-			fillerBlock = BlockSandyDirtPangaean.block.getDefaultState();
+			topBlock = Blocks.SAND.getStateFromMeta(1);
+			fillerBlock = BlockSandyDirtRed.block.getDefaultState();
 			decorator.treesPerChunk = -999;
 			decorator.flowersPerChunk = 0;
 			decorator.grassPerChunk = 0;

@@ -387,14 +387,38 @@ public class ChunkProviderTriassic implements IChunkGenerator {
                         } else if (j1 <= i + 1 && biome != BiomeTriassicVolcanicIslands.biome) {
                             iblockstate = biome.topBlock;
                             //iblockstate1 = biome.fillerBlock;
-                            if (Math.random() > 0.85) {
-                                if (Math.random() > 0.3) {
-                                    iblockstate1 = BlockCoarseSandyDirtRed.block.getDefaultState();
+                            if (biome == BiomeTriassicFloodedForest.biome) {
+                                if (Math.random() > 0.85) {
+                                    if (Math.random() > 0.3) {
+                                        iblockstate1 = BlockCarboniferousMud.block.getDefaultState();
+                                    } else {
+                                        iblockstate1 = BlockRedClay.block.getDefaultState();
+                                    }
                                 } else {
-                                    iblockstate1 = Blocks.SAND.getStateFromMeta(1);
+                                    if (Math.random() > 0.3) {
+                                        if (Math.random() > 0.85) {
+                                            if (Math.random() > 0.5) {
+                                                iblockstate1 = BlockCarboniferousMud.block.getDefaultState();
+                                            } else {
+                                                iblockstate1 = Blocks.DIRT.getStateFromMeta(2);
+                                            }
+                                        }
+                                        else {
+                                            iblockstate1 = Blocks.SAND.getStateFromMeta(1);
+                                        }
+                                    }
                                 }
-                            } else {
-                                iblockstate1 = BlockSandRedWavy.block.getDefaultState();
+                            }
+                            else { //Not the flooded forest biome:
+                                if (Math.random() > 0.85) {
+                                    if (Math.random() > 0.3) {
+                                        iblockstate1 = BlockCoarseSandyDirtRed.block.getDefaultState();
+                                    } else {
+                                        iblockstate1 = Blocks.SAND.getStateFromMeta(1);
+                                    }
+                                } else {
+                                    iblockstate1 = BlockSandRedWavy.block.getDefaultState();
+                                }
                             }
                         }
                         if (j1 < i && (iblockstate == null || iblockstate.getMaterial() == Material.AIR)) {
@@ -477,14 +501,147 @@ public class ChunkProviderTriassic implements IChunkGenerator {
                             iblockstate = BlockPrehistoricGroundMossy.block.getDefaultState();
                         }
 
+                        //Do the blocks for the Flooded Forest:
+                        if (iblockstate == BlockPrehistoricGroundLush.block.getDefaultState()
+                                && biome == BiomeTriassicFloodedForest.biome && rand.nextInt(2) == 0) {
+                            iblockstate = BlockPrehistoricGroundMossy.block.getDefaultState();
+                        }
+                        if (iblockstate == BlockPrehistoricGroundLush.block.getDefaultState()
+                                && biome == BiomeTriassicFloodedForest.biome && rand.nextInt(5) == 0) {
+                            iblockstate = BlockLeafLitter.block.getDefaultState();
+                        }
+
                         j = k;
                         if (j1 >= i - 1) {
                             chunkPrimerIn.setBlockState(i1, j1, l, iblockstate);
-                            if (chunkPrimerIn.getBlockState(i1, j1 - 4, l) == STONE) {
-                                chunkPrimerIn.setBlockState(i1, j1 - 4, l, LAVA);
+                            if (biome != BiomeTriassicMountains.biome) {
+                                if (chunkPrimerIn.getBlockState(i1, j1 - 4, l) == STONE) {
+                                    chunkPrimerIn.setBlockState(i1, j1 - 4, l, LAVA);
+                                }
+                                if (chunkPrimerIn.getBlockState(i1, j1 - 5, l) == STONE && rand.nextInt(25) == 0) {
+                                    chunkPrimerIn.setBlockState(i1, j1 - 5, l, LAVA);
+                                }
                             }
-                            if (chunkPrimerIn.getBlockState(i1, j1 - 5, l) == STONE && rand.nextInt(25) == 0) {
-                                chunkPrimerIn.setBlockState(i1, j1 - 5, l, LAVA);
+                            //Mountain layers:
+                            else {
+                                if ((chunkPrimerIn.getBlockState(i1, j1 , l) == STONE
+                                    || chunkPrimerIn.getBlockState(i1, j1 , l) == Blocks.GRAVEL.getDefaultState())
+                                    && j1 <= 110 + (rand.nextInt(9) - 4)) {
+                                    chunkPrimerIn.setBlockState(i1, j1, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(1));
+                                }
+                                if (j1 >= 90 + (rand.nextInt(9) - 4)) {
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 1, l) == STONE) {
+                                        chunkPrimerIn.setBlockState(i1, j1 - 1, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(8));
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 2, l) == STONE) {
+                                        chunkPrimerIn.setBlockState(i1, j1 - 2, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(4));
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 3, l) == STONE) {
+                                        chunkPrimerIn.setBlockState(i1, j1 - 3, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(1));
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 4, l) == STONE) {
+                                        chunkPrimerIn.setBlockState(i1, j1 - 4, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(14));
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 5, l) == STONE) {
+                                        chunkPrimerIn.setBlockState(i1, j1 - 5, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(1));
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 6, l) == STONE) {
+                                        chunkPrimerIn.setBlockState(i1, j1 - 6, l, Blocks.HARDENED_CLAY.getStateFromMeta(0));
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 7, l) == STONE) {
+                                        chunkPrimerIn.setBlockState(i1, j1 - 7, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(8));
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 8, l) == STONE) {
+                                        chunkPrimerIn.setBlockState(i1, j1 - 8, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(1));
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 9, l) == STONE) {
+                                        chunkPrimerIn.setBlockState(i1, j1 - 9, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(9));
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 10, l) == STONE) {
+                                        chunkPrimerIn.setBlockState(i1, j1 - 10, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(1));
+                                    }
+                                }
+                                else {
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 1, l) == STONE) {
+                                        if (rand.nextInt(12) == 0) {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 1, l, Blocks.HARDENED_CLAY.getStateFromMeta(1));
+                                        }
+                                        else {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 1, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(8));
+                                        }
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 2, l) == STONE) {
+                                        if (rand.nextInt(12) == 0) {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 2, l, Blocks.HARDENED_CLAY.getStateFromMeta(1));
+                                        }
+                                        else {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 2, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(8));
+                                        }
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 3, l) == STONE) {
+                                        if (rand.nextInt(12) == 0) {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 3, l, Blocks.HARDENED_CLAY.getStateFromMeta(1));
+                                        }
+                                        else {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 3, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(4));
+                                        }
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 4, l) == STONE) {
+                                        if (rand.nextInt(12) == 0) {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 4, l, Blocks.HARDENED_CLAY.getStateFromMeta(1));
+                                        }
+                                        else {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 4, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(4));
+                                        }
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 5, l) == STONE) {
+                                        if (rand.nextInt(12) == 0) {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 5, l, Blocks.HARDENED_CLAY.getStateFromMeta(1));
+                                        }
+                                        else {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 5, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(1));
+                                        }
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 6, l) == STONE) {
+                                        if (rand.nextInt(12) == 0) {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 6, l, Blocks.HARDENED_CLAY.getStateFromMeta(1));
+                                        }
+                                        else {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 6, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(1));
+                                        }
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 7, l) == STONE) {
+                                        if (rand.nextInt(12) == 0) {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 7, l, Blocks.HARDENED_CLAY.getStateFromMeta(1));
+                                        }
+                                        else {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 7, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(14));
+                                        }
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 8, l) == STONE) {
+                                        if (rand.nextInt(12) == 0) {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 8, l, Blocks.HARDENED_CLAY.getStateFromMeta(1));
+                                        }
+                                        else {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 8, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(14));
+                                        }
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 9, l) == STONE) {
+                                        if (rand.nextInt(12) == 0) {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 9, l, Blocks.HARDENED_CLAY.getStateFromMeta(1));
+                                        } else {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 9, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(1));
+                                        }
+                                    }
+                                    if (chunkPrimerIn.getBlockState(i1, j1 - 10, l) == STONE) {
+                                        if (rand.nextInt(12) == 0) {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 10, l, Blocks.HARDENED_CLAY.getStateFromMeta(1));
+                                        }
+                                        else {
+                                            chunkPrimerIn.setBlockState(i1, j1 - 10, l, Blocks.STAINED_HARDENED_CLAY.getStateFromMeta(1));
+                                        }
+                                    }
+                                }
                             }
                         }
                         else if (j1 < i - 7 - k && biome != BiomeTriassicVolcanicIslands.biome) {
