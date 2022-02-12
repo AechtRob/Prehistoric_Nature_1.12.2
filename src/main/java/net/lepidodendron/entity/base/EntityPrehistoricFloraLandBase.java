@@ -117,6 +117,38 @@ public abstract class EntityPrehistoricFloraLandBase extends EntityPrehistoricFl
 
     }
 
+    public void faceBlock(BlockPos pos, float maxYawIncrease, float maxPitchIncrease)
+    {
+        double d0 = (pos.getX() + 0.8) - this.posX;
+        double d2 = (pos.getZ() + 0.8) - this.posZ;
+        double d1;
+
+        d1 = 1D - (this.posY + (double)this.getEyeHeight());
+
+        double d3 = (double)MathHelper.sqrt(d0 * d0 + d2 * d2);
+        float f = (float)(MathHelper.atan2(d2, d0) * (180D / Math.PI)) - 90.0F;
+        float f1 = (float)(-(MathHelper.atan2(d1, d3) * (180D / Math.PI)));
+        this.rotationPitch = this.updateRotation(this.rotationPitch, f1, maxPitchIncrease);
+        this.rotationYaw = this.updateRotation(this.rotationYaw, f, maxYawIncrease);
+    }
+
+    public float updateRotation(float angle, float targetAngle, float maxIncrease)
+    {
+        float f = MathHelper.wrapDegrees(targetAngle - angle);
+
+        if (f > maxIncrease)
+        {
+            f = maxIncrease;
+        }
+
+        if (f < -maxIncrease)
+        {
+            f = -maxIncrease;
+        }
+
+        return angle + f;
+    }
+
     public void setIsDrinking(int val)
     {
         this.PFdrinking = val;

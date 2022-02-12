@@ -1,19 +1,18 @@
 
 package net.lepidodendron.entity;
 
-import com.google.common.base.Optional;
 import net.ilexiconn.llibrary.client.model.tools.ChainBuffer;
 import net.ilexiconn.llibrary.server.animation.AnimationHandler;
 import net.lepidodendron.LepidodendronMod;
-import net.lepidodendron.block.*;
+import net.lepidodendron.block.BlockNestSuminia;
 import net.lepidodendron.entity.ai.*;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraLandBase;
+import net.lepidodendron.entity.util.PathNavigateGroundNoWaterClimbWood;
+import net.lepidodendron.entity.util.PathNavigateSwimmerTopLayer;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
-import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
-import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.EnumCreatureAttribute;
@@ -21,12 +20,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.EntityAILookIdle;
 import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.ResourceLocation;
@@ -64,6 +58,27 @@ public class EntityPrehistoricFloraSuminia extends EntityPrehistoricFloraLandBas
 		maxHealthAgeable = 8.0D;
 	}
 
+	@Override
+	public void selectNavigator () {
+		if (this.isSwimmingInWater() && this.canSwim()) {
+			if ((!(this.moveHelper instanceof EntityPrehistoricFloraLandBase.SwimmingMoveHelper))
+					|| (!(this.navigator instanceof PathNavigateSwimmerTopLayer))) {
+				this.moveHelper = new EntityPrehistoricFloraLandBase.SwimmingMoveHelper();
+				this.navigator = new PathNavigateSwimmerTopLayer(this, world);
+				//System.err.println(this.getClass() + " Navigator changed to " + this.navigator);
+			}
+		}
+
+		else if ((!this.isSwimmingInWater()) || (!this.canSwim())) {
+			if ((!(this.moveHelper instanceof EntityPrehistoricFloraLandBase.WanderMoveHelper))
+					|| (!(this.navigator instanceof PathNavigateGroundNoWaterClimbWood))) {
+				this.moveHelper = new EntityPrehistoricFloraLandBase.WanderMoveHelper();
+				this.navigator = new PathNavigateGroundNoWaterClimbWood(this, world);
+				//System.err.println(this.getClass() + "Navigator changed to " + this.navigator);
+			}
+		}
+	}
+
 	public static String getPeriod() {return "Permian";}
 
 	public static String getHabitat() {return "Terrestrial";}
@@ -80,6 +95,11 @@ public class EntityPrehistoricFloraSuminia extends EntityPrehistoricFloraLandBas
 			}
 		}
 		return super.attackEntityFrom(ds, i);
+	}
+
+	@Override
+	public boolean canSpawnOnLeaves() {
+		return true;
 	}
 
 	public void setScreaming(boolean screaming) {
@@ -159,12 +179,20 @@ public class EntityPrehistoricFloraSuminia extends EntityPrehistoricFloraLandBas
 		tasks.addTask(3, new AttackAI(this, 1.6D, false, this.getAttackLength()));
 		tasks.addTask(4, new PanicScreamAI(this, 1.6D));
 		tasks.addTask(5, new LandWanderFindNestAI(this, this.getNestBlock()));
-		tasks.addTask(6, new LandWanderAvoidWaterAI(this, 1.0D, 20));
+		tasks.addTask(6, new LandWanderAvoidWaterAI(this, 1.0D, 5));
 		tasks.addTask(7, new EntityAIWatchClosest(this, EntityPlayer.class, 6.0F));
 		tasks.addTask(8, new EntityAIWatchClosest(this, EntityPrehistoricFloraAgeableBase.class, 8.0F));
 		tasks.addTask(9, new EntityAILookIdle(this));
 		this.targetTasks.addTask(0, new EatPlantItemsAI(this, 1.5));
+	}
+
+	@Override
+	public void applyEntityCollision(Entity entityIn) {
+		//Do not push other Suminias (they will fall out of the trees if so!)
+		if (!(entityIn instanceof EntityPrehistoricFloraSuminia)) {
+			super.applyEntityCollision(entityIn);
 		}
+	}
 
 	@Override
 	public boolean isBreedingItem(ItemStack stack)

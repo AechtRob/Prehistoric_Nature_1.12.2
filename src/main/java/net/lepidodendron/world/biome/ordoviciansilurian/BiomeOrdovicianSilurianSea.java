@@ -2,9 +2,7 @@
 package net.lepidodendron.world.biome.ordoviciansilurian;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.util.EnumBiomeTypeOrdovicianSilurian;
-import net.lepidodendron.world.biome.ChunkGenSpawner;
 import net.lepidodendron.world.gen.*;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -15,7 +13,6 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Random;
 
@@ -76,23 +73,6 @@ public class BiomeOrdovicianSilurianSea extends ElementsLepidodendronMod.ModElem
 		@Override
 	    public void decorate(World worldIn, Random rand, BlockPos pos)
 	    {
-
-
-			//Spawns forcefully borrow the bush event - why not?
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.DEAD_BUSH))
-			{
-				String[] MobString = LepidodendronConfig.dimOrdovicianSilurianMobsOceanBespoke;
-				if (LepidodendronConfig.doSpawnsPrehistoricFloraDefault) {
-					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimOrdovicianSilurianMobsOceanPF);
-				}
-				if (LepidodendronConfig.doSpawnsFossilsArcheology) {
-					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimOrdovicianSilurianMobsFA);
-				}
-				if (LepidodendronConfig.doSpawnsReborn) {
-					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimOrdovicianSilurianMobsReborn);
-				}
-				ChunkGenSpawner.executeProcedure(false, MobString, worldIn, topBlock, pos, rand);
-			}
 
 	        if (net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.ROCK))
 	        {

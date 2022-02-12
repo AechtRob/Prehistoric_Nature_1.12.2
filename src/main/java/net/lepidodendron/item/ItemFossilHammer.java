@@ -51,7 +51,7 @@ public class ItemFossilHammer extends ElementsLepidodendronMod.ModElement {
     private static class ItemToolCustom extends ItemTool {
         protected ItemToolCustom() {
             super(ToolMaterial.IRON, Sets.newHashSet(BlockPlantFossil.block));
-            setMaxDamage(100);
+            setMaxDamage(500);
             setMaxStackSize(1);
             this.setCreativeTab(TabLepidodendronMisc.tab);
         }

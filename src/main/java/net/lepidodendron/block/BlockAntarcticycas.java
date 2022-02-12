@@ -79,6 +79,11 @@ public class BlockAntarcticycas extends ElementsLepidodendronMod.ModElement {
 		}
 
 		@Override
+		public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
+			return true;
+		}
+
+		@Override
 		public NonNullList<ItemStack> onSheared(ItemStack item, net.minecraft.world.IBlockAccess world, BlockPos pos, int fortune) {
 			return NonNullList.withSize(1, new ItemStack(BlockAntarcticycas.block, (int) (1)));
 		}

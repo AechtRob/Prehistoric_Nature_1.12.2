@@ -72,6 +72,11 @@ public class BlockAneurophytonShoot extends ElementsLepidodendronMod.ModElement 
 		}
 
 		@Override
+		public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
+			return true;
+		}
+
+		@Override
 		public NonNullList<ItemStack> onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
 			return NonNullList.withSize(1, new ItemStack(BlockAneurophytonShootPlaceable.block, (int) (1)));
 		}
@@ -96,7 +101,7 @@ public class BlockAneurophytonShoot extends ElementsLepidodendronMod.ModElement 
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }

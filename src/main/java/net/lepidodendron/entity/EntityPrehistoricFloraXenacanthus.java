@@ -52,7 +52,7 @@ public class EntityPrehistoricFloraXenacanthus extends EntityPrehistoricFloraAge
 		maxHealthAgeable = 22.0D;
 	}
 
-	public static String getPeriod() {return "Devonian - Carboniferous - Permian - Triassic";}
+	public static String getPeriod() {return "Carboniferous - Permian - Triassic";}
 
 	public static String getHabitat() {return "Aquatic";}
 

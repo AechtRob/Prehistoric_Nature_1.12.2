@@ -1,7 +1,11 @@
 package net.lepidodendron.world.gen;
 
 import net.lepidodendron.block.BlockPrehistoricGroundSand;
+import net.lepidodendron.block.BlockPrehistoricGroundSandBlack;
 import net.lepidodendron.world.biome.jurassic.BiomeJurassicSandbanks;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassicSouthernTaiga;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassicSouthernTaigaBasalt;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassicSouthernTaigaHills;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.init.Blocks;
@@ -127,6 +131,11 @@ public class WorldGenPrehistoricLakes extends WorldGenerator
                                 //else {
                                 if (worldIn.getBiome(blockpos) != BiomeJurassicSandbanks.biome) {
                                     worldIn.setBlockState(blockpos, BlockPrehistoricGroundSand.block.getDefaultState(), 2);
+                                }
+                                if (worldIn.getBiome(blockpos) == BiomeJurassicSouthernTaiga.biome
+                                    || worldIn.getBiome(blockpos) == BiomeJurassicSouthernTaigaHills.biome
+                                    || worldIn.getBiome(blockpos) == BiomeJurassicSouthernTaigaBasalt.biome) {
+                                    worldIn.setBlockState(blockpos, BlockPrehistoricGroundSandBlack.block.getDefaultState(), 2);
                                 }
                                 //}
                             }

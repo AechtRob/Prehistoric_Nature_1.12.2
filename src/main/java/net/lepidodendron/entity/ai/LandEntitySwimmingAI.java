@@ -4,6 +4,7 @@ import net.lepidodendron.entity.base.EntityPrehistoricFloraLandBase;
 import net.lepidodendron.entity.util.PathNavigateGroundNoWater;
 import net.minecraft.entity.ai.EntityAIBase;
 import net.minecraft.entity.ai.RandomPositionGenerator;
+import net.minecraft.pathfinding.PathNavigateClimber;
 import net.minecraft.pathfinding.PathNavigateGround;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -24,7 +25,12 @@ public class LandEntitySwimmingAI extends EntityAIBase
 
         if (entityIn.getNavigator() instanceof PathNavigateGroundNoWater)
         {
-            ((PathNavigateGround)entityIn.getNavigator()).setCanSwim(true);
+            if (entityIn.getNavigator() instanceof PathNavigateGround) {
+                ((PathNavigateGround) entityIn.getNavigator()).setCanSwim(true);
+            }
+            if (entityIn.getNavigator() instanceof PathNavigateClimber) {
+                ((PathNavigateClimber) entityIn.getNavigator()).setCanSwim(true);
+            }
         }
     }
 

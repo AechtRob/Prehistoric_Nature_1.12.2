@@ -2,6 +2,7 @@ package net.lepidodendron.world.biome;
 
 import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.entity.EntityPrehistoricFloraDiictodon;
+import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraLandBase;
 import net.lepidodendron.util.EnumBiomeTypeOrdovicianSilurian;
 import net.lepidodendron.world.biome.cambrian.BiomeCambrianBiome;
@@ -16,6 +17,7 @@ import net.lepidodendron.world.biome.permian.BiomePermian;
 import net.lepidodendron.world.biome.permian.BiomePermianOcean;
 import net.lepidodendron.world.biome.triassic.BiomeTriassic;
 import net.lepidodendron.world.biome.triassic.BiomeTriassicOcean;
+import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.command.ICommandSender;
@@ -27,6 +29,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.Chunk;
 import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 
@@ -41,7 +44,7 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
         super(instance, 42);
     }
 
-    public static void executeProcedure(boolean onlyWater, String[] MobString, World world, IBlockState topBlock, BlockPos pos, Random rand) {
+    public static void executeProcedure(boolean onlyWater, String[] MobString, World world, BlockPos pos, Random rand) {
 
         String mobToSpawn;
         String nbtStr = "";
@@ -176,6 +179,8 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                         int i18 = rand.nextInt(l14);
 
                                                         //System.err.println(locationID);
+                                                        EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
+                                                        EntityLiving entity = (EntityLiving) ee.newInstance(world);
 
                                                         switch (locationID) {
 
@@ -192,24 +197,51 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
 
                                                                     while (i18 < 4 && !posCheck) {
                                                                         i18 = i18 + 1;
-                                                                        BlockPos pos1 = world.getTopSolidOrLiquidBlock(new BlockPos(pos.getX() + k7, 0, pos.getZ() + j11));
-                                                                        //BlockPos pos1 = new BlockPos(pos.getX() + k7, i18, pos.getZ() + j11);
-
-                                                                        //System.err.println("block: " + (world.getBlockState(pos1).getBlock()) + " " + pos1.getX() + " " + pos1.getY() + " " + pos1.getZ());
-                                                                        if (
-                                                                            //(world.getBlockState(pos1.down()).getBlock() == topBlock.getBlock())
-                                                                            world.getBlockState(pos1.down()).getBlock().isSideSolid(world.getBlockState(pos1.down()), world, pos1.down(), EnumFacing.UP)
-                                                                            && (world.getBlockState(pos1.down()).getMaterial() != Material.WOOD)
-                                                                            && ((world.isAirBlock(pos1)) || (world.getBlockState(pos1).getMaterial() == Material.PLANTS))
-                                                                            && ((world.isAirBlock(pos1.up())) || (world.getBlockState(pos1.up()).getMaterial() == Material.PLANTS))
-                                                                            && ((world.isAirBlock(pos1.up(2))) || (world.getBlockState(pos1.up(2)).getMaterial() == Material.PLANTS))
-                                                                            && ((world.isAirBlock(pos1.up(3))) || (world.getBlockState(pos1.up(3)).getMaterial() == Material.PLANTS))
-                                                                        ) {
-                                                                            posCheck = true;
-                                                                            //System.err.println("Spawnable " + checkEntity);
-                                                                            k7 = pos1.getX() - pos.getX();
-                                                                            i18 = pos1.getY() - pos.getY();
-                                                                            j11 = pos1.getZ() - pos.getZ();
+                                                                        //BlockPos pos1 = world.getTopSolidOrLiquidBlock(new BlockPos(pos.getX() + k7, 0, pos.getZ() + j11));
+                                                                        boolean spawnsOnLeaves = false;
+                                                                        if (entity instanceof EntityPrehistoricFloraAgeableBase) {
+                                                                            EntityPrehistoricFloraAgeableBase ageableBase = (EntityPrehistoricFloraAgeableBase) entity;
+                                                                            if (ageableBase.canSpawnOnLeaves()) {
+                                                                                spawnsOnLeaves = true;
+                                                                            }
+                                                                        }
+                                                                        if (spawnsOnLeaves) {
+                                                                            BlockPos pos1 = getTopSolidOrLiquidBlockIncludingLeaves(new BlockPos(pos.getX() + k7, 0, pos.getZ() + j11), world);
+                                                                            IBlockState spawnBlock = world.getBlockState(pos1.down());
+                                                                            if (
+                                                                                (
+                                                                                    (spawnBlock.getBlock() instanceof BlockLeaves
+                                                                                    && spawnBlock.getBlock().isFullCube(spawnBlock))
+                                                                                )
+                                                                                && ((world.isAirBlock(pos1)) || (world.getBlockState(pos1).getMaterial() == Material.PLANTS))
+                                                                                && ((world.isAirBlock(pos1.up())) || (world.getBlockState(pos1.up()).getMaterial() == Material.PLANTS))
+                                                                                && ((world.isAirBlock(pos1.up(2))) || (world.getBlockState(pos1.up(2)).getMaterial() == Material.PLANTS))
+                                                                                && ((world.isAirBlock(pos1.up(3))) || (world.getBlockState(pos1.up(3)).getMaterial() == Material.PLANTS))
+                                                                            ) {
+                                                                                posCheck = true;
+                                                                                //System.err.println("Spawnable " + checkEntity);
+                                                                                k7 = pos1.getX() - pos.getX();
+                                                                                i18 = pos1.getY() - pos.getY();
+                                                                                j11 = pos1.getZ() - pos.getZ();
+                                                                            }
+                                                                        }
+                                                                        else {
+                                                                            BlockPos pos1 = world.getTopSolidOrLiquidBlock(new BlockPos(pos.getX() + k7, 0, pos.getZ() + j11));
+                                                                            if (
+                                                                                //(world.getBlockState(pos1.down()).getBlock() == topBlock.getBlock())
+                                                                                    world.getBlockState(pos1.down()).getBlock().isSideSolid(world.getBlockState(pos1.down()), world, pos1.down(), EnumFacing.UP)
+                                                                                            && (world.getBlockState(pos1.down()).getMaterial() != Material.WOOD)
+                                                                                            && ((world.isAirBlock(pos1)) || (world.getBlockState(pos1).getMaterial() == Material.PLANTS))
+                                                                                            && ((world.isAirBlock(pos1.up())) || (world.getBlockState(pos1.up()).getMaterial() == Material.PLANTS))
+                                                                                            && ((world.isAirBlock(pos1.up(2))) || (world.getBlockState(pos1.up(2)).getMaterial() == Material.PLANTS))
+                                                                                            && ((world.isAirBlock(pos1.up(3))) || (world.getBlockState(pos1.up(3)).getMaterial() == Material.PLANTS))
+                                                                            ) {
+                                                                                posCheck = true;
+                                                                                //System.err.println("Spawnable " + checkEntity);
+                                                                                k7 = pos1.getX() - pos.getX();
+                                                                                i18 = pos1.getY() - pos.getY();
+                                                                                j11 = pos1.getZ() - pos.getZ();
+                                                                            }
                                                                         }
                                                                     }
                                                                     i2 = i2 + 1;
@@ -238,8 +270,8 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                                             if (biome == BiomeDevonianOceanDeep.biome ||biome == BiomeCarboniferousOcean.biome || biome == BiomePermianOcean.biome || biome == BiomeTriassicOcean.biome) {
                                                                                 if ((world.getBlockState(pos1).getMaterial() == Material.WATER)
                                                                                 && (pos1.getY() > world.getSeaLevel() - 40)) {
-                                                                                    EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
-                                                                                    EntityLiving entity = (EntityLiving) ee.newInstance(world);
+                                                                                    //EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
+                                                                                    //EntityLiving entity = (EntityLiving) ee.newInstance(world);
                                                                                     if (entity.height < 0.9) {
                                                                                         posCheck = true;
                                                                                     } else if (world.getBlockState(pos1.up()).getMaterial() == Material.WATER) {
@@ -304,8 +336,8 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                                             if (biome != BiomeDevonianOceanDeep.biome && biome != BiomeCarboniferousOcean.biome && biome != BiomePermianOcean.biome && biome != BiomeTriassicOcean.biome) {
                                                                                 if ((world.getBlockState(pos1).getMaterial() == Material.WATER)
                                                                                     && (pos1.getY() > world.getSeaLevel() - 12)) {
-                                                                                    EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
-                                                                                    EntityLiving entity = (EntityLiving) ee.newInstance(world);
+                                                                                    //EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
+                                                                                    //EntityLiving entity = (EntityLiving) ee.newInstance(world);
                                                                                     if (entity.height < 0.9) {
                                                                                         posCheck = true;
                                                                                     } else if (world.getBlockState(pos1.up()).getMaterial() == Material.WATER) {
@@ -326,8 +358,8 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                                             if (biome == BiomeSilurianLushPatch.biome) {
                                                                                 if ((world.getBlockState(pos1).getMaterial() == Material.WATER)
                                                                                         && (pos1.getY() > world.getSeaLevel() - 5)) {
-                                                                                    EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
-                                                                                    EntityLiving entity = (EntityLiving) ee.newInstance(world);
+                                                                                    //EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
+                                                                                    //EntityLiving entity = (EntityLiving) ee.newInstance(world);
                                                                                     if (entity.height < 0.9) {
                                                                                         posCheck = true;
                                                                                     } else if (world.getBlockState(pos1.up()).getMaterial() == Material.WATER) {
@@ -338,8 +370,8 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                                             else if (biomeOS.getBiomeType() == EnumBiomeTypeOrdovicianSilurian.Ocean) {
                                                                                 if ((world.getBlockState(pos1).getMaterial() == Material.WATER)
                                                                                         && (pos1.getY() > world.getSeaLevel() - 25)) {
-                                                                                    EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
-                                                                                    EntityLiving entity = (EntityLiving) ee.newInstance(world);
+                                                                                    //EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
+                                                                                    //EntityLiving entity = (EntityLiving) ee.newInstance(world);
                                                                                     if (entity.height < 0.9) {
                                                                                         posCheck = true;
                                                                                     } else if (world.getBlockState(pos1.up()).getMaterial() == Material.WATER) {
@@ -358,8 +390,8 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                                         else if (biome == BiomeCambrianSea.biome || biome == BiomeCambrianBiome.biome) {
                                                                             if ((world.getBlockState(pos1).getMaterial() == Material.WATER)
                                                                                     && (pos1.getY() > world.getSeaLevel() - 50)) {
-                                                                                EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
-                                                                                EntityLiving entity = (EntityLiving) ee.newInstance(world);
+                                                                                //EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
+                                                                                //EntityLiving entity = (EntityLiving) ee.newInstance(world);
                                                                                 if (entity.height < 0.9) {
                                                                                     posCheck = true;
                                                                                 } else if (world.getBlockState(pos1.up()).getMaterial() == Material.WATER) {
@@ -453,8 +485,8 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
                                                                 pos = pos.add(k7, i18, j11);
                                                                 //System.err.println("spawnQty: " + spawnQty);
                                                                 //Check if an associated block or structure is required:
-                                                                EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
-                                                                EntityLiving entity = (EntityLiving) ee.newInstance(world);
+                                                                //EntityEntry ee = ForgeRegistries.ENTITIES.getValue(new ResourceLocation(mobToSpawn));
+                                                                //EntityLiving entity = (EntityLiving) ee.newInstance(world);
                                                                 if (entity instanceof EntityPrehistoricFloraDiictodon) {
                                                                     EntityPrehistoricFloraLandBase EntityLandBase = (EntityPrehistoricFloraLandBase) entity;
                                                                     if (EntityLandBase.getNestBlock() != null && (EntityLandBase.homesToNest()) ) {
@@ -551,6 +583,26 @@ public class ChunkGenSpawner extends ElementsLepidodendronMod.ModElement {
             return false;
         }
         return true;
+    }
+
+    public static BlockPos getTopSolidOrLiquidBlockIncludingLeaves(BlockPos pos, World world)
+    {
+        Chunk chunk = world.getChunk(pos);
+        BlockPos blockpos;
+        BlockPos blockpos1;
+
+        for (blockpos = new BlockPos(pos.getX(), chunk.getTopFilledSegment() + 16, pos.getZ()); blockpos.getY() >= 0; blockpos = blockpos1)
+        {
+            blockpos1 = blockpos.down();
+            IBlockState state = chunk.getBlockState(blockpos1);
+
+            if (state.getMaterial().blocksMovement())
+            {
+                break;
+            }
+        }
+
+        return blockpos;
     }
 
 }

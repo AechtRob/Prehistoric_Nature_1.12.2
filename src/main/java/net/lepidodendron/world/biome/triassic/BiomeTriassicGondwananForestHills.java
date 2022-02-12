@@ -2,7 +2,6 @@
 package net.lepidodendron.world.biome.triassic;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.*;
 import net.lepidodendron.util.EnumBiomeTypeTriassic;
 import net.lepidodendron.world.gen.*;
@@ -19,7 +18,6 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Random;
 
@@ -151,22 +149,6 @@ public class BiomeTriassicGondwananForestHills extends ElementsLepidodendronMod.
 		@Override
 	    public void decorate(World worldIn, Random rand, BlockPos pos)
 	    {
-
-			//Spawns forcefully borrow the bush event - why not?
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.DEAD_BUSH))
-			{
-				String[] MobString = LepidodendronConfig.dimPermianMobsGlossopterisBespoke;
-				if (LepidodendronConfig.doSpawnsPrehistoricFloraDefault) {
-					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianMobsGlossopterisPF);
-				}
-				if (LepidodendronConfig.doSpawnsFossilsArcheology) {
-					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianMobsGlossopterisFA);
-				}
-				if (LepidodendronConfig.doSpawnsReborn) {
-					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianMobsGlossopterisReborn);
-				}
-				//ChunkGenSpawner.executeProcedure(false, MobString, worldIn, topBlock, pos, rand);
-			}
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.SAND))
 			for (int i = 0; i < 22; ++i)

@@ -1,10 +1,8 @@
 package net.lepidodendron.entity.ai;
 
 import net.lepidodendron.entity.EntityPrehistoricFloraSuminia;
-import net.lepidodendron.entity.EntityPrehistoricFloraSuminia;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraAgeableBase;
 import net.lepidodendron.entity.base.EntityPrehistoricFloraLandBase;
-import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;

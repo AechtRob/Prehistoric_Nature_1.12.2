@@ -61,7 +61,7 @@ public class BlockAmphibianSpawnAcanthostega extends ElementsLepidodendronMod.Mo
 		}
 
 		int minWaterDepth = 1;
-		int waterDepthCheckMax = 10;
+		int waterDepthCheckMax = 5;
 		int startHeight = world.getSeaLevel() - waterDepthCheckMax;
 		for (int i = 0; i < (int) 1; i++) {
 			int l6 = chunkX + random.nextInt(16) + 8;

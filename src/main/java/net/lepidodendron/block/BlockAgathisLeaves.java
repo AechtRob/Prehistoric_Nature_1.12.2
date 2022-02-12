@@ -96,7 +96,7 @@ public class BlockAgathisLeaves extends ElementsLepidodendronMod.ModElement {
 
 		@SideOnly(Side.CLIENT)
 		@Override
-    public BlockRenderLayer getRenderLayer()
+    	public BlockRenderLayer getRenderLayer()
     {
         return BlockRenderLayer.CUTOUT;
     }
@@ -120,7 +120,6 @@ public class BlockAgathisLeaves extends ElementsLepidodendronMod.ModElement {
 		public MapColor getMapColor(IBlockState state, IBlockAccess blockAccess, BlockPos pos) {
 			return MapColor.FOLIAGE;
 		}
-		
 		
 		@Override
 		protected int getSaplingDropChance(IBlockState state) {

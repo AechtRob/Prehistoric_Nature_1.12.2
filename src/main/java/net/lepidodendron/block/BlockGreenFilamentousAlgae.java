@@ -107,7 +107,8 @@ public class BlockGreenFilamentousAlgae extends ElementsLepidodendronMod.ModElem
 		if (biome instanceof BiomeTriassic)
 		{
 			BiomeTriassic biomeTriassic = (BiomeTriassic) biome;
-			if (biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Warm) {
+			if (biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Warm
+				|| biomeTriassic.getBiomeType() == EnumBiomeTypeTriassic.Swamp) {
 				biomeCriteria = true;
 			}
 			else {

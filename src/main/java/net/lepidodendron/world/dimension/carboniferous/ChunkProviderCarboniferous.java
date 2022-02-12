@@ -1,7 +1,9 @@
 package net.lepidodendron.world.dimension.carboniferous;
 
+import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.*;
 import net.lepidodendron.util.EnumBiomeTypeCarboniferous;
+import net.lepidodendron.world.biome.ChunkGenSpawner;
 import net.lepidodendron.world.biome.carboniferous.*;
 import net.lepidodendron.world.gen.WorldGenCarboniferousLakes;
 import net.minecraft.block.BlockFalling;
@@ -13,12 +15,12 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
-import net.minecraft.world.WorldEntitySpawner;
 import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.*;
+import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.List;
 import java.util.Random;
@@ -138,9 +140,65 @@ public class ChunkProviderCarboniferous implements IChunkGenerator {
         biome.decorate(this.world, this.random, new BlockPos(i, 0, j));
         net.minecraftforge.common.MinecraftForge.EVENT_BUS
                 .post(new net.minecraftforge.event.terraingen.DecorateBiomeEvent.Post(this.world, this.random, blockpos));
+
         if (net.minecraftforge.event.terraingen.TerrainGen.populate(this, this.world, this.random, x, z, false,
-                net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS))
-            WorldEntitySpawner.performWorldGenSpawning(this.world, biome, i + 8, j + 8, 16, 16, this.random);
+                net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType.ANIMALS)) {
+
+            if (biome == BiomeCarboniferousBeach.biome || biome == BiomeCarboniferousOcean.biome || biome == BiomeCarboniferousOceanShore.biome) {
+                String[] MobString = LepidodendronConfig.dimCarboniferousMobsOceanBespoke;
+                if (LepidodendronConfig.doSpawnsPrehistoricFloraDefault) {
+                    MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsOceanPF);
+                }
+                if (LepidodendronConfig.doSpawnsFossilsArcheology) {
+                    MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsOceanFA);
+                }
+                if (LepidodendronConfig.doSpawnsReborn) {
+                    MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsOceanReborn);
+                }
+                ChunkGenSpawner.executeProcedure(false, MobString, this.world, new BlockPos(i, 0, j), this.random);
+            }
+            if (biome == BiomeCarboniferousHills.biome || biome == BiomeCarboniferousHillsCentre.biome || biome == BiomeCarboniferousHillsEdge.biome) {
+                String[] MobString = LepidodendronConfig.dimCarboniferousMobsHillsBespoke;
+                if (LepidodendronConfig.doSpawnsPrehistoricFloraDefault) {
+                    MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsHillsPF);
+                }
+                if (LepidodendronConfig.doSpawnsFossilsArcheology) {
+                    MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsHillsFA);
+                }
+                if (LepidodendronConfig.doSpawnsReborn) {
+                    MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsHillsReborn);
+                }
+                ChunkGenSpawner.executeProcedure(false, MobString, this.world, new BlockPos(i, 0, j), this.random);
+            }
+            if (biome == BiomeCarboniferousIce.biome || biome == BiomeCarboniferousIceEdge.biome || biome == BiomeCarboniferousIceSpikes.biome) {
+                String[] MobString = LepidodendronConfig.dimCarboniferousMobsIceBespoke;
+                if (LepidodendronConfig.doSpawnsPrehistoricFloraDefault) {
+                    MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsIcePF);
+                }
+                if (LepidodendronConfig.doSpawnsFossilsArcheology) {
+                    MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsIceFA);
+                }
+                if (LepidodendronConfig.doSpawnsReborn) {
+                    MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsIceReborn);
+                }
+                ChunkGenSpawner.executeProcedure(false, MobString, this.world, new BlockPos(i, 0, j), this.random);
+            }
+            if (biome == BiomeCarboniferousSwamp.biome || biome == BiomeCarboniferousSwampBurnt.biome || biome == BiomeCarboniferousSwampHills.biome) {
+                String[] MobString = LepidodendronConfig.dimCarboniferousMobsSwampBespoke;
+                if (LepidodendronConfig.doSpawnsPrehistoricFloraDefault) {
+                    MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsSwampPF);
+                }
+                if (LepidodendronConfig.doSpawnsFossilsArcheology) {
+                    MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsSwampFA);
+                }
+                if (LepidodendronConfig.doSpawnsReborn) {
+                    MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimCarboniferousMobsSwampReborn);
+                }
+                ChunkGenSpawner.executeProcedure(false, MobString, this.world, new BlockPos(i, 0, j), this.random);
+            }
+
+        }
+
         net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, this.world, this.random, x, z, false);
         BlockFalling.fallInstantly = false;
     }
@@ -394,6 +452,41 @@ public class ChunkProviderCarboniferous implements IChunkGenerator {
                                         }
                                     }
                                 }
+                            }
+                        }
+
+                        //For the Higher Hills biomevary the ground a little:
+                        if (biome == BiomeCarboniferousHillsCentre.biome
+                        ) {
+                            //Add some extra dirt for things to grow in (the base is otherwise gravel):
+                            if (rand.nextInt(12) == 0) {
+                                iblockstate = Blocks.DIRT.getStateFromMeta(1);
+                            }
+                            //If it's over 95 blocks then start to fill in more as stone
+                            //up to 130 where it almost fully stone - sometimes cobble
+                            int minHeight = 95;
+                            if (j1 >= minHeight) {
+                                int j2 = Math.max(0, 130 - j1);
+                                double stoneFactor = (double) j2 / (130D - (double) minHeight);
+                                if (Math.random() >= stoneFactor) {
+                                    iblockstate = Blocks.GRAVEL.getDefaultState();
+                                    if (rand.nextInt(12) == 0) { //is under 95 blocks:
+                                        iblockstate = Blocks.DIRT.getStateFromMeta(1);
+                                    }
+                                    if (rand.nextInt(8) == 0) {
+                                        if (rand.nextInt(4) == 0)
+                                            iblockstate = Blocks.MOSSY_COBBLESTONE.getDefaultState();
+                                        else if (rand.nextInt(4) == 0) {
+                                            iblockstate = Blocks.COBBLESTONE.getDefaultState();
+                                        }
+                                        else {
+                                            iblockstate = Blocks.STONE.getDefaultState();
+                                        }
+                                    }
+                                }
+                            }
+                            else if (rand.nextInt(4) != 0) { //is under 95 blocks:
+                                iblockstate = Blocks.DIRT.getStateFromMeta(1);
                             }
                         }
 

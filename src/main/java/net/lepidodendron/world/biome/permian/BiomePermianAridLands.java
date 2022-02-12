@@ -2,10 +2,8 @@
 package net.lepidodendron.world.biome.permian;
 
 import net.lepidodendron.ElementsLepidodendronMod;
-import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.block.*;
 import net.lepidodendron.util.EnumBiomeTypePermian;
-import net.lepidodendron.world.biome.ChunkGenSpawner;
 import net.lepidodendron.world.gen.*;
 import net.minecraft.block.BlockBush;
 import net.minecraft.util.EnumFacing;
@@ -15,7 +13,6 @@ import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 import net.minecraftforge.common.BiomeDictionary;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
-import org.apache.commons.lang3.ArrayUtils;
 
 import java.util.Random;
 
@@ -41,7 +38,7 @@ public class BiomePermianAridLands extends ElementsLepidodendronMod.ModElement {
 		public BiomeGenCustom() {
 			super(new BiomeProperties("Permian Arid Lands").setRainfall(0.0F).setBaseHeight(0.12F).setHeightVariation(0.25F).setTemperature(2.0F).setRainDisabled());
 			setRegistryName("permian_arid_lands");
-			topBlock = BlockSandyDirt.block.getDefaultState();
+			topBlock = BlockCoarseSandyDirt.block.getDefaultState();
 			fillerBlock = BlockCoarseSandyDirtPangaean.block.getDefaultState();
 			decorator.treesPerChunk = -999;
 			decorator.flowersPerChunk = 0;
@@ -82,23 +79,6 @@ public class BiomePermianAridLands extends ElementsLepidodendronMod.ModElement {
 		@Override
 	    public void decorate(World worldIn, Random rand, BlockPos pos)
 	    {
-
-			//Spawns forcefully borrow the bush event - why not?
-			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.DEAD_BUSH))
-			{
-				String[] MobString = LepidodendronConfig.dimPermianMobsAridLandsBespoke;
-				if (LepidodendronConfig.doSpawnsPrehistoricFloraDefault) {
-					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianMobsAridLandsPF);
-				}
-				if (LepidodendronConfig.doSpawnsFossilsArcheology) {
-					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianMobsAridLandsFA);
-				}
-				if (LepidodendronConfig.doSpawnsReborn) {
-					MobString = ArrayUtils.addAll(MobString, LepidodendronConfig.dimPermianMobsAridLandsReborn);
-				}
-				ChunkGenSpawner.executeProcedure(false, MobString, worldIn, topBlock, pos, rand);
-			}
-
 
 			if(net.minecraftforge.event.terraingen.TerrainGen.decorate(worldIn, rand, new net.minecraft.util.math.ChunkPos(pos), net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType.GRASS))
 				for (int i = 0; i < 12; ++i)

@@ -16,6 +16,13 @@ public class WorldGenPachypterisProper extends WorldGenAbstractTree
     {
         super(notify);
     }
+
+    @Override
+    public boolean isReplaceable(World world, BlockPos pos)
+    {
+        net.minecraft.block.state.IBlockState state = world.getBlockState(pos);
+        return state.getBlock().isAir(state, world, pos) || state.getMaterial() == Material.PLANTS;
+    }
     
     public boolean generate(World worldIn, Random rand, BlockPos position)
     {

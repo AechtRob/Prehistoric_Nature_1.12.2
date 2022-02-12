@@ -14,6 +14,7 @@ public enum EnumBiomeTypeJurassic implements IStringSerializable {
     Mudflats("mudflats"),
     Redwood("redwood"),
     Sandbanks("sandbanks"),
+    Taiga("taiga"),
     River("river"),
     Ocean("ocean");
 

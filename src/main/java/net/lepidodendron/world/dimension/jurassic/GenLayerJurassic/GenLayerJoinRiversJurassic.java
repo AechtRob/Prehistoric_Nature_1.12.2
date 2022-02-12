@@ -16,6 +16,8 @@ public class GenLayerJoinRiversJurassic extends GenLayer
     public int JURASSIC_MUDFLATS_HELPER_ID =  Biome.getIdForBiome(JURASSIC_MUDFLATS_HELPER);
     public  Biome JURASSIC_BEACH = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:jurassic_beach"));
     public  int JURASSIC_BEACH_ID =  Biome.getIdForBiome(JURASSIC_BEACH);
+    public  Biome JURASSIC_BEACH_BLACK = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:jurassic_beach_black"));
+    public  int JURASSIC_BEACH_BLACK_ID =  Biome.getIdForBiome(JURASSIC_BEACH_BLACK);
 
     public GenLayerJoinRiversJurassic(long seed, GenLayer genLayer)
     {
@@ -80,7 +82,7 @@ public class GenLayerJoinRiversJurassic extends GenLayer
     }
 
     private boolean isBeach(int biomeID) {
-        if (biomeID == JURASSIC_BEACH_ID) {
+        if (biomeID == JURASSIC_BEACH_ID || biomeID == JURASSIC_BEACH_BLACK_ID) {
             return true;
         }
         return false;

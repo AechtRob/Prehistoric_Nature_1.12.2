@@ -11,6 +11,7 @@ import net.lepidodendron.world.biome.devonian.BiomeDevonian;
 import net.lepidodendron.world.biome.jurassic.BiomeJurassic;
 import net.lepidodendron.world.biome.permian.BiomePermian;
 import net.lepidodendron.world.biome.triassic.BiomeTriassic;
+import net.lepidodendron.world.biome.triassic.BiomeTriassicFloodedForest;
 import net.lepidodendron.world.gen.AlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
@@ -174,6 +175,11 @@ public class BlockGreenCharaAlgae extends ElementsLepidodendronMod.ModElement {
 		if (biome instanceof BiomeDevonian)
 		{
 			multiplier = 12;
+		}
+
+		if (biome == BiomeTriassicFloodedForest.biome)
+		{
+			multiplier = 5;
 		}
 
 		for (int i = 0; i < (int) 10 * multiplier; i++) {

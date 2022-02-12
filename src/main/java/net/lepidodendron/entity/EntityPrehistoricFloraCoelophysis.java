@@ -15,12 +15,11 @@ import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EnumCreatureAttribute;
 import net.minecraft.entity.SharedMonsterAttributes;
-import net.minecraft.entity.ai.EntityAILookIdle;
-import net.minecraft.entity.ai.EntityAIWatchClosest;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.DamageSource;
+import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundEvent;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -250,6 +249,10 @@ public class EntityPrehistoricFloraCoelophysis extends EntityPrehistoricFloraLan
 		super.onLivingUpdate();
 		if (this.getAnimation() != DRINK_ANIMATION) {
 			this.renderYawOffset = this.rotationYaw;
+		}
+		if (this.getAnimation() == DRINK_ANIMATION) {
+			EnumFacing facing = this.getAdjustedHorizontalFacing();
+			this.faceBlock(this.getPosition().offset(facing), 1F, 1F);
 		}
 		if (this.getAnimation() == ATTACK_ANIMATION && this.getAnimationTick() == 10 && this.getAttackTarget() != null) {
 			launchAttack();

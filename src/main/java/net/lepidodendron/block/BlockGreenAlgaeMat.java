@@ -7,6 +7,7 @@ import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.world.biome.ordoviciansilurian.BiomeOrdovicianSilurianSeaIce;
 import net.lepidodendron.world.biome.ordoviciansilurian.BiomeOrdovicianSilurianSeaIcebergs;
+import net.lepidodendron.world.biome.triassic.BiomeTriassicFloodedForest;
 import net.lepidodendron.world.gen.AlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
@@ -117,7 +118,7 @@ public class BlockGreenAlgaeMat extends ElementsLepidodendronMod.ModElement {
 		{
 			multiplier = 3;
 		}
-		if ((dimID == LepidodendronConfig.dimCarboniferous))
+		if (dimID == LepidodendronConfig.dimCarboniferous)
 		{
 			multiplier = 5;
 		}
@@ -126,6 +127,11 @@ public class BlockGreenAlgaeMat extends ElementsLepidodendronMod.ModElement {
 				|| biome == BiomeOrdovicianSilurianSeaIcebergs.biome
 		)
 			multiplier = 24;
+
+		if (biome == BiomeTriassicFloodedForest.biome)
+		{
+			multiplier = 5;
+		}
 
 		for (int i = 0; i < (int) 10 * multiplier; i++) {
 			int l6 = chunkX + random.nextInt(16) + 8;

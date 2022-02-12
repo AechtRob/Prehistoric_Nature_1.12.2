@@ -5,6 +5,7 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
+import net.lepidodendron.world.biome.triassic.BiomeTriassicFloodedForest;
 import net.lepidodendron.world.gen.AlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
@@ -115,6 +116,11 @@ public class BlockGreenSproutingAlgae extends ElementsLepidodendronMod.ModElemen
 		if ((dimID == LepidodendronConfig.dimCarboniferous)
 			|| (dimID == LepidodendronConfig.dimPermian)
 		) {
+			multiplier = 5;
+		}
+
+		if (biome == BiomeTriassicFloodedForest.biome)
+		{
 			multiplier = 5;
 		}
 

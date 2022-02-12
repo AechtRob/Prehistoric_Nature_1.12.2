@@ -222,7 +222,7 @@ public class EntityPrehistoricFloraLisowicia extends EntityPrehistoricFloraLandB
 
 	@Override
 	protected float getSoundVolume() {
-		return 5.0F;
+		return 1.0F;
 	}
 
 	@Override

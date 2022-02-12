@@ -22,8 +22,11 @@ public class GenLayerCarboniferous {
         biomes = new GenLayerDiversifyCarboniferousBurnt(666L, biomes);
         biomes = new GenLayerZoom(1003L, biomes);
         biomes = new GenLayerCarboniferousIceEdge(2L, biomes);
+        biomes = new GenLayerCarboniferousHillsEdge(27L, biomes);
+        biomes = new GenLayerCarboniferousHillsCentre(37L, biomes);
         biomes = new GenLayerSmooth(700L, biomes);
         biomes = new GenLayerZoom(1005L, biomes);
+        biomes = new GenLayerCarboniferousHillsCentreExpand(77L, biomes);
         biomes = new GenLayerCarboniferousIceSpikes(1000L, biomes);
         biomes = new GenLayerSmooth(703L, biomes);
         biomes = new GenLayerFuzzyZoom(1000L, biomes);

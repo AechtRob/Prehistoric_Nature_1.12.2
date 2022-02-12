@@ -11,7 +11,6 @@ public class RenderTegopelte extends RenderLiving<EntityPrehistoricFloraTegopelt
     private static final ResourceLocation TEXTURE = new ResourceLocation(LepidodendronMod.MODID + ":textures/entities/tegopelte.png");
 
     public RenderTegopelte(RenderManager mgr) {
-
         super(mgr, new ModelTegopelte(), 0.0f);
         this.addLayer(new LayerTegopelteShell(this));
     }

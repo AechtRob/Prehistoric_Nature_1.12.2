@@ -6,23 +6,11 @@ import net.lepidodendron.entity.*;
 import net.lepidodendron.entity.render.entity.*;
 import net.lepidodendron.entity.render.tile.*;
 import net.lepidodendron.tileentity.TileEntityFacivermis;
-import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.entity.Render;
 import net.minecraft.client.renderer.entity.RenderManager;
-import net.minecraft.init.Blocks;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.ColorizerFoliage;
-import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.biome.BiomeColorHelper;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.client.registry.IRenderFactory;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
-
-import javax.annotation.Nullable;
-import java.util.Map;
 
 public class RenderHandler {
 
@@ -1599,6 +1587,49 @@ public class RenderHandler {
                 return new RenderSuminia (manager);
             }
         });
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrehistoricFloraPhlegethontia.class, new IRenderFactory<EntityPrehistoricFloraPhlegethontia>() {
+        @Override
+        public Render<? super EntityPrehistoricFloraPhlegethontia> createRenderFor(RenderManager manager) {
+                return new RenderPhlegethontia(manager);
+            }
+        });
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrehistoricFloraSemionotus.class, new IRenderFactory<EntityPrehistoricFloraSemionotus>() {
+        @Override
+        public Render<? super EntityPrehistoricFloraSemionotus> createRenderFor(RenderManager manager) {
+                return new RenderSemionotus(manager);
+            }
+        });
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrehistoricFloraHaikouichthys.class, new IRenderFactory<EntityPrehistoricFloraHaikouichthys>() {
+        @Override
+        public Render<? super EntityPrehistoricFloraHaikouichthys> createRenderFor(RenderManager manager) {
+                return new RenderHaikouichthys(manager);
+            }
+        });
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrehistoricFloraGroenlandaspis.class, new IRenderFactory<EntityPrehistoricFloraGroenlandaspis>() {
+        @Override
+        public Render<? super EntityPrehistoricFloraGroenlandaspis> createRenderFor(RenderManager manager) {
+                return new RenderGroenlandaspis(manager);
+            }
+        });
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrehistoricFloraRebellatrix.class, new IRenderFactory<EntityPrehistoricFloraRebellatrix>() {
+        @Override
+        public Render<? super EntityPrehistoricFloraRebellatrix> createRenderFor(RenderManager manager) {
+                return new RenderRebellatrix(manager);
+            }
+        });
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrehistoricFloraLiliensternus.class, new IRenderFactory<EntityPrehistoricFloraLiliensternus>() {
+        @Override
+        public Render<? super EntityPrehistoricFloraLiliensternus> createRenderFor(RenderManager manager) {
+                return new RenderLiliensternus(manager);
+            }
+        });
+        RenderingRegistry.registerEntityRenderingHandler(EntityPrehistoricFloraEoraptor.class, new IRenderFactory<EntityPrehistoricFloraEoraptor>() {
+        @Override
+        public Render<? super EntityPrehistoricFloraEoraptor> createRenderFor(RenderManager manager) {
+                return new RenderEoraptor(manager);
+            }
+        });
+
 
 
         //Tile Entities Ediacaran (etc):
@@ -1715,6 +1746,10 @@ public class RenderHandler {
         ClientRegistry.bindTileEntitySpecialRenderer(BlockEggsLystrosaurus.TileEntityEggLystrosaurus.class, new RenderEggLystrosaurus());
         ClientRegistry.bindTileEntitySpecialRenderer(BlockNestLisowicia.TileEntityCustom.class, new RenderNestLisowicia());
         ClientRegistry.bindTileEntitySpecialRenderer(BlockEggsLisowicia.TileEntityEggLisowicia.class, new RenderEggLisowicia());
+        ClientRegistry.bindTileEntitySpecialRenderer(BlockNestLiliensternus.TileEntityCustom.class, new RenderNestLiliensternus());
+        ClientRegistry.bindTileEntitySpecialRenderer(BlockEggsLiliensternus.TileEntityEggLiliensternus.class, new RenderEggLiliensternus());
+        ClientRegistry.bindTileEntitySpecialRenderer(BlockNestEoraptor.TileEntityCustom.class, new RenderNestEoraptor());
+        ClientRegistry.bindTileEntitySpecialRenderer(BlockEggsEoraptor.TileEntityEggEoraptor.class, new RenderEggEoraptor());
 
     }
 

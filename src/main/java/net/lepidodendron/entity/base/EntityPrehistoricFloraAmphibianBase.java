@@ -133,7 +133,7 @@ public abstract class EntityPrehistoricFloraAmphibianBase extends EntityPrehisto
             if (this.getAir() == -20)
             {
                 this.setAir(200);
-                this.attackEntityFrom(DamageSource.DROWN, 0.25F);
+                this.attackEntityFrom(DamageSource.DROWN, 0.5F);
             }
         }
         else

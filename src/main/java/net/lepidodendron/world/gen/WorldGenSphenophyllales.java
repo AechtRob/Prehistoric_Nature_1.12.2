@@ -7,7 +7,7 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 
 import java.util.Random;
 
-public class WorldGenSphenophllales extends WorldGenerator
+public class WorldGenSphenophyllales extends WorldGenerator
 {
 
     public boolean generate(World worldIn, Random rand, BlockPos position)

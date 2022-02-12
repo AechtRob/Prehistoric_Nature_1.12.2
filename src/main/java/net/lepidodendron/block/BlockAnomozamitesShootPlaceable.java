@@ -68,6 +68,11 @@ public class BlockAnomozamitesShootPlaceable extends ElementsLepidodendronMod.Mo
 		}
 
 		@Override
+		public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
+			return true;
+		}
+
+		@Override
 		public BlockPlanks.EnumType getWoodType(int meta) {
 			return null;
 		}

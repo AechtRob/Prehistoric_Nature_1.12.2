@@ -271,7 +271,14 @@ public class EntityRegistries {
         registerEntity("prehistoric_flora_lystrosaurus", EntityPrehistoricFloraLystrosaurus.class, LepidodendronMod.ENTITY_LYSTROSAURUS, 32,-7504539,-10256042);
         registerEntity("prehistoric_flora_lisowicia", EntityPrehistoricFloraLisowicia.class, LepidodendronMod.ENTITY_LISOWICIA, 32,-5923957,-11382967);
         registerEntity("prehistoric_flora_antineosteus", EntityPrehistoricFloraAntineosteus.class, LepidodendronMod.ENTITY_ANTINEOSTEUS, 32,-8764403,-4363758);
-        registerEntity("prehistoric_flora_suminia ", EntityPrehistoricFloraSuminia .class, LepidodendronMod.ENTITY_SUMINIA , 32,-8311764,-5074836);
+        registerEntity("prehistoric_flora_suminia", EntityPrehistoricFloraSuminia.class, LepidodendronMod.ENTITY_SUMINIA, 32,-8311764,-5074836);
+        registerEntity("prehistoric_flora_phlegethontia", EntityPrehistoricFloraPhlegethontia.class, LepidodendronMod.ENTITY_PHLEGETHONTIA, 32,-10141429,-3363717);
+        registerEntity("prehistoric_flora_semionotus", EntityPrehistoricFloraSemionotus.class, LepidodendronMod.ENTITY_SEMIONOTUS, 32,-5805555,-12241894);
+        registerEntity("prehistoric_flora_haikouichthys", EntityPrehistoricFloraHaikouichthys.class, LepidodendronMod.ENTITY_HAIKOUICHTHYS, 32,-5517586,-14452023);
+        registerEntity("prehistoric_flora_groenlandaspis", EntityPrehistoricFloraGroenlandaspis.class, LepidodendronMod.ENTITY_GROENLANDASPIS, 32,-4566515,-3695488);
+        registerEntity("prehistoric_flora_rebellatrix", EntityPrehistoricFloraRebellatrix.class, LepidodendronMod.ENTITY_REBELLATRIX, 32,-13088874,-11488681);
+        registerEntity("prehistoric_flora_liliensternus", EntityPrehistoricFloraLiliensternus.class, LepidodendronMod.ENTITY_LILIENSTERNUS, 32,-3363244,-9168085);
+        registerEntity("prehistoric_flora_eoraptor", EntityPrehistoricFloraEoraptor.class, LepidodendronMod.ENTITY_EORAPTOR, 32,-4483491,-5979943);
 
     }
 

@@ -1,7 +1,6 @@
 package net.lepidodendron.world.gen;
 
 import net.lepidodendron.procedure.ProcedureWorldGenAraucarioxylon;
-import net.lepidodendron.procedure.ProcedureWorldGenPodozamites;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;

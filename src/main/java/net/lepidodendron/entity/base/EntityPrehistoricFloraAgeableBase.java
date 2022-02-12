@@ -77,6 +77,10 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
         LAY_ANIMATION = Animation.create(this.getLayLength());
     }
 
+    public boolean canSpawnOnLeaves() {
+        return false;
+    }
+
     public abstract boolean dropsEggs();
 
     public abstract boolean laysEggs();
@@ -341,20 +345,22 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
     {
         if (width != this.width || height != this.height)
         {
+            float f = this.width;
             this.width = width;
             this.height = height;
-
-            double d0 = (double)width / 2.0D;
-            this.setEntityBoundingBox(new AxisAlignedBB(this.posX - d0, this.posY, this.posZ - d0, this.posX + d0, this.posY + (double)this.height, this.posZ + d0));
+            if (this.width < f) {
+                double d0 = (double) width / 2.0D;
+                this.setEntityBoundingBox(new AxisAlignedBB(this.posX - d0, this.posY, this.posZ - d0, this.posX + d0, this.posY + (double) this.height, this.posZ + d0));
+            }
         }
     }
 
     public float getAgeScale() {
-        float step = 1F / (this.getAdultAge() + 1);
+        float step = 1F / ((float)this.getAdultAge() + 1F);
         if (this.getAgeTicks() >= this.getAdultAge()) {
             return 1;
         }
-        return Math.max((this.minWidth/this.maxWidth), (step * this.getAgeTicks()));
+        return Math.max((this.minWidth/this.maxWidth), (step * (float)this.getAgeTicks()));
     }
 
     //@Override
@@ -395,9 +401,9 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
 
     @Override
     public boolean attackEntityFrom(DamageSource ds, float i) {
-        if (ds == DamageSource.IN_WALL) {
-            return false;
-        }
+        //if (ds == DamageSource.IN_WALL) {
+        //    return false;
+        //}
         if (this.getHurtSound(DamageSource.GENERIC) != null && i >= 1 && ds != DamageSource.IN_WALL) {
             //if (this.getAnimation() != null) {
                 if (this.getAnimation() == NO_ANIMATION) {
@@ -454,6 +460,7 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
                 }
             }
             this.setIsFast(this.getAttackTarget() != null || this.getEatTarget() != null);
+
         }
 
         if (!this.isPFAdult())
@@ -537,9 +544,9 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
             this.setTicks(ii);
         }
 
-        if (world.isRemote) {
-            this.setScaleForAge(false);
-        }
+        //if (world.isRemote) {
+        //this.setScaleForAge(false);
+        //}
         if (this.getGrowingAge() < 0) {
             this.setGrowingAge(0); //Resetting vanilla methods which we don't use
         }
@@ -552,6 +559,8 @@ public abstract class EntityPrehistoricFloraAgeableBase extends EntityTameable i
             if (i > this.getAdultAge()) {i = this.getAdultAge();}
             this.setAgeTicks(i);
         }
+
+        this.setScaleForAge(false);
 
         double oldHealthMax = this.getEntityAttribute(SharedMonsterAttributes.MAX_HEALTH).getBaseValue();
         float oldHealth = this.getHealth();

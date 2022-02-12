@@ -1,6 +1,8 @@
 package net.lepidodendron.world.gen;
 
 import net.lepidodendron.procedure.ProcedureWorldGenCypress;
+import net.lepidodendron.util.EnumBiomeTypeJurassic;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassic;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
@@ -8,6 +10,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.feature.WorldGenAbstractTree;
 
 import java.util.Random;
@@ -72,6 +75,14 @@ public class WorldGenCypressTreeWater extends WorldGenAbstractTree
                 BlockPos down = position.down();
                 IBlockState state = worldIn.getBlockState(down);
                 boolean isSoil = state.getBlock().canSustainPlant(state, worldIn, down, EnumFacing.UP, (net.minecraft.block.BlockSapling)Blocks.SAPLING);
+
+                Biome biome = worldIn.getBiome(position);
+                if (biome instanceof BiomeJurassic) {
+                    BiomeJurassic biomeJ = (BiomeJurassic) biome;
+                    if (biomeJ.getBiomeType() == EnumBiomeTypeJurassic.Taiga) {
+                        isSoil = isSoil || state.getMaterial() == Material.SAND;
+                    }
+                }
 
                 if (!isSoil) {
                     //System.err.println("position " + position.getX() + " " + position.getY() + " " + position.getX());

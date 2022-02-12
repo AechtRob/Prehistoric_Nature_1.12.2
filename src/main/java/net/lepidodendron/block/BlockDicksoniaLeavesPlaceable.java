@@ -29,6 +29,9 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
+
 @ElementsLepidodendronMod.ModElement.Tag
 public class BlockDicksoniaLeavesPlaceable extends ElementsLepidodendronMod.ModElement {
 	@GameRegistry.ObjectHolder("lepidodendron:dicksonia_leaves")
@@ -62,6 +65,28 @@ public class BlockDicksoniaLeavesPlaceable extends ElementsLepidodendronMod.ModE
 			setLightOpacity(0);
 			setCreativeTab(TabLepidodendronPlants.tab);
 			this.setDefaultState(this.blockState.getBaseState().withProperty(CHECK_DECAY, false).withProperty(DECAYABLE, false).withProperty(FACING, EnumFacing.UP));
+		}
+
+		@Override
+		public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
+			if (worldIn.getBlockState(pos).getBlock() == this) {
+				if (worldIn.getBlockState(pos).getValue(FACING) == EnumFacing.UP) {
+					return true;
+				}
+			}
+			return super.isPassable(worldIn, pos);
+		}
+
+		@Nullable
+		public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+		{
+			if (worldIn.getBlockState(pos).getBlock() == this) {
+				if (worldIn.getBlockState(pos).getValue(FACING) == EnumFacing.UP
+						|| worldIn.getBlockState(pos).getValue(FACING) == EnumFacing.DOWN) {
+					return NULL_AABB;
+				}
+			}
+			return super.getCollisionBoundingBox(blockState, worldIn, pos);
 		}
 
 		@Override

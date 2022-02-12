@@ -320,4 +320,5 @@ public class PathNavigateGroundNoWater extends PathNavigate
     {
         this.shouldAvoidSun = avoidSun;
     }
+
 }

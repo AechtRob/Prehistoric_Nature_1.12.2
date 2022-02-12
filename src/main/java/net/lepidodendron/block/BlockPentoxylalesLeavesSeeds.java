@@ -5,7 +5,7 @@ import net.lepidodendron.ElementsLepidodendronMod;
 import net.lepidodendron.LepidodendronConfig;
 import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
-import net.lepidodendron.item.ItemPodocarpBerries;
+import net.lepidodendron.item.ItemPentoxylalesSeeds;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockLeaves;
 import net.minecraft.block.BlockPlanks;
@@ -122,7 +122,7 @@ public class BlockPentoxylalesLeavesSeeds extends ElementsLepidodendronMod.ModEl
 		@Override
 		protected int getSaplingDropChance(IBlockState state) {
 			if (LepidodendronConfig.doFruits) {
-				return 2;
+				return 1;
 			}
 			else {
 				return 20;
@@ -133,10 +133,10 @@ public class BlockPentoxylalesLeavesSeeds extends ElementsLepidodendronMod.ModEl
 		public Item getItemDropped(IBlockState state, java.util.Random rand, int fortune) {
 			if (LepidodendronConfig.doFruits) {
 				// Use the seeds method instead:
-				return new ItemStack(ItemPodocarpBerries.block, (int) (1)).getItem();
+				return new ItemStack(ItemPentoxylalesSeeds.block, (int) (1)).getItem();
 			}
 			else {
-				return Item.getItemFromBlock(BlockPodocarpSapling.block);
+				return Item.getItemFromBlock(BlockPentoxylalesSapling.block);
 			}
 		}
 

@@ -6,6 +6,7 @@ import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.world.biome.ordoviciansilurian.BiomeOrdovicianSilurianSeaIce;
 import net.lepidodendron.world.biome.ordoviciansilurian.BiomeOrdovicianSilurianSeaIcebergs;
+import net.lepidodendron.world.biome.triassic.BiomeTriassicFloodedForest;
 import net.lepidodendron.world.gen.AlgaeGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
@@ -123,6 +124,11 @@ public class BlockRedAlgaeMat extends ElementsLepidodendronMod.ModElement {
 			multiplier = 3;
 		}
 		if ((dimID == LepidodendronConfig.dimCarboniferous))
+		{
+			multiplier = 5;
+		}
+
+		if (biome == BiomeTriassicFloodedForest.biome)
 		{
 			multiplier = 5;
 		}

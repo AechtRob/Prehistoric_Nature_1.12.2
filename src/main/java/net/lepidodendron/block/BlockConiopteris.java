@@ -76,6 +76,11 @@ public class BlockConiopteris extends ElementsLepidodendronMod.ModElement {
 		}
 
 		@Override
+		public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
+			return true;
+		}
+
+		@Override
 		public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
 			return new AxisAlignedBB(0.3D, 0D, 0.3D, 0.7D, 0.4D, 0.7D);
 		}

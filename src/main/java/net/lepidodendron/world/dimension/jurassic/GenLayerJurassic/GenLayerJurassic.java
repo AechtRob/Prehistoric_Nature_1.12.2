@@ -48,6 +48,7 @@ public class GenLayerJurassic {
         biomes = new GenLayerJoinRiversJurassic(150L, biomes);
         biomes = new GenLayerJoinRiversJurassic(151L, biomes);
         biomes = new GenLayerJoinRiversJurassic(152L, biomes);
+        biomes = new GenLayerJurassicTaigaBasalt(1975L, biomes);
         biomes = new GenLayerFuzzyZoom(1002L, biomes);
         biomes = new GenLayerDiversifyJurassicMudflats(1138L, biomes);
         biomes = new GenLayerJurassicRiverBorder(326L, biomes);
@@ -59,6 +60,7 @@ public class GenLayerJurassic {
         biomes = new GenLayerJoinRiversJurassic(155L, biomes);
         biomes = new GenLayerJoinRiversJurassic(156L, biomes);
         biomes = new GenLayerJurassicRiverBanks(227L, biomes);
+        biomes = new GenLayerJurassicTaigaBasalt(1976L, biomes);
         biomes = new GenLayerZoom(1006L, biomes);
         GenLayer genlayervoronoizoom = new GenLayerVoronoiZoom(10L, biomes);
         biomes.initWorldGenSeed(seed);

@@ -8,6 +8,8 @@ import net.lepidodendron.LepidodendronSorter;
 import net.lepidodendron.creativetab.TabLepidodendronPlants;
 import net.lepidodendron.util.EnumBiomeTypeJurassic;
 import net.lepidodendron.world.biome.jurassic.BiomeJurassic;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassicSouthernTaiga;
+import net.lepidodendron.world.biome.jurassic.BiomeJurassicSouthernTaigaHills;
 import net.lepidodendron.world.gen.FernEpiphyteGenerator;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockDirectional;
@@ -91,7 +93,8 @@ public class BlockLeptopteris extends ElementsLepidodendronMod.ModElement {
 				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Ginkgo
 				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Redwood
 				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Highlands
-				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Sandbanks) {
+				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Sandbanks
+				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Taiga) {
 				biomeCriteria = true;
 			}
 			else {
@@ -102,6 +105,7 @@ public class BlockLeptopteris extends ElementsLepidodendronMod.ModElement {
 			return;
 
 		int GenChance = 28;
+
 		double GenMultiplier = LepidodendronConfig.multiplierLeptopterisEpiphyte;
 		if (GenMultiplier < 0) {GenMultiplier = 0;}
 		GenChance = Math.min(100, (int) Math.round((double) GenChance * GenMultiplier));

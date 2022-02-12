@@ -193,7 +193,7 @@ public class ItemBucketSidneyia extends ElementsLepidodendronMod.ModElement {
 		@Override
 		public void addInformation(ItemStack stack, World player, List<String> tooltip, ITooltipFlag advanced) {
 			if (LepidodendronConfig.showTooltips) {
-				tooltip.add("Type: Trilobite");
+				tooltip.add("Type: Arthropod");
 				tooltip.add("Periods: Cambrian");
 				tooltip.add("Habitat: Water");
 				super.addInformation(stack, player, tooltip, advanced);

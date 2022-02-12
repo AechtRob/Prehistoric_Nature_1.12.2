@@ -180,6 +180,11 @@ public class BlockDicranophyllum extends ElementsLepidodendronMod.ModElement {
 		}
 
 		@Override
+		public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
+			return true;
+		}
+
+		@Override
 		public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune) {
 			if (!LepidodendronConfig.doFruits) {
 				drops.add(new ItemStack(this));

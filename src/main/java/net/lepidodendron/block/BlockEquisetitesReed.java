@@ -104,7 +104,8 @@ public class BlockEquisetitesReed extends ElementsLepidodendronMod.ModElement {
 			BiomeJurassic biomeJurassic = (BiomeJurassic) biome;
 			if (biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.River
 				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Mudflats
-				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Pasture) {
+				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Pasture
+				|| biomeJurassic.getBiomeType() == EnumBiomeTypeJurassic.Taiga) {
 				biomeCriteria = true;
 			}
 		}

@@ -56,6 +56,11 @@ public class BlockDicranophyllumShoot extends ElementsLepidodendronMod.ModElemen
 		}
 
 		@Override
+		public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
+			return true;
+		}
+
+		@Override
 		public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player) {
 			return new ItemStack(BlockDicranophyllum.block, (int) (1));
 		}

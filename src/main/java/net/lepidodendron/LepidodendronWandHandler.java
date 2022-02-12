@@ -1,6 +1,5 @@
 package net.lepidodendron;
 
-import net.lepidodendron.block.BlockAneurophytonSapling;
 import net.lepidodendron.enchantments.Enchantments;
 import net.lepidodendron.item.ItemBoneWand;
 import net.lepidodendron.item.ItemPetrified;

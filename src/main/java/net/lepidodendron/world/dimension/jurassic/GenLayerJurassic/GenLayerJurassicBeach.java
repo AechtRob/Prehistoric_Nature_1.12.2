@@ -24,6 +24,15 @@ public class GenLayerJurassicBeach extends GenLayer
     public  Biome JURASSIC_SANDBANKS = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:jurassic_sandbanks"));
     public  int JURASSIC_SANDBANKS_ID =  Biome.getIdForBiome(JURASSIC_SANDBANKS);
 
+    public  Biome JURASSIC_TAIGA = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:jurassic_southern_taiga"));
+    public  int JURASSIC_TAIGA_ID =  Biome.getIdForBiome(JURASSIC_TAIGA);
+    public  Biome JURASSIC_TAIGA_HILLS = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:jurassic_southern_taiga_hills"));
+    public  int JURASSIC_TAIGA_HILLS_ID =  Biome.getIdForBiome(JURASSIC_TAIGA_HILLS);
+    public  Biome JURASSIC_TAIGA_BASALT = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:jurassic_southern_taiga_basalt"));
+    public  int JURASSIC_TAIGA_BASALT_ID =  Biome.getIdForBiome(JURASSIC_TAIGA_BASALT);
+    public  Biome JURASSIC_BLACK_BEACH = Biome.REGISTRY.getObject(new ResourceLocation("lepidodendron:jurassic_beach_black"));
+    public  int JURASSIC_BLACK_BEACH_ID =  Biome.getIdForBiome(JURASSIC_BLACK_BEACH);
+
     public GenLayerJurassicBeach(long seed, GenLayer genLayer)
     {
         super(seed);
@@ -58,7 +67,12 @@ public class GenLayerJurassicBeach extends GenLayer
                         }
                         else
                         {
-                            aint1[j + i * areaWidth] = JURASSIC_BEACH_ID;
+                            if (hasBlackBeach(k)) {
+                                aint1[j + i * areaWidth] = JURASSIC_BLACK_BEACH_ID;
+                            }
+                            else {
+                                aint1[j + i * areaWidth] = JURASSIC_BEACH_ID;
+                            }
                         }
                     }
                     else
@@ -77,6 +91,14 @@ public class GenLayerJurassicBeach extends GenLayer
 
     private boolean isOcean(int biomeID) {
         if (biomeID == JURASSIC_OCEAN_ID || biomeID == JURASSIC_OCEAN_SHORE_ID) {
+            return true;
+        }
+        return false;
+    }
+
+    private boolean hasBlackBeach(int biomeID) {
+        if (biomeID == JURASSIC_TAIGA_ID || biomeID == JURASSIC_TAIGA_HILLS_ID
+            || biomeID == JURASSIC_TAIGA_BASALT_ID) {
             return true;
         }
         return false;

@@ -3,6 +3,7 @@ package net.lepidodendron.world.gen;
 import net.lepidodendron.block.BlockDicroidiumStem;
 import net.lepidodendron.procedure.ProcedureWorldGenDicroidium;
 import net.lepidodendron.world.biome.triassic.BiomeTriassicGondwananForestCrags;
+import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
@@ -18,6 +19,13 @@ public class WorldGenDicroidium extends WorldGenAbstractTree
     public WorldGenDicroidium(boolean notify)
     {
         super(notify);
+    }
+
+    @Override
+    public boolean isReplaceable(World world, BlockPos pos)
+    {
+        net.minecraft.block.state.IBlockState state = world.getBlockState(pos);
+        return state.getBlock().isAir(state, world, pos) || state.getMaterial() == Material.PLANTS;
     }
 
     public boolean generate(World worldIn, Random rand, BlockPos position)
